@@ -33,8 +33,7 @@ async def on_ready():
 				'name': elt['name'],
 				'cell': elt['cell']
 			}
-			list_cellAndPlayer.append(new_list)
-			#print(new_list) 
+			list_cellAndPlayer.append(new_list) 
 
 		list_all_user = []
 		for member in server.members:
@@ -55,7 +54,6 @@ async def on_ready():
 			list_all_channel.append(dico_info)
 
 		for nameCell in list_cellAndPlayer:
-			# on cherche si le channel existe déja
 			find_channel = discord.utils.find(lambda m: m.name == nameCell['cell'], server.channels)
 
 			if find_channel == None:
@@ -68,20 +66,17 @@ async def on_ready():
 
 		for i in list_cellAndPlayer:
 			name_ingame = i['name']
-			cell_ingame = i['cell']
-			#print(list_cellAndPlayer)			
+			cell_ingame = i['cell']			
 			
 			for elt in list_all_user:
 				name_discord = elt['display_name']
 				id_user_discord = elt['id_user']
-				#print(elt)
 
 				if name_ingame == name_discord:
 
 					for info in list_all_channel:
 						name_channel_discord = info['name_channel_discord']
 						id_channel_discord = info['id_channel_discord']
-						#print(id_channel_discord)
 						
 						if name_channel_discord == cell_ingame:
 							channel = client.get_channel(id_channel_discord)
