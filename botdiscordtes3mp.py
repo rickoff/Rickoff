@@ -98,17 +98,20 @@ async def on_ready():
 			channel = client.get_channel(id_channel_discord)
 			
 			if not channel.id in list_channelID_admin and channel.type == discord.ChannelType.voice:
-				
+			
 				if not channel.voice_members:
-						
-					if cell_ingame != name_channel_discord:
-						await asyncio.sleep(1)							
-						deleting = await client.delete_channel(channel)
-						print('channel %s delete.'%(channel.name))
-						await asyncio.sleep(1)				
+				
+					for i in list_cellAndPlayer:
+						name_ingame = i['name']
+						cell_ingame = i['cell']					
+				
+						if cell_ingame != name_channel_discord:						
+							await client.delete_channel(channel)
+							print('le channel %s a était delete.'%(channel.name))
+							await asyncio.sleep(1)							
 	
 
 
-pass
+	pass
 																	
 client.run('replace to token bot')
