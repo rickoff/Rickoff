@@ -12,13 +12,13 @@ playerlocationjson = 'destination playerlocation.json'
 
 @client.event
 async def on_ready():
-	print('Connecté')
+	print('Connect')
 	print(client.user.name)
 	print(client.user.id)
 	print('------')
 	await client.wait_until_ready()
 	while not client.is_closed:
-		#await client.wait_until_ready()	
+		
 		server = client.get_server("replace to id server")
 
 		with open(playerlocationjson) as json_data:
@@ -44,8 +44,6 @@ async def on_ready():
 				'nick_name': member.name
 			}
 			list_all_user.append(dico_info)
-		
-		#print(len(list_all_user))
 
 		list_all_channel = []
 		for channel in server.channels:			
@@ -55,8 +53,6 @@ async def on_ready():
 				'type_channel': channel.type
 			}
 			list_all_channel.append(dico_info)
-		#print(len(list_all_channel))
-
 
 		for nameCell in list_cellAndPlayer:
 			# on cherche si le channel existe déja
@@ -85,13 +81,17 @@ async def on_ready():
 					for info in list_all_channel:
 						name_channel_discord = info['name_channel_discord']
 						id_channel_discord = info['id_channel_discord']
-						#print(id_channel_discord)				
+						#print(id_channel_discord)
+						
 						if name_channel_discord == cell_ingame:
 							channel = client.get_channel(id_channel_discord)
+							
 							if channel != None:
 								print('channel %s exist in server !'%(channel))
+								
 								if channel.type == discord.ChannelType.voice:
 									user = server.get_member(id_user_discord)
+									
 									if user != None:
 										await client.move_member(user, channel)
 										print('User %s move ! big up'%(name_discord))
@@ -101,9 +101,11 @@ async def on_ready():
 			name_channel_discord = info['name_channel_discord']
 			id_channel_discord = info['id_channel_discord']				
 			channel = client.get_channel(id_channel_discord)
+			
 			if not channel.id in list_channelID_admin and channel.type == discord.ChannelType.voice:
-				if not channel.voice_members:						
-					#if cell_ingame != name_channel_discord:	
+				
+				if not channel.voice_members:
+						
 					if cell_ingame != name_channel_discord:
 						await asyncio.sleep(1)							
 						deleting = await client.delete_channel(channel)
