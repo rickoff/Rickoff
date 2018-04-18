@@ -17,4 +17,7 @@ description:
 Problems encountered:
 
 - the last players to disconnect from the game will still be automatically moved to the channel corresponding to the last zone traveled.
-solution: the players will have to modify a letter of his pseudo discord to circumvent the bug
+
+Solution: 
+
+- Players will have to modify a letter of his pseudo discord to circumvent the bug
