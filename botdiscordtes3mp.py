@@ -57,12 +57,10 @@ async def on_ready():
 			find_channel = discord.utils.find(lambda m: m.name == nameCell['cell'], server.channels)
 
 			if find_channel == None:
-				try:
-					everyone = discord.PermissionOverwrite(read_messages=False)
-					await client.create_channel(server, nameCell['cell'], (server.default_role, everyone), type=discord.ChannelType.voice)
-					print('nouveau channel crée')	
-				except discord.HTTPException:
-					pass
+				everyone = discord.PermissionOverwrite(read_messages=False)
+				await client.create_channel(server, nameCell['cell'], (server.default_role, everyone), type=discord.ChannelType.voice)
+				print('nouveau channel crée')	
+
 			elif find_channel != None:
 				print('channel exist')
 
@@ -112,8 +110,6 @@ async def on_ready():
 							print('le channel %s a était delete.'%(channel.name))
 							await asyncio.sleep(1)							
 	
-
-
-	pass
+pass
 																	
 client.run('replace to token bot')
