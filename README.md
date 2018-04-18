@@ -13,3 +13,8 @@ description:
 - creation of a corresponding channel in discord
 - displacement of the users on the good channel if it is already present in a vocal channel
 - delete of the unused channel
+
+Problems encountered:
+
+- the last players to disconnect from the game will still be automatically moved to the channel corresponding to the last zone traveled.
+solution: the players will have to modify a letter of his pseudo discord to circumvent the bug
