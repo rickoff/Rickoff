@@ -16,8 +16,8 @@ description:
 
 Problems encountered:
 
-- the last players to disconnect from the game will still be automatically moved to the channel corresponding to the last zone traveled.
+- the players connected to the game will not be able to speak in the channel in their choice.
 
 Solution: 
 
-- Players will have to modify a letter of his pseudo discord to circumvent the bug
+- Players will have to modify a letter of his pseudo discord.
