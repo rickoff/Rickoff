@@ -50,5 +50,6 @@ Methods.OnPlayerDisconnect = function(pid)
 end
 """
 
+and change "REPLACE TO NAME BOT"
 
     
