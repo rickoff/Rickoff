@@ -35,14 +35,14 @@ async def on_ready():
 					'cell': elt['cell']
 				}
 				list_cellAndPlayer.append(new_list)
-				#print(new_list)
 
 			list_all_user = []
 			for member in server.members:
 				dico_info = {
 					'display_name': member.display_name,
 					'id_user': member.id,
-					'nick_name': member.name
+					'nick_name': member.name,
+					'author_role': member.top_role
 				}
 				list_all_user.append(dico_info)
 
@@ -55,54 +55,57 @@ async def on_ready():
 				}
 				list_all_channel.append(dico_info)
 					
-			for nameCell in list_cellAndPlayer:
-				find_channel = discord.utils.find(lambda m: m.name == nameCell['cell'], server.channels)
-				try :
-				
-					if find_channel == None:
-							everyone = discord.PermissionOverwrite(read_messages=False)
-							await client.create_channel(server, nameCell['cell'], (server.default_role, everyone), type=discord.ChannelType.voice)
-							print('nouveau channel crée')
-							await asyncio.sleep(0.5)	
-						
-					elif find_channel != None:
-						#print('le channel existe déja')
-						pass
-				except:
-					print('erreur de creation')
-					await asyncio.sleep(0.5)
-					
 			for i in list_cellAndPlayer:
 				name_ingame = i['name']
-				cell_ingame = i['cell']			
-				
+				cell_ingame = i['cell']
+						
 				for elt in list_all_user:
 					name_discord = elt['display_name']
 					id_user_discord = elt['id_user']
-					try:
-					
+					role_user_discord = elt['author_role']					
+					try:	
 						if name_ingame == name_discord:
-
-							for info in list_all_channel:
-								name_channel_discord = info['name_channel_discord']
-								id_channel_discord = info['id_channel_discord']
+							role = discord.utils.get(server.roles, name="Vocal")
 								
-								if name_channel_discord == cell_ingame:
-									channel = client.get_channel(id_channel_discord)
-									
-									if channel != None:
+							if role_user_discord == role:
+							
+								for nameCell in list_cellAndPlayer:
+									find_channel = discord.utils.find(lambda m: m.name == nameCell['cell'], server.channels)						
+									try:
+										if find_channel == None:
+											everyone = discord.PermissionOverwrite(read_messages=False)
+											await client.create_channel(server, nameCell['cell'], (server.default_role, everyone), type=discord.ChannelType.voice)
+											print('nouveau channel crée')
+											await asyncio.sleep(0.1)
 										
-										if channel.type == discord.ChannelType.voice:
-											user = server.get_member(id_user_discord)
-											
-											if user != None:
-												await client.move_member(user, channel)
-												print('User %s déplacé avec succès ! big up'%(name_discord))
-												await asyncio.sleep(0.5)
+											for info in list_all_channel:
+												name_channel_discord = info['name_channel_discord']
+												id_channel_discord = info['id_channel_discord']
+												try:
+													if name_channel_discord == cell_ingame:
+														channel = client.get_channel(id_channel_discord)
+														
+														if channel != None:
+															
+															if channel.type == discord.ChannelType.voice:
+																user = server.get_member(id_user_discord)
+																
+																if user != None:
+																	await client.move_member(user, channel)
+																	print('User %s déplacé avec succès ! big up'%(name_discord))
+																	await asyncio.sleep(0.1)
+												except:
+													print('erreur')
+													await asyncio.sleep(0.1)
+													pass																	
+									except:
+										print('erreur')
+										await asyncio.sleep(0.1)
+										pass									
 					except:
-						print('erreur de deplacement')
-						await asyncio.sleep(0.5)
-									
+						print('erreur')
+						await asyncio.sleep(0.1)
+						pass									
 			for info in list_all_channel:
 				name_channel_discord = info['name_channel_discord']
 				id_channel_discord = info['id_channel_discord']				
@@ -116,13 +119,13 @@ async def on_ready():
 							if cell_ingame != name_channel_discord:						
 								await client.delete_channel(channel)
 								print('le channel %s a était delete.'%(channel.name))
-								await asyncio.sleep(0.5)
+								await asyncio.sleep(0.2)
 				except:
 					print('erreur de suppression')
-					await asyncio.sleep(0.5)
+					await asyncio.sleep(0.1)
+					pass
 		except:
-			print('erreur1')
-			await asyncio.sleep(0.5)
-pass
-																															
+			print('erreur de lecture')
+			await asyncio.sleep(0.1)
+			pass																														
 client.run('replace to token bot')
