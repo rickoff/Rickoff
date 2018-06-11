@@ -8,7 +8,7 @@ client = discord.Client()
 list_all_user = []
 list_all_channel = []
 list_channelID_admin = ["replace to id channel","replace to id channel"]
-playerlocationjson = 'C:\\Morrowind Online Serveur VF 0.6.1\\The Elder Scrolls III Morrowind GOTY\\tes3mp.Win64.release.0.7.0\\mp-stuff\\data\\playerLocations.json'
+playerlocationjson = 'C:\\tes3mp.Win64.release.0.7.0\\mp-stuff\\data\\playerLocations.json'#replace to you location playerlocations.json
 
 @client.event
 async def on_ready():
