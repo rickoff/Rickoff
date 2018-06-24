@@ -21,7 +21,7 @@ async def on_ready():
 	while not client.is_closed:
 		try:
 		
-			server = client.get_server("replace to id server")
+			server = client.get_server("352047092396457984")
 		
 			with open(playerlocationjson) as json_data:
 				d = json.load(json_data)
@@ -54,7 +54,20 @@ async def on_ready():
 					'type_channel': channel.type
 				}
 				list_all_channel.append(dico_info)
-					
+			
+			for nameCell in list_cellAndPlayer:
+				find_channel = discord.utils.find(lambda m: m.name == nameCell['cell'], server.channels)						
+				try:
+					if find_channel == None:
+						everyone = discord.PermissionOverwrite(read_messages=False)
+						await client.create_channel(server, nameCell['cell'], (server.default_role, everyone), type=discord.ChannelType.voice)
+						print('nouveau channel crée')
+						await asyncio.sleep(0.1)
+				except:
+					print('erreur')
+					await asyncio.sleep(0.1)
+					pass						
+			
 			for i in list_cellAndPlayer:
 				name_ingame = i['name']
 				cell_ingame = i['cell']
@@ -68,40 +81,27 @@ async def on_ready():
 							role = discord.utils.get(server.roles, name="Vocal")
 								
 							if role_user_discord == role:
-							
-								for nameCell in list_cellAndPlayer:
-									find_channel = discord.utils.find(lambda m: m.name == nameCell['cell'], server.channels)						
-									try:
-										if find_channel == None:
-											everyone = discord.PermissionOverwrite(read_messages=False)
-											await client.create_channel(server, nameCell['cell'], (server.default_role, everyone), type=discord.ChannelType.voice)
-											print('nouveau channel crée')
-											await asyncio.sleep(0.1)
 										
-											for info in list_all_channel:
-												name_channel_discord = info['name_channel_discord']
-												id_channel_discord = info['id_channel_discord']
-												try:
-													if name_channel_discord == cell_ingame:
-														channel = client.get_channel(id_channel_discord)
-														
-														if channel != None:
-															
-															if channel.type == discord.ChannelType.voice:
-																user = server.get_member(id_user_discord)
-																
-																if user != None:
-																	await client.move_member(user, channel)
-																	print('User %s déplacé avec succès ! big up'%(name_discord))
-																	await asyncio.sleep(0.1)
-												except:
-													print('erreur')
-													await asyncio.sleep(0.1)
-													pass																	
+								for info in list_all_channel:
+									name_channel_discord = info['name_channel_discord']
+									id_channel_discord = info['id_channel_discord']
+									try:
+										if name_channel_discord == cell_ingame:
+											channel = client.get_channel(id_channel_discord)
+											
+											if channel != None:
+												
+												if channel.type == discord.ChannelType.voice:
+													user = server.get_member(id_user_discord)
+													
+													if user != None:
+														await client.move_member(user, channel)
+														print('User %s déplacé avec succès ! big up'%(name_discord))
+														await asyncio.sleep(0.1)
 									except:
 										print('erreur')
 										await asyncio.sleep(0.1)
-										pass									
+										pass																										
 					except:
 						print('erreur')
 						await asyncio.sleep(0.1)
