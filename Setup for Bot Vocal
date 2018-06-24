@@ -15,8 +15,6 @@ insert the block under function OnPlayerConnect(pid) in server.lua:
     else
         tes3mp.LogMessage(1, "Nouveau joueur avec pid("..pid..") connecté!")
         myMod.OnPlayerConnect(pid, playerName)
-		msgScript.GetScript("rpChatEssentials").OnPlayerConnect(pid)
-		customQuests.init(pid)
         return true -- accept player
     end
 """
