@@ -114,6 +114,6 @@ function BasePlayer:SetDifficulty(difficulty)
 		self.data.settings.difficulty = difficulty
 	end
 	self.data.settings.difficulty = difficulty
-    tes3mp.SetDifficulty(self.pid, difficulty)
-    tes3mp.LogMessage(1, "Set difficulty to " .. tostring(difficulty) .. " for " .. myMod.GetChatName(self.pid))
+    	tes3mp.SetDifficulty(self.pid, difficulty)
+    	tes3mp.LogMessage(1, "Set difficulty to " .. tostring(difficulty) .. " for " .. myMod.GetChatName(self.pid))
 end
