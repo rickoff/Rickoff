@@ -4,7 +4,7 @@ OpenMw
 
 version 0.0.2
 
-botvocaltes3mp = Bot Vocal Discord with position player in server tes3mp
+**botvocaltes3mp = Bot Vocal Discord with position player in server tes3mp**
 
 the name of the players on the game should match the nickname of the user on discord
 
@@ -21,3 +21,9 @@ Problems encountered:
 Solution: 
 
 - Add role "Vocal" in your discord and place in first your discord role
+
+**DynamicDifficulty**
+
+A module that increases the difficulty linearly based on player level. 0.6.2 hotfx
+inspired by https://github.com/TES3MP-TeamFOSS/Scripts thank you for your work
+
