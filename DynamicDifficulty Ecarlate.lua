@@ -1,7 +1,7 @@
 --Go to player>Base.lua
 --Find function BasePlayer:SetDifficulty(difficulty)
 --Replace all the block to
-
+--attention this version includes level 1 to 50, to go beyond changing the values
 function BasePlayer:SetDifficulty(difficulty)
 
 	local difficultyMin = config.difficulty
