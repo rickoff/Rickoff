@@ -5,8 +5,8 @@
 function BasePlayer:SetDifficulty(difficulty)
 
     local difficultyMin = config.difficulty
-    local currentLevel = tes3mp.GetLevel(self.pid)	
-	  local difficultytest = difficultyMin + (currentLevel * 4)
+    local currentLevel = tes3mp.GetLevel(self.pid)
+    local difficultytest = difficultyMin + (currentLevel * 4)
 
 	if difficultytest <= 4 then
 		difficulty = 0 
