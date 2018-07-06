@@ -4,9 +4,9 @@
 
 function BasePlayer:SetDifficulty(difficulty)
 
-    local difficultyMin = config.difficulty
-    local currentLevel = tes3mp.GetLevel(self.pid)
-    local difficultytest = difficultyMin + (currentLevel * 4)
+	local difficultyMin = config.difficulty
+	local currentLevel = tes3mp.GetLevel(self.pid)
+	local difficultytest = difficultyMin + (currentLevel * 4)
 
 	if difficultytest <= 4 then
 		difficulty = 0 
@@ -114,6 +114,6 @@ function BasePlayer:SetDifficulty(difficulty)
 		self.data.settings.difficulty = difficulty
 	end
 	self.data.settings.difficulty = difficulty
-    	tes3mp.SetDifficulty(self.pid, difficulty)
-    	tes3mp.LogMessage(1, "Set difficulty to " .. tostring(difficulty) .. " for " .. myMod.GetChatName(self.pid))
+	tes3mp.SetDifficulty(self.pid, difficulty)
+	tes3mp.LogMessage(1, "Set difficulty to " .. tostring(difficulty) .. " for " .. myMod.GetChatName(self.pid))
 end
