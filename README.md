@@ -25,7 +25,7 @@ Solution:
 **DynamicDifficulty**
 
 - A module that increases the difficulty linearly based on player level. 0.6.2 hotfix
-inspired by https://github.com/TES3MP-TeamFOSS/Scripts thank you for your work
+inspired by https://github.com/TES3MP-TeamFOSS/Scripts thank you for your work and Capostrophic for your help
 
 **LevelCapMax**
 
