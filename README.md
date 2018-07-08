@@ -42,3 +42,7 @@ inspired by https://github.com/TES3MP-TeamFOSS/Scripts thank you for your work a
 **ResetLog**
 
 - a simple solution to reset your newspaper and / or faction evictions
+
+**NudeCap**
+
+- unequip all items when a player goes overboard
