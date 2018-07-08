@@ -36,4 +36,9 @@ inspired by https://github.com/TES3MP-TeamFOSS/Scripts thank you for your work a
 - This is the modified version of DeathDrop made for Rickoff so that only gold is left to death except 100
 
 **TeamWorldMatch**
+
 - This is the modified version of mwTDM by Texafornian made for Rickoff for a constant war between 4 factions
+
+**ResetLog**
+
+- a simple solution to reset your newspaper and / or faction evictions
