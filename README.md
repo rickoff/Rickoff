@@ -46,3 +46,11 @@ inspired by https://github.com/TES3MP-TeamFOSS/Scripts thank you for your work a
 **NudeCap**
 
 - unequip all items when a player goes overboard
+
+**Forge de verre**
+
+- an object creation menu of weapons and vanilla armor glass
+
+**Forge d'ebonite**
+
+- an object creation menu of weapons and vanilla armor ebony
