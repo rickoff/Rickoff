@@ -1,11 +1,11 @@
 --add file in folder script/menu
 --add in config.lua find ``config.menuHelperFiles = { "forge de verre" } ``
 --go to server.lua and add to comman text
-[[        elseif cmd[1] == "craftverre" then
+        --elseif cmd[1] == "craftverre" then
 
-            Players[pid].currentCustomMenu = "forge de verre"
-            menuHelper.displayMenu(pid, Players[pid].currentCustomMenu)
-]]
+            --Players[pid].currentCustomMenu = "forge de verre"
+            --menuHelper.displayMenu(pid, Players[pid].currentCustomMenu)
+
 
 Menus["forge de verre"] = {
     text = "#red ..***** ARME DE VERRE *****\n\
