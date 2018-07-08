@@ -33,4 +33,4 @@ inspired by https://github.com/TES3MP-TeamFOSS/Scripts thank you for your work a
 
 **DeathDrop**
 
-- This is the modified version of DeathDrop made for Rickoff so that only gold is dropped on death.
+- This is the modified version of DeathDrop made for Rickoff so that only gold is left to death except 100
