@@ -2,8 +2,6 @@ TWM.lua
 
 "Team World Match" for TES3MP v0.6.2.hotfix
 
-Lots of customizable settings are available; just open TWM.lua and look for CONFIG/SETTINGS SECTION.
-
     /score
     /stats
     /pelerins
@@ -26,6 +24,7 @@ myMod = require("myMod")
 to:
 
 myMod = require("myMod")
+
 TWM = require("TWM")
 
 Find function OnServerInit() and add down:
