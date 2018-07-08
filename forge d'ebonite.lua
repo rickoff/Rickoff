@@ -1,4 +1,10 @@
+--add file in folder script/menu
+--add in config.lua find ``config.menuHelperFiles = { "forge d'ebonite" } ``
+--go to server.lua and add to command text
+        --elseif cmd[1] == "craftebonite" then
 
+            --Players[pid].currentCustomMenu = "forge d'ebonite"
+            --menuHelper.displayMenu(pid, Players[pid].currentCustomMenu)	
 
 Menus["forge d'ebonite"] = {
     text = "#red ..***** ARME EN EBONITE ***** \n\
