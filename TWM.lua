@@ -114,8 +114,6 @@ Methods.OnPlayerDeath = function(pid) -- Called whenever player dies. Updates ki
 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		ProcessDeath(pid)
-		DeathDrop.Drop(pid)
-
 	end
 end
 
@@ -466,7 +464,22 @@ function ProcessDeath(pid) -- Update player kills/deaths and team scores
 			end
 		end
 		
-		deathReason = "a été tué par " .. deathReason
+		deathReason = "est mort par " .. deathReason	
+		Criminals.processBountyReward(pid, deathReason)		
+		killer = string.sub(deathReason, 14)
+		local lastPid = tes3mp.GetLastPlayerId()
+		local killerPID = -1
+		for i = 0, lastPid do
+		    if Players[i] ~= nil and Players[i]:IsLoggedIn() then
+			if tostring(Players[i].name) == tostring(killer) then
+			    killerPID = Players[i].pid -- get killer's PID, assuming it was an actual player
+			    break
+			end
+		    end
+		end	
+		if killerPID == -1 then
+			DeathDrop.Drop(pid)
+		end
 	end
 
 	local message = ("%s (%d) %s"):format(Players[pid].data.login.name, pid, deathReason)
