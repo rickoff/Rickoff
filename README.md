@@ -54,3 +54,21 @@ inspired by https://github.com/TES3MP-TeamFOSS/Scripts thank you for your work a
 **Forge d'ebonite**
 
 - an object creation menu of weapons and vanilla armor ebony
+
+**BountyCriminal**
+
+- allows players to spend gold to put a bounty on other players
+
+**Criminals**
+
+- the Skvysh script translates and adapts for the Ecarlate server
+https://github.com/Skvysh/TES3MP-Scripts/tree/master/Criminals
+
+**Menu**
+
+- the lord of the menu that executes the commands with buttons thanks to the menuhelper 0.7.0
+
+**Spectate**
+
+- the spectator mode to spy on other players in peace (the only cooperative action of malseph)
+https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
