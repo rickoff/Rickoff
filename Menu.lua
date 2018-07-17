@@ -1,3 +1,12 @@
+--add file in folder script/menu
+--add in config.lua find ``config.menuHelperFiles = { "Menu" } ``
+--go to server.lua and add to command text
+        --elseif cmd[1] == "menu" then
+
+            --Players[pid].currentCustomMenu = "help player"
+            --menuHelper.displayMenu(pid, Players[pid].currentCustomMenu)	
+
+
 Menus["help player"] = {
     text = color.Orange .. "MENU DES COMMANDES\n" ..
         color.Yellow .. "\nle menu global vous permet d'éxécuter différentes fonctions",
