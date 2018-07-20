@@ -142,9 +142,20 @@ local function onEnterPrompt(pid, data)
 		object.location.posX = object.location.posX + data
 	elseif mode == "Move Up" then
 		object.location.posZ = object.location.posZ + data
-	elseif mode == "Scale Up" then
-		--Not sure how scale works atm.
-		--TODO
+	elseif mode == "Monter" then
+		object.location.posZ = object.location.posZ + 50
+	elseif mode == "Descendre" then
+		object.location.posZ = object.location.posZ - 50
+	elseif mode == "Est" then
+		object.location.posX = object.location.posX + 50
+	elseif mode == "Ouest" then
+		object.location.posX = object.location.posX - 50
+	elseif mode == "Nord" then
+		object.location.posY = object.location.posY + 50
+	elseif mode == "Sud" then
+		object.location.posY = object.location.posY - 50
+	elseif mode == "return" then
+		object.location.posY = object.location.posY		
 		return
 	end
 	
@@ -162,7 +173,7 @@ local function showMainGUI(pid)
 	end
 	
 	local message = "Choisir une option. Votre article actuel: " .. currentItem
-	tes3mp.CustomMessageBox(pid, config.MainId, message, "Déplacer vers le Nord;Déplacer vers l'est;Déplacer vers le haut;Tourner X;Tourner Y;Tourner Z;Déplacer vers le haut;Saisir;Fermer")
+	tes3mp.CustomMessageBox(pid, config.MainId, message, "Ajuster le Nord;Ajuster l'est;Ajuster la hauteur;Tourner X;Tourner Y;Tourner Z;Monter;Descendre;Est;Ouest;Nord;Sud;Fermer")
 end
 
 local function setSelectedObject(pid, refIndex)
@@ -212,15 +223,31 @@ Methods.OnGUIAction = function(pid, idGui, data)
 			playerCurrentMode[pname] = "Rotate Z"
 			showPromptGUI(pid)
 			return true
-		elseif tonumber(data) == 6 then --Scale Up
-			--TODO
-			tes3mp.MessageBox(pid, -1, "Not yet implemented, sorry.")
-			return true
-		elseif tonumber(data) == 7 then --Grab
-			--TODO
-			tes3mp.MessageBox(pid, -1, "Not yet implemented, sorry.")
-			return true
-		elseif tonumber(data) == 8 then --Close
+		elseif tonumber(data) == 6 then --Monter
+			playerCurrentMode[pname] = "Monter"
+			onEnterPrompt(pid, 0)			
+			return true, showMainGUI(pid)
+		elseif tonumber(data) == 7 then --Descendre
+			playerCurrentMode[pname] = "Descendre"
+			onEnterPrompt(pid, 0)			
+			return true, showMainGUI(pid)
+		elseif tonumber(data) == 8 then --Est
+			playerCurrentMode[pname] = "Est"
+			onEnterPrompt(pid, 0)			
+			return true, showMainGUI(pid)	
+		elseif tonumber(data) == 9 then --Ouest
+			playerCurrentMode[pname] = "Ouest"
+			onEnterPrompt(pid, 0)			
+			return true, showMainGUI(pid)
+		elseif tonumber(data) == 10 then --Nord
+			playerCurrentMode[pname] = "Nord"
+			onEnterPrompt(pid, 0)			
+			return true, showMainGUI(pid)
+		elseif tonumber(data) == 11 then --Sud
+			playerCurrentMode[pname] = "Sud"
+			onEnterPrompt(pid, 0)
+			return true, showMainGUI(pid)			
+		elseif tonumber(data) == 12 then --Close
 			--Do nothing
 			return true
 		end
@@ -243,3 +270,4 @@ Methods.OnCommand = function(pid)
 end
 
 return Methods
+
