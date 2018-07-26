@@ -80,5 +80,5 @@ https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
 **MarketPlace**
 
 - a global marketplace to sell your items or buy items put up for sale by other players
-the current version is not yet functional, do not hesitate to improve and help me in its design
+the current version is functional.
 
