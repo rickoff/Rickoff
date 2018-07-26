@@ -328,7 +328,7 @@ MarketPlace.showBuyGUI = function(pid)
     local playerName = Players[pid].name
     local ipAddress = tes3mp.GetIP(pid)
     local options = getAvailableFurnitureStock(pid) -- gets all available refIds in Inventory
-    local list = "* CLOSE *\n"
+    local list = "* Retour *\n"
    
     for i = 1, #options do
         list = list .. options[i]
@@ -360,7 +360,7 @@ MarketPlace.showInventoryGUI = function(pid)
     local playerName = Players[pid].name
     local ipAddress = tes3mp.GetIP(pid)
     local options = getHdvFurnitureStock(pid) -- gets hdvlist 
-    local list = "* CLOSE *\n"
+    local list = "* Retour *\n"
    
     for i = 1, #options do
         list = list .. options[i].itemid.." for Gold: "..options[i].price
@@ -384,7 +384,7 @@ MarketPlace.showInventoryOptionsGUI = function(pid, loc)
    
     message = message .. "Item ID: " .. choice.itemid
     playerInventoryOptions[getName(pid)].choice = choice
-    tes3mp.CustomMessageBox(pid, config.InventoryOptionsGUI, message, "Acheter;Récupérer;Fermer")
+    tes3mp.CustomMessageBox(pid, config.InventoryOptionsGUI, message, "Acheter/Récupérer;Fermer")
 end
  
 MarketPlace.onInventoryOptionBuy = function(pid, loc)
@@ -408,7 +408,7 @@ MarketPlace.showViewGUI = function(pid)
     local playerName = Players[pid].name
     local ipAddress = tes3mp.GetIP(pid)
     local options = getHdvInventoryStock(pid) -- gets hdvinv for pid
-    local list = "* CLOSE *\n"
+    local list = "* Retour *\n"
    
     for i = 1, #options do
         list = list .. options[i].itemid.." Gold: "..options[i].price
@@ -431,7 +431,7 @@ MarketPlace.showViewOptionsGUI = function(pid, loc)
     local message = choice
    
     playerViewChoice[getName(pid)] = choice
-    tes3mp.CustomMessageBox(pid, config.ViewOptionsGUI, message, "Changer le prix;Mettre en vente;Récupérer;Fermer")
+    tes3mp.CustomMessageBox(pid, config.ViewOptionsGUI, message, "Changer le prix;Mettre en vente;Retour")
 end
  
 MarketPlace.onViewOptionSelect = function(pid, loc)
@@ -552,10 +552,10 @@ MarketPlace.OnGUIAction = function(pid, idGui, data)
     elseif idGui == config.BuyGUI then -- Tranfert
         if tonumber(data) == 0 or tonumber(data) == 18446744073709551615 then --Close/Nothing Selected
             --Do nothing
-            return true
+            return MarketPlace.onMainGui(pid)
         else   
             MarketPlace.onBuyChoice(pid, tonumber(data))
-            return true
+            return MarketPlace.onMainGui(pid)
         end
     elseif idGui == config.HouseEditPriceGUI then
         if tonumber(data) == 0 or tonumber(data) == 18446744073709551615 then --Close/Nothing Selected
@@ -563,12 +563,12 @@ MarketPlace.OnGUIAction = function(pid, idGui, data)
             return true
         else
             MarketPlace.addPriceItem(pid, tonumber(data))
-            return true
+            return MarketPlace.onMainView(pid)
         end        
     elseif idGui == config.InventoryGUI then --Hotel de vente
         if tonumber(data) == 0 or tonumber(data) == 18446744073709551615 then --Close/Nothing Selected
             --Do nothing
-            return true
+            return MarketPlace.onMainGui(pid)
         else
             MarketPlace.onInventoryChoice(pid, tonumber(data))
             return true
@@ -576,10 +576,7 @@ MarketPlace.OnGUIAction = function(pid, idGui, data)
     elseif idGui == config.InventoryOptionsGUI then --Hotel de vente option
         if tonumber(data) == 0 then --Acheter
             MarketPlace.onInventoryOptionBuy(pid)
-            return true
-        elseif tonumber(data) == 1 then --Récupérer
-            MarketPlace.onInventoryOptionRec(pid)
-            return true
+            return MarketPlace.onMainInventory(pid)
         else --Close
             --Do nothing
             return true
@@ -587,7 +584,7 @@ MarketPlace.OnGUIAction = function(pid, idGui, data)
     elseif idGui == config.ViewGUI then --Hotel d'attente
         if tonumber(data) == 0 or tonumber(data) == 18446744073709551615 then --Close/Nothing Selected
             --Do nothing
-            return true
+            return MarketPlace.onMainGui(pid)
         else
             MarketPlace.onViewChoice(pid, tonumber(data))
             return true
@@ -598,11 +595,10 @@ MarketPlace.OnGUIAction = function(pid, idGui, data)
             return true
         elseif tonumber(data) == 1 then --Vente
             MarketPlace.onViewOptionPutAway(pid)
-        elseif tonumber(data) == 2 then --Recuperer
-            MarketPlace.onViewOptionSell(pid)
-        else --Close
+			return MarketPlace.onMainView(pid)
+        else --Retour
             --Do nothing
-            return true
+            return MarketPlace.onMainView(pid)
         end
     end
 end
