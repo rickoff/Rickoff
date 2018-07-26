@@ -225,39 +225,53 @@ local function itemAchat(pid, data)
 
     local playerName = Players[pid].name
     local ipAddress = tes3mp.GetIP(pid)
-    local newItemid = data
+    local newItemid = data.itemid
     local hdvlist = jsonInterface.load("hdvlist.json")
-    local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvlist.players[ipAddress].items, "itemid", newItemid)
-	local newItem = hdvlist.players[ipAddress].items[existingIndex] 	
-	local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
-	local newPrice = newItem.price
-	local itemLoc = newItem.itemid
-	local goldcount = Players[pid].data.inventory[goldLoc].count
-	local count = 1
-		
-	if goldLoc then
-		Players[pid]:Message("goldLoc is " .. tostring(goldcount) .. "\n")
-		Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - newPrice
-		if goldcount >= newPrice then
-			if existingIndex ~= nil then
-				Players[pid]:Message("existingIndex " .. tostring(existingIndex) .. "\n")    
-				local newItem = hdvlist.players[ipAddress].items[existingIndex]    
-				hdvlist.players[ipAddress].items[existingIndex] = nil
-				tableHelper.cleanNils(hdvlist.players[ipAddress].items)
-				jsonInterface.save("hdvlist.json", hdvlist)
+    --local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvlist.players[playerName].items, "itemid", newItemid)
+    local existingIndex = 0
+    local existingPlayer = ""
+    for slot, player in pairs(hdvlist.players) do
+        for itemSlot, item in pairs(player.items) do
+            if item.itemid == newItemid then
+                existingIndex = itemSlot
+                existingPlayer = slot
+            end
+        end
+    end
+    
+    
+    
+    --tes3mp.SendMessage(pid,tostring(existingIndex).."\n")
+    local newItem = hdvlist.players[existingPlayer].items[existingIndex]     
+    --tes3mp.SendMessage(pid,newItem.itemid.."\n")
+    local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
+    local newPrice = newItem.price
+    local itemLoc = newItem.itemid
+    local goldcount = Players[pid].data.inventory[goldLoc].count
+    local count = 1
+	
+    if goldLoc then
+        Players[pid]:Message("goldLoc is " .. tostring(goldcount) .. "\n")
+        if goldcount >= newPrice then
+			Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - newPrice
+            if existingIndex ~= nil then
+                Players[pid]:Message("existingIndex " .. tostring(existingIndex) .. "\n")    
+                local newItem = hdvlist.players[existingPlayer].items[existingIndex]    
+                hdvlist.players[existingPlayer].items[existingIndex] = nil
+                tableHelper.cleanNils(hdvlist.players[existingPlayer].items)
+                jsonInterface.save("hdvlist.json", hdvlist)
 
-				table.insert(Players[pid].data.inventory, {refId = newItem.itemid, count = count, charge = -1})
-			end
-		else
-			tes3mp.MessageBox(pid, -1, "Vous ne pouvez pas acheter cette objet")				
-		end
-	end		
+                table.insert(Players[pid].data.inventory, {refId = newItem.itemid, count = count, charge = -1})
+            end
+        else
+            tes3mp.MessageBox(pid, -1, "Vous ne pouvez pas acheter cette objet")                
+        end
+    end        
 
-	Players[pid]:Save()
-	Players[pid]:LoadInventory()
-	Players[pid]:LoadEquipment()	
+    Players[pid]:Save()
+    Players[pid]:LoadInventory()
+    Players[pid]:LoadEquipment()    
 end
-
 -- ===========
 --  MAIN MENU
 -- ===========
@@ -268,6 +282,10 @@ MarketPlace.onMainGui = function(pid)
 end
  
 MarketPlace.showMainGUI = function(pid)
+    hdvlist = jsonInterface.load("hdvlist.json")
+    hdvinv = jsonInterface.load("hdvinv.json")    
+    MarketPlace.listCheck(pid)
+    MarketPlace.itemCheck(pid)
     local message = color.Green .. "BIENVENUE DANS L'HOTEL DE VENTE.\n" .. color.Brown .. "\nAcheter pour acheter des objets.\n Inventaire pour afficher les articles que vous possédez.\n Afficher pour une liste de tous les objets que vous possédez dans la boutique en attente de vente." .. color.Default
     tes3mp.CustomMessageBox(pid, config.MainGUI, message, "Transfert;Hotel de vente;Afficher;Fermer")
 end
@@ -336,9 +354,9 @@ end
  
 MarketPlace.showInventoryOptionsGUI = function(pid, loc)
     local message = ""
-    local choice = playerInventoryOptions[getName(pid)].opt[loc].itemid
+    local choice = playerInventoryOptions[getName(pid)].opt[loc]
    
-    message = message .. "Item ID: " .. choice
+    message = message .. "Item ID: " .. choice.itemid
     playerInventoryOptions[getName(pid)].choice = choice
     tes3mp.CustomMessageBox(pid, config.InventoryOptionsGUI, message, "Acheter;Récupérer;Fermer")
 end
