@@ -1,8 +1,54 @@
 ---------------------------
 -- MarketPlace by Rickoff and DiscordPeter
--- helped by David.C
+--helped by Davic.C
 --
 ---------------------------
+--[[ INSTALLATION
+1) Save this file as "MarketPlace.lua" in mp-stuff/scripts
+
+2) Add [ MarketPlace = require("MarketPlace") ] to the top of server.lua
+
+3) Add the following to the elseif chain for commands in "OnPlayerSendMessage" inside server.lua
+[		elseif cmd[1] == "hdv" then
+			MarketPlace.showMainGUI(pid)
+]	
+		
+4) Add the following to OnGUIAction in server.lua
+	[ if MarketPlace.OnGUIAction(pid, idGui, data) then return end ]
+	
+5) Add under pluginlist = {}
+hdvlist = {}
+hdvinv = {}
+
+6) Add under function LoadPluginList()
+
+function Loadhdvlist()
+	tes3mp.LogMessage(2, "Reading hdvlist.json")
+	
+	hdvlist = jsonInterface.load("hdvlist.json")
+	
+	if hdvlist == nil then
+		hdvlist.players = {}
+	end
+end
+
+function Loadhdvinv()
+	tes3mp.LogMessage(2, "Reading hdvinv.json")
+	
+	hdvinv = jsonInterface.load("hdvinv.json")
+	
+	if hdvinv == nil then
+		hdvinv.players = {}
+	end
+end
+
+7) Find function OnServerInit() and add above LoadPluginList()
+	Loadhdvlist()
+	Loadhdvinv()	
+]]
+
+
+
 local config = {}
  
 config.MainGUI = 231363 -- "Transfert;Hotel de vente;Afficher;Fermer")
@@ -193,17 +239,17 @@ local function itemAchat(pid, data)
 			end
 		end
 	end
-	
-	--tes3mp.SendMessage(pid,tostring(existingIndex).."\n")
+
 	local newItem = hdvlist.players[existingPlayer].items[existingIndex] 	
-	--tes3mp.SendMessage(pid,newItem.itemid.."\n")
 	local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
 	local newPrice = newItem.price
 	local itemLoc = newItem.itemid
-	local goldcount = Players[pid].data.inventory[goldLoc].count
 	local count = 1
 		
-	if goldLoc then
+	if goldLoc == nil then
+		tes3mp.MessageBox(pid, -1, "Vous n'avez pas d'or sur vous!")
+	elseif goldLoc then
+		local goldcount = Players[pid].data.inventory[goldLoc].count
 		if goldcount >= newPrice then
 			if existingIndex ~= nil then
 				
@@ -228,8 +274,7 @@ local function itemAchat(pid, data)
 				end
 				
 				if goldLocSeller ~= nil then
-						player.data.inventory[goldLocSeller].count = player.data.inventory[goldLocSeller].count + newPrice
-				
+					player.data.inventory[goldLocSeller].count = player.data.inventory[goldLocSeller].count + newPrice
 				
 					if player:IsLoggedIn() then
 						--If the player is logged in, we have to update their inventory to reflect the changes
@@ -242,13 +287,11 @@ local function itemAchat(pid, data)
 						player:Save()
 						player.loggedIn = false
 					end
-				end
-				
-
+				end			
 			end
 		else
 			tes3mp.MessageBox(pid, -1, "Vous ne pouvez pas acheter cette objet")				
-		end
+		end							
 	end		
 	
 	--reload player that bought
