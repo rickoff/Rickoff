@@ -47,8 +47,6 @@ end
 --add in function OnPlayerSendMessage(pid, message) under elseif cmd
 
 		elseif cmd[1] == "hdv" then
-			MarketPlace.itemCheck(pid)		
-			MarketPlace.listCheck(pid)
 			MarketPlace.showMainGUI(pid)
 
 ]]
