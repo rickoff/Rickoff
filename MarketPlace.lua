@@ -228,7 +228,6 @@ local function itemAchat(pid, data)
     local ipAddress = tes3mp.GetIP(pid)
     local newItemid = data.itemid
     local hdvlist = jsonInterface.load("hdvlist.json")
-    --local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvlist.players[playerName].items, "itemid", newItemid)
 	local existingIndex = 0
 	local existingPlayer = ""
 	for slot, player in pairs(hdvlist.players) do
@@ -275,7 +274,7 @@ local function itemAchat(pid, data)
 				
 				if goldLocSeller == nil then
 					tes3mp.MessageBox(pid, -1, "Le vendeur n'a pas d'or sur lui!")
-
+					--table.insert(player.data.inventory, {refId = "gold_001", count = newPrice, charge = -1})
 				elseif goldLocSeller ~= nil then
 					player.data.inventory[goldLocSeller].count = player.data.inventory[goldLocSeller].count + newPrice
 				
@@ -309,7 +308,6 @@ local function addItemPlayer(pid, data)
     local ipAddress = tes3mp.GetIP(pid)
     local newItemid = data
     local hdvinv = jsonInterface.load("hdvinv.json")
-    --local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvlist.players[playerName].items, "itemid", newItemid)
 	local existingIndex = 0
 	local existingPlayer = ""
 	
@@ -322,9 +320,7 @@ local function addItemPlayer(pid, data)
 		end
 	end
 	
-	--tes3mp.SendMessage(pid,tostring(existingIndex).."\n")
 	local newItem = hdvinv.players[existingPlayer].items[existingIndex] 	
-	--tes3mp.SendMessage(pid,newItem.itemid.."\n")
 	local itemLoc = newItem.itemid
 	local count = 1
 
@@ -486,7 +482,6 @@ end
  
 MarketPlace.showEditPricePrompt = function(pid, loc)
     local itemchoice = playerViewChoice[getName(pid)]
-    tes3mp.MessageBox(pid, -1, itemchoice) 
     local message = "Entrer un nouveau prix pour"
     return tes3mp.InputDialog(pid, config.HouseEditPriceGUI, message)
 end
@@ -526,8 +521,8 @@ MarketPlace.itemCheck = function(pid)
     end
 end
  
-function nilItemCheck(playerName, ipAddress, itemid) -- Used to create and manage entries in tokenlist.json    
-    -- If this IP address entry doesn't exist, then make new blank entry
+function nilItemCheck(playerName, ipAddress, itemid)  
+
     if hdvlist.players[playerName] == nil then
         local player = {}
         player.names = {}
@@ -537,9 +532,9 @@ function nilItemCheck(playerName, ipAddress, itemid) -- Used to create and manag
         player.items[1].price = 0
         hdvlist.players[playerName] = player
         jsonInterface.save("hdvlist.json", hdvlist)
-    -- If this IP address does exist check whether player has been logged
+
     else
-        -- If this IP address already exists for another character, then add this character to it
+
         if tableHelper.containsValue(hdvlist.players[playerName].names, playerName) == false then
             table.insert(hdvlist.players[playerName].names, playerName)
             jsonInterface.save("hdvlist.json", hdvlist)
@@ -555,8 +550,8 @@ MarketPlace.listCheck = function(pid)
     end
 end
  
-function nilListCheck(playerName, ipAddress) -- Used to create and manage entries in tokenlist.json        
-    -- If this IP address entry doesn't exist, then make new blank entry
+function nilListCheck(playerName, ipAddress)    
+
 
 	if hdvinv.players[playerName] == nil then
         local player = {}
@@ -568,9 +563,8 @@ function nilListCheck(playerName, ipAddress) -- Used to create and manage entrie
         hdvinv.players[playerName] = player
         jsonInterface.save("hdvinv.json", hdvinv)
        
-    -- If this IP address does exist check whether player has been logged
     else
-        -- If this IP address already exists for another character, then add this character to it
+
         if tableHelper.containsValue(hdvlist.players[playerName].names, playerName) == false then
             table.insert(hdvlist.players[playerName].names, playerName)
             jsonInterface.save("hdvlist.json", hdvlist)    
