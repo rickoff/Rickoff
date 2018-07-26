@@ -273,7 +273,10 @@ local function itemAchat(pid, data)
 					end
 				end
 				
-				if goldLocSeller ~= nil then
+				if goldLocSeller == nil then
+					tes3mp.MessageBox(pid, -1, "Le vendeur n'a pas d'or sur lui!")
+
+				elseif goldLocSeller ~= nil then
 					player.data.inventory[goldLocSeller].count = player.data.inventory[goldLocSeller].count + newPrice
 				
 					if player:IsLoggedIn() then
