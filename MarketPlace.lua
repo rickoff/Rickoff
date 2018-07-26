@@ -1,6 +1,6 @@
 ---------------------------
 -- MarketPlace by Rickoff and DiscordPeter
---helped by Davic.C
+-- helped by David.C
 --
 ---------------------------
 local config = {}
