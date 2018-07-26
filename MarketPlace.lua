@@ -177,7 +177,7 @@ local function itemAdd(pid, newItemid) -- gets itemrefId into data and removes 3
 	
 	local hdvinv = jsonInterface.load("hdvinv.json")   
     local playerName = Players[pid].name
-    local newItem = {}
+    local newItem = { itemid = "" , price = 0}
     local removedCount = 1 -- you need to get the real count th player wants to remove
 	local existingIndex = nil
 	
@@ -216,7 +216,7 @@ local function itemAdd(pid, newItemid) -- gets itemrefId into data and removes 3
        
     end
 				
-	if newItem ~= nil then 
+	if newItem.itemid ~= "" then 
 		table.insert(hdvinv.players[playerName].items, newItem)
         jsonInterface.save("hdvinv.json", hdvinv)
 	end
@@ -228,6 +228,7 @@ local function itemAchat(pid, data)
     local ipAddress = tes3mp.GetIP(pid)
     local newItemid = data.itemid
     local hdvlist = jsonInterface.load("hdvlist.json")
+    --local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvlist.players[playerName].items, "itemid", newItemid)
 	local existingIndex = 0
 	local existingPlayer = ""
 	for slot, player in pairs(hdvlist.players) do
@@ -264,6 +265,7 @@ local function itemAchat(pid, data)
 				
 				--add Gold to Sellers Inventory
 				local player = myMod.GetPlayerByName(existingPlayer)
+				--local pd = player.pid
 				local goldLocSeller = nil
 				
 				for slot, item in pairs(player.data.inventory) do
@@ -272,15 +274,13 @@ local function itemAchat(pid, data)
 					end
 				end
 				
-				if goldLocSeller == nil then
-					tes3mp.MessageBox(pid, -1, "Le vendeur n'a pas d'or sur lui!")
-					--table.insert(player.data.inventory, {refId = "gold_001", count = newPrice, charge = -1})
-				elseif goldLocSeller ~= nil then
+				if goldLocSeller ~= nil then
 					player.data.inventory[goldLocSeller].count = player.data.inventory[goldLocSeller].count + newPrice
 				
 					if player:IsLoggedIn() then
 						--If the player is logged in, we have to update their inventory to reflect the changes
 						player:Save()
+						player:Load()
 						player:LoadInventory()
 						player:LoadEquipment()
 					else
@@ -289,7 +289,21 @@ local function itemAchat(pid, data)
 						player:Save()
 						player.loggedIn = false
 					end
-				end			
+				else
+					table.insert(player.data.inventory, {refId = "gold_001", count = newPrice, charge = -1})	
+					if player:IsLoggedIn() then
+						--If the player is logged in, we have to update their inventory to reflect the changes
+						player:Save()
+						player:Load()
+						player:LoadInventory()
+						player:LoadEquipment()
+					else
+						--If the player isn't logged in, we have to temporarily set the player's logged in variable to true, otherwise the Save function won't save the player's data
+						player.loggedIn = true
+						player:Save()
+						player.loggedIn = false
+					end
+				end
 			end
 		else
 			tes3mp.MessageBox(pid, -1, "Vous ne pouvez pas acheter cette objet")				
@@ -308,6 +322,7 @@ local function addItemPlayer(pid, data)
     local ipAddress = tes3mp.GetIP(pid)
     local newItemid = data
     local hdvinv = jsonInterface.load("hdvinv.json")
+    --local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvlist.players[playerName].items, "itemid", newItemid)
 	local existingIndex = 0
 	local existingPlayer = ""
 	
@@ -320,7 +335,9 @@ local function addItemPlayer(pid, data)
 		end
 	end
 	
+	--tes3mp.SendMessage(pid,tostring(existingIndex).."\n")
 	local newItem = hdvinv.players[existingPlayer].items[existingIndex] 	
+	--tes3mp.SendMessage(pid,newItem.itemid.."\n")
 	local itemLoc = newItem.itemid
 	local count = 1
 
@@ -349,10 +366,11 @@ MarketPlace.onMainGui = function(pid)
 end
  
 MarketPlace.showMainGUI = function(pid)
-	hdvlist = jsonInterface.load("hdvlist.json")
-	hdvinv = jsonInterface.load("hdvinv.json")	
+				--tes3mp.SendMessage(pid,"inside Gui called",false)
+
 	MarketPlace.listCheck(pid)
 	MarketPlace.itemCheck(pid)
+				--tes3mp.SendMessage(pid,"after checks",false)
 	
     local message = color.Green .. "BIENVENUE DANS L'HOTEL DE VENTE.\n" .. color.Brown .. "\nAcheter pour acheter des objets.\n Inventaire pour afficher les articles que vous possédez.\n Afficher pour une liste de tous les objets que vous possédez dans la boutique en attente de vente." .. color.Default
     tes3mp.CustomMessageBox(pid, config.MainGUI, message, "Transfert;Hotel de vente;Afficher;Fermer")
@@ -482,6 +500,7 @@ end
  
 MarketPlace.showEditPricePrompt = function(pid, loc)
     local itemchoice = playerViewChoice[getName(pid)]
+    tes3mp.MessageBox(pid, -1, itemchoice) 
     local message = "Entrer un nouveau prix pour"
     return tes3mp.InputDialog(pid, config.HouseEditPriceGUI, message)
 end
@@ -507,34 +526,40 @@ end
 -------------------------
  
 MarketPlace.itemCheck = function(pid)
+				--tes3mp.SendMessage(pid,"inside itemcheck called",false)
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-        local playerName = Players[pid].name
-        local ipAddress = tes3mp.GetIP(pid)    
- 
-        for slot= 0, 200, 1 do
-            if Players[pid].data.inventory[slot] ~= nil then
-                local itemid = Players[pid].data.inventory[slot].refId
-                nilItemCheck(playerName, ipAddress, itemid)            
-            end
-        end
-       
+        local playerName = Players[pid].name  
+           nilItemCheck(playerName)                  
     end
 end
  
-function nilItemCheck(playerName, ipAddress, itemid)  
+function nilItemCheck(playerName) -- Used to create and manage entries in tokenlist.json    
+    -- If this IP address entry doesn't exist, then make new blank entry
+	hdvlist = {}
+	hdvlist.players = {}
+	hdvlist.players[playerName] = nil
+	
+	
+	if tes3mp.GetCaseInsensitiveFilename(os.getenv("MOD_DIR").."/","hdvlist.json") == "invalid" then
+		jsonInterface.save("hdvlist.json", hdvlist)
+	else
+		hdvlist = jsonInterface.load("hdvlist.json")
+	end
 
-    if hdvlist.players[playerName] == nil then
+	
+	if hdvlist.players[playerName] == nil then
         local player = {}
         player.names = {}
+		table.insert(player.names, playerName)
         player.items = {}
-        player.items[1] = {}
-        player.items[1].itemid = ""
-        player.items[1].price = 0
+        --player.items[1] = {}
+        --player.items[1].itemid = ""
+        --player.items[1].price = 0
         hdvlist.players[playerName] = player
         jsonInterface.save("hdvlist.json", hdvlist)
-
+    -- If this IP address does exist check whether player has been logged
     else
-
+        -- If this IP address already exists for another character, then add this character to it
         if tableHelper.containsValue(hdvlist.players[playerName].names, playerName) == false then
             table.insert(hdvlist.players[playerName].names, playerName)
             jsonInterface.save("hdvlist.json", hdvlist)
@@ -543,31 +568,43 @@ function nilItemCheck(playerName, ipAddress, itemid)
 end
  
 MarketPlace.listCheck = function(pid)
+				--tes3mp.SendMessage(pid,"inside listcheck called",false)
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
         local playerName = Players[pid].name
         local ipAddress = tes3mp.GetIP(pid)    
-        nilListCheck(playerName, ipAddress)        
+        nilListCheck(playerName)        
     end
 end
  
-function nilListCheck(playerName, ipAddress)    
-
-
+function nilListCheck(playerName) -- Used to create and manage entries in tokenlist.json        
+    -- If this IP address entry doesn't exist, then make new blank entry
+	hdvinv = {}
+	hdvinv.players = {}
+	hdvinv.players[playerName] = nil
+	
+	if tes3mp.GetCaseInsensitiveFilename(os.getenv("MOD_DIR").."/","hdvinv.json") == "invalid" then
+		jsonInterface.save("hdvinv.json", hdvinv)
+	else
+		hdvinv = jsonInterface.load("hdvinv.json")
+	end
+	
 	if hdvinv.players[playerName] == nil then
         local player = {}
         player.names = {}
+		table.insert(player.names, playerName)
         player.items = {}
-        player.items[1] = {}
-        player.items[1].itemid = ""
-        player.items[1].price = 0
+        --player.items[1] = {}
+        --player.items[1].itemid = ""
+       -- player.items[1].price = 0
         hdvinv.players[playerName] = player
         jsonInterface.save("hdvinv.json", hdvinv)
        
+    -- If this IP address does exist check whether player has been logged
     else
-
-        if tableHelper.containsValue(hdvlist.players[playerName].names, playerName) == false then
-            table.insert(hdvlist.players[playerName].names, playerName)
-            jsonInterface.save("hdvlist.json", hdvlist)    
+        -- If this IP address already exists for another character, then add this character to it
+        if tableHelper.containsValue(hdvinv.players[playerName].names, playerName) == false then
+            table.insert(hdvinv.players[playerName].names, playerName)
+            jsonInterface.save("hdvinv.json", hdvlist)    
         end
     end
 end
