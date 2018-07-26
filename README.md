@@ -77,4 +77,8 @@ https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
 
 - the ultimate script for buying house, land and supply, also allows placing objects in the space.written by Atkana translated and adapted for the Ecarlate server https://github.com/Atkana/tes3mp-scripts
 
+**MarketPlace**
+
+- a global marketplace to sell your items or buy items put up for sale by other players
+the current version is not yet functional, do not hesitate to improve and help me in its design
 
