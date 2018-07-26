@@ -1,6 +1,6 @@
 ---------------------------
 -- MarketPlace by Rickoff and DiscordPeter
---helped by David.C
+--helped by Davic.C
 --
 ---------------------------
 local config = {}
@@ -147,6 +147,12 @@ local function itemAdd(pid, newItemid) -- gets itemrefId into data and removes 3
 		newItem.itemid = inventoryItem.refId -- save for adding into hdvinv
 		newItem.price = 0
 		
+        for slot, inv in pairs(Players[pid].data.equipment) do -- does player have item equipped
+            if inv.refId == newItem.itemid then
+                Players[pid].data.equipment[slot] = nil
+            end    
+        end		
+		
 		inventoryItem.count = inventoryItem.count - removedCount
         
 				if inventoryItem.count < 1 then
@@ -187,8 +193,6 @@ local function itemAchat(pid, data)
 			end
 		end
 	end
-	
-	
 	
 	--tes3mp.SendMessage(pid,tostring(existingIndex).."\n")
 	local newItem = hdvlist.players[existingPlayer].items[existingIndex] 	
@@ -253,6 +257,46 @@ local function itemAchat(pid, data)
 	Players[pid]:LoadEquipment()	
 end
 
+local function addItemPlayer(pid, data)
+
+    local playerName = Players[pid].name
+    local ipAddress = tes3mp.GetIP(pid)
+    local newItemid = data
+    local hdvinv = jsonInterface.load("hdvinv.json")
+    --local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvlist.players[playerName].items, "itemid", newItemid)
+	local existingIndex = 0
+	local existingPlayer = ""
+	
+	for slot, player in pairs(hdvinv.players) do
+		for itemSlot, item in pairs(player.items) do
+			if item.itemid == newItemid then
+				existingIndex = itemSlot
+				existingPlayer = slot
+			end
+		end
+	end
+	
+	--tes3mp.SendMessage(pid,tostring(existingIndex).."\n")
+	local newItem = hdvinv.players[existingPlayer].items[existingIndex] 	
+	--tes3mp.SendMessage(pid,newItem.itemid.."\n")
+	local itemLoc = newItem.itemid
+	local count = 1
+
+	if existingIndex ~= nil then
+		
+		-- remove item from hdvlist
+		hdvinv.players[existingPlayer].items[existingIndex] = nil
+		tableHelper.cleanNils(hdvinv.players[existingPlayer].items)
+		jsonInterface.save("hdvinv.json", hdvinv)
+		table.insert(Players[pid].data.inventory, {refId = newItem.itemid, count = count, charge = -1})			
+
+	end
+	
+	--reload player that bought
+	Players[pid]:Save()
+	Players[pid]:LoadInventory()
+	Players[pid]:LoadEquipment()	
+end
 -- ===========
 --  MAIN MENU
 -- ===========
@@ -413,7 +457,7 @@ end
  
 MarketPlace.onViewOptionSell = function(pid, loc)
     local choice = playerViewChoice[getName(pid)]
-    addItem(pid, choice)
+    addItemPlayer(pid, choice)
 end
  
 -- ===========
