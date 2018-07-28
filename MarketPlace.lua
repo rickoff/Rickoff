@@ -4,7 +4,7 @@
 --
 ---------------------------
 --[[ INSTALLATION
-1) Save this file as "MarketPlace.lua" in mp-stuff/scripts
+1) Save this file as "MarketPlace.lua" in mp-stuff/scripts and EcarlateItems.json in mpstuff/data
 
 2) Add [ MarketPlace = require("MarketPlace") ] to the top of server.lua
 
@@ -86,10 +86,17 @@ local function getAvailableFurnitureStock(pid)  -- pack players.inventory.refId 
     local options = {}
     local playerName = Players[pid].name
     local ipAddress = tes3mp.GetIP(pid)    
- 
+    local itemTable = jsonInterface.load("EcarlateItems.json")
+	
     for slot, k in pairs(Players[pid].data.inventory) do
 		local itemid = Players[pid].data.inventory[slot].refId
-		table.insert(options, itemid)              
+		
+		for slot2, item in pairs(itemTable.items) do
+			if item.refid == itemid then			
+				table.insert(options, itemid)
+			end
+		end 
+		
     end
     
    
@@ -200,9 +207,9 @@ local function itemAdd(pid, newItemid) -- gets itemrefId into data and removes 3
 		
 		inventoryItem.count = inventoryItem.count - removedCount
         
-				if inventoryItem.count < 1 then
-					inventoryItem = nil
-				end
+		if inventoryItem.count < 1 then
+			inventoryItem = nil
+		end
  
         Players[pid].data.inventory[existingIndex] = inventoryItem -- pack it back
 		
@@ -210,11 +217,9 @@ local function itemAdd(pid, newItemid) -- gets itemrefId into data and removes 3
 		Players[pid]:Load()
         Players[pid]:LoadInventory()
         Players[pid]:LoadEquipment()
-		
-		Players[pid]:Message("Vous avez mis un objet en attente de vente ")
        
     end
-				
+	
 	if newItem.itemid ~= "" then 
 		table.insert(hdvinv.players[playerName].items, newItem)
         jsonInterface.save("hdvinv.json", hdvinv)
@@ -227,7 +232,6 @@ local function itemAchat(pid, data)
     local ipAddress = tes3mp.GetIP(pid)
     local newItemid = data.itemid
     local hdvlist = jsonInterface.load("hdvlist.json")
-    --local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvlist.players[playerName].items, "itemid", newItemid)
 	local existingIndex = 0
 	local existingPlayer = ""
 	for slot, player in pairs(hdvlist.players) do
@@ -264,7 +268,6 @@ local function itemAchat(pid, data)
 				
 				--add Gold to Sellers Inventory
 				local player = myMod.GetPlayerByName(existingPlayer)
-				--local pd = player.pid
 				local goldLocSeller = nil
 				
 				for slot, item in pairs(player.data.inventory) do
@@ -334,9 +337,7 @@ local function addItemPlayer(pid, data)
 		end
 	end
 	
-	--tes3mp.SendMessage(pid,tostring(existingIndex).."\n")
 	local newItem = hdvinv.players[existingPlayer].items[existingIndex] 	
-	--tes3mp.SendMessage(pid,newItem.itemid.."\n")
 	local itemLoc = newItem.itemid
 	local count = 1
 
@@ -365,11 +366,9 @@ MarketPlace.onMainGui = function(pid)
 end
  
 MarketPlace.showMainGUI = function(pid)
-				--tes3mp.SendMessage(pid,"inside Gui called",false)
 
 	MarketPlace.listCheck(pid)
 	MarketPlace.itemCheck(pid)
-				--tes3mp.SendMessage(pid,"after checks",false)
 	
     local message = color.Green .. "BIENVENUE DANS L'HOTEL DE VENTE.\n" .. color.Brown .. "\nAcheter pour acheter des objets.\n Inventaire pour afficher les articles que vous possédez.\n Afficher pour une liste de tous les objets que vous possédez dans la boutique en attente de vente." .. color.Default
     tes3mp.CustomMessageBox(pid, config.MainGUI, message, "Transfert;Hotel de vente;Afficher;Fermer")
@@ -409,14 +408,15 @@ MarketPlace.showBuyGUI = function(pid)
 		end
 		
 		if listItemChanged == false then
-			list= list .. options[i]
+			list= list .. "\n"
 		end
 		
         if not(i == #options) then
             list = list .. "\n"
         end
     end
- 
+	
+	listItemChanged = false
     playerBuyOptions[getName(pid)] = {opt = options}
     tes3mp.ListBox(pid, config.BuyGUI, color.CornflowerBlue .. "Sélectionnez un article que vous souhaitez mettre en attente de vente" .. color.Default, list)
    
@@ -585,10 +585,10 @@ end
 -------------------------
  
 MarketPlace.itemCheck = function(pid)
-				--tes3mp.SendMessage(pid,"inside itemcheck called",false)
+
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-        local playerName = Players[pid].name  
-           nilItemCheck(playerName)                  
+		local playerName = Players[pid].name  
+		nilItemCheck(playerName)                  
     end
 end
  
