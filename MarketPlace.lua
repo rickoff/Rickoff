@@ -140,7 +140,6 @@ local function priceAdd(pid, price, data) --- where is that called. messed up. a
     local newprice = price
     local newItem = { itemid = newItemid, price = newprice }
     local hdvinv = jsonInterface.load("hdvinv.json")
-    tes3mp.MessageBox(pid, -1, newItemid)
  
     local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvinv.players[playerName].items, "itemid", newItemid)
  
@@ -389,15 +388,35 @@ MarketPlace.showBuyGUI = function(pid)
     local ipAddress = tes3mp.GetIP(pid)
     local options = getAvailableFurnitureStock(pid) -- gets all available refIds in Inventory
     local list = "* Retour *\n"
-   
+    local listItemChanged = false
+    local itemTable = jsonInterface.load("EcarlateItems.json")
+    local listItem = ""
+	
     for i = 1, #options do
-        list = list .. options[i]
-   
+ 
+		for slot, item in pairs(itemTable.items) do
+			if item.refid == options[i] then
+				listItem = item.name
+				listItemChanged = true
+				break
+			else
+				listItemChanged = false
+			end
+		end 
+		
+		if listItemChanged == true then
+			list = list .. listItem
+		end
+		
+		if listItemChanged == false then
+			list= list .. options[i]
+		end
+		
         if not(i == #options) then
             list = list .. "\n"
         end
     end
-   
+ 
     playerBuyOptions[getName(pid)] = {opt = options}
     tes3mp.ListBox(pid, config.BuyGUI, color.CornflowerBlue .. "Sélectionnez un article que vous souhaitez mettre en attente de vente" .. color.Default, list)
    
@@ -421,15 +440,35 @@ MarketPlace.showInventoryGUI = function(pid)
     local ipAddress = tes3mp.GetIP(pid)
     local options = getHdvFurnitureStock(pid) -- gets hdvlist 
     local list = "* Retour *\n"
-   
+    local listItemChanged = false
+    local itemTable = jsonInterface.load("EcarlateItems.json")
+    local listItem = ""
+	
     for i = 1, #options do
-        list = list .. options[i].itemid.." for Gold: "..options[i].price
-   
+ 
+		for slot, item in pairs(itemTable.items) do
+			if item.refid == options[i].itemid then
+				listItem = item.name
+				listItemChanged = true
+				break
+			else
+				listItemChanged = false
+			end
+		end 
+		
+		if listItemChanged == true then
+			list = list .. listItem.." pour: "..options[i].price.." Gold "
+		end
+		
+		if listItemChanged == false then
+			list = list.. options[i].itemid.." pour: "..options[i].price.." Gold "
+		end
+		
         if not(i == #options) then
             list = list .. "\n"
         end
     end
-   
+	
     playerInventoryOptions[getName(pid)] = {opt = options} 
     tes3mp.ListBox(pid, config.InventoryGUI, "Sélectionnez l'objet que vous voulez acheter ou récupérer", list)
 end
@@ -469,14 +508,35 @@ MarketPlace.showViewGUI = function(pid)
     local ipAddress = tes3mp.GetIP(pid)
     local options = getHdvInventoryStock(pid) -- gets hdvinv for pid
     local list = "* Retour *\n"
-   
+    local listItemChanged = false
+    local itemTable = jsonInterface.load("EcarlateItems.json")
+    local listItem = ""
+	
     for i = 1, #options do
-        list = list .. options[i].itemid.." Gold: "..options[i].price
-   
+ 
+		for slot, item in pairs(itemTable.items) do
+			if item.refid == options[i].itemid then
+				listItem = item.name
+				listItemChanged = true
+				break
+			else
+				listItemChanged = false
+			end
+		end 
+		
+		if listItemChanged == true then
+			list = list .. listItem.." pour: "..options[i].price.." Gold "
+		end
+		
+		if listItemChanged == false then
+			list = list.. options[i].itemid.." pour: "..options[i].price.." Gold "
+		end
+		
         if not(i == #options) then
             list = list .. "\n"
         end
     end
+	listItemChanged = false
     playerViewOptions[getName(pid)] = {opt = options}
     tes3mp.ListBox(pid, config.ViewGUI, "Sélectionnez un article que vous avez mit en attente pour le modifier.", list)
 end
@@ -500,7 +560,6 @@ end
  
 MarketPlace.showEditPricePrompt = function(pid, loc)
     local itemchoice = playerViewChoice[getName(pid)]
-    tes3mp.MessageBox(pid, -1, itemchoice) 
     local message = "Entrer un nouveau prix pour"
     return tes3mp.InputDialog(pid, config.HouseEditPriceGUI, message)
 end
@@ -552,9 +611,6 @@ function nilItemCheck(playerName) -- Used to create and manage entries in tokenl
         player.names = {}
 		table.insert(player.names, playerName)
         player.items = {}
-        --player.items[1] = {}
-        --player.items[1].itemid = ""
-        --player.items[1].price = 0
         hdvlist.players[playerName] = player
         jsonInterface.save("hdvlist.json", hdvlist)
     -- If this IP address does exist check whether player has been logged
@@ -593,9 +649,6 @@ function nilListCheck(playerName) -- Used to create and manage entries in tokenl
         player.names = {}
 		table.insert(player.names, playerName)
         player.items = {}
-        --player.items[1] = {}
-        --player.items[1].itemid = ""
-       -- player.items[1].price = 0
         hdvinv.players[playerName] = player
         jsonInterface.save("hdvinv.json", hdvinv)
        
