@@ -80,5 +80,7 @@ https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
 **MarketPlace**
 
 - a global marketplace to sell your items or buy items put up for sale by other players
-the current version is functional.
+- players can only sell items in the EcarlateItems.json list
+- the id of the objects are displayed by the names present in the json
+- the seller makes money even if he is disconnected
 
