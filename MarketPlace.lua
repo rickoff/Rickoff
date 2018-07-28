@@ -4,6 +4,15 @@
 --
 ---------------------------
 --[[ INSTALLATION
+
+MarketPlace
+
+    a global marketplace to sell your items or buy items put up for sale by other players
+    players can only sell items in the EcarlateItems.json list
+    the id of the objects are displayed by the names present in the json
+    the seller makes money even if he is disconnected
+
+
 1) Save this file as "MarketPlace.lua" in mp-stuff/scripts and EcarlateItems.json in mpstuff/data
 
 2) Add [ MarketPlace = require("MarketPlace") ] to the top of server.lua
