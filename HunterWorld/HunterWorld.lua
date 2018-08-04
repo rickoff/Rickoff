@@ -20,7 +20,7 @@ local config = {}
 config.timerSpawn = 120
 config.timerRandom = 1
 config.count = 5000
-config.bosses = {"raz_reddragon", "raz_bluedragon", "raz_adult_blackdragon", "raz_adult_greendragon", "Imperfect_ecarlate", "worm lord"}
+config.bosses = {"ogrim titan", "Netch_Giant_UNIQUE", "worm lord", "skeleton_aldredaynia", "centurion_shock_baladas"}
 
 HunterWorld = {}
 
