@@ -67,15 +67,12 @@ HunterWorld.TimerEventWorld = function()
 		end
 
 		if creatureRefId ~= nil and cellId ~= nil and posx ~= nil and posy ~= nil and posz ~= nil then
-		
 			local message = color.Red.. "Warning " ..color.Yellow..creaturename..color.Default.. " just made an appearance in the area " ..color.Yellow..cellId.. "\n"
-
 			if tableHelper.getCount(Players) > 0 then
 				if tableHelper.containsValue(config.bosses, creatureRefId) then
 					tes3mp.SendMessage(tableHelper.getAnyValue(Players).pid, message, true)
 				end
 			end
-
 			local position = { posX = tonumber(posx), posY = tonumber(posy), posZ = tonumber(posz), rotX = 0, rotY = 0, rotZ = 0 }
 			tes3mp.LogMessage(2, "Spawn")
 			tes3mp.LogMessage(2, creatureRefId)
@@ -85,7 +82,7 @@ HunterWorld.TimerEventWorld = function()
 			tes3mp.LogMessage(2, "Restart")		
 		end
 
-			tes3mp.RestartTimer(TimerEvent, time.seconds(config.timerSpawn))
+		tes3mp.RestartTimer(TimerEvent, time.seconds(config.timerSpawn))
 	end	
 end 
 
@@ -96,8 +93,8 @@ HunterWorld.HunterPrime = function(pid)
 	local message = color.Red.. "A rare creature has just been killed !\n"
 	local refId
 
-    for i = 0, tes3mp.GetKillChangesSize(pid) - 1 do
-        refId = tes3mp.GetKillRefId(pid, i)
+	for i = 0, tes3mp.GetKillChangesSize(pid) - 1 do
+		refId = tes3mp.GetKillRefId(pid, i)
 	end
 
 	if tableHelper.containsValue(config.bosses, refId) then
@@ -106,11 +103,12 @@ HunterWorld.HunterPrime = function(pid)
 		else
 			Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + config.count	
 		end
+	end
         tes3mp.MessageBox(pid, -1, "You have just recovered the hunting bonus!")
         tes3mp.SendMessage(pid, message, true)
- 		Players[pid]:Save()
-		Players[pid]:LoadInventory()
-		Players[pid]:LoadEquipment()
+ 	Players[pid]:Save()
+	Players[pid]:LoadInventory()
+	Players[pid]:LoadEquipment()
     end
 end
 	
