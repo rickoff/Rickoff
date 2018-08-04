@@ -1,14 +1,14 @@
 INSTALLATION
 
-1) Save this file as "HunterWorld.lua" in mp-stuff/scripts
-EcarlateCreature.json in mpstuff/data
+--1) Save this file as "HunterWorld.lua" in mp-stuff/scripts
+--EcarlateCreature.json and EcarlateCreatureSpawn.json in mpstuff/data
 
-2) Add [HunterWorld = require("HunterWorld")] to the top of server.lua
+--2) Add [HunterWorld = require("HunterWorld")] to the top of server.lua
 
-3) Find "function OnServerInit()" inside server.lua and add at the end
+--3) Find "function OnServerInit()" inside server.lua and add at the end
 HunterWorld.TimerEventWorld()
 		
-4) Go to myMod.lua and find CreateObjectAtLocation, add underneath function
+--4) Go to myMod.lua and find CreateObjectAtLocation, add underneath function
 
 Methods.CreateCreatureAtLocation = function(cell, location, refId, packetType)
 
@@ -62,8 +62,7 @@ Methods.CreateCreatureAtLocation = function(cell, location, refId, packetType)
     end
 end
 	
-6) Place EcarlateCreatureSpawn.json and EcarlateCreature.json in mp-stuff/data
 
-7) Open jsonfiles EcarlateCreature and edit with the id corresponding to your server
+--6) Open jsonfiles EcarlateCreature and edit with the id corresponding to your server
 
 
