@@ -9,7 +9,7 @@ EcarlateCreature.json in mpstuff/data
 HunterWorld.TimerEventWorld()
 		
 4) Go to myMod.lua and find CreateObjectAtLocation, add underneath function
-
+``
 Methods.CreateCreatureAtLocation = function(cell, location, refId, packetType)
 
     local mpNum = WorldInstance:GetCurrentMpNum() + 1
@@ -61,7 +61,7 @@ Methods.CreateCreatureAtLocation = function(cell, location, refId, packetType)
         end
     end
 end
-	
+``	
 6) Place EcarlateCreatureSpawn.json and EcarlateCreature.json in mp-stuff/data
 
 7) Open jsonfiles EcarlateCreature and edit with the id corresponding to your server
