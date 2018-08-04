@@ -69,5 +69,5 @@ end
 
 function OnPlayerKillCount(pid)
     myMod.OnPlayerKillCount(pid)
-    EventWorld.HunterPrime(pid)
+    HunterWorld.HunterPrime(pid)
 end
