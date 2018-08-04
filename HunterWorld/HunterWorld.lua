@@ -103,13 +103,12 @@ HunterWorld.HunterPrime = function(pid)
 		else
 			Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + config.count	
 		end
+		tes3mp.MessageBox(pid, -1, "You have just recovered the hunting bonus!")
+		tes3mp.SendMessage(pid, message, true)
+		Players[pid]:Save()
+		Players[pid]:LoadInventory()
+		Players[pid]:LoadEquipment()		
 	end
-        tes3mp.MessageBox(pid, -1, "You have just recovered the hunting bonus!")
-        tes3mp.SendMessage(pid, message, true)
- 	Players[pid]:Save()
-	Players[pid]:LoadInventory()
-	Players[pid]:LoadEquipment()
-    end
 end
 	
 return HunterWorld
