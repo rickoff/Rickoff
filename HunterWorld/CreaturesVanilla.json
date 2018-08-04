@@ -1,53 +1,407 @@
 {
   "creatures": [
     {
+      "Refid": "bonewalker",
+      "name": "Bonewalker"
+    },
+    {
+      "Refid": "clannfear",
+      "name": "Clannfear"
+    },
+    {
+      "Refid": "alit",
+      "name": "Alit"
+    },
+    {
+      "Refid": "kagouti",
+      "name": "Kagouti"
+    },
+    {
+      "Refid": "mudcrab",
+      "name": "Mudcrab"
+    },
+    {
+      "Refid": "scamp",
+      "name": "Scamp"
+    },
+    {
+      "Refid": "nix-hound",
+      "name": "Nix-Hound"
+    },
+    {
+      "Refid": "skeleton",
+      "name": "Skeleton"
+    },
+    {
+      "Refid": "kwama warrior",
+      "name": "Kwama Warrior"
+    },
+    {
       "Refid": "ash_ghoul",
-      "name": "Goule des cendres"
+      "name": "Ash Ghoul"
+    },
+    {
+      "Refid": "ancestor_ghost",
+      "name": "Ancestor Ghost"
+    },
+    {
+      "Refid": "ash_slave",
+      "name": "Ash Slave"
+    },
+    {
+      "Refid": "ash_zombie",
+      "name": "Ash Zombie"
+    },
+    {
+      "Refid": "shalk_diseased",
+      "name": "Diseased Shalk"
+    },
+    {
+      "Refid": "shalk_blighted",
+      "name": "Blighted Shalk"
+    },
+    {
+      "Refid": "netch_bull",
+      "name": "Bull Netch"
+    },
+    {
+      "Refid": "netch_betty",
+      "name": "Betty Netch"
     },
     {
       "Refid": "bonelord",
-      "name": "Seigneur des ossements"
+      "name": "Bonelord"
     },
     {
       "Refid": "centurion_sphere",
-      "name": "Sphère-centurion"
+      "name": "Centurion Sphere"
     },
     {
       "Refid": "centurion_spider",
-      "name": "Araignée-centurion"
+      "name": "Centurion Spider"
+    },
+    {
+      "Refid": "cliff racer",
+      "name": "Cliff Racer"
+    },
+    {
+      "Refid": "cliff racer_diseased",
+      "name": "Diseased Cliff Racer"
+    },
+    {
+      "Refid": "cliff racer_blighted",
+      "name": "Blighted Cliff Racer"
+    },
+    {
+      "Refid": "corprus_stalker",
+      "name": "Corprus Stalker"
+    },
+    {
+      "Refid": "daedroth",
+      "name": "Daedroth"
+    },
+    {
+      "Refid": "dremora",
+      "name": "Dremora"
     },
     {
       "Refid": "dremora_lord",
-      "name": "Seigneur drémora"
+      "name": "Dremora Lord"
+    },
+    {
+      "Refid": "alit_diseased",
+      "name": "Diseased Alit"
+    },
+    {
+      "Refid": "alit_blighted",
+      "name": "Blighted Alit"
     },
     {
       "Refid": "dwarven ghost",
-      "name": "Spectre de Nain"
+      "name": "Dwarven Spectre"
+    },
+    {
+      "Refid": "atronach_flame",
+      "name": "Flame Atronach"
+    },
+    {
+      "Refid": "atronach_frost",
+      "name": "Frost  Atronach"
+    },
+    {
+      "Refid": "kagouti_blighted",
+      "name": "Blighted Kagouti"
+    },
+    {
+      "Refid": "kwama warrior blighted",
+      "name": "Kwama Warrior"
+    },
+    {
+      "Refid": "corprus_lame",
+      "name": "Lame Corprus "
+    },
+    {
+      "Refid": "nix-hound blighted",
+      "name": "Blighted Nix-Hound"
+    },
+    {
+      "Refid": "ogrim",
+      "name": "Ogrim"
+    },
+    {
+      "Refid": "skeleton warrior",
+      "name": "Skeleton Warrior"
+    },
+    {
+      "Refid": "skeleton champion",
+      "name": "Skeleton Champion"
     },
     {
       "Refid": "centurion_steam",
-      "name": "Centurion à vapeur"
+      "name": "Steam Centurion"
+    },
+    {
+      "Refid": "atronach_storm",
+      "name": "Storm Atronach"
+    },
+    {
+      "Refid": "skeleton archer",
+      "name": "Skeleton Archer"
+    },
+    {
+      "Refid": "shalk_diseased_hram",
+      "name": "Diseased Shalk"
+    },
+    {
+      "Refid": "kagouti_hrk",
+      "name": "Kagouti"
     },
     {
       "Refid": "corprus_stalker_fgcs",
-      "name": "Traqueur pestiféré"
+      "name": "Corprus Stalker"
+    },
+    {
+      "Refid": "rat_cave_fgrh",
+      "name": "Cave Rat"
+    },
+    {
+      "Refid": "hunger_fghl",
+      "name": "Hunger"
     },
     {
       "Refid": "ash_zombie_fgaz",
-      "name": "Zombi des cendres"
+      "name": "Ash Zombie"
     },
     {
       "Refid": "ancestor_guardian_fgdd",
-      "name": "Gardien ancestral"
+      "name": "Ancestor Guardian"
     },
     {
       "Refid": "golden saint",
-      "name": "Sainte dorée"
+      "name": "Golden Saint"
+    },
+    {
+      "Refid": "scamp_creeper",
+      "name": "Creeper"
+    },
+    {
+      "Refid": "netch_betty_ranched",
+      "name": "Betty Netch"
+    },
+    {
+      "Refid": "netch_bull_ranched",
+      "name": "Bull Netch"
     },
     {
       "Refid": "centurion_shock_baladas",
-      "name": "Centurion électrique"
+      "name": "Shock Centurion"
     },
+    {
+      "Refid": "ascended_sleeper",
+      "name": "Ascended Sleeper"
+    },
+    {
+      "Refid": "atronach_flame_ttmk",
+      "name": "Flame Atronach"
+    },
+    {
+      "Refid": "atronach_frost_ttmk",
+      "name": "Frost  Atronach"
+    },
+    {
+      "Refid": "atronach_storm_ttmk",
+      "name": "Storm Atronach"
+    },
+    {
+      "Refid": "centurion_spider_tga1",
+      "name": "Spider Centurion"
+    },
+    {
+      "Refid": "centurion_spider_tga2",
+      "name": "Spider Centurion"
+    },
+    {
+      "Refid": "skeleton_aldredaynia",
+      "name": "Skeleton War-Wizard"
+    },
+    {
+      "Refid": "corprus_stalker_berwen",
+      "name": "Corprus Stalker"
+    },
+    {
+      "Refid": "worm lord",
+      "name": "Worm Lord"
+    },
+    {
+      "Refid": "shalk",
+      "name": "Shalk"
+    },
+    {
+      "Refid": "Rat",
+      "name": "Rat"
+    },
+    {
+      "Refid": "winged twilight",
+      "name": "Winged Twilight"
+    },
+    {
+      "Refid": "ogrim titan",
+      "name": "Ogrim Titan"
+    },
+    {
+      "Refid": "centurion_steam_exhibit",
+      "name": "Steam Centurion"
+    },
+    {
+      "Refid": "wraith_sul_senipul",
+      "name": "Wraith of Sul-Senipul"
+    },
+    {
+      "Refid": "Netch_Giant_UNIQUE",
+      "name": "Giant Bull Netch"
+    },
+    {
+      "Refid": "corprus_stalker_fyr01",
+      "name": "Corprus Stalker"
+    },
+    {
+      "Refid": "corprus_lame_fyr01",
+      "name": "Lame Corprus "
+    },
+    {
+      "Refid": "corprus_stalker_fyr02",
+      "name": "Corprus Stalker"
+    },
+    {
+      "Refid": "corprus_lame_fyr02",
+      "name": "Lame Corprus "
+    },
+    {
+      "Refid": "corprus_lame_fyr03",
+      "name": "Lame Corprus "
+    },
+    {
+      "Refid": "corprus_lame_fyr04",
+      "name": "Lame Corprus "
+    },
+    {
+      "Refid": "corprus_stalker_fyr03",
+      "name": "Corprus Stalker"
+    },
+    {
+      "Refid": "centurion_sphere_nchur",
+      "name": "Centurion Sphere"
+    },
+    {
+      "Refid": "centurion_spider_nchur",
+      "name": "Centurion Spider"
+    },
+    {
+      "Refid": "centurion_steam_nchur",
+      "name": "Steam Centurion"
+    },
+    {
+      "Refid": "skeleton champ_sandas00",
+      "name": "Skeleton Champion"
+    },
+    {
+      "Refid": "skeleton champ_sandas10",
+      "name": "Skeleton Champion"
+    },
+    {
+      "Refid": "skeleton entrance",
+      "name": "Skeleton"
+    },
+    {
+      "Refid": "dwarven ghost_jeanne_U",
+      "name": "Dwarven Spectre"
+    },
+    {
+      "Refid": "corprus_stalker_danar",
+      "name": "Corprus Stalker"
+    },
+    {
+      "Refid": "hunger_audenian",
+      "name": "Hunger"
+    },
+    {
+      "Refid": "kwama warrior shurdan",
+      "name": "Blighted Kwama Warrior"
+    },
+    {
+      "Refid": "bonewalker_weak",
+      "name": "Lesser Bonewalker"
+    },
+    {
+      "Refid": "rat_cave_fgt",
+      "name": "Cave Rat"
+    },
+    {
+      "Refid": "centurion_steam_hts",
+      "name": "Steam Centurion"
+    },
+    {
+      "Refid": "centurion_sphere_hts2",
+      "name": "Centurion Sphere"
+    },
+    {
+      "Refid": "daedroth_baladas",
+      "name": "Daedroth"
+    },
+    {
+      "Refid": "hunger_az_01",
+      "name": "Hunger"
+    },
+    {
+      "Refid": "hunger_az_02",
+      "name": "Hunger"
+    },
+    {
+      "Refid": "atronach_flame_az",
+      "name": "Flame Atronach"
+    },
+    {
+      "Refid": "atronach_storm_az",
+      "name": "Storm Atronach"
+    },
+    {
+      "Refid": "ogrim_az",
+      "name": "Ogrim"
+    },
+    {
+      "Refid": "daedroth_az",
+      "name": "Daedroth"
+    },
+    {
+      "Refid": "corprus_lame_morvayn",
+      "name": "Lame Corprus "
+    },
+    {
+      "Refid": "corprus_stalker_morvayn",
+      "name": "Corprus Stalker"
+    }
+  ]
+}
     {
       "Refid": "worm lord",
       "name": "Seigneur des Vers"
