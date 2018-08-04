@@ -84,3 +84,9 @@ https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
 - the id of the objects are displayed by the names present in the json
 - the seller makes money even if he is disconnected
 
+**HunterWorld**
+
+- add 100 random spawn point for creature or npc
+- when a boss creature appears the players receive a message
+- when a player kills a boss he receives a reward and a message displays that a rare creature was killed
+
