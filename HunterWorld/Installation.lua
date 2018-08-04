@@ -1,7 +1,7 @@
 INSTALLATION
 
 --1) Save this file as "HunterWorld.lua" in mp-stuff/scripts
---EcarlateCreature.json and EcarlateCreatureSpawn.json in mpstuff/data
+--CreaturesVanilla.json and CreatureSpawn.json in mpstuff/data
 
 --2) Add [HunterWorld = require("HunterWorld")] to the top of server.lua
 
