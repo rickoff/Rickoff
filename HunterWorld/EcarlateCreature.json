@@ -1,0 +1,432 @@
+{
+  "creatures": [
+    {
+      "Refid": "ash_ghoul",
+      "name": "Goule des cendres"
+    },
+    {
+      "Refid": "bonelord",
+      "name": "Seigneur des ossements"
+    },
+    {
+      "Refid": "centurion_sphere",
+      "name": "Sphère-centurion"
+    },
+    {
+      "Refid": "centurion_spider",
+      "name": "Araignée-centurion"
+    },
+    {
+      "Refid": "dremora_lord",
+      "name": "Seigneur drémora"
+    },
+    {
+      "Refid": "dwarven ghost",
+      "name": "Spectre de Nain"
+    },
+    {
+      "Refid": "centurion_steam",
+      "name": "Centurion à vapeur"
+    },
+    {
+      "Refid": "corprus_stalker_fgcs",
+      "name": "Traqueur pestiféré"
+    },
+    {
+      "Refid": "ash_zombie_fgaz",
+      "name": "Zombi des cendres"
+    },
+    {
+      "Refid": "ancestor_guardian_fgdd",
+      "name": "Gardien ancestral"
+    },
+    {
+      "Refid": "golden saint",
+      "name": "Sainte dorée"
+    },
+    {
+      "Refid": "centurion_shock_baladas",
+      "name": "Centurion électrique"
+    },
+    {
+      "Refid": "worm lord",
+      "name": "Seigneur des Vers"
+    },
+    {
+      "Refid": "shalk",
+      "name": "Shalk sauvage"
+    },
+    {
+      "Refid": "winged twilight",
+      "name": "Ombre ailée"
+    },
+    {
+      "Refid": "ogrim titan",
+      "name": "Titan ogrim"
+    },
+    {
+      "Refid": "skeleton champ_sandas10",
+      "name": "Squelette champion"
+    },
+    {
+      "Refid": "daedroth_az",
+      "name": "Daedroth"
+    },
+    {
+      "Refid": "corprus_lame_morvayn",
+      "name": "Pestiféré boiteux"
+    },
+    {
+      "Refid": "corprus_stalker_morvayn",
+      "name": "Traqueur pestiféré"
+    },
+    {
+      "Refid": "goblin_grunt",
+      "name": "Gobelin"
+    },
+    {
+      "Refid": "goblin_officer",
+      "name": "Officier gobelin"
+    },
+    {
+      "Refid": "goblin_bruiser",
+      "name": "Boxeur gobelin"
+    },
+    {
+      "Refid": "centurion_projectile",
+      "name": "Archer-centurion"
+    },
+    {
+      "Refid": "lich",
+      "name": "Liche"
+    },
+    {
+      "Refid": "goblin_footsoldier",
+      "name": "Soldat gobelin"
+    },
+    {
+      "Refid": "durzog_war",
+      "name": "Guerrier durzog"
+    },
+    {
+      "Refid": "durzog_wild",
+      "name": "Durzog sauvage"
+    },
+    {
+      "Refid": "durzog_diseased",
+      "name": "Durzog malade"
+    },
+    {
+      "Refid": "centurion_steam_advance",
+      "name": "Centurion à vapeur évolué"
+    },
+    {
+      "Refid": "goblin_officerUNI",
+      "name": "Officier gobelin"
+    },
+    {
+      "Refid": "fabricant_summon",
+      "name": "Sauroïde infectieux"
+    },
+    {
+      "Refid": "fabricant_hulking_attac",
+      "name": "Sauroïde mastodonte"
+    },
+    {
+      "Refid": "goblin_handler",
+      "name": "Cogneur gobelin"
+    },
+    {
+      "Refid": "durzog_war_trained",
+      "name": "Guerrier durzog"
+    },
+    {
+      "Refid": "skeleton_relvel",
+      "name": "Squelette Champion"
+    },
+    {
+      "Refid": "durzog_wild_weaker",
+      "name": "Durzog sauvage"
+    },
+    {
+      "Refid": "fabricant_hulking_ss",
+      "name": "Sauroïde mastodonte"
+    },
+    {
+      "Refid": "BM_wolf_grey",
+      "name": "Loup"
+    },
+    {
+      "Refid": "BM_wolf_red",
+      "name": "Loup pesteux"
+    },
+    {
+      "Refid": "BM_spriggan",
+      "name": "Spriggane"
+    },
+    {
+      "Refid": "BM_wolf_skeleton",
+      "name": "Loup-squelette"
+    },
+    {
+      "Refid": "plx_flamingskull",
+      "name": "Crâne enflammé"
+    },
+    {
+      "Refid": "plx_SilverSaint",
+      "name": "Sainte argentée"
+    },
+    {
+      "Refid": "plx_DarkSaint",
+      "name": "Sainte noire"
+    },
+    {
+      "Refid": "plx_ashpoet",
+      "name": "Poète des cendres"
+    },
+    {
+      "Refid": "plx_scorpion1",
+      "name": "Scorpion"
+    },
+    {
+      "Refid": "plx_scorpion2",
+      "name": "Scorpion géant"
+    },
+    {
+      "Refid": "plx_bloodwing",
+      "name": "Aile sanglante"
+    },
+    {
+      "Refid": "plx_rottingdeaddude",
+      "name": "Cadavre en putréfaction"
+    },
+    {
+      "Refid": "plx_spider",
+      "name": "Araignée"
+    },
+    {
+      "Refid": "plx_snake1",
+      "name": "Serpent de prairie"
+    },
+    {
+      "Refid": "plx_snake2",
+      "name": "Serpent des cendres"
+    },
+    {
+      "Refid": "plx_dead_skeleton hero",
+      "name": "Cadavre squelettique"
+    },
+    {
+      "Refid": "plx_mummy",
+      "name": "Momie"
+    },
+    {
+      "Refid": "plx_kwama warrior_D",
+      "name": "Soldat kwama malade"
+    },
+    {
+      "Refid": "plx_Bandit_durzog",
+      "name": "Durzog"
+    },
+    {
+      "Refid": "plx_daedrothfiend",
+      "name": "Démon Daedroth"
+    },
+    {
+      "Refid": "plx_famine",
+      "name": "Famine"
+    },
+    {
+      "Refid": "plx_winged_fiend",
+      "name": "Démon ailé"
+    },
+    {
+      "Refid": "plx_clannterror",
+      "name": "Faucheclan effroyable"
+    },
+    {
+      "Refid": "PLX_strongscamp",
+      "name": "Galopin flamboyant"
+    },
+    {
+      "Refid": "plx_parastylus",
+      "name": "Parastylus"
+    },
+    {
+      "Refid": "plx_daedric_bat",
+      "name": "Chauve-souris géante Daedrique"
+    },
+    {
+      "Refid": "plx_daedric_less_bat",
+      "name": "Chauve-souris Daedrique"
+    },
+    {
+      "Refid": "plx_spider2",
+      "name": "Araignée géante"
+    },
+    {
+      "Refid": "plx_HellHound",
+      "name": "Chien de l'enfer"
+    },
+    {
+      "Refid": "plx_Dremora1_meele",
+      "name": "Drémora Churl"
+    },
+    {
+      "Refid": "plx_Dremora2_meele",
+      "name": "Drémora Caitiff"
+    },
+    {
+      "Refid": "plx_Dremora3_meele",
+      "name": "Drémora Kynval"
+    },
+    {
+      "Refid": "plx_Dremora4_meele",
+      "name": "Drémora Kynreeve"
+    },
+    {
+      "Refid": "plx_Dremora5_meele",
+      "name": "Drémora Kynmarcher"
+    },
+    {
+      "Refid": "plx_Dremora6_meele",
+      "name": "Drémora Markynaz"
+    },
+    {
+      "Refid": "plx_Dremora1_mage",
+      "name": "Drémora Churl"
+    },
+    {
+      "Refid": "plx_Dremora2_mage",
+      "name": "Drémora Caitiff"
+    },
+    {
+      "Refid": "plx_Dremora3_mage",
+      "name": "Drémora Kynval"
+    },
+    {
+      "Refid": "plx_Dremora4_mage",
+      "name": "Drémora Kynreeve"
+    },
+    {
+      "Refid": "plx_Dremora5_mage",
+      "name": "Drémora Kynmarcher"
+    },
+    {
+      "Refid": "plx_Dremora6_mage",
+      "name": "Drémora Markynaz"
+    },
+    {
+      "Refid": "plx_Dremora2_archer",
+      "name": "Drémora Caitiff"
+    },
+    {
+      "Refid": "plx_Dremora3_archer",
+      "name": "Drémora Kynval"
+    },
+    {
+      "Refid": "plx_Dremora4_archer",
+      "name": "Drémora Kynreeve"
+    },
+    {
+      "Refid": "plx_SilverSaint2",
+      "name": "Sainte argentée"
+    },
+    {
+      "Refid": "plx_DarkSaint2",
+      "name": "Sainte noire"
+    },
+    {
+      "Refid": "plx_Dremora1_jack",
+      "name": "Drémora Churl"
+    },
+    {
+      "Refid": "plx_Dremora2_jack",
+      "name": "Drémora Caitiff"
+    },
+    {
+      "Refid": "plx_Dremora3_jack",
+      "name": "Drémora Kynval"
+    },
+    {
+      "Refid": "plx_Dremora4_jack",
+      "name": "Drémora Kynreeve"
+    },
+    {
+      "Refid": "plx_Dremora5_jack",
+      "name": "Drémora Kynmarcher"
+    },
+    {
+      "Refid": "plx_Dremora6_jack",
+      "name": "Drémora Markynaz"
+    },
+    {
+      "Refid": "plx_Dremora8",
+      "name": "Drémora de Chair"
+    },
+    {
+      "Refid": "plx_vermai",
+      "name": "Vermai"
+    },
+    {
+      "Refid": "plx_clannfear_runt",
+      "name": "Avorton faucheclan"
+    },
+    {
+      "Refid": "BM_spriggan_st_UNIQUE",
+      "name": "Spriggane"
+    },
+    {
+      "Refid": "bm skeleton champion gr",
+      "name": "Grand champion squelette"
+    },
+    {
+      "Refid": "BM_wolf_bone_summon",
+      "name": "Loup-squelette"
+    },
+    {
+      "Refid": "raz_reddragon",
+      "name": "Dragon rouge"
+    },
+    {
+      "Refid": "raz_bluedragon",
+      "name": "Dragon bleu"
+    },
+    {
+      "Refid": "raz_adult_blackdragon",
+      "name": "Dragon noir"
+    },	
+    {
+      "Refid": "raz_adult_greendragon",
+      "name": "Dragon vert"
+    },
+    {
+      "Refid": "Imperfect_ecarlate",
+      "name": "Géant dwemer"
+    },
+    {
+      "Refid": "ecarlate_frost_giant",
+      "name": "Seigneur troll"
+    },
+    {
+      "Refid": "Ecarlate_bandit_01",
+      "name": "Prince d'ébonite"
+    },		
+    {
+      "Refid": "Ecarlate_bandit_02",
+      "name": "Prince de verre"
+    },
+    {
+      "Refid": "Ecarlate_bandit_03",
+      "name": "Prince de métal"
+    },
+    {
+      "Refid": "Ecarlate_bandit_04",
+      "name": "Prince d'akatosh"
+    },		
+    {
+      "Refid": "sk_dremora_lord_guard_1",
+      "name": "Seigneur drémora"
+    }	
+  ]
+}
