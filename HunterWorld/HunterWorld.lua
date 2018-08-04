@@ -102,7 +102,7 @@ HunterWorld.HunterPrime = function(pid)
 
 	if tableHelper.containsValue(config.bosses, refId) then
 		if goldLoc == nil then
-			tableHelper.insert(Players[pid].data.inventory, {refId = "gold_001", count = config.count, charge = -1})
+			table.insert(Players[pid].data.inventory, {refId = "gold_001", count = config.count, charge = -1})
 		else
 			Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + config.count	
 		end
