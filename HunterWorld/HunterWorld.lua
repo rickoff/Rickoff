@@ -78,9 +78,9 @@ HunterWorld.TimerEventWorld = function()
 
 			local position = { posX = tonumber(posx), posY = tonumber(posy), posZ = tonumber(posz), rotX = 0, rotY = 0, rotZ = 0 }
 			tes3mp.LogMessage(2, "Spawn")
-			tes3mp.LogMessage(2, creaturerefId)
+			tes3mp.LogMessage(2, creatureRefId)
 			tes3mp.LogMessage(2, cellId)
-			myMod.CreateCreatureAtLocation(cellId, position, creaturerefId, packetType)
+			myMod.CreateCreatureAtLocation(cellId, position, creatureRefId, packetType)
 		else
 			tes3mp.LogMessage(2, "Restart")		
 		end
