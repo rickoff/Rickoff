@@ -65,4 +65,9 @@ end
 
 --6) Open jsonfiles EcarlateCreature and edit with the id corresponding to your server
 
+--7) Find function OnPlayerKillCount(pid) in myMod.lua and add EventWorld.HunterPrime(pid)
 
+function OnPlayerKillCount(pid)
+    myMod.OnPlayerKillCount(pid)
+    EventWorld.HunterPrime(pid)
+end
