@@ -34,13 +34,13 @@ HunterWorld.TimerEventWorld = function()
 	local rando1
 	local rando2
 
-	function EventRandom()
+	local function EventRandom()
 		rando1 = math.random(1, 100)
 		rando2 = math.random(1, 100)
 		tes3mp.RestartTimer(TimerRandom, time.seconds(config.timerRandom))
 	end
 
-	function EventSpawn()	
+	local function EventSpawn()	
 		local cellTable = jsonInterface.load("CreatureSpawn.json")
 		local creatureTable = jsonInterface.load("CreaturesVanilla.json")
 		local creatureRefId
