@@ -41,7 +41,7 @@ HunterWorld.TimerEventWorld = function()
 	end
 
 	function EventSpawn()	
-		local cellTable = jsonInterface.load("CreaturesSpawn.json")
+		local cellTable = jsonInterface.load("CreatureSpawn.json")
 		local creatureTable = jsonInterface.load("CreaturesVanilla.json")
 		local creatureRefId
 		local creaturename
