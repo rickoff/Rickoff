@@ -1,6 +1,8 @@
 Put Criminals.lua file in ...\tes3mp\mp-stuff\scripts\ folder.
 
-Open server.lua and add Criminals = require("Criminals") at the top along with other require lines.
+Open server.lua and add at the top along with other require lines.
+
+        Criminals = require("Criminals") 
 
 (OPTIONAL) Find return false -- default behavior, chat messages should not and replace it with:
 
