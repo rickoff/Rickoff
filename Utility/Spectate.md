@@ -2,10 +2,10 @@
 
 add in server.lua
 
-		elseif cmd[1] == "spectatetimer" and admin then
-			myMod.SpectateTPTimer(pid)	
-			
-		elseif cmd[1] == "spectate" and admin then
+	elseif cmd[1] == "spectatetimer" and admin then
+		myMod.SpectateTPTimer(pid)	
+
+	elseif cmd[1] == "spectate" and admin then
             if Players[pid].SpectateTarget ~= nil then
                 Players[pid].SpectateTarget = nil
                 local TargetPid = Players[pid].SpectateTarget
