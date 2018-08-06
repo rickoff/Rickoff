@@ -1,6 +1,6 @@
---go to player>base.lua
---find ``function BasePlayer:SaveSkills()``
---add under ``local maxSkillValue = config.maxSkillValue`` 
+go to player>base.lua
+find ``function BasePlayer:SaveSkills()``
+add under ``local maxSkillValue = config.maxSkillValue`` 
 
 		local maxlevel = 50
 
