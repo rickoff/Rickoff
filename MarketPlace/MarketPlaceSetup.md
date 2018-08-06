@@ -10,18 +10,19 @@ MarketPlaceSetup
 2) Add [ MarketPlace = require("MarketPlace") ] to the top of server.lua
 
 3) Add the following to the elseif chain for commands in "OnPlayerSendMessage" inside server.lua
+
 		elseif cmd[1] == "hdv" then
 			MarketPlace.showMainGUI(pid)
 	
 		
 4) Add the following to OnGUIAction in server.lua
 
-	[ if MarketPlace.OnGUIAction(pid, idGui, data) then return end ]
+	if MarketPlace.OnGUIAction(pid, idGui, data) then return end
 	
 5) Add under pluginlist = {}
 
-hdvlist = {}
-hdvinv = {}
+		hdvlist = {}
+		hdvinv = {}
 
 6) Add under function LoadPluginList()
 
@@ -46,5 +47,5 @@ hdvinv = {}
         
 7) Find function OnServerInit() and add above LoadPluginList()
 
-	Loadhdvlist()
-	Loadhdvinv()	
+		Loadhdvlist()
+		Loadhdvinv()	
