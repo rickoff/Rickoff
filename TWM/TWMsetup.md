@@ -25,7 +25,7 @@ to:
 
 myMod = require("myMod")
 
-TWM = require("TWM")
+mwTDM = require("mwTDM")
 
 Find function OnServerInit() and add down:
 
