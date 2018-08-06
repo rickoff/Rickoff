@@ -1,7 +1,7 @@
 Go to player>Base.lua
 Find function BasePlayer:SetDifficulty(difficulty)
 Replace all the block to
-attention this version includes level 1 to 50, to go beyond changing the values
+
     function BasePlayer:SetDifficulty(difficulty)
         local difficultyMin = config.difficulty
         local currentLevel = tes3mp.GetLevel(self.pid)
@@ -13,3 +13,6 @@ attention this version includes level 1 to 50, to go beyond changing the values
         tes3mp.SetDifficulty(self.pid, difficulty)
         tes3mp.LogMessage(1, "Set difficulty to " .. tostring(difficulty) .. " for " .. myMod.GetChatName(self.pid))
     end
+
+
+Warning this version includes level 1 to 50, to go beyond changing the values
