@@ -17,29 +17,29 @@ add in mymod.lua
 		tes3mp.SendMessage(pid, message, false)
 		return
 	    elseif tonumber(originPid) ~= tonumber(targetPid) then
-			local player = Players[pid]
-			local goldL = inventoryHelper.getItemIndex(player.data.inventory, "gold_001", -1)
-			if goldL then
-				local item = player.data.inventory[goldL]
-				local refId = item.refId
-				local count = item.count
-				local reste = (item.count - 10000)
-				if count >= 10000 then
-					player.data.inventory[goldL] = {refId = "gold_001", count = reste, charge = -1}	
-					Players[pid]:Save()
-					Players[pid]:LoadInventory()
-					Players[pid]:LoadEquipment()
-					local message = "Vous venez de dépenser 10000 pièces pour mettre une prime\n"
-					tes3mp.SendMessage(pid, message, false)				
-					Methods.PrimePlayer(targetPid)
-				else
-					local message = "Vous n'avez pas 10000 pièces pour mettre une prime\n"
-					tes3mp.SendMessage(pid, message, false)	
-				end
+		local player = Players[pid]
+		local goldL = inventoryHelper.getItemIndex(player.data.inventory, "gold_001", -1)
+		if goldL then
+			local item = player.data.inventory[goldL]
+			local refId = item.refId
+			local count = item.count
+			local reste = (item.count - 10000)
+			if count >= 10000 then
+				player.data.inventory[goldL] = {refId = "gold_001", count = reste, charge = -1}	
+				Players[pid]:Save()
+				Players[pid]:LoadInventory()
+				Players[pid]:LoadEquipment()
+				local message = "Vous venez de dépenser 10000 pièces pour mettre une prime\n"
+				tes3mp.SendMessage(pid, message, false)				
+				Methods.PrimePlayer(targetPid)
 			else
-				local message = "Vous n'avez pas de pièces pour mettre une prime\n"
-				tes3mp.SendMessage(pid, message, false)			
+				local message = "Vous n'avez pas 10000 pièces pour mettre une prime\n"
+				tes3mp.SendMessage(pid, message, false)	
 			end
+		else
+			local message = "Vous n'avez pas de pièces pour mettre une prime\n"
+			tes3mp.SendMessage(pid, message, false)			
+		end
 	    end
 	end  
 
