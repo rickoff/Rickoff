@@ -1,6 +1,7 @@
 
 
 add in server.lua
+
 		elseif cmd[1] == "spectatetimer" and admin then
 			myMod.SpectateTPTimer(pid)	
 			
@@ -19,7 +20,7 @@ add in server.lua
                 Players[pid].SpectateTarget = TargetPid
                 myMod.ToggleSpectate(pid)
                 tes3mp.SendMessage(pid, color.Warning.."Now spectating "..Players[TargetPid].name, false)
-            end 
+            end  
             
 add under function OnPlayerCellChange(pid)          
 	myMod.SpectatePersist(pid)
