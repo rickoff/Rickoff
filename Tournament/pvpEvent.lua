@@ -1,6 +1,8 @@
 --pvpEvent.lua
 
 tableHelper = require("tableHelper")
+inventoryHelper = require("inventoryHelper")
+jsonInterface = require("jsonInterface")
 
 local config = {}
 
@@ -45,8 +47,25 @@ end
 
 
 pvpEvent.Register = function(pid)
-	pvpTab.player[pid] = {score = 0}
-	tes3mp.SendMessage(pid,"You registered for PvP Event \n",false)
+
+	local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
+	local newcount = 1000
+	
+	if goldLoc == nil then
+		tes3mp.SendMessage(pid,"You do not have gold to register for the tournaments! \n",false)
+		
+	elseif goldLoc > newcount then
+		tes3mp.SendMessage(pid,"You do not have enough gold to register for the tournaments! \n",false)
+		
+	else
+		Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - newcount	
+		tes3mp.SendMessage(pid,"You registered for the pvp tournament! \n",false)
+		pvpTab.player[pid] = {score = 0}
+		Players[pid]:Save()
+		Players[pid]:LoadInventory()
+		Players[pid]:LoadEquipment()		
+	end	
+	
 end
 
 
@@ -98,6 +117,8 @@ end
 
 pvpEvent.OnKill = function(pid)
 
+	local newprice = 2000
+
 	if myMod.GetPlayerByName(tes3mp.GetDeathReason(pid)) ~= nil then
 
 		local pl = myMod.GetPlayerByName(tes3mp.GetDeathReason(pid))
@@ -107,12 +128,26 @@ pvpEvent.OnKill = function(pid)
 
 
 		for pid, value in pairs(pvpTab.player) do
-			tes3mp.SendMessage(pid,"Player "..Players[newpid].name.." scored. Now "..pvpTab.player[newpid].score.." Points!",false)
+			tes3mp.SendMessage(pid,Players[newpid].name.." got "..pvpTab.player[newpid].score.." Points !  \n",false)
 		end
 
 		for pid, value in pairs(pvpTab.player) do
-			if value.score >= 10 then
-				tes3mp.SendMessage(pid,"The Winner is "..Players[pid].name..". Tournament ends here.",true)
+			if value.score >= 10 then			
+				tes3mp.SendMessage(pid,"The winner is "..Players[pid].name..". The tournament is over.  \n",true)
+				local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
+				if goldLoc == nil then
+					tes3mp.SendMessage(pid,"You have just won the tournament! \n",false)
+					table.insert(Players[pid].data.inventory, {refId = "gold_001", count = newprice, charge = -1})
+					Players[pid]:Save()
+					Players[pid]:LoadInventory()
+					Players[pid]:LoadEquipment()					
+				else
+					Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + newprice	
+					tes3mp.SendMessage(pid,"You have just won the tournament!  \n",false)
+					Players[pid]:Save()
+					Players[pid]:LoadInventory()
+					Players[pid]:LoadEquipment()		
+				end					
 				pvpEvent.End(pid)
 			end
 		end
@@ -123,7 +158,7 @@ pvpEvent.OnKill = function(pid)
 			List = List..Players[pid].name.." got "..tostring(value.score).." Points \n"
 		end
 
-		tes3mp.ListBox(pid,333,"ScoreBoard:",List)
+		tes3mp.ListBox(pid,333,"Scores:",List)
 
 
 		local timer = tes3mp.CreateTimerEx("Revive", time.seconds(10), "i", pid)
