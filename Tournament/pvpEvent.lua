@@ -91,7 +91,7 @@ pvpEvent.TcheckKill = function(pid)
 	if eventpvp == "active" then
 		pvpEvent.OnKill(pid)
 	else
-		mwTDM.OnPlayerDeath(pid)
+		myMod.OnPlayerDeath(pid)
 	end	
 	
 end
