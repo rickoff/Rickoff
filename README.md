@@ -90,3 +90,6 @@ https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
 - when a boss creature appears the players receive a message
 - when a player kills a boss he receives a reward and a message displays that a rare creature was killed
 
+**Tournament**
+
+- sign up! wait for the countdown! fight! win prizes!
