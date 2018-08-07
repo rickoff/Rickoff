@@ -77,7 +77,7 @@ end
 function StartPvP()
 	for pid, value in pairs(pvpTab.player) do
 		tes3mp.SendMessage(pid,"Event started you are being teleported. Fight each other",false)
-		tes3mp.SetCell(pid, "Elokiel, Arene")
+		tes3mp.SetCell(pid, "Vivec, Arena")
 		tes3mp.SendCell(pid)
         --tes3mp.SetPos(pid, pos.x, pos.y, pos.z)
         --tes3mp.SendCell(pid)    
