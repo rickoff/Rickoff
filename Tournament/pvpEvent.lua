@@ -8,6 +8,9 @@ local config = {}
 
 config.timerevent = 60
 config.timerstart = 600
+config.countregister = 1000
+config.countwinner = 10
+config.timerespawn = 10
 
 pvpEvent = {}
 
@@ -50,7 +53,7 @@ pvpEvent.Register = function(pid)
 
 	local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
 	local goldamount = Players[pid].data.inventory[goldLoc].count
-	local newcount = 1000
+	local newcount = config.countregister
 	
 	if goldLoc == nil then
 		tes3mp.SendMessage(pid,"You do not have gold to register for the tournaments! \n",false)
@@ -136,7 +139,7 @@ pvpEvent.OnKill = function(pid)
 		count = count + 1
 	end
 
-	local newprice = 1000 * count	
+	local newprice = config.countregister * count	
 
 	if myMod.GetPlayerByName(tes3mp.GetDeathReason(pid)) ~= nil then
 
@@ -151,7 +154,7 @@ pvpEvent.OnKill = function(pid)
 		end
 
 		for pid, value in pairs(pvpTab.player) do
-			if value.score >= 10 then			
+			if value.score >= config.countwinner then			
 				tes3mp.SendMessage(pid,"The winner is "..Players[pid].name..". The tournament is over.  \n",true)
 				local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
 				if goldLoc == nil then
@@ -180,7 +183,7 @@ pvpEvent.OnKill = function(pid)
 		tes3mp.ListBox(pid,333,"Scores:",List)
 
 
-		local timer = tes3mp.CreateTimerEx("Revive", time.seconds(10), "i", pid)
+		local timer = tes3mp.CreateTimerEx("Revive", time.seconds(config.timerespawn), "i", pid)
 		tes3mp.StartTimer(timer)
 	end
 end
