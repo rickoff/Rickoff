@@ -104,10 +104,10 @@ function StartPvP()
 	if count >= 2 then
 		for pid, value in pairs(pvpTab.player) do
 			tes3mp.SendMessage(pid,"The event has begun, you are teleported. Beat you !  \n",false)
-			tes3mp.SetCell(pid, "Elokiel, Arene")  
-			tes3mp.SetPos(pid, 4082, 4351, 12072)
+			tes3mp.SetCell(pid, "Vivec, Arena")  
+			--tes3mp.SetPos(pid, 4082, 4351, 12072)
 			tes3mp.SendCell(pid)    
-			tes3mp.SendPos(pid)		
+			--tes3mp.SendPos(pid)		
 		end
 		eventpvp = "active"
 	else
@@ -192,7 +192,9 @@ pvpEvent.End = function(pid)
 	for pid, value in pairs(pvpTab.player) do
 		tes3mp.SendMessage(pid,"Event ended you are being teleported",false)
 		tes3mp.SetCell(pid, "-3,-2")
+		--tes3mp.SetPos(pid, 4082, 4351, 12072)
 		tes3mp.SendCell(pid)
+		--tes3mp.SendPos(pid)
 	end
 
 	eventpvp = "inactive"
