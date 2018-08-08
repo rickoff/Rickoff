@@ -93,17 +93,29 @@ function one()
 	end
 end
 
-
 function StartPvP()
-	for pid, value in pairs(pvpTab.player) do
-		tes3mp.SendMessage(pid,"Event started you are being teleported. Fight each other",false)
-		tes3mp.SetCell(pid, "Vivec, Arena")
-		tes3mp.SendCell(pid)
-        --tes3mp.SetPos(pid, pos.x, pos.y, pos.z)
-        --tes3mp.SendCell(pid)    
-        --tes3mp.SendPos(pid)		
+
+	local count = 0
+	
+	for pid, pl in pairs(pvpTab.player) do
+		count = count + 1
 	end
-	eventpvp = "active"
+
+	if count > 2 then
+		for pid, value in pairs(pvpTab.player) do
+			tes3mp.SendMessage(pid,"The event has begun, you are teleported. Beat you !  \n",false)
+			tes3mp.SetCell(pid, "Elokiel, Arene")  
+			tes3mp.SetPos(pid, 4082, 4351, 12072)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)		
+		end
+		eventpvp = "active"
+	else
+		for pid, value in pairs(pvpTab.player) do
+			tes3mp.SendMessage(pid,"There are not enough participants to start the tournament!  \n",false)	
+		end	
+		eventpvp = "inactive"
+	end
 end
 
 pvpEvent.TcheckKill = function(pid)
