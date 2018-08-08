@@ -130,7 +130,13 @@ end
 
 pvpEvent.OnKill = function(pid)
 
-	local newprice = 2000
+	local count = 0
+	
+	for pid, pl in pairs(pvpTab.player) do
+		count = count + 1
+	end
+
+	local newprice = 1000 * count	
 
 	if myMod.GetPlayerByName(tes3mp.GetDeathReason(pid)) ~= nil then
 
