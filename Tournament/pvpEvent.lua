@@ -54,7 +54,7 @@ pvpEvent.Register = function(pid)
 	if goldLoc == nil then
 		tes3mp.SendMessage(pid,"You do not have gold to register for the tournaments! \n",false)
 		
-	elseif goldLoc > newcount then
+	elseif goldLoc < newcount then
 		tes3mp.SendMessage(pid,"You do not have enough gold to register for the tournaments! \n",false)
 		
 	else
