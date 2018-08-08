@@ -49,12 +49,13 @@ end
 pvpEvent.Register = function(pid)
 
 	local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
+	local goldamount = Players[pid].data.inventory[goldLoc].count
 	local newcount = 1000
 	
 	if goldLoc == nil then
 		tes3mp.SendMessage(pid,"You do not have gold to register for the tournaments! \n",false)
 		
-	elseif goldLoc < newcount then
+	elseif goldamount < newcount then
 		tes3mp.SendMessage(pid,"You do not have enough gold to register for the tournaments! \n",false)
 		
 	else
