@@ -108,7 +108,7 @@ end
 
 pvpEvent.TcheckKill = function(pid)
 
-	if eventpvp == "active" then
+	if eventpvp == "active" and pvpTab.player [pid] ~= nil then
 		pvpEvent.OnKill(pid)
 	else
 		myMod.OnPlayerDeath(pid)
