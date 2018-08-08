@@ -101,7 +101,7 @@ function StartPvP()
 		count = count + 1
 	end
 
-	if count > 2 then
+	if count >= 2 then
 		for pid, value in pairs(pvpTab.player) do
 			tes3mp.SendMessage(pid,"The event has begun, you are teleported. Beat you !  \n",false)
 			tes3mp.SetCell(pid, "Elokiel, Arene")  
