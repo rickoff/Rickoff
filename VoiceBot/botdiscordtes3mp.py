@@ -88,7 +88,7 @@ async def on_event():
 										await asyncio.sleep(0.1)
 										#return await on_event()									
 										
-									if channel != None and channel.type == discord.ChannelType.voice and name_channel_discord == cell_ingame and channel != channelmember:				
+									if channel != None and channel.type == discord.ChannelType.voice and name_channel_discord == cell_ingame and channelmember != None and channel != channelmember:				
 										await client.move_member(user, channel)
 										print('User %s déplacé avec succès ! big up'%(name_discord))
 										await asyncio.sleep(0.1)																		
