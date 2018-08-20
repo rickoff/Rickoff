@@ -5,7 +5,7 @@ displayGlobalBountyClaim = true -- whether or not to display a global message wh
 bountyItem = "gold_001" -- item used as bounty, in case you use a custom currency
 require("color")
 
-Methods = {}
+local Methods = {}
 Methods.onLogin = function(pid) -- set the criminal level as a custom variable for players based on their bounty
     if Players[pid].data.customVariables.criminal == nil then
         local criminal
