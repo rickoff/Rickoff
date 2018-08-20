@@ -24,7 +24,7 @@ config.MainId = 31360
 config.PromptId = 31361
 ------
 
-Methods = {}
+Local Methods = {}
 
 tableHelper = require("tableHelper")
 
