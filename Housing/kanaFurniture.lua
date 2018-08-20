@@ -330,7 +330,7 @@ decorateHelp = require("decorateHelp")
 tableHelper = require("tableHelper")
 myMod = require("myMod")
 
-Methods = {}
+local Methods = {}
 --Forward declarations:
 local showMainGUI, showBuyGUI, showInventoryGUI, showViewGUI, showInventoryOptionsGUI, showViewOptionsGUI
 ------------
