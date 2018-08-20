@@ -22,7 +22,7 @@ config.timerRandom = 1
 config.count = 5000
 config.bosses = {"ogrim titan", "Netch_Giant_UNIQUE", "worm lord", "skeleton_aldredaynia", "centurion_shock_baladas"}
 
-HunterWorld = {}
+local HunterWorld = {}
 
 HunterWorld.TimerEventWorld = function()
 	local TimerEvent = tes3mp.CreateTimer("EventSpawn", time.seconds(config.timerSpawn))
