@@ -8,7 +8,7 @@
 -- in return.  Michael Fitzmayer
 
 
-Methods = {}
+Local Methods = {}
 
 inventoryHelper = require("inventoryHelper")
 
