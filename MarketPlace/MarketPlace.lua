@@ -75,7 +75,7 @@ inventoryHelper = require("inventoryHelper")
 math.randomseed( os.time() )
  
  
-MarketPlace = {}
+local MarketPlace = {}
 --Forward declarations:
 local showMainGUI, showBuyGUI, showInventoryGUI, showViewGUI, showInventoryOptionsGUI, showViewOptionsGUI, showEditPricePrompt
 ------------
