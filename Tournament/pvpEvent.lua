@@ -12,7 +12,7 @@ config.countregister = 1000
 config.countwinner = 10
 config.timerespawn = 10
 
-pvpEvent = {}
+local pvpEvent = {}
 
 local TimerStart = tes3mp.CreateTimer("StartEvent", time.seconds(config.timerstart))
 
