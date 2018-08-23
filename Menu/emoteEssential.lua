@@ -1,3 +1,10 @@
+--add file in folder script/menu
+--add in config.lua find ``config.menuHelperFiles = { "emoteEssential" } ``
+--go to server.lua and add to command text
+        --elseif cmd[1] == "emotes" then
+
+            --Players[pid].currentCustomMenu = "emote vocal"
+--menuHelper.displayMenu(pid, Players[pid].currentCustomMenu)
 Menus["emote vocal"] = {
     text = color.Orange .. "MENU DES VOCALS\n" ..
         color.Yellow .. "\nle menu global vous permet d'éxécuter différentes emotes",
