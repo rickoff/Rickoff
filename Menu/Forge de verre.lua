@@ -3,27 +3,27 @@
 --go to server.lua and add to command text
         --elseif cmd[1] == "craftverre" then
 
-            --Players[pid].currentCustomMenu = "forge de verre"
+            --Players[pid].currentCustomMenu = "menuverre"
             --menuHelper.displayMenu(pid, Players[pid].currentCustomMenu)
 
 
-Menus["forge de verre"] = {
+Menus["menuverre"] = {
     text = "#red ..***** ARME DE VERRE *****\n\
-		Epée longue de verre - 10 > 1 \
+		Epee longue de verre - 10 > 1 \
 		Hache de verre - 10 > 1 \
 		Claymore de verre - 10 > 1 \
 		Dague de verre - 10 > 1 \
 		Hallebarde de verre - 10 > 1 \
-		Bâton de verre - 10 > 1 \
+		Baton de verre - 10 > 1 \
 		Shuriken de verre - 1 > 1 \
 		Couteau de lancer - 1 > 1 \
-		Flèche de verre - 1 > 1 ",
+		Fleche de verre - 1 > 1 ",
 		
     buttons = {
-        { caption = "Epée longue",
+        { caption = "Epee longue de verre",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Epée longue",
+                menuHelper.destinations.setConditional("default crafting Epee longue de verre",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
                 })
@@ -65,10 +65,10 @@ Menus["forge de verre"] = {
                 })
             }
         },
-        { caption = "Bâton de verre",
+        { caption = "Baton de verre",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Bâton de verre",
+                menuHelper.destinations.setConditional("default crafting Baton de verre",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
                 })
@@ -92,10 +92,10 @@ Menus["forge de verre"] = {
                 })
             }
         },		
-        { caption = "Flèche de verre",
+        { caption = "Fleche de verre",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Flèche de verre",
+                menuHelper.destinations.setConditional("default crafting Fleche de verre",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_glass_01", 1)
                 })
@@ -108,6 +108,312 @@ Menus["forge de verre"] = {
         },
         { caption = "Quitter", destinations = nil }		
 	}
+}
+
+Menus["default crafting Epee longue de verre"] = {
+    text = "Combien voulez vous en fabriquer ?",
+    buttons = {
+        { caption = "1",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic singular",
+                {
+					menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 10),
+                    menuHelper.effects.giveItem("glass longsword", 1)
+                })
+            }
+        },
+        { caption = "5",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic plural",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 50)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 50),
+                    menuHelper.effects.giveItem("glass longsword", 5)
+                })
+            }
+        },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuverre") } },		
+        { caption = "Quitter", destinations = nil }
+    }
+}
+
+Menus["default crafting Hache de verre"] = {
+    text = "Combien voulez vous en fabriquer ?",
+    buttons = {
+        { caption = "1",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic singular",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 10),
+                    menuHelper.effects.giveItem("glass war axe", 1)
+                })
+            }
+        },
+        { caption = "5",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic plural",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 50)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 50),
+                    menuHelper.effects.giveItem("glass war axe", 5)
+                })
+            }
+        },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuverre") } },
+        { caption = "Quitter", destinations = nil }
+    }
+}
+
+Menus["default crafting Claymore de verre"] = {
+    text = "Combien voulez vous en fabriquer ?",
+    buttons = {
+        { caption = "1",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic singular",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 10),
+                    menuHelper.effects.giveItem("glass claymore", 1)
+                })
+            }
+        },
+        { caption = "5",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic plural",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 50)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 50),
+                    menuHelper.effects.giveItem("glass claymore", 5)
+                })
+            }
+        },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuverre") } },
+        { caption = "Quitter", destinations = nil }
+    }
+}
+
+Menus["default crafting Dague de verre"] = {
+    text = "Combien voulez vous en fabriquer ?",
+    buttons = {
+        { caption = "1",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic singular",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 10),
+                    menuHelper.effects.giveItem("glass dagger", 1)
+                })
+            }
+        },
+        { caption = "5",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic plural",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 50)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 50),
+                    menuHelper.effects.giveItem("glass dagger", 5)
+                })
+            }
+        },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuverre") } },
+        { caption = "Quitter", destinations = nil }
+    }
+}
+
+Menus["default crafting Hallebarde de verre"] = {
+    text = "Combien voulez vous en fabriquer ?",
+    buttons = {
+        { caption = "1",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic singular",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 10),
+                    menuHelper.effects.giveItem("glass halberd", 1)
+                })
+            }
+        },
+        { caption = "5",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic plural",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 50)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 50),
+                    menuHelper.effects.giveItem("glass halberd", 5)
+                })
+            }
+        },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuverre") } },
+        { caption = "Quitter", destinations = nil }
+    }
+}
+
+Menus["default crafting Baton de verre"] = {
+    text = "Combien voulez vous en fabriquer ?",
+    buttons = {
+        { caption = "1",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic singular",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 10),
+                    menuHelper.effects.giveItem("glass staff", 1)
+                })
+            }
+        },
+        { caption = "5",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic plural",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 50)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 50),
+                    menuHelper.effects.giveItem("glass staff", 5)
+                })
+            }
+        },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuverre") } },
+        { caption = "Quitter", destinations = nil }
+    }
+}
+
+Menus["default crafting Shuriken de verre"] = {
+    text = "Combien voulez vous en fabriquer ?",
+    buttons = {
+        { caption = "1",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic singular",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 1)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 1),
+                    menuHelper.effects.giveItem("glass throwing star", 1)
+                })
+            }
+        },
+        { caption = "5",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic plural",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 5)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 5),
+                    menuHelper.effects.giveItem("glass throwing star", 5)
+                })
+            }
+        },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuverre") } },
+        { caption = "Quitter", destinations = nil }
+    }
+}
+
+Menus["default crafting Couteau de lancer"] = {
+    text = "Combien voulez vous en fabriquer ?",
+    buttons = {
+        { caption = "1",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic singular",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 1)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 1),
+                    menuHelper.effects.giveItem("glass throwing knife", 1)
+                })
+            }
+        },
+        { caption = "5",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic plural",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 5)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 5),
+                    menuHelper.effects.giveItem("glass throwing knife", 5)
+                })
+            }
+        },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuverre") } },
+        { caption = "Quitter", destinations = nil }
+    }
+}
+
+Menus["default crafting Fleche de verre"] = {
+    text = "Combien voulez vous en fabriquer ?",
+    buttons = {
+        { caption = "1",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic singular",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 1)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 1),
+                    menuHelper.effects.giveItem("glass arrow", 1)
+                })
+            }
+        },
+        { caption = "5",
+            destinations = {
+                menuHelper.destinations.setDefault("lack of materials"),
+                menuHelper.destinations.setConditional("reward generic plural",
+                {
+                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 5)
+                },
+                {
+                    menuHelper.effects.removeItem("ingred_raw_glass_01", 5),
+                    menuHelper.effects.giveItem("glass arrow", 5)
+                })
+            }
+        },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuverre") } },
+        { caption = "Quitter", destinations = nil }
+    }
 }		
 		
 Menus["crafting verre page 2"] = {
@@ -116,10 +422,10 @@ Menus["crafting verre page 2"] = {
 		Bracelet de verre (G) - 50 > 1 \
 		Bracelet de verre (D) - 50 > 1 \
 		Cuirasse de verre - 100 > 1 \
-		Jambières de verre - 75 > 1 \
+		Jambieres de verre - 75 > 1 \
 		Casque de verre - 50 > 1 \
-		Epaulière de verre (G) - 50 > 1 \
-		Epaulière de verre (D) - 50 > 1 \
+		Epauliere de verre (G) - 50 > 1 \
+		Epauliere de verre (D) - 50 > 1 \
 		Bouclier de verre - 50 > 1 \
 		Ecu de verre - 50 > 1 ",
     buttons = {		
@@ -159,10 +465,10 @@ Menus["crafting verre page 2"] = {
                 })
             }
         },
-        { caption = "Jambières de verre",
+        { caption = "Jambieres de verre",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Jambières de verre",
+                menuHelper.destinations.setConditional("default crafting Jambieres de verre",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_glass_01", 1)
                 })
@@ -177,19 +483,19 @@ Menus["crafting verre page 2"] = {
                 })
             }
         },	
-        { caption = "Epaulière de verre (G)",
+        { caption = "Epauliere de verre (G)",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Epaulière de verre (G)",
+                menuHelper.destinations.setConditional("default crafting Epauliere de verre (G)",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_glass_01", 1)
                 })
             }
         },	
-        { caption = "Epaulière de verre (D)",
+        { caption = "Epauliere de verre (D)",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Epaulière de verre (D)",
+                menuHelper.destinations.setConditional("default crafting Epauliere de verre (D)",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_glass_01", 1)
                 })
@@ -215,317 +521,11 @@ Menus["crafting verre page 2"] = {
         },
         { caption = "Page 1",
             destinations = {
-                menuHelper.destinations.setDefault("forge de verre")
+                menuHelper.destinations.setDefault("menuverre")
             }
         },		
         { caption = "Quitter", destinations = nil }
     }	
-}
-
-Menus["default crafting Epée longue"] = {
-    text = "Combien voulez vous en fabriquer ?",
-    buttons = {
-        { caption = "1",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic singular",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 10),
-                    menuHelper.effects.giveItem("glass longsword", 1)
-                })
-            }
-        },
-        { caption = "5",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 50)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 50),
-                    menuHelper.effects.giveItem("glass longsword", 5)
-                })
-            }
-        },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge de verre") } },
-        { caption = "Quitter", destinations = nil }
-    }
-}
-
-Menus["default crafting Hache de verre"] = {
-    text = "Combien voulez vous en fabriquer ?",
-    buttons = {
-        { caption = "1",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic singular",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 10),
-                    menuHelper.effects.giveItem("glass war axe", 1)
-                })
-            }
-        },
-        { caption = "5",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 50)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 50),
-                    menuHelper.effects.giveItem("glass war axe", 5)
-                })
-            }
-        },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge de verre") } },
-        { caption = "Quitter", destinations = nil }
-    }
-}
-
-Menus["default crafting Claymore de verre"] = {
-    text = "Combien voulez vous en fabriquer ?",
-    buttons = {
-        { caption = "1",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic singular",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 10),
-                    menuHelper.effects.giveItem("glass claymore", 1)
-                })
-            }
-        },
-        { caption = "5",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 50)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 50),
-                    menuHelper.effects.giveItem("glass claymore", 5)
-                })
-            }
-        },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge de verre") } },
-        { caption = "Quitter", destinations = nil }
-    }
-}
-
-Menus["default crafting Dague de verre"] = {
-    text = "Combien voulez vous en fabriquer ?",
-    buttons = {
-        { caption = "1",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic singular",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 10),
-                    menuHelper.effects.giveItem("glass dagger", 1)
-                })
-            }
-        },
-        { caption = "5",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 50)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 50),
-                    menuHelper.effects.giveItem("glass dagger", 5)
-                })
-            }
-        },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge de verre") } },
-        { caption = "Quitter", destinations = nil }
-    }
-}
-
-Menus["default crafting Hallebarde de verre"] = {
-    text = "Combien voulez vous en fabriquer ?",
-    buttons = {
-        { caption = "1",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic singular",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 10),
-                    menuHelper.effects.giveItem("glass halberd", 1)
-                })
-            }
-        },
-        { caption = "5",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 50)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 50),
-                    menuHelper.effects.giveItem("glass halberd", 5)
-                })
-            }
-        },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge de verre") } },
-        { caption = "Quitter", destinations = nil }
-    }
-}
-
-Menus["default crafting Bâton de verre"] = {
-    text = "Combien voulez vous en fabriquer ?",
-    buttons = {
-        { caption = "1",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic singular",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 10)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 10),
-                    menuHelper.effects.giveItem("glass staff", 1)
-                })
-            }
-        },
-        { caption = "5",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 50)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 50),
-                    menuHelper.effects.giveItem("glass staff", 5)
-                })
-            }
-        },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge de verre") } },
-        { caption = "Quitter", destinations = nil }
-    }
-}
-
-Menus["default crafting Shuriken de verre"] = {
-    text = "Combien voulez vous en fabriquer ?",
-    buttons = {
-        { caption = "1",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic singular",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 1)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 1),
-                    menuHelper.effects.giveItem("glass throwing star", 1)
-                })
-            }
-        },
-        { caption = "5",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 5)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 5),
-                    menuHelper.effects.giveItem("glass throwing star", 5)
-                })
-            }
-        },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge de verre") } },
-        { caption = "Quitter", destinations = nil }
-    }
-}
-
-Menus["default crafting Couteau de lancer"] = {
-    text = "Combien voulez vous en fabriquer ?",
-    buttons = {
-        { caption = "1",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic singular",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 1)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 1),
-                    menuHelper.effects.giveItem("glass throwing knife", 1)
-                })
-            }
-        },
-        { caption = "5",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 5)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 5),
-                    menuHelper.effects.giveItem("glass throwing knife", 5)
-                })
-            }
-        },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge de verre") } },
-        { caption = "Quitter", destinations = nil }
-    }
-}
-
-Menus["default crafting Flèche de verre"] = {
-    text = "Combien voulez vous en fabriquer ?",
-    buttons = {
-        { caption = "1",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic singular",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 1)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 1),
-                    menuHelper.effects.giveItem("glass arrow", 1)
-                })
-            }
-        },
-        { caption = "5",
-            destinations = {
-                menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("reward generic plural",
-                {
-                    menuHelper.conditions.requireItem("ingred_raw_glass_01", 5)
-                },
-                {
-                    menuHelper.effects.removeItem("ingred_raw_glass_01", 5),
-                    menuHelper.effects.giveItem("glass arrow", 5)
-                })
-            }
-        },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge de verre") } },
-        { caption = "Quitter", destinations = nil }
-    }
 }
 
 Menus["default crafting Bottes de verre"] = {
@@ -612,7 +612,7 @@ Menus["default crafting Cuirasse de verre"] = {
     }
 }
 
-Menus["default crafting Jambières de verre"] = {
+Menus["default crafting Jambieres de verre"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -654,7 +654,7 @@ Menus["default crafting Casque de verre"] = {
     }
 }
 
-Menus["default crafting Epaulière de verre (G)"] = {
+Menus["default crafting Epauliere de verre (G)"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -675,7 +675,7 @@ Menus["default crafting Epaulière de verre (G)"] = {
     }
 }
 
-Menus["default crafting Epaulière de verre (D)"] = {
+Menus["default crafting Epauliere de verre (D)"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -761,3 +761,4 @@ Menus["reward generic plural"] = {
         { caption = "Quitter", destinations = nil }
     }
 }
+
