@@ -52,7 +52,7 @@ Menus["help player"] = {
 			}
         },
         { caption = "Jetons",
-			destinations = {menuHelper.destinations.setDefault(nil,
+			destinations = {menuHelper.destinations.setDefault("help player",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
 					{menuHelper.variables.currentPid(), "/token"})
@@ -60,7 +60,7 @@ Menus["help player"] = {
 			}
         },
         { caption = "Loterie",
-			destinations = {menuHelper.destinations.setDefault(nil,
+			destinations = {menuHelper.destinations.setDefault("help player",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
 					{menuHelper.variables.currentPid(), "/loterie"})
@@ -68,7 +68,7 @@ Menus["help player"] = {
 			}
         },
         { caption = "Jeter les dés",
-			destinations = {menuHelper.destinations.setDefault(nil,
+			destinations = {menuHelper.destinations.setDefault("help player",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
 					{menuHelper.variables.currentPid(), "/roll"})
@@ -135,8 +135,16 @@ Menus["commande page 2"] = {
 				})
 			}
         },
-        { caption = "Score",
+        { caption = "Reset rangs",
 			destinations = {menuHelper.destinations.setDefault(nil,
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetrang"})
+				})
+			}
+        },		
+        { caption = "Score",
+			destinations = {menuHelper.destinations.setDefault("commande page 2",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
 					{menuHelper.variables.currentPid(), "/score"})
@@ -144,7 +152,7 @@ Menus["commande page 2"] = {
 			}
         },
         { caption = "Stats",
-			destinations = {menuHelper.destinations.setDefault(nil,
+			destinations = {menuHelper.destinations.setDefault("commande page 2",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
 					{menuHelper.variables.currentPid(), "/stats"})
@@ -163,7 +171,7 @@ Menus["commande page 2"] = {
 			destinations = {menuHelper.destinations.setDefault(nil,
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/Empire"})
+					{menuHelper.variables.currentPid(), "/empire"})
 				})
 			}
         },
@@ -171,7 +179,7 @@ Menus["commande page 2"] = {
 			destinations = {menuHelper.destinations.setDefault(nil,
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/Temple"})
+					{menuHelper.variables.currentPid(), "/temple"})
 				})
 			}
         },
@@ -179,7 +187,7 @@ Menus["commande page 2"] = {
 			destinations = {menuHelper.destinations.setDefault(nil,
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/renegats"})
+					{menuHelper.variables.currentPid(), "/renegat"})
 				})
 			}
         },
@@ -187,11 +195,79 @@ Menus["commande page 2"] = {
 			destinations = {menuHelper.destinations.setDefault(nil,
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/pelerins"})
+					{menuHelper.variables.currentPid(), "/pelerin"})
+				})
+			}
+        },	
+        { caption = "Téléportation",
+			destinations = {menuHelper.destinations.setDefault(nil,
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/warp"})
 				})
 			}
         },		
         { caption = "Page 1",
+            destinations = {
+                menuHelper.destinations.setDefault("help player")
+            }
+        },
+        { caption = "Page 3",
+            destinations = {
+                menuHelper.destinations.setDefault("commande page 3")
+            }
+        },		
+        { caption = "Quitter", destinations = nil }
+    }
+}
+
+Menus["commande page 3"] = {
+    text = color.Orange .. "MENU DES COMMANDES\n",
+    buttons = {	
+        { caption = "Gouvernant",	
+            destinations = {
+                menuHelper.destinations.setDefault("commande gouvernant")
+            }
+        },	
+        { caption = "Hôtel de vente",	
+			destinations = {menuHelper.destinations.setDefault(nil,
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/hdv"})
+				})
+			}
+        },
+        { caption = "Emotes",	
+            destinations = { menuHelper.destinations.setDefault("emote vocal") }
+        },	
+        { caption = "Page 1",
+            destinations = {
+                menuHelper.destinations.setDefault("help player")
+            }
+        },
+        { caption = "Page 2",
+            destinations = {
+                menuHelper.destinations.setDefault("commande page 2")
+            }
+        },		
+        { caption = "Quitter", destinations = nil }
+    }
+}
+
+Menus["commande gouvernant"] = {
+    text = color.Orange .. "COMMANDE DE GOUVERNANT\n" ..
+        color.Yellow .. "\n/expulser <pid>\n" ..
+            color.White .. "\nExpulse un membre de votre faction\n" ..
+        color.Yellow .. "\n/recruter <pid>\n" ..
+            color.White .. "\nRecruter un nouveau membre dans votre faction\n"..
+        color.Yellow .. "\n/punition <pid>\n" ..
+            color.White .. "\nPunir un joueur de sa faction en l'envoyant nager!\n"..
+        color.Yellow .. "\n/prison <pid>\n" ..
+            color.White .. "\nEnvoyer un joueur de sa faction en prison!\n"..
+        color.Yellow .. "\n/stopprime <pid>\n" ..
+            color.White .. "\nPayer 10k pour enlever la prime d'un joueur!\n",			
+    buttons = {				
+        { caption = "Retour",
             destinations = {
                 menuHelper.destinations.setDefault("help player")
             }
