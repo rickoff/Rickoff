@@ -6,35 +6,35 @@
             --Players[pid].currentCustomMenu = "forge d'ebonite"
             --menuHelper.displayMenu(pid, Players[pid].currentCustomMenu)	
 
-Menus["forge d'ebonite"] = {
+Menus["menuebonite"] = {
     text = "#red ..***** ARME EN EBONITE ***** \n\
-		Bâton de mage - 10 > 1 \
-		Dague en ébonite - 10 > 1 \
+		Baton de mage - 10 > 1 \
+		Dague en ebonite - 10 > 1 \
 		Hache de guerre - 10 > 1 \
-		Lance en ébonite - 10 > 1 \
-		Epée courte - 10 > 1 \
-		Cimeterre d'ébonite - 10 > 1 \
+		Lance en ebonite - 10 > 1 \
+		Epee courte - 10 > 1 \
+		Cimeterre d'ebonite - 10 > 1 \
 		Masse d'armes - 10 > 1 \
-		Epée longue - 10 > 1 \
-		Epée large - 10 > 1 \
-		Flèche en ébonite - 1 > 1 \
-		Dard en ébonite - 1 > 1 \
-		Shuriken en ébonite - 1 > 1",
+		Epee longue - 10 > 1 \
+		Epee large - 10 > 1 \
+		Fleche en ebonite - 1 > 1 \
+		Dard en ebonite - 1 > 1 \
+		Shuriken en ebonite - 1 > 1",
 		
     buttons = {
-        { caption = "Bâton de mage",
+        { caption = "Baton de mage",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Bâton de mage",
+                menuHelper.destinations.setConditional("default crafting Baton de mage",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 10)
                 })
             }
         },
-        { caption = "Dague en ébonite",
+        { caption = "Dague en ebonite",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Dague en ébonite",
+                menuHelper.destinations.setConditional("default crafting Dague en ebonite",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 10)
                 })
@@ -49,28 +49,28 @@ Menus["forge d'ebonite"] = {
                 })
             }
         },		
-        { caption = "Lance en ébonite",
+        { caption = "Lance en ebonite",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Lance en ébonite",
+                menuHelper.destinations.setConditional("default crafting Lance en ebonite",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 10)
                 })
             }
         },
-        { caption = "Epée courte",
+        { caption = "Epee courte",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Epée courte",
+                menuHelper.destinations.setConditional("default crafting Epee courte",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 10)
                 })
             }
         },
-        { caption = "Cimeterre d'ébonite",
+        { caption = "Cimeterre d'ebonite",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Cimeterre d'ébonite",
+                menuHelper.destinations.setConditional("default crafting Cimeterre d'ebonite",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 10)
                 })
@@ -85,46 +85,46 @@ Menus["forge d'ebonite"] = {
                 })
             }
         },	
-        { caption = "Epée longue",
+        { caption = "Epee longue",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Epée longue",
+                menuHelper.destinations.setConditional("default crafting Epee longue",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 10)
                 })
             }
         },		
-        { caption = "Epée large",
+        { caption = "Epee large",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Epée large",
+                menuHelper.destinations.setConditional("default crafting Epee large",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 10)
                 })
             }
         },
-        { caption = "Flèche en ébonite",
+        { caption = "Fleche en ebonite",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Flèche en ébonite",
+                menuHelper.destinations.setConditional("default crafting Fleche en ebonite",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
             }
         },	
-        { caption = "Dard en ébonite",
+        { caption = "Dard en ebonite",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Dard en ébonite",
+                menuHelper.destinations.setConditional("default crafting Dard en ebonite",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
             }
         },	
-        { caption = "Shuriken en ébonite",
+        { caption = "Shuriken en ebonite",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Shuriken en ébonite",
+                menuHelper.destinations.setConditional("default crafting Shuriken en ebonite",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
@@ -141,102 +141,102 @@ Menus["forge d'ebonite"] = {
 		
 Menus["crafting ebonite page 2"] = {
     text = "#red ..***** ARMURE D'EBONITE *****\n\
-		Bottes en ébonite - 50 > 1 \
-		Bracelet en ébonite (G) - 50 > 1 \
-		Bracelet en ébonite (D) - 50 > 1 \
-		Cuirasse en ébonite - 100 > 1 \
-		Jambières en ébonite - 75 > 1 \
-		Casque en ébonite - 50 > 1 \
-		Epaulière en ébonite (G) - 50 > 1 \
-		Epaulière en ébonite (D) - 50 > 1 \
-		Bouclier en ébonite - 50 > 1 \
-		Ecu en ébonite - 50 > 1 ",
+		Bottes en ebonite - 50 > 1 \
+		Bracelet en ebonite (G) - 50 > 1 \
+		Bracelet en ebonite (D) - 50 > 1 \
+		Cuirasse en ebonite - 100 > 1 \
+		Jambières en ebonite - 75 > 1 \
+		Casque en ebonite - 50 > 1 \
+		Epaulière en ebonite (G) - 50 > 1 \
+		Epaulière en ebonite (D) - 50 > 1 \
+		Bouclier en ebonite - 50 > 1 \
+		Ecu en ebonite - 50 > 1 ",
     buttons = {		
-        { caption = "Bottes en ébonite",
+        { caption = "Bottes en ebonite",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Bottes en ébonite",
+                menuHelper.destinations.setConditional("default crafting Bottes en ebonite",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
             }
         },	
-        { caption = "Bracelet en ébonite (G)",
+        { caption = "Bracelet en ebonite (G)",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Bracelet en ébonite (G)",
+                menuHelper.destinations.setConditional("default crafting Bracelet en ebonite (G)",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
             }
         },	
-        { caption = "Bracelet en ébonite (D)",
+        { caption = "Bracelet en ebonite (D)",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Bracelet en ébonite (D)",
+                menuHelper.destinations.setConditional("default crafting Bracelet en ebonite (D)",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
             }
         },	
-        { caption = "Cuirasse en ébonite",
+        { caption = "Cuirasse en ebonite",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Cuirasse en ébonite",
+                menuHelper.destinations.setConditional("default crafting Cuirasse en ebonite",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
             }
         },
-        { caption = "Jambières en ébonite",
+        { caption = "Jambières en ebonite",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Jambières en ébonite",
+                menuHelper.destinations.setConditional("default crafting Jambières en ebonite",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
             }
         },	
-        { caption = "Casque en ébonite",
+        { caption = "Casque en ebonite",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Casque en ébonite",
+                menuHelper.destinations.setConditional("default crafting Casque en ebonite",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
             }
         },	
-        { caption = "Epaulière en ébonite (G)",
+        { caption = "Epaulière en ebonite (G)",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Epaulière en ébonite (G)",
+                menuHelper.destinations.setConditional("default crafting Epaulière en ebonite (G)",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
             }
         },	
-        { caption = "Epaulière en ébonite (D)",
+        { caption = "Epaulière en ebonite (D)",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Epaulière en ébonite (D)",
+                menuHelper.destinations.setConditional("default crafting Epaulière en ebonite (D)",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
             }
         },
-        { caption = "Bouclier en ébonite",
+        { caption = "Bouclier en ebonite",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Bouclier en ébonite",
+                menuHelper.destinations.setConditional("default crafting Bouclier en ebonite",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
             }
         },
-        { caption = "Ecu en ébonite",
+        { caption = "Ecu en ebonite",
             destinations = {
                 menuHelper.destinations.setDefault("lack of materials"),
-                menuHelper.destinations.setConditional("default crafting Ecu en ébonite",
+                menuHelper.destinations.setConditional("default crafting Ecu en ebonite",
                 {
                     menuHelper.conditions.requireItem("ingred_raw_ebony_01", 1)
                 })
@@ -244,14 +244,14 @@ Menus["crafting ebonite page 2"] = {
         },
         { caption = "Page 1",
             destinations = {
-                menuHelper.destinations.setDefault("forge d'ebonite")
+                menuHelper.destinations.setDefault("menuebonite")
             }
         },		
         { caption = "Quitter", destinations = nil }
     }	
 }
 
-Menus["default crafting Bâton de mage"] = {
+Menus["default crafting Baton de mage"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -280,12 +280,12 @@ Menus["default crafting Bâton de mage"] = {
                 })
             }
         },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge d'ebonite") } },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuebonite") } },
         { caption = "Quitter", destinations = nil }
     }
 }
 
-Menus["default crafting Dague en ébonite"] = {
+Menus["default crafting Dague en ebonite"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -314,7 +314,7 @@ Menus["default crafting Dague en ébonite"] = {
                 })
             }
         },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge d'ebonite") } },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuebonite") } },
         { caption = "Quitter", destinations = nil }
     }
 }
@@ -348,12 +348,12 @@ Menus["default crafting Hache de guerre"] = {
                 })
             }
         },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge d'ebonite") } },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuebonite") } },
         { caption = "Quitter", destinations = nil }
     }
 }
 
-Menus["default crafting Lance en ébonite"] = {
+Menus["default crafting Lance en ebonite"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -382,12 +382,12 @@ Menus["default crafting Lance en ébonite"] = {
                 })
             }
         },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge d'ebonite") } },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuebonite") } },
         { caption = "Quitter", destinations = nil }
     }
 }
 
-Menus["default crafting Epée courte"] = {
+Menus["default crafting Epee courte"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -416,12 +416,12 @@ Menus["default crafting Epée courte"] = {
                 })
             }
         },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge d'ebonite") } },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuebonite") } },
         { caption = "Quitter", destinations = nil }
     }
 }
 
-Menus["default crafting Cimeterre d'ébonite"] = {
+Menus["default crafting Cimeterre d'ebonite"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -450,7 +450,7 @@ Menus["default crafting Cimeterre d'ébonite"] = {
                 })
             }
         },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge d'ebonite") } },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuebonite") } },
         { caption = "Quitter", destinations = nil }
     }
 }
@@ -484,12 +484,12 @@ Menus["default crafting Masse d'armes"] = {
                 })
             }
         },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge d'ebonite") } },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuebonite") } },
         { caption = "Quitter", destinations = nil }
     }
 }
 
-Menus["default crafting Epée longue"] = {
+Menus["default crafting Epee longue"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -518,12 +518,12 @@ Menus["default crafting Epée longue"] = {
                 })
             }
         },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge d'ebonite") } },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuebonite") } },
         { caption = "Quitter", destinations = nil }
     }
 }
 
-Menus["default crafting Epée large"] = {
+Menus["default crafting Epee large"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -552,12 +552,12 @@ Menus["default crafting Epée large"] = {
                 })
             }
         },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge d'ebonite") } },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuebonite") } },
         { caption = "Quitter", destinations = nil }
     }
 }
 
-Menus["default crafting Flèche en ébonite"] = {
+Menus["default crafting Fleche en ebonite"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -586,12 +586,12 @@ Menus["default crafting Flèche en ébonite"] = {
                 })
             }
         },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge d'ebonite") } },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuebonite") } },
         { caption = "Quitter", destinations = nil }
     }
 }
 
-Menus["default crafting Dard en ébonite"] = {
+Menus["default crafting Dard en ebonite"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -620,12 +620,12 @@ Menus["default crafting Dard en ébonite"] = {
                 })
             }
         },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge d'ebonite") } },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuebonite") } },
         { caption = "Quitter", destinations = nil }
     }
 }
 
-Menus["default crafting Shuriken en ébonite"] = {
+Menus["default crafting Shuriken en ebonite"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -654,12 +654,12 @@ Menus["default crafting Shuriken en ébonite"] = {
                 })
             }
         },
-        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("forge d'ebonite") } },
+        { caption = "Retour", destinations = { menuHelper.destinations.setDefault("menuebonite") } },
         { caption = "Quitter", destinations = nil }
     }
 }
 
-Menus["default crafting Bottes en ébonite"] = {
+Menus["default crafting Bottes en ebonite"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -680,7 +680,7 @@ Menus["default crafting Bottes en ébonite"] = {
     }
 }
 
-Menus["default crafting Bracelet en ébonite (G)"] = {
+Menus["default crafting Bracelet en ebonite (G)"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -701,7 +701,7 @@ Menus["default crafting Bracelet en ébonite (G)"] = {
     }
 }
 
-Menus["default crafting Bracelet en ébonite (D)"] = {
+Menus["default crafting Bracelet en ebonite (D)"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -722,7 +722,7 @@ Menus["default crafting Bracelet en ébonite (D)"] = {
     }
 }
 
-Menus["default crafting Cuirasse en ébonite"] = {
+Menus["default crafting Cuirasse en ebonite"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -743,7 +743,7 @@ Menus["default crafting Cuirasse en ébonite"] = {
     }
 }
 
-Menus["default crafting Jambières en ébonite"] = {
+Menus["default crafting Jambières en ebonite"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -764,7 +764,7 @@ Menus["default crafting Jambières en ébonite"] = {
     }
 }
 
-Menus["default crafting Casque en ébonite"] = {
+Menus["default crafting Casque en ebonite"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -785,7 +785,7 @@ Menus["default crafting Casque en ébonite"] = {
     }
 }
 
-Menus["default crafting Epaulière en ébonite (G)"] = {
+Menus["default crafting Epaulière en ebonite (G)"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -806,7 +806,7 @@ Menus["default crafting Epaulière en ébonite (G)"] = {
     }
 }
 
-Menus["default crafting Epaulière en ébonite (D)"] = {
+Menus["default crafting Epaulière en ebonite (D)"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -827,7 +827,7 @@ Menus["default crafting Epaulière en ébonite (D)"] = {
     }
 }
 
-Menus["default crafting Bouclier en ébonite"] = {
+Menus["default crafting Bouclier en ebonite"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -848,7 +848,7 @@ Menus["default crafting Bouclier en ébonite"] = {
     }
 }
 
-Menus["default crafting Ecu en ébonite"] = {
+Menus["default crafting Ecu en ebonite"] = {
     text = "Combien voulez vous en fabriquer ?",
     buttons = {
         { caption = "1",
@@ -892,3 +892,4 @@ Menus["reward generic plural"] = {
         { caption = "Quitter", destinations = nil }
     }
 }
+
