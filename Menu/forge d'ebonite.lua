@@ -3,7 +3,7 @@
 --go to server.lua and add to command text
         --elseif cmd[1] == "craftebonite" then
 
-            --Players[pid].currentCustomMenu = "forge d'ebonite"
+            --Players[pid].currentCustomMenu = "menuebonite"
             --menuHelper.displayMenu(pid, Players[pid].currentCustomMenu)	
 
 Menus["menuebonite"] = {
