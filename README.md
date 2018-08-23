@@ -66,7 +66,7 @@ https://github.com/Skvysh/TES3MP-Scripts/tree/master/Criminals
 
 **Menu**
 
-- the lord of the menu that executes the commands with buttons thanks to the menuhelper 0.7.0
+- the lord of the menu that executes the commands with buttons thanks to the menuhelper and inventoryHelper 0.7.0
 
 **Spectate**
 
