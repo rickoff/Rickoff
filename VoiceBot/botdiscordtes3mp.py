@@ -23,7 +23,7 @@ async def on_event():
 	while not client.is_closed:
 		try:
 		
-			server = client.get_server("352047092396457984")
+			server = client.get_server("id you server discord")#replace to you idserverdiscord
 			role = discord.utils.get(server.roles, name="Vocal")
 			
 			with open(playerlocationjson) as json_data:
