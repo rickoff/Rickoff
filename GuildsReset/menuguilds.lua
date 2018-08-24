@@ -1,17 +1,14 @@
 --add menuguilds.lua in mp-stuff/scripts/menu/ 
 --for open the menu enter /menuguilds in to the tchat
 
-
-
-
 Menus["commande mage"] = {
     text = color.Orange .. "Mages Guild\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+            color.White .. "\nReset your rank within the guild\n"..
         color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
+            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+            color.White .. "\nReset your reputation in the guild\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -37,18 +34,18 @@ Menus["commande mage"] = {
 				})
 			}
         },
-        { caption = "Quitter", destinations = nil }	
+        { caption = "Exit", destinations = nil }	
 	}		
 }
 
 Menus["commande guerriers"] = {
     text = color.Orange .. "Fighters Guild\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+            color.White .. "\nReset your rank within the guild\n"..
         color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
+            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+            color.White .. "\nReset your reputation in the guild\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -74,18 +71,18 @@ Menus["commande guerriers"] = {
 				})
 			}
         },
-        { caption = "Quitter", destinations = nil }	
+        { caption = "Exit", destinations = nil }	
 	}		
 }
 
 Menus["commande voleurs"] = {
     text = color.Orange .. "Thieves Guild\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+            color.White .. "\nReset your rank within the guild\n"..
         color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
+            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+            color.White .. "\nReset your reputation in the guild\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -111,18 +108,18 @@ Menus["commande voleurs"] = {
 				})
 			}
         },
-        { caption = "Quitter", destinations = nil }	
+        { caption = "Exit", destinations = nil }	
 	}		
 }
 
 Menus["commande morag"] = {
-    text = color.Orange .. "MORAG TONG\n" ..
+    text = color.Orange .. "Morag Tong\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+            color.White .. "\nReset your rank within the guild\n"..
         color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
+            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+            color.White .. "\nReset your reputation in the guild\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -148,18 +145,18 @@ Menus["commande morag"] = {
 				})
 			}
         },
-        { caption = "Quitter", destinations = nil }	
+        { caption = "Exit", destinations = nil }	
 	}		
 }
 
 Menus["commande legion"] = {
     text = color.Orange .. "Imperial Legion\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+            color.White .. "\nReset your rank within the guild\n"..
         color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
+            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+            color.White .. "\nReset your reputation in the guild\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -185,18 +182,18 @@ Menus["commande legion"] = {
 				})
 			}
         },
-        { caption = "Quitter", destinations = nil }	
+        { caption = "Exit", destinations = nil }	
 	}		
 }
 
 Menus["commande culte"] = {
     text = color.Orange .. "Imperial Cult\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+            color.White .. "\nReset your rank within the guild\n"..
         color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
+            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+            color.White .. "\nReset your reputation in the guild\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -222,18 +219,18 @@ Menus["commande culte"] = {
 				})
 			}
         },
-        { caption = "Quitter", destinations = nil }	
+        { caption = "Exit", destinations = nil }	
 	}		
 }
 
 Menus["commande blade"] = {
-    text = color.Orange .. "ORDRE DES LAMES\n" ..
+    text = color.Orange .. "The Blades\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+            color.White .. "\nReset your rank within the guild\n"..
         color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
+            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+            color.White .. "\nReset your reputation in the guild\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -259,18 +256,18 @@ Menus["commande blade"] = {
 				})
 			}
         },
-        { caption = "Quitter", destinations = nil }	
+        { caption = "Exit", destinations = nil }	
 	}		
 }
 
 Menus["commande temple"] = {
-    text = color.Orange .. "TEMPLE\n" ..
+    text = color.Orange .. "Temple\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+            color.White .. "\nReset your rank within the guild\n"..
         color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
+            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+            color.White .. "\nReset your reputation in the guild\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -296,18 +293,18 @@ Menus["commande temple"] = {
 				})
 			}
         },
-        { caption = "Quitter", destinations = nil }	
+        { caption = "Exit", destinations = nil }	
 	}		
 }
 
 Menus["commande hlaalu"] = {
-    text = color.Orange .. "MAISONS HLAALU\n" ..
+    text = color.Orange .. "House Hlaalu\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+            color.White .. "\nReset your rank within the guild\n"..
         color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
+            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+            color.White .. "\nReset your reputation in the guild\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -333,18 +330,18 @@ Menus["commande hlaalu"] = {
 				})
 			}
         },
-        { caption = "Quitter", destinations = nil }	
+        { caption = "Exit", destinations = nil }	
 	}		
 }
 
 Menus["commande telvanni"] = {
-    text = color.Orange .. "MAISONS TELVANNI\n" ..
+    text = color.Orange .. "House Telvanni\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+            color.White .. "\nReset your rank within the guild\n"..
         color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
+            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+            color.White .. "\nReset your reputation in the guild\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -370,18 +367,18 @@ Menus["commande telvanni"] = {
 				})
 			}
         },
-        { caption = "Quitter", destinations = nil }	
+        { caption = "Exit", destinations = nil }	
 	}		
 }
 
 Menus["commande redoran"] = {
-    text = color.Orange .. "MAISONS REDORAN\n" ..
+    text = color.Orange .. "House Redoran\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+            color.White .. "\nReset your rank within the guild\n"..
         color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
+            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+            color.White .. "\nReset your reputation in the guild\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -407,18 +404,18 @@ Menus["commande redoran"] = {
 				})
 			}
         },
-        { caption = "Quitter", destinations = nil }	
+        { caption = "Exit", destinations = nil }	
 	}		
 }
 
 Menus["commande orientale"] = {
-    text = color.Orange .. "EMPIRE ORIENTALE\n" ..
+    text = color.Orange .. "East Empire\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+            color.White .. "\nReset your rank within the guild\n"..
         color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
+            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+            color.White .. "\nReset your reputation in the guild\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -444,100 +441,26 @@ Menus["commande orientale"] = {
 				})
 			}
         },
-        { caption = "Quitter", destinations = nil }		
+        { caption = "Exit", destinations = nil }		
 	}		
-}
-
-Menus["commande blood"] = {
-    text = color.Orange .. "BLOODFANG TONG\n" ..
-        color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
-        color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
-    buttons = {				
-        { caption = "RANGS",
-			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
-			{ 
-			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetranks orientale"})
-				})
-			}
-        },
-        { caption = "EXPULTION",
-			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
-			{ 
-			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion orientale"})
-				})
-			}
-        },
-        { caption = "REPUTATION",
-			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
-			{ 
-			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetreputation orientale"})
-				})
-			}
-        },
-        { caption = "Quitter", destinations = nil }	
-	}		
-}
-
-Menus["commande sixth"] = {
-    text = color.Orange .. "SIXIEME MAISONS\n" ..
-        color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReinitialise votre expultion au sein de la guilde pour 1k\n"..			
-        color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
-    buttons = {				
-        { caption = "RANGS",
-			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
-			{ 
-			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetranks sixth"})
-				})
-			}
-        },
-        { caption = "EXPULTION",
-			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
-			{ 
-			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion sixth"})
-				})
-			}
-        },
-        { caption = "REPUTATION",
-			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
-			{ 
-			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetreputation sixth"})
-				})
-			}
-        },
-        { caption = "Quitter", destinations = nil }		
-	}
 }
 
 Menus["commande reset ranks"] = {
-    text = color.Orange .. "COMMANDE DE RESET RANGS\n" ..
-        color.Yellow .. "\n/Selectionne une faction\n" ..
-            color.White .. "\npermet de réinitialiser votre rang au sein d'une guilde\n",
+    text = color.Orange .. "RESET RANGS\n" ..
+        color.Yellow .. "\nSelect a guild\n" ..
+            color.White .. "\nReset your data in a guild\n",
     buttons = {				
         { caption = "Guilde des Mages",
             destinations = {
                 menuHelper.destinations.setDefault("commande mage")
             }
         },
-        { caption = "Guilde des Guerriers",
+        { caption = "Fighters Guild",
             destinations = {
                 menuHelper.destinations.setDefault("commande guerriers")
             }
         },
-        { caption = "Guilde des Voleurs",
+        { caption = "Thieves Guild",
             destinations = {
                 menuHelper.destinations.setDefault("commande voleurs")
             }
@@ -547,12 +470,12 @@ Menus["commande reset ranks"] = {
                 menuHelper.destinations.setDefault("commande morag")
             }
         },
-        { caption = "Legion Imperiale",
+        { caption = "Imperial Legion",
             destinations = {
                 menuHelper.destinations.setDefault("commande legion")
             }
         },
-        { caption = "Culte Imperiale",
+        { caption = "Imperial Cult",
             destinations = {
                 menuHelper.destinations.setDefault("commande culte")
             }
@@ -562,22 +485,22 @@ Menus["commande reset ranks"] = {
                 menuHelper.destinations.setDefault("commande temple")
             }
         },
-        { caption = "L'ordre des lames",
+        { caption = "The Blades",
             destinations = {
                 menuHelper.destinations.setDefault("commande blades")
             }
         },
-        { caption = "Maison Hlaalu",
+        { caption = "House Hlaalu",
             destinations = {
                 menuHelper.destinations.setDefault("commande hlaalu")
             }
         },
-        { caption = "Maison Telvanni",
+        { caption = "House Telvanni",
             destinations = {
                 menuHelper.destinations.setDefault("commande telvanni")
             }
         },	
-        { caption = "Maison Redoran",
+        { caption = "House Redoran",
             destinations = {
                 menuHelper.destinations.setDefault("commande redoran")
             }
@@ -587,16 +510,6 @@ Menus["commande reset ranks"] = {
                 menuHelper.destinations.setDefault("commande orientale")
             }
         },	
-        { caption = "Bloodfang Tong",
-            destinations = {
-                menuHelper.destinations.setDefault("commande blood")
-            }
-        },
-        { caption = "Sixieme Maisons",
-            destinations = {
-                menuHelper.destinations.setDefault("commande sixth")
-            }
-        },	
-        { caption = "Quitter", destinations = nil }
+        { caption = "Exit", destinations = nil }
     }
 }
