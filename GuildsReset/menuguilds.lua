@@ -1,5 +1,11 @@
+--add menuguilds.lua in mp-stuff/scripts/menu/ 
+--for open the menu enter /menuguilds in to the tchat
+
+
+
+
 Menus["commande mage"] = {
-    text = color.Orange .. "GUILDE DES MAGES\n" ..
+    text = color.Orange .. "Mages Guild\n" ..
         color.Yellow .. "\nRANGS\n" ..
             color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
         color.Yellow .. "EXPULTION\n" ..
@@ -36,7 +42,7 @@ Menus["commande mage"] = {
 }
 
 Menus["commande guerriers"] = {
-    text = color.Orange .. "GUILDE DES GUERRIERS\n" ..
+    text = color.Orange .. "Fighters Guild\n" ..
         color.Yellow .. "\nRANGS\n" ..
             color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
         color.Yellow .. "EXPULTION\n" ..
@@ -73,7 +79,7 @@ Menus["commande guerriers"] = {
 }
 
 Menus["commande voleurs"] = {
-    text = color.Orange .. "GUILDE DES VOLEURS\n" ..
+    text = color.Orange .. "Thieves Guild\n" ..
         color.Yellow .. "\nRANGS\n" ..
             color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
         color.Yellow .. "EXPULTION\n" ..
@@ -147,7 +153,7 @@ Menus["commande morag"] = {
 }
 
 Menus["commande legion"] = {
-    text = color.Orange .. "LEGION IMPERIALE\n" ..
+    text = color.Orange .. "Imperial Legion\n" ..
         color.Yellow .. "\nRANGS\n" ..
             color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
         color.Yellow .. "EXPULTION\n" ..
@@ -184,7 +190,7 @@ Menus["commande legion"] = {
 }
 
 Menus["commande culte"] = {
-    text = color.Orange .. "CULTE IMPERIALE\n" ..
+    text = color.Orange .. "Imperial Cult\n" ..
         color.Yellow .. "\nRANGS\n" ..
             color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
         color.Yellow .. "EXPULTION\n" ..
