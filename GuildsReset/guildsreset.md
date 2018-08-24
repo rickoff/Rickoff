@@ -182,7 +182,7 @@
 									Players[pid].data.factionExpulsion[slot] = false
 									Players[pid]:Save()
 									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
+									local message = "Your expulsion from the guild has been reset !"
 									tes3mp.SendMessage(pid, message, false)
 								end
 							end
@@ -194,19 +194,7 @@
 									Players[pid].data.factionExpulsion[slot] = false
 									Players[pid]:Save()
 									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
-									tes3mp.SendMessage(pid, message, false)
-								end
-							end							
-						elseif cmd[2] == "blood" then
-							for slot, k in pairs(Players[pid].data.factionExpulsion) do
-								local guild = slot
-								tes3mp.LogMessage(2, guild)	
-								if guild == "bloodfang tong" then						
-									Players[pid].data.factionExpulsion[slot] = false
-									Players[pid]:Save()
-									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
+									local message = "Your expulsion from the guild has been reset !"
 									tes3mp.SendMessage(pid, message, false)
 								end
 							end							
@@ -218,7 +206,7 @@
 									Players[pid].data.factionExpulsion[slot] = false
 									Players[pid]:Save()
 									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
+									local message = "Your expulsion from the guild has been reset !"
 									tes3mp.SendMessage(pid, message, false)
 								end
 							end							
@@ -230,7 +218,7 @@
 									Players[pid].data.factionExpulsion[slot] = false
 									Players[pid]:Save()
 									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
+									local message = "Your expulsion from the guild has been reset !"
 									tes3mp.SendMessage(pid, message, false)
 								end
 							end	
@@ -242,7 +230,7 @@
 									Players[pid].data.factionExpulsion[slot] = false
 									Players[pid]:Save()
 									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
+									local message = "Your expulsion from the guild has been reset !"
 									tes3mp.SendMessage(pid, message, false)
 								end
 							end	
@@ -254,7 +242,7 @@
 									Players[pid].data.factionExpulsion[slot] = false
 									Players[pid]:Save()
 									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
+									local message = "Your expulsion from the guild has been reset !"
 									tes3mp.SendMessage(pid, message, false)
 								end
 							end	
@@ -266,7 +254,7 @@
 									Players[pid].data.factionExpulsion[slot] = false
 									Players[pid]:Save()
 									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
+									local message = "Your expulsion from the guild has been reset !"
 									tes3mp.SendMessage(pid, message, false)
 								end
 							end	
@@ -278,22 +266,10 @@
 									Players[pid].data.factionExpulsion[slot] = false
 									Players[pid]:Save()
 									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
+									local message = "Your expulsion from the guild has been reset !"
 									tes3mp.SendMessage(pid, message, false)
 								end
 							end	
-						elseif cmd[2] == "sixth" then
-							for slot, k in pairs(Players[pid].data.factionExpulsion) do
-								local guild = slot
-								tes3mp.LogMessage(2, guild)	
-								if guild == "sixth house" then						
-									Players[pid].data.factionExpulsion[slot] = false
-									Players[pid]:Save()
-									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
-									tes3mp.SendMessage(pid, message, false)
-								end
-							end
 						elseif cmd[2] == "cult" then
 							for slot, k in pairs(Players[pid].data.factionExpulsion) do
 								local guild = slot
@@ -302,7 +278,7 @@
 									Players[pid].data.factionExpulsion[slot] = false
 									Players[pid]:Save()
 									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
+									local message = "Your expulsion from the guild has been reset !"
 									tes3mp.SendMessage(pid, message, false)
 								end
 							end	
@@ -314,7 +290,7 @@
 									Players[pid].data.factionExpulsion[slot] = false
 									Players[pid]:Save()
 									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
+									local message = "Your expulsion from the guild has been reset !"
 									tes3mp.SendMessage(pid, message, false)
 								end
 							end	
@@ -326,7 +302,7 @@
 									Players[pid].data.factionExpulsion[slot] = false
 									Players[pid]:Save()
 									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
+									local message = "Your expulsion from the guild has been reset !"
 									tes3mp.SendMessage(pid, message, false)
 								end
 							end	
@@ -338,16 +314,16 @@
 									Players[pid].data.factionExpulsion[slot] = false
 									Players[pid]:Save()
 									Players[pid]:LoadFactionExpulsion()	
-									local message = "Votre expultion au sein de la guilde à été réinitialisé !"
+									local message = "Your expulsion from the guild has been reset !"
 									tes3mp.SendMessage(pid, message, false)
 								end
 							end	
 						else
-							local message = "Cette guilde n'existe pas!\n"
+							local message = "This guild does not exist!\n"
 							tes3mp.SendMessage(pid, message, false)								
 						end							
 					else
-						local message = "Il vous faut 1000 pièces pour vous racheter!\n"
+						local message = "You need 1000 golds to redeem yourself!\n"
 						tes3mp.SendMessage(pid, message, false)							
 					end
 				end
@@ -366,7 +342,7 @@
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
+						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
 				end
@@ -378,22 +354,10 @@
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
+						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
-				end							
-			elseif cmd[2] == "blood" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
-					if guild == "bloodfang tong" then						
-						Players[pid].data.factionRanks[slot] = 0
-						Players[pid]:Save()
-						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
-						tes3mp.SendMessage(pid, message, false)
-					end
-				end							
+				end													
 			elseif cmd[2] == "oriental" then
 				for slot, k in pairs(Players[pid].data.factionRanks) do
 					local guild = slot
@@ -402,7 +366,7 @@
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
+						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
 				end							
@@ -414,7 +378,7 @@
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
+						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
 				end	
@@ -426,7 +390,7 @@
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
+						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
 				end	
@@ -438,7 +402,7 @@
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
+						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
 				end	
@@ -450,7 +414,7 @@
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
+						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
 				end	
@@ -462,22 +426,10 @@
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
+						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
 				end	
-			elseif cmd[2] == "sixth" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
-					if guild == "sixth house" then						
-						Players[pid].data.factionRanks[slot] = 0
-						Players[pid]:Save()
-						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
-						tes3mp.SendMessage(pid, message, false)
-					end
-				end
 			elseif cmd[2] == "cult" then
 				for slot, k in pairs(Players[pid].data.factionRanks) do
 					local guild = slot
@@ -486,7 +438,7 @@
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
+						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
 				end	
@@ -498,7 +450,7 @@
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
+						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
 				end	
@@ -510,7 +462,7 @@
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
+						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
 				end	
@@ -522,11 +474,11 @@
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
-						local message = "Votre rang au sein de la guilde à été réinitialisé !"
+						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
 				end	
 			else
-				local message = "Cette guilde n'existe pas!\n"
+				local message = "This guild does not exist!\n"
 				tes3mp.SendMessage(pid, message, false)	
 			end
