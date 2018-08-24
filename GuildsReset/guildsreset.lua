@@ -1,10 +1,10 @@
 	--add under function OnPlayerSendMessage(pid, message) in server.lua
   
   
-    elseif cmd[1] == "resetreput" then
-			Players[pid].data.factionReputation = {}
-			Players[pid]:Save()
-			Players[pid]:LoadFactionReputation()	
+		elseif cmd[1] == "resetreput" then
+				Players[pid].data.factionReputation = {}
+				Players[pid]:Save()
+				Players[pid]:LoadFactionReputation()	
 
 		elseif cmd[1] == "resetreputation" and cmd[2] ~= nil then					
 			if cmd[2] == "blades" then
