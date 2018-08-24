@@ -1,6 +1,10 @@
 - add under function OnPlayerSendMessage(pid, message) in server.lua
   
   
+  		elseif cmd[1] == "menuguilds" then
+		    Players[pid].currentCustomMenu = "commande reset ranks"
+		    menuHelper.displayMenu(pid, Players[pid].currentCustomMenu)	
+  
 		elseif cmd[1] == "resetreput" then
 				Players[pid].data.factionReputation = {}
 				Players[pid]:Save()
