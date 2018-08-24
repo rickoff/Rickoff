@@ -93,3 +93,7 @@ https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
 **Tournament**
 
 - sign up! wait for the countdown! fight! win prizes!
+
+**GuildsReset**
+
+-allows players to reinitialize the ranks, reputation and expulsion of guilds
