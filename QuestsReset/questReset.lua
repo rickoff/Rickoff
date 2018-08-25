@@ -6,6 +6,8 @@
 			tes3mp.SendMessage(pid, message, false)
 
 		elseif cmd[1] == "resetquest" and cmd[2] ~= nil then
+			local list = {}
+			list.mainquest = {"a1", "a2", "b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8", "c0", "c2", "c3"}	
 			for slot, k in pairs(Players[pid].data.journal) do	
 				for slot1, x in pairs(Players[pid].data.journal[slot]) do	
 					local questlog = slot1			
@@ -24,13 +26,13 @@
 						if questlog == "quest" then	
 							local quest = (Players[pid].data.journal[slot][slot1])
 							local questsub = string.sub(quest, 1, 2)
-							if questsub == "a1" or "a2" or "b1" or "b2" or "b3" or "b4" or "b5" or "b6" or "b7" or "b8" or "c0" or "c2" or "c3" then
+							if tableHelper.containsValue(list.mainquest, questsub) then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
 								local message = "Pour appliquer son effet veuillez vous deconnecter."
 								tes3mp.SendMessage(pid, message, false)					
 							end
-						end	
+						end
 					elseif cmd[2] == "blades" then							
 						if questlog == "quest" then	
 							local quest = (Players[pid].data.journal[slot][slot1])
