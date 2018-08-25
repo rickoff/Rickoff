@@ -90,3 +90,7 @@ https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
 **GuildsReset**
 
 - allows players to reinitialize the ranks, reputation and expulsion of guilds
+
+**QuestsReset**
+
+- reset your quest log by selecting a quest line
