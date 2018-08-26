@@ -1,3 +1,10 @@
+- add under function OnPlayerSendMessage(pid, message) in server.lua
+  
+  
+  		elseif cmd[1] == "menuquest" then
+		    Players[pid].currentCustomMenu = "commande reset quest"
+		    menuHelper.displayMenu(pid, Players[pid].currentCustomMenu)	
+
 		elseif cmd[1] == "resetlog" then
 			Players[pid].data.journal = {}
 			Players[pid]:Save()
