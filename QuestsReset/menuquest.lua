@@ -2,9 +2,9 @@
 --for open the menu enter /menuquest in to the tchat
 
 Menus["commande reset quest"] = {
-    text = color.Orange .. "COMMANDE DE RESET QUETES\n" ..
-        color.Yellow .. "\nSelectionne une guilde\n" ..
-            color.White .. "\npermet de réinitialiser vos quetes\n",
+    text = color.Orange .. "COMMAND RESET QUESTS\n" ..
+        color.Yellow .. "\nSelect a guild\n" ..
+            color.White .. "\nallows you to reset your quests\n",
     buttons = {				
         { caption = "Mages Guild",
 			destinations = {menuHelper.destinations.setDefault("commande reset quest",
@@ -91,14 +91,14 @@ Menus["commande reset quest"] = {
                 menuHelper.destinations.setDefault("menu reset quest page 2")
             }
         },			
-        { caption = "Quitter", destinations = nil }
+        { caption = "Exit", destinations = nil }
     }
 }
 
 Menus["menu reset quest page 2"] = {
-    text = color.Orange .. "RESET QUETES PAGE 2\n" ..
-        color.Yellow .. "\nSelectionne une guilde\n" ..
-            color.White .. "\npermet de réinitialiser vos quetes\n",
+    text = color.Orange .. "RESET QUESTS PAGE 2\n" ..
+        color.Yellow .. "\nSelect a guild\n" ..
+            color.White .. "\nallows you to reset your quests\n",
     buttons = {				
         { caption = "East Empire",
 			destinations = {menuHelper.destinations.setDefault("menu reset quest page 2",
@@ -177,6 +177,6 @@ Menus["menu reset quest page 2"] = {
                 menuHelper.destinations.setDefault("commande reset quest")
             }
         },			
-        { caption = "Quitter", destinations = nil }
+        { caption = "Exit", destinations = nil }
     }
 }
