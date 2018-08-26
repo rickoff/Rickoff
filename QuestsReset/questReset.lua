@@ -2,7 +2,7 @@
 			Players[pid].data.journal = {}
 			Players[pid]:Save()
 			Players[pid]:LoadJournal()
-			local message = "Pour appliquer son effet veuillez vous deconnecter."
+			local message = "To apply its effect please disconnect."
 			tes3mp.SendMessage(pid, message, false)
 
 		elseif cmd[1] == "resetquest" and cmd[2] ~= nil then
@@ -18,7 +18,7 @@
 							if questsub == "tr" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end
@@ -29,7 +29,7 @@
 							if tableHelper.containsValue(list.mainquest, questsub) then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end
@@ -40,7 +40,7 @@
 							if questsub == "bla" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end	
@@ -51,7 +51,7 @@
 							if questsub == "da" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end	
@@ -62,7 +62,7 @@
 							if questsub == "eb" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end	
@@ -73,7 +73,7 @@
 							if questsub == "fg" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end	
@@ -84,7 +84,7 @@
 							if questsub == "hh" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end	
@@ -95,7 +95,7 @@
 							if questsub == "hr" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end	
@@ -106,7 +106,7 @@
 							if questsub == "ht" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end	
@@ -117,7 +117,7 @@
 							if questsub == "ic" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end
@@ -128,7 +128,7 @@
 							if questsub == "il" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end
@@ -139,21 +139,10 @@
 							if questsub == "mg" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
-						end	
-					elseif cmd[2] == "annex" then							
-						if questlog == "quest" then	
-							local quest = (Players[pid].data.journal[slot][slot1])
-							local questsub = string.sub(quest, 1, 2)
-							if questsub == "ms" then
-								Players[pid].data.journal[slot] = nil
-								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
-								tes3mp.SendMessage(pid, message, false)					
-							end
-						end	
+						end		
 					elseif cmd[2] == "morag" then							
 						if questlog == "quest" then	
 							local quest = (Players[pid].data.journal[slot][slot1])
@@ -161,7 +150,7 @@
 							if questsub == "mt" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end	
@@ -172,7 +161,7 @@
 							if questsub == "tg" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end	
@@ -183,7 +172,7 @@
 							if questsub == "tt" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end	
@@ -194,32 +183,10 @@
 							if questsub == "va" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
-						end	
-					elseif cmd[2] == "bloodfang" then							
-						if questlog == "quest" then	
-							local quest = (Players[pid].data.journal[slot][slot1])
-							local questsub = string.sub(quest, 1, 2)
-							if questsub == "a_" then
-								Players[pid].data.journal[slot] = nil
-								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
-								tes3mp.SendMessage(pid, message, false)					
-							end
-						end
-					elseif cmd[2] == "loken" then							
-						if questlog == "quest" then	
-							local quest = (Players[pid].data.journal[slot][slot1])
-							local questsub = string.sub(quest, 1, 2)
-							if questsub == "aa" then
-								Players[pid].data.journal[slot] = nil
-								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
-								tes3mp.SendMessage(pid, message, false)					
-							end
-						end	
+						end		
 					elseif cmd[2] == "bloodmoon" then							
 						if questlog == "quest" then	
 							local quest = (Players[pid].data.journal[slot][slot1])
@@ -227,7 +194,7 @@
 							if questsub == "bm" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
 						end	
@@ -238,21 +205,10 @@
 							if questsub == "co" then
 								Players[pid].data.journal[slot] = nil
 								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
+								local message = "To apply its effect please disconnect."
 								tes3mp.SendMessage(pid, message, false)					
 							end
-						end	
-					elseif cmd[2] == "sixth" then							
-						if questlog == "quest" then	
-							local quest = (Players[pid].data.journal[slot][slot1])
-							local questsub = string.sub(quest, 1, 2)
-							if questsub == "sh" then
-								Players[pid].data.journal[slot] = nil
-								Players[pid]:Save()
-								local message = "Pour appliquer son effet veuillez vous deconnecter."
-								tes3mp.SendMessage(pid, message, false)					
-							end
-						end							
+						end								
 					end
 				end
 			end
