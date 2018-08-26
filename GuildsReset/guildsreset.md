@@ -10,11 +10,10 @@
 				Players[pid]:Save()
 				Players[pid]:LoadFactionReputation()	
 
-		elseif cmd[1] == "resetreputation" and cmd[2] ~= nil then					
-			if cmd[2] == "blades" then
-				for slot, k in pairs(Players[pid].data.factionReputation) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+		elseif cmd[1] == "resetreputation" and cmd[2] ~= nil then
+			for slot, k in pairs(Players[pid].data.factionReputation) do
+				local guild = slot			
+				if cmd[2] == "blades" then
 					if guild == "blades" then						
 						Players[pid].data.factionReputation[slot] = 0
 						Players[pid]:Save()
@@ -22,95 +21,63 @@
 						local message = "Your reputation within the guild has been reset !"
 						tes3mp.SendMessage(pid, message, false)
 					end
-				end
-			elseif cmd[2] == "fight" then
-				for slot, k in pairs(Players[pid].data.factionReputation) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+				elseif cmd[2] == "fight" then
 					if guild == "fighters guild" then						
 						Players[pid].data.factionReputation[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionReputation()	
 						local message = "Your reputation within the guild has been reset !"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end														
-			elseif cmd[2] == "oriental" then
-				for slot, k in pairs(Players[pid].data.factionReputation) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end												
+				elseif cmd[2] == "oriental" then	
 					if guild == "east empire company" then						
 						Players[pid].data.factionReputation[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionReputation()	
 						local message = "Your reputation within the guild has been reset !"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end							
-			elseif cmd[2] == "hlaalu" then
-				for slot, k in pairs(Players[pid].data.factionReputation) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end							
+				elseif cmd[2] == "hlaalu" then	
 					if guild == "hlaalu" then						
 						Players[pid].data.factionReputation[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionReputation()	
 						local message = "Your reputation within the guild has been reset !"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "redoran" then
-				for slot, k in pairs(Players[pid].data.factionReputation) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "redoran" then
 					if guild == "redoran" then						
 						Players[pid].data.factionReputation[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionReputation()	
 						local message = "Your reputation within the guild has been reset !"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "telvanni" then
-				for slot, k in pairs(Players[pid].data.factionReputation) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "telvanni" then	
 					if guild == "telvanni" then						
 						Players[pid].data.factionReputation[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionReputation()	
 						local message = "Your reputation within the guild has been reset !"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "temple" then
-				for slot, k in pairs(Players[pid].data.factionReputation) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "temple" then	
 					if guild == "temple" then						
 						Players[pid].data.factionReputation[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionReputation()	
 						local message = "Your reputation within the guild has been reset !"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "thieves" then
-				for slot, k in pairs(Players[pid].data.factionReputation) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "thieves" then	
 					if guild == "thieves guild" then						
 						Players[pid].data.factionReputation[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionReputation()	
 						local message = "Your reputation within the guild has been reset !"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "cult" then
-				for slot, k in pairs(Players[pid].data.factionReputation) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "cult" then
 					if guild == "imperial cult" then						
 						Players[pid].data.factionReputation[slot] = 0
 						Players[pid]:Save()
@@ -118,47 +85,35 @@
 						local message = "Your reputation within the guild has been reset !"
 						tes3mp.SendMessage(pid, message, false)
 					end
-				end	
-			elseif cmd[2] == "legion" then
-				for slot, k in pairs(Players[pid].data.factionReputation) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+				elseif cmd[2] == "legion" then	
 					if guild == "imperial legion" then						
 						Players[pid].data.factionReputation[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionReputation()	
 						local message = "Your reputation within the guild has been reset !"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "mages" then
-				for slot, k in pairs(Players[pid].data.factionReputation) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "mages" then	
 					if guild == "mages guild" then						
 						Players[pid].data.factionReputation[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionReputation()	
 						local message = "Your reputation within the guild has been reset !"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "morag" then
-				for slot, k in pairs(Players[pid].data.factionReputation) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "morag" then	
 					if guild == "morag tong" then						
 						Players[pid].data.factionReputation[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionReputation()	
 						local message = "Your reputation within the guild has been reset !"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			else
-				local message = "This guild does not exist!\n"
-				tes3mp.SendMessage(pid, message, false)								
-			end							
+					end	
+				else
+					local message = "This guild does not exist!\n"
+					tes3mp.SendMessage(pid, message, false)								
+				end
+			end
 			
 		elseif cmd[1] == "resetfaction" then
 			Players[pid].data.factionExpulsion = {}
@@ -337,11 +292,10 @@
 			Players[pid]:Save()
 			Players[pid]:LoadFactionRanks()	
 
-		elseif cmd[1] == "resetranks" and cmd[2] ~= nil then					
-			if cmd[2] == "blades" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+		elseif cmd[1] == "resetranks" and cmd[2] ~= nil then
+			for slot, k in pairs(Players[pid].data.factionRanks) do
+				local guild = slot		
+				if cmd[2] == "blades" then	
 					if guild == "blades" then						
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
@@ -349,119 +303,79 @@
 						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
-				end
-			elseif cmd[2] == "fight" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+				elseif cmd[2] == "fight" then
 					if guild == "fighters guild" then						
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
 						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end													
-			elseif cmd[2] == "oriental" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end												
+				elseif cmd[2] == "oriental" then
 					if guild == "east empire company" then						
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
 						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end							
-			elseif cmd[2] == "hlaalu" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end						
+				elseif cmd[2] == "hlaalu" then
 					if guild == "hlaalu" then						
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
 						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "redoran" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "redoran" then
 					if guild == "redoran" then						
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
 						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "telvanni" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "telvanni" then
 					if guild == "telvanni" then						
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
 						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "temple" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "temple" then
 					if guild == "temple" then						
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
 						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "thieves" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "thieves" then	
 					if guild == "thieves guild" then						
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
 						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "cult" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "cult" then
 					if guild == "imperial cult" then						
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
 						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "legion" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "legion" then	
 					if guild == "imperial legion" then						
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
 						Players[pid]:LoadFactionRanks()	
 						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
-					end
-				end	
-			elseif cmd[2] == "mages" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+					end	
+				elseif cmd[2] == "mages" then	
 					if guild == "mages guild" then						
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
@@ -469,11 +383,7 @@
 						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
-				end	
-			elseif cmd[2] == "morag" then
-				for slot, k in pairs(Players[pid].data.factionRanks) do
-					local guild = slot
-					tes3mp.LogMessage(2, guild)	
+				elseif cmd[2] == "morag" then	
 					if guild == "morag tong" then						
 						Players[pid].data.factionRanks[slot] = 0
 						Players[pid]:Save()
@@ -481,8 +391,8 @@
 						local message = "Your rank within the guild has been reset!"
 						tes3mp.SendMessage(pid, message, false)
 					end
-				end	
-			else
-				local message = "This guild does not exist!\n"
-				tes3mp.SendMessage(pid, message, false)	
+				else
+					local message = "This guild does not exist!\n"
+					tes3mp.SendMessage(pid, message, false)	
+				end
 			end
