@@ -6,7 +6,7 @@ Menus["commande reset quest"] = {
         color.Yellow .. "\nSelectionne une guilde\n" ..
             color.White .. "\npermet de réinitialiser vos quetes\n",
     buttons = {				
-        { caption = "Guilde des Mages",
+        { caption = "Mages Guild",
 			destinations = {menuHelper.destinations.setDefault("commande reset quest",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
@@ -14,7 +14,7 @@ Menus["commande reset quest"] = {
 				})
 			}
         },
-        { caption = "Guilde des Guerriers",
+        { caption = "Fighters Guild",
 			destinations = {menuHelper.destinations.setDefault("commande reset quest",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
@@ -22,7 +22,7 @@ Menus["commande reset quest"] = {
 				})
 			}
         },
-        { caption = "Guilde des Voleurs",
+        { caption = "Thieves Guild",
 			destinations = {menuHelper.destinations.setDefault("commande reset quest",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
@@ -38,7 +38,7 @@ Menus["commande reset quest"] = {
 				})
 			}
         },
-        { caption = "Legion Imperiale",
+        { caption = "Imperial legion",
 			destinations = {menuHelper.destinations.setDefault("commande reset quest",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
@@ -46,7 +46,7 @@ Menus["commande reset quest"] = {
 				})
 			}
         },
-        { caption = "Culte Imperiale",
+        { caption = "Imperial Cult",
 			destinations = {menuHelper.destinations.setDefault("commande reset quest",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
@@ -62,15 +62,7 @@ Menus["commande reset quest"] = {
 				})
 			}
         },
-        { caption = "L'ordre des lames",
-			destinations = {menuHelper.destinations.setDefault("commande reset quest",
-			{ 
-			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetquest blades"})
-				})
-			}
-        },
-        { caption = "Maison Hlaalu",
+        { caption = "House Hlaalu",
 			destinations = {menuHelper.destinations.setDefault("commande reset quest",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
@@ -78,7 +70,7 @@ Menus["commande reset quest"] = {
 				})
 			}
         },
-        { caption = "Maison Telvanni",
+        { caption = "House Telvanni",
 			destinations = {menuHelper.destinations.setDefault("commande reset quest",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
@@ -86,7 +78,7 @@ Menus["commande reset quest"] = {
 				})
 			}
         },
-        { caption = "Maison Redoran",
+        { caption = "House Redoran",
 			destinations = {menuHelper.destinations.setDefault("commande reset quest",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
@@ -108,27 +100,11 @@ Menus["menu reset quest page 2"] = {
         color.Yellow .. "\nSelectionne une guilde\n" ..
             color.White .. "\npermet de réinitialiser vos quetes\n",
     buttons = {				
-        { caption = "Empire Orientale",
+        { caption = "East Empire",
 			destinations = {menuHelper.destinations.setDefault("menu reset quest page 2",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
 					{menuHelper.variables.currentPid(), "/resetquest oriental"})
-				})
-			}
-        },
-        { caption = "Bloodfang Tong",
-			destinations = {menuHelper.destinations.setDefault("menu reset quest page 2",
-			{ 
-			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetquest bloodfang"})
-				})
-			}
-        },
-        { caption = "Sixieme Maisons",
-			destinations = {menuHelper.destinations.setDefault("menu reset quest page 2",
-			{ 
-			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetquest sixth"})
 				})
 			}
         },
@@ -139,28 +115,12 @@ Menus["menu reset quest page 2"] = {
 					{menuHelper.variables.currentPid(), "/resetquest bloodmoon"})
 				})
 			}
-        },	
-        { caption = "Lokken",
-			destinations = {menuHelper.destinations.setDefault("menu reset quest page 2",
-			{ 
-			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetquest loken"})
-				})
-			}
-        },	
+        },		
         { caption = "Vampire",
 			destinations = {menuHelper.destinations.setDefault("menu reset quest page 2",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
 					{menuHelper.variables.currentPid(), "/resetquest vamp"})
-				})
-			}
-        },
-        { caption = "Annexe",
-			destinations = {menuHelper.destinations.setDefault("menu reset quest page 2",
-			{ 
-			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetquest annex"})
 				})
 			}
         },
@@ -187,7 +147,15 @@ Menus["menu reset quest page 2"] = {
 					{menuHelper.variables.currentPid(), "/resetquest nerevarine"})
 				})
 			}
-        },	
+        },
+        { caption = "Blades",
+			destinations = {menuHelper.destinations.setDefault("commande reset quest",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetquest blades"})
+				})
+			}
+        },		
         { caption = "Tribunal",
 			destinations = {menuHelper.destinations.setDefault("menu reset quest page 2",
 			{ 
