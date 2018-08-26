@@ -1,3 +1,6 @@
+--add menuquest.lua in mp-stuff/scripts/menu/ 
+--for open the menu enter /menuquest in to the tchat
+
 Menus["commande reset quest"] = {
     text = color.Orange .. "COMMANDE DE RESET QUETES\n" ..
         color.Yellow .. "\nSelectionne une guilde\n" ..
