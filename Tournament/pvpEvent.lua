@@ -142,10 +142,10 @@ end
 
 pvpEvent.tcheckcell = function(pid)
 
-    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then		
+    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() and eventpvp == "active" then		
 		for pid1, value in pairs(pvpTab.player) do
 			local cell = tes3mp.GetCell(pid1)			
-			if cell ~= "Elokiel, Arene" and eventpvp == "active" then
+			if cell ~= "Vivec, Arena" then
 				tes3mp.SetCell(pid1, "Vivec, Arena") 			
 				tes3mp.SetPos(pid1, 5746, 4336, 12435)
 				tes3mp.SendCell(pid1)    
@@ -266,18 +266,16 @@ pvpEvent.OnKill = function(pid)
 		end
 
 		tes3mp.ListBox(pid,333,"Scores:",List)
-
-
-		local timer = tes3mp.CreateTimerEx("Revive", time.seconds(config.timerespawn), "i", pid)
-		tes3mp.StartTimer(timer)
 	end
+	local timer = tes3mp.CreateTimerEx("Revive", time.seconds(config.timerespawn), "i", pid)
+	tes3mp.StartTimer(timer)	
 end
 
 function Revive(pid)
 	
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
         tes3mp.Resurrect(pid,0)
-		pvpEvent.spawnRandom(pid)
+	pvpEvent.spawnRandom(pid)
     end
 	
 end
