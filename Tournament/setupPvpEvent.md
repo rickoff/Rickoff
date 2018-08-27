@@ -21,6 +21,10 @@ EventPvpSetup
 
 to
 
-    function OnPlayerDeath(pid)
-      pvpEvent.TcheckKill(pid)
-    end
+	function OnPlayerDeath(pid)
+	pvpEvent.TcheckKill(pid)
+	end
+
+6) Find function OnPlayerCellChange(pid) and add under
+
+		pvpEvent.tcheckcell(pid)
