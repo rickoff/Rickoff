@@ -274,7 +274,7 @@ end
 function Revive(pid)
 	
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-        tes3mp.Resurrect(pid,0)
+	tes3mp.Resurrect(pid,0)
 	pvpEvent.spawnRandom(pid)
     end
 	
