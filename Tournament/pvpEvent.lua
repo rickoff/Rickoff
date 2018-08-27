@@ -4,17 +4,20 @@ tableHelper = require("tableHelper")
 inventoryHelper = require("inventoryHelper")
 jsonInterface = require("jsonInterface")
 
+
 local config = {}
 
 config.timerevent = 60
-config.timerstart = 600
+config.timerstart = 1200
+config.timerstop = 600
 config.countregister = 1000
 config.countwinner = 10
 config.timerespawn = 10
 
-local pvpEvent = {}
+pvpEvent = {}
 
 local TimerStart = tes3mp.CreateTimer("StartEvent", time.seconds(config.timerstart))
+local TimerStop = tes3mp.CreateTimer("StopEvent", time.seconds(config.timerstop))
 
 local eventpvp = "inactive"
 
@@ -28,7 +31,15 @@ function StartEvent()
 	if tableHelper.getCount(Players) > 0 then
 		Playerpid = tableHelper.getAnyValue(Players).pid
 		pvpEvent.AdminStart(Playerpid)
+	else
 		tes3mp.RestartTimer(TimerStart, time.seconds(config.timerstart))
+	end
+end
+
+function StopEvent()
+	if tableHelper.getCount(Players) > 0 then
+		Playerpid = tableHelper.getAnyValue(Players).pid
+		pvpEvent.End(Playerpid)
 	else
 		tes3mp.RestartTimer(TimerStart, time.seconds(config.timerstart))
 	end
@@ -45,7 +56,7 @@ pvpEvent.AdminStart = function(pid)
 	tes3mp.StartTimer(Timerthree)
 	tes3mp.StartTimer(Timertwo)
 	tes3mp.StartTimer(Timerone)
-	tes3mp.SendMessage(pid,"PvP Event has been started. Everyone has 60 Seconds to register. with /pvp \n",true)
+	tes3mp.SendMessage(pid,"The event has been launched. Everyone has 60 seconds to register. /pvp 1000 gold coins.\n",true)
 end
 
 
@@ -63,7 +74,7 @@ pvpEvent.Register = function(pid)
 		
 	else
 		Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - newcount	
-		tes3mp.SendMessage(pid,"You registered for the pvp tournament! \n",false)
+		tes3mp.SendMessage(pid,"You registered for the pvp tournament!\n",false)
 		pvpTab.player[pid] = {score = 0}
 		Players[pid]:Save()
 		Players[pid]:LoadInventory()
@@ -72,27 +83,100 @@ pvpEvent.Register = function(pid)
 	
 end
 
+pvpEvent.spawnRandom = function(pid)
+    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		rando1 = math.random(1, 10)
+		if rando1 == 1 then
+			tes3mp.SetCell(pid, "Vivec, Arena") 			
+			tes3mp.SetPos(pid, 3420, 4300, 12072)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		elseif rando1 == 2 then
+			tes3mp.SetCell(pid, "Vivec, Arena") 					
+			tes3mp.SetPos(pid, 5746, 4336, 12435)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		elseif rando1 == 3 then
+			tes3mp.SetCell(pid, "Vivec, Arena") 			 			
+			tes3mp.SetPos(pid, 5013, 3304, 12435)		
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		elseif rando1 == 4 then
+			tes3mp.SetCell(pid, "Vivec, Arena") 			 			
+			tes3mp.SetPos(pid, 4121, 3234, 12439)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		elseif rando1 == 5 then
+			tes3mp.SetCell(pid, "Vivec, Arena") 			
+			tes3mp.SetPos(pid, 3274, 3243, 12435)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		elseif rando1 == 6 then
+			tes3mp.SetCell(pid, "Vivec, Arena") 			
+			tes3mp.SetPos(pid, 2603, 4335, 12435)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		elseif rando1 == 7 then
+			tes3mp.SetCell(pid, "Vivec, Arena") 			
+			tes3mp.SetPos(pid, 2898, 5116, 12435)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		elseif rando1 == 8 then
+			tes3mp.SetCell(pid, "Vivec, Arena") 						
+			tes3mp.SetPos(pid, 3905, 5420, 12439)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		elseif rando1 == 9 then
+			tes3mp.SetCell(pid, "Vivec, Arena") 			
+			tes3mp.SetPos(pid, 4841, 5396, 12435)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		elseif rando1 == 10 then
+			tes3mp.SetCell(pid, "Vivec, Arena") 						
+			tes3mp.SetPos(pid, 4890, 4365, 12072)	
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		end
+	end
+end
+
+pvpEvent.tcheckcell = function(pid)
+
+    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then		
+		for pid1, value in pairs(pvpTab.player) do
+			local cell = tes3mp.GetCell(pid1)			
+			if cell ~= "Elokiel, Arene" and eventpvp == "active" then
+				tes3mp.SetCell(pid1, "Vivec, Arena") 			
+				tes3mp.SetPos(pid1, 5746, 4336, 12435)
+				tes3mp.SendCell(pid1)    
+				tes3mp.SendPos(pid1)	
+				tes3mp.SendMessage(pid1,"The tournament is underway, go back to the fight! \n",false)
+			end
+		end
+	end	
+	
+end
 
 function CallforPvP()
 	for p , pl in pairs(Players) do
-		tes3mp.SendMessage(p,"You have only 30 Seconds left to register for PvPEvent. Use /pvp.\n",false)
+		tes3mp.SendMessage(p,"You only have 30 seconds left to register for the tournaments. Use /pvp 1000 gold coins.\n",false)
 	end
 end
 	
 function three()
 	for p , pl in pairs(Players) do
-		tes3mp.SendMessage(p,"PvPEvent starts in 3 ......\n",false)
+		tes3mp.SendMessage(p,"The tournament starts in 3 ......\n",false)
 	end
 end
 function two()
 	for p , pl in pairs(Players) do
-		tes3mp.SendMessage(p,"PvPEvent starts in 2 ....\n",false)
+		tes3mp.SendMessage(p,"The tournament starts in 2 ......\n",false)
 	end
 end
 
 function one()
 	for p , pl in pairs(Players) do
-		tes3mp.SendMessage(p,"PvPEvent starts in 1 ..\n",false)
+		tes3mp.SendMessage(p,"The tournament starts in 1 ......\n",false)
 	end
 end
 
@@ -106,27 +190,26 @@ function StartPvP()
 
 	if count >= 2 then
 		for pid, value in pairs(pvpTab.player) do
-			tes3mp.SendMessage(pid,"The event has begun, you are teleported. Beat you !  \n",false)
-			tes3mp.SetCell(pid, "Vivec, Arena")  
-			--tes3mp.SetPos(pid, 4082, 4351, 12072)
-			tes3mp.SendCell(pid)    
-			--tes3mp.SendPos(pid)		
+			tes3mp.SendMessage(pid,"The tournament has started fighting! The first to make 10 dead wins! You have 10 minutes! \n",false)
+			pvpEvent.spawnRandom(pid) 			
 		end
 		eventpvp = "active"
+		tes3mp.StartTimer(TimerStop)		
 	else
 		for pid, value in pairs(pvpTab.player) do
-			tes3mp.SendMessage(pid,"There are not enough participants to start the tournament!  \n",false)	
+			tes3mp.SendMessage(pid,"There are not enough participants to start the tournament! \n",false)	
 		end	
 		eventpvp = "inactive"
+		tes3mp.RestartTimer(TimerStart, time.seconds(config.timerstart))
 	end
 end
 
 pvpEvent.TcheckKill = function(pid)
 
-	if eventpvp == "active" and pvpTab.player [pid] ~= nil then
+	if eventpvp == "active" and pvpTab.player[pid] ~= nil then
 		pvpEvent.OnKill(pid)
 	else
-		myMod.OnPlayerDeath(pid)
+		mwTDM.OnPlayerDeath(pid)
 	end	
 	
 end
@@ -139,23 +222,25 @@ pvpEvent.OnKill = function(pid)
 		count = count + 1
 	end
 
-	local newprice = config.countregister * count	
+	local newprice = config.countregister * count
 
 	if myMod.GetPlayerByName(tes3mp.GetDeathReason(pid)) ~= nil then
 
 		local pl = myMod.GetPlayerByName(tes3mp.GetDeathReason(pid))
 		local newpid = pl.pid
-
-		pvpTab.player[newpid].score = pvpTab.player[newpid].score + 1
+		
+		if pvpTab.player[newpid] ~= nil then
+			pvpTab.player[newpid].score = pvpTab.player[newpid].score + 1
+		end
 
 
 		for pid, value in pairs(pvpTab.player) do
-			tes3mp.SendMessage(pid,Players[newpid].name.." got "..pvpTab.player[newpid].score.." Points !  \n",false)
+			tes3mp.SendMessage(pid,Players[newpid].name.." a "..pvpTab.player[newpid].score.." Points !  \n",false)
 		end
 
 		for pid, value in pairs(pvpTab.player) do
 			if value.score >= config.countwinner then			
-				tes3mp.SendMessage(pid,"The winner is "..Players[pid].name..". The tournament is over.  \n",true)
+				tes3mp.SendMessage(pid,"The winner is "..Players[pid].name..". The tournament is over. \n",true)
 				local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
 				if goldLoc == nil then
 					tes3mp.SendMessage(pid,"You have just won the tournament! \n",false)
@@ -165,7 +250,7 @@ pvpEvent.OnKill = function(pid)
 					Players[pid]:LoadEquipment()					
 				else
 					Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + newprice	
-					tes3mp.SendMessage(pid,"You have just won the tournament!  \n",false)
+					tes3mp.SendMessage(pid,"You have just won the tournament! \n",false)
 					Players[pid]:Save()
 					Players[pid]:LoadInventory()
 					Players[pid]:LoadEquipment()		
@@ -177,7 +262,7 @@ pvpEvent.OnKill = function(pid)
 		local List = ""
 			
 		for pid, value in pairs(pvpTab.player) do
-			List = List..Players[pid].name.." got "..tostring(value.score).." Points \n"
+			List = List..Players[pid].name.." a "..tostring(value.score).." Points \n"
 		end
 
 		tes3mp.ListBox(pid,333,"Scores:",List)
@@ -192,6 +277,7 @@ function Revive(pid)
 	
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
         tes3mp.Resurrect(pid,0)
+		pvpEvent.spawnRandom(pid)
     end
 	
 end
@@ -199,16 +285,18 @@ end
 pvpEvent.End = function(pid)
 
 	for pid, value in pairs(pvpTab.player) do
-		tes3mp.SendMessage(pid,"Event ended you are being teleported",false)
-		tes3mp.SetCell(pid, "-3,-2")
-		--tes3mp.SetPos(pid, 4082, 4351, 12072)
-		tes3mp.SendCell(pid)
-		--tes3mp.SendPos(pid)
+		tes3mp.SendMessage(pid,"The event is over, you're back in town.\n",false)
+		tes3mp.SetCell(pid, "-3,-2")  
+		tes3mp.SetPos(pid, -23974, -15787, 505)
+		tes3mp.SendCell(pid)    
+		tes3mp.SendPos(pid)			
 	end
 
 	eventpvp = "inactive"
 
 	pvpTab = { player = {} }
+	
+	tes3mp.RestartTimer(TimerStart, time.seconds(config.timerstart))	
 end
 
 return pvpEvent
