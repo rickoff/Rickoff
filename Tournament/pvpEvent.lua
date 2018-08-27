@@ -283,7 +283,9 @@ function Revive(pid)
 end
 
 pvpEvent.End = function(pid)
-
+	
+	eventpvp = "inactive"
+	
 	for pid, value in pairs(pvpTab.player) do
 		tes3mp.SendMessage(pid,"The event is over, you're back in town.\n",false)
 		tes3mp.SetCell(pid, "-3,-2")  
@@ -291,8 +293,6 @@ pvpEvent.End = function(pid)
 		tes3mp.SendCell(pid)    
 		tes3mp.SendPos(pid)			
 	end
-
-	eventpvp = "inactive"
 
 	pvpTab = { player = {} }
 	
