@@ -142,19 +142,28 @@ end
 
 pvpEvent.tcheckcell = function(pid)
 
-    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() and eventpvp == "active" then		
-		for pid1, value in pairs(pvpTab.player) do
-			local cell = tes3mp.GetCell(pid1)			
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() and eventpvp == "active" then        
+	    for pid1, plr in pairs(Players) do
+		if plr:IsLoggedIn() then
+		    local cell = tes3mp.GetCell(pid1)
+		    if pvpTab.player[pid1] then
 			if cell ~= "Vivec, Arena" then
-				tes3mp.SetCell(pid1, "Vivec, Arena") 			
-				tes3mp.SetPos(pid1, 5746, 4336, 12435)
-				tes3mp.SendCell(pid1)    
-				tes3mp.SendPos(pid1)	
-				tes3mp.SendMessage(pid1,"The tournament is underway, go back to the fight! \n",false)
+			    tes3mp.SetCell(pid1, "Vivec, Arena")             
+			    tes3mp.SetPos(pid1, 5746, 4336, 12435)
+			    tes3mp.SendCell(pid1)    
+			    tes3mp.SendPos(pid1)    
+			    tes3mp.SendMessage(pid1,"The tournament is underway, go back to the fight! \n",false)
 			end
+		    elseif cell == "Vivec, Arena" then
+			tes3mp.SetCell(pid, "-3,-2")  
+			tes3mp.SetPos(pid, -23974, -15787, 505)
+			tes3mp.SendCell(pid1)    
+			tes3mp.SendPos(pid1)    
+			tes3mp.SendMessage(pid1,"The tournament is underway, you are not registred! \n",false) -- CHANGE THIS
+		    end
 		end
-	end	
-	
+	    end
+	end  
 end
 
 function CallforPvP()
