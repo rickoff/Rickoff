@@ -63,23 +63,24 @@ end
 pvpEvent.Register = function(pid)
 
 	local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
-	local goldamount = Players[pid].data.inventory[goldLoc].count
-	local newcount = config.countregister
 	
-	if goldLoc == nil then
+	if goldLoc ~= nil then
+		local goldamount = Players[pid].data.inventory[goldLoc].count
+		local newcount = config.countregister
+		if goldamount < newcount then
+			tes3mp.SendMessage(pid,"You do not have enough gold to register for the tournaments! \n",false)	
+		else
+			Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - newcount	
+			tes3mp.SendMessage(pid,"You registered for the pvp tournament!  \n",false)
+			pvpTab.player[pid] = {score = 0}
+			Players[pid]:Save()
+			Players[pid]:LoadInventory()
+			Players[pid]:LoadEquipment()		
+		end	
+		
+	elseif goldLoc == nil then
 		tes3mp.SendMessage(pid,"You do not have gold to register for the tournaments! \n",false)
-		
-	elseif goldamount < newcount then
-		tes3mp.SendMessage(pid,"You do not have enough gold to register for the tournaments! \n",false)
-		
-	else
-		Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - newcount	
-		tes3mp.SendMessage(pid,"You registered for the pvp tournament!\n",false)
-		pvpTab.player[pid] = {score = 0}
-		Players[pid]:Save()
-		Players[pid]:LoadInventory()
-		Players[pid]:LoadEquipment()		
-	end	
+	end
 	
 end
 
