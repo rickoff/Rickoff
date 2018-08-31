@@ -37,12 +37,12 @@ fixVamp.tcheckWolf = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		for index, item in pairs(Players[pid].data.spellbook) do
 			if tableHelper.containsKeyValue(Players[pid].data.spellbook, "spellId", "werewolf blood", true) then
-				playerWolf = "yes"
+				playerWolf = "true"
 			else
-				playerWolf = "none"
+				playerWolf = "false"
 			end
 		end
-		if playerWolf ~= "none" then
+		if playerWolf ~= "false" then
 			consoleTcheckwolf = "set PCWerewolf to 1"
 		else
 			consoleTcheckwolf = "set PCWerewolf to 0"
