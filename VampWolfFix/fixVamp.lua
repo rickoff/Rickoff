@@ -3,6 +3,7 @@
 --INSTALLATION
 --add fixVamp.lua file in mp-stuff/script
 --open server.lua and find function OnPlayerCellChange(pid) and a add in :
+--fixVamp.tcheckVamp(pid)	
 --fixVamp.tcheckWolf(pid)
  
 local fixVamp = {}	
