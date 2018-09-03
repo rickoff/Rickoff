@@ -2,13 +2,15 @@
 --for open the menu enter /menuguilds in to the tchat
 
 Menus["commande mage"] = {
-    text = color.Orange .. "Mages Guild\n" ..
+    text = color.Orange .. "GUILDE DES MAGES\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReset your rank within the guild\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReset your reputation in the guild\n",			
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -18,14 +20,22 @@ Menus["commande mage"] = {
 				})
 			}
         },
-        { caption = "EXPULTION",
+        { caption = "EXPULSION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion mages"})
+					{menuHelper.variables.currentPid(), "/resetexpulsion mages"})
 				})
 			}
         },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion mages"})
+				})
+			}
+        },		
         { caption = "REPUTATION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
@@ -34,18 +44,20 @@ Menus["commande mage"] = {
 				})
 			}
         },
-        { caption = "Exit", destinations = nil }	
+        { caption = "Quitter", destinations = nil }	
 	}		
 }
 
 Menus["commande guerriers"] = {
-    text = color.Orange .. "Fighters Guild\n" ..
+    text = color.Orange .. "GUILDE DES GUERRIERS\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReset your rank within the guild\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReset your reputation in the guild\n",			
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -55,14 +67,22 @@ Menus["commande guerriers"] = {
 				})
 			}
         },
-        { caption = "EXPULTION",
+        { caption = "EXPULSION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion fight"})
+					{menuHelper.variables.currentPid(), "/resetexpulsion fight"})
 				})
 			}
         },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion fight"})
+				})
+			}
+        },			
         { caption = "REPUTATION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
@@ -71,18 +91,20 @@ Menus["commande guerriers"] = {
 				})
 			}
         },
-        { caption = "Exit", destinations = nil }	
+        { caption = "Quitter", destinations = nil }	
 	}		
 }
 
 Menus["commande voleurs"] = {
-    text = color.Orange .. "Thieves Guild\n" ..
+    text = color.Orange .. "GUILDE DES VOLEURS\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReset your rank within the guild\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..			
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReset your reputation in the guild\n",			
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -92,14 +114,22 @@ Menus["commande voleurs"] = {
 				})
 			}
         },
-        { caption = "EXPULTION",
+        { caption = "EXPULSION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion thieves"})
+					{menuHelper.variables.currentPid(), "/resetexpulsion thieves"})
 				})
 			}
         },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion thieves"})
+				})
+			}
+        },			
         { caption = "REPUTATION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
@@ -108,18 +138,20 @@ Menus["commande voleurs"] = {
 				})
 			}
         },
-        { caption = "Exit", destinations = nil }	
+        { caption = "Quitter", destinations = nil }	
 	}		
 }
 
 Menus["commande morag"] = {
-    text = color.Orange .. "Morag Tong\n" ..
+    text = color.Orange .. "MORAG TONG\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReset your rank within the guild\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..					
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReset your reputation in the guild\n",			
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -129,14 +161,22 @@ Menus["commande morag"] = {
 				})
 			}
         },
-        { caption = "EXPULTION",
+        { caption = "EXPULSION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion morag"})
+					{menuHelper.variables.currentPid(), "/resetexpulsion morag"})
 				})
 			}
         },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion morag"})
+				})
+			}
+        },			
         { caption = "REPUTATION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
@@ -145,18 +185,20 @@ Menus["commande morag"] = {
 				})
 			}
         },
-        { caption = "Exit", destinations = nil }	
+        { caption = "Quitter", destinations = nil }	
 	}		
 }
 
 Menus["commande legion"] = {
-    text = color.Orange .. "Imperial Legion\n" ..
+    text = color.Orange .. "LEGION IMPERIALE\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReset your rank within the guild\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre EXPULSION au sein de la guilde pour 1k\n"..	
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..					
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReset your reputation in the guild\n",			
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -166,14 +208,22 @@ Menus["commande legion"] = {
 				})
 			}
         },
-        { caption = "EXPULTION",
+        { caption = "EXPULSION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion legion"})
+					{menuHelper.variables.currentPid(), "/resetexpulsion legion"})
 				})
 			}
         },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion legion"})
+				})
+			}
+        },			
         { caption = "REPUTATION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
@@ -182,18 +232,20 @@ Menus["commande legion"] = {
 				})
 			}
         },
-        { caption = "Exit", destinations = nil }	
+        { caption = "Quitter", destinations = nil }	
 	}		
 }
 
 Menus["commande culte"] = {
-    text = color.Orange .. "Imperial Cult\n" ..
+    text = color.Orange .. "CULTE IMPERIALE\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReset your rank within the guild\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..					
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReset your reputation in the guild\n",			
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -203,14 +255,22 @@ Menus["commande culte"] = {
 				})
 			}
         },
-        { caption = "EXPULTION",
+        { caption = "EXPULSION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion cult"})
+					{menuHelper.variables.currentPid(), "/resetexpulsion cult"})
 				})
 			}
         },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion cult"})
+				})
+			}
+        },			
         { caption = "REPUTATION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
@@ -219,18 +279,20 @@ Menus["commande culte"] = {
 				})
 			}
         },
-        { caption = "Exit", destinations = nil }	
+        { caption = "Quitter", destinations = nil }	
 	}		
 }
 
 Menus["commande blade"] = {
-    text = color.Orange .. "The Blades\n" ..
+    text = color.Orange .. "ORDRE DES LAMES\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReset your rank within the guild\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..					
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReset your reputation in the guild\n",			
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -240,14 +302,22 @@ Menus["commande blade"] = {
 				})
 			}
         },
-        { caption = "EXPULTION",
+        { caption = "EXPULSION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion blades"})
+					{menuHelper.variables.currentPid(), "/resetexpulsion blades"})
 				})
 			}
         },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion blades"})
+				})
+			}
+        },			
         { caption = "REPUTATION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
@@ -256,18 +326,20 @@ Menus["commande blade"] = {
 				})
 			}
         },
-        { caption = "Exit", destinations = nil }	
+        { caption = "Quitter", destinations = nil }	
 	}		
 }
 
 Menus["commande temple"] = {
-    text = color.Orange .. "Temple\n" ..
+    text = color.Orange .. "TEMPLE\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReset your rank within the guild\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..	
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..				
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReset your reputation in the guild\n",			
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -277,14 +349,22 @@ Menus["commande temple"] = {
 				})
 			}
         },
-        { caption = "EXPULTION",
+        { caption = "EXPULSION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion temple"})
+					{menuHelper.variables.currentPid(), "/resetexpulsion temple"})
 				})
 			}
         },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion temple"})
+				})
+			}
+        },			
         { caption = "REPUTATION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
@@ -293,18 +373,20 @@ Menus["commande temple"] = {
 				})
 			}
         },
-        { caption = "Exit", destinations = nil }	
+        { caption = "Quitter", destinations = nil }	
 	}		
 }
 
 Menus["commande hlaalu"] = {
-    text = color.Orange .. "House Hlaalu\n" ..
+    text = color.Orange .. "MAISONS HLAALU\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReset your rank within the guild\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..	
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..				
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReset your reputation in the guild\n",			
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -314,14 +396,22 @@ Menus["commande hlaalu"] = {
 				})
 			}
         },
-        { caption = "EXPULTION",
+        { caption = "EXPULSION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion hlaalu"})
+					{menuHelper.variables.currentPid(), "/resetEXPULSION hlaalu"})
 				})
 			}
-        },
+        },	
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion hlaalu"})
+				})
+			}
+        },			
         { caption = "REPUTATION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
@@ -330,18 +420,20 @@ Menus["commande hlaalu"] = {
 				})
 			}
         },
-        { caption = "Exit", destinations = nil }	
+        { caption = "Quitter", destinations = nil }	
 	}		
 }
 
 Menus["commande telvanni"] = {
-    text = color.Orange .. "House Telvanni\n" ..
+    text = color.Orange .. "MAISONS TELVANNI\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReset your rank within the guild\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..				
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReset your reputation in the guild\n",			
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -351,14 +443,22 @@ Menus["commande telvanni"] = {
 				})
 			}
         },
-        { caption = "EXPULTION",
+        { caption = "EXPULSION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion telvanni"})
+					{menuHelper.variables.currentPid(), "/resetexpulsion telvanni"})
 				})
 			}
         },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion telvanni"})
+				})
+			}
+        },			
         { caption = "REPUTATION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
@@ -367,18 +467,20 @@ Menus["commande telvanni"] = {
 				})
 			}
         },
-        { caption = "Exit", destinations = nil }	
+        { caption = "Quitter", destinations = nil }	
 	}		
 }
 
 Menus["commande redoran"] = {
-    text = color.Orange .. "House Redoran\n" ..
+    text = color.Orange .. "MAISONS REDORAN\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReset your rank within the guild\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..				
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReset your reputation in the guild\n",			
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
@@ -388,14 +490,22 @@ Menus["commande redoran"] = {
 				})
 			}
         },
-        { caption = "EXPULTION",
+        { caption = "EXPULSION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion redoran"})
+					{menuHelper.variables.currentPid(), "/resetexpulsion redoran"})
 				})
 			}
         },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion redoran"})
+				})
+			}
+        },			
         { caption = "REPUTATION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
@@ -404,63 +514,167 @@ Menus["commande redoran"] = {
 				})
 			}
         },
-        { caption = "Exit", destinations = nil }	
+        { caption = "Quitter", destinations = nil }	
 	}		
 }
 
 Menus["commande orientale"] = {
-    text = color.Orange .. "East Empire\n" ..
+    text = color.Orange .. "EMPIRE ORIENTALE\n" ..
         color.Yellow .. "\nRANGS\n" ..
-            color.White .. "\nReset your rank within the guild\n"..
-        color.Yellow .. "EXPULTION\n" ..
-            color.White .. "\nReset your expulsion within the guild for 1k\n"..			
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..				
         color.Yellow .. "REPUTATION\n" ..
-            color.White .. "\nReset your reputation in the guild\n",			
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
         { caption = "RANGS",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetranks orientale"})
+					{menuHelper.variables.currentPid(), "/resetranks oriental"})
 				})
 			}
         },
-        { caption = "EXPULTION",
+        { caption = "EXPULSION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetexpultion orientale"})
+					{menuHelper.variables.currentPid(), "/resetexpulsion oriental"})
 				})
 			}
         },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion oriental"})
+				})
+			}
+        },			
         { caption = "REPUTATION",
 			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetreputation orientale"})
+					{menuHelper.variables.currentPid(), "/resetreputation oriental"})
 				})
 			}
         },
-        { caption = "Exit", destinations = nil }		
+        { caption = "Quitter", destinations = nil }		
 	}		
 }
 
+Menus["commande blood"] = {
+    text = color.Orange .. "BLOODFANG TONG\n" ..
+        color.Yellow .. "\nRANGS\n" ..
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..				
+        color.Yellow .. "REPUTATION\n" ..
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+    buttons = {				
+        { caption = "RANGS",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetranks blood"})
+				})
+			}
+        },
+        { caption = "EXPULSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexpulsion blood"})
+				})
+			}
+        },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion blood"})
+				})
+			}
+        },			
+        { caption = "REPUTATION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetreputation blood"})
+				})
+			}
+        },
+        { caption = "Quitter", destinations = nil }	
+	}		
+}
+
+Menus["commande sixth"] = {
+    text = color.Orange .. "SIXIEME MAISONS\n" ..
+        color.Yellow .. "\nRANGS\n" ..
+            color.White .. "\nReinitialise votre rang au sein de la guilde\n"..
+        color.Yellow .. "EXPULSION\n" ..
+            color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
+        color.Yellow .. "EXCLUSION\n" ..
+            color.White .. "\Permet de s'exclure de la guilde\n"..				
+        color.Yellow .. "REPUTATION\n" ..
+            color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
+    buttons = {				
+        { caption = "RANGS",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetranks sixth"})
+				})
+			}
+        },
+        { caption = "EXPULSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexpulsion sixth"})
+				})
+			}
+        },
+        { caption = "EXCLUSION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetexclusion sixth"})
+				})
+			}
+        },			
+        { caption = "REPUTATION",
+			destinations = {menuHelper.destinations.setDefault("commande reset ranks",
+			{ 
+			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
+					{menuHelper.variables.currentPid(), "/resetreputation sixth"})
+				})
+			}
+        },
+        { caption = "Quitter", destinations = nil }		
+	}
+}
+
 Menus["commande reset ranks"] = {
-    text = color.Orange .. "RESET RANGS\n" ..
-        color.Yellow .. "\nSelect a guild\n" ..
-            color.White .. "\nReset your data in a guild\n",
+    text = color.Orange .. "COMMANDE DE RESET RANGS\n" ..
+        color.Yellow .. "\nSelectionne une guilde\n" ..
+            color.White .. "\npermet de réinitialiser vos données de guildes\n",
     buttons = {				
         { caption = "Guilde des Mages",
             destinations = {
                 menuHelper.destinations.setDefault("commande mage")
             }
         },
-        { caption = "Fighters Guild",
+        { caption = "Guilde des Guerriers",
             destinations = {
                 menuHelper.destinations.setDefault("commande guerriers")
             }
         },
-        { caption = "Thieves Guild",
+        { caption = "Guilde des Voleurs",
             destinations = {
                 menuHelper.destinations.setDefault("commande voleurs")
             }
@@ -470,12 +684,12 @@ Menus["commande reset ranks"] = {
                 menuHelper.destinations.setDefault("commande morag")
             }
         },
-        { caption = "Imperial Legion",
+        { caption = "Legion Imperiale",
             destinations = {
                 menuHelper.destinations.setDefault("commande legion")
             }
         },
-        { caption = "Imperial Cult",
+        { caption = "Culte Imperiale",
             destinations = {
                 menuHelper.destinations.setDefault("commande culte")
             }
@@ -485,22 +699,22 @@ Menus["commande reset ranks"] = {
                 menuHelper.destinations.setDefault("commande temple")
             }
         },
-        { caption = "The Blades",
+        { caption = "L'ordre des lames",
             destinations = {
-                menuHelper.destinations.setDefault("commande blades")
+                menuHelper.destinations.setDefault("commande blade")
             }
         },
-        { caption = "House Hlaalu",
+        { caption = "Maison Hlaalu",
             destinations = {
                 menuHelper.destinations.setDefault("commande hlaalu")
             }
         },
-        { caption = "House Telvanni",
+        { caption = "Maison Telvanni",
             destinations = {
                 menuHelper.destinations.setDefault("commande telvanni")
             }
         },	
-        { caption = "House Redoran",
+        { caption = "Maison Redoran",
             destinations = {
                 menuHelper.destinations.setDefault("commande redoran")
             }
@@ -510,6 +724,16 @@ Menus["commande reset ranks"] = {
                 menuHelper.destinations.setDefault("commande orientale")
             }
         },	
-        { caption = "Exit", destinations = nil }
+        { caption = "Bloodfang Tong",
+            destinations = {
+                menuHelper.destinations.setDefault("commande blood")
+            }
+        },
+        { caption = "Sixieme Maisons",
+            destinations = {
+                menuHelper.destinations.setDefault("commande sixth")
+            }
+        },	
+        { caption = "Quitter", destinations = nil }
     }
 }
