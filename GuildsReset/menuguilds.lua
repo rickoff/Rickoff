@@ -55,7 +55,7 @@ Menus["commande guerriers"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..			
+            color.White .. "\nPermet de s'exclure de la guilde\n"..			
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
@@ -102,7 +102,7 @@ Menus["commande voleurs"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..			
+            color.White .. "\nPermet de s'exclure de la guilde\n"..			
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
@@ -149,7 +149,7 @@ Menus["commande morag"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..					
+            color.White .. "\nPermet de s'exclure de la guilde\n"..					
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
@@ -196,7 +196,7 @@ Menus["commande legion"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre EXPULSION au sein de la guilde pour 1k\n"..	
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..					
+            color.White .. "\nPermet de s'exclure de la guilde\n"..					
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
@@ -243,7 +243,7 @@ Menus["commande culte"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..					
+            color.White .. "\nPermet de s'exclure de la guilde\n"..					
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
@@ -290,7 +290,7 @@ Menus["commande blade"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..					
+            color.White .. "\nPermet de s'exclure de la guilde\n"..					
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
@@ -337,7 +337,7 @@ Menus["commande temple"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..	
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..				
+            color.White .. "\nPermet de s'exclure de la guilde\n"..				
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
@@ -384,7 +384,7 @@ Menus["commande hlaalu"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..	
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..				
+            color.White .. "\nPermet de s'exclure de la guilde\n"..				
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
@@ -431,7 +431,7 @@ Menus["commande telvanni"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..				
+            color.White .. "\nPermet de s'exclure de la guilde\n"..				
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
@@ -478,7 +478,7 @@ Menus["commande redoran"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..				
+            color.White .. "\nPermet de s'exclure de la guilde\n"..				
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
@@ -525,7 +525,7 @@ Menus["commande orientale"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..				
+            color.White .. "\nPermet de s'exclure de la guilde\n"..				
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
@@ -572,7 +572,7 @@ Menus["commande blood"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..				
+            color.White .. "\nPermet de s'exclure de la guilde\n"..				
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
@@ -619,7 +619,7 @@ Menus["commande sixth"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..				
+            color.White .. "\nPermet de s'exclure de la guilde\n"..				
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
