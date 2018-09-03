@@ -168,7 +168,7 @@ Menus["menu reset quest page 2"] = {
 			destinations = {menuHelper.destinations.setDefault("menu reset quest page 2",
 			{ 
 			menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-					{menuHelper.variables.currentPid(), "/resetlog"})
+					{menuHelper.variables.currentPid(), "/resetquest all"})
 				})
 			}
         },	
