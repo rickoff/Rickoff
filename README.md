@@ -32,9 +32,9 @@ inspired by https://github.com/TES3MP-TeamFOSS/Scripts thank you for your work a
 
 - This is the modified version of mwTDM by Texafornian made for Rickoff for a constant war between 4 factions
 
-**ResetLog**
+**ResetSolution**
 
-- a simple solution to reset your newspaper and / or faction evictions
+- A way to reset guild data such as rank, eviction, reputation, and quest log entries
 
 **NudeCap**
 
