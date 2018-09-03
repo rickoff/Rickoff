@@ -8,7 +8,7 @@ Menus["commande mage"] = {
         color.Yellow .. "EXPULSION\n" ..
             color.White .. "\nReinitialise votre expulsion au sein de la guilde pour 1k\n"..
         color.Yellow .. "EXCLUSION\n" ..
-            color.White .. "\Permet de s'exclure de la guilde\n"..			
+            color.White .. "\nPermet de s'exclure de la guilde\n"..			
         color.Yellow .. "REPUTATION\n" ..
             color.White .. "\nReinitialise votre reputation au sein de la guilde\n",			
     buttons = {				
