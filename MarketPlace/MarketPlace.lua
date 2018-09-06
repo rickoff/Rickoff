@@ -168,23 +168,28 @@ end
  
 local function addHdv(pid, data)
  
-    local playerName = Players[pid].name
-    local ipAddress = tes3mp.GetIP(pid)
-    local newItemid = data
-    local newItem = { itemid = newItemid, price = 0 }
-    local hdvinv = jsonInterface.load("hdvinv.json")
-    local hdvlist = jsonInterface.load("hdvlist.json")
- 
-    local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvinv.players[playerName].items, "itemid", newItemid)
- 
-	if existingIndex ~= nil then       
+	local playerName = Players[pid].name
+	local ipAddress = tes3mp.GetIP(pid)
+	local newItemid = data
+	local newItem = { itemid = newItemid, price = 0 } 
+	local hdvinv = jsonInterface.load("hdvinv.json")
+	local hdvlist = jsonInterface.load("hdvlist.json")
+
+	local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvinv.players[playerName].items, "itemid", newItemid)
+
+	if existingIndex ~= nil and tableHelper.getCount(hdvlist.players[playerName].items) < 4 then
+        
 		local newItem = hdvinv.players[playerName].items[existingIndex]
-		local price = hdvinv.players[playerName].items[existingIndex].price
 		table.insert(hdvlist.players[playerName].items, newItem)
 		jsonInterface.save("hdvlist.json", hdvlist)
 		hdvinv.players[playerName].items[existingIndex] = nil
 		tableHelper.cleanNils(hdvinv.players[playerName].items)
 		jsonInterface.save("hdvinv.json", hdvinv)
+		
+	else
+
+		tes3mp.SendMessage(pid, "Sorry couldnt add your Item")
+	 
 	end
    
 end
