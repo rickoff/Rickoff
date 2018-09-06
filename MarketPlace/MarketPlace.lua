@@ -178,14 +178,14 @@ local function addHdv(pid, data)
     local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvinv.players[playerName].items, "itemid", newItemid)
  
 	if existingIndex ~= nil then       
-        local newItem = hdvinv.players[playerName].items[existingIndex]
-	local price = hdvinv.players[playerName].items[existingIndex].price
-        table.insert(hdvlist.players[playerName].items, newItem)
-        jsonInterface.save("hdvlist.json", hdvlist)
-        hdvinv.players[playerName].items[existingIndex] = nil
-        tableHelper.cleanNils(hdvinv.players[playerName].items)
-        jsonInterface.save("hdvinv.json", hdvinv)
-    end
+		local newItem = hdvinv.players[playerName].items[existingIndex]
+		local price = hdvinv.players[playerName].items[existingIndex].price
+		table.insert(hdvlist.players[playerName].items, newItem)
+		jsonInterface.save("hdvlist.json", hdvlist)
+		hdvinv.players[playerName].items[existingIndex] = nil
+		tableHelper.cleanNils(hdvinv.players[playerName].items)
+		jsonInterface.save("hdvinv.json", hdvinv)
+	end
    
 end
  
