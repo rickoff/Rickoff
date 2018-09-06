@@ -166,20 +166,21 @@ local function priceAdd(pid, price, data) --- where is that called. messed up. a
    
 end
  
-local function addHdv(pid, data) -- packs item from hdvinv into hdvlist. complicated
+local function addHdv(pid, data)
  
     local playerName = Players[pid].name
     local ipAddress = tes3mp.GetIP(pid)
     local newItemid = data
-    local newItem = { itemid = newItemid, price = price }  -- where comes that price from?
+    local newItem = { itemid = newItemid, price = 0 }
     local hdvinv = jsonInterface.load("hdvinv.json")
     local hdvlist = jsonInterface.load("hdvlist.json")
  
     local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvinv.players[playerName].items, "itemid", newItemid)
  
-    if existingIndex ~= nil then
+	if existingIndex ~= nil then       
         local newItem = hdvinv.players[playerName].items[existingIndex]
-        hdvlist.players[playerName].items[existingIndex] = newItem
+	local price = hdvinv.players[playerName].items[existingIndex].price
+        table.insert(hdvlist.players[playerName].items, newItem)
         jsonInterface.save("hdvlist.json", hdvlist)
         hdvinv.players[playerName].items[existingIndex] = nil
         tableHelper.cleanNils(hdvinv.players[playerName].items)
