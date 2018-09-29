@@ -8,8 +8,8 @@ client = discord.Client()
 list_cellAndPlayer = []
 list_all_user = []
 list_all_channel = []
-list_channelID_admin = ["","",""]
-playerlocationjson = ''
+list_channelID_admin = ["replace to id channel","replace to id channel"]#replace to different id channel discord for safe channel 
+playerlocationjson = 'replace to you location playerlocations.json'#replace to you location playerlocations.json
 
 	
 @client.event
@@ -25,7 +25,7 @@ async def on_createchannel():
 	i = 0
 	while i < 1:
 		try:
-			server = client.get_server("")	
+			server = client.get_server("id you server discord")#replace to you idserverdiscord	
 			role = discord.utils.get(server.roles, name="Vocal")
 			
 			with open(playerlocationjson) as json_data:
@@ -111,7 +111,7 @@ async def on_deletechannel():
 	while i < 1:
 		try:
 		
-			server = client.get_server("")			
+			server = client.get_server("id you server discord")#replace to you idserverdiscord				
 			role = discord.utils.get(server.roles, name="Vocal")
 			
 			with open(playerlocationjson) as json_data:
@@ -182,4 +182,4 @@ async def on_deletechannel():
 		except:
 			return await on_createchannel()
 			
-client.run('')
+client.run('replace to token bot')#replace to token bot
