@@ -2,7 +2,7 @@ Ecarlate server Fr
 Tes3mp 0.6.2 Hotfix
 OpenMw
 
-version 0.0.3
+version 0.0.4
 
 **botvocaltes3mp = Bot Vocal Discord with position player in server tes3mp**
 
