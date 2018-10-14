@@ -52,7 +52,7 @@ Find OnPlayerCellChange(pid) and change the like this:
 
 	function OnPlayerCellChange(pid)
 		tes3mp.LogMessage(enumerations.log.INFO, "Called \"OnPlayerCellChange\" for " .. logicHandler.GetChatName(pid))
-		--eventHandler.OnPlayerCellChange(pid)
+		eventHandler.OnPlayerCellChange(pid)
 		mwTDM.OnPlayerCellChange(pid)
 	end
 
