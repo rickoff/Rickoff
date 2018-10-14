@@ -1,4 +1,4 @@
--- kanaHousing - Release 1.5 - For tes3mp 0.6.1
+-- kanaHousing - Release 1.5 - For tes3mp 0.7.0 for Ecarlate server
 
 --[[ INSTALLATION
 1) Save this file as "kanaHousing.lua" in mp-stuff/scripts
