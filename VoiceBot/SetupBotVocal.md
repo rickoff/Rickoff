@@ -17,7 +17,7 @@ insert the block under function OnPlayerConnect(pid) in serverCore.lua:
             return true -- accept player
         end
 
-find and add eventHandler.OnPlayerDisconnect = function(pid) in eventHandler.lua to :
+find and add to eventHandler.OnPlayerDisconnect = function(pid) in eventHandler.lua :
 
         eventHandler.OnPlayerDisconnect = function(pid)
 
