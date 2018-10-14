@@ -1,6 +1,6 @@
 --add file in folder script/menu
 --add in config.lua find ``config.menuHelperFiles = { "forge de verre" } ``
---go to server.lua and add to command text
+--go to serverCore.lua and add to command text
         --elseif cmd[1] == "craftverre" then
 
             --Players[pid].currentCustomMenu = "menuverre"
