@@ -9,7 +9,7 @@
 2) Add [ ResetSort = require("ResetSort") ] to the top of serverCore.lua
 
 3) Add the following to the elseif chain for commands in "OnPlayerSendMessage" inside commandHandler.lua
-[		elseif cmd[1] == "resetspell" then
+[		elseif cmd[1] == "ResetSort" then
 			ResetSort.showMainGUI(pid)
 ]	
 		
