@@ -5,9 +5,9 @@
 
 3) Find "function OnPlayerDeath(pid)" inside serverCore.lua and replace by:
 
-function OnPlayerDeath(pid)
-	tes3mp.LogMessage(enumerations.log.INFO, "Called \"OnPlayerDeath\" for " .. logicHandler.GetChatName(pid))
-  --eventHandler.OnPlayerDeath(pid)
-  DeathDrop.Drop(pid) 	
-end
+		function OnPlayerDeath(pid)
+			tes3mp.LogMessage(enumerations.log.INFO, "Called \"OnPlayerDeath\" for " .. logicHandler.GetChatName(pid))
+		  --eventHandler.OnPlayerDeath(pid)
+		  DeathDrop.Drop(pid) 	
+		end
 
