@@ -1,5 +1,5 @@
 ---------------------------
--- HunterWorld by Rickoff
+-- HunterWorld by Rickoff for Tes3mp 0.7.0
 
    -- add 100 random spawn point for creature or npc
    -- when a boss creature appears the players receive a message
@@ -18,38 +18,34 @@ jsonInterface = require("jsonInterface")
 local config = {}
 
 config.timerSpawn = 120
-config.timerRandom = 1
+config.timerPrice = 3600
 config.count = 5000
-config.bosses = {"ogrim titan", "Netch_Giant_UNIQUE", "worm lord", "skeleton_aldredaynia", "centurion_shock_baladas"}
+config.bosses = {"raz_reddragon", "raz_bluedragon", "raz_adult_blackdragon", "raz_adult_greendragon", "Imperfect_ecarlate", "worm lord", "Ecarlate_bandit_04", "Ecarlate_bandit_03", "Ecarlate_bandit_02", "Ecarlate_bandit_01"}
 
-local HunterWorld = {}
+HunterWorld = {}
 
 HunterWorld.TimerEventWorld = function()
 	local TimerEvent = tes3mp.CreateTimer("EventSpawn", time.seconds(config.timerSpawn))
-	local TimerRandom = tes3mp.CreateTimer("EventRandom", time.seconds(config.timerRandom))
+	local TimerPrice = tes3mp.CreateTimer("EventPrice", time.seconds(config.timerPrice))
 	tes3mp.StartTimer(TimerEvent)
-	tes3mp.StartTimer(TimerRandom)
+	tes3mp.StartTimer(TimerPrice)
 	local packetType = "spawn"
 	local count
 	local rando1
 	local rando2
 
-	local function EventRandom()
-		rando1 = math.random(1, 100)
-		rando2 = math.random(1, 100)
-		tes3mp.RestartTimer(TimerRandom, time.seconds(config.timerRandom))
-	end
-
-	local function EventSpawn()	
-		local cellTable = jsonInterface.load("CreatureSpawn.json")
-		local creatureTable = jsonInterface.load("CreaturesVanilla.json")
+	function EventSpawn()	
+		local cellTable = jsonInterface.load("EcarlateCreaturesSpawn.json")
+		local creatureTable = jsonInterface.load("EcarlateCreatures.json")
 		local creatureRefId
 		local creaturename
 		local cellId
 		local posx
 		local posy
 		local posz
-
+		rando1 = math.random(1, 107)
+		rando2 = math.random(1, 100)
+		
 		for slot1, creature in pairs(creatureTable.creatures) do
 			if slot1 == rando1 then
 				creatureRefId = creature.Refid
@@ -67,7 +63,7 @@ HunterWorld.TimerEventWorld = function()
 		end
 
 		if creatureRefId ~= nil and cellId ~= nil and posx ~= nil and posy ~= nil and posz ~= nil then
-			local message = color.Red.. "Warning " ..color.Yellow..creaturename..color.Default.. " just made an appearance in the area " ..color.Yellow..cellId.. "\n"
+			local message = color.Red.. "Attention " ..color.Yellow..creaturename..color.Default.. " a fait une apparition dans la zone" ..color.Yellow..cellId.. "\n"
 			if tableHelper.getCount(Players) > 0 then
 				if tableHelper.containsValue(config.bosses, creatureRefId) then
 					tes3mp.SendMessage(tableHelper.getAnyValue(Players).pid, message, true)
@@ -77,20 +73,44 @@ HunterWorld.TimerEventWorld = function()
 			tes3mp.LogMessage(2, "Spawn")
 			tes3mp.LogMessage(2, creatureRefId)
 			tes3mp.LogMessage(2, cellId)
-			myMod.CreateCreatureAtLocation(cellId, position, creatureRefId, packetType)
+			logicHandler.CreateObjectAtLocation(cellId, position, creatureRefId, packetType)
 		else
 			tes3mp.LogMessage(2, "Restart")		
 		end
 
 		tes3mp.RestartTimer(TimerEvent, time.seconds(config.timerSpawn))
 	end	
+	
+	function EventPrice()	
+		for pid, player in pairs(Players) do
+			if Players[pid] ~= nil and player:IsLoggedIn() then	
+				local message = color.Blue.. "Votre récompense vient d'être versé dans votre inventaire pour votre temps passé en jeu, merci.\n"
+				tes3mp.SendMessage(pid, message, false)	
+				local player = Players[pid]
+				local goldL = inventoryHelper.getItemIndex(player.data.inventory, "gold_001", -1)			
+				if goldL ~= nil then
+					local item = player.data.inventory[goldL]
+					local refId = item.refId
+					local count = item.count
+					local rest = (item.count + 1000)
+					player.data.inventory[goldL] = {refId = "gold_001", count = rest, charge = -1}				
+				else
+					table.insert(Players[pid].data.inventory, {refId = "gold_001", count = 1000, charge = -1})							
+				end
+				Players[pid]:Save()
+				Players[pid]:LoadInventory()
+				Players[pid]:LoadEquipment()
+			end
+		end
+		tes3mp.RestartTimer(TimerPrice, time.seconds(config.timerPrice))
+	end
 end 
 
 
 HunterWorld.HunterPrime = function(pid)
 	local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
 	local addgold = 0
-	local message = color.Red.. "A rare creature has just been killed !\n"
+	local message = color.Red.. "Une créature rare vient d'être tuée !\n"
 	local refId
 
 	for i = 0, tes3mp.GetKillChangesSize(pid) - 1 do
@@ -103,11 +123,11 @@ HunterWorld.HunterPrime = function(pid)
 		else
 			Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + config.count	
 		end
-		tes3mp.MessageBox(pid, -1, "You have just recovered the hunting bonus!")
+		tes3mp.MessageBox(pid, -1, "Tu a récupéré une prime de chasse !")
 		tes3mp.SendMessage(pid, message, true)
 		Players[pid]:Save()
 		Players[pid]:LoadInventory()
-		Players[pid]:LoadEquipment()		
+		Players[pid]:LoadEquipment()
 	end
 end
 	
