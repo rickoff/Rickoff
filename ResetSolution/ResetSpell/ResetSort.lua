@@ -39,7 +39,7 @@ local showMainGUI, showBuyGUI
 local playerBuyOptions = {}
  
 -- ===========
---  FONCTION LOCAL
+--  FUNCTION LOCAL
 -- ===========
 -------------------------
  
