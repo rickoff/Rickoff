@@ -1,6 +1,6 @@
 TWM.lua
 
-"Team World Match" for TES3MP v0.6.2.hotfix
+"Team World Match" for TES3MP v0.7.0
 
     /score
     /stats
@@ -13,17 +13,11 @@ TWM.lua
 Installation
 
 Download both mwTDM.lua and place them in your .../mp-stuff/scripts/ (WINDOWS) or .../PluginExamples/scripts (LINUX PACKAGE) folder, then read both sections below.
-Changes to .../scripts/server.lua
+Changes to .../scripts/serverCore.lua
 
-Open the existing server.lua file in the same folder and make the following changes (use CTRL-F or something similar):
+Open the existing serverCore.lua file in the same folder and make the following changes (use CTRL-F or something similar):
 
-Find and change the following:
-
-myMod = require("myMod")
-
-to:
-
-myMod = require("myMod")
+Add on the top:
 
 mwTDM = require("mwTDM")
 
@@ -31,90 +25,46 @@ Find function OnServerInit() and add down:
 
 	mwTDM.MatchInit()
 
-Find function OnPlayerDeath(pid) and change the following:
+Find function OnPlayerDeath(pid) and change like this:
 
 	function OnPlayerDeath(pid)
-		myMod.OnPlayerDeath(pid)
+		tes3mp.LogMessage(enumerations.log.INFO, "Called \"OnPlayerDeath\" for " .. logicHandler.GetChatName(pid))
+		--eventHandler.OnPlayerDeath(pid)
+		pvpEvent.TcheckKill(pid)	
 	end
 
-to:
-
-	function OnPlayerDeath(pid)
-		mwTDM.OnPlayerDeath(pid)
-		-- myMod.OnPlayerDeath(pid)
-	end
-
-Find function OnDeathTimeExpiration(pid) and change the following:
+Find function OnDeathTimeExpiration(pid) and change like this:
 
 	function OnDeathTimeExpiration(pid)
-		myMod.OnDeathTimeExpiration(pid)
+		--eventHandler.OnDeathTimeExpiration(pid)
+		mwTDM.OnDeathTimeExpiration(pid)	
 	end
 
-to:
-
-	function OnDeathTimeExpiration(pid)
-		mwTDM.OnDeathTimeExpiration(pid)
-		-- myMod.OnDeathTimeExpiration(pid)
-	end
-
-Find function OnGUIAction(pid, idGui, data) and change the following:
+Find function OnGUIAction(pid, idGui, data) and change like this:
 
 	function OnGUIAction(pid, idGui, data)
-		if myMod.OnGUIAction(pid, idGui, data) then return end -- if myMod.OnGUIAction is called
-	end
-
-to:
-
-	function OnGUIAction(pid, idGui, data)
+		tes3mp.LogMessage(enumerations.log.INFO, "Called \"OnGUIAction\" for " .. logicHandler.GetChatName(pid))
+		--if eventHandler.OnGUIAction(pid, idGui, data) then return end -- if eventHandler.OnGUIAction is called
 		if mwTDM.OnGUIAction(pid, idGui, data) then return end
-		-- if myMod.OnGUIAction(pid, idGui, data) then return end -- if myMod.OnGUIAction is called
 	end
 
-Find OnPlayerCellChange(pid) and change the following:
+Find OnPlayerCellChange(pid) and change the like this:
 
 	function OnPlayerCellChange(pid)
-		myMod.OnPlayerCellChange(pid)
-	end
-
-to:
-
-	function OnPlayerCellChange(pid)
+		tes3mp.LogMessage(enumerations.log.INFO, "Called \"OnPlayerCellChange\" for " .. logicHandler.GetChatName(pid))
+		--eventHandler.OnPlayerCellChange(pid)
 		mwTDM.OnPlayerCellChange(pid)
-		-- myMod.OnPlayerCellChange(pid)
 	end
 
-Find OnPlayerEndCharGen(pid) and change the following:
+Find OnPlayerEndCharGen(pid) and change like this:
 
 	function OnPlayerEndCharGen(pid)
-		myMod.OnPlayerEndCharGen(pid)
+		tes3mp.LogMessage(enumerations.log.INFO, "Called \"OnPlayerEndCharGen\" for " .. logicHandler.GetChatName(pid))
+		--eventHandler.OnPlayerEndCharGen(pid)
+		mwTDM.OnPlayerEndCharGen(pid)	
 	end
 
-to:
-
-	function OnPlayerEndCharGen(pid)
-		mwTDM.OnPlayerEndCharGen(pid)
-		-- myMod.OnPlayerEndCharGen(pid)
-	end
-
-Find the following block:
-
-        elseif (cmd[1] == "greentext" or cmd[1] == "gt") and cmd[2] ~= nil then
-            local message = myMod.GetChatName(pid) .. ": " .. color.GreenText .. ">" .. tableHelper.concatenateFromIndex(cmd, 2) .. "\n"
-            tes3mp.SendMessage(pid, message, true)
-
-        else
-            local message = "Not a valid command. Type /help for more info.\n"
-            tes3mp.SendMessage(pid, color.Error..message..color.Default, false)
-        end
-
-	return true -- default behavior, chat messages should not
-end
-
-and change it to:
-
-        elseif (cmd[1] == "greentext" or cmd[1] == "gt") and cmd[2] ~= nil then
-            local message = myMod.GetChatName(pid) .. ": " .. color.GreenText .. ">" .. tableHelper.concatenateFromIndex(cmd, 2) .. "\n"
-            tes3mp.SendMessage(pid, message, true)
+Open commandHandler.lua and add command text:
 			
 		elseif cmd[1] == "score" then
 			tes3mp.SendMessage(pid, color.Yellow .. "SCORES: \n" .. teamOne .. ": " .. teamOneScore .. "\n" .. teamTwo .. ": " .. teamTwoScore .. "\n" .. teamThree .. ": " .. teamThreeScore .. "\n", false)
@@ -136,11 +86,3 @@ and change it to:
 		
 		elseif cmd[1] == "teams" then
 			mwTDM.ListTeams(pid)
-
-        else
-            local message = "Not a valid command. Type /help for more info.\n"
-            tes3mp.SendMessage(pid, color.Error..message..color.Default, false)
-        end
-
-	return true -- default behavior, chat messages should not
-end
