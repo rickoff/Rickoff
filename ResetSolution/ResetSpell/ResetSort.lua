@@ -1,6 +1,6 @@
 ---------------------------
--- ResetSort by Rickoff and DiscordPeter
---helped by David.C
+-- ResetSort by Rickoff
+--
 --
 ---------------------------
 --[[ INSTALLATION
