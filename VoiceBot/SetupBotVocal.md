@@ -1,6 +1,6 @@
 For use Bot vocal discord:
 
-insert the block under function OnPlayerConnect(pid) in server.lua:
+insert the block under function OnPlayerConnect(pid) in serverCore.lua:
 
         local playerName = tes3mp.GetName(pid)
 
@@ -17,9 +17,9 @@ insert the block under function OnPlayerConnect(pid) in server.lua:
             return true -- accept player
         end
 
-replace block Methods.OnPlayerDisconnect in mymod.lua to :
+find and add eventHandler.OnPlayerDisconnect = function(pid) in eventHandler.lua to :
 
-        Methods.OnPlayerDisconnect = function(pid)
+        eventHandler.OnPlayerDisconnect = function(pid)
 
             if Players[pid] ~= nil then
 
@@ -44,10 +44,9 @@ replace block Methods.OnPlayerDisconnect in mymod.lua to :
                 Players[pid] = nil        
             end
         end
+Find and add to eventHandler.OnPlayerCellChange = function(pid) in eventHandler.lua
 
-replace block Methods.OnPlayerChangeCell in mymod.lua to :
-
-        Methods.OnPlayerCellChange = function(pid)
+        eventHandler.OnPlayerCellChange = function(pid)
 
         local playerLocations = {players={}}
 
