@@ -7,7 +7,7 @@
 
 		function OnPlayerDeath(pid)
 			tes3mp.LogMessage(enumerations.log.INFO, "Called \"OnPlayerDeath\" for " .. logicHandler.GetChatName(pid))
-		  --eventHandler.OnPlayerDeath(pid)
-		  DeathDrop.Drop(pid) 	
+			--eventHandler.OnPlayerDeath(pid)
+			DeathDrop.Drop(pid) 	
 		end
 
