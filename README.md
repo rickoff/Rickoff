@@ -92,6 +92,11 @@ https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
 
 - allows players to reinitialize the ranks, reputation and expulsion of guilds
 
+**ActivatePlayer**
+
+- Raises a player by activating it for now
+- later: pickpocketing, direct haggling, invitation
+
 **QuestsReset**
 
 - reset your quest log by selecting a quest line
