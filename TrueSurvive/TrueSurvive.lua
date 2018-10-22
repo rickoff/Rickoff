@@ -5,7 +5,7 @@
 --openmw v 0.44
 
 --A script that simulates the primary need for survival( sleep, drink, eat)
-
+--When the player has tired at the tier, he can not jump anymore and loses his attack maimum
 --the next version will include the weather
 
 
@@ -269,11 +269,11 @@ return TrueSurvive
 --add in Menu.lua
 --[[
 Menus["survive hunger"] = {
-    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
-    "manger\n" .. color.Gold .. "cette aliment ?\n" ..
+    text = color.Gold .. "Do you want\n" .. color.LightGreen ..
+    "eat\n" .. color.Gold .. "this food ?\n" ..
         color.White .. "...",
     buttons = {						
-        { caption = "oui",
+        { caption = "yes",
             destinations = {menuHelper.destinations.setDefault(nil,
             { 
 				menuHelper.effects.runGlobalFunction("TrueSurvive", "OnHungerObject", 
@@ -281,7 +281,7 @@ Menus["survive hunger"] = {
                 })
             }
         },			
-        { caption = "non",
+        { caption = "no",
             destinations = {menuHelper.destinations.setDefault(nil,
             { 
                 menuHelper.effects.runGlobalFunction("logicHandler", "ActivateObjectForPlayer",
@@ -296,11 +296,11 @@ Menus["survive hunger"] = {
 }
 
 Menus["survive drink"] = {
-    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
-    "boire\n" .. color.Gold .. "le contenue ?\n" ..
+    text = color.Gold .. "Do you want\n" .. color.LightGreen ..
+    "drink\n" .. color.Gold .. "this drink ?\n" ..
         color.White .. "...",
     buttons = {						
-        { caption = "oui",
+        { caption = "yes",
             destinations = {menuHelper.destinations.setDefault(nil,
             { 
 				menuHelper.effects.runGlobalFunction("TrueSurvive", "OnDrinkObject", 
@@ -308,7 +308,7 @@ Menus["survive drink"] = {
                 })
             }
         },			
-        { caption = "non",
+        { caption = "no",
             destinations = {menuHelper.destinations.setDefault(nil,
             { 
                 menuHelper.effects.runGlobalFunction("logicHandler", "ActivateObjectForPlayer",
@@ -323,8 +323,8 @@ Menus["survive drink"] = {
 }
 
 Menus["survive sleep"] = {
-    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
-    "dormir\n" .. color.Gold .. "dans ce lit ?\n" ..
+    text = color.Gold .. "Do you want\n" .. color.LightGreen ..
+    "sleep\n" .. color.Gold .. "here ?\n" ..
         color.White .. "...",
     buttons = {						
         { caption = "oui",
