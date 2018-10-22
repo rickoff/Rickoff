@@ -102,9 +102,9 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 	local PlayerMagickaBase = tes3mp.GetMagickaBase(pid)		
 	local PlayerFatigue = tes3mp.GetFatigueCurrent(pid)
 	local PlayerFatigueBase = tes3mp.GetFatigueBase(pid)
-    local SleepTime = Players[pid].data.customVariables.SleepTime
-    local HungerTime = Players[pid].data.customVariables.HungerTime
-    local ThirsthTime = Players[pid].data.customVariables.ThirsthTime
+	local SleepTime = Players[pid].data.customVariables.SleepTime
+	local HungerTime = Players[pid].data.customVariables.HungerTime
+	local ThirsthTime = Players[pid].data.customVariables.ThirsthTime
 	
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 	
