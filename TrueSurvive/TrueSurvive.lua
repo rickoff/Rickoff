@@ -19,17 +19,17 @@ local list_survive_thirsth = {"true_survive_thirsth"}
 
 local config = {}
 
-config.timerCheck = 60 --seconds
-config.sleepTime = 30 --minutes
-config.eatTime = 20 --minutes
-config.drinkTime = 20 --minutes
+config.timerCheck = 10
+config.sleepTime = 120
+config.eatTime = 90
+config.drinkTime = 90
 
 local TrueSurvive = {}
 
 
 local TimerStartStats = tes3mp.CreateTimer("StartCheckStats", time.seconds(config.timerCheck))
-
-local listactivabledrinkingobjects = {"potion_skooma_01", "potion_local_liquor_01", "Potion_Local_Brew_01", "Potion_Cyro_Whiskey_01", "potion_cyro_brandy_01", "potion_comberry_wine_01", "potion_comberry_brandy_01", "misc_com_bottle_01", "misc_com_bottle_02", "misc_com_bottle_04", "misc_com_bottle_05", "misc_com_bottle_06", "misc_com_bottle_08", "misc_com_bottle_09", "misc_com_bottle_11", "misc_com_bottle_13", "misc_com_bottle_14", "ex_vivec_waterfall_01", "Ex_waterfall_mist_s_01" }
+local listnodisabledrinkingobjects = {"ex_vivec_waterfall_01", "Ex_waterfall_mist_s_01"}
+local listactivabledrinkingobjects = {"potion_skooma_01", "potion_local_liquor_01", "Potion_Local_Brew_01", "Potion_Cyro_Whiskey_01", "potion_cyro_brandy_01", "potion_comberry_wine_01", "potion_comberry_brandy_01", "misc_com_bottle_01", "misc_com_bottle_02", "misc_com_bottle_04", "misc_com_bottle_05", "misc_com_bottle_06", "misc_com_bottle_08", "misc_com_bottle_09", "misc_com_bottle_11", "misc_com_bottle_13", "misc_com_bottle_14"}
 local listactivatablediningobjects = {"ingred_willow_anther_01", "ingred_black_anther_01", "ingred_comberry_01", "ingred_kwama_cuttle_01", "ingred_heather_01", "ingred_roobrush_01", "ingred_bc_spore_pod", "ingred_crab_meat_01", "ingred_coprinus_01", "ingred_scuttle_01", "ingred_chokeweed_01", "ingred_kresh_fiber_01", "ingred_bc_coda_flower", "ingred_scrib_jelly_01", "food_kwama_egg_02", "ingred_scathecraw_01", "ingred_bc_hypha_facia", "ingred_ash_yam_01", "ingred_gold_kanet_01", "ingred_black_lichen_01", "ingred_red_lichen_01", "ingred_green_lichen_01", "ingred_bread_01_UNI3", "ingred_bread_01", "ingred_bread_01_UNI2", "food_kwama_egg_01", "ingred_marshmerrow_01", "ingred_bittergreen_petals_01", "ingred_stoneflower_petals_01", "ingred_corkbulb_root_01", "ingred_saltrice_01", "ingred_moon_sugar_01", "ingred_hound_meat_01", "ingred_rat_meat_01", "ingred_scrib_jerky_01", "ingred_wickwheat_01"}
 local listactivatablesleepingobjects = {"active_de_bed_29", "active_de_bed_30", "active_de_bedroll", "active_de_p_bed_03", "active_de_p_bed_04", "active_de_p_bed_05", "active_de_p_bed_09", "active_de_p_bed_10", "active_de_p_bed_11", "active_de_p_bed_12", "active_de_p_bed_13", "active_de_p_bed_14", "active_de_p_bed_15", "active_de_p_bed_16", "active_de_p_bed_28", "active_de_pr_bed_07", "active_de_pr_bed_08", "active_de_pr_bed_21", "active_de_pr_bed_22", "active_de_pr_bed_23", "active_de_pr_bed_24", "active_de_pr_bed_25", "active_de_pr_bed_26", "active_de_pr_bed_27", "active_de_r_bed_01", "active_de_r_bed_02", "active_de_r_bed_06", "active_de_r_bed_17", "active_de_r_bed_18", "active_de_r_bed_19", "active_de_r_bed_20"}
 
@@ -119,22 +119,23 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 					spellid = Players[pid].data.spellbook[slot]
 				end
 			end		
-			
-			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests")
-			
-			if tableHelper.containsValue(list_survive_fatigue, spellid) then
-			
-				tes3mp.MessageBox(pid, -1, "You are tired, you should go to sleep !")
-				logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
-				logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")
+			if PlayerFatigue > 0 then			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests")
 				
-			else
+				if tableHelper.containsValue(list_survive_fatigue, spellid) then
+				
+					tes3mp.MessageBox(pid, -1, "You are tired, you should go to sleep !")
+					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
+					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")
+					
+				else
 
-				tes3mp.MessageBox(pid, -1, "You are tired, you should go to sleep !")
-				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_fatigue")
-				logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
-				logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")			
+					tes3mp.MessageBox(pid, -1, "You are tired, you should go to sleep !")
+					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_fatigue")
+					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
+					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")			
 
+				end
 			end
 
 		end
@@ -185,7 +186,7 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 
 		end			
 		
-		if PlayerFatigue <= (PlayerFatigueBase/3) then
+		if PlayerFatigue <= (PlayerFatigueBase / 3) then
 
 			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_attack")
 			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerJumping")
@@ -194,6 +195,21 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 			logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_attack")
 			logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerJumping")				
 		end
+		
+		if PlayerHealth <= 0 then
+
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth")
+			Players[pid].data.customVariables.HungerTime = 0
+			Players[pid].data.customVariables.SleepTime = 0	
+			Players[pid].data.customVariables.ThirsthTime = 0			
+		end
+		
+		if PlayerFatigue <= 0 then
+
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue")
+		end		
 
 	end
 	tes3mp.RestartTimer(TimerStartStats, time.seconds(config.timerCheck))
@@ -211,6 +227,13 @@ TrueSurvive.OnActivatedObject = function(objectRefId, pid)
 			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)	
 			return true
 		end
+		
+		if tableHelper.containsValue(listnodisabledrinkingobjects, objectRefId) then	-- drink
+			Players[pid].currentCustomMenu = "survive drink active"--Menu drink
+			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
+			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)	
+			return true
+		end		
 		
 		if tableHelper.containsValue(listactivatablediningobjects, objectRefId) then	-- eat
 			Players[pid].currentCustomMenu = "survive hunger"--Menu Hunger
@@ -233,9 +256,10 @@ end
 TrueSurvive.OnHungerObject = function(pid)
 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local HungerTime = 0
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger")
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_digestion")
-		Players[pid].data.customVariables.HungerTime = 0	
+		Players[pid].data.customVariables.HungerTime = HungerTime	
 	end
 	
 end
@@ -243,9 +267,10 @@ end
 TrueSurvive.OnDrinkObject = function(pid)
 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local Thirsth = 0
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth")
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_hydrated")
-		Players[pid].data.customVariables.ThirsthTime = 0	
+		Players[pid].data.customVariables.ThirsthTime = Thirsth	
 	end
 	
 end
@@ -253,9 +278,13 @@ end
 TrueSurvive.OnSleepObject = function(pid)
 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local SleepTime = 0
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue")	
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_rests")
-		Players[pid].data.customVariables.SleepTime = 0
+		logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
+		logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 5")
+		tes3mp.MessageBox(pid, -1, "you rest in peace .")		
+		Players[pid].data.customVariables.SleepTime = SleepTime
 	end
 	
 end
@@ -340,6 +369,37 @@ Menus["survive drink"] = {
     }
 }
 
+Menus["survive drink active"] = {
+    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
+    "boire\n" .. color.Gold .. "le contenue ?\n" ..
+        color.White .. "...",
+    buttons = {                        
+        { caption = "oui",
+            destinations = {
+                menuHelper.destinations.setDefault(nil,
+                { 
+                    menuHelper.effects.runGlobalFunction("TrueSurvive", "OnDrinkObject", 
+                    {
+                        menuHelper.variables.currentPid()
+                    })
+                })
+            }
+        },            
+        { caption = "non",
+            destinations = {
+                menuHelper.destinations.setDefault(nil,
+                { 
+                    menuHelper.effects.runGlobalFunction("logicHandler", "ActivateObjectForPlayer",
+                    {
+                        menuHelper.variables.currentPid(), menuHelper.variables.currentPlayerDataVariable("targetCellDescription"),
+                        menuHelper.variables.currentPlayerDataVariable("targetUniqueIndex")
+                    })
+                })
+            }
+        }
+    }
+}
+
 Menus["survive sleep"] = {
     text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
     "dormir\n" .. color.Gold .. "dans ce lit ?\n" ..
@@ -404,7 +464,7 @@ end
   "permanentRecords":{
     "true_survive_digestion":{
       "name":"Digestion",
-      "subtype":3,
+      "subtype":4,
       "cost":1,
       "flags":0,
       "effects":[{
@@ -413,57 +473,57 @@ end
           "skill":-1,
           "rangeType":0,
           "area":0,
-          "duration":1,
+          "duration":0,
           "magnitudeMax":1,
           "magnitudeMin":1
         }]
     },
     "true_survive_fatigue":{
       "name":"Fatigue",
-      "subtype":3,
+      "subtype":4,
       "cost":1,
       "flags":0,
       "effects":[{
-          "id":20,
+          "id":88,
           "attribute":-1,
           "skill":-1,
           "rangeType":0,
           "area":0,
-          "duration":1,
-          "magnitudeMax":2,
-          "magnitudeMin":2
+          "duration":0,
+          "magnitudeMax":3,
+          "magnitudeMin":3
         }]
     },
     "true_survive_thirsth":{
       "name":"Thirsth",
-      "subtype":3,
+      "subtype":4,
       "cost":1,
       "flags":0,
       "effects":[{
-          "id":19,
+          "id":87,
           "attribute":-1,
           "skill":-1,
           "rangeType":0,
           "area":0,
-          "duration":1,
-          "magnitudeMax":1,
-          "magnitudeMin":1
+          "duration":0,
+          "magnitudeMax":2,
+          "magnitudeMin":2
         }]
     },
     "true_survive_hunger":{
       "name":"Hunger",
-      "subtype":3,
+      "subtype":4,
       "cost":1,
       "flags":0,
       "effects":[{
-          "id":20,
+          "id":88,
           "attribute":-1,
           "skill":-1,
           "rangeType":0,
           "area":0,
-          "duration":1,
-          "magnitudeMax":1,
-          "magnitudeMin":1
+          "duration":0,
+          "magnitudeMax":2,
+          "magnitudeMin":2
         }]
     },
     "true_survive_hydrated":{
@@ -478,8 +538,8 @@ end
           "rangeType":0,
           "area":0,
           "duration":1,
-          "magnitudeMax":1,
-          "magnitudeMin":1
+          "magnitudeMax":2,
+          "magnitudeMin":2
         }]
     },
     "true_survive_attack":{
@@ -515,6 +575,8 @@ end
         }]
     }
   },
+  
+]]--
   
 ]]--
 
