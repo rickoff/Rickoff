@@ -1,8 +1,13 @@
---TrueSurvive.lua by Rick-Off
+--TrueSurvive.lua
 
 --TrueSurvive v 0.0.1
 --tes3mp v 0.7.0
 --openmw v 0.44
+
+--A script that simulates the primary need for survival( sleep, drink, eat)
+
+--the next version will include the weather
+
 
 tableHelper = require("tableHelper")
 inventoryHelper = require("inventoryHelper")
@@ -10,16 +15,14 @@ inventoryHelper = require("inventoryHelper")
 local list_survive_fatigue = {"true_survive_fatigue"}
 local list_survive_hunger = {"true_survive_hunger"}
 local list_survive_thirsth = {"true_survive_thirsth"}
-local listsurvivespellpositive = {"true_survive_rests", "true_survive_digestion", "true_survive_hydrated"}
-
 
 
 local config = {}
 
-config.timerCheck = 10 --seconds
-config.sleepTime = 3 --minutes
-config.eatTime = 2 --minutes
-config.drinkTime = 1 --minutes
+config.timerCheck = 60 --seconds
+config.sleepTime = 30 --minutes
+config.eatTime = 20 --minutes
+config.drinkTime = 20 --minutes
 
 local TrueSurvive = {}
 
@@ -197,34 +200,37 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 	tes3mp.LogAppend(enumerations.log.INFO, "....RESTART TIMER CHECK....")	
 end
 
-TrueSurvive.OnActivatedObject = function(objectPid, pid)
+TrueSurvive.OnActivatedObject = function(objectRefId, pid)
 
 	
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 
-		if tableHelper.containsValue(listactivabledrinkingobjects, objectpid) then	-- drink
+		if tableHelper.containsValue(listactivabledrinkingobjects, objectRefId) then	-- drink
 			Players[pid].currentCustomMenu = "survive drink"--Menu drink
 			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
-			tes3mp.LogAppend(enumerations.log.INFO, objectPid)			
+			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)	
+			return true
 		end
 		
-		if tableHelper.containsValue(listactivatablediningobjects, objectpid) then	-- eat
+		if tableHelper.containsValue(listactivatablediningobjects, objectRefId) then	-- eat
 			Players[pid].currentCustomMenu = "survive hunger"--Menu Hunger
 			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
-			tes3mp.LogAppend(enumerations.log.INFO, objectPid)			
+			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)
+			return true
 		end		
 		
-		if tableHelper.containsValue(listactivatablesleepingobjects, objectpid) then -- sleep	
+		if tableHelper.containsValue(listactivatablesleepingobjects, objectRefId) then -- sleep	
 			Players[pid].currentCustomMenu = "survive sleep"--Menu Sleep
 			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
-			tes3mp.LogAppend(enumerations.log.INFO, objectPid)	
+			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)
+			return true
 		end	
 		
 	end
-	
+	return false
 end
 
-TrueSurvive.OnHungerObject = function(objectpid)
+TrueSurvive.OnHungerObject = function(pid)
 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger")
@@ -234,7 +240,7 @@ TrueSurvive.OnHungerObject = function(objectpid)
 	
 end
 
-TrueSurvive.OnDrinkObject = function(objectpid)
+TrueSurvive.OnDrinkObject = function(pid)
 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth")
@@ -244,7 +250,7 @@ TrueSurvive.OnDrinkObject = function(objectpid)
 	
 end
 
-TrueSurvive.OnSleepObject = function(objectpid)
+TrueSurvive.OnSleepObject = function(pid)
 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue")	
@@ -256,7 +262,11 @@ end
 
 return TrueSurvive
 
---add this in Menu.lua
+---------
+--SETUP--
+---------
+
+--add in Menu.lua
 --[[
 Menus["survive hunger"] = {
     text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
@@ -267,11 +277,21 @@ Menus["survive hunger"] = {
             destinations = {menuHelper.destinations.setDefault(nil,
             { 
 				menuHelper.effects.runGlobalFunction("TrueSurvive", "OnHungerObject", 
-					{menuHelper.variables.currentPlayerDataVariable("targetPid")})
+					{menuHelper.variables.currentPid()})
                 })
             }
         },			
-        { caption = "non", destinations = nil }
+        { caption = "non",
+            destinations = {menuHelper.destinations.setDefault(nil,
+            { 
+                menuHelper.effects.runGlobalFunction("logicHandler", "ActivateObjectForPlayer",
+                    {
+                        menuHelper.variables.currentPid(), menuHelper.variables.currentPlayerDataVariable("targetCellDescription"),
+                        menuHelper.variables.currentPlayerDataVariable("targetUniqueIndex")
+                    })
+                })
+            }
+        }
     }
 }
 
@@ -284,11 +304,21 @@ Menus["survive drink"] = {
             destinations = {menuHelper.destinations.setDefault(nil,
             { 
 				menuHelper.effects.runGlobalFunction("TrueSurvive", "OnDrinkObject", 
-					{menuHelper.variables.currentPlayerDataVariable("targetPid")})
+					{menuHelper.variables.currentPid()})
                 })
             }
         },			
-        { caption = "non", destinations = nil }
+        { caption = "non",
+            destinations = {menuHelper.destinations.setDefault(nil,
+            { 
+                menuHelper.effects.runGlobalFunction("logicHandler", "ActivateObjectForPlayer",
+                    {
+                        menuHelper.variables.currentPid(), menuHelper.variables.currentPlayerDataVariable("targetCellDescription"),
+                        menuHelper.variables.currentPlayerDataVariable("targetUniqueIndex")
+                    })
+                })
+            }
+        }
     }
 }
 
@@ -301,21 +331,57 @@ Menus["survive sleep"] = {
             destinations = {menuHelper.destinations.setDefault(nil,
             { 
 				menuHelper.effects.runGlobalFunction("TrueSurvive", "OnSleepObject", 
-					{menuHelper.variables.currentPlayerDataVariable("targetPid")})
+					{menuHelper.variables.currentPid()})
                 })
             }
         },			
-        { caption = "non", destinations = nil }
+        { caption = "non",
+            destinations = {menuHelper.destinations.setDefault(nil,
+            { 
+                menuHelper.effects.runGlobalFunction("logicHandler", "ActivateObjectForPlayer",
+                    {
+                        menuHelper.variables.currentPid(), menuHelper.variables.currentPlayerDataVariable("targetCellDescription"),
+                        menuHelper.variables.currentPlayerDataVariable("targetUniqueIndex")
+                    })
+                })
+            }
+        }
     }
 }
 
---add in eventHandler.lua
+--add in eventHandler.lua find eventHandler.OnObjectActivate = function(pid, cellDescription)
 
-				Players[pid].data.targetPid = objectPid					
-				TrueSurvive.OnActivatedObject(objectPid, pid)										
+                if doesObjectHaveActivatingPlayer then
+                    activatingPid = tes3mp.GetObjectActivatingPid(index)
+                    
+                    if isObjectPlayer then
+                        Players[activatingPid].data.targetPid = objectPid
+                        ActivePlayer.OnCheckStatePlayer(objectPid, activatingPid)
+                    else
+                        Players[activatingPid].data.targetRefId = objectRefId
+                        Players[activatingPid].data.targetUniqueIndex = objectUniqueIndex
+                        Players[activatingPid].data.targetCellDescription = cellDescription
+                        isValid = not TrueSurvive.OnActivatedObject(objectRefId, activatingPid)                     
+                    end
 
-				
---add custom spell	
+--add in logicHandler.lua
+
+logicHandler.ActivateObjectForPlayer = function(pid, objectCellDescription, objectUniqueIndex)
+
+    tes3mp.ClearObjectList()
+    tes3mp.SetObjectListPid(pid)
+    tes3mp.SetObjectListCell(objectCellDescription)
+
+    local splitIndex = objectUniqueIndex:split("-")
+    tes3mp.SetObjectRefNum(splitIndex[1])
+    tes3mp.SetObjectMpNum(splitIndex[2])
+    tes3mp.SetObjectActivatingPid(pid)
+
+    tes3mp.AddObject()
+    tes3mp.SendObjectActivate()
+end
+	
+--add custom spell permanent records
 
   "permanentRecords":{
     "true_survive_digestion":{
@@ -384,7 +450,7 @@ Menus["survive sleep"] = {
     },
     "true_survive_hydrated":{
       "name":"Hydrated",
-      "subtype":7,
+      "subtype":3,
       "cost":1,
       "flags":0,
       "effects":[{
@@ -400,11 +466,11 @@ Menus["survive sleep"] = {
     },
     "true_survive_attack":{
       "name":"Maximus Attack",
-      "subtype":117,
+      "subtype":3,
       "cost":1,
       "flags":0,
       "effects":[{
-          "id":76,
+          "id":117,
           "attribute":-1,
           "skill":-1,
           "rangeType":0,
@@ -433,4 +499,5 @@ Menus["survive sleep"] = {
   },
   
 ]]--
+
 
