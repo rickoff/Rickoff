@@ -5,7 +5,7 @@
 --openmw v 0.44
 
 --A script that simulates the primary need for survival( sleep, drink, eat)
---When the player has tired at the third, he can not jump anymore and loses his attack maimum
+--When the player has tired at the third, he can not jump anymore and loses his attack maximum
 --the next version will include the weather
 
 
