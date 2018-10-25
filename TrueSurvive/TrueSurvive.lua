@@ -16,21 +16,21 @@ local list_survive_fatigue = {"true_survive_fatigue"}
 local list_survive_hunger = {"true_survive_hunger"}
 local list_survive_thirsth = {"true_survive_thirsth"}
 
-
 local config = {}
 
-config.timerCheck = 10
-config.sleepTime = 120
-config.eatTime = 90
-config.drinkTime = 90
+config.timerCheck = 10 --seconds
+config.sleepTime = 360 
+config.eatTime = 180 
+config.drinkTime = 180 
 
 local TrueSurvive = {}
 
 
 local TimerStartStats = tes3mp.CreateTimer("StartCheckStats", time.seconds(config.timerCheck))
-local listnodisabledrinkingobjects = {"ex_vivec_waterfall_01", "Ex_waterfall_mist_s_01"}
-local listactivabledrinkingobjects = {"potion_skooma_01", "potion_local_liquor_01", "Potion_Local_Brew_01", "Potion_Cyro_Whiskey_01", "potion_cyro_brandy_01", "potion_comberry_wine_01", "potion_comberry_brandy_01", "misc_com_bottle_01", "misc_com_bottle_02", "misc_com_bottle_04", "misc_com_bottle_05", "misc_com_bottle_06", "misc_com_bottle_08", "misc_com_bottle_09", "misc_com_bottle_11", "misc_com_bottle_13", "misc_com_bottle_14"}
-local listactivatablediningobjects = {"ingred_willow_anther_01", "ingred_black_anther_01", "ingred_comberry_01", "ingred_kwama_cuttle_01", "ingred_heather_01", "ingred_roobrush_01", "ingred_bc_spore_pod", "ingred_crab_meat_01", "ingred_coprinus_01", "ingred_scuttle_01", "ingred_chokeweed_01", "ingred_kresh_fiber_01", "ingred_bc_coda_flower", "ingred_scrib_jelly_01", "food_kwama_egg_02", "ingred_scathecraw_01", "ingred_bc_hypha_facia", "ingred_ash_yam_01", "ingred_gold_kanet_01", "ingred_black_lichen_01", "ingred_red_lichen_01", "ingred_green_lichen_01", "ingred_bread_01_UNI3", "ingred_bread_01", "ingred_bread_01_UNI2", "food_kwama_egg_01", "ingred_marshmerrow_01", "ingred_bittergreen_petals_01", "ingred_stoneflower_petals_01", "ingred_corkbulb_root_01", "ingred_saltrice_01", "ingred_moon_sugar_01", "ingred_hound_meat_01", "ingred_rat_meat_01", "ingred_scrib_jerky_01", "ingred_wickwheat_01"}
+
+local listactivabledrinkingobjects = {"potion_ancient_brandy", "san_food_beer1b", "san_food_beer2", "aa_Big Ass Mug O' Mead", "KO_mug_tea_CH", "nom_beer_02", "nom_beer_03", "nom_beer_04", "nom_beer_08", "nom_beer_09", "nom_juice_apple", "nom_juice_comberry", "nom_juice_orange", "nom_juice_pear", "nom_wine_02", "nom_wine_03", "nom_wine_04", "nom_wine_08", "nom_wine_09", "p_vintagecomberrybrandy1", "plx_Guar_Milk", "potion_skooma_01", "potion_local_liquor_01", "Potion_Local_Brew_01", "Potion_Cyro_Whiskey_01", "potion_cyro_brandy_01", "potion_comberry_wine_01", "potion_comberry_brandy_01", "misc_com_bottle_01", "misc_com_bottle_02", "misc_com_bottle_03", "misc_com_bottle_04", "misc_com_bottle_05", "misc_com_bottle_06", "misc_com_bottle_08", "misc_com_bottle_09", "misc_com_bottle_11", "misc_com_bottle_13", "misc_com_bottle_14" }
+local listnodisabledrinkingobjects = {"ex_nord_well_01", "nom_water_round", "ex_vivec_waterfall_01", "Ex_waterfall_mist_s_01", "furn_lavacave_pool00", "furn_moldcave_pool00", "furn_moldcave_spout00", "furn_mudcave_pool00", "furn_pycave_pool00", "nom_furn2_lavacave_pool00", "nom_furn_lavacave_pool00", "nom_kegstand_beer", "nom_kegstand_beer_de", "nom_kegstand_wine", "nom_kegstand_wine_de", "nom_MH_spuot", "nom_water_barrel", "nom_water_round", "nom_well_common_01", "nom_well_common_strong1", "nom_well_nord_01", "nom_well_nord_colony1", "Act_BM_well_01"}
+local listactivatablediningobjects = {"Fshan_corn", "Fshan_egg01", "Fshan_egg02", "Fshan_fatfish", "Fshan_friedfish", "Fshan_garlic", "Fshan_grilledfish", "Fshan_lemon", "Fshan_lettuce01", "Fshan_meat", "Fshan_onion", "Fshan_orange", "Fshan_pear", "Fshan_pumpkin", "Fshan_saltfish", "Fshan_sucklingpig", "Fshan_tomato", "Fshan_veg", "Fshan_watermelon", "Fshan_wmelon_slice", "ingred_bear_meat_SA", "ingred_wolf_meat_SA", "nom_food_a_apple", "nom_food_a_lemon", "nom_food_a_orange", "nom_food_a_pear", "nom_food_a_tomato", "nom_food_bittergreen", "nom_food_bittersweet", "nom_food_boiled_rice", "nom_food_boiled_rice2", "nom_food_cheese", "nom_food_cheese2", "nom_food_cheese3", "nom_food_cheese_pie", "nom_food_chickenleg1", "nom_food_chickenleg1_breaded", "nom_food_chickenleg1_cook", "nom_food_corn", "nom_food_corn_boil", "nom_food_corn_roast", "nom_food_crab_slice", "nom_food_egg2", "nom_food_fish", "nom_food_fish_fat_01", "nom_food_fish_fat_02", "nom_food_fried_fish", "nom_food_grilled_fish", "nom_food_hackle-lo", "nom_food_ham", "nom_food_lemon_fish", "nom_food_marshmerrow", "nom_food_meat", "nom_food_meat_grilled", "nom_food_meat_grilled2", "nom_food_moon_pudding", "nom_food_omelette", "nom_food_omelette_crab", "nom_food_pie_appl", "nom_food_pie_comb", "nom_food_pie_oran", "nom_food_pie_pear", "nom_food_rat_pie", "nom_food_soup_onion", "nom_food_soup_rat", "nom_salt", "nom_sltw_food_a_banana", "nom_sltw_food_a_onion", "nom_sltw_food_bread_corn", "nom_sltw_food_cookiebig", "nom_sltw_food_cookiesmall", "nom_sugar", "plx_alit_meat", "plx_alit_meat_B", "plx_alit_meat_D", "plx_guar_meat", "plx_ingred_HellHound", "plx_ingred_kriin_flesh", "plx_ingred_paraflesh", "plx_kagouti_meat", "plx_netch_jelly", "plx_rabbit_foot", "plx_squirrel_tail", "sm_apple01", "sm_apple02", "sm_beef_meat_01", "sm_blackberries", "sm_CDOO_heart", "sm_orange", "tw_bread10b", "tw_bread10c", "tw_bread10d", "tw_bread10f", "tw_bread10g", "tw_bread11b", "tw_bread12", "tw_bread1a", "tw_bread2c", "tw_bread2d", "tw_bread2e", "tw_bread2f", "tw_bread2g", "tw_bread2h", "tw_bread2i", "tw_bread2l", "tw_bread2o", "tw_bread3a", "tw_bread3c", "tw_bread7c", "tw_bread7e", "tw_bread7f", "tw_bread7i", "tw_db_grapes01", "tw_db_grapes02", "tw_db_potatoe", "tw_monkshood", "tw_motherwort", "tw_NI_mandrakeroot", "tw_par_fireflower", "tw_prickly_pear2", "tw_radish", "tw_strawberry", "zz_dogFood", "tw_tobacaleaves", "bar_pie", "bar_pie01", "san_food_cake3", "san_food_cake3b", "san_food_cake8", "san_food_cake8b", "san_food_cake_a", "san_food_cake_b", "san_food_cake_c", "san_food_cake_d", "11AA_combategg", "1jw_KO_chicken_CH", "1jw_KO_potatoe_CH", "1jw_KO_pudding", "aa_ingred_monkshood_01", "Fshan_apple", "Fshan_apple2", "Fshan_banana", "Fshan_bigfish", "Fshan_bluecheese", "Fshan_chickenleg1", "ingred_willow_anther_01", "ingred_black_anther_01", "ingred_comberry_01", "ingred_kwama_cuttle_01", "ingred_heather_01", "ingred_roobrush_01", "ingred_bc_spore_pod", "ingred_crab_meat_01", "ingred_coprinus_01", "ingred_scuttle_01", "ingred_chokeweed_01", "ingred_kresh_fiber_01", "ingred_bc_coda_flower", "ingred_scrib_jelly_01", "food_kwama_egg_02", "ingred_scathecraw_01", "ingred_bc_hypha_facia", "ingred_ash_yam_01", "ingred_gold_kanet_01", "ingred_black_lichen_01", "ingred_red_lichen_01", "ingred_green_lichen_01", "ingred_bread_01_UNI3", "ingred_bread_01", "ingred_bread_01_UNI2", "food_kwama_egg_01", "ingred_marshmerrow_01", "ingred_bittergreen_petals_01", "ingred_stoneflower_petals_01", "ingred_corkbulb_root_01", "ingred_saltrice_01", "ingred_moon_sugar_01", "ingred_hound_meat_01", "ingred_rat_meat_01", "ingred_scrib_jerky_01", "ingred_wickwheat_01"}
 local listactivatablesleepingobjects = {"active_de_bed_29", "active_de_bed_30", "active_de_bedroll", "active_de_p_bed_03", "active_de_p_bed_04", "active_de_p_bed_05", "active_de_p_bed_09", "active_de_p_bed_10", "active_de_p_bed_11", "active_de_p_bed_12", "active_de_p_bed_13", "active_de_p_bed_14", "active_de_p_bed_15", "active_de_p_bed_16", "active_de_p_bed_28", "active_de_pr_bed_07", "active_de_pr_bed_08", "active_de_pr_bed_21", "active_de_pr_bed_22", "active_de_pr_bed_23", "active_de_pr_bed_24", "active_de_pr_bed_25", "active_de_pr_bed_26", "active_de_pr_bed_27", "active_de_r_bed_01", "active_de_r_bed_02", "active_de_r_bed_06", "active_de_r_bed_17", "active_de_r_bed_18", "active_de_r_bed_19", "active_de_r_bed_20"}
 
 -- ===========
@@ -91,26 +91,44 @@ TrueSurvive.OnCheckTimePlayers = function(pid)
 		tes3mp.LogAppend(enumerations.log.INFO, "....CHECK STATE PLAYER....")
 		
 	end
-
+	Players[pid]:Save()	
 end
 
 TrueSurvive.OnCheckStatePlayer = function(pid)
 
-	local PlayerHealth = tes3mp.GetHealthCurrent(pid)
-	local PlayerHealthBase = tes3mp.GetHealthBase(pid)	
-	local PlayerMagicka = tes3mp.GetMagickaCurrent(pid)
-	local PlayerMagickaBase = tes3mp.GetMagickaBase(pid)		
-	local PlayerFatigue = tes3mp.GetFatigueCurrent(pid)
-	local PlayerFatigueBase = tes3mp.GetFatigueBase(pid)
-	local SleepTime = Players[pid].data.customVariables.SleepTime
-	local HungerTime = Players[pid].data.customVariables.HungerTime
-	local ThirsthTime = Players[pid].data.customVariables.ThirsthTime
 	
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-	
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
+		local PlayerHealth = tes3mp.GetHealthCurrent(pid)
+		local PlayerHealthBase = tes3mp.GetHealthBase(pid)	
+		local PlayerMagicka = tes3mp.GetMagickaCurrent(pid)
+		local PlayerMagickaBase = tes3mp.GetMagickaBase(pid)		
+		local PlayerFatigue = tes3mp.GetFatigueCurrent(pid)
+		local PlayerFatigueBase = tes3mp.GetFatigueBase(pid)	
 		local spellid
 		local spellid2
 		local spellid3
+
+		if PlayerFatigue <= (PlayerFatigueBase / 3) and PlayerFatigue > 0 then
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_attack")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerJumping")
+			
+		elseif PlayerFatigue > (PlayerFatigueBase / 3) then	
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_attack")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerJumping")
+			
+		elseif PlayerFatigue <= 0 then			
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue")		
+		end
+		
+		if PlayerHealth <= 0 then	
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth")
+		end
+		
+		local SleepTime = Players[pid].data.customVariables.SleepTime
+		local HungerTime = Players[pid].data.customVariables.HungerTime
+		local ThirsthTime = Players[pid].data.customVariables.ThirsthTime
 		
 		if SleepTime >= config.sleepTime then
 		
@@ -119,24 +137,28 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 					spellid = Players[pid].data.spellbook[slot]
 				end
 			end		
-			if PlayerFatigue > 0 then			
+			
+			if PlayerFatigue >= 1 then
+			
 				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests")
 				
-				if tableHelper.containsValue(list_survive_fatigue, spellid) then
-				
-					tes3mp.MessageBox(pid, -1, "You are tired, you should go to sleep !")
+				if tableHelper.containsValue(list_survive_fatigue, spellid) then				
+					tes3mp.MessageBox(pid, -1, "Vous êtes fatigué, vous devriez aller dormir !")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")
 					
 				else
-
-					tes3mp.MessageBox(pid, -1, "You are tired, you should go to sleep !")
+					tes3mp.MessageBox(pid, -1, "Vous êtes fatigué, vous devriez aller dormir !")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_fatigue")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")			
 
 				end
 			end
+			
+		elseif SleepTime >= (config.sleepTime / 2) and SleepTime < config.sleepTime then
+		
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests")			
 
 		end
 		
@@ -152,14 +174,18 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 			
 			if tableHelper.containsValue(list_survive_hunger, spellid2) then
 
-				tes3mp.MessageBox(pid, -1, "you are hungry, you should go eat !")
+				tes3mp.MessageBox(pid, -1, "Vous avez faim, vous devriez vous restaurer !")
 				
 			else
 
-				tes3mp.MessageBox(pid, -1, "you are hungry, you should go eat !")					
+				tes3mp.MessageBox(pid, -1, "Vous avez faim, vous devriez vous restaurer !")					
 				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_hunger")
 
 			end
+			
+		elseif HungerTime >= (config.eatTime / 2) and HungerTime < config.eatTime then	
+		
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_digestion")	
 
 		end
 		
@@ -175,43 +201,23 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 			
 			if tableHelper.containsValue(list_survive_thirsth, spellid3) then			
 				
-				tes3mp.MessageBox(pid, -1, "you are thirsty, go drink !")
+				tes3mp.MessageBox(pid, -1, "Vous avez soif, vous devriez aller boire !")
 				
 			else				
 				
-				tes3mp.MessageBox(pid, -1, "you are thirsty, go drink !")
+				tes3mp.MessageBox(pid, -1, "Vous avez soif, vous devriez aller boire !")
 				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_thirsth")											
 
 			end
-
-		end			
-		
-		if PlayerFatigue <= (PlayerFatigueBase / 3) then
-
-			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_attack")
-			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerJumping")
 			
-		else
-			logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_attack")
-			logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerJumping")				
-		end
+		elseif ThirsthTime >= (config.drinkTime / 2) and ThirsthTime < config.drinkTime then	
 		
-		if PlayerHealth <= 0 then
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hydrated")	
 
-			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger")
-			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue")
-			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth")
-			Players[pid].data.customVariables.HungerTime = 0
-			Players[pid].data.customVariables.SleepTime = 0	
-			Players[pid].data.customVariables.ThirsthTime = 0			
-		end
-		
-		if PlayerFatigue <= 0 then
-
-			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue")
-		end		
-
+		end					
+		Players[pid]:Save()	
 	end
+	
 	tes3mp.RestartTimer(TimerStartStats, time.seconds(config.timerCheck))
 	tes3mp.LogAppend(enumerations.log.INFO, "....RESTART TIMER CHECK....")	
 end
@@ -250,6 +256,7 @@ TrueSurvive.OnActivatedObject = function(objectRefId, pid)
 		end	
 		
 	end
+	
 	return false
 end
 
@@ -261,7 +268,7 @@ TrueSurvive.OnHungerObject = function(pid)
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_digestion")
 		Players[pid].data.customVariables.HungerTime = HungerTime	
 	end
-	
+	Players[pid]:Save()		
 end
 
 TrueSurvive.OnDrinkObject = function(pid)
@@ -272,7 +279,7 @@ TrueSurvive.OnDrinkObject = function(pid)
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_hydrated")
 		Players[pid].data.customVariables.ThirsthTime = Thirsth	
 	end
-	
+	Players[pid]:Save()		
 end
 
 TrueSurvive.OnSleepObject = function(pid)
@@ -283,10 +290,10 @@ TrueSurvive.OnSleepObject = function(pid)
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_rests")
 		logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
 		logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 5")
-		tes3mp.MessageBox(pid, -1, "you rest in peace .")		
+		tes3mp.MessageBox(pid, -1, "Vous vous êtes reposés .")		
 		Players[pid].data.customVariables.SleepTime = SleepTime
 	end
-	
+	Players[pid]:Save()	
 end
 
 return TrueSurvive
@@ -299,7 +306,7 @@ return TrueSurvive
 --[[
 Menus["survive hunger"] = {
     text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
-    "manger\n" .. color.Gold .. "cette aliment ?\n" ..
+    "manger\n" .. color.Gold .. "cet aliment ?\n" ..
         color.White .. "...",
     buttons = {						
         { caption = "oui",
@@ -575,8 +582,6 @@ end
         }]
     }
   },
-  
-]]--
   
 ]]--
 
