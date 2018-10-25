@@ -17,16 +17,17 @@ local list_survive_hunger = {"true_survive_hunger"}
 local list_survive_thirsth = {"true_survive_thirsth"}
 
 local config = {}
-
-config.timerCheck = 10 --seconds
-config.sleepTime = 360 
-config.eatTime = 180 
-config.drinkTime = 180 
+config.timerMessage = 10
+config.timerCheck = 1 
+config.sleepTime = 3600 
+config.eatTime = 1800 
+config.drinkTime = 1800 
 
 local TrueSurvive = {}
 
 
 local TimerStartStats = tes3mp.CreateTimer("StartCheckStats", time.seconds(config.timerCheck))
+local TimerStartMessage = tes3mp.CreateTimer("StartCheckMessage", time.seconds(config.timerMessage))
 
 local listactivabledrinkingobjects = {"potion_ancient_brandy", "san_food_beer1b", "san_food_beer2", "aa_Big Ass Mug O' Mead", "KO_mug_tea_CH", "nom_beer_02", "nom_beer_03", "nom_beer_04", "nom_beer_08", "nom_beer_09", "nom_juice_apple", "nom_juice_comberry", "nom_juice_orange", "nom_juice_pear", "nom_wine_02", "nom_wine_03", "nom_wine_04", "nom_wine_08", "nom_wine_09", "p_vintagecomberrybrandy1", "plx_Guar_Milk", "potion_skooma_01", "potion_local_liquor_01", "Potion_Local_Brew_01", "Potion_Cyro_Whiskey_01", "potion_cyro_brandy_01", "potion_comberry_wine_01", "potion_comberry_brandy_01", "misc_com_bottle_01", "misc_com_bottle_02", "misc_com_bottle_03", "misc_com_bottle_04", "misc_com_bottle_05", "misc_com_bottle_06", "misc_com_bottle_08", "misc_com_bottle_09", "misc_com_bottle_11", "misc_com_bottle_13", "misc_com_bottle_14" }
 local listnodisabledrinkingobjects = {"ex_nord_well_01", "nom_water_round", "ex_vivec_waterfall_01", "Ex_waterfall_mist_s_01", "furn_lavacave_pool00", "furn_moldcave_pool00", "furn_moldcave_spout00", "furn_mudcave_pool00", "furn_pycave_pool00", "nom_furn2_lavacave_pool00", "nom_furn_lavacave_pool00", "nom_kegstand_beer", "nom_kegstand_beer_de", "nom_kegstand_wine", "nom_kegstand_wine_de", "nom_MH_spuot", "nom_water_barrel", "nom_water_round", "nom_well_common_01", "nom_well_common_strong1", "nom_well_nord_01", "nom_well_nord_colony1", "Act_BM_well_01"}
@@ -34,11 +35,12 @@ local listactivatablediningobjects = {"Fshan_corn", "Fshan_egg01", "Fshan_egg02"
 local listactivatablesleepingobjects = {"active_de_bed_29", "active_de_bed_30", "active_de_bedroll", "active_de_p_bed_03", "active_de_p_bed_04", "active_de_p_bed_05", "active_de_p_bed_09", "active_de_p_bed_10", "active_de_p_bed_11", "active_de_p_bed_12", "active_de_p_bed_13", "active_de_p_bed_14", "active_de_p_bed_15", "active_de_p_bed_16", "active_de_p_bed_28", "active_de_pr_bed_07", "active_de_pr_bed_08", "active_de_pr_bed_21", "active_de_pr_bed_22", "active_de_pr_bed_23", "active_de_pr_bed_24", "active_de_pr_bed_25", "active_de_pr_bed_26", "active_de_pr_bed_27", "active_de_r_bed_01", "active_de_r_bed_02", "active_de_r_bed_06", "active_de_r_bed_17", "active_de_r_bed_18", "active_de_r_bed_19", "active_de_r_bed_20"}
 
 -- ===========
--- CHECK STATE
+-- TIMER START
 -- ===========
 
 TrueSurvive.TimerStartCheck = function()
 	tes3mp.StartTimer(TimerStartStats)
+	tes3mp.StartTimer(TimerStartMessage)	
 	tes3mp.LogAppend(enumerations.log.INFO, "....START TIMER CHECK SURVIVE....")			
 end
 
@@ -47,15 +49,27 @@ function StartCheckStats()
 	for pid, player in pairs(Players) do
 		if Players[pid] ~= nil and player:IsLoggedIn() then	
 			TrueSurvive.OnCheckTimePlayers(pid)
-			tes3mp.LogAppend(enumerations.log.INFO, "....START CHECK TIME PLAYERS....")	
 		end
 	end
 
     tes3mp.RestartTimer(TimerStartStats, time.seconds(config.timerCheck))
-    tes3mp.LogAppend(enumerations.log.INFO, "....RESTART TIMER CHECK....")
 end
 
 
+function StartCheckMessage()
+
+	for pid, player in pairs(Players) do
+		if Players[pid] ~= nil and player:IsLoggedIn() then	
+			TrueSurvive.OnCheckMessagePlayers(pid)
+		end
+	end
+
+    tes3mp.RestartTimer(TimerStartMessage, time.seconds(config.timerMessage))
+end
+
+-- ==================
+-- CHECK TIMER PLAYER
+-- ==================
 
 TrueSurvive.OnCheckTimePlayers = function(pid)
 
@@ -94,19 +108,21 @@ TrueSurvive.OnCheckTimePlayers = function(pid)
 	Players[pid]:Save()	
 end
 
+-- =================
+-- CHECK STAT PLAYER
+-- =================
+
 TrueSurvive.OnCheckStatePlayer = function(pid)
 
 	
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
+	
 		local PlayerHealth = tes3mp.GetHealthCurrent(pid)
 		local PlayerHealthBase = tes3mp.GetHealthBase(pid)	
 		local PlayerMagicka = tes3mp.GetMagickaCurrent(pid)
 		local PlayerMagickaBase = tes3mp.GetMagickaBase(pid)		
 		local PlayerFatigue = tes3mp.GetFatigueCurrent(pid)
-		local PlayerFatigueBase = tes3mp.GetFatigueBase(pid)	
-		local spellid
-		local spellid2
-		local spellid3
+		local PlayerFatigueBase = tes3mp.GetFatigueBase(pid)
 
 		if PlayerFatigue <= (PlayerFatigueBase / 3) and PlayerFatigue > 0 then
 			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_attack")
@@ -125,10 +141,29 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue")
 			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth")
 		end
-		
+	end
+end		
+
+-- ====================
+-- CHECK MESSAGE PLAYER
+-- ====================
+
+TrueSurvive.OnCheckMessagePlayers = function(pid)
+
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+	
+		local PlayerHealth = tes3mp.GetHealthCurrent(pid)
+		local PlayerHealthBase = tes3mp.GetHealthBase(pid)	
+		local PlayerMagicka = tes3mp.GetMagickaCurrent(pid)
+		local PlayerMagickaBase = tes3mp.GetMagickaBase(pid)		
+		local PlayerFatigue = tes3mp.GetFatigueCurrent(pid)
+		local PlayerFatigueBase = tes3mp.GetFatigueBase(pid)	
 		local SleepTime = Players[pid].data.customVariables.SleepTime
 		local HungerTime = Players[pid].data.customVariables.HungerTime
 		local ThirsthTime = Players[pid].data.customVariables.ThirsthTime
+		local spellid
+		local spellid2
+		local spellid3
 		
 		if SleepTime >= config.sleepTime then
 		
@@ -138,7 +173,7 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 				end
 			end		
 			
-			if PlayerFatigue >= 1 then
+			if PlayerFatigue > 0 then
 			
 				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests")
 				
@@ -214,13 +249,50 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 		
 			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hydrated")	
 
-		end					
+		end	
+		
+-- ====================
+-- CHECK WEATHER PLAYER
+-- ====================
+
+		local regionName = Players[pid].data.location.regionName
+		
+		if regionName ~= "" then
+		
+			local playerWeather = WorldInstance.storedRegions[regionName].currentWeather
+
+			if WorldInstance.storedRegions[regionName].currentWeather == 0 then
+				--clear
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 1 then
+				--Cloudy
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 2 then
+				--Foggy
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 3 then
+				--Overcast
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 4 then
+				--Rain
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 5 then
+				--Thunder
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 6 then
+				--Ash
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 7 then
+				--Blight
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 8 then
+				--Snow 
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 9 then
+				--Blizzard  
+			end
+		end
+		
 		Players[pid]:Save()	
 	end
 	
-	tes3mp.RestartTimer(TimerStartStats, time.seconds(config.timerCheck))
-	tes3mp.LogAppend(enumerations.log.INFO, "....RESTART TIMER CHECK....")	
+    tes3mp.RestartTimer(TimerStartMessage, time.seconds(config.timerMessage))
 end
+
+-- =====================
+-- OBJECT ACTIVATED MENU
+-- =====================
 
 TrueSurvive.OnActivatedObject = function(objectRefId, pid)
 
@@ -260,12 +332,17 @@ TrueSurvive.OnActivatedObject = function(objectRefId, pid)
 	return false
 end
 
+-- ================
+-- OBJECT ACTIVATED
+-- ================
+
 TrueSurvive.OnHungerObject = function(pid)
 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local HungerTime = 0
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger")
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_digestion")
+		tes3mp.MessageBox(pid, -1, "Vous avez mangé .")		
 		Players[pid].data.customVariables.HungerTime = HungerTime	
 	end
 	Players[pid]:Save()		
@@ -277,6 +354,7 @@ TrueSurvive.OnDrinkObject = function(pid)
 		local Thirsth = 0
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth")
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_hydrated")
+		tes3mp.MessageBox(pid, -1, "Vous avez bu .")		
 		Players[pid].data.customVariables.ThirsthTime = Thirsth	
 	end
 	Players[pid]:Save()		
@@ -297,6 +375,7 @@ TrueSurvive.OnSleepObject = function(pid)
 end
 
 return TrueSurvive
+
 
 ---------
 --SETUP--
