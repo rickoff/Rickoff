@@ -39,7 +39,6 @@ local listactivatablesleepingobjects = {"active_de_bed_29", "active_de_bed_30", 
 -- ===========
 
 TrueSurvive.TimerStartCheck = function()
-
 	tes3mp.StartTimer(TimerStartStats)
 	tes3mp.StartTimer(TimerStartMessage)	
 	tes3mp.LogAppend(enumerations.log.INFO, "....START TIMER CHECK SURVIVE....")			
@@ -48,6 +47,1058 @@ end
 function StartCheckStats()
 
 	for pid, player in pairs(Players) do
+		if Players[pid] ~= nil and player:IsLoggedIn() then	
+			TrueSurvive.OnCheckTimePlayers(pid)
+		end
+	end
+
+    tes3mp.RestartTimer(TimerStartStats, time.seconds(config.timerCheck))
+end
+
+
+function StartCheckMessage()
+
+	for pid, player in pairs(Players) do
+		if Players[pid] ~= nil and player:IsLoggedIn() then	
+			TrueSurvive.OnCheckMessagePlayers(pid)
+		end
+	end
+
+    tes3mp.RestartTimer(TimerStartMessage, time.seconds(config.timerMessage))
+end
+
+-- ==================
+-- CHECK TIMER PLAYER
+-- ==================
+
+TrueSurvive.OnCheckTimePlayers = function(pid)
+
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+	
+		local SleepTime = Players[pid].data.customVariables.SleepTime
+		local HungerTime = Players[pid].data.customVariables.HungerTime
+		local ThirsthTime = Players[pid].data.customVariables.ThirsthTime
+		
+		if SleepTime ~= nil then
+			SleepTime = SleepTime + 1
+		else
+			SleepTime = 0
+		end
+		
+		if HungerTime ~= nil then
+			HungerTime = HungerTime + 1
+		else
+			HungerTime = 0
+		end
+
+		if ThirsthTime ~= nil then
+			ThirsthTime = ThirsthTime + 1
+		else
+			ThirsthTime = 0
+		end
+		
+		Players[pid].data.customVariables.SleepTime = SleepTime	
+		Players[pid].data.customVariables.HungerTime = HungerTime				
+		Players[pid].data.customVariables.ThirsthTime = ThirsthTime				
+
+		TrueSurvive.OnCheckStatePlayer(pid)
+		tes3mp.LogAppend(enumerations.log.INFO, "....CHECK STATE PLAYER....")
+		
+	end
+	Players[pid]:Save()	
+end
+
+-- =================
+-- CHECK STAT PLAYER
+-- =================
+
+TrueSurvive.OnCheckStatePlayer = function(pid)
+
+	
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
+	
+		local PlayerHealth = tes3mp.GetHealthCurrent(pid)
+		local PlayerHealthBase = tes3mp.GetHealthBase(pid)	
+		local PlayerMagicka = tes3mp.GetMagickaCurrent(pid)
+		local PlayerMagickaBase = tes3mp.GetMagickaBase(pid)		
+		local PlayerFatigue = tes3mp.GetFatigueCurrent(pid)
+		local PlayerFatigueBase = tes3mp.GetFatigueBase(pid)
+
+		if PlayerFatigue <= (PlayerFatigueBase / 3) and PlayerFatigue > 0 then
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_attack")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerJumping")
+			
+		elseif PlayerFatigue > (PlayerFatigueBase / 3) then	
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_attack")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerJumping")
+			
+		elseif PlayerFatigue <= 0 then			
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue")		
+		end
+		
+		if PlayerHealth <= 0 then	
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth")
+		end
+	end
+end		
+
+-- ====================
+-- CHECK MESSAGE PLAYER
+-- ====================
+
+TrueSurvive.OnCheckMessagePlayers = function(pid)
+
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+	
+		local PlayerHealth = tes3mp.GetHealthCurrent(pid)
+		local PlayerHealthBase = tes3mp.GetHealthBase(pid)	
+		local PlayerMagicka = tes3mp.GetMagickaCurrent(pid)
+		local PlayerMagickaBase = tes3mp.GetMagickaBase(pid)		
+		local PlayerFatigue = tes3mp.GetFatigueCurrent(pid)
+		local PlayerFatigueBase = tes3mp.GetFatigueBase(pid)	
+		local SleepTime = Players[pid].data.customVariables.SleepTime
+		local HungerTime = Players[pid].data.customVariables.HungerTime
+		local ThirsthTime = Players[pid].data.customVariables.ThirsthTime
+		local spellid
+		local spellid2
+		local spellid3
+		local spellidweather
+		
+		if SleepTime >= config.sleepTime then
+		
+			for slot, k in pairs(Players[pid].data.spellbook) do
+				if Players[pid].data.spellbook[slot] == "true_survive_fatigue" then
+					spellid = Players[pid].data.spellbook[slot]
+				end
+			end		
+			
+			if PlayerFatigue > 0 then
+			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests")
+				
+				if tableHelper.containsValue(list_survive_fatigue, spellid) then				
+					tes3mp.MessageBox(pid, -1, "Vous êtes fatigué, vous devriez aller dormir !")
+					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
+					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")
+					
+				else
+					tes3mp.MessageBox(pid, -1, "Vous êtes fatigué, vous devriez aller dormir !")
+					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_fatigue")
+					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
+					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")			
+
+				end
+			end
+			
+		elseif SleepTime >= (config.sleepTime / 2) and SleepTime < config.sleepTime then
+		
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests")			
+
+		end
+		
+		if HungerTime >= config.eatTime then	
+
+			for slot, k in pairs(Players[pid].data.spellbook) do
+				if Players[pid].data.spellbook[slot] == "true_survive_hunger" then
+					spellid2 = Players[pid].data.spellbook[slot]
+				end
+			end			
+		
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_digestion")
+			
+			if tableHelper.containsValue(list_survive_hunger, spellid2) then
+
+				tes3mp.MessageBox(pid, -1, "Vous avez faim, vous devriez vous restaurer !")
+				
+			else
+
+				tes3mp.MessageBox(pid, -1, "Vous avez faim, vous devriez vous restaurer !")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_hunger")
+
+			end
+			
+		elseif HungerTime >= (config.eatTime / 2) and HungerTime < config.eatTime then	
+		
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_digestion")	
+
+		end
+		
+		if ThirsthTime >= config.drinkTime then
+
+			for slot, k in pairs(Players[pid].data.spellbook) do
+				if Players[pid].data.spellbook[slot] == "true_survive_thirsth" then
+					spellid3 = Players[pid].data.spellbook[slot]
+				end
+			end	
+		
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hydrated")
+			
+			if tableHelper.containsValue(list_survive_thirsth, spellid3) then			
+				
+				tes3mp.MessageBox(pid, -1, "Vous avez soif, vous devriez aller boire !")
+				
+			else				
+				
+				tes3mp.MessageBox(pid, -1, "Vous avez soif, vous devriez aller boire !")
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_thirsth")											
+
+			end
+			
+		elseif ThirsthTime >= (config.drinkTime / 2) and ThirsthTime < config.drinkTime then	
+		
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hydrated")	
+
+		end	
+		
+-- ====================
+-- CHECK WEATHER PLAYER
+-- ====================
+
+		local regionName = Players[pid].data.location.regionName
+		
+		if regionName ~= "" then		
+		
+			local playerWeather = WorldInstance.storedRegions[regionName].currentWeather
+
+			if WorldInstance.storedRegions[regionName].currentWeather == 0 then	
+				--clear				
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_ash")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blight")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_snow")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blizzard")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_thunder")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_rain")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_overcast")				
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_fog")				
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_clear")						
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 1 then
+				--Cloudy			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_ash")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blight")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_snow")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blizzard")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_thunder")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_rain")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_overcast")				
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_fog")					
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 2 then
+				--Foggy
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_ash")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blight")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_snow")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blizzard")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_thunder")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_rain")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_overcast")								
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_fog")					
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 3 then
+				--Overcast
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_ash")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blight")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_snow")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blizzard")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_thunder")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_rain")							
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_fog")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_overcast")					
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 4 then
+				--Rain
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_ash")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blight")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_snow")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blizzard")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_thunder")						
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_overcast")				
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_fog")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_rain")					
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 5 then
+				--Thunder
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_ash")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blight")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_snow")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blizzard")							
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_rain")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_overcast")				
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_fog")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_thunder")					
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 6 then
+				--Ash		
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blight")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_snow")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blizzard")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_thunder")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_rain")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_overcast")				
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_fog")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_ash")					
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 7 then
+				--Blight
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_ash")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_snow")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blizzard")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_thunder")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_rain")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_overcast")				
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_fog")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_blight")					
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 8 then
+				--Snow 
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_ash")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blight")						
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blizzard")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_thunder")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_rain")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_overcast")				
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_fog")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_snow")					
+			elseif WorldInstance.storedRegions[regionName].currentWeather == 9 then
+				--Blizzard  
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_ash")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_blight")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_snow")								
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_thunder")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_rain")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_overcast")				
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_weather_fog")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_blizzard")					
+			end
+		end
+		
+		Players[pid]:Save()	
+	end
+	
+    tes3mp.RestartTimer(TimerStartMessage, time.seconds(config.timerMessage))
+end
+
+-- =====================
+-- OBJECT ACTIVATED MENU
+-- =====================
+
+TrueSurvive.OnActivatedObject = function(objectRefId, pid)
+
+	
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+
+		if tableHelper.containsValue(listactivabledrinkingobjects, objectRefId) then	-- drink
+			Players[pid].currentCustomMenu = "survive drink"--Menu drink
+			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
+			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)	
+			return true
+		end
+		
+		if tableHelper.containsValue(listnodisabledrinkingobjects, objectRefId) then	-- drink
+			Players[pid].currentCustomMenu = "survive drink active"--Menu drink
+			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
+			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)	
+			return true
+		end		
+		
+		if tableHelper.containsValue(listactivatablediningobjects, objectRefId) then	-- eat
+			Players[pid].currentCustomMenu = "survive hunger"--Menu Hunger
+			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
+			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)
+			return true
+		end		
+		
+		if tableHelper.containsValue(listactivatablesleepingobjects, objectRefId) then -- sleep	
+			Players[pid].currentCustomMenu = "survive sleep"--Menu Sleep
+			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
+			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)
+			return true
+		end	
+		
+	end
+	
+	return false
+end
+
+-- ================
+-- OBJECT ACTIVATED
+-- ================
+
+TrueSurvive.OnHungerObject = function(pid)
+
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local HungerTime = 0
+		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger")
+		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_digestion")
+		tes3mp.MessageBox(pid, -1, "Vous avez mangé .")		
+		Players[pid].data.customVariables.HungerTime = HungerTime	
+	end
+	Players[pid]:Save()		
+end
+
+TrueSurvive.OnDrinkObject = function(pid)
+
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local Thirsth = 0
+		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth")
+		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_hydrated")
+		tes3mp.MessageBox(pid, -1, "Vous avez bu .")		
+		Players[pid].data.customVariables.ThirsthTime = Thirsth	
+	end
+	Players[pid]:Save()		
+end
+
+TrueSurvive.OnSleepObject = function(pid)
+
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local SleepTime = 0
+		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue")	
+		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_rests")
+		logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
+		logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 5")
+		tes3mp.MessageBox(pid, -1, "Vous vous êtes reposés .")		
+		Players[pid].data.customVariables.SleepTime = SleepTime
+	end
+	Players[pid]:Save()	
+end
+
+return TrueSurvive
+
+---------
+--SETUP--
+---------
+
+--add in Menu.lua
+--[[
+Menus["survive hunger"] = {
+    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
+    "manger\n" .. color.Gold .. "cette aliment ?\n" ..
+        color.White .. "...",
+    buttons = {						
+        { caption = "oui",
+            destinations = {
+				menuHelper.destinations.setDefault(nil,
+				{ 
+					menuHelper.effects.runGlobalFunction("TrueSurvive", "OnHungerObject", 
+					{
+                        menuHelper.variables.currentPid()
+                    }),
+                    menuHelper.effects.runGlobalFunction("logicHandler", "DeleteObjectForEveryone",
+                    {
+                        menuHelper.variables.currentPlayerDataVariable("targetCellDescription"),
+                        menuHelper.variables.currentPlayerDataVariable("targetUniqueIndex")
+                    })
+                })
+            }
+        },            
+        { caption = "non",
+            destinations = {
+                menuHelper.destinations.setDefault(nil,
+                { 
+                    menuHelper.effects.runGlobalFunction("logicHandler", "ActivateObjectForPlayer",
+                    {
+                        menuHelper.variables.currentPid(), menuHelper.variables.currentPlayerDataVariable("targetCellDescription"),
+                        menuHelper.variables.currentPlayerDataVariable("targetUniqueIndex")
+                    })
+                })
+            }
+        }
+    }
+}
+
+Menus["survive drink"] = {
+    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
+    "boire\n" .. color.Gold .. "le contenue ?\n" ..
+        color.White .. "...",
+    buttons = {                        
+        { caption = "oui",
+            destinations = {
+                menuHelper.destinations.setDefault(nil,
+                { 
+                    menuHelper.effects.runGlobalFunction("TrueSurvive", "OnDrinkObject", 
+                    {
+                        menuHelper.variables.currentPid()
+                    }),
+                    menuHelper.effects.runGlobalFunction("logicHandler", "DeleteObjectForEveryone",
+                    {
+                        menuHelper.variables.currentPlayerDataVariable("targetCellDescription"),
+                        menuHelper.variables.currentPlayerDataVariable("targetUniqueIndex")
+                    })
+                })
+            }
+        },            
+        { caption = "non",
+            destinations = {
+                menuHelper.destinations.setDefault(nil,
+                { 
+                    menuHelper.effects.runGlobalFunction("logicHandler", "ActivateObjectForPlayer",
+                    {
+                        menuHelper.variables.currentPid(), menuHelper.variables.currentPlayerDataVariable("targetCellDescription"),
+                        menuHelper.variables.currentPlayerDataVariable("targetUniqueIndex")
+                    })
+                })
+            }
+        }
+    }
+}
+
+Menus["survive drink active"] = {
+    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
+    "boire\n" .. color.Gold .. "le contenue ?\n" ..
+        color.White .. "...",
+    buttons = {                        
+        { caption = "oui",
+            destinations = {
+                menuHelper.destinations.setDefault(nil,
+                { 
+                    menuHelper.effects.runGlobalFunction("TrueSurvive", "OnDrinkObject", 
+                    {
+                        menuHelper.variables.currentPid()
+                    })
+                })
+            }
+        },            
+        { caption = "non",
+            destinations = {
+                menuHelper.destinations.setDefault(nil,
+                { 
+                    menuHelper.effects.runGlobalFunction("logicHandler", "ActivateObjectForPlayer",
+                    {
+                        menuHelper.variables.currentPid(), menuHelper.variables.currentPlayerDataVariable("targetCellDescription"),
+                        menuHelper.variables.currentPlayerDataVariable("targetUniqueIndex")
+                    })
+                })
+            }
+        }
+    }
+}
+
+Menus["survive sleep"] = {
+    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
+    "dormir\n" .. color.Gold .. "dans ce lit ?\n" ..
+        color.White .. "...",
+    buttons = {						
+        { caption = "oui",
+            destinations = {menuHelper.destinations.setDefault(nil,
+            { 
+				menuHelper.effects.runGlobalFunction("TrueSurvive", "OnSleepObject", 
+					{menuHelper.variables.currentPid()})
+                })
+            }
+        },			
+        { caption = "non",
+            destinations = {menuHelper.destinations.setDefault(nil,
+            { 
+                menuHelper.effects.runGlobalFunction("logicHandler", "ActivateObjectForPlayer",
+                    {
+                        menuHelper.variables.currentPid(), menuHelper.variables.currentPlayerDataVariable("targetCellDescription"),
+                        menuHelper.variables.currentPlayerDataVariable("targetUniqueIndex")
+                    })
+                })
+            }
+        }
+    }
+}
+
+--add in eventHandler.lua find eventHandler.OnObjectActivate = function(pid, cellDescription)
+
+                if doesObjectHaveActivatingPlayer then
+                    activatingPid = tes3mp.GetObjectActivatingPid(index)
+                    
+                    if isObjectPlayer then
+                        Players[activatingPid].data.targetPid = objectPid
+                        ActivePlayer.OnCheckStatePlayer(objectPid, activatingPid)
+                    else
+                        Players[activatingPid].data.targetRefId = objectRefId
+                        Players[activatingPid].data.targetUniqueIndex = objectUniqueIndex
+                        Players[activatingPid].data.targetCellDescription = cellDescription
+                        isValid = not TrueSurvive.OnActivatedObject(objectRefId, activatingPid)                     
+                    end
+
+	
+--add custom spell permanent records
+
+  "permanentRecords":{
+    "true_weather_blizzard":{
+      "name":"Blizzard",
+      "subtype":0,
+      "cost":0,
+      "flags":0,
+      "effects":[{
+          "id":22,
+          "attribute":0,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":1,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":3,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":19
+        },{
+          "id":22,
+          "attribute":4,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        }]
+    },  
+    "true_weather_snow":{
+      "name":"Neige",
+      "subtype":3,
+      "cost":0,
+      "flags":0,
+      "effects":[{
+          "id":22,
+          "attribute":0,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":5,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":3,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        },{
+          "id":22,
+          "attribute":4,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        }]
+    },  
+    "true_weather_blight":{
+      "name":"Tempête de rouille",
+      "subtype":3,
+      "cost":0,
+      "flags":0,
+      "effects":[{
+          "id":22,
+          "attribute":1,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":2,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":3,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":6,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        }]
+    },  
+    "true_weather_ash":{
+      "name":"Tempête des cendres",
+      "subtype":3,
+      "cost":0,
+      "flags":0,
+      "effects":[{
+          "id":22,
+          "attribute":0,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        },{
+          "id":22,
+          "attribute":4,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        },{
+          "id":22,
+          "attribute":2,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        },{
+          "id":22,
+          "attribute":7,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":30,
+          "magnitudeMin":30
+        }]
+    },  
+    "true_weather_thunder":{
+      "name":"Tonnerre",
+      "subtype":3,
+      "cost":0,
+      "flags":0,
+      "effects":[{
+          "id":22,
+          "attribute":1,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":2,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":6,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":7,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        }]
+    },  
+    "true_weather_rain":{
+      "name":"Pluie",
+      "subtype":3,
+      "cost":0,
+      "flags":0,
+      "effects":[{
+          "id":22,
+          "attribute":4,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":2,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":7,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":20,
+          "magnitudeMin":20
+        },{
+          "id":22,
+          "attribute":1,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        }]
+    },  
+    "true_weather_overcast":{
+      "name":"Temp couvert",
+      "subtype":3,
+      "cost":0,
+      "flags":0,
+      "effects":[{
+          "id":22,
+          "attribute":7,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        },{
+          "id":22,
+          "attribute":6,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        },{
+          "id":22,
+          "attribute":2,
+          "skill":-1,
+          "rangeType":1,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        }]
+    },  
+    "true_weather_fog":{
+      "name":"Brouillard",
+      "subtype":3,
+      "cost":0,
+      "flags":0,
+      "effects":[{
+          "id":22,
+          "attribute":3,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        },{
+          "id":22,
+          "attribute":4,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        },{
+          "id":22,
+          "attribute":7,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        }]
+    },  
+    "true_weather_clear":{
+      "name":"Temp claire",
+      "subtype":3,
+      "cost":0,
+      "flags":0,
+      "effects":[{
+          "id":79,
+          "attribute":4,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        },{
+          "id":79,
+          "attribute":2,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        },{
+          "id":79,
+          "attribute":3,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        },{
+          "id":79,
+          "attribute":7,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":10,
+          "magnitudeMin":10
+        }]
+    },  
+    "true_survive_digestion":{
+      "name":"Digestion",
+      "subtype":4,
+      "cost":1,
+      "flags":0,
+      "effects":[{
+          "id":75,
+          "attribute":-1,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":0,
+          "magnitudeMax":1,
+          "magnitudeMin":1
+        }]
+    },
+    "true_survive_fatigue":{
+      "name":"Fatigue",
+      "subtype":4,
+      "cost":1,
+      "flags":0,
+      "effects":[{
+          "id":88,
+          "attribute":-1,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":0,
+          "magnitudeMax":6,
+          "magnitudeMin":6
+        }]
+    },
+    "true_survive_thirsth":{
+      "name":"Soif",
+      "subtype":4,
+      "cost":1,
+      "flags":0,
+      "effects":[{
+          "id":87,
+          "attribute":-1,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":0,
+          "magnitudeMax":2,
+          "magnitudeMin":2
+        }]
+    },
+    "true_survive_hunger":{
+      "name":"Faim",
+      "subtype":4,
+      "cost":1,
+      "flags":0,
+      "effects":[{
+          "id":23,
+          "attribute":-1,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":0,
+          "magnitudeMax":1,
+          "magnitudeMin":1
+        }]
+    },
+    "true_survive_hydrated":{
+      "name":"Hydraté",
+      "subtype":4,
+      "cost":1,
+      "flags":0,
+      "effects":[{
+          "id":76,
+          "attribute":-1,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":2,
+          "magnitudeMin":2
+        }]
+    },
+    "true_survive_attack":{
+      "name":"Attaque Max",
+      "subtype":4,
+      "cost":1,
+      "flags":0,
+      "effects":[{
+          "id":117,
+          "attribute":-1,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":1000,
+          "magnitudeMin":1000
+        }]
+    },
+    "true_survive_rests":{
+      "name":"Reposé",
+      "subtype":4,
+      "cost":1,
+      "flags":0,
+      "effects":[{
+          "id":77,
+          "attribute":-1,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "duration":1,
+          "magnitudeMax":1,
+          "magnitudeMin":1
+        }]
+    }
+  },
+  
+]]--
+
+
 		if Players[pid] ~= nil and player:IsLoggedIn() then	
 			TrueSurvive.OnCheckTimePlayers(pid)
 		end
