@@ -39,6 +39,7 @@ local listactivatablesleepingobjects = {"active_de_bed_29", "active_de_bed_30", 
 -- ===========
 
 TrueSurvive.TimerStartCheck = function()
+
 	tes3mp.StartTimer(TimerStartStats)
 	tes3mp.StartTimer(TimerStartMessage)	
 	tes3mp.LogAppend(enumerations.log.INFO, "....START TIMER CHECK SURVIVE....")			
@@ -51,7 +52,6 @@ function StartCheckStats()
 			TrueSurvive.OnCheckTimePlayers(pid)
 		end
 	end
-
     tes3mp.RestartTimer(TimerStartStats, time.seconds(config.timerCheck))
 end
 
@@ -63,7 +63,6 @@ function StartCheckMessage()
 			TrueSurvive.OnCheckMessagePlayers(pid)
 		end
 	end
-
     tes3mp.RestartTimer(TimerStartMessage, time.seconds(config.timerMessage))
 end
 
@@ -73,8 +72,7 @@ end
 
 TrueSurvive.OnCheckTimePlayers = function(pid)
 
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-	
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
 		local SleepTime = Players[pid].data.customVariables.SleepTime
 		local HungerTime = Players[pid].data.customVariables.HungerTime
 		local ThirsthTime = Players[pid].data.customVariables.ThirsthTime
@@ -100,10 +98,8 @@ TrueSurvive.OnCheckTimePlayers = function(pid)
 		Players[pid].data.customVariables.SleepTime = SleepTime	
 		Players[pid].data.customVariables.HungerTime = HungerTime				
 		Players[pid].data.customVariables.ThirsthTime = ThirsthTime				
-
 		TrueSurvive.OnCheckStatePlayer(pid)
-		tes3mp.LogAppend(enumerations.log.INFO, "....CHECK STATE PLAYER....")
-		
+		tes3mp.LogAppend(enumerations.log.INFO, "....CHECK STATE PLAYER....")		
 	end
 	Players[pid]:Save()	
 end
@@ -114,7 +110,6 @@ end
 
 TrueSurvive.OnCheckStatePlayer = function(pid)
 
-	
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
 	
 		local PlayerHealth = tes3mp.GetHealthCurrent(pid)
@@ -173,82 +168,58 @@ TrueSurvive.OnCheckMessagePlayers = function(pid)
 				end
 			end		
 			
-			if PlayerFatigue > 0 then
-			
-				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests")
-				
+			if PlayerFatigue > 0 then			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests")				
 				if tableHelper.containsValue(list_survive_fatigue, spellid) then				
 					tes3mp.MessageBox(pid, -1, "Vous êtes fatigué, vous devriez aller dormir !")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
-					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")
-					
+					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")					
 				else
 					tes3mp.MessageBox(pid, -1, "Vous êtes fatigué, vous devriez aller dormir !")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_fatigue")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")			
-
 				end
 			end
 			
-		elseif SleepTime >= (config.sleepTime / 2) and SleepTime < config.sleepTime then
-		
+		elseif SleepTime >= (config.sleepTime / 2) and SleepTime < config.sleepTime then		
 			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests")			
-
 		end
 		
 		if HungerTime >= config.eatTime then	
-
 			for slot, k in pairs(Players[pid].data.spellbook) do
 				if Players[pid].data.spellbook[slot] == "true_survive_hunger" then
 					spellid2 = Players[pid].data.spellbook[slot]
 				end
-			end			
-		
-			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_digestion")
-			
+			end					
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_digestion")			
 			if tableHelper.containsValue(list_survive_hunger, spellid2) then
-
-				tes3mp.MessageBox(pid, -1, "Vous avez faim, vous devriez vous restaurer !")
-				
+				tes3mp.MessageBox(pid, -1, "Vous avez faim, vous devriez vous restaurer !")				
 			else
-
 				tes3mp.MessageBox(pid, -1, "Vous avez faim, vous devriez vous restaurer !")					
 				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_hunger")
-
 			end
 			
-		elseif HungerTime >= (config.eatTime / 2) and HungerTime < config.eatTime then	
-		
+		elseif HungerTime >= (config.eatTime / 2) and HungerTime < config.eatTime then			
 			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_digestion")	
-
 		end
 		
 		if ThirsthTime >= config.drinkTime then
-
 			for slot, k in pairs(Players[pid].data.spellbook) do
 				if Players[pid].data.spellbook[slot] == "true_survive_thirsth" then
 					spellid3 = Players[pid].data.spellbook[slot]
 				end
-			end	
-		
-			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hydrated")
-			
-			if tableHelper.containsValue(list_survive_thirsth, spellid3) then			
-				
-				tes3mp.MessageBox(pid, -1, "Vous avez soif, vous devriez aller boire !")
-				
-			else				
-				
+			end			
+			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hydrated")			
+			if tableHelper.containsValue(list_survive_thirsth, spellid3) then							
+				tes3mp.MessageBox(pid, -1, "Vous avez soif, vous devriez aller boire !")				
+			else								
 				tes3mp.MessageBox(pid, -1, "Vous avez soif, vous devriez aller boire !")
 				logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_thirsth")											
-
 			end
 			
-		elseif ThirsthTime >= (config.drinkTime / 2) and ThirsthTime < config.drinkTime then	
-		
+		elseif ThirsthTime >= (config.drinkTime / 2) and ThirsthTime < config.drinkTime then			
 			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hydrated")	
-
 		end	
 		
 -- ====================
@@ -295,10 +266,8 @@ end
 -- =====================
 
 TrueSurvive.OnActivatedObject = function(objectRefId, pid)
-
 	
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-
 		if tableHelper.containsValue(listactivabledrinkingobjects, objectRefId) then	-- drink
 			Players[pid].currentCustomMenu = "survive drink"--Menu drink
 			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
@@ -325,10 +294,8 @@ TrueSurvive.OnActivatedObject = function(objectRefId, pid)
 			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
 			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)
 			return true
-		end	
-		
-	end
-	
+		end			
+	end	
 	return false
 end
 
@@ -527,24 +494,10 @@ Menus["survive sleep"] = {
                         Players[activatingPid].data.targetCellDescription = cellDescription
                         isValid = not TrueSurvive.OnActivatedObject(objectRefId, activatingPid)                     
                     end
+-- =============
+-- CUSTOM RECORD
+-- =============
 
---add in logicHandler.lua
-
-logicHandler.ActivateObjectForPlayer = function(pid, objectCellDescription, objectUniqueIndex)
-
-    tes3mp.ClearObjectList()
-    tes3mp.SetObjectListPid(pid)
-    tes3mp.SetObjectListCell(objectCellDescription)
-
-    local splitIndex = objectUniqueIndex:split("-")
-    tes3mp.SetObjectRefNum(splitIndex[1])
-    tes3mp.SetObjectMpNum(splitIndex[2])
-    tes3mp.SetObjectActivatingPid(pid)
-
-    tes3mp.AddObject()
-    tes3mp.SendObjectActivate()
-end
-	
 --add custom spell permanent records
 
   "permanentRecords":{
