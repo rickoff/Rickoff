@@ -6,8 +6,9 @@
 
 --A script that simulates the primary need for survival( sleep, drink, eat)
 
---the next version will include the weather
+--allows the player to touch the enemy all the time, provided that his fatigue is greater than 35% otherwise the basic stats are used
 
+--the weather will grant bonuses where malus
 
 tableHelper = require("tableHelper")
 inventoryHelper = require("inventoryHelper")
