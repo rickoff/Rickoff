@@ -12,6 +12,14 @@ inventoryHelper = require("inventoryHelper")
 local list_survive_eatdrinksleep = {"true_survive_fatigue", "true_survive_hunger", "true_survive_thirsth"}
 local list_survive_weather = {"true_weather_ash", "true_weather_blight", "true_weather_snow", "true_weather_blizzard", "true_weather_thunder", "true_weather_rain", "true_weather_overcast", "true_weather_fog", "true_weather_clear"}
 
+local SurviveMessage = {}
+SurviveMessage.Fatigue = "You are tired, you should go to sleep!"
+SurviveMessage.Hunger = "You are hungry, you should eat!"
+SurviveMessage.Thirst = "You are thirsty, you should drink!"
+SurviveMessage.Sleep = "You rested."
+SurviveMessage.Eat = "You eaten ."
+SurviveMessage.Drink = "You drank ."
+
 local config = {}
 config.timerMessage = 10
 config.timerCheck = 3 
@@ -185,12 +193,12 @@ TrueSurvive.OnCheckMessagePlayers = function(pid)
 				end	
 			
 				if tableHelper.containsValue(list_survive_eatdrinksleep, spellid) then				
-					tes3mp.MessageBox(pid, -1, "Vous êtes fatigué, vous devriez aller dormir !")
+					tes3mp.MessageBox(pid, -1, SurviveMessage.Fatigue)
 					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")
 					
 				else
-					tes3mp.MessageBox(pid, -1, "Vous êtes fatigué, vous devriez aller dormir !")
+					tes3mp.MessageBox(pid, -1, SurviveMessage.Fatigue)
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_fatigue")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")			
@@ -234,9 +242,9 @@ TrueSurvive.OnCheckMessagePlayers = function(pid)
 				end			
 			
 				if tableHelper.containsValue(list_survive_eatdrinksleep, spellid) then
-					tes3mp.MessageBox(pid, -1, "Vous avez faim, vous devriez vous restaurer !")				
+					tes3mp.MessageBox(pid, -1, SurviveMessage.Hunger)				
 				else
-					tes3mp.MessageBox(pid, -1, "Vous avez faim, vous devriez vous restaurer !")					
+					tes3mp.MessageBox(pid, -1, SurviveMessage.Hunger)					
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_hunger")
 				end
 			end			
@@ -278,9 +286,9 @@ TrueSurvive.OnCheckMessagePlayers = function(pid)
 				end			
 			
 				if tableHelper.containsValue(list_survive_eatdrinksleep, spellid) then					
-					tes3mp.MessageBox(pid, -1, "Vous avez soif, vous devriez aller boire !")	
+					tes3mp.MessageBox(pid, -1, SurviveMessage.Thirsth)	
 				else					
-					tes3mp.MessageBox(pid, -1, "Vous avez soif, vous devriez aller boire !")
+					tes3mp.MessageBox(pid, -1, SurviveMessage.Thirsth)
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_thirsth")											
 				end
 			end			
@@ -512,28 +520,28 @@ TrueSurvive.OnActivatedObject = function(objectRefId, pid)
 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 
-		if tableHelper.containsValue(listactivabledrinkingobjects, objectRefId) then	-- drink
+		if tableHelper.containsValue(ListActivableDrinkingObjects, objectRefId) then	-- drink
 			Players[pid].currentCustomMenu = "survive drink"--Menu drink
 			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
 			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)	
 			return true
 		end
 		
-		if tableHelper.containsValue(listnodisabledrinkingobjects, objectRefId) then	-- drink
+		if tableHelper.containsValue(ListNoDisableDrinkingObjects, objectRefId) then	-- drink
 			Players[pid].currentCustomMenu = "survive drink active"--Menu drink
 			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
 			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)	
 			return true
 		end		
 		
-		if tableHelper.containsValue(listactivatablediningobjects, objectRefId) then	-- eat
+		if tableHelper.containsValue(ListActivatableDiningObjects, objectRefId) then	-- eat
 			Players[pid].currentCustomMenu = "survive hunger"--Menu Hunger
 			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
 			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)
 			return true
 		end		
 		
-		if tableHelper.containsValue(listactivatablesleepingobjects, objectRefId) then -- sleep	
+		if tableHelper.containsValue(ListActivatableSleepingObjects, objectRefId) then -- sleep	
 			Players[pid].currentCustomMenu = "survive sleep"--Menu Sleep
 			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
 			tes3mp.LogAppend(enumerations.log.INFO, objectRefId)
@@ -555,7 +563,7 @@ TrueSurvive.OnHungerObject = function(pid)
 		local HungerTime = 0
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger")
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_digestion")
-		tes3mp.MessageBox(pid, -1, "Vous avez mangé .")		
+		tes3mp.MessageBox(pid, -1, SurviveMessage.Eat)		
 		Players[pid].data.customVariables.HungerTime = HungerTime	
 	end	
 end
@@ -566,7 +574,7 @@ TrueSurvive.OnDrinkObject = function(pid)
 		local Thirsth = 0
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth")
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_hydrated")
-		tes3mp.MessageBox(pid, -1, "Vous avez bu .")		
+		tes3mp.MessageBox(pid, -1, SurviveMessage.Drink)		
 		Players[pid].data.customVariables.ThirsthTime = Thirsth	
 	end	
 end
@@ -580,7 +588,7 @@ TrueSurvive.OnSleepObject = function(pid)
 		logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerControls")
 		logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
 		logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 5")
-		tes3mp.MessageBox(pid, -1, "Vous vous êtes reposés .")
+		tes3mp.MessageBox(pid, -1, SurviveMessage.Sleep)
 		logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerControls")		
 		Players[pid].data.customVariables.SleepTime = SleepTime
 	end
@@ -595,11 +603,11 @@ return TrueSurvive
 --add in Menu.lua
 --[[
 Menus["survive hunger"] = {
-    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
-    "manger\n" .. color.Gold .. "cette aliment ?\n" ..
+    text = color.Gold .. "Do you want\n" .. color.LightGreen ..
+    "eat\n" .. color.Gold .. "this food ?\n" ..
         color.White .. "...",
     buttons = {						
-        { caption = "oui",
+        { caption = "yes",
             destinations = {
 				menuHelper.destinations.setDefault(nil,
 				{ 
@@ -615,7 +623,7 @@ Menus["survive hunger"] = {
                 })
             }
         },            
-        { caption = "non",
+        { caption = "no",
             destinations = {
                 menuHelper.destinations.setDefault(nil,
                 { 
@@ -631,11 +639,11 @@ Menus["survive hunger"] = {
 }
 
 Menus["survive drink"] = {
-    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
-    "boire\n" .. color.Gold .. "le contenue ?\n" ..
+    text = color.Gold .. "Do you want\n" .. color.LightGreen ..
+    "drink\n" .. color.Gold .. "the contained ?\n" ..
         color.White .. "...",
     buttons = {                        
-        { caption = "oui",
+        { caption = "yes",
             destinations = {
                 menuHelper.destinations.setDefault(nil,
                 { 
@@ -651,7 +659,7 @@ Menus["survive drink"] = {
                 })
             }
         },            
-        { caption = "non",
+        { caption = "no",
             destinations = {
                 menuHelper.destinations.setDefault(nil,
                 { 
@@ -667,8 +675,8 @@ Menus["survive drink"] = {
 }
 
 Menus["survive drink active"] = {
-    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
-    "boire\n" .. color.Gold .. "le contenue ?\n" ..
+    text = color.Gold .. "Do you want\n" .. color.LightGreen ..
+    "drink\n" .. color.Gold .. "the contained ?\n" ..
         color.White .. "...",
     buttons = {                        
         { caption = "oui",
@@ -698,11 +706,11 @@ Menus["survive drink active"] = {
 }
 
 Menus["survive sleep"] = {
-    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
-    "dormir\n" .. color.Gold .. "dans ce lit ?\n" ..
+    text = color.Gold .. "Do you want\n" .. color.LightGreen ..
+    "sleep\n" .. color.Gold .. "in this bed\n" ..
         color.White .. "...",
     buttons = {						
-        { caption = "oui",
+        { caption = "yes",
             destinations = {menuHelper.destinations.setDefault(nil,
             { 
 				menuHelper.effects.runGlobalFunction("TrueSurvive", "OnSleepObject", 
@@ -710,7 +718,7 @@ Menus["survive sleep"] = {
                 })
             }
         },			
-        { caption = "non",
+        { caption = "no",
             destinations = {menuHelper.destinations.setDefault(nil,
             { 
                 menuHelper.effects.runGlobalFunction("logicHandler", "ActivateObjectForPlayer",
@@ -787,7 +795,7 @@ Menus["survive sleep"] = {
         }]
     },  
     "true_weather_snow":{
-      "name":"Neige",
+      "name":"Snow",
       "subtype":4,
       "cost":0,
       "flags":0,
@@ -830,7 +838,7 @@ Menus["survive sleep"] = {
         }]
     },  
     "true_weather_blight":{
-      "name":"Tempête de rouille",
+      "name":"Blight",
       "subtype":4,
       "cost":0,
       "flags":0,
@@ -873,7 +881,7 @@ Menus["survive sleep"] = {
         }]
     },  
     "true_weather_ash":{
-      "name":"Tempête des cendres",
+      "name":"Ash",
       "subtype":4,
       "cost":0,
       "flags":0,
@@ -916,7 +924,7 @@ Menus["survive sleep"] = {
         }]
     },  
     "true_weather_thunder":{
-      "name":"Tonnerre",
+      "name":"Thunder",
       "subtype":4,
       "cost":0,
       "flags":0,
@@ -959,7 +967,7 @@ Menus["survive sleep"] = {
         }]
     },  
     "true_weather_rain":{
-      "name":"Pluie",
+      "name":"Rain",
       "subtype":4,
       "cost":0,
       "flags":0,
@@ -1002,7 +1010,7 @@ Menus["survive sleep"] = {
         }]
     },  
     "true_weather_overcast":{
-      "name":"Temp couvert",
+      "name":"Overcast",
       "subtype":4,
       "cost":0,
       "flags":0,
@@ -1036,7 +1044,7 @@ Menus["survive sleep"] = {
         }]
     },  
     "true_weather_fog":{
-      "name":"Brouillard",
+      "name":"Fog",
       "subtype":4,
       "cost":0,
       "flags":0,
@@ -1070,7 +1078,7 @@ Menus["survive sleep"] = {
         }]
     },  
     "true_weather_clear":{
-      "name":"Temps clair",
+      "name":"Clear",
       "subtype":4,
       "cost":0,
       "flags":0,
@@ -1145,7 +1153,7 @@ Menus["survive sleep"] = {
         }]
     },
     "true_survive_thirsth":{
-      "name":"Soif",
+      "name":"Thirsth",
       "subtype":4,
       "cost":1,
       "flags":0,
@@ -1161,7 +1169,7 @@ Menus["survive sleep"] = {
         }]
     },
     "true_survive_hunger":{
-      "name":"Faim",
+      "name":"Hunger",
       "subtype":4,
       "cost":1,
       "flags":0,
@@ -1177,7 +1185,7 @@ Menus["survive sleep"] = {
         }]
     },
     "true_survive_hydrated":{
-      "name":"Hydraté",
+      "name":"Hydrated",
       "subtype":4,
       "cost":1,
       "flags":0,
@@ -1193,7 +1201,7 @@ Menus["survive sleep"] = {
         }]
     },
     "true_survive_attack":{
-      "name":"Attaque Max",
+      "name":"Attack Max",
       "subtype":4,
       "cost":1,
       "flags":0,
@@ -1209,7 +1217,7 @@ Menus["survive sleep"] = {
         }]
     },
     "true_survive_rests":{
-      "name":"Reposé",
+      "name":"Rest",
       "subtype":4,
       "cost":1,
       "flags":0,
