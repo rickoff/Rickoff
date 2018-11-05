@@ -268,8 +268,8 @@ TrueSurvive.OnCheckMessagePlayersHunger = function(pid)
 				end	
 			end	
 		end
-	end
-	TrueSurvive.OnCheckMessagePlayersThirsth(pid)	
+		TrueSurvive.OnCheckMessagePlayersThirsth(pid)		
+	end	
 end
 -- ====================
 -- CHECK THIRSTH PLAYER
@@ -323,8 +323,8 @@ TrueSurvive.OnCheckMessagePlayersThirsth = function(pid)
 				end	
 			end			
 		end	
-	end
-	TrueSurvive.OnCheckMessagePlayersWeather(pid)	
+		TrueSurvive.OnCheckMessagePlayersWeather(pid)		
+	end	
 end
 -- ====================
 -- CHECK WEATHER PLAYER
@@ -528,11 +528,10 @@ TrueSurvive.OnCheckMessagePlayersWeather = function(pid)
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell)
 				end
 			end
-		end
-		
+		end	
 	end
-    tes3mp.RestartTimer(TimerStartMessage, time.seconds(config.timerMessage))
 end
+
 
 -- =====================
 -- OBJECT ACTIVATED MENU
