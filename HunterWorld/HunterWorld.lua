@@ -1,5 +1,5 @@
 ---------------------------
--- HunterWorld by Rickoff for Tes3mp 0.7.0
+-- HunterWorld by Rickoff
 
    -- add 100 random spawn point for creature or npc
    -- when a boss creature appears the players receive a message
@@ -20,7 +20,7 @@ local config = {}
 config.timerSpawn = 120
 config.timerPrice = 3600
 config.count = 5000
-config.bosses = {"raz_reddragon", "raz_bluedragon", "raz_adult_blackdragon", "raz_adult_greendragon", "Imperfect_ecarlate", "worm lord", "Ecarlate_bandit_04", "Ecarlate_bandit_03", "Ecarlate_bandit_02", "Ecarlate_bandit_01"}
+config.bosses = {"", "", "", "", "", "", "", "", "", ""} --place id boss
 
 HunterWorld = {}
 
@@ -63,7 +63,7 @@ HunterWorld.TimerEventWorld = function()
 		end
 
 		if creatureRefId ~= nil and cellId ~= nil and posx ~= nil and posy ~= nil and posz ~= nil then
-			local message = color.Red.. "Attention " ..color.Yellow..creaturename..color.Default.. " a fait une apparition dans la zone" ..color.Yellow..cellId.. "\n"
+			local message = color.Red.. "Attention " ..color.Yellow..creaturename..color.Default.. " a fait une apparition dans la zone " ..color.Yellow..cellId.. "\n"
 			if tableHelper.getCount(Players) > 0 then
 				if tableHelper.containsValue(config.bosses, creatureRefId) then
 					tes3mp.SendMessage(tableHelper.getAnyValue(Players).pid, message, true)
@@ -93,13 +93,13 @@ HunterWorld.TimerEventWorld = function()
 					local refId = item.refId
 					local count = item.count
 					local rest = (item.count + 1000)
-					player.data.inventory[goldL] = {refId = "gold_001", count = rest, charge = -1}				
+					player.data.inventory[goldL] = {refId = "gold_001", count = rest, charge = -1}			
 				else
-					table.insert(Players[pid].data.inventory, {refId = "gold_001", count = 1000, charge = -1})							
-				end
+					table.insert(Players[pid].data.inventory, {refId = "gold_001", count = 1000, charge = -1})
+				end	
+				local itemref = {refId = "gold_001", count = 1000, charge = -1}			
 				Players[pid]:Save()
-				Players[pid]:LoadInventory()
-				Players[pid]:LoadEquipment()
+				Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
 			end
 		end
 		tes3mp.RestartTimer(TimerPrice, time.seconds(config.timerPrice))
@@ -119,15 +119,16 @@ HunterWorld.HunterPrime = function(pid)
 
 	if tableHelper.containsValue(config.bosses, refId) then
 		if goldLoc == nil then
-			table.insert(Players[pid].data.inventory, {refId = "gold_001", count = config.count, charge = -1})
+			table.insert(Players[pid].data.inventory, {refId = "gold_001", count = config.count, charge = -1})			
 		else
-			Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + config.count	
+			Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + config.count
+			local countprice = Players[pid].data.inventory[goldLoc].count + config.count
 		end
 		tes3mp.MessageBox(pid, -1, "Tu a récupéré une prime de chasse !")
 		tes3mp.SendMessage(pid, message, true)
+		local itemref = {refId = "gold_001", count = config.count, charge = -1}			
 		Players[pid]:Save()
-		Players[pid]:LoadInventory()
-		Players[pid]:LoadEquipment()
+		Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)						
 	end
 end
 	
