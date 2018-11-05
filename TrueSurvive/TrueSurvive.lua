@@ -15,7 +15,7 @@ local list_survive_weather = {"true_weather_ash", "true_weather_blight", "true_w
 local SurviveMessage = {}
 SurviveMessage.Fatigue = "You are tired, you should go to sleep!"
 SurviveMessage.Hunger = "You are hungry, you should eat!"
-SurviveMessage.Thirst = "You are thirsty, you should drink!"
+SurviveMessage.Thirsth = "You are thirsty, you should drink!"
 SurviveMessage.Sleep = "You rested."
 SurviveMessage.Eat = "You eaten ."
 SurviveMessage.Drink = "You drank ."
@@ -62,7 +62,7 @@ function StartCheckMessage()
 
 	for pid, player in pairs(Players) do
 		if Players[pid] ~= nil and player:IsLoggedIn() then	
-			TrueSurvive.OnCheckMessagePlayers(pid)
+			TrueSurvive.OnCheckMessagePlayersSleep(pid)
 		end
 	end
 
@@ -155,24 +155,15 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 		end
 	end
 end		
-
--- ====================
--- CHECK MESSAGE PLAYER
--- ====================
-
-TrueSurvive.OnCheckMessagePlayers = function(pid)
+-- ===================
+-- CHECK SLEEP PLAYER
+-- ===================
+TrueSurvive.OnCheckMessagePlayersSleep = function(pid)
 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-	
-		local PlayerHealth = tes3mp.GetHealthCurrent(pid)
-		local PlayerHealthBase = tes3mp.GetHealthBase(pid)	
-		local PlayerMagicka = tes3mp.GetMagickaCurrent(pid)
-		local PlayerMagickaBase = tes3mp.GetMagickaBase(pid)		
-		local PlayerFatigue = tes3mp.GetFatigueCurrent(pid)
-		local PlayerFatigueBase = tes3mp.GetFatigueBase(pid)	
+			
+		local PlayerFatigue = tes3mp.GetFatigueCurrent(pid)	
 		local SleepTime = Players[pid].data.customVariables.SleepTime
-		local HungerTime = Players[pid].data.customVariables.HungerTime
-		local ThirsthTime = Players[pid].data.customVariables.ThirsthTime
 
 		if SleepTime ~= nil and SleepTime >= config.sleepTime then
 			if PlayerFatigue > 0 then		
@@ -221,6 +212,18 @@ TrueSurvive.OnCheckMessagePlayers = function(pid)
 				end	
 			end
 		end
+		TrueSurvive.OnCheckMessagePlayersHunger(pid)
+	end
+end
+-- ====================
+-- CHECK HUNGER PLAYER
+-- ====================	
+TrueSurvive.OnCheckMessagePlayersHunger = function(pid)	
+
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+	
+		local PlayerHealth = tes3mp.GetHealthCurrent(pid)
+		local HungerTime = Players[pid].data.customVariables.HungerTime
 		
 		if HungerTime ~= nil and HungerTime >= config.eatTime then	
 		
@@ -242,7 +245,7 @@ TrueSurvive.OnCheckMessagePlayers = function(pid)
 				end			
 			
 				if tableHelper.containsValue(list_survive_eatdrinksleep, spellid) then
-					tes3mp.MessageBox(pid, -1, SurviveMessage.Hunger)				
+					tes3mp.MessageBox(pid, -1, SurviveMessage.Hunger)
 				else
 					tes3mp.MessageBox(pid, -1, SurviveMessage.Hunger)					
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_hunger")
@@ -265,6 +268,18 @@ TrueSurvive.OnCheckMessagePlayers = function(pid)
 				end	
 			end	
 		end
+	end
+	TrueSurvive.OnCheckMessagePlayersThirsth(pid)	
+end
+-- ====================
+-- CHECK THIRSTH PLAYER
+-- ====================
+TrueSurvive.OnCheckMessagePlayersThirsth = function(pid)	
+
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+	
+		local PlayerMagicka = tes3mp.GetMagickaCurrent(pid)	
+		local ThirsthTime = Players[pid].data.customVariables.ThirsthTime
 		
 		if ThirsthTime ~= nil and ThirsthTime >= config.drinkTime then
 		
@@ -307,10 +322,17 @@ TrueSurvive.OnCheckMessagePlayers = function(pid)
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hydrated")
 				end	
 			end			
-		end		
+		end	
+	end
+	TrueSurvive.OnCheckMessagePlayersWeather(pid)	
+end
 -- ====================
 -- CHECK WEATHER PLAYER
 -- ====================
+TrueSurvive.OnCheckMessagePlayersWeather = function(pid)	
+
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+	
 		local regionName = Players[pid].data.location.regionName
 		
 		if regionName ~= "" then			
