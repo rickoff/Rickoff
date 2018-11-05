@@ -47,26 +47,22 @@ TrueSurvive.TimerStartCheck = function()
 end
 
 function StartCheckStats()
-
 	for pid, player in pairs(Players) do
 		if Players[pid] ~= nil and player:IsLoggedIn() then	
 			TrueSurvive.OnCheckTimePlayers(pid)
 		end
 	end
-
-    tes3mp.RestartTimer(TimerStartStats, time.seconds(config.timerCheck))
+    	tes3mp.RestartTimer(TimerStartStats, time.seconds(config.timerCheck))
 end
 
 
 function StartCheckMessage()
-
 	for pid, player in pairs(Players) do
 		if Players[pid] ~= nil and player:IsLoggedIn() then	
 			TrueSurvive.OnCheckMessagePlayersSleep(pid)
 		end
 	end
-
-    tes3mp.RestartTimer(TimerStartMessage, time.seconds(config.timerMessage))
+    	tes3mp.RestartTimer(TimerStartMessage, time.seconds(config.timerMessage))
 end
 
 -- ==================
@@ -103,15 +99,12 @@ TrueSurvive.OnCheckTimePlayers = function(pid)
 		Players[pid].data.customVariables.HungerTime = HungerTime				
 		Players[pid].data.customVariables.ThirsthTime = ThirsthTime				
 
-		TrueSurvive.OnCheckStatePlayer(pid)
-		
+		TrueSurvive.OnCheckStatePlayer(pid)		
 	end
 end
-
 -- =================
 -- CHECK STAT PLAYER
 -- =================
-
 TrueSurvive.OnCheckStatePlayer = function(pid)
 
 	local listattack = {"true_survive_attack"}
@@ -119,8 +112,7 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 	local attackspell
 	local fatiguespell
 	
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-	
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
 		for slot, k in pairs(Players[pid].data.spellbook) do
 			if Players[pid].data.spellbook[slot] == "true_survive_attack" then
 				attackspell = Players[pid].data.spellbook[slot]
@@ -186,14 +178,12 @@ TrueSurvive.OnCheckMessagePlayersSleep = function(pid)
 				if tableHelper.containsValue(list_survive_eatdrinksleep, spellid) then				
 					tes3mp.MessageBox(pid, -1, SurviveMessage.Fatigue)
 					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
-					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")
-					
+					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")	
 				else
 					tes3mp.MessageBox(pid, -1, SurviveMessage.Fatigue)
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_fatigue")
 					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2")
-					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")			
-
+					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2")
 				end
 			end		
 		elseif SleepTime ~= nil and SleepTime >= (config.sleepTime / 2) and SleepTime < config.sleepTime then
@@ -531,12 +521,9 @@ TrueSurvive.OnCheckMessagePlayersWeather = function(pid)
 		end	
 	end
 end
-
-
 -- =====================
 -- OBJECT ACTIVATED MENU
 -- =====================
-
 TrueSurvive.OnActivatedObject = function(objectRefId, pid)
 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
@@ -573,11 +560,9 @@ TrueSurvive.OnActivatedObject = function(objectRefId, pid)
 	
 	return false
 end
-
 -- ================
 -- OBJECT ACTIVATED
 -- ================
-
 TrueSurvive.OnHungerObject = function(pid)
 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
@@ -616,7 +601,6 @@ TrueSurvive.OnSleepObject = function(pid)
 end
 
 return TrueSurvive
-
 ---------
 --SETUP--
 ---------
