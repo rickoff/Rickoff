@@ -1,7 +1,5 @@
 -- This is the modified version of DeathDrop made for Rickoff so that only gold is dropped on death.
 
---version for tes3mp 0.7.0
-
 -- DeathDrop.lua -*-lua-*-
 -- "THE BEER-WARE LICENCE" (Revision 42):
 -- <mail@michael-fitzmayer.de> wrote this file.  As long as you retain
@@ -13,6 +11,13 @@
 Methods = {}
 
 inventoryHelper = require("inventoryHelper")
+
+-- Add [ DeathDrop = require("DeathDrop") ] to the top of myMod.lua
+
+-- Find "Players[pid]:ProcessDeath()" inside myMod.lua and add:
+-- [ DeathDrop.Drop(pid) ]
+-- directly above it.
+
 
 Methods.Drop = function(pid)
 	local player = Players[pid]
@@ -56,9 +61,10 @@ Methods.Drop = function(pid)
 		
 		player.data.inventory[goldLoc] = {refId = "gold_001", count = 100, charge = -1}
 		
+		local itemref = {refId = "gold_001", count = 100, charge = -1}			
 		Players[pid]:Save()
-		Players[pid]:LoadInventory()
-		Players[pid]:LoadEquipment()
+		Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)			
+
 	end
 end
 
