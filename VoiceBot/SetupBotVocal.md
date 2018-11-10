@@ -1,4 +1,11 @@
-For use Bot vocal discord:
+To start you have to install python3 available here:https://www.python.org/downloads/
+
+To install the library without full voice support, you can just run the following command:
+python3 -m pip install -U discord.py
+
+
+
+For use Bot vocal discord with a server tes3mp:
 
 
 find and replace all eventHandler.OnPlayerDisconnect = function(pid) in eventHandler.lua :
@@ -145,3 +152,5 @@ Find and replace eventHandler.OnPlayerCellChange = function(pid) in eventHandler
                         jsonInterface.save("playerLocations.json", playerLocations)
             end	
         end
+
+
