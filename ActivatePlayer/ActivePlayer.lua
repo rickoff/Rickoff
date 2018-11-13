@@ -50,6 +50,8 @@ Menus["resurrect player"] = {
 
 ]]--
 
+--Open config.lua find config.menuHelperFiles and add the name of menu like this :
+--config.menuHelperFiles = { "help", "defaultCrafting", "advancedExample", "gameplayMenus" }
 
 ActivePlayer = {}
 
