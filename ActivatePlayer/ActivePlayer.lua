@@ -1,44 +1,54 @@
 --ActivePlayer.lua by Rick-Off, Snapjaw, David.C
 
---Script version 0.0.2
+--Script version 0.0.3
 --Tes3mp version 0.7.0
 --OpenMw version 0.44
 
---Add ActivePlayer.lua in mp-stuff/data/script.
+--Add ActivePlayer.lua in mp-stuff/script.
 
---Find "doesObjectHaveActivatingPlayer" in eventHandler.lua and add directly above :
+--Find "doesObjectHaveActivatingPlayer" in eventHandler.lua and replace by :
+--[[
 
---					if isObjectPlayer then
---						Players[activatingPid].data.targetPid = objectPid
---						ActivePlayer.OnCheckStatePlayer(objectPid, activatingPid)
---					end
+                if doesObjectHaveActivatingPlayer then
+                    activatingPid = tes3mp.GetObjectActivatingPid(index)
+
+                    if isObjectPlayer then
+                        Players[activatingPid].data.targetPid = objectPid
+                        ActivePlayer.OnCheckStatePlayer(objectPid, activatingPid)
+                    end
+
+]]--
 
 --Open logicHandler.lua and add at the bottom :
+--[[
 
---logicHandler.ResurrectPlayer = function(targetPid)
---    tes3mp.Resurrect(tonumber(targetPid), 0)
---end
+logicHandler.ResurrectPlayer = function(targetPid)
+    tes3mp.Resurrect(tonumber(targetPid), 0)
+end
 
---Open Menu.lua and add at the bottom :
+]]--
 
---Menus["resurrect player"] = {
---    text = color.Gold .. "Voulez vous\n" .. color.LightGreen ..
---    "réanimer\n" .. color.Gold .. "ce joueur ?\n" ..
---        color.White .. "...",
---    buttons = {                        
---        { caption = "oui",
---            destinations = {menuHelper.destinations.setDefault(nil,
---            { 
---                menuHelper.effects.runGlobalFunction("logicHandler", "ResurrectPlayer", 
---                    {menuHelper.variables.currentPlayerDataVariable("targetPid")})
---                })
---            }
---        },            
---        { caption = "non", destinations = nil }
---    }
---}
+--Create a file named gameplayMenus.lua in scripts/menu (so it has a clearer name) and make it contain this :
+--[[
 
+Menus["resurrect player"] = {
+    text = color.Gold .. "Do you want\n" .. color.LightGreen ..
+    "revive\n" .. color.Gold .. "this player ?\n" ..
+        color.White .. "...",
+    buttons = {                        
+        { caption = "yes",
+            destinations = {menuHelper.destinations.setDefault(nil,
+            { 
+                menuHelper.effects.runGlobalFunction("logicHandler", "ResurrectPlayer", 
+                    {menuHelper.variables.currentPlayerDataVariable("targetPid")})
+                })
+            }
+        },            
+        { caption = "no", destinations = nil }
+    }
+}
 
+]]--
 
 
 ActivePlayer = {}
