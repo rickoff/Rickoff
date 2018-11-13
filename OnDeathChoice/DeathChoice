@@ -34,7 +34,8 @@ config.menuHelperFiles = { "help", "defaultCrafting", "advancedExample", "DeathC
 
 eventHandler.OnDeathTimeExpiration = function(pid)
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-      Players[pid].currentCustomMenu = "resurrect"--Menu Resurrect
-      menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
+	--Players[pid]:Resurrect()
+	Players[pid].currentCustomMenu = "resurrect"--Menu Resurrect
+	menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
     end
 end
