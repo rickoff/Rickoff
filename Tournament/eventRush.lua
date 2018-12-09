@@ -8,16 +8,16 @@ jsonInterface = require("jsonInterface")
 local config = {}
 
 config.timerevent = 60
-config.timerstart = 300
-config.timerstop = 150
+config.rushstart = 300
+config.rushstop = 150
 config.countregister = 100
 config.timerespawn = 3
 config.timerstand = 10
 
 local eventRush = {}
 
-local TimerStart = tes3mp.CreateTimer("StartEvent", time.seconds(config.timerstart))
-local TimerStop = tes3mp.CreateTimer("StopEvent", time.seconds(config.timerstop))
+local RushStart = tes3mp.CreateTimer("RushEvent", time.seconds(config.rushstart))
+local RushStop = tes3mp.CreateTimer("StopRush", time.seconds(config.rushstop))
 local TimerRush = tes3mp.CreateTimer("StartRush", time.seconds(config.timerstand))
 
 local eventrush = "inactive"
@@ -25,44 +25,45 @@ local eventrush = "inactive"
 local rushTab = { player = {} }
 
 eventRush.TimerStartEvent = function()
-	tes3mp.StartTimer(TimerStart)
+	tes3mp.StartTimer(RushStart)
 	tes3mp.LogAppend(enumerations.log.INFO, "....START TIMER EVENT RUSH....")		
 end
 
-function StartEvent()
+function RushEvent()
 	if tableHelper.getCount(Players) > 0 then
 		Playerpid = tableHelper.getAnyValue(Players).pid
 		eventRush.AdminStart(Playerpid)
 	else
-		tes3mp.RestartTimer(TimerStart, time.seconds(config.timerstart))
+		tes3mp.RestartTimer(RushStart, time.seconds(config.rushstart))
 	end
 end
 
-function StopEvent()
+function StopRush()
 	if tableHelper.getCount(Players) > 0 and eventrush == "active" then
 		Playerpid = tableHelper.getAnyValue(Players).pid
 		eventRush.End(Playerpid)
 	else
-		tes3mp.RestartTimer(TimerStart, time.seconds(config.timerstart))
+		tes3mp.RestartTimer(RushStart, time.seconds(config.rushstart))
 	end
 end
 
 function StartRush()
 	if tableHelper.getCount(Players) > 0 and eventrush == "active" then
-		Playerpid = tableHelper.getAnyValue(Players).pid
-		logicHandler.RunConsoleCommandOnPlayer(Playerpid, "EnablePlayerControls")
-		logicHandler.RunConsoleCommandOnPlayer(Playerpid, "EnablePlayerFighting")
+		for pid, value in pairs(rushTab.player) do
+			logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerControls")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerFighting")
+		end
 	end
 end
 
 eventRush.AdminStart = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-		local TimerEvent = tes3mp.CreateTimer("StartPvP", time.seconds(config.timerevent))
-		local Timerthirty = tes3mp.CreateTimer("CallforPvP", time.seconds(config.timerevent / 2))
-		local Timerthree = tes3mp.CreateTimer("three", time.seconds((config.timerevent + config.timerstand) - 3))
-		local Timertwo = tes3mp.CreateTimer("two", time.seconds((config.timerevent + config.timerstand) - 2))
-		local Timerone = tes3mp.CreateTimer("one", time.seconds((config.timerevent + config.timerstand) - 1))
-		local Timerzero = tes3mp.CreateTimer("zero", time.seconds(config.timerevent + config.timerstand))	
+		local TimerEvent = tes3mp.CreateTimer("StartR", time.seconds(config.timerevent))
+		local Timerthirty = tes3mp.CreateTimer("CallforRush", time.seconds(config.timerevent / 2))
+		local Timerthree = tes3mp.CreateTimer("threeR", time.seconds((config.timerevent + config.timerstand) - 3))
+		local Timertwo = tes3mp.CreateTimer("twoR", time.seconds((config.timerevent + config.timerstand) - 2))
+		local Timerone = tes3mp.CreateTimer("oneR", time.seconds((config.timerevent + config.timerstand) - 1))
+		local Timerzero = tes3mp.CreateTimer("zeroR", time.seconds(config.timerevent + config.timerstand))	
 		tes3mp.StartTimer(TimerEvent)
 		tes3mp.StartTimer(Timerthirty)
 		tes3mp.StartTimer(Timerthree)
@@ -82,10 +83,10 @@ eventRush.Register = function(pid)
 			local goldamount = Players[pid].data.inventory[goldLoc].count
 			local newcount = config.countregister
 			if goldamount < newcount then
-				tes3mp.SendMessage(pid,"Vous n'avez pas assez d'or pour vous inscrire au tournois ! \n",false)	
+				tes3mp.SendMessage(pid,"Vous n'avez pas assez d'or pour vous inscrire a la course ! \n",false)	
 			else
 				Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - newcount	
-				tes3mp.SendMessage(pid,"Vous vous êtes inscrit au prohain rush !  \n",false)
+				tes3mp.SendMessage(pid,"Vous vous êtes inscrit au prochain rush !  \n",false)
 				rushTab.player[pid] = {score = 0}
 				local itemref = {refId = "gold_001", count = newcount, charge = -1}			
 				Players[pid]:Save()
@@ -93,7 +94,7 @@ eventRush.Register = function(pid)
 			end	
 			
 		elseif goldLoc == nil then
-			tes3mp.SendMessage(pid,"Vous n'avez pas d'or pour vous inscrire au tournois ! \n",false)
+			tes3mp.SendMessage(pid,"Vous n'avez pas d'or pour vous inscrire a la course ! \n",false)
 		end
 	end
 end
@@ -143,40 +144,39 @@ eventRush.tcheckcell = function(pid)
 				end
 			end
 		end
-	end   
-	
+	end   	
 end
 
-function CallforPvP()
+function CallforRush()
 	for p , pl in pairs(Players) do
 		tes3mp.SendMessage(p,"Il ne vous reste que"..color.Yellow.." 30"..color.Default.." secondes pour vous inscrire à la course. Utilisez"..color.Red.." /rush"..color.Default..", cout:100 pièces d'or.\n",false)
 	end
 end
 	
-function three()
+function threeR()
 	for pid, value in pairs(rushTab.player) do
-		tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 3 ......\n",false)
+		tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 3 ...\n",false)
 	end
 end
-function two()
+function twoR()
 	for pid, value in pairs(rushTab.player) do
-		tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 2 ....\n",false)
-	end
-end
-
-function one()
-	for pid, value in pairs(rushTab.player) do
-		tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 1 ..\n",false)
+		tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 2 ..\n",false)
 	end
 end
 
-function zero()
+function oneR()
+	for pid, value in pairs(rushTab.player) do
+		tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 1 .\n",false)
+	end
+end
+
+function zeroR()
 	for pid, value in pairs(rushTab.player) do
 		tes3mp.SendMessage(pid,color.Red.."Ruuuusssshhhh !!!!!\n",false)
 	end
 end
 
-function StartPvP()
+function StartR()
 
 	local count = 0
 	
@@ -195,13 +195,13 @@ function StartPvP()
 		end
 		eventrush = "active" 
 		tes3mp.StartTimer(TimerRush)		
-		tes3mp.StartTimer(TimerStop)		
+		tes3mp.StartTimer(RushStop)		
 	else
 		for pid, value in pairs(rushTab.player) do
 			tes3mp.SendMessage(pid,"Il n'y a pas assez de participant pour commencer la course !\n",false)	
 		end	
 		eventrush = "inactive"
-		tes3mp.RestartTimer(TimerStart, time.seconds(config.timerstart))
+		tes3mp.RestartTimer(RushStart, time.seconds(config.rushstart))
 	end
 end
 
@@ -248,7 +248,7 @@ eventRush.End = function(pid)
 
 	rushTab = { player = {} }
 	
-	tes3mp.RestartTimer(TimerStart, time.seconds(config.timerstart))	
+	tes3mp.RestartTimer(RushStart, time.seconds(config.rushstart))	
 end
 
 return eventRush
