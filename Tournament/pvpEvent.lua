@@ -8,8 +8,8 @@ jsonInterface = require("jsonInterface")
 local config = {}
 
 config.timerevent = 60
-config.timerstart = 1200
-config.timerstop = 600
+config.timerstart = 450
+config.timerstop = 300
 config.countregister = 1000
 config.countwinner = 3
 config.timerespawn = 10
@@ -25,23 +25,22 @@ local pvpTab = { player = {} }
 
 pvpEvent.TimerStartEvent = function()
 	tes3mp.StartTimer(TimerStart)
+	tes3mp.LogAppend(enumerations.log.INFO, "....START TIMER EVENT PVP....")		
 end
 
 function StartEvent()
 	if tableHelper.getCount(Players) > 0 then
 		Playerpid = tableHelper.getAnyValue(Players).pid
 		pvpEvent.AdminStart(Playerpid)
-		--tes3mp.RestartTimer(TimerStart, time.seconds(config.timerstart))
 	else
 		tes3mp.RestartTimer(TimerStart, time.seconds(config.timerstart))
 	end
 end
 
 function StopEvent()
-	if tableHelper.getCount(Players) > 0 then
+	if tableHelper.getCount(Players) > 0 and eventrush == "active" then
 		Playerpid = tableHelper.getAnyValue(Players).pid
 		pvpEvent.End(Playerpid)
-		--tes3mp.RestartTimer(TimerStart, time.seconds(config.timerstart))
 	else
 		tes3mp.RestartTimer(TimerStart, time.seconds(config.timerstart))
 	end
@@ -58,7 +57,7 @@ pvpEvent.AdminStart = function(pid)
 	tes3mp.StartTimer(Timerthree)
 	tes3mp.StartTimer(Timertwo)
 	tes3mp.StartTimer(Timerone)
-	tes3mp.SendMessage(pid,"L'événement a été lancé. Tout le monde a 60 secondes pour s'inscrire. /pvp 1000 pièces d'or. \n",true)
+	tes3mp.SendMessage(pid,color.Default.."L'événement de"..color.Red.." tournoi"..color.Default.." a été lancé."..color.Yellow.."Tout le monde a 60 secondes, pour s'inscrire tapez /pvp"..color.Yellow.." coût:"..color.Default.." 1000 pièces d'or.\n",true)
 end
 
 
@@ -70,14 +69,14 @@ pvpEvent.Register = function(pid)
 		local goldamount = Players[pid].data.inventory[goldLoc].count
 		local newcount = config.countregister
 		if goldamount < newcount then
-			tes3mp.SendMessage(pid,"Vous n'avez pas assez d'or pour vous inscrire au tournois ! \n",false)	
+			tes3mp.SendMessage(pid,"Vous n'avez pas assez d'or pour vous inscrire au tournoi ! \n",false)	
 		else
 			Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - newcount	
 			tes3mp.SendMessage(pid,"Vous vous êtes inscrit au tournoi pvp !  \n",false)
 			pvpTab.player[pid] = {score = 0}
+			local itemref = {refId = "gold_001", count = newcount, charge = -1}			
 			Players[pid]:Save()
-			Players[pid]:LoadInventory()
-			Players[pid]:LoadEquipment()		
+			Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)		
 		end	
 		
 	elseif goldLoc == nil then
@@ -172,24 +171,25 @@ end
 
 function CallforPvP()
 	for p , pl in pairs(Players) do
-		tes3mp.SendMessage(p,"Il ne vous reste que 30 secondes pour vous inscrire au tournois. Utilisez /pvp 1000 pièces d'or.\n",false)
+		tes3mp.SendMessage(p,"Il ne vous reste que"..color.Yellow.." 30"..color.Default.." secondes pour vous inscrire au tournoi. Utilisez"..color.Red.." /rush"..color.Default..", cout:100 pièces d'or.\n",false)
 	end
 end
 	
 function three()
-	for p , pl in pairs(Players) do
-		tes3mp.SendMessage(p,"Le tournoi commence dans 3 ......\n",false)
+	for pid, pl in pairs(pvpTab.player) do
+		tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 3 ...\n",false)
 	end
 end
+
 function two()
-	for p , pl in pairs(Players) do
-		tes3mp.SendMessage(p,"Le tournoi commence dans 2 ....\n",false)
+	for pid, pl in pairs(pvpTab.player) do
+		tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 2 ..\n",false)
 	end
 end
 
 function one()
-	for p , pl in pairs(Players) do
-		tes3mp.SendMessage(p,"Le tournoi commence dans 1 ..\n",false)
+	for pid, pl in pairs(pvpTab.player) do
+		tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 1 .\n",false)
 	end
 end
 
@@ -222,7 +222,7 @@ pvpEvent.TcheckKill = function(pid)
 	if eventpvp == "active" and pvpTab.player[pid] ~= nil then
 		pvpEvent.OnKill(pid)
 	else
-		mwTDM.OnPlayerDeath(pid)
+		return false
 	end	
 	
 end
@@ -258,16 +258,13 @@ pvpEvent.OnKill = function(pid)
 				if goldLoc == nil then
 					tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi ! \n",false)
 					table.insert(Players[pid].data.inventory, {refId = "gold_001", count = newprice, charge = -1})
-					Players[pid]:Save()
-					Players[pid]:LoadInventory()
-					Players[pid]:LoadEquipment()					
 				else
 					Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + newprice	
 					tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi !  \n",false)
-					Players[pid]:Save()
-					Players[pid]:LoadInventory()
-					Players[pid]:LoadEquipment()		
-				end					
+				end				
+				local itemref = {refId = "gold_001", count = newprice, charge = -1}			
+				Players[pid]:Save()
+				Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
 				pvpEvent.End(pid)
 			end
 		end
