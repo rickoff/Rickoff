@@ -171,7 +171,7 @@ end
 
 function CallforPvP()
 	for p , pl in pairs(Players) do
-		tes3mp.SendMessage(p,"Il ne vous reste que"..color.Yellow.." 30"..color.Default.." secondes pour vous inscrire au tournoi. Utilisez"..color.Red.." /rush"..color.Default..", cout:100 pièces d'or.\n",false)
+		tes3mp.SendMessage(p,"Il ne vous reste que"..color.Yellow.." 30"..color.Default.." secondes pour vous inscrire au tournoi. Utilisez"..color.Red.." /pvp"..color.Default..", cout:1000 pièces d'or.\n",false)
 	end
 end
 	
