@@ -12,13 +12,15 @@ config.rushstart = 300
 config.rushstop = 150
 config.countregister = 100
 config.timerespawn = 3
-config.timerstand = 10
+config.timerstand = 15
 
 local eventRush = {}
 
 local RushStart = tes3mp.CreateTimer("RushEvent", time.seconds(config.rushstart))
 local RushStop = tes3mp.CreateTimer("StopRush", time.seconds(config.rushstop))
 local TimerRush = tes3mp.CreateTimer("StartRush", time.seconds(config.timerstand))
+
+local rushRandom = nil
 
 local eventrush = "inactive"
 
@@ -33,6 +35,7 @@ function RushEvent()
 	if tableHelper.getCount(Players) > 0 then
 		Playerpid = tableHelper.getAnyValue(Players).pid
 		eventRush.AdminStart(Playerpid)
+		rushRandom = math.random(1, 5)
 	else
 		tes3mp.RestartTimer(RushStart, time.seconds(config.rushstart))
 	end
@@ -100,14 +103,48 @@ eventRush.Register = function(pid)
 end
 
 eventRush.spawn = function(pid)
-    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-		local posx = -19606
-		local posy = -9303
-		local posz = 182		
-		tes3mp.SetCell(pid, "-3, -2") 			
-		tes3mp.SetPos(pid, posx, posy, posz)
-		tes3mp.SendCell(pid)    
-		tes3mp.SendPos(pid)	
+    if Players[pid] ~= nil and rushRandom ~= nil and Players[pid]:IsLoggedIn() then
+		if rushRandom == 1 then
+			local posx = -19606
+			local posy = -9303
+			local posz = 182		
+			tes3mp.SetCell(pid, "-3, -2") 			
+			tes3mp.SetPos(pid, posx, posy, posz)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)
+		elseif rushRandom == 2 then
+			local posx = -3768
+			local posy = -71753
+			local posz = 178	
+			tes3mp.SetCell(pid, "-1, -9") 			
+			tes3mp.SetPos(pid, posx, posy, posz)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		elseif rushRandom == 3 then
+			local posx = 4847
+			local posy = 17930
+			local posz = 1609		
+			tes3mp.SetCell(pid, "0, 2") 			
+			tes3mp.SetPos(pid, posx, posy, posz)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		elseif rushRandom == 4 then
+			local posx = 147200
+			local posy = 34979
+			local posz = 1298		
+			tes3mp.SetCell(pid, "17, 4") 			
+			tes3mp.SetPos(pid, posx, posy, posz)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)	
+		elseif rushRandom == 5 then
+			local posx = 77095
+			local posy = 87327
+			local posz = 879		
+			tes3mp.SetCell(pid, "9, 10") 			
+			tes3mp.SetPos(pid, posx, posy, posz)
+			tes3mp.SendCell(pid)    
+			tes3mp.SendPos(pid)				
+		end
 	end
 end
 
@@ -121,12 +158,12 @@ eventRush.tcheckcell = function(pid)
 
 	local newprice = config.countregister * count
 	
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() and eventrush == "active" then        
+	if Players[pid] ~= nil and rushRandom ~= nil and Players[pid]:IsLoggedIn() and eventrush == "active" then        
 		for pid1, plr in pairs(Players) do
 			if plr:IsLoggedIn() then
 				local cell = tes3mp.GetCell(pid1)
 				if rushTab.player[pid1] then
-					if cell == "-2, 2" then 
+					if rushRandom == 1 and cell == "-2, 2" then 
 						tes3mp.SendMessage(pid,"Le gagnant est "..color.Yellow..Players[pid].name..color.Default..". Le tournoi est fini.  \n",true)
 						local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
 						if goldLoc == nil then
@@ -139,7 +176,63 @@ eventRush.tcheckcell = function(pid)
 						local itemref = {refId = "gold_001", count = newprice, charge = -1}			
 						Players[pid]:Save()
 						Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
-						eventRush.End(pid)						
+						eventRush.End(pid)
+					elseif rushRandom == 2 and cell == "0, -7" then 	
+						tes3mp.SendMessage(pid,"Le gagnant est "..color.Yellow..Players[pid].name..color.Default..". Le tournoi est fini.  \n",true)
+						local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
+						if goldLoc == nil then
+							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi ! \n",false)
+							table.insert(Players[pid].data.inventory, {refId = "gold_001", count = newprice, charge = -1})
+						else
+							Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + newprice	
+							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi !  \n",false)
+						end				
+						local itemref = {refId = "gold_001", count = newprice, charge = -1}			
+						Players[pid]:Save()
+						Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
+						eventRush.End(pid)					
+					elseif rushRandom == 3 and cell == "2, 5" then 	
+						tes3mp.SendMessage(pid,"Le gagnant est "..color.Yellow..Players[pid].name..color.Default..". Le tournoi est fini.  \n",true)
+						local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
+						if goldLoc == nil then
+							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi ! \n",false)
+							table.insert(Players[pid].data.inventory, {refId = "gold_001", count = newprice, charge = -1})
+						else
+							Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + newprice	
+							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi !  \n",false)
+						end				
+						local itemref = {refId = "gold_001", count = newprice, charge = -1}			
+						Players[pid]:Save()
+						Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
+						eventRush.End(pid)					
+					elseif rushRandom == 4 and cell == "15, 1" then 	
+						tes3mp.SendMessage(pid,"Le gagnant est "..color.Yellow..Players[pid].name..color.Default..". Le tournoi est fini.  \n",true)
+						local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
+						if goldLoc == nil then
+							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi ! \n",false)
+							table.insert(Players[pid].data.inventory, {refId = "gold_001", count = newprice, charge = -1})
+						else
+							Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + newprice	
+							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi !  \n",false)
+						end				
+						local itemref = {refId = "gold_001", count = newprice, charge = -1}			
+						Players[pid]:Save()
+						Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
+						eventRush.End(pid)					
+					elseif rushRandom == 5 and cell == "12, 13" then 	
+						tes3mp.SendMessage(pid,"Le gagnant est "..color.Yellow..Players[pid].name..color.Default..". Le tournoi est fini.  \n",true)
+						local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
+						if goldLoc == nil then
+							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi ! \n",false)
+							table.insert(Players[pid].data.inventory, {refId = "gold_001", count = newprice, charge = -1})
+						else
+							Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + newprice	
+							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi !  \n",false)
+						end				
+						local itemref = {refId = "gold_001", count = newprice, charge = -1}			
+						Players[pid]:Save()
+						Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
+						eventRush.End(pid)					
 					end
 				end
 			end
@@ -185,8 +278,18 @@ function StartR()
 	end
 
 	if count >= 2 then
-		for pid, value in pairs(rushTab.player) do		
-			tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.." Le premier à Caldera remporte la mise !\n",false)
+		for pid, value in pairs(rushTab.player) do	
+			if rushRandom == 1 then
+				tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.." Le premier à Caldera remporte la mise !\n",false)
+			elseif rushRandom == 2 then	
+				tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.." Le premier à Pelagiad remporte la mise !\n",false)			
+			elseif rushRandom == 3 then	
+				tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.." Le premier à la Porte des âmes remporte la mise !\n",false)			
+			elseif rushRandom == 4 then	
+				tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.." Le premier à Tel Fyr remporte la mise !\n",false)			
+			elseif rushRandom == 5 then	
+				tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.." Le premier à Vos remporte la mise !\n",false)			
+			end
 			eventRush.spawn(pid) 
 			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerControls")					
 			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerFighting")			
