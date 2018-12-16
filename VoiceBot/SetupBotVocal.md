@@ -7,30 +7,38 @@ python3 -m pip install -U discord.py
 
 * Find eventHandler.OnPlayerDisconnect = function(pid) in eventHandler.lua and add :
 
-                        local playerLocations = {players={}}
-                        for pid, ply in pairs(Players) do
-                                local newindex = #playerLocations.players+1
-                                playerLocations.players[newindex] = {}
+        --Players[pid]:Destroy()
+        --Players[pid] = nil
 
-                                for k, v in pairs(ply.data.location) do
-                                        playerLocations.players[newindex][k] = v
-                                end
-                                playerLocations.players[newindex].name = ply.accountName
-                        end
-                        jsonInterface.save("playerLocations.json", playerLocations)	
+		local playerLocations = {players={}}
+		for pid, ply in pairs(Players) do
+			local newindex = #playerLocations.players+1
+			playerLocations.players[newindex] = {}
+			
+			for k, v in pairs(ply.data.location) do
+				playerLocations.players[newindex][k] = v
+			end
+			playerLocations.players[newindex] = nil
+		end
+		jsonInterface.save("playerLocations.json", playerLocations)	
+
+        Players[pid]:Destroy()
+        Players[pid] = nil
 
 * Find eventHandler.OnPlayerCellChange = function(pid) in eventHandler.lua and add :
 
-                        local playerLocations = {players={}}
-                        for pid, ply in pairs(Players) do
-                                local newindex = #playerLocations.players+1
-                                playerLocations.players[newindex] = {}
-                                for k, v in pairs(ply.data.location) do
-                                        playerLocations.players[newindex][k] = v
-                                end
-                                playerLocations.players[newindex].name = ply.accountName
-                        end
-                        jsonInterface.save("playerLocations.json", playerLocations)
+        if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+            local playerLocations = {players={}}
+            for pid, ply in pairs(Players) do
+                local newindex = #playerLocations.players+1
+                playerLocations.players[newindex] = {}
+                for k, v in pairs(ply.data.location) do
+                    playerLocations.players[newindex][k] = v
+                end
+                playerLocations.players[newindex].name = ply.accountName
+            end
+            jsonInterface.save("playerLocations.json", playerLocations)
+        end	
 
 * For use Check Vocal Discord with a server tes3mp add VocalDiscordCheck.lua in mpstuff//script folder:
 
