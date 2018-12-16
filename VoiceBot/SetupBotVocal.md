@@ -19,19 +19,8 @@ python3 -m pip install -U discord.py
                         end
                         jsonInterface.save("playerLocations.json", playerLocations)	
 
-                Players[pid]:Destroy()
-                Players[pid] = nil
-            end
-
 * Find eventHandler.OnPlayerCellChange = function(pid) in eventHandler.lua and add :
 
-        local playerLocations = {players={}}
-
-            if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-                Players[pid]:SaveCell()
-                Players[pid]:SaveStatsDynamic()
-                tes3mp.LogMessage(1, "Enregistrer le joueur " .. pid)
-                Players[pid]:Save()
                         local playerLocations = {players={}}
                         for pid, ply in pairs(Players) do
                                 local newindex = #playerLocations.players+1
@@ -42,7 +31,6 @@ python3 -m pip install -U discord.py
                                 playerLocations.players[newindex].name = ply.accountName
                         end
                         jsonInterface.save("playerLocations.json", playerLocations)
-            end	
 
 * For use Check Vocal Discord with a server tes3mp add VocalDiscordCheck.lua in mpstuff//script folder:
 
