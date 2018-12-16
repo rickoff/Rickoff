@@ -1,14 +1,11 @@
-To start you have to install python3 available here:https://www.python.org/downloads/
+* To start you have to install python3 available here:https://www.python.org/downloads/
 
-To install the library without full voice support, you can just run the following command:
+* To install the library without full voice support, you can just run the following command:
 python3 -m pip install -U discord.py
 
+* For use Bot vocal discord with a server tes3mp add botdiscordtes3mp.py in tes3mp folder.
 
-
-For use Bot vocal discord with a server tes3mp:
-
-
-find and replace all eventHandler.OnPlayerDisconnect = function(pid) in eventHandler.lua :
+* Find and replace all eventHandler.OnPlayerDisconnect = function(pid) in eventHandler.lua :
 
         eventHandler.OnPlayerDisconnect = function(pid)
 
@@ -45,25 +42,17 @@ find and replace all eventHandler.OnPlayerDisconnect = function(pid) in eventHan
                                 playerLocations.players[newindex] = {}
 
                                 for k, v in pairs(ply.data.location) do
-                                        playerLocations.players[newindex][k] = v -- We're copying the table here or else we modify the player's actual data in the following assignment
+                                        playerLocations.players[newindex][k] = v
                                 end
                                 playerLocations.players[newindex].name = ply.accountName
                         end
-                        jsonInterface.save("playerLocations.json", playerLocations)
-
-                local playerTimeUnix = {players={}}        
-                for pid, ply in pairs(Players) do
-                                local newindex = #playerTimeUnix.players+1
-                                playerTimeUnix.players[newindex] = {os.time(os.date("!*t"))}
-                                playerTimeUnix.players[newindex].name = ply.accountName
-                end        
-                jsonInterface.save("playerTimeUnix.json", playerTimeUnix) 		
+                        jsonInterface.save("playerLocations.json", playerLocations)	
 
                 Players[pid]:Destroy()
                 Players[pid] = nil
             end
         end
-Find and replace eventHandler.OnPlayerCellChange = function(pid) in eventHandler.lua
+* Find and replace eventHandler.OnPlayerCellChange = function(pid) in eventHandler.lua
 
         eventHandler.OnPlayerCellChange = function(pid)
 
@@ -145,7 +134,7 @@ Find and replace eventHandler.OnPlayerCellChange = function(pid) in eventHandler
                                 local newindex = #playerLocations.players+1
                                 playerLocations.players[newindex] = {}
                                 for k, v in pairs(ply.data.location) do
-                                        playerLocations.players[newindex][k] = v -- We're copying the table here or else we modify the player's actual data in the following assignment
+                                        playerLocations.players[newindex][k] = v
                                 end
                                 playerLocations.players[newindex].name = ply.accountName
                         end
@@ -153,4 +142,8 @@ Find and replace eventHandler.OnPlayerCellChange = function(pid) in eventHandler
             end	
         end
 
+* For use Check Vocal Discord with a server tes3mp add VocalDiscordCheck.lua in mpstuff//script folder:
 
+* Find 'function OnPlayerCellChange(pid)' in ServerCore.lua and add above
+
+                	vocalDiscord.OnCheckPlayer(pid)	
