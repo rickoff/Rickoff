@@ -9,8 +9,8 @@ list_cellAndPlayer = []
 list_all_user = []
 list_all_channel = []
 list_channelID_admin = ["replace to id channel","replace to id channel"]#replace to different id channel discord for safe channel 
-playerlocationjson = 'replace to you location playerlocations.json'#replace to you location playerlocations.json
-
+playerlocationjson = 'C:\\tes3mp.Win64.release.0.7.0\\mp-stuff\\data\\playerlocations.json'#replace to you location playerlocations.json
+userdiscord = 'C:\\tes3mp.Win64.release.0.7.0\\mp-stuff\\data\\userdiscord.json'#replace to you location userdiscord.json
 	
 @client.event
 async def on_ready():
@@ -25,7 +25,7 @@ async def on_createchannel():
 	i = 0
 	while i < 1:
 		try:
-			server = client.get_server("id you server discord")#replace to you idserverdiscord	
+			server = client.get_server("id server discord")#replace to you idserverdiscord	
 			role = discord.utils.get(server.roles, name="Vocal")
 			
 			with open(playerlocationjson) as json_data:
@@ -79,7 +79,7 @@ async def on_createchannel():
 								channel = client.get_channel(id_channel_discord)
 								userjson = server.get_member(id_user_discord)
 								channelmemberjson = userjson.voice.voice_channel	
-								
+								#
 								if name_discord not in list_all_user_voice and channel.type == discord.ChannelType.voice and channelmemberjson != None:	
 									list_all_user_voice.append(name_discord)
 									list_discord = { 
