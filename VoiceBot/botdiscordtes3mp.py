@@ -114,7 +114,10 @@ async def on_createchannel():
 										await asyncio.sleep(0.1)
 										print('User %s déplacé avec succès !'%(name_discord))
 										
-									if find_channel != None and channel != None and not channel.id in list_channelID_admin and channel.type == discord.ChannelType.voice and not channel.voice_members and cell_ingame != name_channel_discord:									
+								if name_discord == name_ingame and cell_ingame != name_channel_discord :
+									find_channel = discord.utils.find(lambda m: m.name == nameCell['cell'], server.channels)
+									
+									if find_channel != None and channel != None and not channel.id in list_channelID_admin and channel.type == discord.ChannelType.voice and not channel.voice_members:	
 										await client.delete_channel(channel)
 										await asyncio.sleep(0.1)
 										print('Le channel %s a était supprimé.'%(channel.name))										
