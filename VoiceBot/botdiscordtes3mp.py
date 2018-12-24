@@ -101,22 +101,24 @@ async def on_createchannel():
 								if name_discord == name_ingame:
 									user = server.get_member(id_user_discord)
 									channelmember = user.voice.voice_channel							
-									find_channel = discord.utils.find(lambda m: m.name == nameCell['cell'], server.channels)
-									
+									find_channel = discord.utils.find(lambda m: m.name == nameCell['cell'], server.channels)								
 									if find_channel == None and channelmember != None:
 										everyone = discord.PermissionOverwrite(read_messages=False)
 										await client.create_channel(server, nameCell['cell'], (server.default_role, everyone), type=discord.ChannelType.voice)
 										await asyncio.sleep(0.1)
 										print('Le channel %s a était crée.'%(nameCell['cell']))											
 										
-									if channel != None and channel.type == discord.ChannelType.voice and name_channel_discord == cell_ingame and channelmember != None and channel != channelmember:				
+								if name_discord == name_ingame and channel != None and channel.type == discord.ChannelType.voice and name_channel_discord == cell_ingame:
+									user = server.get_member(id_user_discord)
+									channelmember = user.voice.voice_channel							
+									find_channel = discord.utils.find(lambda m: m.name == nameCell['cell'], server.channels)								
+									if find_channel != None and channelmember != None and channel != channelmember:				
 										await client.move_member(user, channel)
 										await asyncio.sleep(0.1)
 										print('User %s déplacé avec succès !'%(name_discord))
 										
 								if name_discord == name_ingame and cell_ingame != name_channel_discord :
-									find_channel = discord.utils.find(lambda m: m.name == nameCell['cell'], server.channels)
-									
+									find_channel = discord.utils.find(lambda m: m.name == nameCell['cell'], server.channels)								
 									if find_channel != None and channel != None and not channel.id in list_channelID_admin and channel.type == discord.ChannelType.voice and not channel.voice_members:	
 										await client.delete_channel(channel)
 										await asyncio.sleep(0.1)
