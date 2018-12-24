@@ -8,7 +8,7 @@ EventSetup
 
        pvpEvent.TimerStartEvent()
        eventRush.TimerStartEvent()
-       
+       eventOblivion.TimerStartEvent()      
 4) Add the following to the elseif chain for commands inside commandHandler.lua
 
 		elseif cmd[1] == "pvp" then
@@ -25,7 +25,7 @@ EventSetup
 			local pvp = pvpEvent.TcheckKill(pid)
 			local rush = eventRush.TcheckKill(pid)	
 			if pvp == false and rush == false then
-				mwTDM.OnPlayerDeath(pid)
+				eventHandler.OnPlayerDeath(pid)
 			end
 		end
 
@@ -33,3 +33,7 @@ EventSetup
 
 		pvpEvent.tcheckcell(pid)
 		eventRush.tcheckcell(pid)
+
+7) For use eventOblivion.lua find function OnWorldKillCount(pid) and add under
+
+		eventOblivion.Prime(pid)
