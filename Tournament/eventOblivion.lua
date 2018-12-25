@@ -33,44 +33,41 @@ eventOblivion.TimerStartEvent = function()
 end
 
 function OblivionEvent()
-	if tableHelper.getCount(Players) > 0 then
-		Playerpid = tableHelper.getAnyValue(Players).pid
-		eventOblivion.AdminStart(Playerpid)
-		oblivionRandom = math.random(1, 5)
-	else
-		tes3mp.RestartTimer(OblivionStart, time.seconds(config.oblivionstart))
-	end
+	eventOblivion.AdminStart()
+	oblivionRandom = math.random(1, 5)
 end
 
 function StopOblivion()
-	if tableHelper.getCount(Players) > 0 and eventoblivion == "active" then
-		Playerpid = tableHelper.getAnyValue(Players).pid
-		eventOblivion.End(Playerpid)
+	if eventoblivion == "active" then
+		eventOblivion.End()
 	else
 		tes3mp.RestartTimer(OblivionStart, time.seconds(config.oblivionstart))
 	end
 end
 
 function StartOblivion()
-	if tableHelper.getCount(Players) > 0 and eventoblivion == "active" then
-		eventOblivion.spawn(pid)
+	if eventoblivion == "active" then
+		eventOblivion.spawn()
 		tes3mp.RestartTimer(TimerOblivion, time.seconds(config.timerstand))		
 	else
 		tes3mp.RestartTimer(OblivionStart, time.seconds(config.oblivionstart))
 	end
 end
 
-eventOblivion.AdminStart = function(pid)
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-		local TimerEvent = tes3mp.CreateTimer("StartO", time.seconds(config.timerevent))
-		local Timerthirty = tes3mp.CreateTimer("CallforOblivion", time.seconds(config.timerevent / 2))
-		tes3mp.StartTimer(TimerEvent)
-		tes3mp.StartTimer(Timerthirty)	
-		tes3mp.SendMessage(pid,color.Default.."Une faille vers l'"..color.Red.." oblivion"..color.Default.." a été ouverte."..color.Yellow.."Preparez vous a repousser les forces du mal."..color.Yellow.." Gain:"..color.Default.." 500 pièces d'or par ennemie tué.\n",true)
+eventOblivion.AdminStart = function()
+	if tableHelper.getCount(Players) > 0 then
+		Playerpid = tableHelper.getAnyValue(Players).pid
 	end
+	if Players[Playerpid] ~= nil and Players[Playerpid]:IsLoggedIn() then
+		tes3mp.SendMessage(Playerpid,color.Default.."Une faille vers l'"..color.Red.." oblivion"..color.Default.." a été ouverte."..color.Yellow.."Preparez vous a repousser les forces du mal."..color.Yellow.." Gain:"..color.Default.." 500 pièces d'or par ennemie tué.\n",true)
+	end
+	local TimerEvent = tes3mp.CreateTimer("StartO", time.seconds(config.timerevent))
+	local Timerthirty = tes3mp.CreateTimer("CallforOblivion", time.seconds(config.timerevent / 2))
+	tes3mp.StartTimer(TimerEvent)
+	tes3mp.StartTimer(Timerthirty)	
 end
 
-eventOblivion.spawn = function(pid)
+eventOblivion.spawn = function()
     if eventoblivion == "active" then
 		local packetType = "spawn"
 		local randoX
@@ -126,27 +123,30 @@ eventOblivion.spawn = function(pid)
 	end
 end
 
-
 function CallforOblivion()
-	for pid , value in pairs(Players) do	
-		tes3mp.SendMessage(pid,"Attention !"..color.Yellow.." attaque"..color.Default.." dans 30 secondes. Le portail d'"..color.Red.." Oblivion"..color.Default..", est en approche.\n",false)
+	if tableHelper.getCount(Players) > 0 then
+		for pid , value in pairs(Players) do	
+			tes3mp.SendMessage(pid,"Attention !"..color.Yellow.." attaque"..color.Default.." dans 30 secondes. Le portail d'"..color.Red.." Oblivion"..color.Default..", est en approche.\n",false)
+		end
 	end
 end
 
 function StartO()
-	for pid , value in pairs(Players) do	
-		if oblivionRandom == 1 then
-			tes3mp.SendMessage(pid,"Le combat a commencé !"..color.Red.." defendez les terres de Vvardenfell contre l'invasion !"..color.Default.." Le portail est apparu à Balmora !\n",false)
-		elseif oblivionRandom == 2 then	
-			tes3mp.SendMessage(pid,"Le combat a commencé !"..color.Red.." defendez les terres de Vvardenfell contre l'invasion !"..color.Default.." Le portail est apparu à Pelagiad !\n",false)			
-		elseif oblivionRandom == 3 then	
-			tes3mp.SendMessage(pid,"Le combat a commencé !"..color.Red.." defendez les terres de Vvardenfell contre l'invasion !"..color.Default.." Le portail est apparu à Ald'ruhn !\n",false)		
-		elseif oblivionRandom == 4 then	
-			tes3mp.SendMessage(pid,"Le combat a commencé !"..color.Red.." defendez les terres de Vvardenfell contre l'invasion !"..color.Default.." Le portail est apparu à Vivec !\n",false)			
-		elseif oblivionRandom == 5 then	
-			tes3mp.SendMessage(pid,"Le combat a commencé !"..color.Red.." defendez les terres de Vvardenfell contre l'invasion !"..color.Default.." Le portail est apparue à Sadrith Mora !\n",false)		
+	if tableHelper.getCount(Players) > 0 then
+		for pid , value in pairs(Players) do	
+			if oblivionRandom == 1 then
+				tes3mp.SendMessage(pid,"Le combat a commencé !"..color.Red.." defendez les terres de Vvardenfell contre l'invasion !"..color.Default.." Le portail est apparu à Balmora !\n",false)
+			elseif oblivionRandom == 2 then	
+				tes3mp.SendMessage(pid,"Le combat a commencé !"..color.Red.." defendez les terres de Vvardenfell contre l'invasion !"..color.Default.." Le portail est apparu à Pelagiad !\n",false)			
+			elseif oblivionRandom == 3 then	
+				tes3mp.SendMessage(pid,"Le combat a commencé !"..color.Red.." defendez les terres de Vvardenfell contre l'invasion !"..color.Default.." Le portail est apparu à Ald'ruhn !\n",false)		
+			elseif oblivionRandom == 4 then	
+				tes3mp.SendMessage(pid,"Le combat a commencé !"..color.Red.." defendez les terres de Vvardenfell contre l'invasion !"..color.Default.." Le portail est apparu à Vivec !\n",false)			
+			elseif oblivionRandom == 5 then	
+				tes3mp.SendMessage(pid,"Le combat a commencé !"..color.Red.." defendez les terres de Vvardenfell contre l'invasion !"..color.Default.." Le portail est apparue à Sadrith Mora !\n",false)		
+			end
 		end
-	end	
+	end
 	eventoblivion = "active" 
 	tes3mp.StartTimer(TimerOblivion)		
 	tes3mp.StartTimer(OblivionStop)	
@@ -173,9 +173,12 @@ eventOblivion.Prime = function(pid)
 	end
 end
 
-eventOblivion.End = function(pid)
+eventOblivion.End = function()
 	eventoblivion = "inactive"
-    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+	if tableHelper.getCount(Players) > 0 then
+		Playerpid = tableHelper.getAnyValue(Players).pid	
+	end
+	if Players[Playerpid] ~= nil and Players[Playerpid]:IsLoggedIn() then
 		for pid , value in pairs(Players) do	
 			if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 				tes3mp.SendMessage(pid,color.Blue.."Le portail d'oblivion est maintenant fermé.  \n",false)
@@ -199,15 +202,13 @@ eventOblivion.CleanCell = function(cellDescription)
 			for _, uniqueIndex in pairs(cell.data.packets.spawn) do
 				if cell.data.objectData[uniqueIndex].refId == creatureRefId then
 					cell.data.objectData[uniqueIndex] = nil
-					tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)
-					logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)				
+					tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)			
 				end
 			end
 			for _, uniqueIndex in pairs(cell.data.packets.place) do			
 				if cell.data.objectData[uniqueIndex].refId == portailRefId then
 					cell.data.objectData[uniqueIndex] = nil
 					tableHelper.removeValue(cell.data.packets.place, uniqueIndex)
-					logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)	
 				end
 			end
 			cell:Save()			
