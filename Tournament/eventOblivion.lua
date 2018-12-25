@@ -2,27 +2,27 @@
 
 tableHelper = require("tableHelper")
 inventoryHelper = require("inventoryHelper")
-jsonInterface = require("jsonInterface")
 
 local config = {}
+
 config.timerevent = 60
-config.oblivionstart = 300
+config.oblivionstart = 360
 config.oblivionstop = 240
-config.timerstand = 1
+config.timerstand = 3
 config.count = 500
 config.bosses = {"dremora"}
 config.portail = {"in_strong_platform"}
-
 local eventOblivion = {}
+
 local OblivionStart = tes3mp.CreateTimer("OblivionEvent", time.seconds(config.oblivionstart))
 local OblivionStop = tes3mp.CreateTimer("StopOblivion", time.seconds(config.oblivionstop))
 local TimerOblivion = tes3mp.CreateTimer("StartOblivion", time.seconds(config.timerstand))
+
 local oblivionRandom = nil
 local cellId = nil
 local creatureRefId = "dremora"
 local portailRefId = "in_strong_platform"
 local eventoblivion = "inactive"
-
 local oblivionTab = {}
 oblivionTab.count = 0
 oblivionTab.port = 0
@@ -43,9 +43,8 @@ function OblivionEvent()
 end
 
 function StopOblivion()
-	if tableHelper.getCount(Players) > 0 and eventoblivion == "active" then
-		Playerpid = tableHelper.getAnyValue(Players).pid
-		eventOblivion.End(Playerpid)
+	if eventoblivion == "active" then
+		eventOblivion.End()
 	else
 		tes3mp.RestartTimer(OblivionStart, time.seconds(config.oblivionstart))
 	end
@@ -106,7 +105,7 @@ eventOblivion.spawn = function(pid)
 			posz = 469		
 			cellId = "17, 4" 
 		end		
-		if oblivionTab.count < 10 and creatureRefId ~= nil and cellId ~= nil and posx ~= nil and posy ~= nil and posz ~= nil then
+		if oblivionTab.port > 0 and oblivionTab.count < 10 and creatureRefId ~= nil and cellId ~= nil and posx ~= nil and posy ~= nil and posz ~= nil then
 			local packetType = "spawn"
 			local position = { posX = tonumber(posx), posY = tonumber(posy), posZ = tonumber(posz), rotX = 0, rotY = 0, rotZ = 0 }
 			tes3mp.LogMessage(2, "Spawn")
@@ -173,16 +172,14 @@ eventOblivion.Prime = function(pid)
 	end
 end
 
-eventOblivion.End = function(pid)
+eventOblivion.End = function()
 	eventoblivion = "inactive"
-    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-		for pid , value in pairs(Players) do	
-			if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-				tes3mp.SendMessage(pid,color.Blue.."Le portail d'oblivion est maintenant fermé.  \n",false)
-				eventOblivion.CleanCell(cellId)
-			end
+	for pid , value in pairs(Players) do	
+		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+			tes3mp.SendMessage(pid,color.Blue.."Le portail d'oblivion est maintenant fermé.  \n",false)
 		end
 	end
+	eventOblivion.CleanCell(cellId)	
 	tes3mp.RestartTimer(OblivionStart, time.seconds(config.oblivionstart))	
 	oblivionTab.count = 0
 	oblivionTab.port = 0
@@ -195,8 +192,23 @@ eventOblivion.CleanCell = function(cellDescription)
 		if cell == nil then
 			logicHandler.LoadCell(cellDescription)
 			useTemporaryLoad = true
-		end
-		if cell ~= nil then
+			cell = LoadedCells[cellDescription]
+			for _, uniqueIndex in pairs(cell.data.packets.spawn) do
+				if cell.data.objectData[uniqueIndex].refId == creatureRefId then
+					cell.data.objectData[uniqueIndex] = nil
+					tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)
+					logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)				
+				end
+			end
+			for _, uniqueIndex in pairs(cell.data.packets.place) do			
+				if cell.data.objectData[uniqueIndex].refId == portailRefId then
+					cell.data.objectData[uniqueIndex] = nil
+					tableHelper.removeValue(cell.data.packets.place, uniqueIndex)
+					logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)	
+				end
+			end
+			cell:Save()			
+		elseif cell ~= nil then
 			for _, uniqueIndex in pairs(cell.data.packets.spawn) do
 				if cell.data.objectData[uniqueIndex].refId == creatureRefId then
 					cell.data.objectData[uniqueIndex] = nil
@@ -213,7 +225,7 @@ eventOblivion.CleanCell = function(cellDescription)
 			end
 			cell:Save()
 		end	
-		if useTemporaryLoad then
+		if useTemporaryLoad == true then
 			logicHandler.UnloadCell(cellDescription)
 		end
 	end
