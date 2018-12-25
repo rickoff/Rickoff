@@ -43,8 +43,9 @@ function OblivionEvent()
 end
 
 function StopOblivion()
-	if eventoblivion == "active" then
-		eventOblivion.End()
+	if tableHelper.getCount(Players) > 0 and eventoblivion == "active" then
+		Playerpid = tableHelper.getAnyValue(Players).pid
+		eventOblivion.End(Playerpid)
 	else
 		tes3mp.RestartTimer(OblivionStart, time.seconds(config.oblivionstart))
 	end
@@ -172,11 +173,13 @@ eventOblivion.Prime = function(pid)
 	end
 end
 
-eventOblivion.End = function()
+eventOblivion.End = function(pid)
 	eventoblivion = "inactive"
-	for pid , value in pairs(Players) do	
-		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-			tes3mp.SendMessage(pid,color.Blue.."Le portail d'oblivion est maintenant fermé.  \n",false)
+    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		for pid , value in pairs(Players) do	
+			if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+				tes3mp.SendMessage(pid,color.Blue.."Le portail d'oblivion est maintenant fermé.  \n",false)
+			end
 		end
 	end
 	eventOblivion.CleanCell(cellId)	
