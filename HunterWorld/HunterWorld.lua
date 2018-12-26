@@ -1,6 +1,6 @@
 ---------------------------
 -- HunterWorld by Rickoff
-
+-- Tes3mp 0.7.0
    -- add 100 random spawn point for creature or npc
    -- when a boss creature appears the players receive a message
    -- when a player kills the boss he receives a reward and the message displays that a rare creature was killed
