@@ -3,15 +3,22 @@ Find function BasePlayer:SetDifficulty(difficulty)
 Replace all the block to
 
     function BasePlayer:SetDifficulty(difficulty)
-        local difficultyMin = config.difficulty
-        local currentLevel = tes3mp.GetLevel(self.pid)
-        local difficultyTest = difficultyMin + ((currentLevel - 1) * 4)
-        if (difficultyTest >= 0 and difficultyTest <= 200) then
-            difficulty = difficultyTest - difficultyTest % 4
+
+        local difficultyMin = 100
+        local currentLevel = self.data.stats.level
+        local difficultyTest = difficultyMin + (currentLevel * 4)
+
+        if difficultyTest >= 0 then 
+            difficulty = difficultyTest
+            self.data.settings.difficulty = difficultyTest
+        else
+            difficulty = difficultyMin
+            self.data.settings.difficulty = difficulty        
         end
-        self.data.settings.difficulty = difficulty
+
         tes3mp.SetDifficulty(self.pid, difficulty)
-        tes3mp.LogMessage(1, "Set difficulty to " .. tostring(difficulty) .. " for " .. myMod.GetChatName(self.pid))
+
+        tes3mp.LogMessage(enumerations.log.INFO, "Set difficulty to " .. tostring(difficulty) .. " for " .. logicHandler.GetChatName(self.pid))
     end
 
 
