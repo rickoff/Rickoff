@@ -1,5 +1,5 @@
 --CompagnonScript
-
+--tes3mp 0.7.0
 --======
 --SETUP
 --======
