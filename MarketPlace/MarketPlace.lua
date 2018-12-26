@@ -1,5 +1,5 @@
 ---------------------------
--- MarketPlace by Rickoff and DiscordPeter
+--MarketPlace by Rickoff and DiscordPeter
 --helped by David.C
 --for version tes3mp 0.7.0
 ---------------------------
@@ -64,8 +64,7 @@ tableHelper = require("tableHelper")
 inventoryHelper = require("inventoryHelper")
  
 math.randomseed( os.time() )
- 
- 
+  
 MarketPlace = {}
 --Forward declarations:
 local showMainGUI, showBuyGUI, showInventoryGUI, showViewGUI, showInventoryOptionsGUI, showViewOptionsGUI, showEditPricePrompt
@@ -75,19 +74,15 @@ local playerInventoryOptions = {}
 local playerInventoryChoice = {}
 local playerViewOptions = {}
 local playerViewChoice = {}
- 
 -- ===========
 --  FONCTION LOCAL
 -- ===========
 -------------------------
- 
-local function getAvailableFurnitureStock(pid)  -- pack players.inventory.refId into table options
- 
+local function getAvailableFurnitureStock(pid)  -- pack players.inventory.refId into table options 
     local options = {}
     local playerName = Players[pid].name
     local ipAddress = tes3mp.GetIP(pid)    
-    local itemTable = jsonInterface.load("EcarlateItems.json")
-	
+    local itemTable = jsonInterface.load("EcarlateItems.json")	
     for slot, k in pairs(Players[pid].data.inventory) do
 		local itemid = Players[pid].data.inventory[slot].refId
 		
@@ -95,43 +90,32 @@ local function getAvailableFurnitureStock(pid)  -- pack players.inventory.refId 
 			if item.refid == itemid then			
 				table.insert(options, itemid)
 			end
-		end 
-		
-    end
-    
-   
+		end 		
+    end  
     return options
 end
  
-local function getHdvFurnitureStock(pid) 
-   
+local function getHdvFurnitureStock(pid)    
     local options = {}
-    local hdvlist = jsonInterface.load("hdvlist.json") 
-   
+    local hdvlist = jsonInterface.load("hdvlist.json")    
     for slot, player in pairs(hdvlist.players) do
         for slot2, stuff in pairs(player.items) do
             local item = hdvlist.players[slot].items[slot2]
             table.insert(options, item)         
         end
-    end
-    
-   
+    end   
     return options
 end
  
-local function getHdvInventoryStock(pid) -- does the same with hdvinv 
-   
+local function getHdvInventoryStock(pid) -- does the same with hdvinv    
     local options = {}
     local playerName = Players[pid].name
     local ipAddress = tes3mp.GetIP(pid)
-    local hdvinv = jsonInterface.load("hdvinv.json")   
-   
+    local hdvinv = jsonInterface.load("hdvinv.json")      
     for slot, k in pairs(hdvinv.players[playerName].items) do
 		local item = hdvinv.players[playerName].items[slot]
 		table.insert(options, item)        
-    end
-   
-   
+    end   
     return options
 end
  
@@ -140,36 +124,30 @@ local function getName(pid)
 end
  
 local function priceAdd(pid, price, data) --- where is that called. messed up. adds price to item in hdvinv
- 
     local playerName = Players[pid].name
     local ipAddress = tes3mp.GetIP(pid)
     local newItemid = data
     local newprice = price
     local newItem = { itemid = newItemid, price = newprice }
     local hdvinv = jsonInterface.load("hdvinv.json")
- 
     local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvinv.players[playerName].items, "itemid", newItemid)
  
     if existingIndex ~= nil then
         hdvinv.players[playerName].items[existingIndex] = newItem
         jsonInterface.save("hdvinv.json", hdvinv)
-    end
-   
+    end   
 end
  
-local function addHdv(pid, data) -- packs item from hdvinv into hdvlist. complicated
- 
+local function addHdv(pid, data) -- packs item from hdvinv into hdvlist. complicated 
 	local playerName = Players[pid].name
 	local ipAddress = tes3mp.GetIP(pid)
 	local newItemid = data
 	local newItem = { itemid = newItemid, price = 0 }  -- where comes that price from?
 	local hdvinv = jsonInterface.load("hdvinv.json")
 	local hdvlist = jsonInterface.load("hdvlist.json")
-
 	local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvinv.players[playerName].items, "itemid", newItemid)
 
-	if existingIndex ~= nil and tableHelper.getCount(hdvlist.players[playerName].items) < 4 then
-        
+	if existingIndex ~= nil and tableHelper.getCount(hdvlist.players[playerName].items) < 4 then        
 		local newItem = hdvinv.players[playerName].items[existingIndex]
 		table.insert(hdvlist.players[playerName].items, newItem)
 		jsonInterface.save("hdvlist.json", hdvlist)
@@ -178,19 +156,15 @@ local function addHdv(pid, data) -- packs item from hdvinv into hdvlist. complic
 		jsonInterface.save("hdvinv.json", hdvinv)
 		
 	else
-
-		tes3mp.SendMessage(pid, "Vous avez atteint le nombre maximum d'articles")
-	 
-	end
-   
+		tes3mp.SendMessage(pid, "Vous avez atteint le nombre maximum d'articles")	 
+	end   
 end
  
-local function itemAdd(pid, newItemid) -- gets itemrefId into data and removes 3 in players.inventory and packs it into hdvinv.json
-	
+local function itemAdd(pid, newItemid) -- gets itemrefId into data and removes 3 in players.inventory and packs it into hdvinv.json	
 	local hdvinv = jsonInterface.load("hdvinv.json")   
-    local playerName = Players[pid].name
-    local newItem = { itemid = "" , price = 0}
-    local removedCount = 1 -- you need to get the real count th player wants to remove
+	local playerName = Players[pid].name
+	local newItem = { itemid = "" , price = 0}
+	local removedCount = 1 -- you need to get the real count th player wants to remove
 	local existingIndex = nil
 	
 	for slot, item in pairs(Players[pid].data.inventory) do -- does item exist in inventory
@@ -200,32 +174,26 @@ local function itemAdd(pid, newItemid) -- gets itemrefId into data and removes 3
 	end
  
     if existingIndex ~= nil then -- if he got item then change count and or remove 
-        local inventoryItem = Players[pid].data.inventory[existingIndex] -- get it for working
-        
-		newItem.itemid = inventoryItem.refId -- save for adding into hdvinv
-		newItem.price = 0
-		
+        local inventoryItem = Players[pid].data.inventory[existingIndex] -- get it for working      
+	newItem.itemid = inventoryItem.refId -- save for adding into hdvinv
+	newItem.price = 0		
         for slot, inv in pairs(Players[pid].data.equipment) do -- does player have item equipped
             if inv.refId == newItem.itemid then
                 Players[pid].data.equipment[slot] = nil
             end    
-        end		
-		
-		inventoryItem.count = inventoryItem.count - removedCount
+        end				
+	inventoryItem.count = inventoryItem.count - removedCount
         
-		if inventoryItem.count < 1 then
-			inventoryItem = nil
-		end
+	if inventoryItem.count < 1 then
+		inventoryItem = nil
+	end
  
-        Players[pid].data.inventory[existingIndex] = inventoryItem -- pack it back
-		
+        Players[pid].data.inventory[existingIndex] = inventoryItem -- pack it back		
         Players[pid]:Save() -- reload
-		Players[pid]:Load()
+	Players[pid]:Load()
         Players[pid]:LoadInventory()
-        Players[pid]:LoadEquipment()
-       
-    end
-	
+        Players[pid]:LoadEquipment()       
+    end	
 	if newItem.itemid ~= "" then 
 		table.insert(hdvinv.players[playerName].items, newItem)
         jsonInterface.save("hdvinv.json", hdvinv)
@@ -233,7 +201,6 @@ local function itemAdd(pid, newItemid) -- gets itemrefId into data and removes 3
 end
  
 local function itemAchat(pid, data)
-
     local playerName = Players[pid].name
     local ipAddress = tes3mp.GetIP(pid)
     local newItemid = data.itemid
@@ -248,7 +215,6 @@ local function itemAchat(pid, data)
 			end
 		end
 	end
-
 	local newItem = hdvlist.players[existingPlayer].items[existingIndex] 	
 	local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
 	local newPrice = newItem.price
@@ -283,8 +249,7 @@ local function itemAchat(pid, data)
 				end
 				
 				if goldLocSeller ~= nil then
-					player.data.inventory[goldLocSeller].count = player.data.inventory[goldLocSeller].count + newPrice
-				
+					player.data.inventory[goldLocSeller].count = player.data.inventory[goldLocSeller].count + newPrice				
 					if player:IsLoggedIn() then
 						--If the player is logged in, we have to update their inventory to reflect the changes
 						player:Save()
@@ -325,15 +290,13 @@ local function itemAchat(pid, data)
 end
 
 local function addItemPlayer(pid, data)
-
     local playerName = Players[pid].name
     local ipAddress = tes3mp.GetIP(pid)
     local newItemid = data
     local hdvinv = jsonInterface.load("hdvinv.json")
     --local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvlist.players[playerName].items, "itemid", newItemid)
 	local existingIndex = 0
-	local existingPlayer = ""
-	
+	local existingPlayer = ""	
 	for slot, player in pairs(hdvinv.players) do
 		for itemSlot, item in pairs(player.items) do
 			if item.itemid == newItemid then
@@ -341,22 +304,18 @@ local function addItemPlayer(pid, data)
 				existingPlayer = slot
 			end
 		end
-	end
-	
+	end	
 	local newItem = hdvinv.players[existingPlayer].items[existingIndex] 	
 	local itemLoc = newItem.itemid
 	local count = 1
-
-	if existingIndex ~= nil then
-		
+	if existingIndex ~= nil then		
 		-- remove item from hdvlist
 		hdvinv.players[existingPlayer].items[existingIndex] = nil
 		tableHelper.cleanNils(hdvinv.players[existingPlayer].items)
 		jsonInterface.save("hdvinv.json", hdvinv)
 		table.insert(Players[pid].data.inventory, {refId = newItem.itemid, count = count, charge = -1})			
 
-	end
-	
+	end	
 	--reload player that bought
 	Players[pid]:Save()
 	Players[pid]:LoadInventory()
@@ -372,12 +331,10 @@ MarketPlace.onMainGui = function(pid)
 end
  
 MarketPlace.showMainGUI = function(pid)
-
 	MarketPlace.listCheck(pid)
 	MarketPlace.itemCheck(pid)
-	
-    local message = color.Green .. "BIENVENUE DANS L'HOTEL DE VENTE.\n" .. color.Brown .. "\nAcheter pour acheter des objets.\n Inventaire pour afficher les articles que vous possédez.\n Afficher pour une liste de tous les objets que vous possédez dans la boutique en attente de vente." .. color.Default
-    tes3mp.CustomMessageBox(pid, config.MainGUI, message, "Transfert;Hotel de vente;Afficher;Fermer")
+	local message = color.Green .. "BIENVENUE DANS L'HOTEL DE VENTE.\n" .. color.Brown .. "\nAcheter pour acheter des objets.\n Inventaire pour afficher les articles que vous possédez.\n Afficher pour une liste de tous les objets que vous possédez dans la boutique en attente de vente." .. color.Default
+	tes3mp.CustomMessageBox(pid, config.MainGUI, message, "Transfert;Hotel de vente;Afficher;Fermer")
 end
  
 -- ===========
@@ -395,8 +352,7 @@ MarketPlace.showBuyGUI = function(pid)
     local list = "* Retour *\n"
     local listItemChanged = false
     local itemTable = jsonInterface.load("EcarlateItems.json")
-    local listItem = ""
-	
+    local listItem = ""	
     for i = 1, #options do
  
 		for slot, item in pairs(itemTable.items) do
@@ -420,12 +376,10 @@ MarketPlace.showBuyGUI = function(pid)
         if not(i == #options) then
             list = list .. "\n"
         end
-    end
-	
+    end	
 	listItemChanged = false
-    playerBuyOptions[getName(pid)] = {opt = options}
-    tes3mp.ListBox(pid, config.BuyGUI, color.CornflowerBlue .. "Sélectionnez un article que vous souhaitez mettre en attente de vente" .. color.Default, list)
-   
+	playerBuyOptions[getName(pid)] = {opt = options}
+	tes3mp.ListBox(pid, config.BuyGUI, color.CornflowerBlue .. "Sélectionnez un article que vous souhaitez mettre en attente de vente" .. color.Default, list)  
 end
  
 MarketPlace.onBuyChoice = function(pid, data)
@@ -448,10 +402,8 @@ MarketPlace.showInventoryGUI = function(pid)
     local list = "* Retour *\n"
     local listItemChanged = false
     local itemTable = jsonInterface.load("EcarlateItems.json")
-    local listItem = ""
-	
-    for i = 1, #options do
- 
+    local listItem = ""	
+    for i = 1, #options do 
 		for slot, item in pairs(itemTable.items) do
 			if item.refid == options[i].itemid then
 				listItem = item.name
@@ -473,8 +425,7 @@ MarketPlace.showInventoryGUI = function(pid)
         if not(i == #options) then
             list = list .. "\n"
         end
-    end
-	
+    end	
     playerInventoryOptions[getName(pid)] = {opt = options} 
     tes3mp.ListBox(pid, config.InventoryGUI, "Sélectionnez l'objet que vous voulez acheter ou récupérer", list)
 end
@@ -508,18 +459,15 @@ MarketPlace.onMainView = function(pid)
     MarketPlace.showViewGUI(pid)
 end
  
-MarketPlace.showViewGUI = function(pid)
- 
+MarketPlace.showViewGUI = function(pid) 
     local playerName = Players[pid].name
     local ipAddress = tes3mp.GetIP(pid)
     local options = getHdvInventoryStock(pid) -- gets hdvinv for pid
     local list = "* Retour *\n"
     local listItemChanged = false
     local itemTable = jsonInterface.load("EcarlateItems.json")
-    local listItem = ""
-	
+    local listItem = ""	
     for i = 1, #options do
- 
 		for slot, item in pairs(itemTable.items) do
 			if item.refid == options[i].itemid then
 				listItem = item.name
@@ -528,16 +476,14 @@ MarketPlace.showViewGUI = function(pid)
 			else
 				listItemChanged = false
 			end
-		end 
-		
+		end 		
 		if listItemChanged == true then
 			list = list .. listItem.." pour: "..options[i].price.." Gold "
 		end
 		
 		if listItemChanged == false then
 			list = list.. options[i].itemid.." pour: "..options[i].price.." Gold "
-		end
-		
+		end		
         if not(i == #options) then
             list = list .. "\n"
         end
@@ -591,7 +537,6 @@ end
 -------------------------
  
 MarketPlace.itemCheck = function(pid)
-
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local playerName = Players[pid].name  
 		nilItemCheck(playerName)                  
@@ -602,16 +547,12 @@ function nilItemCheck(playerName) -- Used to create and manage entries in tokenl
     -- If this IP address entry doesn't exist, then make new blank entry
 	hdvlist = {}
 	hdvlist.players = {}
-	hdvlist.players[playerName] = nil
-	
-	
+	hdvlist.players[playerName] = nil	
 	if tes3mp.GetCaseInsensitiveFilename(os.getenv("MOD_DIR").."/","hdvlist.json") == "invalid" then
 		jsonInterface.save("hdvlist.json", hdvlist)
 	else
 		hdvlist = jsonInterface.load("hdvlist.json")
-	end
-
-	
+	end	
 	if hdvlist.players[playerName] == nil then
         local player = {}
         player.names = {}
@@ -629,8 +570,7 @@ function nilItemCheck(playerName) -- Used to create and manage entries in tokenl
     end
 end
  
-MarketPlace.listCheck = function(pid)
-				--tes3mp.SendMessage(pid,"inside listcheck called",false)
+MarketPlace.listCheck = function(pid)				--tes3mp.SendMessage(pid,"inside listcheck called",false)
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
         local playerName = Players[pid].name
         local ipAddress = tes3mp.GetIP(pid)    
@@ -669,8 +609,7 @@ function nilListCheck(playerName) -- Used to create and manage entries in tokenl
 end
  
 -- GENERAL
-MarketPlace.OnGUIAction = function(pid, idGui, data)
-   
+MarketPlace.OnGUIAction = function(pid, idGui, data) 
     if idGui == config.MainGUI then -- Main
         if tonumber(data) == 0 then --Tranfert
             MarketPlace.onMainBuy(pid)
@@ -738,7 +677,5 @@ MarketPlace.OnGUIAction = function(pid, idGui, data)
         end
     end
 end
- 
- 
- 
+
 return MarketPlace
