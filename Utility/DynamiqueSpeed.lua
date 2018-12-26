@@ -1,6 +1,4 @@
---add this in commandHandler.lua
-
-
+--add in commandHandler.lua
 
   	elseif cmd[1] == "scamper" then	
 		local PlayerSpeedBase = Players[pid].data.customVariables.PlayerSpeedBase
