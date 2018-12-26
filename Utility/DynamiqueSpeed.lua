@@ -2,7 +2,7 @@
 
 
 
-  elseif cmd[1] == "trottiner" then	
+  	elseif cmd[1] == "trottiner" then	
 		local PlayerSpeedBase = Players[pid].data.customVariables.PlayerSpeedBase
 		local PlayerSpeedCurrently = Players[pid].data.attributes.Speed
 		if PlayerSpeedBase == nil then
