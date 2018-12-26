@@ -1,5 +1,5 @@
 -- This is the modified version of DeathDrop made for Rickoff so that only gold is dropped on death.
-
+-- tes3mp 0.7.0
 -- DeathDrop.lua -*-lua-*-
 
 Methods = {}
