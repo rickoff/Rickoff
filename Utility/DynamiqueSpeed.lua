@@ -2,7 +2,7 @@
 
 
 
-  	elseif cmd[1] == "trottiner" then	
+  	elseif cmd[1] == "scamper" then	
 		local PlayerSpeedBase = Players[pid].data.customVariables.PlayerSpeedBase
 		local PlayerSpeedCurrently = Players[pid].data.attributes.Speed
 		if PlayerSpeedBase == nil then
@@ -12,7 +12,7 @@
 		Players[pid].data.customVariables.PlayerSpeedBase = PlayerSpeedBase	
 		Players[pid]:LoadAttributes()
 		
-	elseif cmd[1] == "courir" then	
+	elseif cmd[1] == "run" then	
 		local PlayerSpeedBase = Players[pid].data.customVariables.PlayerSpeedBase
 		local PlayerSpeedCurrently = Players[pid].data.attributes.Speed
 		if PlayerSpeedBase == nil then
@@ -22,7 +22,7 @@
 		Players[pid].data.customVariables.PlayerSpeedBase = PlayerSpeedBase	
 		Players[pid]:LoadAttributes()
 		
-	elseif cmd[1] == "sprinter" then	
+	elseif cmd[1] == "sprint" then	
 		local PlayerSpeedBase = Players[pid].data.customVariables.PlayerSpeedBase
 		local PlayerSpeedCurrently = Players[pid].data.attributes.Speed
 		if PlayerSpeedBase == nil then
