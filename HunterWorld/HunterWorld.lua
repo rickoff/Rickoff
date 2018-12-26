@@ -1,16 +1,13 @@
 ---------------------------
 -- HunterWorld by Rickoff
 -- Tes3mp 0.7.0
-   -- add 100 random spawn point for creature or npc
-   -- when a boss creature appears the players receive a message
-   -- when a player kills the boss he receives a reward and the message displays that a rare creature was killed
-
---
+-- add 100 random spawn point for creature or npc
+-- when a boss creature appears the players receive a message
+-- when a player kills the boss he receives a reward and the message displays that a rare creature was killed
 ---------------------------
 tableHelper = require("tableHelper")
 inventoryHelper = require("inventoryHelper")
 jsonInterface = require("jsonInterface")
-
 -- ===========
 --MAIN CONFIG
 -- ===========
@@ -33,7 +30,6 @@ HunterWorld.TimerEventWorld = function()
 	local count
 	local rando1
 	local rando2
-
 	function EventSpawn()	
 		local cellTable = jsonInterface.load("EcarlateCreaturesSpawn.json")
 		local creatureTable = jsonInterface.load("EcarlateCreatures.json")
@@ -44,15 +40,13 @@ HunterWorld.TimerEventWorld = function()
 		local posy
 		local posz
 		rando1 = math.random(1, 107)
-		rando2 = math.random(1, 100)
-		
+		rando2 = math.random(1, 100)		
 		for slot1, creature in pairs(creatureTable.creatures) do
 			if slot1 == rando1 then
 				creatureRefId = creature.Refid
 				creaturename = creature.name
 			end
 		end
-
 		for slot2, cell in pairs(cellTable.cells) do
 			if slot2 == rando2 then
 				cellId = cell.Refid
@@ -61,7 +55,6 @@ HunterWorld.TimerEventWorld = function()
 				posz = cell.Posz
 			end
 		end
-
 		if creatureRefId ~= nil and cellId ~= nil and posx ~= nil and posy ~= nil and posz ~= nil then
 			local message = color.Red.. "Attention " ..color.Yellow..creaturename..color.Default.. " a fait une apparition dans la zone " ..color.Yellow..cellId.. "\n"
 			if tableHelper.getCount(Players) > 0 then
@@ -79,8 +72,7 @@ HunterWorld.TimerEventWorld = function()
 		end
 
 		tes3mp.RestartTimer(TimerEvent, time.seconds(config.timerSpawn))
-	end	
-	
+	end		
 	function EventPrice()	
 		for pid, player in pairs(Players) do
 			if Players[pid] ~= nil and player:IsLoggedIn() then	
@@ -106,17 +98,14 @@ HunterWorld.TimerEventWorld = function()
 	end
 end 
 
-
 HunterWorld.HunterPrime = function(pid)
 	local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
 	local addgold = 0
 	local message = color.Red.. "Une créature rare vient d'être tuée !\n"
 	local refId
-
 	for i = 0, tes3mp.GetKillChangesSize(pid) - 1 do
 		refId = tes3mp.GetKillRefId(pid, i)
 	end
-
 	if tableHelper.containsValue(config.bosses, refId) then
 		if goldLoc == nil then
 			table.insert(Players[pid].data.inventory, {refId = "gold_001", count = config.count, charge = -1})			
