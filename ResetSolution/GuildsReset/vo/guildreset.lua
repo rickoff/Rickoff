@@ -41,18 +41,6 @@ elseif cmd[1] == "resetreputation" and cmd[2] ~= nil then
 
 			end						
 
-		elseif cmd[2] == "blood" then
-
-			if guild == "bloodfang tong" then						
-
-				Players[pid].data.factionReputation[slot] = 0
-
-				Players[pid]:Save()
-
-				Players[pid]:LoadFactionReputation()	
-
-			end						
-
 		elseif cmd[2] == "oriental" then
 
 			if guild == "east empire company" then						
@@ -116,18 +104,6 @@ elseif cmd[1] == "resetreputation" and cmd[2] ~= nil then
 		elseif cmd[2] == "thieves" then
 
 			if guild == "thieves guild" then						
-
-				Players[pid].data.factionReputation[slot] = 0
-
-				Players[pid]:Save()
-
-				Players[pid]:LoadFactionReputation()	
-
-			end
-
-		elseif cmd[2] == "sixth" then
-
-			if guild == "sixth house" then						
 
 				Players[pid].data.factionReputation[slot] = 0
 
@@ -271,29 +247,7 @@ elseif cmd[1] == "resetexpulsion" and cmd[2] ~= nil then
 
 							Players[pid]:LoadFactionExpulsion()	
 
-						end					
-
-					elseif cmd[2] == "blood" then
-
-						if guild == "bloodfang tong" then						
-
-							Players[pid].data.factionExpulsion[slot] = false
-
-							Players[pid]:Save()
-
-							Players[pid]:LoadFactionExpulsion()	
-
-						elseif guild ~= "bloodfang tong" then
-
-							local slot = "bloodfang tong"
-
-							Players[pid].data.factionExpulsion[slot] = false
-
-							Players[pid]:Save()
-
-							Players[pid]:LoadFactionExpulsion()	
-
-						end						
+						end										
 
 					elseif cmd[2] == "oriental" then
 
@@ -426,28 +380,6 @@ elseif cmd[1] == "resetexpulsion" and cmd[2] ~= nil then
 							Players[pid]:LoadFactionExpulsion()	
 
 						end	
-
-					elseif cmd[2] == "sixth" then
-
-						if guild == "sixth house" then						
-
-							Players[pid].data.factionExpulsion[slot] = false
-
-							Players[pid]:Save()
-
-							Players[pid]:LoadFactionExpulsion()	
-
-						elseif guild ~= "sixth house" then
-
-							local slot = "sixth house"
-
-							Players[pid].data.factionExpulsion[slot] = false
-
-							Players[pid]:Save()
-
-							Players[pid]:LoadFactionExpulsion()	
-
-						end
 
 					elseif cmd[2] == "cult" then
 
@@ -623,29 +555,7 @@ elseif cmd[1] == "resetexclusion" and cmd[2] ~= nil then
 
 				Players[pid]:LoadFactionExpulsion()	
 
-			end					
-
-		elseif cmd[2] == "blood" then
-
-			if guild == "bloodfang tong" then						
-
-				Players[pid].data.factionExpulsion[slot] = true
-
-				Players[pid]:Save()
-
-				Players[pid]:LoadFactionExpulsion()	
-
-			elseif guild ~= "bloodfang tong" then
-
-				local slot = "bloodfang tong"
-
-				Players[pid].data.factionExpulsion[slot] = true
-
-				Players[pid]:Save()
-
-				Players[pid]:LoadFactionExpulsion()	
-
-			end						
+			end										
 
 		elseif cmd[2] == "oriental" then
 
@@ -778,28 +688,6 @@ elseif cmd[1] == "resetexclusion" and cmd[2] ~= nil then
 				Players[pid]:LoadFactionExpulsion()	
 
 			end	
-
-		elseif cmd[2] == "sixth" then
-
-			if guild == "sixth house" then						
-
-				Players[pid].data.factionExpulsion[slot] = true
-
-				Players[pid]:Save()
-
-				Players[pid]:LoadFactionExpulsion()	
-
-			elseif guild ~= "sixth house" then
-
-				local slot = "sixth house"
-
-				Players[pid].data.factionExpulsion[slot] = true
-
-				Players[pid]:Save()
-
-				Players[pid]:LoadFactionExpulsion()	
-
-			end
 
 		elseif cmd[2] == "cult" then
 
@@ -934,19 +822,7 @@ elseif cmd[1] == "resetranks" and cmd[2] ~= nil then
 				Players[pid]:LoadFactionRanks()	
 
 			end						
-
-		elseif cmd[2] == "blood" then
-
-			if guild == "bloodfang tong" then						
-
-				Players[pid].data.factionRanks[slot] = 0
-
-				Players[pid]:Save()
-
-				Players[pid]:LoadFactionRanks()	
-
-			end						
-
+		
 		elseif cmd[2] == "oriental" then
 
 			if guild == "east empire company" then						
@@ -1010,18 +886,6 @@ elseif cmd[1] == "resetranks" and cmd[2] ~= nil then
 		elseif cmd[2] == "thieves" then
 
 			if guild == "thieves guild" then						
-
-				Players[pid].data.factionRanks[slot] = 0
-
-				Players[pid]:Save()
-
-				Players[pid]:LoadFactionRanks()	
-
-			end
-
-		elseif cmd[2] == "sixth" then
-
-			if guild == "sixth house" then						
 
 				Players[pid].data.factionRanks[slot] = 0
 
