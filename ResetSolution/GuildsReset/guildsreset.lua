@@ -1,10 +1,10 @@
-- add under function OnPlayerSendMessage(pid, message) in commandHandler.lua
+-- add under function OnPlayerSendMessage(pid, message) in commandHandler.lua
   
   
-  		elseif cmd[1] == "menuguilds" then
+		elseif cmd[1] == "menuguilds" then
 		    Players[pid].currentCustomMenu = "commande reset ranks"
 		    menuHelper.displayMenu(pid, Players[pid].currentCustomMenu)	
-  
+
 		elseif cmd[1] == "resetreputation" and cmd[2] ~= nil then
 			local message = "Votre reputation au sein de la guilde à été reset !"
 			tes3mp.SendMessage(pid, message, false)		
@@ -451,7 +451,7 @@
 					tes3mp.SendMessage(pid, message, false)								
 				end					
 			end			
-				
+
 		elseif cmd[1] == "resetranks" and cmd[2] ~= nil then
 			local message = "Votre rang au sein de la guilde à été reset !"
 			tes3mp.SendMessage(pid, message, false)				
