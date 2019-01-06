@@ -100,3 +100,7 @@ https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
 **QuestsReset**
 
 - reset your quest log by selecting a quest line
+
+**EcarlateSoul**
+
+- an experience gain system with skill chart, inspired by ragefire
