@@ -1,0 +1,694 @@
+{
+  "creatures": [
+    {
+      "Refid": "ash_ghoul",
+      "name": "Goule des cendres",
+	  "Soul": 150
+    },
+    {
+      "Refid": "bonelord",
+      "name": "Seigneur des ossements",
+	  "Soul": 250	  
+    },
+    {
+      "Refid": "centurion_sphere",
+      "name": "Sphère-centurion",
+	  "Soul": 100	  
+    },
+    {
+      "Refid": "centurion_spider",
+      "name": "Araignée-centurion",
+	  "Soul": 80	  
+    },
+    {
+      "Refid": "dremora_lord",
+      "name": "Seigneur drémora",
+	  "Soul": 250	  
+    },
+    {
+      "Refid": "dwarven ghost",
+      "name": "Spectre de Nain",
+	  "Soul": 125	  
+    },
+    {
+      "Refid": "centurion_steam",
+      "name": "Centurion à vapeur",
+	  "Soul": 150	  
+    },
+    {
+      "Refid": "corprus_stalker_fgcs",
+      "name": "Traqueur pestiféré",
+	  "Soul": 50	  
+    },
+    {
+      "Refid": "ash_zombie_fgaz",
+      "name": "Zombi des cendres",
+	  "Soul": 60	  
+    },
+    {
+      "Refid": "ancestor_guardian_fgdd",
+      "name": "Gardien ancestral",
+	  "Soul": 300	  
+    },
+    {
+      "Refid": "golden saint",
+      "name": "Sainte dorée",
+	  "Soul": 250	  
+    },
+    {
+      "Refid": "centurion_shock_baladas",
+      "name": "Centurion électrique",
+	  "Soul": 125	  
+    },
+    {
+      "Refid": "worm lord",
+      "name": "Seigneur des Vers",
+	  "Soul": 500	  
+    },
+    {
+      "Refid": "shalk",
+      "name": "Shalk sauvage",
+	  "Soul": 30	  
+    },
+    {
+      "Refid": "winged twilight",
+      "name": "Ombre ailée",
+	  "Soul": 200	  
+    },
+    {
+      "Refid": "ogrim titan",
+      "name": "Titan ogrim",
+	  "Soul": 275	  
+    },
+    {
+      "Refid": "skeleton champ_sandas10",
+      "name": "Squelette champion",
+	  "Soul": 150	  
+    },
+    {
+      "Refid": "daedroth_az",
+      "name": "Daedroth",
+	  "Soul": 225	  
+    },
+    {
+      "Refid": "corprus_lame_morvayn",
+      "name": "Pestiféré boiteux",
+	  "Soul": 50	  
+    },
+    {
+      "Refid": "corprus_stalker_morvayn",
+      "name": "Traqueur pestiféré",
+	  "Soul": 50	  
+    },
+    {
+      "Refid": "goblin_grunt",
+      "name": "Gobelin",
+	  "Soul": 125	  
+    },
+    {
+      "Refid": "goblin_officer",
+      "name": "Officier gobelin",
+	  "Soul": 200	  
+    },
+    {
+      "Refid": "goblin_bruiser",
+      "name": "Boxeur gobelin",
+	  "Soul": 200	  
+    },
+    {
+      "Refid": "centurion_projectile",
+      "name": "Archer-centurion",
+	  "Soul": 125	  
+    },
+    {
+      "Refid": "lich",
+      "name": "Liche",
+	  "Soul": 200
+    },
+    {
+      "Refid": "goblin_footsoldier",
+      "name": "Soldat gobelin",
+	  "Soul": 175
+    },
+    {
+      "Refid": "durzog_war",
+      "name": "Guerrier durzog",
+	  "Soul": 175
+    },
+    {
+      "Refid": "durzog_wild",
+      "name": "Durzog sauvage",
+	  "Soul": 150
+    },
+    {
+      "Refid": "durzog_diseased",
+      "name": "Durzog malade",
+	  "Soul": 225
+    },
+    {
+      "Refid": "centurion_steam_advance",
+      "name": "Centurion à vapeur évolué",
+	  "Soul": 225
+    },
+    {
+      "Refid": "goblin_officeruni",
+      "name": "Officier gobelin",
+	  "Soul": 250
+    },
+    {
+      "Refid": "fabricant_summon",
+      "name": "Sauroïde infectieux",
+	  "Soul": 250
+    },
+    {
+      "Refid": "fabricant_hulking_attac",
+      "name": "Sauroïde mastodonte",
+	  "Soul": 300
+    },
+    {
+      "Refid": "goblin_handler",
+      "name": "Cogneur gobelin",
+	  "Soul": 160
+    },
+    {
+      "Refid": "durzog_war_trained",
+      "name": "Guerrier durzog",
+	  "Soul": 150
+    },
+    {
+      "Refid": "skeleton_relvel",
+      "name": "Squelette Champion",
+	  "Soul": 150
+    },
+    {
+      "Refid": "durzog_wild_weaker",
+      "name": "Durzog sauvage",
+	  "Soul": 150
+    },
+    {
+      "Refid": "fabricant_hulking_ss",
+      "name": "Sauroïde mastodonte",
+	  "Soul": 300
+    },
+    {
+      "Refid": "bm_wolf_grey",
+      "name": "Loup",
+	  "Soul": 100
+    },
+    {
+      "Refid": "bm_wolf_red",
+      "name": "Loup pesteux",
+	  "Soul": 125
+    },
+    {
+      "Refid": "bm_spriggan",
+      "name": "Spriggane",
+	  "Soul": 150
+    },
+    {
+      "Refid": "bm_wolf_skeleton",
+      "name": "Loup-squelette",
+	  "Soul": 200
+    },
+    {
+      "Refid": "plx_flamingskull",
+      "name": "Crâne enflammé",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_SilverSaint",
+      "name": "Sainte argentée",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_DarkSaint",
+      "name": "Sainte noire",
+	  "Soul": 450
+    },
+    {
+      "Refid": "plx_ashpoet",
+      "name": "Poète des cendres",
+	  "Soul": 200
+    },
+    {
+      "Refid": "plx_scorpion1",
+      "name": "Scorpion",
+	  "Soul": 150
+    },
+    {
+      "Refid": "plx_scorpion2",
+      "name": "Scorpion géant",
+	  "Soul": 250
+    },
+    {
+      "Refid": "plx_bloodwing",
+      "name": "Aile sanglante",
+	  "Soul": 350
+    },
+    {
+      "Refid": "plx_rottingdeaddude",
+      "name": "Cadavre en putréfaction",
+	  "Soul": 100
+    },
+    {
+      "Refid": "plx_spider",
+      "name": "Araignée",
+	  "Soul": 125
+    },
+    {
+      "Refid": "plx_snake1",
+      "name": "Serpent de prairie",
+	  "Soul": 100
+    },
+    {
+      "Refid": "plx_snake2",
+      "name": "Serpent des cendres",
+	  "Soul": 125
+    },
+    {
+      "Refid": "plx_dead_skeleton hero",
+      "name": "Cadavre squelettique",
+	  "Soul": 50
+    },
+    {
+      "Refid": "plx_mummy",
+      "name": "Momie",
+	  "Soul": 150
+    },
+    {
+      "Refid": "plx_kwama warrior_d",
+      "name": "Soldat kwama malade",
+	  "Soul": 25
+    },
+    {
+      "Refid": "plx_bandit_durzog",
+      "name": "Durzog",
+	  "Soul": 125
+    },
+    {
+      "Refid": "plx_daedrothfiend",
+      "name": "Démon Daedroth",
+	  "Soul": 225
+    },
+    {
+      "Refid": "plx_famine",
+      "name": "Famine",
+	  "Soul": 250
+    },
+    {
+      "Refid": "plx_winged_fiend",
+      "name": "Démon ailé",
+	  "Soul": 250
+    },
+    {
+      "Refid": "plx_clannterror",
+      "name": "Faucheclan effroyable",
+	  "Soul": 175
+    },
+    {
+      "Refid": "plx_strongscamp",
+      "name": "Galopin flamboyant",
+	  "Soul": 150
+    },
+    {
+      "Refid": "plx_parastylus",
+      "name": "Parastylus",
+	  "Soul": 200
+    },
+    {
+      "Refid": "plx_daedric_bat",
+      "name": "Chauve-souris géante Daedrique",
+	  "Soul": 75
+    },
+    {
+      "Refid": "plx_daedric_less_bat",
+      "name": "Chauve-souris Daedrique",
+	  "Soul": 75
+    },
+    {
+      "Refid": "plx_spider2",
+      "name": "Araignée géante",
+	  "Soul": 150
+    },
+    {
+      "Refid": "plx_hellhound",
+      "name": "Chien de l'enfer",
+	  "Soul": 250
+    },
+    {
+      "Refid": "plx_dremora1_meele",
+      "name": "Drémora Churl",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora2_meele",
+      "name": "Drémora Caitiff",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora3_meele",
+      "name": "Drémora Kynval",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora4_meele",
+      "name": "Drémora Kynreeve",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora5_meele",
+      "name": "Drémora Kynmarcher",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora6_meele",
+      "name": "Drémora Markynaz",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora1_mage",
+      "name": "Drémora Churl",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora2_mage",
+      "name": "Drémora Caitiff",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora3_mage",
+      "name": "Drémora Kynval",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora4_mage",
+      "name": "Drémora Kynreeve",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora5_mage",
+      "name": "Drémora Kynmarcher",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora6_mage",
+      "name": "Drémora Markynaz",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora2_archer",
+      "name": "Drémora Caitiff",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora3_archer",
+      "name": "Drémora Kynval",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora4_archer",
+      "name": "Drémora Kynreeve",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_silversaint2",
+      "name": "Sainte argentée",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_darksaint2",
+      "name": "Sainte noire",
+	  "Soul": 500
+    },
+    {
+      "Refid": "plx_dremora1_jack",
+      "name": "Drémora Churl",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora2_jack",
+      "name": "Drémora Caitiff",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora3_jack",
+      "name": "Drémora Kynval",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora4_jack",
+      "name": "Drémora Kynreeve",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora5_jack",
+      "name": "Drémora Kynmarcher",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora6_jack",
+      "name": "Drémora Markynaz",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_dremora8",
+      "name": "Drémora de Chair",
+	  "Soul": 300
+    },
+    {
+      "Refid": "plx_vermai",
+      "name": "Vermai",
+	  "Soul": 175
+    },
+    {
+      "Refid": "plx_clannfear_runt",
+      "name": "Avorton faucheclan",
+	  "Soul": 175
+    },
+    {
+      "Refid": "bm_spriggan_st_unique",
+      "name": "Spriggane",
+	  "Soul": 300
+    },
+    {
+      "Refid": "bm skeleton champion gr",
+      "name": "Grand champion squelette",
+	  "Soul": 350
+    },
+    {
+      "Refid": "bm_wolf_bone_summon",
+      "name": "Loup-squelette",
+	  "Soul": 250
+    },
+    {
+      "Refid": "raz_reddragon",
+      "name": "Dragon rouge",
+	  "Soul": 600
+    },
+    {
+      "Refid": "raz_bluedragon",
+      "name": "Dragon bleu",
+	  "Soul": 600
+    },
+    {
+      "Refid": "raz_adult_blackdragon",
+      "name": "Dragon noir",
+	  "Soul": 600
+    },	
+    {
+      "Refid": "raz_adult_greendragon",
+      "name": "Dragon vert",
+	  "Soul": 600
+    },
+    {
+      "Refid": "imperfect_ecarlate",
+      "name": "Géant dwemer",
+	  "Soul": 750
+    },
+    {
+      "Refid": "ecarlate_frost_giant",
+      "name": "Seigneur troll",
+	  "Soul": 750
+    },
+    {
+      "Refid": "ecarlate_bandit_01",
+      "name": "Prince d'ébonite",
+	  "Soul": 750
+    },		
+    {
+      "Refid": "ecarlate_bandit_02",
+      "name": "Prince de verre",
+	  "Soul": 750
+    },
+    {
+      "Refid": "ecarlate_bandit_03",
+      "name": "Prince de métal",
+	  "Soul": 750
+    },
+    {
+      "Refid": "ecarlate_bandit_04",
+      "name": "Prince d'akatosh",
+	  "Soul": 750
+    },
+    {
+      "Refid": "bm_frost_boar",
+      "name": "Sanglier",
+	  "Soul": 350
+    },
+    {
+      "Refid": "bm_riekling_mounted",
+      "name": "Riekling monté",
+	  "Soul": 300
+    },	
+    {
+      "Refid": "bm_bear_brown",
+      "name": "Ours Brun",
+	  "Soul": 250
+    },	
+    {
+      "Refid": "bm_frysehag_1",
+      "name": "Sorcière",
+	  "Soul": 450
+    },	
+    {
+      "Refid": "bm_frysehag_2",
+      "name": "Sorcière",
+	  "Soul": 450
+    },
+    {
+      "Refid": "bm_frysehag_3",
+      "name": "Sorcière",
+	  "Soul": 450
+    },		
+    {
+      "Refid": "bm_berserker_m1",
+      "name": "Barbare",
+	  "Soul": 400
+    },	
+    {
+      "Refid": "bm_berserker_m1_lvl5",
+      "name": "Barbare",
+	  "Soul": 500
+    },		
+    {
+      "Refid": "bm_berserker_f1",
+      "name": "Barbare",
+	  "Soul": 400
+    },	
+    {
+      "Refid": "bm_berserker_f2",
+      "name": "Barbare",
+	  "Soul": 400
+    },
+    {
+      "Refid": "dremora",
+      "name": "Dremora",
+	  "Soul": 250
+    },	
+    {
+      "Refid": "squirrel2",
+      "name": "Ecureuil",
+	  "Soul": 25
+    },	
+    {
+      "Refid": "scrib",
+      "name": "Scrib",
+	  "Soul": 35
+    },
+    {
+      "Refid": "netch_bull",
+      "name": "Netch Male",
+	  "Soul": 50
+    },
+    {
+      "Refid": "netch_betty",
+      "name": "Netch Male",
+	  "Soul": 65
+    },
+    {
+      "Refid": "skeleton champion",
+      "name": "Squelette Champion",
+	  "Soul": 180
+    },
+    {
+      "Refid": "skeleton archer",
+      "name": "Squelette Archer",
+	  "Soul": 125
+    },
+    {
+      "Refid": "skeleton warrior",
+      "name": "Squelette guerrier",
+	  "Soul": 125
+    },	
+    {
+      "Refid": "skeleton",
+      "name": "Squelette",
+	  "Soul": 100
+    },	
+    {
+      "Refid": "bonelord",
+      "name": "Seigneur d'os",
+	  "Soul": 175
+    },
+    {
+      "Refid": "bonewalker",
+      "name": "Cadavre ambulant",
+	  "Soul": 175
+    },
+    {
+      "Refid": "bonewalker_greater",
+      "name": "Cadavre ambulant",
+	  "Soul": 200
+    },
+    {
+      "Refid": "_jar_zombie_daedric",
+      "name": "Zombie Daedric",
+	  "Soul": 750
+    },
+    {
+      "Refid": "_jar_skeleton__m_mail",
+      "name": "Squelette Archer Nordic",
+	  "Soul": 850
+    },
+    {
+      "Refid": "_jar_wight01",
+      "name": "Esprit Diabolique",
+	  "Soul": 1000
+    },
+    {
+      "Refid": "_jar_wight02",
+      "name": "Esprit Diabolique",
+	  "Soul": 1000
+    },
+    {
+      "Refid": "_jar_wight03",
+      "name": "Esprit Diabolique",
+	  "Soul": 1000
+    },
+    {
+      "Refid": "_jar_wight04",
+      "name": "Esprit Diabolique",
+	  "Soul": 1000
+    },
+    {
+      "Refid": "_jar_raptor_1",
+      "name": "Esprit Diabolique",
+	  "Soul": 1250
+    },
+    {
+      "Refid": "kwama forager",
+      "name": "Kwama",
+	  "Soul": 20
+    },	
+    {
+      "Refid": "aundae vampire 1",
+      "name": "Vampire aundae",
+	  "Soul": 175
+    },		
+    {
+      "Refid": "sk_dremora_lord_guard_1",
+      "name": "Seigneur drémora",
+	  "Soul": 500
+    }	
+  ]
+}
