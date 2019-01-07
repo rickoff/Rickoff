@@ -7,22 +7,21 @@ Menus["menu cmp ecarlate"] = {
 		"\n",		
 		color.Yellow .. "\nNiveau : " .. color.White,
 		menuHelper.variables.currentPlayerDataVariable("customVariables.levelSoul"), 
-		color.Red .. " >= 50",
 		"\n",	
 		color.Yellow .. "\npoints de compétences : " .. color.White,
 		menuHelper.variables.currentPlayerDataVariable("customVariables.pointSoul"),
 		"\n",
 	},
     buttons = {				
-        { caption = "Defence",
+        { caption = "Ecoles",
 			destinations = {menuHelper.destinations.setDefault("menu cmp def") 
 			}
 		},
-        { caption = "Combat",
+        { caption = "Combats",
 			destinations = {menuHelper.destinations.setDefault("menu cmp cmb")
 			}
         },
-        { caption = "Magie",
+        { caption = "Talents",
 			destinations = {menuHelper.destinations.setDefault("menu cmp mag")
 			}
         },
@@ -43,64 +42,80 @@ Menus["menu cmp cmb"] = {
 		"\n",		
 		color.Yellow .. "\nNiveau : " .. color.White,
 		menuHelper.variables.currentPlayerDataVariable("customVariables.levelSoul"), 
-		color.Red .. " >= 50",
 		"\n",	
 		color.Yellow .. "\npoints de compétences : " .. color.White,
 		menuHelper.variables.currentPlayerDataVariable("customVariables.pointSoul"),
 		"\n\n",
-		color.Yellow .. "\ncompétence du barbare : " .. color.White,
-		"augmente la force, l'endurance et l'armure lourde de :" .. color.Green,
-		" + 4 " .. color.White,
-		" points. " .. color.Yellow,
-		"\nNiveau : " .. color.White,			
-		menuHelper.variables.currentPlayerDataVariable("customVariables.barbare"),
-		color.Red .. " <= infini\n",	
-		color.Yellow .. "Coût : ",
-		color.White .. "3 points.\n",		
 		color.Yellow .. "\ncompétence du guerrier : " .. color.White,
-		"augmente la force, la vitesse et l'armure intermediaire de :" .. color.Green,
+		"augmente la force et l'endurance :" .. color.Green,
 		" + 4 " .. color.White,
 		" points. " .. color.Yellow,
 		"\nNiveau : " .. color.White,			
 		menuHelper.variables.currentPlayerDataVariable("customVariables.guerrier"),
-		color.Red .. " <= infini\n",
+		color.Red .. " <= 5\n",	
 		color.Yellow .. "Coût : ",
 		color.White .. "3 points.\n",		
-		color.Yellow .. "\ncompétence du rodeur : " .. color.White,
-		"augmente la vitesse, l'agilité et l'armure légère de :" .. color.Green,
+		color.Yellow .. "\ncompétence du voleur : " .. color.White,
+		"augmente la vitesse et l'agilité de :" .. color.Green,
 		" + 4 " .. color.White,
 		" points. " .. color.Yellow,
 		"\nNiveau : " .. color.White,			
-		menuHelper.variables.currentPlayerDataVariable("customVariables.rodeur"),
-		color.Red .. " <= infini\n",
+		menuHelper.variables.currentPlayerDataVariable("customVariables.voleur"),
+		color.Red .. " <= 5\n",
+		color.Yellow .. "Coût : ",
+		color.White .. "3 points.\n",		
+		color.Yellow .. "\ncompétence du mage : " .. color.White,
+		"augmente l'intelligence et la volonté de :" .. color.Green,
+		" + 4 " .. color.White,
+		" points. " .. color.Yellow,
+		"\nNiveau : " .. color.White,			
+		menuHelper.variables.currentPlayerDataVariable("customVariables.mage"),
+		color.Red .. " <= 5\n",
+		color.Yellow .. "Coût : ",
+		color.White .. "3 points.\n",
+		color.Yellow .. "\ncompétence du roublard : " .. color.White,
+		"augmente la chance et la personnalité de :" .. color.Green,
+		" + 4 " .. color.White,
+		" points. " .. color.Yellow,
+		"\nNiveau : " .. color.White,			
+		menuHelper.variables.currentPlayerDataVariable("customVariables.roublard"),
+		color.Red .. " <= 5\n",
 		color.Yellow .. "Coût : ",
 		color.White .. "3 points.\n"		
 	},
     buttons = {						
-        { caption = "Barbare",
-            destinations = {menuHelper.destinations.setDefault("menu cmp cmb",
-            { 
-				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
-					{menuHelper.variables.currentPid(), "Barbare"})
-                })
-            }
-		},
         { caption = "Guerrier",
             destinations = {menuHelper.destinations.setDefault("menu cmp cmb",
             { 
 				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
 					{menuHelper.variables.currentPid(), "Guerrier"})
                 })
-            }	
+            }
 		},
-        { caption = "Rodeur",
+        { caption = "Voleur",
             destinations = {menuHelper.destinations.setDefault("menu cmp cmb",
             { 
 				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
-					{menuHelper.variables.currentPid(), "Rodeur"})
+					{menuHelper.variables.currentPid(), "Voleur"})
+                })
+            }	
+		},
+        { caption = "Mage",
+            destinations = {menuHelper.destinations.setDefault("menu cmp cmb",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Mage"})
                 })
             }
         },
+        { caption = "Roublard",
+            destinations = {menuHelper.destinations.setDefault("menu cmp cmb",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Roublard"})
+                })
+            }
+        },		
         { caption = "Retour",
             destinations = {menuHelper.destinations.setDefault("menu cmp ecarlate")
             }
@@ -110,21 +125,20 @@ Menus["menu cmp cmb"] = {
 }
 
 Menus["menu cmp def"] = {
-	text = {color.Orange .. "COMPETENCES DEFENSIVE\n",
+	text = {color.Orange .. "ECOLES\n",
 		color.Yellow .. "\nExp : " .. color.White,
 		menuHelper.variables.currentPlayerDataVariable("customVariables.soul"), 
 		color.Red .. " >= " .. color.White,
 		menuHelper.variables.currentPlayerDataVariable("customVariables.capSoul"),
 		"\n",		
 		color.Yellow .. "\nNiveau : " .. color.White,
-		menuHelper.variables.currentPlayerDataVariable("customVariables.levelSoul"), 
-		color.Red .. " >= 50",
+		menuHelper.variables.currentPlayerDataVariable("customVariables.levelSoul"),
 		"\n",	
 		color.Yellow .. "\npoints de compétences : " .. color.White,
 		menuHelper.variables.currentPlayerDataVariable("customVariables.pointSoul"),
 		"\n\n",
-		color.Yellow .. "\nsanté de fer : " .. color.White,
-		"augmente la vie et la fatigue de :" .. color.Green,
+		color.Yellow .. "\nGuerrier : " .. color.White,
+		"augmente la santé de base de :" .. color.Green,
 		" + 10 " .. color.White,
 		" points. " .. color.Yellow,
 		"\nNiveau : " .. color.White,			
@@ -132,27 +146,27 @@ Menus["menu cmp def"] = {
 		color.Red .. " <= 5\n",	
 		color.Yellow .. "Coût : ",
 		color.White .. "3 points.\n",		
-		color.Yellow .. "\npeau endurcie : " .. color.White,
-		"augmente le combat sans armure et l'attaque à mains nues de :" .. color.Green,
+		color.Yellow .. "\nMage : " .. color.White,
+		"augmente la magie de base de :" .. color.Green,
 		" + 10 " .. color.White,
 		" points. " .. color.Yellow,
 		"\nNiveau : " .. color.White,			
 		menuHelper.variables.currentPlayerDataVariable("customVariables.peau"),
-		color.Red .. " <= infini\n",
+		color.Red .. " <= 5\n",
 		color.Yellow .. "Coût : ",
 		color.White .. "3 points.\n",		
-		color.Yellow .. "\nguerrier expérimenté : " .. color.White,
-		"augmente la parade et l'armurerie de :" .. color.Green,
+		color.Yellow .. "\nVoleur: " .. color.White,
+		"augmente la fatigue de base de :" .. color.Green,
 		" + 10 " .. color.White,
 		" points. " .. color.Yellow,
 		"\nNiveau : " .. color.White,			
 		menuHelper.variables.currentPlayerDataVariable("customVariables.guexp"),
-		color.Red .. " <= infini\n",
+		color.Red .. " <= 5\n",
 		color.Yellow .. "Coût : ",
 		color.White .. "3 points.\n"		
 	},
     buttons = {						
-        { caption = "Santé de fer",
+        { caption = "Guerrier",
             destinations = {menuHelper.destinations.setDefault("menu cmp def",
             { 
 				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
@@ -160,7 +174,7 @@ Menus["menu cmp def"] = {
                 })
             }
 		},
-        { caption = "Peau endurcie",
+        { caption = "Mage",
             destinations = {menuHelper.destinations.setDefault("menu cmp def",
             { 
 				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
@@ -168,7 +182,7 @@ Menus["menu cmp def"] = {
                 })
             }	
 		},
-        { caption = "Guerrier expérimenté",
+        { caption = "Voleur",
             destinations = {menuHelper.destinations.setDefault("menu cmp def",
             { 
 				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
@@ -185,7 +199,144 @@ Menus["menu cmp def"] = {
 }
 
 Menus["menu cmp mag"] = {
-	text = {color.Orange .. "COMPETENCES DE MAGIE\n",
+	text = {color.Orange .. "Talents page 1\n",
+		color.Yellow .. "\nExp : " .. color.White,
+		menuHelper.variables.currentPlayerDataVariable("customVariables.soul"), 
+		color.Red .. " >= " .. color.White,
+		menuHelper.variables.currentPlayerDataVariable("customVariables.capSoul"),
+		"\n",		
+		color.Yellow .. "\nNiveau : " .. color.White,
+		menuHelper.variables.currentPlayerDataVariable("customVariables.levelSoul"),
+		"\n",	
+		color.Yellow .. "\npoints de compétences : " .. color.White,
+		menuHelper.variables.currentPlayerDataVariable("customVariables.pointSoul"),
+		"\n\n",
+		color.White .. "\nSelectionnez un talent dans la liste" .. color.Yellow,
+		"\naugmente le talent de :" .. color.Green,
+		" + 10" .. color.White,
+		" points.\n" .. color.Yellow,
+		color.Yellow .. "\nCoût : ",
+		color.White .. "3 points.\n"
+	},
+    buttons = {	
+        { caption = "Mains nues",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Handtohand"})
+                })
+            }
+        },	
+        { caption = "Lame courte",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Shortblade"})
+                })
+            }	
+		},	
+        { caption = "Lame longue",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Longblade"})
+                })
+            }
+        },
+        { caption = "Hache",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Axe"})
+                })
+            }
+        },	
+        { caption = "Contondant",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Bluntweapon"})
+                })
+            }
+        },		
+        { caption = "Lance",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Spear"})
+                })
+            }
+        },		
+        { caption = "Sécurité",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Security"})
+                })
+            }
+		},		
+        { caption = "Athlétisme",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Athletics"})
+                })
+            }
+        },		
+        { caption = "Précision",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Marksman"})
+                })
+            }
+		},
+        { caption = "Acrobatie",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Acrobatics"})
+                })
+            }	
+		},
+        { caption = "Discrétion",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Sneak"})
+                })
+            }
+        },	
+        { caption = "Marchandage",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Mercantile"})
+                })
+            }
+		},		
+        { caption = "Sans armure",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Unarmored"})
+                })
+            }
+        },			
+        { caption = "Page 2",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2")
+            }
+        },			
+        { caption = "Retour",
+            destinations = {menuHelper.destinations.setDefault("menu cmp ecarlate")
+            }
+        },				
+        { caption = "Quitter", destinations = nil }
+    }
+}
+
+Menus["menu cmp mag2"] = {
+	text = {color.Orange .. "Talents page 2\n",
 		color.Yellow .. "\nExp : " .. color.White,
 		menuHelper.variables.currentPlayerDataVariable("customVariables.soul"), 
 		color.Red .. " >= " .. color.White,
@@ -193,68 +344,138 @@ Menus["menu cmp mag"] = {
 		"\n",		
 		color.Yellow .. "\nNiveau : " .. color.White,
 		menuHelper.variables.currentPlayerDataVariable("customVariables.levelSoul"), 
-		color.Red .. " >= 50",
 		"\n",	
 		color.Yellow .. "\npoints de compétences : " .. color.White,
 		menuHelper.variables.currentPlayerDataVariable("customVariables.pointSoul"),
 		"\n\n",
-		color.Yellow .. "\narchimage : " .. color.White,
-		"augmente la magie et la fatigue de :" .. color.Green,
+		color.White .. "\nSelectionne un talent dans la liste" .. color.Yellow,
+		"\naugmente le talent de :" .. color.Green,
 		" + 10" .. color.White,
 		" points.\n" .. color.Yellow,
-		"Niveau : " .. color.White,		
-		menuHelper.variables.currentPlayerDataVariable("customVariables.archi"),
-		color.Red .. " >= 5",
-		color.Yellow .. "Coût : ",
-		color.White .. "3 points.\n",		
-		color.Yellow .. "\nmoine : " .. color.White,
-		"augmente la guerison et le mystisisme de :" .. color.Green,
-		" + 10" .. color.White,
-		" points.\n" .. color.Yellow,
-		"Niveau : " .. color.White,		
-		menuHelper.variables.currentPlayerDataVariable("customVariables.moine"),
-		color.Red .. " <= infini\n",
-		color.Yellow .. "Coût : ",
-		color.White .. "3 points.\n",		
-		color.Yellow .. "\ndaedra : " .. color.White,
-		"augmente la destruction et l'invocation de :" .. color.Green,
-		" + 10" .. color.White,
-		" points.\n" .. color.Yellow,
-		"Niveau : " .. color.White,
-		menuHelper.variables.currentPlayerDataVariable("customVariables.daedra"),
-		color.Red .. " <= infini\n",
-		color.Yellow .. "Coût : ",
-		color.White .. "3 points."
+		color.Yellow .. "\nCoût : ",
+		color.White .. "3 points.\n"
 	},
-    buttons = {						
-        { caption = "Archimage",
-            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+    buttons = {		
+        { caption = "Armure légère",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
             { 
 				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
-					{menuHelper.variables.currentPid(), "Archi"})
-                })
-            }
-		},
-        { caption = "Moine",
-            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
-            { 
-				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
-					{menuHelper.variables.currentPid(), "Moine"})
+					{menuHelper.variables.currentPid(), "Lightarmor"})
                 })
             }	
 		},
-        { caption = "Daedra",
-            destinations = {menuHelper.destinations.setDefault("menu cmp mag",
+        { caption = "Armure inter",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
             { 
 				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
-					{menuHelper.variables.currentPid(), "Daedra"})
+					{menuHelper.variables.currentPid(), "Mediumarmor"})
+                })
+            }
+		},
+        { caption = "Armure lourde",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Heavyarmor"})
+                })
+            }	
+		},
+        { caption = "Parade",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Block"})
+                })
+            }
+		},		
+        { caption = "Armurier",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Armorer"})
+                })
+            }
+		},
+        { caption = "Eloquence",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Speechcraft"})
+                })
+            }	
+		},
+        { caption = "Enchantement",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Enchant"})
+                })
+            }	
+		},
+        { caption = "Destruction",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Destruction"})
                 })
             }
         },
+        { caption = "Conjuration",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Conjuration"})
+                })
+            }
+		},		
+        { caption = "Illusion",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Illusion"})
+                })
+            }
+		},
+        { caption = "Alteration",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Alteration"})
+                })
+            }
+        },		
+        { caption = "Mysticisme",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Mysticism"})
+                })
+            }	
+		},
+        { caption = "Guérison",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Restoration"})
+                })
+            }	
+		},
+        { caption = "Alchimie",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag2",
+            { 
+				menuHelper.effects.runGlobalFunction("EcarlateSoul", "OnPlayerCompetence", 
+					{menuHelper.variables.currentPid(), "Alchemy"})
+                })
+            }	
+		},		
+        { caption = "Page 1",
+            destinations = {menuHelper.destinations.setDefault("menu cmp mag")
+            }
+        },		
         { caption = "Retour",
             destinations = {menuHelper.destinations.setDefault("menu cmp ecarlate")
             }
         },				
         { caption = "Quitter", destinations = nil }
     }
-}		
+}
