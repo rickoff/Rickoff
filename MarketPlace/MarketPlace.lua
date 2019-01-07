@@ -481,15 +481,20 @@ end
 MarketPlace.showInventoryOptionsGUI = function(pid, loc)
     local message = ""
     local choice = playerInventoryOptions[getName(pid)].opt[loc]
-   
-    message = message .. "Item ID: " .. choice.itemid
-    playerInventoryOptions[getName(pid)].choice = choice
-    tes3mp.CustomMessageBox(pid, config.InventoryOptionsGUI, message, "Acheter/Récupérer;Retour")
+	if choice ~= nil and choice.itemid ~= nil then
+		message = message .. "Item ID: " .. choice.itemid
+		playerInventoryOptions[getName(pid)].choice = choice
+		tes3mp.CustomMessageBox(pid, config.InventoryOptionsGUI, message, "Acheter/Récupérer;Retour")
+	else
+		tes3mp.SendMessage(pid, "Désolé vous êtes en retard. Cet article vient d'être acheté.\n",false)
+	end
 end
  
 MarketPlace.onInventoryOptionBuy = function(pid, loc)
     local choice = playerInventoryOptions[getName(pid)].choice
-    itemAchat(pid, choice)     
+	if choice ~= nil then	
+		itemAchat(pid, choice) 
+	end
 end
  
 MarketPlace.onInventoryOptionRec = function(pid)
