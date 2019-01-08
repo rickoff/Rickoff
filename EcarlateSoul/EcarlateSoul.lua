@@ -413,8 +413,9 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		elseif Comp == "Unarmored" and PointCount < 3 then
 			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 		end			
+        Players[Pid]:SaveStatsDynamic()		
 		Players[Pid]:SaveAttributes()	
-		Players[Pid]:SaveSkills()	
+		Players[Pid]:SaveSkills()			
 		tes3mp.SendAttributes(Pid)
 		tes3mp.SendSkills(Pid)	
 		tes3mp.SendStatsDynamic(Pid)
