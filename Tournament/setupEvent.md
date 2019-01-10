@@ -34,6 +34,24 @@ EventSetup
 		pvpEvent.tcheckcell(pid)
 		eventRush.tcheckcell(pid)
 
-7) For use eventOblivion.lua find function OnWorldKillCount(pid) and add under
+7) For use eventOblivion.lua find function eventHandler.OnActorDeath and replace by :
 
-		eventOblivion.Prime(pid)
+		eventHandler.OnActorDeath = function(pid, cellDescription)
+		    if LoadedCells[cellDescription] ~= nil then
+			local actorIndex = tes3mp.GetActorListSize() - 1
+			local uniqueIndex = tes3mp.GetActorRefNum(actorIndex) .. "-" .. tes3mp.GetActorMpNum(actorIndex)
+				if actorIndex ~= nil and uniqueIndex ~= nil then
+					if tes3mp.DoesActorHavePlayerKiller(actorIndex) then
+						local killerPid = tes3mp.GetActorKillerPid(actorIndex)
+						local crearefId = LoadedCells[cellDescription].data.objectData[uniqueIndex].refId	
+						HunterWorld.HunterPrime(killerPid, crearefId)--if you use HunterWorld
+						eventOblivion.Prime(killerPid, crearefId)--if you use eventOblivion
+						EcarlateSoul.OnPlayerKillCreature(killerPid, crearefId)	--if you use EcarlateSoul	
+					end
+				end
+				LoadedCells[cellDescription]:SaveActorDeath(pid)		
+		    else
+			tes3mp.LogMessage(enumerations.log.WARN, "Undefined behavior: " .. logicHandler.GetChatName(pid) ..
+			    " sent ActorDeath for unloaded " .. cellDescription)
+		    end
+		end
