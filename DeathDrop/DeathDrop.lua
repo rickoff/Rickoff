@@ -12,13 +12,6 @@ Methods = {}
 
 inventoryHelper = require("inventoryHelper")
 
--- Add [ DeathDrop = require("DeathDrop") ] to the top of myMod.lua
-
--- Find "Players[pid]:ProcessDeath()" inside myMod.lua and add:
--- [ DeathDrop.Drop(pid) ]
--- directly above it.
-
-
 Methods.Drop = function(pid)
 	local player = Players[pid]
 	local goldLoc = inventoryHelper.getItemIndex(player.data.inventory, "gold_001", -1)
