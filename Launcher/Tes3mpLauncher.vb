@@ -5,15 +5,14 @@ Imports System
 Public Class ServeurFR
     Dim MAJ As New WebClient
     Dim client As WebClient = New WebClient
-    Dim ListDirectory() As String = File.ReadAllLines("C:\Tes3mp\ClientDirectory.txt")
+    Dim ListDirectory() As String = File.ReadAllLines("ClientDirectory.txt")
     Dim FirstVersion As String = MAJ.DownloadString(ListDirectory(0).ToString + "\VersionClient.txt")
-    Dim NameUser = Environment.UserName
     Dim OpenMwCfg As String = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\My Games\OpenMw\Openmw.cfg"
     Dim Updatesetup As String = ListDirectory(0).ToString + "\maj\setup.exe"
     Dim UpdateVersion As String = ListDirectory(0).ToString + "\VersionClient.txt"
     Dim Tes3mpClient As String = ListDirectory(0).ToString + "\tes3mp-client-default.cfg"
 
-    Dim ListLink() As String = File.ReadAllLines(ListDirectory(0).ToString + "\ServerLink.txt")
+    Dim ListLink() As String = File.ReadAllLines("ServerLink.txt")
     Dim Openmwlink As String = ListLink(0).ToString
     Dim Updatelink As String = ListLink(1).ToString
     Dim Versionlink As String = ListLink(2).ToString
