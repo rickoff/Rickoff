@@ -13,4 +13,3 @@ Here is a solution to allow your players to recover files for your mods or serve
 - 5) place VersionClient.txt in directory to your games directory
 - 6) send launcher folder and VersionClient with all players server
 
-https://gyazo.com/870d3a4ba7ccb2fd86682d8192b37a94
