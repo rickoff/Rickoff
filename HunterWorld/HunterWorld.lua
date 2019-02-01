@@ -186,10 +186,10 @@ HunterWorld.OnPlayerChangeCell = function(pid)
 		local cellId = tes3mp.GetCell(pid)
 		local cell = LoadedCells[cellId]
         local Time = os.time()	
-		local tempCell = cell.data.entry.creationTime
-		if tempCell ~= nil then
+		if cell ~= nil then	
+			local tempCell = cell.data.entry.creationTime		
+			if tempCell ~= nil then
 			local calculTime = Time - tempCell		
-			if cell ~= nil then		
 				if calculTime > config.timerRespawn then				
 					for x, index in pairs(cell.data.packets.actorList) do
 						local refIndex = cell.data.packets.actorList[x]
