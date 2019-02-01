@@ -73,10 +73,11 @@ end
 
 4) open servercore.lua find function OnPlayerCellChange(pid) and add a last line respawnCell.OnPlayerChangeCell(pid)
 ]] 
-local respawnCell = {}
 
 local config = {}
 config.timerRespawn = 1800
+
+local respawnCell = {}
 
 respawnCell.OnPlayerChangeCell = function(pid) 
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
