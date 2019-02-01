@@ -29,21 +29,21 @@ eventHandler.OnObjectDelete = function(pid, cellDescription)
             local rejectedObjects = {}
 			local listIndexActor = {}			
             local unusableContainerUniqueIndexes = LoadedCells[cellDescription].unusableContainerUniqueIndexes
-            for index = 0, tes3mp.GetObjectListSize() - 1 do
+			for index = 0, tes3mp.GetObjectListSize() - 1 do
 
-                local refId = tes3mp.GetObjectRefId(index)
-                local uniqueIndex = tes3mp.GetObjectRefNum(index) .. "-" .. tes3mp.GetObjectMpNum(index)	
+				local refId = tes3mp.GetObjectRefId(index)
+				local uniqueIndex = tes3mp.GetObjectRefNum(index) .. "-" .. tes3mp.GetObjectMpNum(index)	
 				for x, index in pairs(LoadedCells[cellDescription].data.packets.actorList) do
 					local refIndex = LoadedCells[cellDescription].data.packets.actorList[x]			
 					table.insert(listIndexActor, refIndex)
-				end					
-                if tableHelper.containsValue(config.disallowedDeleteRefIds, refId) or
+				end
+				if tableHelper.containsValue(config.disallowedDeleteRefIds, refId) or
 					tableHelper.containsValue(unusableContainerUniqueIndexes, uniqueIndex) or
 					tableHelper.containsValue(listIndexActor, uniqueIndex) then
-                    table.insert(rejectedObjects, refId .. " " .. uniqueIndex)
+					table.insert(rejectedObjects, refId .. " " .. uniqueIndex)
 					isValid = false
 				end
-            end
+			end
 			
             if isValid then
                 LoadedCells[cellDescription]:SaveObjectsDeleted(pid)
