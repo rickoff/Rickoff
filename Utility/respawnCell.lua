@@ -29,7 +29,6 @@ eventHandler.OnObjectDelete = function(pid, cellDescription)
             local rejectedObjects = {}
 			local listIndexActor = {}			
             local unusableContainerUniqueIndexes = LoadedCells[cellDescription].unusableContainerUniqueIndexes
-
             for index = 0, tes3mp.GetObjectListSize() - 1 do
 
                 local refId = tes3mp.GetObjectRefId(index)
@@ -39,11 +38,11 @@ eventHandler.OnObjectDelete = function(pid, cellDescription)
 					table.insert(listIndexActor, refIndex)
 				end					
                 if tableHelper.containsValue(config.disallowedDeleteRefIds, refId) or
-                    tableHelper.containsValue(unusableContainerUniqueIndexes, uniqueIndex) or
-										tableHelper.containsValue(listIndexActor, uniqueIndex) then
+					tableHelper.containsValue(unusableContainerUniqueIndexes, uniqueIndex) or
+					tableHelper.containsValue(listIndexActor, uniqueIndex) then
                     table.insert(rejectedObjects, refId .. " " .. uniqueIndex)
-                    isValid = false
-								end
+					isValid = false
+				end
             end
 			
             if isValid then
