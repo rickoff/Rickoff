@@ -25,6 +25,10 @@ Menus["menu cmp ecarlate"] = {
 			destinations = {menuHelper.destinations.setDefault("menu cmp mag")
 			}
         },
+        { caption = "Survie",
+			destinations = {menuHelper.destinations.setDefault("menu cmp survie")
+			}
+        },		
         { caption = "Retour",
             destinations = {menuHelper.destinations.setDefault("menu joueur")
             }
@@ -50,37 +54,25 @@ Menus["menu cmp cmb"] = {
 		"augmente la force et l'endurance :" .. color.Green,
 		" + 4 " .. color.White,
 		" points. " .. color.Yellow,
-		"\nNiveau : " .. color.White,			
-		menuHelper.variables.currentPlayerDataVariable("customVariables.guerrier"),
-		color.Red .. " <= 5\n",	
-		color.Yellow .. "Coût : ",
+		color.Yellow .. "\nCoût : ",
 		color.White .. "3 points.\n",		
 		color.Yellow .. "\ncompétence du voleur : " .. color.White,
 		"augmente la vitesse et l'agilité de :" .. color.Green,
 		" + 4 " .. color.White,
 		" points. " .. color.Yellow,
-		"\nNiveau : " .. color.White,			
-		menuHelper.variables.currentPlayerDataVariable("customVariables.voleur"),
-		color.Red .. " <= 5\n",
-		color.Yellow .. "Coût : ",
+		color.Yellow .. "\nCoût : ",
 		color.White .. "3 points.\n",		
 		color.Yellow .. "\ncompétence du mage : " .. color.White,
 		"augmente l'intelligence et la volonté de :" .. color.Green,
 		" + 4 " .. color.White,
 		" points. " .. color.Yellow,
-		"\nNiveau : " .. color.White,			
-		menuHelper.variables.currentPlayerDataVariable("customVariables.mage"),
-		color.Red .. " <= 5\n",
-		color.Yellow .. "Coût : ",
+		color.Yellow .. "\nCoût : ",
 		color.White .. "3 points.\n",
 		color.Yellow .. "\ncompétence du roublard : " .. color.White,
 		"augmente la chance et la personnalité de :" .. color.Green,
 		" + 4 " .. color.White,
 		" points. " .. color.Yellow,
-		"\nNiveau : " .. color.White,			
-		menuHelper.variables.currentPlayerDataVariable("customVariables.roublard"),
-		color.Red .. " <= 5\n",
-		color.Yellow .. "Coût : ",
+		color.Yellow .. "\nCoût : ",
 		color.White .. "3 points.\n"		
 	},
     buttons = {						
