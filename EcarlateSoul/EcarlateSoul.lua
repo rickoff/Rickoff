@@ -1,7 +1,8 @@
 ---------------------------
 -- EcarlateSoul by Rickoff inspired by RageFire
---
---
+-- Gain Xp when players kill creature
+-- Up features, stats and more
+-- Train over cap 100 all stats an talents
 ---------------------------
 jsonInterface = require("jsonInterface")
 
@@ -26,9 +27,9 @@ EcarlateSoul.OnPlayerKillCreature = function(killerPid, refId)
 		Players[killerPid].data.customVariables.levelSoul = 1
 	end	
 	if capSoul ~= nil then
-		Players[killerPid].data.customVariables.capSoul = 25000
+		Players[killerPid].data.customVariables.capSoul = 20000
 	else 
-		Players[killerPid].data.customVariables.capSoul = 25000
+		Players[killerPid].data.customVariables.capSoul = 20000
 	end	
 	if pointSoul == nil then
 		Players[killerPid].data.customVariables.pointSoul = 0
@@ -60,7 +61,7 @@ EcarlateSoul.OnPlayerKillCreature = function(killerPid, refId)
 		if soulLoc ~= nil and capSoul ~= nil and soulLoc >= capSoul then
 			Players[killerPid].data.customVariables.levelSoul = Players[killerPid].data.customVariables.levelSoul + 1
 			Players[killerPid].data.customVariables.soul = 0
-			Players[killerPid].data.customVariables.capSoul = 25000
+			Players[killerPid].data.customVariables.capSoul = 20000
 			Players[killerPid].data.customVariables.pointSoul = Players[killerPid].data.customVariables.pointSoul + 5
 			tes3mp.MessageBox(killerPid, -1, color.Default.. "Vous avez gagné un niveau félicitation : "..color.Green.. "/menu>joueur>compétences" ..color.Default.. " pour dépenser vos points d'" ..color.Yellow.. "exp.")		
 		end	
@@ -72,16 +73,13 @@ end
 EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 
 	local levelSoul = Players[Pid].data.customVariables.levelSoul	
-	local GuerrierCount = Players[Pid].data.customVariables.guerrier
-	local VoleurCount = Players[Pid].data.customVariables.voleur
-	local MageCount = Players[Pid].data.customVariables.mage
 	local LifeCount = Players[Pid].data.customVariables.life
 	local PeauCount = Players[Pid].data.customVariables.peau	
-	local GuexpCount = Players[Pid].data.customVariables.guexp
-	local ArchiCount = Players[Pid].data.customVariables.archi
-	local MoineCount = Players[Pid].data.customVariables.moine	
-	local DaedraCount = Players[Pid].data.customVariables.daedra		
+	local GuexpCount = Players[Pid].data.customVariables.guexp		
 	local PointCount = Players[Pid].data.customVariables.pointSoul
+	local HungerCount = Players[Pid].data.customVariables.hungerCount
+	local ThirstCount = Players[Pid].data.customVariables.thirstCount
+	local SleepCount = Players[Pid].data.customVariables.sleepCount	
 	if PointCount == nil then
 		Players[Pid].data.customVariables.pointSoul = 0
 		PointCount = Players[Pid].data.customVariables.pointSoul			
@@ -90,57 +88,93 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		Players[Pid].data.customVariables.levelSoul = 1
 		levelSoul = Players[Pid].data.customVariables.levelSoul	
 	elseif levelSoul ~= nil then	
-		if GuerrierCount == nil then
-			Players[Pid].data.customVariables.guerrier = 0
-			GuerrierCount = Players[Pid].data.customVariables.guerrier
-		else
-			if Comp == "Guerrier" and GuerrierCount < 5 and PointCount >= 3 then
-				local attrId = tes3mp.GetAttributeId("Strength")
-				local attrId2 = tes3mp.GetAttributeId("Endurance")	
-				local valueS = Players[Pid].data.attributes.Strength + 4
-				local valueS2 = Players[Pid].data.attributes.Endurance + 4				
-				tes3mp.SetAttributeBase(Pid, attrId, valueS)
-				tes3mp.SetAttributeBase(Pid, attrId2, valueS2)
+		if Comp == "Guerrier" and PointCount >= 3 then
+			local attrId = tes3mp.GetAttributeId("Strength")
+			local attrId2 = tes3mp.GetAttributeId("Endurance")	
+			local valueS = Players[Pid].data.attributes.Strength + 4
+			local valueS2 = Players[Pid].data.attributes.Endurance + 4				
+			tes3mp.SetAttributeBase(Pid, attrId, valueS)
+			tes3mp.SetAttributeBase(Pid, attrId2, valueS2)
+			if Players[Pid].data.customVariables.guerrier == nil then
+				Players[Pid].data.customVariables.guerrier = 1
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3				
+			else
 				Players[Pid].data.customVariables.guerrier = Players[Pid].data.customVariables.guerrier + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3	
-			elseif Comp == "Guerrier" and GuerrierCount ~= nil and PointCount < 3 then
-				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")					
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
 			end
+		elseif Comp == "Guerrier" and PointCount < 3 then
+			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")					
 		end
-		if VoleurCount == nil then
-			Players[Pid].data.customVariables.voleur = 0
-			VoleurCount = Players[Pid].data.customVariables.voleur	
-		else
-			if Comp == "Voleur" and VoleurCount < 5 and PointCount >= 3 then
-				local attrId = tes3mp.GetAttributeId("Agility")
-				local attrId2 = tes3mp.GetAttributeId("Speed")		
-				local valueS = Players[Pid].data.attributes.Agility + 4
-				local valueS2 = Players[Pid].data.attributes.Speed + 4			
-				tes3mp.SetAttributeBase(Pid, attrId, valueS)
-				tes3mp.SetAttributeBase(Pid, attrId2, valueS2)		
+		if Comp == "Voleur" and PointCount >= 3 then
+			local attrId = tes3mp.GetAttributeId("Agility")
+			local attrId2 = tes3mp.GetAttributeId("Speed")		
+			local valueS = Players[Pid].data.attributes.Agility + 4
+			local valueS2 = Players[Pid].data.attributes.Speed + 4			
+			tes3mp.SetAttributeBase(Pid, attrId, valueS)
+			tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
+			if Players[Pid].data.customVariables.voleur == nil then			
+				Players[Pid].data.customVariables.voleur = 1
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+			else
 				Players[Pid].data.customVariables.voleur = Players[Pid].data.customVariables.voleur + 1
 				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
-			elseif Comp == "Voleur" and VoleurCount ~= nil and PointCount < 3 then
+			end
+		elseif Comp == "Voleur" and PointCount < 3 then
+			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+		end
+		if Comp == "Mage" and PointCount >= 3 then
+			local attrId = tes3mp.GetAttributeId("Intelligence")
+			local attrId2 = tes3mp.GetAttributeId("Willpower")		
+			local valueS = Players[Pid].data.attributes.Intelligence + 4
+			local valueS2 = Players[Pid].data.attributes.Willpower + 4			
+			tes3mp.SetAttributeBase(Pid, attrId, valueS)
+			tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
+			if Players[Pid].data.customVariables.mage == nil then				
+				Players[Pid].data.customVariables.mage = 1
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+			else
+				Players[Pid].data.customVariables.mage = Players[Pid].data.customVariables.mage + 1
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+			end
+		elseif Comp == "Mage" and PointCount < 3 then
+			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+		end
+		if HungerCount == nil then
+			Players[Pid].data.customVariables.hungerCount = 0
+			HungerCount = Players[Pid].data.customVariables.hungerCount			
+		else
+			if Comp == "Hunger" and HungerCount < 5 and PointCount >= 3 then
+				Players[Pid].data.customVariables.HungerTimeMax = Players[Pid].data.customVariables.HungerTimeMax + 60
+				Players[Pid].data.customVariables.hungerCount = Players[Pid].data.customVariables.hungerCount + 1
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3	
+			elseif Comp == "Hunger" and HungerCount ~= nil and PointCount < 3 then
 				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 			end
 		end
-		if MageCount == nil then
-			Players[Pid].data.customVariables.mage = 0
-			MageCount = Players[Pid].data.customVariables.mage			
+		if ThirstCount == nil then
+			Players[Pid].data.customVariables.thirstCount = 0
+			ThirstCount = Players[Pid].data.customVariables.thirstCount			
 		else
-			if Comp == "Mage" and MageCount < 5 and PointCount >= 3 then
-				local attrId = tes3mp.GetAttributeId("Intelligence")
-				local attrId2 = tes3mp.GetAttributeId("Willpower")		
-				local valueS = Players[Pid].data.attributes.Intelligence + 4
-				local valueS2 = Players[Pid].data.attributes.Willpower + 4			
-				tes3mp.SetAttributeBase(Pid, attrId, valueS)
-				tes3mp.SetAttributeBase(Pid, attrId2, valueS2)		
-				Players[Pid].data.customVariables.mage = Players[Pid].data.customVariables.mage + 1
+			if Comp == "Thirst" and ThirstCount < 5 and PointCount >= 3 then
+				Players[Pid].data.customVariables.ThirsthTimeMax = Players[Pid].data.customVariables.ThirsthTimeMax + 60			
+				Players[Pid].data.customVariables.thirstCount = Players[Pid].data.customVariables.thirstCount + 1
 				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3	
-			elseif Comp == "Mage" and MageCount ~= nil and PointCount < 3 then
+			elseif Comp == "Thirst" and ThirstCount ~= nil and PointCount < 3 then
 				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 			end
-		end	
+		end
+		if SleepCount == nil then
+			Players[Pid].data.customVariables.sleepCount = 0
+			SleepCount = Players[Pid].data.customVariables.sleepCount			
+		else
+			if Comp == "Sleep" and SleepCount < 5 and PointCount >= 3 then
+				Players[Pid].data.customVariables.SleepTimeMax = Players[Pid].data.customVariables.SleepTimeMax + 120
+				Players[Pid].data.customVariables.sleepCount = Players[Pid].data.customVariables.sleepCount + 1
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3	
+			elseif Comp == "Sleep" and SleepCount ~= nil and PointCount < 3 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+			end
+		end			
 		if RoublardCount == nil then
 			Players[Pid].data.customVariables.roublard = 0
 			RoublardCount = Players[Pid].data.customVariables.roublard			
@@ -412,7 +446,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Unarmored" and PointCount < 3 then
 			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
-		end			
+		end	
         Players[Pid]:SaveStatsDynamic()		
 		Players[Pid]:SaveAttributes()	
 		Players[Pid]:SaveSkills()			
@@ -429,23 +463,26 @@ EcarlateSoul.OnPlayerDeath = function(Pid)
 	local levelSoul = Players[Pid].data.customVariables.levelSoul	
 	local capSoul = Players[Pid].data.customVariables.capSoul
 	local pointSoul = Players[Pid].data.customVariables.pointSoul
-	local totalPerte = ((soulLoc * 25) / 100)
+	local totalPerte 
 	if levelSoul == nil then
 		Players[Pid].data.customVariables.levelSoul = 1
 	end	
 	if capSoul ~= nil then
-		Players[Pid].data.customVariables.capSoul = 25000
+		Players[Pid].data.customVariables.capSoul = 20000
 	else 
-		Players[Pid].data.customVariables.capSoul = 25000
+		Players[Pid].data.customVariables.capSoul = 20000
 	end	
 	if pointSoul == nil then
 		Players[Pid].data.customVariables.pointSoul = 0
 	end	
 	if soulLoc == nil then
-		Players[Pid].data.customVariables.soul = totalPerte	
+		Players[Pid].data.customVariables.soul = 0	
+		soulLoc = Players[Pid].data.customVariables.soul
+		totalPerte = 0
 	else
+		totalPerte = math.floor((soulLoc * 25) / 100)	
 		Players[Pid].data.customVariables.soul = Players[Pid].data.customVariables.soul - totalPerte
-	end
+	end	
 	tes3mp.MessageBox(Pid, -1, color.Default.. "Vous avez perdu : "..color.Green.. totalPerte ..color.Default.. " points d'" ..color.Yellow.. "exp.")		
 end
 
