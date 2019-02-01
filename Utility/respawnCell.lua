@@ -40,10 +40,10 @@ eventHandler.OnObjectDelete = function(pid, cellDescription)
 				end					
                 if tableHelper.containsValue(config.disallowedDeleteRefIds, refId) or
                     tableHelper.containsValue(unusableContainerUniqueIndexes, uniqueIndex) or
-					tableHelper.containsValue(listIndexActor, uniqueIndex) then
+										tableHelper.containsValue(listIndexActor, uniqueIndex) then
                     table.insert(rejectedObjects, refId .. " " .. uniqueIndex)
                     isValid = false
-				end
+								end
             end
 			
             if isValid then
