@@ -13,7 +13,6 @@
 4) Add the following to OnGUIAction in server.lua
 	[ if GoldBank.OnGUIAction(pid, idGui, data) then return end ]
 ]]
-
 -- ===========
 --MAIN CONFIG
 -- ===========
@@ -129,7 +128,7 @@ GoldBank.PlayerAddGold = function(pid, count)
 				end
 			end
 		end
-	end	
+	end
 end
 
 GoldBank.PlayerRemoveGold = function(pid, count)
