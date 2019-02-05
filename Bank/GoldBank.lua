@@ -24,7 +24,6 @@ config.MainGUI = 856100
 config.BankAddGold = 856101
 config.BankRemoveGold = 856102
 
-
 local GoldBank = {}
 
 local showMainGUI, showEditPriceAdd, showEditPriceRemove
@@ -107,7 +106,6 @@ GoldBank.showEditPriceRemove = function(pid, loc)
 end
 	
 GoldBank.PlayerAddGold = function(pid, count)
-
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)			
 		if goldLoc == nil then
@@ -131,12 +129,10 @@ GoldBank.PlayerAddGold = function(pid, count)
 				end
 			end
 		end
-	end
-	
+	end	
 end
 
 GoldBank.PlayerRemoveGold = function(pid, count)
-
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local goldBankCount
 		if Players[pid].data.customVariables.goldBank == nil then
@@ -159,8 +155,7 @@ GoldBank.PlayerRemoveGold = function(pid, count)
 			Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
 			tes3mp.MessageBox(pid, -1, color.White.."Vous avez récupéré "..color.Yellow..count..color.White.." pièces d'or de la banque.")			
 		end
-	end
-	
+	end	
 end
 
 return GoldBank
