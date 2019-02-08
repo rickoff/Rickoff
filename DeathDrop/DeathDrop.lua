@@ -25,10 +25,10 @@ DeathDrop.Drop = function(pid)
 			
 		local mpNum = WorldInstance:GetCurrentMpNum() + 1
 		local cell = tes3mp.GetCell(pid)
-        local location = {
-            posX = tes3mp.GetPosX(pid), posY = tes3mp.GetPosY(pid), posZ = tes3mp.GetPosZ(pid),
-            rotX = tes3mp.GetRotX(pid), rotY = 0, rotZ = tes3mp.GetRotZ(pid)
-        }
+		local location = {
+			posX = tes3mp.GetPosX(pid), posY = tes3mp.GetPosY(pid), posZ = tes3mp.GetPosZ(pid),
+			rotX = tes3mp.GetRotX(pid), rotY = 0, rotZ = tes3mp.GetRotZ(pid)
+		}
 		local refId = item.refId
 		local totalcount = item.count
 		local removeGold = math.floor((totalcount * config.pourcent) / 100)
