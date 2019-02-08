@@ -8,11 +8,14 @@
 -- in return.  Michael Fitzmayer
 
 
-Methods = {}
-
 inventoryHelper = require("inventoryHelper")
 
-Methods.Drop = function(pid)
+local config ={}
+config.pourcent = 90
+
+local DeathDrop = {}
+
+DeathDrop.Drop = function(pid)
 	local player = Players[pid]
 	local goldLoc = inventoryHelper.getItemIndex(player.data.inventory, "gold_001", -1)
 	
@@ -22,15 +25,17 @@ Methods.Drop = function(pid)
 			
 		local mpNum = WorldInstance:GetCurrentMpNum() + 1
 		local cell = tes3mp.GetCell(pid)
-		local location = {
-		    posX = tes3mp.GetPosX(pid), posY = tes3mp.GetPosY(pid), posZ = tes3mp.GetPosZ(pid),
-		    rotX = tes3mp.GetRotX(pid), rotY = 0, rotZ = tes3mp.GetRotZ(pid)
-		}
+        local location = {
+            posX = tes3mp.GetPosX(pid), posY = tes3mp.GetPosY(pid), posZ = tes3mp.GetPosZ(pid),
+            rotX = tes3mp.GetRotX(pid), rotY = 0, rotZ = tes3mp.GetRotZ(pid)
+        }
 		local refId = item.refId
-		local count = (item.count - 100)
+		local totalcount = item.count
+		local removeGold = math.floor((totalcount * config.pourcent) / 100)
+		local reste = totalcount - removeGold
 		local refIndex =  0 .. "-" .. mpNum
-		local itemref = {refId = "gold_001", count = (count), charge = -1}		
-		player.data.inventory[goldLoc].count = player.data.inventory[goldLoc].count - count	
+		local itemref = {refId = "gold_001", count = (removeGold), charge = -1}		
+		player.data.inventory[goldLoc].count = reste
 		Players[pid]:Save()
 		Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)	
 		
@@ -39,7 +44,7 @@ Methods.Drop = function(pid)
 
 		LoadedCells[cell]:InitializeObjectData(refIndex, refId)		
 		LoadedCells[cell].data.objectData[refIndex].location = location		
-		LoadedCells[cell].data.objectData[refIndex].goldValue = count		
+		LoadedCells[cell].data.objectData[refIndex].goldValue = removeGold		
 		table.insert(LoadedCells[cell].data.packets.place, refIndex)
 
 		for onlinePid, player in pairs(Players) do
@@ -47,7 +52,7 @@ Methods.Drop = function(pid)
 				tes3mp.InitializeEvent(onlinePid)
 				tes3mp.SetEventCell(cell)
 				tes3mp.SetObjectRefId(refId)
-				tes3mp.SetObjectCount(count)
+				tes3mp.SetObjectCount(removeGold)
 				tes3mp.SetObjectRefNumIndex(0)
 				tes3mp.SetObjectMpNum(mpNum)
 				tes3mp.SetObjectPosition(location.posX, location.posY, location.posZ)
@@ -61,4 +66,4 @@ Methods.Drop = function(pid)
 end
 
 
-return Methods
+return DeathDrop
