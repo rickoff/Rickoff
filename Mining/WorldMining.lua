@@ -5,32 +5,21 @@ WorldMining.lua by DiscorPeter, RickOff
 
 2) Add [ WorldMining = require("WorldMining") ] to the top of serverCore.lua
 
-3)add to top of eventHandler.lua :
-local craftTable = {}
-local furnLoader = jsonInterface.load("rocks.json")
-for index, item in pairs(furnLoader) do
-	table.insert(craftTable, {refId = item.ID, tip = "rocks"})
-end
-local furnLoader = jsonInterface.load("flora.json")
-for index, item in pairs(furnLoader) do
-	table.insert(craftTable, {refId = item.ID, tip = "flora"})
-end
-
-4) add to eventHandlers.lua OnActivate under if doesObjectHaveActivatingPlayer then :
+3) add to eventHandlers.lua OnActivate under if doesObjectHaveActivatingPlayer then :
 	if isValid == true and objectRefId and tes3mp.IsInExterior(pid) then
 		isValid = not WorldMining.OnHitActivate(pid, objectUniqueIndex, objectRefId, tes3mp.GetObjectRefNum(index), tes3mp.GetObjectMpNum(index))
 	end 
 
-5) add to eventHandler.lua OnObjectDelete under for index = 0, tes3mp.GetObjectListSize() - 1 do :
+4) add to eventHandler.lua OnObjectDelete under for index = 0, tes3mp.GetObjectListSize() - 1 do :
 	if isValid == true then
 		isValid = not WorldMining.OnObjectDelete(pid)
 	end
 	
-6) copy miscellaneous recordStore 
+5) copy miscellaneous recordStore 
 
-7) add rocks.json and flora.json in mpstuff/data folder	
+6) add rocks.json and flora.json in mpstuff/data folder	
 
-8) add in menu.lua :
+7) add in your main menu :
 Menus["menu prison house"] = {
     text = {
 		color.Red .. "WARNING !!!",
