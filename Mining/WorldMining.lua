@@ -168,6 +168,7 @@ message.ItemName = "Nom: "
 message.Gold = "Or: "
 message.Numbers = "Nombre: "
 message.Price = "Prix: "
+message.Count = "Coût: "
 
 local craftTableRock = {}
 local craftTableFlora = {}
