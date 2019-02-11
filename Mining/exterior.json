@@ -1,0 +1,4388 @@
+[
+  {
+    "id": "ex_ai_boulder06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ai_boulder07",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ai_boulder08",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ai_cave_entrance_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ar_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ashl_banner",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ashl_tent_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ashl_tent_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ashl_tent_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ashl_tent_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_barnacles_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_barnacles_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_barnacles_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_barnacles_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_barnacles_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_barnacles_06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_bc_cave_entrance",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_bm_dae_ruin_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_bm_hbane_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_bm_hbane_ent_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_bm_tomb_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_bm_tomb_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_bm_tomb_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_boulder05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_c_chimney_tall_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_ash00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_coastrock00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_entrance_10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_entrance_ac_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_entrance_ai_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_entrance_al_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_entrance_bc_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_entrance_gl_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_entrance_ma_lava",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_entrance_rm_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_entrance_wg_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_grass00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_mt00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_sand00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_scrub00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cave_stoneyb00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_cavern_padlock00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ci_doorjam_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_coiled_rope",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_com_dframe_lthus",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common__wcoc_building_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_awning_wood_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_balcony_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_building_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_building_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_building_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_building_03_wcoc",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_chimney_tall",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_dormer_round",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_dormer_square",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_entrance_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_entrance_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_house_addon",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_house_tall_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_house_tall_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_lighthouse",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_plat_cent",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_plat_corn",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_plat_end",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_plat_lrg",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_plat_rail",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_skywalk_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_tavern_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_tower_thatch",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_trellis",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_window_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_window_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_common_window_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_azura",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_b_bo_axe",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_b_bo_bskirt1",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_b_bo_bskirt2",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_b_bo_cape1",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_b_bo_cape2",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_b_bo_frontskirt",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_b_bo_head",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_b_bo_lbody",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_b_bo_slpiece",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_b_bo_ubody",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_boethiah",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_buttress_ruin_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_claw_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_claw_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_door_static_oval",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_malacath_attack",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_mehrunesdagon",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_molagbal",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_namira",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_pillar_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_pillar_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_pillar_02_ruin",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_pillar_02_ruin_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_pillar_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_ruin_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_ruin_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_ruin_02_skew",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_ruin_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_ruin_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_ruin_04_skew_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_ruin_04_skew_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_ruin_entry.max",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_ruin_platform_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_ruin_stair01_short",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_sheogorath",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_wall_256_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_wall_512_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_wall_512_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_wall_512_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_wall_512_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_wall_512_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_wall_512_06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_wall_512_07",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_wall_512_08",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dae_wall_512_09",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_daed_pillar_claw_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_cave_entrance_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_128",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_3way",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_3wayb",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_3ways",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_3waysb",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_4way",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_4wayb",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_center",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_centerb",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_centers",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_centersb",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_cleat",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_corner_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_corner_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_cornerb_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_cornerb_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_corners_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_corners_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_cornersb_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_cornersb_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_end",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_endc",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_ends",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_gate",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_piling",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_piling_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_pilingb",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_pilings",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_steps",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_docks_steps_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_oar",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_railing_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_railing_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_railing_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_railing_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_railing_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_railing_06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_rowboat",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_scaffold_01a",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_scaffold_02a",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_scaffold_03a",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_awning_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_awning_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_awning_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_awning_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_awning_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_awning_06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_plank_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_plank_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_plank_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_plank_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_steps",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shack_steps_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_ship",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_ship_oarleft",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_ship_oarright",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_shipwreck",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_thirsk_plank",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_de_thirsk_plank_b",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_drystonewall_c_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_drystonewall_d_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_drystonewall_end_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_drystonewall_s_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_alcove00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_alcove10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_block00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_block10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_block20",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_block30",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_boulder00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_boulder10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_boulder20",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_bridge00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_bridge10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_cosmo00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_enter00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_header00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_observ00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_pipe00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_pipe10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_pipefitting00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_ruin00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_ruin10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_ruin20",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_ruin30",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_ruin40",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_ruin50",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_ruin60",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_ruin70",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_ruin80",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_ruin_tower00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_statue00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_steamstack00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_walker00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_walker10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_walker20",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_wall00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_wall10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_wall20",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_wall30",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_wall40",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_wall50",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_dwrv_wall60",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_emp_tower_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_ent_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_fence_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_fence_01_bbot",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_fence_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_fence_02_bbot",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_fence_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_fence_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_gatetriolith_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_pylon_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_gg_pylon_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_07",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_08",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_09",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_11",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_12",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_13",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_14",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_15",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_16",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_17",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_18",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_20",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_21",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_22",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_23",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_24",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_25",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_26",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_27",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_b_28",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_bal_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_bal_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_bridge_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_bridge_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_bridge_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_bridge_06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_bridge_07",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_buttress_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_buttress_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_buttress_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_07",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_08",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_09",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_11",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_12",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_canal_13",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_dsteps_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_dsteps_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_fb_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_pole_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_pole_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_steps_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_steps_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_steps_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_steps_06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_steps_07",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_striderport_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_wall_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_wall_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_wall_curve_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_wall_end_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_wall_gate_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_wall_gate_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_wall_gate_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_wall_up_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_wall_up_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_hlaalu_win_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_holamayan_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_arrowslit_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_bridge_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_bridge_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_dock_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_dock_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_dragonstatue",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_foundation_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_foundation_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_gov_arrowlit",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_govman_stair",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_govmansion_donjon",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_govmansion_gate",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_govmansion_wing",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_guardtower_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_guardtower_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_kdoorframe_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_keep_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_keep_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_mooring_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_plat_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_plaza",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_plaza_stairs",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_rubble_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_rubble_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_rubble_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_rubble_06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_rubble_07",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towerb_base_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towerb_cons_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towerb_cons_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towerb_dark_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towerb_light_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towerb_med_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towerb_roof_pitch",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towerb_top_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towers_base_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towers_dark_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towers_light_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towers_med_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_towers_top_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_wall_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_wall_arch_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_wall_corner_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_wall_corner_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_wall_stairs_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_wall_stairs_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_wall_stairs_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_wall_stairs_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_wall_tower_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_wallent_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_imp_wallent_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_lavaspark01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_lavaspark03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_lavasteam00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_longboat",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_longboat01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_longboat02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_longboatwrk",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ma_cave_entrance",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_bar_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_bazaar_bench_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_bazaar_booth_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_bazaar_bridge",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_bazaar_cart_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_bazaar_planter_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_bazaar_planter_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_bazaar_stage",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_bazaar_stage_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_bazaar_tent",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_building_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_building_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_building_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_building_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_building_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_building_07",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_building_08",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_building_09",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_building_10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_canal_grate_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_doorjamb_02a",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_doorjamb_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_lantern_post",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_palace_courtyard",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_palace_tower",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_palace_tower02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_palace_wall_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_palace_wall_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_palacewin_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_palacewin_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_palacewin_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_paldoorjamb_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_pav_fountain",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_pav_land_e",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_pav_land_w",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_pav_spout",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_pav_steps",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_pav_tower",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_pav_walk_n",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_pav_walk_s",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_pavillion_gate",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_pavillion_gate_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_pavillion_wall_e",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_pavillion_wall_w",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_platform_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_platform_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_platform_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_road_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_road_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_road_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_steps_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_temple",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_temple_base",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_wall_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_wall_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_wall_tower_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_window_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_mh_window_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_chimney_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_doorf_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_doorrocks_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_house_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_house_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_house_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_house_03_wcoc",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_house_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_house_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_houseshed_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_houseshed_01_wcoc",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_rock_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_rock_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_well_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_well_01a",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_win_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_win_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_r_trapdoor_01_static",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_awning_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_barracks_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_building_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_building_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_building_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_hut_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_hut_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_steps_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_steps_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_striderport_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_tavern_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_tower_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_window_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redoran_window_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_arch_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_b_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_b_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_b_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_b_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_b_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_b_06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_corner_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_corner_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_corner_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_p_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_p_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_p_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_p_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_p_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_post_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_post_unique",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_straight_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_straight_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_redwall_up_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_rope_short",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ropebridge_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ropebridge_1024_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ropebridge_2048_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ropebridge_512_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ropebridge_stake_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_20",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_30",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_40",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_boulder00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_boulder01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_boulder02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_boulder03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_boulder04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_boulder05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_rubble00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_rubble10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ruin_rubble20",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_bear",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_bridge",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_extension",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_fence_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_fence_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_fencepost",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_foodhut",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_icicle",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_icicle02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_longhouse_blue",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_longhouse_brown",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_longhouse_brown02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_longhouse_dkred",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_longhouse_green",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_longhouse_red",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_longhouse_red02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_mainhall",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_smith_shed",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_window",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_window01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_window01_closed",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_window_closed",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_s_wolf",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_scave2_enter10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_scrapwood05b",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ship_plank",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_ship_stair",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_siltstrider_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_siltstrider_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_siltstrider_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_siltstrider_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_siltstrider_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_skiff",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_snow_drift",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_snow_ledge",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_snow_roof",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_snow_roof_small",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strong_roofstack00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_dome00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_enter00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_fort00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_fort01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_fort02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_fort03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_fort05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_pylon00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_pylon01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_pylon02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_sandpit00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_smdwell00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_wall00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_wall01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_wall02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_wall03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_stronghold_window00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongholdruin_wall00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongholdruin_wall01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongholdruin_wall02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongholdruin_wall03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongruin_dome00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongruin_enter00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongruin_fort00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongruin_fort01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongruin_fort02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongruin_fort03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongruin_fort05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongruin_fort05_half",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_strongruin_smdwell00",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_awning_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_bigroot_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_bigroot_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_brace_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_bridge_lcurved",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_clawgrowth_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_clawgrowth_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_councilhall",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_dock_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_dock_main",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_doorway_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_doorway_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_doorway_sphere_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_dormer_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_gateway_great",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_hook",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_housepod_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_housepod_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_housepod_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_housepod_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_housestem_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_housestem_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_housestem_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_manor_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_manor_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_menhir_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_menhir_l_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_platform_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_platform_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_pole_hooked",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_rock_coastal_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_rock_coastal_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_rock_coastal_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_arch_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_bridge_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_hook",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_lendsplit",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_spikes_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_spikes_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_stem",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_xl_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_xl_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_root_xl_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_rootball",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_slavemarket",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_slavepod_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_spiralramp",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_stair_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_stair_90_l_short",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_stair_90_r_short",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_stair_lcurve",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_stair_rcurve",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_stair_spiral",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_tower_bent",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_tower_strght_lrg",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_tunnel",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_turret_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_turret_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_t_turret_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_v_dock_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_v_foundation_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_v_foundation_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_v_foundation_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_v_palace_steps_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_v_stdeyln_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_v_stolms_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_v_vivecstatue_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_v_vivecstatue_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_velothi_entrance_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_velothi_entrance_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_velothi_entrance_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_velothi_hilltent_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_velothi_striderport_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_velothi_temple_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_velothi_temple_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_velothi_tower_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_velothi_triwin_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_velothi_window_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_b_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_b_gap_b_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_b_gap_b_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_b_gap_bob",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_b_gap_t_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_b_t_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_b_tb_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_b_wb_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_b_wb_gap_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_bt_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_c_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_c_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_c_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_c_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_ent_b_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_ent_t_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_ent_t_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_ent_telt_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_g_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_g_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_g_r_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_g_r_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_nord_door_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_06",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_07",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_08",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_09",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_10",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_11",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_12",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_13",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_14",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_15",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_h_16",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_hf_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_hf_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_hf_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_hfq_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_hfq_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_hfq_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_hfq_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_lp_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_lp_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_p_water_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_palace_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_pd_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_pq_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_pq_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_pq_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_pq_04",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_pqs_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_pqs_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_prisonmoon_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_ps_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_sbase_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_sbase_01_bob",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_telt_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_w_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_w_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_w_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_w_c_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_w_e_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_w_g_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_w_slope_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_waterspout_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_waterspout_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_waterspout_03",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_waterspout_05",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_vivec_wspout_d_02",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  },
+  {
+    "id": "ex_wg_cave_entrance_01",
+    "name": "Exterior",
+    "material": "10",
+    "price": "1000"
+  }
+]
