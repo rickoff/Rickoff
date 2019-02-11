@@ -68,9 +68,9 @@ Menus["menu prison house"] = {
 		-- if its door and uniqueIndex is in placed list in WorldInstance
 	if objectRefId and objectRefId == "ex_nord_door_01" then
 		local cell = tes3mp.GetCell(pid)
-		if WorldInstance.data.customVariables.kanaFurnitureMod.placed[cellDescription] ~= nil then
-			if WorldInstance.data.customVariables.kanaFurnitureMod.placed[cellDescription][objectUniqueIndex] then
-				kanaFurnitureMod.OnDoor(pid, objectUniqueIndex)
+		if WorldInstance.data.customVariables.WorldMining.placed[cellDescription] ~= nil then
+			if WorldInstance.data.customVariables.WorldMining.placed[cellDescription][objectUniqueIndex] then
+				WorldMining.OnDoor(pid, objectUniqueIndex)
 				isValid = false
 			else
 				print("door was not in worldinstance")
