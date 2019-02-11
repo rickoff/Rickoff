@@ -64,12 +64,12 @@ https://github.com/Skvysh/TES3MP-Scripts/tree/master/Criminals
 
 **Spectate**
 
-- the spectator mode to spy on other players in peace (the only cooperative action of malseph)
+- the spectator mode to spy on other players in peace
 https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
 
 **kanaHousing, kanaFurniture, decorateHelp**
 
-- the ultimate script for buying house, land and supply,shop sytem, also allows placing objects in the space.written by Atkana translated and adapted for the Ecarlate server https://github.com/Atkana/tes3mp-scripts
+- the ultimate script for buying house, land and supply,shop system, also allows placing objects in the space.written by Atkana translated and adapted for the Ecarlate server https://github.com/Atkana/tes3mp-scripts
 
 **MarketPlace**
 
