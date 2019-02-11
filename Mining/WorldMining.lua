@@ -132,13 +132,13 @@ config.InventoryOptionsGUI = 91367
 config.ViewOptionsGUI = 91368
 
 local message = {}
-message.Tools = color.White .. "Vous devez sortir un " .. color.Red .. "outil " .. color.White .. "pour commencer le travail."
-message.Pick = color.White .. "Vous devez utiliser une " .. color.Red .. "pioche de mineur " .. color.White .. "pour récolter la pierre."
-message.Axe = color.White .. "Vous devez utiliser une " .. color.Red .. "hache de bucheron " .. color.White .. "pour couper le bois proprement."
-message.Rock = color.White .. "Vous venez de récupérer un élément de " .. color.Red .. "pierre " .. color.White .. "dans votre inventaire."
-message.Flore = color.White .. "Vous venez de récupérer un élément de " .. color.Red .. "bois " .. color.White .. "dans votre inventaire."
-message.WaitJail = color.White .. "Vous êtes en prison pour une durée de " .. color.Red .. "5 " .. color.White .. "minutes."
-message.StopJail = color.White .. "Votre temps de " .. color.Red .. "prison " .. color.White .. "vient de se terminer."
+message.Tools = color.White .. "Vous devez sortir un "..color.Red.."outil "..color.White.."pour commencer le travail."
+message.Pick = color.White .. "Vous devez utiliser une "..color.Red.."pioche de mineur "..color.White.."pour récolter la pierre."
+message.Axe = color.White .. "Vous devez utiliser une "..color.Red.."hache de bucheron "..color.White.."pour couper le bois proprement."
+message.Rock = color.White .. "Vous venez de récupérer un élément de "..color.Red.."pierre "..color.White.."dans votre inventaire."
+message.Flore = color.White .. "Vous venez de récupérer un élément de "..color.Red.."bois "..color.White.."dans votre inventaire."
+message.WaitJail = color.White .. "Vous êtes en prison pour une durée de "..color.Red.."5 "..color.White.."minutes."
+message.StopJail = color.White .. "Votre temps de "..color.Red.."prison "..color.White.."vient de se terminer."
 message.NoBuy = color.White .. "Vous ne pouvez pas vous permettre d'acheter un "
 message.Buy = color.White .. " a était ajouté à votre inventaire pour"
 message.SelectBuy = color.White .. "Sélectionnez un article que vous souhaitez acheter."
@@ -146,13 +146,13 @@ message.SelectFurnInv = color.White .. "Sélectionnez le meuble de votre inventa
 message.AddMaterial = color.White .. "Le matériel a été vendu de votre inventaire."
 message.NoPerm = color.White .. "Vous n'avez pas la permission de placer des meubles ici."
 message.PlaceFurn = color.White .. "Sélectionnez un meuble que vous avez placé dans cette cellule. Remarque: le contenu des conteneurs sera perdu s'il est retiré."
-message.SellFurn = color.White .. "L'objet a été retirés de la cellule pour "
+message.SellFurn = color.White .. "L'objet a été retirés de la cellule et vendu pour "
 message.UnFurn = color.White .. "L'objet semble avoir été enlevé."
 message.AddFurn = color.White .. " a était ajouté à votre inventaire de fourniture"
 message.SelectFurn = color.White .. "l'objet a était sélectionné utilisez /dh pour le déplacer"
 message.InvOption = "Placer;Vendre;Retour" 
 message.ViewOption = "Sélectionner;Récuperer;Vendre;Retour"
-message.ChooseDoor = color.White .. "Choose one of your doors"
+message.ChooseDoor = color.White .. "Choisissez l'une de vos portes"
 message.OnBuild = color.White .. "Choisissez une option"
 message.OnBuildOption = "Creatures;Pnjs;Meubles;Donjons;Rochers;Plantes;Exts;Statics;Portes;Retour"
 message.WhereDoor = "Où cette porte devrait-elle aller?"
@@ -161,6 +161,13 @@ message.MainChoice = "Inventaire;Afficher;Construction;Materiel;Retour"
 message.MyDoor = "Nouveau donjon;Une de mes portes;Retour"
 message.NoCraft = "Vous n'avez pas assez de roches et de bois\n"
 message.CraftOption = "Fabriquer;Retour"
+message.Wood = "Bois: "
+message.Stone = "Pierres: "
+message.Hardware = "Materiels: "
+message.ItemName = "Nom: " 
+message.Gold = "Or: "
+message.Numbers = "Nombre: "
+message.Price = "Prix: "
 
 local craftTableRock = {}
 local craftTableFlora = {}
@@ -235,7 +242,7 @@ showMainGUI = function(pid)
 	if index3 ~= nil then count.material = Players[pid].data.inventory[index3].count end
 	
 	local msg = message.WelcomeFurn
-	local msgCustom = msg.."\n"..color.Yellow.."Bois : "..color.White..count.flora.."    "..color.Yellow.."Pierres : "..color.White..count.terrain.."    "..color.Yellow.."Materiel : "..color.White..count.material 
+	local msgCustom = msg.."\n"..color.Yellow..message.Wood..color.White..count.flora.."    "..color.Yellow..message.Stone..color.White..count.terrain.."    "..color.Yellow..message.Hardware..color.White..count.material 
 	tes3mp.CustomMessageBox(pid, config.MainGUI, msgCustom, message.MainChoice)
 end
 
@@ -768,9 +775,6 @@ getSortedPlayerFurnitureInventory = function(pid)
 end
 
 placeFurniture = function(refId, loc, cell, packetType)
-	print("placing item")
-	print(refId)
-	print(packetType)
 	local mpNum = WorldInstance:GetCurrentMpNum() + 1
 	local location = {
 		posX = loc.posX, posY = loc.posY, posZ = loc.posZ,
@@ -804,7 +808,7 @@ placeFurniture = function(refId, loc, cell, packetType)
 			tes3mp.SetObjectRefId(refId)
 			tes3mp.SetObjectRefNumIndex(0)
 			tes3mp.SetObjectMpNum(mpNum)
-			tes3mp.SetObjectPosition(location.posX - 50, location.posY + 50, location.posZ + 25)
+			tes3mp.SetObjectPosition(location.posX, location.posY, location.posZ)
 			tes3mp.SetObjectRotation(location.rotX, location.rotY, location.rotZ)
 			tes3mp.AddWorldObject()	
 			if packetType == "place" then
@@ -1022,7 +1026,7 @@ showViewOptionsGUI = function(pid, loc)
 	local choice = playerViewOptions[getName(pid)][loc]
 	local fdata = getFurnitureData(choice.refId)
 	
-	local msg = color.Yellow.."Item Name: "..color.White..fdata.name..color.Yellow.." (RefIndex: "..color.White..choice.refIndex..")."
+	local msg = color.Yellow..message.ItemName..color.White..fdata.name..color.Yellow.." (RefIndex: "..color.White..choice.refIndex..")."
 	
 	playerViewChoice[getName(pid)] = choice
 	tes3mp.CustomMessageBox(pid, config.ViewOptionsGUI, msg, message.ViewOption)
@@ -1083,7 +1087,7 @@ onViewOptionSell = function(pid)
 		removePlaced(choice.refIndex, cell, true)
 		
 		--Inform the player
-		tes3mp.MessageBox(pid, -1, message.SellFurn..color.Yellow.." Gold: "..color.White..price..color.Yellow.." Materiel: "..color.White..material)
+		tes3mp.MessageBox(pid, -1, message.SellFurn..color.Yellow.." "..message.Gold..color.White..price..color.Yellow.." "..message.Hardware..color.White..material)
 	else
 		tes3mp.MessageBox(pid, -1, message.UnFurn)
 	end
@@ -1129,7 +1133,7 @@ end
 showInventoryOptionsGUI = function(pid, loc)
 	local choice = playerInventoryOptions[getName(pid)][loc]
 	local fdata = getFurnitureData(choice.refId)	
-	local msg = color.Yellow.."Item Name: "..color.White..choice.name
+	local msg = color.Yellow..message.ItemName..color.White..choice.name
 	
 	playerInventoryChoice[getName(pid)] = choice
 	tes3mp.CustomMessageBox(pid, config.InventoryOptionsGUI, msg, message.InvOption)
@@ -1187,7 +1191,7 @@ onInventoryOptionSell = function(pid)
 	--Remove 1 instance of the item from the player's inventory
 	addFurnitureItem(pname, choice.refId, -1, true)	
 	--Inform the player
-	tes3mp.MessageBox(pid, -1, message.AddMaterial..color.Yellow.." Gold: "..color.White..price..color.Yellow.." Materiel: "..color.White..material)
+	tes3mp.MessageBox(pid, -1, message.AddMaterial..color.Yellow.." "..message.Gold..color.White..price..color.Yellow.." "..message.Hardware..color.White..material)
 end
 
 -- INVENTORY (MAIN)
@@ -1196,7 +1200,7 @@ showInventoryGUI = function(pid)
 	local list = "* Retour *\n"
 	
 	for i = 1, #options do
-		list = list..color.Yellow.."Nom: "..color.White..options[i].name..color.Yellow.." Nombres: "..color.White..options[i].count
+		list = list..color.Yellow..message.ItemName..color.White..options[i].name..color.Yellow.." "..message.Numbers..color.White..options[i].count
 		if not(i == #options) then
 			list = list .. "\n"
 		end
@@ -1218,21 +1222,21 @@ WorldMining.showBuyGUIall = function(pid, tip)
 	if tip == "creature" or tip == "npc" then
 		
 		for i = 1, #options do
-			list = list..color.Yellow.."Name: "..color.Default..options[i].name..color.Yellow.." Price: "..color.Default..options[i].price
+			list = list..color.Yellow..message.ItemName..color.Default..options[i].name..color.Yellow.." "..message.Price..color.Default..options[i].price
 			if not(i == #options) then
 				list = list .. "\n"
 			end
 		end	
 	elseif tip == "furn" or tip == "exterior" or tip == "dungeon" or tip == "static" then	
 		for i = 1, #options do
-			list = list..color.Yellow.."Name: "..color.Default..options[i].name..color.Yellow.." Price: "..color.Default..options[i].price..color.Yellow.." Material: "..color.White..options[i].material
+			list = list..color.Yellow..message.ItemName..color.Default..options[i].name..color.Yellow.." "..message.Price..color.Default..options[i].price..color.Yellow.." "..message.Hardware..color.White..options[i].material
 			if not(i == #options) then
 				list = list .. "\n"
 			end
 		end					
 	elseif tip == "rocks" or tip == "flora" then
 		for i = 1, #options do
-			list = list..color.Yellow.."Name: "..color.Default..options[i].name..color.Yellow.." Material: "..color.Default..options[i].material
+			list = list..color.Yellow..message.ItemName..color.Default..options[i].name..color.Yellow.." "..message.Hardware..color.Default..options[i].material
 			if not(i == #options) then
 				list = list .. "\n"
 			end
@@ -1284,7 +1288,7 @@ onBuyChoice = function(pid, loc)
 		end		
 	end
 	
-	tes3mp.MessageBox(pid, -1, color.Yellow..choice.name..message.Buy..color.Yellow.." Coût: "..color.White..choice.price..color.Yellow.." Materiel: "..color.White..choice.material)
+	tes3mp.MessageBox(pid, -1, color.Yellow..choice.name..message.Buy..color.Yellow.." "..message.Count..color.White..choice.price..color.Yellow.." "..message.Hardware..color.White..choice.material)
 	return true
 end
 
@@ -1531,7 +1535,7 @@ WorldMining.OnCraftCommand = function(pid)
 
 	--craftrock, crafttree
 	if count.terrain > 0 and count.flora > 0 then
-		tes3mp.CustomMessageBox(pid, 1337, "Vous avez "..count.terrain.." Roche et "..count.flora.." Bois", message.CraftOption)
+		tes3mp.CustomMessageBox(pid, 1337, color.Yellow..message.Rock..color.White..count.terrain.."   "..color.Yellow.." "..message.Wood..color.White..count.flora.." "..message.CraftOption)
 	else
 		tes3mp.SendMessage(pid, message.NoCraft, false)
 		return showMainGUI(pid)
