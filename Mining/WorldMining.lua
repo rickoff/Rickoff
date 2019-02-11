@@ -5,21 +5,21 @@ WorldMining.lua by DiscorPeter, RickOff
 
 2) Add [ WorldMining = require("WorldMining") ] to the top of serverCore.lua
 
-3) add to eventHandlers.lua OnActivate under if doesObjectHaveActivatingPlayer then :
+4) add to eventHandlers.lua OnActivate under if doesObjectHaveActivatingPlayer then :
 	if isValid == true and objectRefId and tes3mp.IsInExterior(pid) then
 		isValid = not WorldMining.OnHitActivate(pid, objectUniqueIndex, objectRefId, tes3mp.GetObjectRefNum(index), tes3mp.GetObjectMpNum(index))
 	end 
 
-4) add to eventHandler.lua OnObjectDelete under for index = 0, tes3mp.GetObjectListSize() - 1 do :
+5) add to eventHandler.lua OnObjectDelete under for index = 0, tes3mp.GetObjectListSize() - 1 do :
 	if isValid == true then
 		isValid = not WorldMining.OnObjectDelete(pid)
 	end
 	
-5) copy miscellaneous recordStore 
+6) copy miscellaneous recordStore 
 
-6) add rocks.json and flora.json in mpstuff/data folder	
+7) add rocks.json and flora.json in mpstuff/data folder	
 
-7) add in menu.lua :
+8) add in menu.lua :
 Menus["menu prison house"] = {
     text = {
 		color.Red .. "WARNING !!!",
@@ -57,9 +57,9 @@ Menus["menu prison house"] = {
         }		
     }
 }
-8) copy the provided jsons all over the place
+9) copy the provided jsons all over the place
 
-9) add to eventHandlers OnActivate under if doesObjectHaveActivatingPlayer then
+10) add to eventHandlers OnActivate under if doesObjectHaveActivatingPlayer then
 
 	activatingPid = tes3mp.GetObjectActivatingPid(index)
 	debugMessage = debugMessage .. logicHandler.GetChatName(activatingPid)
@@ -78,7 +78,7 @@ Menus["menu prison house"] = {
 		end
 	end
 	
-10) change to contentFixers.lua add AddpreexistingObjects function
+11) change to contentFixers.lua add AddpreexistingObjects function
 
 function contentFixer.AddPreexistingObjects(cellDescription)
 	
@@ -104,12 +104,12 @@ function contentFixer.AddPreexistingObjects(cellDescription)
 	
 end
 
-11) add to logicHandler.LoadCell under LoadedCells[cellDescription]:CreateEntry()
+12) add to logicHandler.LoadCell under LoadedCells[cellDescription]:CreateEntry()
 		contentFixer.AddPreexistingObjects(cellDescription)
 			
-12) Add the following to OnGUIAction in serverCore.lua
+13) Add the following to OnGUIAction in serverCore.lua
 	[ if WorldMining.OnGUIAction(pid, idGui, data) then return end ]
-13) Add the following to the end of  OnServerPostInit in serverCore.lua
+14) Add the following to the end of  OnServerPostInit in serverCore.lua
 	[ WorldMining.OnServerPostInit() ]
 end	
 ]]
@@ -119,8 +119,10 @@ jsonInterface = require("jsonInterface")
 
 local config = {}
 config.whitelist = false --If true, the player must be given permission to place items in the cell that they're in (set using this script's methods, or editing the world.json). Note that this only prevents placement, players can still move/remove items they've placed in the cell.
-config.sellbackModifier = 1 -- The base cost that an item is multiplied by when selling the items back (0.75 is 75%)
-config.MainMenu = "menu player"
+config.sellbackModifier = 1.25 -- The base cost that an item is multiplied by when selling the items back (0.75 is 75%)
+config.MainMenu = "menu player" -- change to your main menu
+config.MinerTools = "miner's pick"
+config.LumberTools = "iron battle axe"
 --GUI Ids used for the script's GUIs. Shouldn't have to be edited.
 config.MainGUI = 91363
 config.BuyGUI = 91364
@@ -138,25 +140,25 @@ message.Flore = color.White .. "Vous venez de récupérer un élément de " .. c
 message.WaitJail = color.White .. "Vous êtes en prison pour une durée de " .. color.Red .. "5 " .. color.White .. "minutes."
 message.StopJail = color.White .. "Votre temps de " .. color.Red .. "prison " .. color.White .. "vient de se terminer."
 message.NoBuy = color.White .. "Vous ne pouvez pas vous permettre d'acheter un "
-message.Buy = color.White .. " a était ajouté à votre inventaire."
+message.Buy = color.White .. " a était ajouté à votre inventaire pour"
 message.SelectBuy = color.White .. "Sélectionnez un article que vous souhaitez acheter."
 message.SelectFurnInv = color.White .. "Sélectionnez le meuble de votre inventaire avec lequel vous souhaitez faire quelque chose."
-message.AddGold = color.White .. "L'or a été ajouté à votre inventaire."
+message.AddMaterial = color.White .. "Le matériel a été vendu de votre inventaire."
 message.NoPerm = color.White .. "Vous n'avez pas la permission de placer des meubles ici."
 message.PlaceFurn = color.White .. "Sélectionnez un meuble que vous avez placé dans cette cellule. Remarque: le contenu des conteneurs sera perdu s'il est retiré."
-message.SellFurn = color.White .. " d'or a été ajouté à votre inventaire et les meubles ont été retirés de la cellule."
+message.SellFurn = color.White .. "L'objet a été retirés de la cellule pour "
 message.UnFurn = color.White .. "L'objet semble avoir été enlevé."
 message.AddFurn = color.White .. " a était ajouté à votre inventaire de fourniture"
 message.SelectFurn = color.White .. "l'objet a était sélectionné utilisez /dh pour le déplacer"
-message.InvOption = "Placer;Acheter;Retour" 
+message.InvOption = "Placer;Vendre;Retour" 
 message.ViewOption = "Sélectionner;Récuperer;Vendre;Retour"
 message.ChooseDoor = color.White .. "Choose one of your doors"
 message.OnBuild = color.White .. "Choisissez une option"
-message.OnBuildOption = "Creature;NPC;Tout;Donjons;Rochers;Plantes;Ext;Statics;Créer porte;Retour"
+message.OnBuildOption = "Creatures;Pnjs;Meubles;Donjons;Rochers;Plantes;Exts;Statics;Portes;Retour"
 message.WhereDoor = "Où cette porte devrait-elle aller?"
 message.WelcomeFurn = color.Green.."BIENVENUE DANS L'ATELIER.\n\n"..color.Yellow.."Acheter "..color.White.."pour acheter des objets pour votre réserve\n\n"..color.Yellow.."Inventaire "..color.White.."pour afficher les articles de meubles que vous possédez\n\n"..color.Yellow.."Afficher "..color.White.."pour afficher la liste de tous les meubles que vous possédez dans la cellule où vous êtes actuellement\n\n"
-message.MainChoice = "Acheter;Inventaire;Afficher;Construction;Materiel;Retour"
-message.MyDoor = "Nouveau donjon;Une de mes portes; Retour"
+message.MainChoice = "Inventaire;Afficher;Construction;Materiel;Retour"
+message.MyDoor = "Nouveau donjon;Une de mes portes;Retour"
 message.NoCraft = "Vous n'avez pas assez de roches et de bois\n"
 message.CraftOption = "Fabriquer;Retour"
 
@@ -167,46 +169,46 @@ local furnitureData = {}
 
 local furnLoader = jsonInterface.load("npc.json")
 for index, item in pairs(furnLoader) do
-	table.insert(furnitureData, {name = item.Name, refId = item.ID, tip = "npc", need = "spawn"})
+	table.insert(furnitureData, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "npc", need = "spawn"})
 end
 
 local furnLoader = jsonInterface.load("creature.json")
 for index, item in pairs(furnLoader) do
-	table.insert(furnitureData, {name = item.FIELD3, refId = item.FIELD2, tip = "creature", need = "spawn"} )
+	table.insert(furnitureData, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "creature", need = "spawn"} )
 end
 
 local furnLoader = jsonInterface.load("cave.json")
 for index, item in pairs(furnLoader) do
-	table.insert(furnitureData, {name = item.ID, refId = item.ID, tip = "dungeon", need = "place"} )
+	table.insert(furnitureData, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "dungeon", need = "place"} )
 end
 
 local furnLoader = jsonInterface.load("furn.json")
 for index, item in pairs(furnLoader) do
-	table.insert(furnitureData, {name = item.ID, refId = item.ID, tip = "normal", need = "place"} )
+	table.insert(furnitureData, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "furn", need = "place"} )
 end
 
 local furnLoader = jsonInterface.load("exterior.json")
 for index, item in pairs(furnLoader) do
-	table.insert(furnitureData, {name = item.ID, refId = item.ID, tip = "exterior", need = "place"} )
+	table.insert(furnitureData, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "exterior", need = "place"} )
 end
 
 local furnLoader = jsonInterface.load("static.json")
 for index, item in pairs(furnLoader) do
-	table.insert(furnitureData, {name = item.ID, refId = item.ID, tip = "static", need = "place"} )
+	table.insert(furnitureData, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "static", need = "place"} )
 end
 
 local rocksLoader = jsonInterface.load("rocks.json")
 for index, item in pairs(rocksLoader) do
-	table.insert(craftTableRock, {refId = item.ID, tip = "rocks"})
-	table.insert(craftTable, {refId = item.ID, tip = "rocks"})
-	table.insert(furnitureData, {name = item.ID, refId = item.ID, tip = "rocks", need = "place"} )
+	table.insert(craftTableRock, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "rocks"})
+	table.insert(craftTable, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "rocks"})
+	table.insert(furnitureData, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "rocks", need = "place"} )
 end
 
 local floreLoader = jsonInterface.load("flora.json")
 for index, item in pairs(floreLoader) do
-	table.insert(craftTableFlora, {refId = item.ID, tip = "flora"})
-	table.insert(craftTable, {refId = item.ID, tip = "flora"})
-	table.insert(furnitureData, {name = item.ID, refId = item.ID, tip = "flora", need = "place"} )
+	table.insert(craftTableFlora, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "flora"})
+	table.insert(craftTable, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "flora"})
+	table.insert(furnitureData, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "flora", need = "place"} )
 end
 
 local WorldMining = {}
@@ -253,22 +255,19 @@ end
 WorldMining.OnGUIAction = function(pid, idGui, data)
 	
 	if idGui == config.MainGUI then -- Main
-		if tonumber(data) == 0 then --Buy
-			onMainBuy(pid)
-			return true
-		elseif tonumber(data) == 1 then -- Inventory
+		if tonumber(data) == 0 then -- Inventory
 			onMainInventory(pid)
 			return true
-		elseif tonumber(data) == 2 then -- View
+		elseif tonumber(data) == 1 then -- View
 			onMainView(pid)
 			return true
-		elseif tonumber(data) == 3 then -- Craft
+		elseif tonumber(data) == 2 then -- Craft
 			WorldMining.OnBuild(pid)
 			return true
-		elseif tonumber(data) == 4 then -- Material
+		elseif tonumber(data) == 3 then -- Material
 			WorldMining.OnCraftCommand(pid)
 			return true
-		elseif tonumber(data) == 5 then -- Return Main Menu
+		elseif tonumber(data) == 4 then -- Return Main Menu
 			Players[pid].currentCustomMenu = config.MainMenu
 			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
 			return true
@@ -327,7 +326,7 @@ WorldMining.OnGUIAction = function(pid, idGui, data)
 		elseif tonumber(data) == 1 then
 			WorldMining.showBuyGUIall(pid,"npc")
 		elseif tonumber(data) == 2 then
-			WorldMining.showBuyGUIall(pid,"all")
+			WorldMining.showBuyGUIall(pid,"furn")
 		elseif tonumber(data) == 3 then
 			WorldMining.showBuyGUIall(pid,"dungeon")
 		elseif tonumber(data) == 4 then
@@ -459,10 +458,6 @@ toDoor = function(pid)
 				Players[pid].DoorOptions[count] = {cell = cell, loc = item.location}
 				count = count + 1
 				list = list.."Door in Cell "..cell.."\n"
-			else
-				print("item was")
-				print("not owner")
-				print(item.owner)
 			end
 		end
 	end
@@ -618,10 +613,6 @@ end
 
 -------------------------
 
-getSellValue = function (baseValue)
-	return math.max(0, math.floor(baseValue * config.sellbackModifier))
-end
-
 getName = function(pid)
 	--return Players[pid].data.login.name
 	--Release 2 change: Now uses all lowercase name for storage
@@ -645,12 +636,13 @@ getObject = function(refIndex, cell)
 	end	
 end
 
---Returns the amount of gold in a player's inventory
+--Returns the amount of count in a player's inventory
+
 getPlayerGold = function(pid)
-	local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "material", -1)
+	local goldPlayer = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
 	
-	if goldLoc then
-		return Players[pid].data.inventory[goldLoc].count
+	if goldPlayer then
+		return Players[pid].data.inventory[goldPlayer].count
 	else
 		return 0
 	end
@@ -658,17 +650,69 @@ end
 
 addGold = function(pid, amount)
 	--TODO: Add functionality to add gold to offline player's inventories, too
-	local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "material", -1)
+	local goldPlayer = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
+
+	if goldPlayer then
+		Players[pid].data.inventory[goldPlayer].count = Players[pid].data.inventory[goldPlayer].count + amount
+	else
+		table.insert(Players[pid].data.inventory, {refId = "gold_001", count = amount, charge = -1})
+	end
 	
-	if goldLoc then
-		Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + amount
+	Players[pid]:Save()
+	local itemref = {refId = "gold_001", count = amount, charge = -1}	
+	Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)	
+end
+
+removeGold = function(pid, amount)
+	--TODO: Add functionality to add gold to offline player's inventories, too
+	local goldPlayer = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
+	
+	if goldPlayer then
+		Players[pid].data.inventory[goldPlayer].count = Players[pid].data.inventory[goldPlayer].count - amount
+	end
+	
+	Players[pid]:Save()
+	local itemref = {refId = "gold_001", count = amount, charge = -1}	
+	Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)	
+end
+
+
+getPlayerMaterial = function(pid)
+	local locMaterial = inventoryHelper.getItemIndex(Players[pid].data.inventory, "material", -1)
+	
+	if locMaterial then
+		return Players[pid].data.inventory[locMaterial].count
+	else
+		return 0
+	end
+end
+
+addMaterial = function(pid, amount)
+	--TODO: Add functionality to add gold to offline player's inventories, too
+	local locMaterial = inventoryHelper.getItemIndex(Players[pid].data.inventory, "material", -1)
+
+	if locMaterial then
+		Players[pid].data.inventory[locMaterial].count = Players[pid].data.inventory[locMaterial].count + amount
 	else
 		table.insert(Players[pid].data.inventory, {refId = "material", count = amount, charge = -1})
 	end
 	
 	Players[pid]:Save()
-	local itemref = {refId = "material", count = 1, charge = -1}	
+	local itemref = {refId = "material", count = amount, charge = -1}	
 	Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)	
+end
+
+removeMaterial = function(pid, amount)
+	--TODO: Add functionality to add gold to offline player's inventories, too
+	local goldMaterial = inventoryHelper.getItemIndex(Players[pid].data.inventory, "material", -1)
+	
+	if goldMaterial then
+		Players[pid].data.inventory[goldMaterial].count = Players[pid].data.inventory[goldMaterial].count - amount
+	end
+	
+	Players[pid]:Save()
+	local itemref = {refId = "material", count = amount, charge = -1}	
+	Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)	
 end
 
 getFurnitureData = function(refId)
@@ -760,7 +804,7 @@ placeFurniture = function(refId, loc, cell, packetType)
 			tes3mp.SetObjectRefId(refId)
 			tes3mp.SetObjectRefNumIndex(0)
 			tes3mp.SetObjectMpNum(mpNum)
-			tes3mp.SetObjectPosition(location.posX, location.posY, location.posZ)
+			tes3mp.SetObjectPosition(location.posX - 50, location.posY + 50, location.posZ + 25)
 			tes3mp.SetObjectRotation(location.rotX, location.rotY, location.rotZ)
 			tes3mp.AddWorldObject()	
 			if packetType == "place" then
@@ -961,7 +1005,7 @@ WorldMining.TransferAllOwnership = function(cell, playerCurrentName, playerToNam
 end
 
 --New Release 2 WorldMining:
-WorldMining.GetSellBackPrice = function(value)
+WorldMining.GetBackPrice = function(value)
 	return getSellValue(value)
 end
 
@@ -975,11 +1019,10 @@ end
 
 -- VIEW (OPTIONS)
 showViewOptionsGUI = function(pid, loc)
-	local msg = ""
 	local choice = playerViewOptions[getName(pid)][loc]
 	local fdata = getFurnitureData(choice.refId)
 	
-	msg = msg .. "Item Name: " .. fdata.name .. " (RefIndex: " .. choice.refIndex .. "). Price: 1 (Sell price: 1)"
+	local msg = color.Yellow.."Item Name: "..color.White..fdata.name..color.Yellow.." (RefIndex: "..color.White..choice.refIndex..")."
 	
 	playerViewChoice[getName(pid)] = choice
 	tes3mp.CustomMessageBox(pid, config.ViewOptionsGUI, msg, message.ViewOption)
@@ -1018,19 +1061,29 @@ onViewOptionSell = function(pid)
 	local pname = getName(pid)
 	local choice = playerViewChoice[pname]
 	local cell = tes3mp.GetCell(pid)
-	
+	local price
+	local material
+	for x, y in pairs(furnitureData) do
+		if furnitureData[x].refId == choice.refId then
+			price = math.floor(tonumber((furnitureData[x].price) / config.sellbackModifier))
+			material = math.floor(tonumber((furnitureData[x].material) / config.sellbackModifier))
+			break
+		end
+	end
 	if getObject(choice.refIndex, cell) then
-		local saleGold = 1
-		
-		--Add gold to inventory
-		addGold(pid, saleGold)
-		
+		if price > 0 then
+			addGold(pid, price)
+		end
+		if material > 0 then
+			addMaterial(pid, material)
+		end
+		--Add material to inventory
 		--Remove the item from the cell
 		removeFurniture(choice.refIndex, cell)
 		removePlaced(choice.refIndex, cell, true)
 		
 		--Inform the player
-		tes3mp.MessageBox(pid, -1, saleGold .. message.SellFurn)
+		tes3mp.MessageBox(pid, -1, message.SellFurn..color.Yellow.." Gold: "..color.White..price..color.Yellow.." Materiel: "..color.White..material)
 	else
 		tes3mp.MessageBox(pid, -1, message.UnFurn)
 	end
@@ -1074,11 +1127,9 @@ end
 
 -- INVENTORY (OPTIONS)
 showInventoryOptionsGUI = function(pid, loc)
-	local msg = ""
 	local choice = playerInventoryOptions[getName(pid)][loc]
-	local fdata = getFurnitureData(choice.refId)
-	
-	msg = msg .. "Item Name: " .. choice.name .. ". Price: 1 (Sell price: 1)"
+	local fdata = getFurnitureData(choice.refId)	
+	local msg = color.Yellow.."Item Name: "..color.White..choice.name
 	
 	playerInventoryChoice[getName(pid)] = choice
 	tes3mp.CustomMessageBox(pid, config.InventoryOptionsGUI, msg, message.InvOption)
@@ -1118,17 +1169,25 @@ end
 onInventoryOptionSell = function(pid)
 	local pname = getName(pid)
 	local choice = playerInventoryChoice[pname]
-	
-	local saleGold = 1
-	
-	--Add gold to inventory
-	addGold(pid, saleGold)
-	
+	local price
+	local material
+	for x, y in pairs(furnitureData) do
+		if furnitureData[x].refId == choice.refId then
+			price = math.floor(tonumber((furnitureData[x].price) / config.sellbackModifier))
+			material = math.floor(tonumber((furnitureData[x].material) / config.sellbackModifier))
+			break
+		end
+	end
+	if price > 0 then
+		addGold(pid, price)
+	end
+	if material > 0 then
+		addMaterial(pid, material)
+	end
 	--Remove 1 instance of the item from the player's inventory
-	addFurnitureItem(pname, choice.refId, -1, true)
-	
+	addFurnitureItem(pname, choice.refId, -1, true)	
 	--Inform the player
-	tes3mp.MessageBox(pid, -1, saleGold .. message.AddGold)
+	tes3mp.MessageBox(pid, -1, message.AddMaterial..color.Yellow.." Gold: "..color.White..price..color.Yellow.." Materiel: "..color.White..material)
 end
 
 -- INVENTORY (MAIN)
@@ -1137,7 +1196,7 @@ showInventoryGUI = function(pid)
 	local list = "* Retour *\n"
 	
 	for i = 1, #options do
-		list = list .. options[i].name .. " (" .. options[i].count .. ")"
+		list = list..color.Yellow.."Nom: "..color.White..options[i].name..color.Yellow.." Nombres: "..color.White..options[i].count
 		if not(i == #options) then
 			list = list .. "\n"
 		end
@@ -1152,48 +1211,80 @@ onInventoryChoice = function(pid, loc)
 end
 
 -- BUY (MAIN)
-showBuyGUI = function(pid)
-	local options = getAvailableFurnitureStock(pid, "normal")
-	local list = "* Retour *\n"
-	
-	for i = 1, #options do
-		list = list .. options[i].name
-		if not(i == #options) then
-			list = list .. "\n"
-		end
-	end
-	playerBuyOptions[getName(pid)] = options
-	tes3mp.ListBox(pid, config.BuyGUI, message.SelectBuy, list)
-end
 
 WorldMining.showBuyGUIall = function(pid, tip)
 	local options = getAvailableFurnitureStock(pid, tip)
 	local list = "* Retour *\n"
-	
-	for i = 1, #options do
-		list = list .. options[i].name
-		if not(i == #options) then
-			list = list .. "\n"
+	if tip == "creature" or tip == "npc" then
+		
+		for i = 1, #options do
+			list = list..color.Yellow.."Name: "..color.Default..options[i].name..color.Yellow.." Price: "..color.Default..options[i].price
+			if not(i == #options) then
+				list = list .. "\n"
+			end
+		end	
+	elseif tip == "furn" or tip == "exterior" or tip == "dungeon" or tip == "static" then	
+		for i = 1, #options do
+			list = list..color.Yellow.."Name: "..color.Default..options[i].name..color.Yellow.." Price: "..color.Default..options[i].price..color.Yellow.." Material: "..color.White..options[i].material
+			if not(i == #options) then
+				list = list .. "\n"
+			end
+		end					
+	elseif tip == "rocks" or tip == "flora" then
+		for i = 1, #options do
+			list = list..color.Yellow.."Name: "..color.Default..options[i].name..color.Yellow.." Material: "..color.Default..options[i].material
+			if not(i == #options) then
+				list = list .. "\n"
+			end
 		end
 	end
-	
 	playerBuyOptions[getName(pid)] = options
 	tes3mp.ListBox(pid, config.BuyGUI, message.SelectBuy, list)
 end
 
 onBuyChoice = function(pid, loc)
-	local pgold = getPlayerGold(pid)
+	local pmaterial = getPlayerMaterial(pid)
+	local goldcount = getPlayerGold(pid)
 	local choice = playerBuyOptions[getName(pid)][loc]
+	local price = tonumber(choice.price)
+	local omaterial = tonumber(choice.material)
+	if price == nil then price = 0 end
+	if omaterial == nil then omaterial = 0 end	
 	
-	if pgold < 1 then
-		tes3mp.MessageBox(pid, -1, message.NoBuy .. choice.name .. ".")
-		return false
+	if price > 0 and omaterial == 0 then
+		if goldcount < price then
+			tes3mp.MessageBox(pid, -1, message.NoBuy .. choice.name .. ".")
+			return false
+		else
+			removeGold(pid, price)
+			addFurnitureItem(getName(pid), choice.refId, 1, true)		
+		end	
+	elseif omaterial > 0 and price == 0 then
+		if pmaterial < omaterial then
+			tes3mp.MessageBox(pid, -1, message.NoBuy .. choice.name .. ".")
+			return false
+		else
+			removeMaterial(pid, omaterial)
+			addFurnitureItem(getName(pid), choice.refId, 1, true)	
+		end
+	elseif omaterial > 0 and price > 0 then
+		if pmaterial < omaterial or goldcount < price then
+			tes3mp.MessageBox(pid, -1, message.NoBuy .. choice.name .. ".")
+			return false
+		elseif pmaterial > omaterial and goldcount < price then
+			tes3mp.MessageBox(pid, -1, message.NoBuy .. choice.name .. ".")
+			return false
+		elseif pmaterial < omaterial and goldcount > price then
+			tes3mp.MessageBox(pid, -1, message.NoBuy .. choice.name .. ".")
+			return false						
+		else
+			removeGold(pid, price)		
+			removeMaterial(pid, omaterial)
+			addFurnitureItem(getName(pid), choice.refId, 1, true)	
+		end		
 	end
 	
-	addGold(pid, -1)
-	addFurnitureItem(getName(pid), choice.refId, 1, true)
-	
-	tes3mp.MessageBox(pid, -1, choice.name .. message.Buy)
+	tes3mp.MessageBox(pid, -1, color.Yellow..choice.name..message.Buy..color.Yellow.." Coût: "..color.White..choice.price..color.Yellow.." Materiel: "..color.White..choice.material)
 	return true
 end
 
@@ -1207,7 +1298,7 @@ WorldMining.OnHitActivate = function(pid, unique, refId, refNum, mpNum)
 	end
 	if tableHelper.containsValue(craftTableRock, refId, true) then
 		if drawState == 1 then	
-			if tableHelper.containsValue(itemEquipment, "miner's pick", true) then			
+			if tableHelper.containsValue(itemEquipment, config.MinerTools, true) then			
 				logicHandler.RunConsoleCommandOnPlayer(pid, "player->say, \"AM/MinerSOund1.wav\", \"\"", false)
 				logicHandler.RunConsoleCommandOnPlayer(pid, "player->PlayGroup, PickProbe, 0", false)
 				if Players[pid].data.customVariables.craftUnique == nil then
@@ -1248,7 +1339,7 @@ WorldMining.OnHitActivate = function(pid, unique, refId, refNum, mpNum)
 		return true
 	elseif tableHelper.containsValue(craftTableFlora, refId, true) then
 		if drawState == 1 then		
-			if tableHelper.containsValue(itemEquipment, "iron battle axe", true) then			
+			if tableHelper.containsValue(itemEquipment, config.LumberTools, true) then			
 				logicHandler.RunConsoleCommandOnPlayer(pid, "player->say, \"AM/MinerSound2.wav\", \"\"", false)
 				logicHandler.RunConsoleCommandOnPlayer(pid, "player->PlayGroup, PickProbe, 0", false)
 				if Players[pid].data.customVariables.craftUnique == nil then
@@ -1414,9 +1505,9 @@ craft = function(pid)
 	--remove one of each
 	inventoryHelper.removeItem(Players[pid].data.inventory, "crafttree", 1)
 	inventoryHelper.removeItem(Players[pid].data.inventory, "craftrock", 1)
-
 	--add material
 	inventoryHelper.addItem(Players[pid].data.inventory, "material", 1, -1, -1, "")
+	Players[pid]:Save()
 	local itemMat = {refId = "material", count = 1, charge = -1}	
 	local itemTree = {refId = "crafttree", count = 1, charge = -1}
 	local itemRock = {refId = "craftrock", count = 1, charge = -1}		
