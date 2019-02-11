@@ -104,3 +104,11 @@ https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
 **EcarlateSoul**
 
 - an experience gain system with skill chart, inspired by ragefire
+
+**Bank**
+
+- Personal banking system, deposit, withdraw soon make the transfer but pay attention to taxes
+
+**Mining**
+
+- do you know minecraft? the same thing in better
