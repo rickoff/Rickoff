@@ -1,6 +1,4 @@
--- kanaHousing - Release 1.5 - For tes3mp 0.7.0 for Ecarlate server
-
-
+-- kanaHousing - Release 1.6 - For tes3mp 0.7.0 for Ecarlate server
 
 --[[ INSTALLATION
 
@@ -46,6 +44,14 @@
 
 	[ kanaHousing.OnObjectDelete(pid, cellDescription) ]
 
+10) Open eventHandler.lua find eventHandler.OnObjectDeleteand add under 'for index = 0, tes3mp.GetObjectListSize() - 1 do'
+
+	isValid = not kanaHousing.OnObjectDelete(pid, cellDescription)
+	
+11) Find eventHandler.OnObjectActivate add under 'if doesObjectHaveActivatingPlayer then'
+
+	isValid = not kanaHousing.OnActivatedObject(pid, cellDescription) 
+
 n) If you have kanaFurniture installed, uncomment (remove the -- at the beginning) the line [ kanaFurniture = require("kanaFurniture") ] that is after this installation info box. Requires kanaFurniture release 2 or later.
 
 ]]
@@ -58,7 +64,8 @@ config.defaultPrice = 5000 --The price a house defaults to when it's created
 config.requiredAdminRank = 1 --The admin rank required to use the admin GUI
 config.allowWarp = true --Whether or not players can use the option to warp to their home
 config.logging = true --If the script reports its own information to the server log
-config.chatColor = "#00FF7F" --The color used for the script's chat messages
+config.chatColor = "#FFDC00" --The color used for the script's chat messages
+config.blackList = {"in_hlaalu_loaddoor_01", "in_de_shack_door", "ex_nord_door_02", "in_velothismall_ndoor_01", "ex_common_door_01", "in_c_door_arched", "bar_ex_door02", "bar_ex_door03"}
 
 config.AdminMainGUI = 31371
 config.AdminHouseCreateGUI = 31372
@@ -70,12 +77,16 @@ config.HouseEditOwnerGUI = 31377
 config.HouseInfoGUI = 31378
 config.PlayerMainGUI = 31379
 config.PlayerAllHouseSelectGUI = 31380
-config.PlayerSettingGUI = 31381
-config.PlayerOwnedHouseSelect = 31382
-config.PlayerAddCoOwnerGUI = 31383
-config.PlayerRemoveCoOwnerGUI = 31384
-config.PlayerSellConfirmGUI = 31385
-
+config.PlayerAllHouseSelectGUI = 31381
+config.PlayerAllHouseSelectGUI = 31382
+config.PlayerSettingGUI = 31383
+config.PlayerOwnedHouseSelect = 31384
+config.PlayerAddCoOwnerGUI = 31385
+config.PlayerRemoveCoOwnerGUI = 31386
+config.PlayerSellConfirmGUI = 31387
+config.ViewOptionsGUI = 31388
+config.ViewShopOptionsGUI = 31389
+config.ItemEditPriceGUI = 31390
 -------------------
 jsonInterface = require("jsonInterface")
 eventHandler = require("eventHandler")
@@ -86,7 +97,7 @@ enumerations = require("enumerations")
 
 local Methods = {}
 --Forward Declarations:
-local showAdminMain, showHouseCreate, showAdminHouseSelect, showCellEditMain, showHouseEditMain, showHouseEditPricePrompt, showHouseEditOwnerPrompt, showHouseInfo, showUserMain, showAllHousesList, showPlayerSettingsMain, showPlayerSettingsOwnedList, showPlayerSettingsAddPrompt, showPlayerSettingsRemoveList, showPlayerSellOptions, onLockStatusChange
+local showAdminMain, showHouseCreate, showAdminHouseSelect, showCellEditMain, showHouseEditMain, showHouseEditPricePrompt, showHouseEditOwnerPrompt, showHouseInfo, showUserMain, showAllHousesList, showSellHousesList, showShopHousesList, showPlayerSettingsMain, showPlayerSettingsOwnedList, showPlayerSettingsAddPrompt, showPlayerSettingsRemoveList, showPlayerSellOptions, onLockStatusChange, onShopStatusChange
 -------------------
 local housingData = {houses = {}, cells = {}, owners = {}}
 
@@ -110,7 +121,7 @@ local function Load()
 end
 
 Methods.OnServerPostInit = function()
-	local file = io.open(os.getenv("MOD_DIR") .. "/kanaHousing.json", "r")
+	local file = io.open(tes3mp.GetModDir().. "/kanaHousing.json", "r")
 	if file ~= nil then
 		io.close()
 		Load()
@@ -174,6 +185,50 @@ local function addGold(playerName, amount) --playerName is the name of the playe
 			local itemref = {refId = "gold_001", count = amount, charge = -1}	
 			player:Save()
 			player:LoadItemChanges({itemref}, enumerations.inventory.ADD)
+		else
+			--If the player isn't logged in, we have to temporarily set the player's logged in variable to true, otherwise the Save function won't save the player's data
+			player.loggedIn = true
+			player:Save()
+			player.loggedIn = false
+		end
+		
+		return true
+	else
+		--Couldn't find any existing player with that name
+		return false
+	end
+end
+
+local function removeGold(playerName, amount) --playerName is the name of the player to add the gold to (capitalization doesn't matter). Amount is the amount of gold to add (can be negative if you want to subtract gold).
+	--Find the player
+	local player = logicHandler.GetPlayerByName(playerName)
+	
+	--Check we found the player before proceeding
+	if player then
+		--Look through their inventory to find where their gold is, if they have any
+		local goldLoc = inventoryHelper.getItemIndex(player.data.inventory, "gold_001", -1)
+		
+		--If they have gold in their inventory, edit that item's data. Otherwise make some new data.
+		if goldLoc then
+			player.data.inventory[goldLoc].count = player.data.inventory[goldLoc].count - amount
+			
+			--If the total is now 0 or lower, remove the entry from the player's inventory.
+			if player.data.inventory[goldLoc].count < 1 then
+				player.data.inventory[goldLoc] = nil
+			end
+		else
+			--Only create a new entry for gold if the amount is actually above 0, otherwise we'll have negative money.
+			if amount > 0 then
+				table.insert(player.data.inventory, {refId = "gold_001", count = amount, charge = -1})
+			end
+		end
+		
+		--How we save the character is different depending on whether or not the player is online
+		if player:IsLoggedIn() then
+			--If the player is logged in, we have to update their inventory to reflect the changes
+			local itemref = {refId = "gold_001", count = amount, charge = -1}	
+			player:Save()
+			player:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)
 		else
 			--If the player isn't logged in, we have to temporarily set the player's logged in variable to true, otherwise the Save function won't save the player's data
 			player.loggedIn = true
@@ -360,6 +415,7 @@ local function addHouseOwner(oname, houseName)
 	housingData.owners[oname].houses[houseName] = {}
 	housingData.owners[oname].houses[houseName].coowners = {}
 	housingData.owners[oname].houses[houseName].isLocked = false
+	housingData.owners[oname].houses[houseName].isShop = false	
 	-- TODO: Assign leftover kanaFurniture stuff to new owner?
 	if kanaFurniture ~= nil then
 		--Give the player permission to place furniture in all of the house's cells
@@ -409,6 +465,7 @@ local function removeCoOwner(houseName, pname)
 	Save()
 	--Hack to trigger a reassessment to see if they should still be allowed in the house if they were in it when they were removed
 	onLockStatusChange(houseName)
+	onShopStatusChange(houseName)
 end
 
 local function getHouseInfoLong(houseName, toggleMeanings) --Used in GUI labels
@@ -542,6 +599,14 @@ local function isLocked(houseName)
 	end
 end
 
+local function isShop(houseName)
+	if getHouseOwnerName(houseName) then
+		return housingData.owners[getHouseOwnerName(houseName)].houses[houseName].isShop
+	else
+		return false
+	end
+end
+
 --Used for determining if a player is allowed in a cell. Returns if they are allowed, as well as the reason why they are/aren't allowed.
 local function isAllowedEnter(pid, cell)
 	local pname = getName(pid)
@@ -574,6 +639,25 @@ local function isAllowedEnter(pid, cell)
 	else
 		return true, "unlocked"
 	end
+	
+	if isShop(hdata.name) then
+		if isOwner(pname, hdata.name) then
+			return true, "owner"
+		elseif isCoOwner(pname, hdata.name) then
+			return true, "coowner"
+		elseif Players[pid].data.settings.staffRank == 2 then --Moderators/Admins should always be allowed to enter
+			return true, "admin"
+		elseif cdata.requiredAccess then
+			return true, "access"
+		else
+			return false, "close"
+		end
+	elseif not getHouseOwnerName(hdata.name) then --There's no owner
+		return true, "unowned"
+	else
+		return true, "unlocked"
+	end
+	
 end
 
 local function canWarp(pid)
@@ -657,11 +741,60 @@ onLockStatusChange = function(houseName) --forward declared
 	else
 		doLog(getHouseOwnerName(houseName) .. " a débloqué " .. hdata.name)
 	end
+
+end
+
+onShopStatusChange = function(houseName) --forward declared
+	local hdata = housingData.houses[houseName]
+	local destinationCell, destinationPos
+	if hdata.outside.cell then --There's exit data saved for this house
+		destinationCell = hdata.outside.cell
+		destinationPos = hdata.outside.pos
+	else
+		--Without any data for an exit, we default to placing the players back at spawn
+		destinationCell = serverConfig.defaultSpawnCell
+		destinationPos = {x = serverConfig.defaultSpawnPos[1], y = serverConfig.defaultSpawnPos[2], z = serverConfig.defaultSpawnPos[3]}
+	end
+
+	if isShop(houseName) then
+		for playerId, player in pairs(Players) do
+			if player:IsLoggedIn() then
+				local inHouse, cdata = getIsInHouse(playerId)
+				
+				if inHouse == houseName then
+					local canEnter, reason = isAllowedEnter(playerId, cdata.name)
+					if reason == "owner" or reason == "coowner" or reason == "admin" then
+						--Do Nothing
+					else
+						--Welcome shop
+						msg(playerId, "Bienvenue dans la boutique.")
+					end
+				end
+			end
+		end
+	end	
+	
+	if isShop(houseName) then
+		doLog(getHouseOwnerName(houseName) .. " a ouvert la boutique " .. hdata.name)
+	else
+		doLog(getHouseOwnerName(houseName) .. " a fermé la boutique " .. hdata.name)
+	end	
 end
 
 local function onDirtyThief(pid)
 	--Do nothing, for now. Future version could implement auto-banning if wanted, or a system that automatically returns the taken items.
-	tes3mp.MessageBox(pid, -1, "Cela ne vous appartient pas. Remettre.")
+	local destinationCell, destinationPos
+	if hdata.outside.cell then --There's exit data saved for this house
+		destinationCell = hdata.outside.cell
+		destinationPos = hdata.outside.pos
+	else
+		--Without any data for an exit, we default to placing the players back at spawn
+		destinationCell = serverConfig.defaultSpawnCell
+		destinationPos = {x = serverConfig.defaultSpawnPos[1], y = serverConfig.defaultSpawnPos[2], z = serverConfig.defaultSpawnPos[3]}
+	end	
+	warpPlayer(pid, destinationCell, destinationPos)	
+	Players[pid].currentCustomMenu = "menu prison house"--Avertisseent
+	menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
 end
 
 -------------------
@@ -671,7 +804,7 @@ local playerSelectedHouse = {}
 local playerAllHouseList = {}
 local playerOwnedHouseList = {}
 local playerCoOwnerList = {}
-
+local playerViewChoice = {}
 -- PLAYER SELL OPTIONS
 showPlayerSellOptions = function(pid)
 	local message = ""
@@ -721,7 +854,7 @@ showPlayerSettingsRemoveList = function(pid)
 	local message = "Sélectionnez un copropriétaire à supprimer. Note: Retrait d'un copropriétaire va retourner tous leurs meubles."
 	--Generate a list of options
 	local options = {}	
-	local list = "* CLOSE *\n"
+	local list = "* Fermer *\n"
 	local coOwners = housingData.owners[getName(pid)].houses[playerSelectedHouse[getName(pid)]].coowners
 	
 	for coname, v in pairs(coOwners) do
@@ -764,7 +897,7 @@ showPlayerSettingsOwnedList = function(pid)
 	local message = "Sélectionnez une maison appartenant à la liste"
 	--Generate a list of options
 	local options = {}	
-	local list = "* CLOSE *\n"
+	local list = "* Retour *\n"
 	
 	for houseName, v in pairs(housingData.houses) do
 		if getHouseOwnerName(houseName) == getName(pid) then
@@ -794,7 +927,7 @@ showPlayerSettingsMain = function(pid)
 		playerSelectedHouse[getName(pid)] = nil
 	end
 	
-	message = message .. "#red ..Maison actuellement sélectionnée: " .. (playerSelectedHouse[getName(pid)] or "Aucune") .. "\n\n\n"
+	message = message .. color.White.. "Maison actuellement sélectionnée: " ..color.Yellow.. (playerSelectedHouse[getName(pid)] or "Aucune") .. "\n\n\n"
 	
 	if playerSelectedHouse[getName(pid)] then
 		local hdata = housingData.houses[playerSelectedHouse[getName(pid)]]
@@ -805,13 +938,19 @@ showPlayerSettingsMain = function(pid)
 		else
 			message = message .. "déverrouillé.\n"
 		end
+		
+		if isShop(hdata.name) then
+			message = message .. "\nLa Maison est actuellement une boutique.\n"
+		else
+			message = message .. "\nLa Maison est actuellement une Maison.\n"
+		end		
 		--TODO: More?
 	end
 	
 	message = message .. "\n"
-	message = message .. "#cyan .Sélectionner la maison dont vous souhaitez modifier les paramètres.\n\n Pour ajouter un copropriétaire, utilisez 'Ajouter un copropriétaire' ou supprimez-en un avec 'Supprimer le copropriétaire'. Les copropriétaires sont autorisés à entrer dans votre maison pendant qu'elle est verrouillé mais ne peuvent pas ce teleporter.\n\n'Verrouiller' est utilisé pour verrouiller / déverrouiller la maison. Lorsqu'il est verrouillé, personne, sauf les propriétaires, les co-propriétaires ou les administrateures, ne peuvent entrer dans la maison.\n\n 'Teleporter' vous téléportera à la maison.\n\n Utilisez 'Vendre une maison' si vous voulez la vendre.\n\n"
+	message = message ..color.Yellow.. "[Sélectionner]" ..color.White.. "\nsélectionner la maison dont vous souhaitez modifier les paramètres" ..color.Yellow.. "\n\n[Ajouter co-pro]" ..color.White.."\najouter un copropriétaire" ..color.Yellow.. "\n\n[Enlever co-pro]" ..color.White.. "\nsupprimer un copropriétaire\nLes copropriétaires sont autorisés à entrer dans votre maison pendant qu'elle est verrouillé mais ne peuvent pas ce teleporter" ..color.Yellow.. "\n\n[Serrure]" ..color.White.. "\nverrouiller / déverrouiller la maison\nLorsqu'il est verrouillé, personne, sauf les propriétaires, les co-propriétaires ou les administrateures, ne peuvent entrer dans la maison" ..color.Yellow.. "\n\n[Teleporter]" ..color.White.. "\nce téléporter à la maison" ..color.Yellow.. "\n\n[Vendre]" ..color.White.. "\npour vendre la maison" ..color.Yellow.. "\n\n[Boutique]" ..color.White.. "\npour basculer maison ou boutique\n"
 	
-	return tes3mp.CustomMessageBox(pid, config.PlayerSettingGUI, message, "Sélectionnez la maison possédée;ajoutez le copropriétaire;enlevez le copropriétaire;verrouillez le verrou;teleportez à la maison;vendez la maison;fermez")
+	return tes3mp.CustomMessageBox(pid, config.PlayerSettingGUI, message, "Sélectionner;Ajouter co-pro;Enlever co-pro;Serrure;Teleporter;Vendre;Boutique;Retour;Fermer")
 end
 
 local function onPlayerSettingsOwned(pid)
@@ -888,13 +1027,25 @@ local function onPlayerSelectSell(pid)
 	end
 end
 
+local function onPlayerShopHouse(pid)
+	--PLAYER SWITCH HOME TO SHOP
+	if playerSelectedHouse[getName(pid)] then
+		housingData.owners[getName(pid)].houses[playerSelectedHouse[getName(pid)]].isShop = (not housingData.owners[getName(pid)].houses[playerSelectedHouse[getName(pid)]].isShop)
+		Save()
+		onShopStatusChange(playerSelectedHouse[getName(pid)])
+	else
+		return tes3mp.MessageBox(pid, -1, "Vous n'avez pas la maison sélectionnée.")
+	end
+	return showPlayerSettingsMain(pid)	
+end
+
 -- PLAYER SELECT HOUSE ALL LIST
 showAllHousesList = function(pid)
-	local message = "Sélectionnez une maison dans la liste pour en savoir plus."
+	local message = "Sélectionnez une maison dans la liste."
 	
 	--Generate a list of options
 	local options = {}	
-	local list = "* CLOSE *\n"
+	local list = "* Retour *\n"
 	
 	for houseName, v in pairs(housingData.houses) do
 		table.insert(options, houseName)
@@ -910,19 +1061,81 @@ showAllHousesList = function(pid)
 	return tes3mp.ListBox(pid, config.PlayerAllHouseSelectGUI, message, list)
 end
 
+showSellHousesList = function(pid)
+	local message = "Sélectionnez une maison dans la liste."
+	local cellNameCell
+	--Generate a list of options
+	local options = {}	
+	local list = "* Retour *\n"
+	local listBlackList = {}
+	for ownerName, v in pairs(housingData.owners) do
+		for cellName, x in pairs(housingData.owners[ownerName].houses) do
+			table.insert(listBlackList, cellName)
+		end
+	end
+	if listBlackList ~= nil then
+		for houseName, v in pairs(housingData.houses) do
+			if not tableHelper.containsValue(listBlackList, houseName) then
+				table.insert(options, houseName)
+			end
+		end
+	end
+	for i=1, #options do
+		list = list .. options[i]
+		if not (i == #options) then
+			list = list .. "\n"
+		end
+	end
+	
+	playerAllHouseList[getName(pid)] = options
+	return tes3mp.ListBox(pid, config.PlayerAllHouseSelectGUI, message, list)
+end
+
+
+showShopHousesList = function(pid)
+	local message = "Sélectionnez une maison dans la liste."
+	
+	--Generate a list of options
+	local options = {}	
+	local list = "* Retour *\n"
+	
+	for houseName, v in pairs(housingData.houses) do
+		if isShop(houseName) then
+			table.insert(options, houseName)
+		end
+	end
+	for i=1, #options do
+		list = list .. options[i]
+		if not (i == #options) then
+			list = list .. "\n"
+		end
+	end
+	
+	playerAllHouseList[getName(pid)] = options
+	return tes3mp.ListBox(pid, config.PlayerAllHouseSelectGUI, message, list)
+end
+
 local function onPlayerAllHouseSelect(pid, index)
 	playerSelectedHouse[getName(pid)] = playerAllHouseList[getName(pid)][index]
-	return showHouseInfo(pid)
+	return showHouseInfoSelected(pid)
 end
 
 -- PLAYER HOUSE CONTROL MAIN
 showUserMain = function(pid)
-	local message = "#red ..MENU DU LOGEMENT.\n\n\n#blue .Liste de toutes les maisons pour afficher la liste de toutes les maisons disponibles.\n\n#cyan .Modifier les paramètres de la maison pour configurer les maisons que vous possédez."
-	tes3mp.CustomMessageBox(pid, config.PlayerMainGUI, message, "Liste de toutes les maisons;Modifier les paramètres de la maison;Fermer")
+	local message = color.Red.. "MENU DU LOGEMENT" ..color.Yellow.. "\n\n\n[Catalogue]" ..color.White.. "\nliste de toutes les maisons/boutiques" ..color.Yellow.. "\n\n[Maison/Boutique]" ..color.White.. "\npour configurer les biens que vous possédez\n"
+	tes3mp.CustomMessageBox(pid, config.PlayerMainGUI, message, "Catalogue Général;Catalogue Maisons;Catalogue Boutique;Maison/Boutique;Retour;Fermer")
 end
 
 local function onPlayerMainList(pid)
 	showAllHousesList(pid)
+end
+
+local function onPlayerSellList(pid)
+	showSellHousesList(pid)
+end
+
+local function onPlayerShopList(pid)
+	showShopHousesList(pid)
 end
 
 local function onPlayerMainEdit(pid)
@@ -931,6 +1144,29 @@ end
 
 -- PLAYER HOUSE INFO
 showHouseInfo = function(pid)
+	local message = ""
+	local hdata
+	--if not playerSelectedHouse[getName(pid)] or not housingData.houses[playerSelectedHouse[getName(pid)]] then
+	local pcell = tes3mp.GetCell(pid)
+	if housingData.cells[pcell] and housingData.cells[pcell].house and housingData.houses[housingData.cells[pcell].house] then
+		hdata = housingData.houses[housingData.cells[pcell].house]
+		playerSelectedHouse[getName(pid)] = hdata.name
+	end
+	--else
+		--hdata = housingData.houses[playerSelectedHouse[getName(pid)]]
+	--end
+	
+	if hdata then
+		message = message .. getHouseInfoLong(hdata.name, true)
+	else
+		message = message .. "Vous n'avez pas de maison sélectionnée, vous n'êtes pas non plus dans une maison en vente."
+		playerSelectedHouse[getName(pid)] = nil
+	end
+	
+	return tes3mp.CustomMessageBox(pid, config.HouseInfoGUI, message, "Acheter;Fermer")
+end
+
+showHouseInfoSelected = function(pid)
 	local message = ""
 	local hdata
 	if not playerSelectedHouse[getName(pid)] or not housingData.houses[playerSelectedHouse[getName(pid)]] then
@@ -946,7 +1182,7 @@ showHouseInfo = function(pid)
 	if hdata then
 		message = message .. getHouseInfoLong(hdata.name, true)
 	else
-		message = message .. "Vous n'avez pas de maison sélectionnée, vous n'êtes pas non plus dans une maison."
+		message = message .. "Vous n'avez pas de maison sélectionnée, vous n'êtes pas non plus dans une maison en vente."
 		playerSelectedHouse[getName(pid)] = nil
 	end
 	
@@ -966,7 +1202,7 @@ local function onHouseInfoBuy(pid)
 				return tes3mp.MessageBox(pid, -1, "Vous ne pouvez pas vous permettre cette maison.")
 			end
 			--Do the actual selling
-			addGold(getName(pid), -hdata.price)
+			removeGold(getName(pid), hdata.price)
 			addHouseOwner(getName(pid), hdata.name)
 			return tes3mp.MessageBox(pid, -1, "Félicitations, vous êtes maintenant le fier propriétaire de".. hdata.name .."Utilisez la commande /house pour gérer les paramètres de votre maison.")
 		end
@@ -1175,7 +1411,7 @@ showAdminHouseSelect = function(pid)
 	
 	--Generate a list of options
 	local options = {}	
-	local list = "* CLOSE *\n"
+	local list = "* Fermer *\n"
 	
 	for houseName, v in pairs(housingData.houses) do
 		table.insert(options, houseName)
@@ -1214,7 +1450,7 @@ showAdminMain = function(pid)
 	local message = ""
 	if adminSelectedHouse[getName(pid)] then
 		--TODO: Check if still valid house
-		message = message .. "#red ..Maison actuellement sélectionnée: " .. adminSelectedHouse[getName(pid)] .. "\n\n\n"
+		message = message .. color.White.. "Maison actuellement sélectionnée: " ..color.Yellow.. adminSelectedHouse[getName(pid)] .. "\n\n\n"
 	end
 	
 	message = message .. "#cyan .Créer une nouvelle maison pour créer et sélectionner une nouvelle maison, ou Sélectionner une maison pour en sélectionner une existante.\n\nModifier les données de la cellule est utilisé pour éditer les informations de cellule dans laquelle vous êtes actuellement. Si vous avez sélectionné une maison, vous pouvez ensuite affecter cette cellule à celle que vous avez sélectionnée.\n\nModifier les données de la maison est utilisé pour éditer toutes sortes de choses sur la maison elle-même. "
@@ -1341,9 +1577,18 @@ Methods.OnGUIAction = function(pid, idGui, data)
 		if tonumber(data) == 0 then --List all Houses
 			onPlayerMainList(pid)
 			return true
-		elseif tonumber(data) == 1 then --Edit House Settings
+		elseif tonumber(data) == 1 then --List sell Houses
+			onPlayerSellList(pid)
+			return true
+		elseif tonumber(data) == 2 then --List shop Houses
+			onPlayerShopList(pid)
+			return true			
+		elseif tonumber(data) == 3 then --Edit House Settings
 			onPlayerMainEdit(pid)
 			return true
+		elseif tonumber(data) == 4 then --Return Menu
+			Players[pid].currentCustomMenu = "menu player"--main menu
+			return true, menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)				
 		else --Close
 			--Do nothing
 			return true
@@ -1355,7 +1600,7 @@ Methods.OnGUIAction = function(pid, idGui, data)
 		else
 			onPlayerAllHouseSelect(pid, tonumber(data))
 			return true
-		end
+		end	
 	elseif idGui == config.PlayerSettingGUI then --Player Setting Main
 		if tonumber(data) == 0 then --Select Owned House
 			onPlayerSettingsOwned(pid)
@@ -1375,6 +1620,11 @@ Methods.OnGUIAction = function(pid, idGui, data)
 		elseif tonumber(data) == 5 then --Sell House
 			onPlayerSelectSell(pid)
 			return true
+		elseif tonumber(data) == 6 then --Shop House
+			onPlayerShopHouse(pid)
+			return true
+		elseif tonumber(data) == 7 then --Return
+			return true, showUserMain(pid)			
 		else --Close
 			--Do nothing
 			return true
@@ -1420,6 +1670,28 @@ Methods.OnGUIAction = function(pid, idGui, data)
 			--Do nothing
 			return true, showPlayerSettingsMain(pid)
 		end
+	elseif idGui == config.ViewOptionsGUI then --Edite Price Item
+		if tonumber(data) == 0 then --Change price item activated
+			Methods.onViewOptionSelect(pid)
+			return true
+		else
+			return true
+		end
+	elseif idGui == config.ViewShopOptionsGUI then --Shop Price Item
+		if tonumber(data) == 0 then --Change price item activated
+			Methods.onShopOptionSelect(pid)
+			return true
+		else
+			return true
+		end		
+    elseif idGui == config.ItemEditPriceGUI then
+        if tonumber(data) == 0 or tonumber(data) == 18446744073709551615 then --Close/Nothing Selected
+            --Do nothing
+            return true
+        else
+            Methods.addPriceItem(pid, tonumber(data))
+            return true
+        end  		
 	end
 end
 
@@ -1445,17 +1717,15 @@ Methods.OnPlayerCellChange = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local currentCell = tes3mp.GetCell(pid)
 		
-		--Do the locked doors check stuff
-		unlockChecks(currentCell)
-		
 		--If they're entering a house cell
 		if housingData.cells[currentCell] and housingData.cells[currentCell].house ~= nil then
 			hdata = housingData.houses[housingData.cells[currentCell].house]
-			
+			--Do the locked doors check stuff
+			unlockChecks(currentCell)			
 			local canEnter, enterReason = isAllowedEnter(pid, currentCell)
 			if enterReason == "unowned" then --A player has entered a house without an owner
 				if lastEnteredHouse[getName(pid)] ~= hdata.name then --They've just entered the house
-					msg(pid, " Vous êtes entré dans " .. hdata.name .. ", qui est une maison disponible à l'achat pour " .. hdata.price .. " or. Ecrire /houseinfo pour plus d'information.")
+					msg(pid, "---------------------------------------\n" .. hdata.name .. "\ncoût : " .. hdata.price .. ".\nEcrire /houseinfo pour plus d'information.\n---------------------------------------")
 				end
 				doLog(Players[pid].accountName .. " entré dans une cellule dans la maison sans propriétaire " .. hdata.name)
 			elseif enterReason == "unlocked" then				
@@ -1463,7 +1733,15 @@ Methods.OnPlayerCellChange = function(pid)
 					if isOwner(getName(pid), hdata.name) or isCoOwner(getName(pid), hdata.name) then
 						msg(pid, "Bienvenue à la maison, " .. Players[pid].accountName .. ".")
 					else
-						msg(pid, "Bienvenue " .. getHouseOwnerName(hdata.name) .. " maison.")
+						if isShop(hdata.name) then					
+							Players[pid].data["itemPickUpBlocked"] = 1
+							--logicHandler.RunConsoleCommandOnPlayer(pid, "tm")					
+							msg(pid, "Bienvenue " .. getHouseOwnerName(hdata.name) .. " boutique.")	
+						else
+							Players[pid].data["itemPickUpBlocked"] = 1
+							--logicHandler.RunConsoleCommandOnPlayer(pid, "tm")						
+							msg(pid, "Bienvenue " .. getHouseOwnerName(hdata.name) .. " maison.")	
+						end
 					end
 				end
 				
@@ -1483,8 +1761,11 @@ Methods.OnPlayerCellChange = function(pid)
 				if lastEnteredHouse[getName(pid)] ~= hdata.name then --They've just entered the house
 					local message = "Bienvenue à la maison, " .. Players[pid].accountName .. "."
 					if isLocked(hdata.name) then
-						message = message .. " La maison est toujours fermée aux étrangers."
+						message = message .. "La maison est verrouillée."			
 					end
+					if isShop(hdata.name) then
+						message = message .. "La maison est une boutique."			
+					end					
 					msg(pid, message)
 				end
 				
@@ -1498,7 +1779,7 @@ Methods.OnPlayerCellChange = function(pid)
 				tes3mp.MessageBox(pid, -1, message)
 				doLog(Players[pid].accountName .. " entré dans la maison fermée à clé" .. hdata.name .. " en tant que visiteur autorisé à entrer car la cellule est marquée comme requiredAccess")
 			elseif canEnter == false then
-				msg(pid, "Le propriétaire a fermé la maison.")
+				msg(pid, "\nLe propriétaire a fermé la maison.")
 				local destinationCell, destinationPos
 				if hdata.outside.cell then --There's exit data saved for this house
 					destinationCell = hdata.outside.cell
@@ -1514,6 +1795,10 @@ Methods.OnPlayerCellChange = function(pid)
 			
 			lastEnteredHouse[getName(pid)] = hdata.name
 		else
+			if Players[pid].data["itemPickUpBlocked"] == 1 then
+				--logicHandler.RunConsoleCommandOnPlayer(pid, "tm")
+				Players[pid].data["itemPickUpBlocked"] = 0
+			end
 			--Not in a housing cell
 			lastEnteredHouse[getName(pid)] = nil
 		end
@@ -1598,10 +1883,9 @@ Methods.OnContainer = function(pid, cellDescription)
 	doLog("DEBUG: Container stuff done")
 end
 
-Methods.OnObjectDelete = function (pid, cellDescription)
+Methods.OnActivatedObject = function (pid, cellDescription)
 	tes3mp.ReadLastEvent()
 	local pname
-	
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		pname = Players[pid].name
 	else
@@ -1609,7 +1893,7 @@ Methods.OnObjectDelete = function (pid, cellDescription)
 	end
 	
 	local houseName, cdata = getIsInHouse(pid)
-	
+	local hdata = housingData.houses[houseName]		
 	if not houseName then -- The player isn't in a house cell, so we don't care
 		return false
 	end
@@ -1621,26 +1905,279 @@ Methods.OnObjectDelete = function (pid, cellDescription)
 	--Get the item's data
 	local refIndex = tes3mp.GetObjectRefNumIndex(0) .. "-" .. tes3mp.GetObjectMpNum(0)
 	local refId = tes3mp.GetObjectRefId(0)
-		
-	if not isOwner(pname, houseName) and not isCoOwner(pname, houseName) then --We aren't interested in what the owners or co owners get up to in the cells they own.
-		--Check if the container is listed in the cell's resetInfo, to see if they're taking an item important for a quest.
-		local dirtyThief = true --Guilty until proven innocent
-		for index, resetData in pairs(cdata.resetInfo) do
-			if resetData.refIndex == refIndex then
-				dirtyThief = false
-				break
+	if not tableHelper.containsValue(config.blackList, refId) then
+		if not isShop(hdata.name) then	
+			if not isOwner(pname, houseName) and not isCoOwner(pname, houseName) then --We aren't interested in what the owners or co owners get up to in the cells they own.
+				--Check if the container is listed in the cell's resetInfo, to see if they're taking an item important for a quest.
+				local dirtyThief = true --Guilty until proven innocent
+				for index, resetData in pairs(cdata.resetInfo) do
+					if resetData.refIndex == refIndex then
+						dirtyThief = false
+						return false
+					end
+				end
+					
+				if dirtyThief then
+					doLog("Voleur potentiel " .. getName(pid) .. " ramassé un objet non-quête(" .. refIndex .. " - " .. refId ..") dans " .. cdata.name .. " (partie de " .. getHouseOwnerName(cdata.house) .. "la maison: " .. cdata.house .. ")!")
+					onDirtyThief(pid)
+					return true
+				else
+					doLog(getName(pid) .. "ramassé un objet de quête (" .. refIndex .. " - " .. refId ..") dans " .. cdata.name .. " (partie de " .. getHouseOwnerName(cdata.house) .. "la maison: " .. cdata.house .. "), ce qui est bon.") --Necessary to log?
+				end
 			end
-		end
-			
-		if dirtyThief then
-			doLog("Voleur potentiel " .. getName(pid) .. " ramassé un objet non-quête(" .. refIndex .. " - " .. refId ..") dans " .. cdata.name .. " (partie de " .. getHouseOwnerName(cdata.house) .. "la maison: " .. cdata.house .. ")!")
-			onDirtyThief(pid)
 		else
-			doLog(getName(pid) .. "ramassé un objet de quête (" .. refIndex .. " - " .. refId ..") dans " .. cdata.name .. " (partie de " .. getHouseOwnerName(cdata.house) .. "la maison: " .. cdata.house .. "), ce qui est bon.") --Necessary to log?
+			if not isOwner(pname, houseName) and not isCoOwner(pname, houseName) then --We aren't interested in what the owners or co owners get up to in the cells they own.
+				--Check if the container is listed in the cell's resetInfo, to see if they're taking an item important for a quest.
+				Methods.showShopOptionGUI(pid, refId)
+				return true
+			else
+				Methods.showViewOptionsGUI(pid, refId)
+				return true
+			end
 		end
 	end
 end
 
+Methods.OnObjectDelete = function (pid, cellDescription)
+	tes3mp.ReadLastEvent()
+	local pname
+	local cellId = tes3mp.GetCell(pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		pname = Players[pid].name
+	else
+		return
+	end
+	
+	local houseName, cdata = getIsInHouse(pid)
+	local hdata = housingData.houses[houseName]		
+	if not houseName then -- The player isn't in a house cell, so we don't care
+		return false
+	end
+	
+	if not getHouseOwnerName(houseName) then --It's not really stealing if nobody owns the house
+		return false
+	end
+	
+	--Get the item's data
+	local refIndex = tes3mp.GetObjectRefNumIndex(0) .. "-" .. tes3mp.GetObjectMpNum(0)
+	local refId = tes3mp.GetObjectRefId(0)
+	if not tableHelper.containsValue(config.blackList, refId) then
+		if not isShop(hdata.name) then	
+			if not isOwner(pname, houseName) and not isCoOwner(pname, houseName) then --We aren't interested in what the owners or co owners get up to in the cells they own.
+				--Check if the container is listed in the cell's resetInfo, to see if they're taking an item important for a quest.
+				local dirtyThief = true --Guilty until proven innocent
+				for index, resetData in pairs(cdata.resetInfo) do
+					if resetData.refIndex == refIndex then
+						dirtyThief = false
+						return false
+					end
+				end
+					
+				if dirtyThief then
+					doLog("Voleur potentiel " .. getName(pid) .. " ramassé un objet non-quête(" .. refIndex .. " - " .. refId ..") dans " .. cdata.name .. " (partie de " .. getHouseOwnerName(cdata.house) .. "la maison: " .. cdata.house .. ")!")
+					onDirtyThief(pid)
+					return true
+				else
+					doLog(getName(pid) .. "ramassé un objet de quête (" .. refIndex .. " - " .. refId ..") dans " .. cdata.name .. " (partie de " .. getHouseOwnerName(cdata.house) .. "la maison: " .. cdata.house .. "), ce qui est bon.") --Necessary to log?
+				end
+			end
+		else
+			if not isOwner(pname, houseName) and not isCoOwner(pname, houseName) then --We aren't interested in what the owners or co owners get up to in the cells they own.
+				--Check if the container is listed in the cell's resetInfo, to see if they're taking an item important for a quest.
+				local dirtyThief = true --Guilty until proven innocent
+				for index, resetData in pairs(cdata.resetInfo) do
+					if resetData.refIndex == refIndex then
+						dirtyThief = false
+						return false
+					end
+				end					
+				if dirtyThief then
+					doLog("Voleur potentiel " .. getName(pid) .. " ramassé un objet non-quête(" .. refIndex .. " - " .. refId ..") dans " .. cdata.name .. " (partie de " .. getHouseOwnerName(cdata.house) .. "la maison: " .. cdata.house .. ")!")				
+					local removedCount = 1 -- you need to get the real count th player wants to remove
+					local existingIndex = nil				
+					for slot, item in pairs(Players[pid].data.inventory) do -- does item exist in inventory
+						if Players[pid].data.inventory[slot].refId == refId then
+							existingIndex = slot
+						end
+					end			 
+					if existingIndex ~= nil then -- if he got item then change count and or remove 
+						local inventoryItem = Players[pid].data.inventory[existingIndex] -- get it for working					
+						local itemid = inventoryItem.refId -- save for adding into hdvinv					
+						for slot, inv in pairs(Players[pid].data.equipment) do -- does player have item equipped
+							if inv.refId == itemid then
+								Players[pid].data.equipment[slot] = nil
+							end    
+						end							
+						inventoryItem.count = inventoryItem.count - removedCount					
+						if inventoryItem.count < 1 then
+							inventoryItem = nil
+						end			 
+						Players[pid].data.inventory[existingIndex] = inventoryItem -- pack it back
+						local itemref = {refId = refId, count = 1, charge = -1}
+						Players[pid]:Save()
+						Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)		
+						onDirtyThief(pid)
+						return true
+					end
+				else
+					doLog(getName(pid) .. "ramassé un objet de quête (" .. refIndex .. " - " .. refId ..") dans " .. cdata.name .. " (partie de " .. getHouseOwnerName(cdata.house) .. "la maison: " .. cdata.house .. "), ce qui est bon.") --Necessary to log?
+				end
+			end
+		end
+	end
+end
+
+Methods.showShopOptionGUI = function(pid, refId)
+	
+    local choice = refId
+    local message = choice
+ 	local cellId = tes3mp.GetCell(pid)
+	local cell = LoadedCells[cellId]
+	local price 
+	for index, uniqueIndex in pairs(cell.data.objectData) do
+		if cell.data.objectData[index].refId == choice then
+			price = cell.data.objectData[index].price
+			if price == nil then
+				cell.data.objectData[index].price = 0
+				price = cell.data.objectData[index].price
+			end
+			message = color.Red .. message .. " " .. color.Yellow .. "\n\nCoût : " .. color.White .. price
+		end
+	end 
+	if price ~= nil and price > 0 then
+		playerViewChoice[getName(pid)] = choice
+		tes3mp.CustomMessageBox(pid, config.ViewShopOptionsGUI, message, "Acheter;Retour")
+	else
+		tes3mp.MessageBox(pid, -1, "Cette objet n'est pas à vendre ! ")
+	end
+end
+
+Methods.onShopOptionSelect = function(pid)
+
+    local choice = playerViewChoice[getName(pid)] 
+	local cellId = tes3mp.GetCell(pid)
+	local cell = LoadedCells[cellId]
+	local price
+	local count
+	for index, uniqueIndex in pairs(cell.data.objectData) do
+		if cell.data.objectData[index].refId == choice then
+			price = cell.data.objectData[index].price
+			break
+		end
+	end
+	
+	if price ~= nil then
+		local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
+		if goldLoc == nil then
+			tes3mp.MessageBox(pid, -1, "Vous êtes pauvre !")
+		elseif goldLoc then
+			local goldcount = Players[pid].data.inventory[goldLoc].count		
+			if goldcount < price then
+				tes3mp.MessageBox(pid, -1, "Vous n'avez pas assez d'argent !")
+			elseif goldcount >= price then
+				for _, uniqueIndex in pairs(cell.data.packets.place) do			
+					if cell.data.objectData[uniqueIndex].refId == choice then
+						cell.data.objectData[uniqueIndex] = nil
+						tableHelper.removeValue(cell.data.packets.place, uniqueIndex)
+						logicHandler.DeleteObjectForEveryone(cellId, uniqueIndex)	
+					end
+				end
+				cell:Save()		
+				Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - price
+				tes3mp.MessageBox(pid, -1, "Vous avez acheté un objet !")
+				table.insert(Players[pid].data.inventory, {refId = choice, count = 1, charge = -1})	
+				local itemref1 = {refId = choice, count = 1 , charge = -1}				
+				local itemref = {refId = "gold_001", count = price, charge = -1}			
+				Players[pid]:Save()
+				Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)
+				Players[pid]:LoadItemChanges({itemref1}, enumerations.inventory.ADD)
+				--add Gold to Sellers Inventory
+				local hdata = housingData.houses[housingData.cells[cellId].house]
+				local existingPlayer = getHouseOwnerName(hdata.name)
+				local player = logicHandler.GetPlayerByName(existingPlayer)
+				local goldLocSeller = nil
+				
+				for slot, item in pairs(player.data.inventory) do
+					if item.refId == "gold_001" then
+						goldLocSeller = slot
+					end
+				end
+				
+				if goldLocSeller ~= nil then
+					player.data.inventory[goldLocSeller].count = player.data.inventory[goldLocSeller].count + price
+				
+					if player:IsLoggedIn() then
+						--If the player is logged in, we have to update their inventory to reflect the changes
+						local itemref = {refId = "gold_001", count = price, charge = -1}	
+						player:Save()
+						player:LoadItemChanges({itemref}, enumerations.inventory.ADD)						
+					else
+						--If the player isn't logged in, we have to temporarily set the player's logged in variable to true, otherwise the Save function won't save the player's data
+						player.loggedIn = true
+						player:Save()
+						player.loggedIn = false
+					end
+				else
+					table.insert(player.data.inventory, {refId = "gold_001", count = price, charge = -1})	
+					if player:IsLoggedIn() then
+						--If the player is logged in, we have to update their inventory to reflect the changes
+						local itemref = {refId = "gold_001", count = price, charge = -1}	
+						player:Save()
+						player:LoadItemChanges({itemref}, enumerations.inventory.ADD)
+					else
+						--If the player isn't logged in, we have to temporarily set the player's logged in variable to true, otherwise the Save function won't save the player's data
+						player.loggedIn = true
+						player:Save()
+						player.loggedIn = false
+					end
+				end				
+			end
+		end
+	end
+end
+ 
+Methods.showViewOptionsGUI = function(pid, refId)
+ 
+    local choice = refId
+    local message = choice
+ 	local cellId = tes3mp.GetCell(pid)
+	local cell = LoadedCells[cellId]
+	local price 
+	for index, uniqueIndex in pairs(cell.data.objectData) do
+		if cell.data.objectData[index].refId == choice then
+			price = cell.data.objectData[index].price
+			if price == nil then
+				cell.data.objectData[index].price = 0
+				price = cell.data.objectData[index].price
+			end
+			message = color.Red .. message .. " " .. color.Yellow .. "\n\nCoût : " .. color.White .. price
+		end
+	end  
+    playerViewChoice[getName(pid)] = choice
+    tes3mp.CustomMessageBox(pid, config.ViewOptionsGUI, message, "Changer le prix;Retour")
+end
+ 
+Methods.onViewOptionSelect = function(pid)
+    Methods.showEditPricePrompt(pid)
+end
+ 
+Methods.showEditPricePrompt = function(pid)
+    local itemchoice = playerViewChoice[getName(pid)]
+    local message = "Entrer un nouveau prix : "
+    return tes3mp.InputDialog(pid, config.ItemEditPriceGUI, message, "")
+end
+ 
+Methods.addPriceItem = function(pid, price)
+    local choice = playerViewChoice[getName(pid)] 
+	local cellId = tes3mp.GetCell(pid)
+	local cell = LoadedCells[cellId]	
+	for index, uniqueIndex in pairs(cell.data.objectData) do
+		if cell.data.objectData[index].refId == choice then
+			cell.data.objectData[index].price = price
+		end
+	end
+	cell:Save()
+end
 -------------------
 
 Methods.GetCellData = function(cell)
@@ -1691,6 +2228,10 @@ end
 
 Methods.IsLocked = function(houseName)
 	return isLocked(houseName)
+end
+
+Methods.IsShop = function(houseName)
+	return isShop(houseName)
 end
 -------------------
 
