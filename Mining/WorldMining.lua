@@ -82,8 +82,8 @@ Menus["menu prison house"] = {
 
 function contentFixer.AddPreexistingObjects(cellDescription)
 	
-	if WorldInstance.data.customVariables ~= nil and WorldInstance.data.customVariables.kanaFurnitureMod ~= nil and WorldInstance.data.customVariables.kanaFurnitureMod.placed ~= nil then
-		local placed = WorldInstance.data.customVariables.kanaFurnitureMod.placed
+	if WorldInstance.data.customVariables ~= nil and WorldInstance.data.customVariables.WorldMining ~= nil and WorldInstance.data.customVariables.WorldMining.placed ~= nil then
+		local placed = WorldInstance.data.customVariables.WorldMining.placed
 		if placed[cellDescription] ~= nil then
 			local unique = {}
 			
@@ -94,8 +94,8 @@ function contentFixer.AddPreexistingObjects(cellDescription)
 			
 			for refIndex, uniqueId in pairs(unique) do
 				-- swap positions in table after we created them
-				WorldInstance.data.customVariables.kanaFurnitureMod.placed[cellDescription][uniqueId] = WorldInstance.data.customVariables.kanaFurnitureMod.placed[cellDescription][refIndex]
-				WorldInstance.data.customVariables.kanaFurnitureMod.placed[cellDescription][refIndex] = nil
+				WorldInstance.data.customVariables.WorldMining.placed[cellDescription][uniqueId] = WorldInstance.data.customVariables.WorldMining.placed[cellDescription][refIndex]
+				WorldInstance.data.customVariables.WorldMining.placed[cellDescription][refIndex] = nil
 			end
 			
 		LoadedCells[cellDescription].forceActorListRequest = true
@@ -108,9 +108,9 @@ end
 		contentFixer.AddPreexistingObjects(cellDescription)
 			
 12) Add the following to OnGUIAction in serverCore.lua
-	[ if kanaFurnitureMod.OnGUIAction(pid, idGui, data) then return end ]
+	[ if WorldMining.OnGUIAction(pid, idGui, data) then return end ]
 13) Add the following to the end of  OnServerPostInit in serverCore.lua
-	[ kanaFurnitureMod.OnServerPostInit() ]
+	[ WorldMining.OnServerPostInit() ]
 end	
 ]]
 tableHelper = require("tableHelper")
