@@ -24,7 +24,7 @@ async def on_createchannel():
 	i = 0
 	while i < 1:
 		try:
-			server = client.get_server("352047092396457984")	
+			server = client.get_server("id server discord")#replace to you idserverdiscord	
 			role = discord.utils.get(server.roles, name="Vocal")
 			
 			with open(playerlocationjson) as json_data:
