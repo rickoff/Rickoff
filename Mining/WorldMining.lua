@@ -1525,18 +1525,21 @@ craft = function(pid)
 end
 	
 WorldMining.OnCraftCommand = function(pid)
-	--get counts
-	local count = {terrain = 0, flora = 0}
+	local count = {terrain = 0, flora = 0, material = 0}
 
 	local index = inventoryHelper.getItemIndex(Players[pid].data.inventory, "crafttree")
 	if index ~= nil then count.flora = Players[pid].data.inventory[index].count end
 
 	local index2 = inventoryHelper.getItemIndex(Players[pid].data.inventory, "craftrock")
 	if index2 ~= nil then count.terrain = Players[pid].data.inventory[index2].count end
+	
+	local index3 = inventoryHelper.getItemIndex(Players[pid].data.inventory, "material")
+	if index3 ~= nil then count.material = Players[pid].data.inventory[index3].count end
 
 	--craftrock, crafttree
-	if count.terrain > 0 and count.flora > 0 then
-		tes3mp.CustomMessageBox(pid, 1337, color.Yellow..message.Rock..color.White..count.terrain.."   "..color.Yellow.." "..message.Wood..color.White..count.flora.." "..message.CraftOption)
+	if count.terrain > 0 and count.flora > 0 and count.material >= 0 then
+		local msgCustom = color.Yellow..message.Stone..color.White..count.terrain.."   "..color.Yellow..message.Wood..color.White..count.flora.."   "..color.Yellow..message.Hardware..color.White..count.material.."\n"
+		tes3mp.CustomMessageBox(pid, 1337, msgCustom, message.CraftOption)	
 	else
 		tes3mp.SendMessage(pid, message.NoCraft, false)
 		return showMainGUI(pid)
