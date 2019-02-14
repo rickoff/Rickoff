@@ -19,12 +19,13 @@ Alternative way by discordpeter
 * replace the complete function with 
 ```
 function BasePlayer:SaveLevel()
+config.maxLevel = 20
 
 	local level = tes3mp.GetLevel(self.pid)
-	if level > 20 then --somehow got above level 20
+	if level > config.maxLevel then --somehow got above level maxLevel
 		self:LoadLevel()
-	elseif level == 20 then
-		if level == self.data.stats.level then -- skillprogress with level 20: reload data to rewind back
+	elseif level == config.maxLevel then
+		if level == self.data.stats.level then -- skillprogress with maxLevel: reload data to rewind back
 			self:LoadLevel()
 		else -- in case someone just reached level 20 and is still 19 in data
 			self.data.stats.level = tes3mp.GetLevel(self.pid)
