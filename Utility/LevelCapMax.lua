@@ -9,7 +9,7 @@
 3) Add to eventHandler.OnObjectActivate = function(pid, cellDescription)
 
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-		  LevelCapMax.CheckLevel(pid)
+	LevelCapMax.CheckLevel(pid)
 ]]
 local config = {}
 config.maxLevel = 50
