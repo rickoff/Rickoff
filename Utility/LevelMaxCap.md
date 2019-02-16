@@ -7,7 +7,7 @@ go to player>base.lua
 		if self.data.stats.level >= maxlevel then
 			tes3mp.SetLevel(self.pid, maxlevel)
 			tes3mp.SendSkills(self.pid)
-			if self.data.stats.levelProgress >= 10 then
+			if self.data.stats.levelProgress >= 1 then
 				tes3mp.SetLevelProgress(self.pid, 0)
 				tes3mp.SendSkills(self.pid)
 			end
