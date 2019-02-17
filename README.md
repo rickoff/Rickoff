@@ -65,7 +65,6 @@ https://github.com/Skvysh/TES3MP-Scripts/tree/master/Criminals
 **Spectate**
 
 - the spectator mode to spy on other players in peace
-https://github.com/Malseph/Mal-s-Public-Server-Scripts-for-Tes3MP
 
 **kanaHousing, kanaFurniture, decorateHelp**
 
