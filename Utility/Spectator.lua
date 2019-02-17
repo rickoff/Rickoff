@@ -1,6 +1,34 @@
 --Spectator.lua by rickoff for tes3mp 0.7.0
 
 --[[INSTALLATION
+
+--add permanentrecord in spell.json
+  "permanentRecords":{
+    "invisibility_ability":{
+      "name":"Invisibility Ability",
+      "subtype":1,
+      "cost":0,
+      "flags":0,
+      "effects":[{
+          "id":39,
+          "attribute":-1,
+          "skill":-1,
+          "rangeType":0,
+          "area":0,
+          "magnitudeMax":100,
+          "magnitudeMin":100
+        }]
+    },
+	"levitate":{
+	  "name":"Disabled Levitate",
+	  "subtype":0,
+	  "cost":0,
+	  "flags":0,
+	  "effects":[]
+	},	
+
+--add in commandHandler.lua
+
 elseif cmd[1] == "spectatetimer" and admin then
 	Spectator.SpectateTPTimer(pid)	
 
@@ -20,7 +48,8 @@ elseif cmd[1] == "spectate" and admin then
             Spectator.ToggleSpectate(pid)
             tes3mp.SendMessage(pid, color.Warning.."Now spectating "..Players[TargetPid].name, false)
         end  
-add under function OnPlayerCellChange(pid)
+		
+add under function OnPlayerCellChange(pid) in servercore.lua
 	Spectator.SpectatePersist(pid) 
 	Spectator.TeleportSpectator(pid)
 
@@ -29,23 +58,28 @@ add under function OnPlayerCellChange(pid)
 
 local Spectator = {}
 
-Spectator.SetPlayerState = function(pid, State)
-	local CurrentCell = tes3mp.GetCell(pid)
-	tes3mp.InitializeEvent(pid)
-	tes3mp.SetEventCell(CurrentCell)
-	tes3mp.SetPlayerAsObject(pid)
-	tes3mp.AddWorldObject()	
-	tes3mp.SetEventConsoleCommand(State)
-	tes3mp.SendConsoleCommand(true)
-end
-
 Spectator.ToggleSpectate = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		if Players[pid].Disabled == true then
-			Spectator.SetPlayerState(pid, "enable")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "removespell invisibility_ability", true)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerFighting", false)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerViewSwitch", false)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerMagic", false)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerLooking", false)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerControls", false)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "EnableVanityMode", false)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "tcl", false)			
 			Players[pid].Disabled = nil
 		else
-			Spectator.SetPlayerState(pid, "disable")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "addspell invisibility_ability", true)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerFighting", false)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerViewSwitch", false)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerMagic", false)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerLooking", false)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerControls", false)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "DisableVanityMode", false)
+			logicHandler.RunConsoleCommandOnPlayer(pid, "PCForce1stPerson", false)	
+			logicHandler.RunConsoleCommandOnPlayer(pid, "tcl", false)			
 			Players[pid].Disabled = true
 		end
 	end
@@ -54,7 +88,7 @@ end
 Spectator.SpectatePersist = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then 
 		if Players[pid].Disabled == true then
-			Spectator.SetPlayerState(pid, "disable")
+			logicHandler.RunConsoleCommandOnPlayer(pid, "addspell invisibility_ability", true)	
 			Players[pid].Disabled = true
 		end
 	end
@@ -114,16 +148,16 @@ Spectator.TeleportToPlayerSpectate = function(pid, originPid, targetPid)
 		targetPos[0] = tes3mp.GetPosX(targetPid)
 		targetPos[1] = tes3mp.GetPosY(targetPid)
 		targetPos[2] = tes3mp.GetPosZ(targetPid)
-		targetRot[0] = tes3mp.GetRotX(targetPid)
-		targetRot[1] = tes3mp.GetRotZ(targetPid)
+		targetRot[0] = tes3mp.GetRotX(originPid)
+		targetRot[1] = tes3mp.GetRotZ(originPid)
 		targetCell = tes3mp.GetCell(targetPid)
 
 		tes3mp.SetCell(originPid, targetCell)
 		tes3mp.SendCell(originPid)
-		tes3mp.SetPos(originPid, targetPos[0] , targetPos[1] , targetPos[2] + 50)
+		tes3mp.SetPos(originPid, targetPos[0] - 500, targetPos[1] + 500, targetPos[2] + 1000)
 		tes3mp.SetRot(originPid, targetRot[0], targetRot[1])
 		tes3mp.SendPos(originPid)
-		Spectator.SpectatePersist(pid)
+		Spectator.SpectatePersist(originPid)
 	end
 
 end
