@@ -1,5 +1,7 @@
 fix by david cernat
 
+**just make a custom record and remove its script for now**
+*for version 0.7 alpha*
 
 Open up data/recordstore/armor.json and add this to permanentRecords:
 ```
