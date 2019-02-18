@@ -159,7 +159,7 @@ message.WhereDoor = "Où cette porte devrait-elle aller?"
 message.WelcomeFurn = color.Green.."BIENVENUE DANS L'ATELIER.\n\n"..color.Yellow.."Acheter "..color.White.."pour acheter des objets pour votre réserve\n\n"..color.Yellow.."Inventaire "..color.White.."pour afficher les articles de meubles que vous possédez\n\n"..color.Yellow.."Afficher "..color.White.."pour afficher la liste de tous les meubles que vous possédez dans la cellule où vous êtes actuellement\n\n"
 message.MainChoice = "Inventaire;Afficher;Construction;Materiel;Retour"
 message.MyDoor = "Nouveau donjon;Une de mes portes;Supprimer porte;Retour"
-message.NoCraft = "Vous n'avez pas assez de roches et de bois\n"
+message.NoCraft = "Vous n'avez pas assez de roches et/ou de bois\n"
 message.CraftOption = "Fabriquer;Retour"
 message.Wood = "Bois: "
 message.Stone = "Pierres: "
@@ -551,7 +551,7 @@ toDeleteDoor = function(pid, data)
 	local doors = jsonInterface.load("createdDoors.json")
 	--delete door into createddoor.json
 	for x, y in pairs(doors[chosenCell]) do
-		if doors[chosenCell][x].owner == pname and doors[chosenCell][x].location == chosenLoc then
+		if doors[chosenCell][x].owner == pname then --location de not match 
 			doors[chosenCell][x] = nil
 		end
 	end	
