@@ -1,5 +1,5 @@
--- mwTDM by Texafornian modified by rickoff for ecarlate server
--- v1710.15 for TES3MP v0.6.2 hotfix
+-- mwTDM by Texafornian
+-- v18 for Ecarlate by Rickoff for TES3MP v0.7.0
 --
 -- Many thanks to:
 -- * David (inventory checker & general LUA-fu)
@@ -8,9 +8,9 @@
 -----------------------
 -- DO-NOT-TOUCH SECTION
 -----------------------
-
+ 
 local time = require("time")
-require("actionTypes")
+require("enumerations")
 
 local Methods = {}
 
@@ -25,6 +25,7 @@ teamFourScore = 0
 --------------------------
 -- CONFIG/SETTINGS SECTION
 --------------------------
+MainGUI = 8784956  
 
 -- Number of kills required for either team to win
 scoreToWin = 10
@@ -35,8 +36,7 @@ canSwitchTeams = true
 -- Default spawn time in seconds
 spawnTime = 1
 
--- Names of the two teams
--- (Change "color.DarkCyan" and "...Brown" in function ProcessDeath)
+-- Names of the four teams
 teamOne = "L'ordre du temple"
 teamTwo = "L'empire de septim"
 teamThree = "Les renégats"
@@ -120,7 +120,6 @@ end
 Methods.OnDeathTimeExpiration = function(pid)
 	
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-        tes3mp.Resurrect(pid, actionTypes.resurrect.REGULAR)
 		Players[pid].data.mwTDM.spawnSeconds = spawnTime
 		Players[pid].data.mwTDM.status = 1 -- Player is now alive and safe for teleporting
 		TeamHandler(pid)
@@ -129,10 +128,11 @@ end
 
 Methods.OnGUIAction = function(pid, idGui, data)
     data = tostring(data) -- data can be numeric, but we should convert this to string
-    if idGui == GUI.ID.LOGIN then
+	
+    if idGui == guiHelper.ID.LOGIN then
         if data == nil then
             Players[pid]:Message("Mot de passe incorrect!\n")
-            GUI.ShowLogin(pid)
+            guiHelper.ShowLogin(pid)
             return true
         end
 
@@ -141,7 +141,7 @@ Methods.OnGUIAction = function(pid, idGui, data)
         -- Just in case the password from the data file is a number, make sure to turn it into a string
         if tostring(Players[pid].data.login.password) ~= data then
             Players[pid]:Message("Mot de passe incorrect!\n")
-            GUI.ShowLogin(pid)
+            guiHelper.ShowLogin(pid)
             return true
         end
 
@@ -173,17 +173,20 @@ Methods.OnGUIAction = function(pid, idGui, data)
 			end
 			
 			TeamHandler(pid)
+			tes3mp.CustomMessageBox(pid, -1, ""..color.Red.."Bienvenue sur Ecarlate!"..color.Default.."\nle serveur pour la communauté rôleplay française!"..color.Default.."\n\nReboot:\nToutes les 12h "..color.Yellow.."\n8h/20h\n"..color.Default.."\n\nVeuillez lire les règles pour le confort de tous sur notre discord:\n"..color.Red.."\nhttps://discord.gg/KgqkCGD\n"..color.Default.." \nToutes formes de triches sera motif d'expultion\n "..color.Default.." \n\nBon jeu à tous. \n\n ", "Ok")
+
         end	
 		
-    elseif idGui == GUI.ID.REGISTER then
+    elseif idGui == guiHelper.ID.REGISTER then
         if data == nil then
             Players[pid]:Message("Le mot de passe ne peut pas être vide\n")
-            GUI.ShowRegister(pid)
+            guiHelper.ShowRegister(pid)
             return true
         end
-        Players[pid]:Registered(data)
+        Players[pid]:Register(data)
         Players[pid]:Message("Vous vous etes enregistré avec succès.\nUtilisez Y par défaut pour discuter ou modifier à partir de votre configuration client.\n")
-		
+		tes3mp.CustomMessageBox(pid, -1, ""..color.Red.."Bienvenue sur Ecarlate!"..color.Default.."\nle serveur pour la communauté rôleplay française!"..color.Default.."\n\nReboot:\nToutes les 12h"..color.Yellow.."\n8h/20h"..color.Default.."\n\nVeuillez lire les règles pour le confort de tous sur notre discord:"..color.Red.."\nhttps://discord.gg/KgqkCGD"..color.Default.."\nToutes formes de triches sera motif d'expultion"..color.Default.."\n\nBon jeu à tous. \n\n ", "Ok")
+
     elseif idGui == config.customMenuIds.confiscate and Players[pid].confiscationTargetName ~= nil then
 
         local targetName = Players[pid].confiscationTargetName
@@ -197,12 +200,12 @@ Methods.OnGUIAction = function(pid, idGui, data)
         if item ~= nil then
         
             table.insert(Players[pid].data.inventory, item)
-            Players[pid]:LoadInventory()
-            Players[pid]:LoadEquipment()
+            Players[pid]:LoadItemChanges({item}, enumerations.inventory.ADD)
 
             -- If the item is equipped by the target, unequip it first
             if inventoryHelper.containsItem(targetPlayer.data.equipment, item.refId, item.charge) then
-                local equipmentItemIndex = inventoryHelper.getItemIndex(targetPlayer.data.equipment, item.refId, item.charge)
+                local equipmentItemIndex = inventoryHelper.getItemIndex(targetPlayer.data.equipment,
+                    item.refId, item.charge)
                 targetPlayer.data.equipment[equipmentItemIndex] = nil
             end
 
@@ -212,8 +215,7 @@ Methods.OnGUIAction = function(pid, idGui, data)
             Players[pid]:Message("Vous avez confisqué" .. item.refId .. " de " .. targetName .. "\n")
 
             if targetPlayer:IsLoggedIn() then
-                targetPlayer:LoadInventory()
-                targetPlayer:LoadEquipment()
+                targetPlayer:LoadItemChanges({item}, enumerations.inventory.REMOVE)
             end
         else
             Players[pid]:Message("Id d'élément invalide\n")
@@ -225,35 +227,60 @@ Methods.OnGUIAction = function(pid, idGui, data)
         Players[pid].confiscationTargetName = nil
 
     elseif idGui == config.customMenuIds.menuHelper and Players[pid].currentCustomMenu ~= nil then
+
         local buttonIndex = tonumber(data) + 1
         local buttonPressed = Players[pid].displayedMenuButtons[buttonIndex]
 
-        local destination = menuHelper.getButtonDestination(pid, buttonPressed)
+        local destination = menuHelper.GetButtonDestination(pid, buttonPressed)
 
-        menuHelper.processEffects(pid, destination.effects)
-        menuHelper.displayMenu(pid, destination.targetMenu)
+        menuHelper.ProcessEffects(pid, destination.effects)
+        menuHelper.DisplayMenu(pid, destination.targetMenu)
 
         Players[pid].previousCustomMenu = Players[pid].currentCustomMenu
-        Players[pid].currentCustomMenu = destination.targetMenu		
+        Players[pid].currentCustomMenu = destination.targetMenu	
+
+    elseif idGui == MainGUI then -- Main
+        if tonumber(data) == 0 then --Revivre
+            Players[pid]:Resurrect()
+            return true
+        end
 		
     end
+	
     return false
 end
 
 Methods.OnPlayerCellChange = function(pid)
+
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
         Players[pid]:SaveCell()
         Players[pid]:SaveStatsDynamic()
         tes3mp.LogMessage(1, "Enregistrer le joueur " .. pid)
         Players[pid]:Save()
-
+		local playerLocations = {players={}}
+		for pid, ply in pairs(Players) do
+			local newindex = #playerLocations.players+1
+			playerLocations.players[newindex] = {}
+			for k, v in pairs(ply.data.location) do
+				playerLocations.players[newindex][k] = v -- We're copying the table here or else we modify the player's actual data in the following assignment
+			end
+			playerLocations.players[newindex].name = ply.accountName
+		end
+		jsonInterface.save("playerLocations.json", playerLocations)
+    end
+	
+    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+        Players[pid]:SaveCell()
+        Players[pid]:SaveStatsDynamic()
+        tes3mp.LogMessage(1, "Enregistrer le joueur " .. pid)
+        Players[pid]:Save()
     end
 end
 
 Methods.OnPlayerEndCharGen = function(pid)
     if Players[pid] ~= nil then
-        Players[pid]:EndCharGen()
-		TeamHandler(pid)	
+        EndCharGen(pid)
+		ecarlateScript.SpawnItems(pid)		
     end
 end
 
@@ -274,7 +301,7 @@ Methods.SwitchTeamsTemple = function(pid)
 			Players[pid].data.mwTDM.team = 1
 			tes3mp.SendMessage(pid, color.DarkCyan .. Players[pid].data.login.name .. " vient de rejoindre le combat pour " .. teamOne .. ".\n", true)			
 		end
-
+		
 	elseif canSwitchTeams == false then
 		tes3mp.SendMessage(pid, color.Yellow .. "Changer d'équipe est désactivé.\n", false)
 	end
@@ -297,7 +324,7 @@ Methods.SwitchTeamsEmpire = function(pid)
 			Players[pid].data.mwTDM.team = 2
 			tes3mp.SendMessage(pid, color.DarkRed .. Players[pid].data.login.name .. " vient de rejoindre le combat pour " .. teamTwo .. ".\n", true)			
 		end
-
+		
 	elseif canSwitchTeams == false then
 		tes3mp.SendMessage(pid, color.Red .. "Changing teams is disabled on this server.\n", false)
 	end
@@ -320,7 +347,7 @@ Methods.SwitchTeamsRenegats = function(pid)
 			Players[pid].data.mwTDM.team = 3
 			tes3mp.SendMessage(pid, color.DarkOrange .. Players[pid].data.login.name .. " vient de rejoindre le combat pour " .. teamThree .. ".\n", true)			
 		end
-    
+		
 	elseif canSwitchTeams == false then
 		tes3mp.SendMessage(pid, color.Red .. "Changing teams is disabled on this server.\n", false)
 	end
@@ -343,7 +370,7 @@ Methods.SwitchTeamsPelerins = function(pid)
 			Players[pid].data.mwTDM.team = 4
 			tes3mp.SendMessage(pid, color.Green .. Players[pid].data.login.name .. " vient de rejoindre le combat pour " .. teamFour .. ".\n", true)			
 		end
-    
+		
 	elseif canSwitchTeams == false then
 		tes3mp.SendMessage(pid, color.Red .. "Changing teams is disabled on this server.\n", false)
 	end
@@ -351,6 +378,67 @@ end
 --------------------
 -- FUNCTIONS SECTION
 --------------------
+
+function CheckCell(pid)
+	local cell = tes3mp.GetCell(pid)
+	
+	-- This might be unnecessary now
+    if Players[pid].data.mapExplored == nil then
+       Players[pid].data.mapExplored = {}
+    end
+	
+	if string.lower(mapRotation[mapRotationNum]) == "ald-ruhn" then
+		
+		if cell ~= "-2, 6" and cell ~= "-2, 7" then
+			CellRestricted(pid, cell)
+		else
+			CellAllowed(pid, cell)
+		end
+	elseif string.lower(mapRotation[mapRotationNum]) == "balmora" then
+		
+		if cell ~= "-3, -2" and cell ~= "-3, -3" and cell ~= "-2, -2" then
+			CellRestricted(pid, cell)
+		else
+			CellAllowed(pid, cell)
+		end		
+	elseif string.lower(mapRotation[mapRotationNum]) == "dagoth-ur" then
+		
+		if cell ~= "Akulakhan's Chamber" then
+			CellRestricted(pid, cell)
+		else
+			CellAllowed(pid, cell)
+		end
+	end
+end
+
+function CellRestricted(pid, cell)
+	local prevPosX = tostring(tes3mp.GetPreviousCellPosX(pid))
+	local curPosX = tostring(tes3mp.GetPosX(pid))
+	local prevPosY = tostring(tes3mp.GetPreviousCellPosY(pid))
+	local curPosY = tostring(tes3mp.GetPosY(pid))
+	local prevPosZ = tostring(tes3mp.GetPreviousCellPosZ(pid))
+
+	tes3mp.SetCell(pid, Players[pid].data.location.cell)
+	tes3mp.SetPos(pid, prevPosX, prevPosY, prevPosZ)
+	tes3mp.SendCell(pid)
+	tes3mp.SendPos(pid)
+end
+
+function CellAllowed(pid, cell)
+	Players[pid].data.location.cell = cell
+	Players[pid].data.location.posX = tes3mp.GetPosX(pid)
+	Players[pid].data.location.posY = tes3mp.GetPosY(pid)
+	Players[pid].data.location.posZ = tes3mp.GetPosZ(pid)
+	Players[pid].data.location.rotX = tes3mp.GetRotX(pid)
+	Players[pid].data.location.rotZ = tes3mp.GetRotZ(pid)
+	
+	if tes3mp.IsInExterior(pid) == true then
+
+		if tableHelper.containsValue(Players[pid].data.mapExplored, cell) == false then
+			table.insert(Players[pid].data.mapExplored, cell)
+		end
+	end
+end
 
 function EndCharGen(pid)
 
@@ -367,9 +455,61 @@ function EndCharGen(pid)
     else
         Players[pid]:LoadJournal()
     end
+	
+    if config.shareFactionRanks == true then
+        WorldInstance:LoadFactionRanks(pid)
+    else
+        Players[pid]:LoadFactionRanks()		
+    end
 
-    WorldInstance:LoadTopics(pid)
+    if config.shareFactionExpulsion == true then
+        WorldInstance:LoadFactionExpulsion(pid)
+    else
+        Players[pid]:LoadFactionExpulsion()		
+    end
+
+    if config.shareFactionReputation == true then
+        WorldInstance:LoadFactionReputation(pid)
+    else
+        Players[pid]:LoadFactionReputation()		
+    end
+
+    if config.shareTopics == true then
+        WorldInstance:LoadTopics(pid)
+    else
+        Players[pid]:LoadTopics()		
+    end
+    
+    WorldInstance:LoadKills(pid)
+	
+    if config.defaultSpawnCell ~= nil then
+
+        tes3mp.SetCell(pid, config.defaultSpawnCell)
+        tes3mp.SendCell(pid)
+
+        if config.defaultSpawnPos ~= nil and config.defaultSpawnRot ~= nil then
+            tes3mp.SetPos(pid, config.defaultSpawnPos[1], config.defaultSpawnPos[2], config.defaultSpawnPos[3])
+            tes3mp.SetRot(pid, config.defaultSpawnRot[1], config.defaultSpawnRot[2])
+            tes3mp.SendPos(pid)
+        end
+    end	
+	
 	TeamHandler(pid)
+end
+
+function ResetCharacter(pid) -- Called from Methods.TeamHandler to reset characters for each new match
+	-- Reset mwTDM info
+	Players[pid].data.mwTDM.kills = 0
+	Players[pid].data.mwTDM.deaths = 0
+	Players[pid].data.mwTDM.spree = 0
+	Players[pid].data.mwTDM.spawnSeconds = spawnTime
+	
+	-- Reload player with reset information
+	Players[pid]:Save()
+	Players[pid]:LoadLevel()
+	Players[pid]:LoadAttributes()
+	Players[pid]:LoadSkills()
+	Players[pid]:LoadStatsDynamic()
 end
 
 function JSONCheck(pid) -- Add TDM info to player JSON files if not present
@@ -395,7 +535,8 @@ function ProcessDeath(pid) -- Update player kills/deaths and team scores
 	Players[pid].data.mwTDM.deaths = Players[pid].data.mwTDM.deaths + 1
 	Players[pid].data.mwTDM.totalDeaths = Players[pid].data.mwTDM.totalDeaths + 1
 	Players[pid].data.mwTDM.spree = 0
-	Players[pid]:Resurrect()
+    local message = color.Green .. "VOUS ETES MORT !\n" .. color.Brown .. "\nRevivre pour être ressuscité au sanctuaire impérial le plus proche où patienter.\n" .. color.Default
+    tes3mp.CustomMessageBox(pid, MainGUI, message, "Revivre")	
 	
 	local deathReason = tes3mp.GetDeathReason(pid)
 	local killCheck = false
@@ -463,23 +604,24 @@ function ProcessDeath(pid) -- Update player kills/deaths and team scores
 				end
 			end
 		end
-		
 		deathReason = "est mort par " .. deathReason	
 		Criminals.processBountyReward(pid, deathReason)		
 		killer = string.sub(deathReason, 14)
 		local lastPid = tes3mp.GetLastPlayerId()
 		local killerPID = -1
-		for i = 0, lastPid do
-		    if Players[i] ~= nil and Players[i]:IsLoggedIn() then
-			if tostring(Players[i].name) == tostring(killer) then
-			    killerPID = Players[i].pid -- get killer's PID, assuming it was an actual player
-			    break
-			end
-		    end
-		end	
+        for i = 0, lastPid do
+            if Players[i] ~= nil and Players[i]:IsLoggedIn() then
+                if tostring(Players[i].name) == tostring(killer) then
+                    killerPID = Players[i].pid -- get killer's PID, assuming it was an actual player
+                    break
+                end
+            end
+        end	
 		if killerPID == -1 then
 			DeathDrop.Drop(pid)
 		end
+
+		
 	end
 
 	local message = ("%s (%d) %s"):format(Players[pid].data.login.name, pid, deathReason)
@@ -503,7 +645,6 @@ function ProcessDeath(pid) -- Update player kills/deaths and team scores
 		tes3mp.SendMessage(pid, message, true)
 	end
 	
-    --local timer = tes3mp.CreateTimerEx("OnDeathTimeExpiration", time.seconds(Players[pid].data.mwTDM.spawnSeconds), "i", pid)
     local timer = tes3mp.CreateTimerEx("OnDeathTimeExpiration", time.seconds(config.deathTime), "i", pid)
     
     tes3mp.StartTimer(timer)
@@ -560,7 +701,7 @@ function ScoreCheck(pid, teamNumber) -- Called from function OnPlayerDeath, chec
                 if Players[i].data.mwTDM.team == winningTeam then
 					--local itemref = {refId = gold_001, count = 500, charge = -1}
                     --table.insert(Players[i].data.inventory, itemRef)
-					table.insert(Players[i].data.inventory, {refId = "gold_001", count = 1000, charge = -1})
+					table.insert(Players[i].data.inventory, {refId = "gold_001", count = 10000, charge = -1})
 					Players[i]:LoadInventory()
                     Players[i]:LoadEquipment()
                 end
@@ -590,6 +731,7 @@ function TeamHandler(pid) -- Called from Methods.OnPlayerEndCharGen, Methods.OnG
 			-- New character so no need to wipe it
 		else -- Character was created prior to current match so we reset it
 			tes3mp.LogMessage(2, "++++ Function TeamHandler: matchId is different -- Calling ResetCharacter(). ++++")
+			ResetCharacter(pid) -- Reset character
 		end
 		
 		tes3mp.LogMessage(2, "++++ Function TeamHandler: Assigning new matchId to player. ++++")
@@ -640,3 +782,5 @@ function TeamHandler(pid) -- Called from Methods.OnPlayerEndCharGen, Methods.OnG
 	end
 	
 end
+
+return Methods

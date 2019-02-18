@@ -1,6 +1,6 @@
 --add file in folder script/menu
 --add in config.lua find ``config.menuHelperFiles = { "Menu" } ``
---go to server.lua and add to command text
+--go to commandHandler.lua and add to command text
         --elseif cmd[1] == "menu" then
 
             --Players[pid].currentCustomMenu = "help player"

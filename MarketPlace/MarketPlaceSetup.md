@@ -7,17 +7,17 @@ MarketPlaceSetup
     
 1) Save this file as "MarketPlace.lua" in mp-stuff/scripts and EcarlateItems.json in mpstuff/data
 
-2) Add [ MarketPlace = require("MarketPlace") ] to the top of server.lua
+2) Add [ MarketPlace = require("MarketPlace") ] to the top of serverCore.lua
 
-3) Add the following to the elseif chain for commands in "OnPlayerSendMessage" inside server.lua
+3) Add the following to the elseif chain for commands in "OnPlayerSendMessage" inside coomandHandler.lua
 
 		elseif cmd[1] == "hdv" then
 			MarketPlace.showMainGUI(pid)
 	
 		
-4) Add the following to OnGUIAction in server.lua
+4) Add the following to OnGUIAction in serverCore.lua
 
-	if MarketPlace.OnGUIAction(pid, idGui, data) then return end
+		if MarketPlace.OnGUIAction(pid, idGui, data) then return end
 	
 5) Add under pluginlist = {}
 

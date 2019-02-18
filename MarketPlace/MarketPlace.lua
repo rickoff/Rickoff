@@ -1,35 +1,26 @@
 ---------------------------
 -- MarketPlace by Rickoff and DiscordPeter
 --helped by David.C
---
+--for version tes3mp 0.7.0
 ---------------------------
 --[[ INSTALLATION
-
-MarketPlace
-
-    a global marketplace to sell your items or buy items put up for sale by other players
-    players can only sell items in the EcarlateItems.json list
-    the id of the objects are displayed by the names present in the json
-    the seller makes money even if he is disconnected
-
-
 1) Save this file as "MarketPlace.lua" in mp-stuff/scripts and EcarlateItems.json in mpstuff/data
 
-2) Add [ MarketPlace = require("MarketPlace") ] to the top of server.lua
+2) Add [ MarketPlace = require("MarketPlace") ] to the top of serverCore.lua
 
-3) Add the following to the elseif chain for commands in "OnPlayerSendMessage" inside server.lua
+3) Add the following to the elseif chain for commands in "OnPlayerSendMessage" inside commandHandler.lua
 [		elseif cmd[1] == "hdv" then
 			MarketPlace.showMainGUI(pid)
 ]	
 		
-4) Add the following to OnGUIAction in server.lua
+4) Add the following to OnGUIAction in serverCore.lua
 	[ if MarketPlace.OnGUIAction(pid, idGui, data) then return end ]
 	
-5) Add under pluginlist = {}
+5) Add under pluginlist = {} in serverCore.lua
 hdvlist = {}
 hdvinv = {}
 
-6) Add under function LoadPluginList()
+6) Add under function LoadPluginList() in serverCore.lua
 
 function Loadhdvlist()
 	tes3mp.LogMessage(2, "Reading hdvlist.json")
@@ -51,7 +42,7 @@ function Loadhdvinv()
 	end
 end
 
-7) Find function OnServerInit() and add above LoadPluginList()
+7) Find function OnServerInit() and add above LoadPluginList() in serverCore.lua
 	Loadhdvlist()
 	Loadhdvinv()	
 ]]
@@ -75,7 +66,7 @@ inventoryHelper = require("inventoryHelper")
 math.randomseed( os.time() )
  
  
-local MarketPlace = {}
+MarketPlace = {}
 --Forward declarations:
 local showMainGUI, showBuyGUI, showInventoryGUI, showViewGUI, showInventoryOptionsGUI, showViewOptionsGUI, showEditPricePrompt
 ------------
@@ -166,12 +157,12 @@ local function priceAdd(pid, price, data) --- where is that called. messed up. a
    
 end
  
-local function addHdv(pid, data)
+local function addHdv(pid, data) -- packs item from hdvinv into hdvlist. complicated
  
 	local playerName = Players[pid].name
 	local ipAddress = tes3mp.GetIP(pid)
 	local newItemid = data
-	local newItem = { itemid = newItemid, price = 0 } 
+	local newItem = { itemid = newItemid, price = 0 }  -- where comes that price from?
 	local hdvinv = jsonInterface.load("hdvinv.json")
 	local hdvlist = jsonInterface.load("hdvlist.json")
 
@@ -188,7 +179,7 @@ local function addHdv(pid, data)
 		
 	else
 
-		tes3mp.SendMessage(pid, "Sorry couldnt add your Item")
+		tes3mp.SendMessage(pid, "Vous avez atteint le nombre maximum d'articles")
 	 
 	end
    
@@ -282,7 +273,7 @@ local function itemAchat(pid, data)
 				
 				
 				--add Gold to Sellers Inventory
-				local player = myMod.GetPlayerByName(existingPlayer)
+				local player = logicHandler.GetPlayerByName(existingPlayer)
 				local goldLocSeller = nil
 				
 				for slot, item in pairs(player.data.inventory) do
@@ -576,7 +567,7 @@ end
 MarketPlace.showEditPricePrompt = function(pid, loc)
     local itemchoice = playerViewChoice[getName(pid)]
     local message = "Entrer un nouveau prix pour"
-    return tes3mp.InputDialog(pid, config.HouseEditPriceGUI, message)
+    return tes3mp.Dialog(pid, config.HouseEditPriceGUI, message, "")
 end
  
 MarketPlace.addPriceItem = function(pid, loc)

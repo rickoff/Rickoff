@@ -1,6 +1,7 @@
+attention no script is currently carried for 0.7.0 in progress
 Ecarlate server Fr
-Tes3mp 0.6.2 Hotfix
-OpenMw
+Tes3mp 0.7.0
+OpenMw 0.44
 
 version 0.0.4
 

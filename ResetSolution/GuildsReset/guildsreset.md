@@ -1,4 +1,4 @@
-- add under function OnPlayerSendMessage(pid, message) in server.lua
+- add under function OnPlayerSendMessage(pid, message) in commandHandler.lua
   
   
   		elseif cmd[1] == "menuguilds" then
