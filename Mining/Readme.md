@@ -10,7 +10,7 @@
 * teleport to doors you spawned before
 * and many more possibilites
 
-##Installation
+## Installation
 
 follow the instruction provided below to install this script to your server.
 
