@@ -1,44 +1,62 @@
--- decorateHelp - Release 1 - For tes3mp v0.7.0 for Ecarlate server
+-- decorateHelp - Release 1 - For tes3mp v0.7.0
 -- Alter positions of items using a GUI
+-- precision adjustment x, y, z and rot
+-- simplified use up, down, right, left and scaling 
 
 --[[ INSTALLATION:
 1) Save this file as "decorateHelp.lua" in mp-stuff/scripts
-2) Add [ decorateHelp = require("decorateHelp") ] to the top of serverCore.lua
-3) Add the following to the elseif chain for commands in "OnPlayerSendMessage" inside commandHandler.lua
+2) Add [ decorateHelp = require("decorateHelp") ] to the top of servercore.lua
+3) Add the following to the elseif chain for commands in "OnPlayerSendMessage" inside commandhandler.lua
 
 [	elseif cmd[1] == "decorator" or cmd[1] == "decorate" or cmd[1] == "dh" then
 		decorateHelp.OnCommand(pid) ]
-4) Add the following to OnGUIAction in serverCore.lua
+4) Add the following to OnGUIAction in servercore.lua
 	[ if decorateHelp.OnGUIAction(pid, idGui, data) then return end ]
-5) Add the following to OnObjectPlace in serverCore.lua
+5) Add the following to OnObjectPlace in servercore.lua
 	[ decorateHelp.OnObjectPlace(pid, cellDescription) ]
-6) Add the following to OnPlayerCellChange in serverCore.lua
+6) Add the following to OnPlayerCellChange in server.lua
 	[ decorateHelp.OnPlayerCellChange(pid) ]
 
 ]]
 
 ------
 local config = {}
-
 config.MainId = 31360
 config.PromptId = 31361
+------
+local trad = {}
+trad.prompt = "] - Entrez un nombre à ajouter / soustraire"
+trad.rotx = "Rotation X"
+trad.roty = "Rotation Y"
+trad.rotz = "Rotation Z"
+trad.movn = "+/- Nord"
+trad.move = "+/- Est"
+trad.movup = "+/- Hauteur"
+trad.up = "Monter"
+trad.down = "Descendre"
+trad.east = "Est"
+trad.west = "Ouest" 
+trad.north = "Nord"
+trad.sud = "Sud"
+trad.bigger = "Agrandir"
+trad.lower = "Réduire"
+trad.opt1 = "Choisir une option. Votre article actuel: "
+trad.opt2 = "Ajuster le Nord;Ajuster l'est;Ajuster la hauteur;Tourner X;Tourner Y;Tourner Z;Monter;Descendre;Est;Ouest;Nord;Sud;Agrandir;Réduire;Fermer"
 ------
 
 Methods = {}
 
 tableHelper = require("tableHelper")
 
---
 local playerSelectedObject = {}
 local playerCurrentMode = {}
 
---Returns the object's data from a loaded cell. Doesn't need to load the cell because this assumes it'll always be called in a cell that's loaded.
 local function getObject(refIndex, cell)
 	if refIndex == nil then
 		return false
 	end
 
-	if LoadedCells[cell]:ContainsObject(refIndex)  then 
+	if LoadedCells[cell]:ContainsObject(refIndex) then 
 		return LoadedCells[cell].data.objectData[refIndex]
 	else
 		return false
@@ -106,7 +124,7 @@ end
 
 
 local function showPromptGUI(pid)
-	local message = "[" .. playerCurrentMode[tes3mp.GetName(pid)] .. "] - Enter a number to add/subtract."
+	local message = "[" .. playerCurrentMode[tes3mp.GetName(pid)] .. trad.prompt
 
 	tes3mp.InputDialog(pid, config.PromptId, message, "")
 end
@@ -124,36 +142,40 @@ local function onEnterPrompt(pid, data)
 		return false
 	end
 	
-	if mode == "Rotate X" then
+	if mode == trad.rotx then
 		local curDegrees = math.deg(object.location.rotX)
 		local newDegrees = (curDegrees + data) % 360
 		object.location.rotX = math.rad(newDegrees)
-	elseif mode == "Rotate Y" then
+	elseif mode == trad.roty then
 		local curDegrees = math.deg(object.location.rotY)
 		local newDegrees = (curDegrees + data) % 360
 		object.location.rotY = math.rad(newDegrees)
-	elseif mode == "Rotate Z" then
+	elseif mode == trad.rotz then
 		local curDegrees = math.deg(object.location.rotZ)
 		local newDegrees = (curDegrees + data) % 360
 		object.location.rotZ = math.rad(newDegrees)
-	elseif mode == "Move North" then
+	elseif mode == trad.movn then
 		object.location.posY = object.location.posY + data
-	elseif mode == "Move East" then
+	elseif mode == trad.move then
 		object.location.posX = object.location.posX + data
-	elseif mode == "Move Up" then
+	elseif mode == trad.movup then
 		object.location.posZ = object.location.posZ + data
-	elseif mode == "Monter" then
+	elseif mode == trad.up then
 		object.location.posZ = object.location.posZ + 10
-	elseif mode == "Descendre" then
+	elseif mode == trad.down then
 		object.location.posZ = object.location.posZ - 10
-	elseif mode == "Est" then
+	elseif mode == trad.east then
 		object.location.posX = object.location.posX + 10
-	elseif mode == "Ouest" then
+	elseif mode == trad.west then
 		object.location.posX = object.location.posX - 10
-	elseif mode == "Nord" then
+	elseif mode == trad.north then
 		object.location.posY = object.location.posY + 10
-	elseif mode == "Sud" then
+	elseif mode == trad.sud then
 		object.location.posY = object.location.posY - 10
+	elseif mode == trad.bigger then
+		logicHandler.RunConsoleCommandOnObject("setscale (getscale + 0.1)", cell, playerSelectedObject[pname])
+	elseif mode == trad.lower then
+		logicHandler.RunConsoleCommandOnObject("setscale (getscale - 0.1)", cell, playerSelectedObject[pname])		
 	elseif mode == "return" then
 		object.location.posY = object.location.posY		
 		return
@@ -172,8 +194,8 @@ local function showMainGUI(pid)
 		currentItem = object.refId .. " (" .. selected .. ")"
 	end
 	
-	local message = "Choisir une option. Votre article actuel: " .. currentItem
-	tes3mp.CustomMessageBox(pid, config.MainId, message, "Ajuster le Nord;Ajuster l'est;Ajuster la hauteur;Tourner X;Tourner Y;Tourner Z;Monter;Descendre;Est;Ouest;Nord;Sud;Fermer")
+	local message = trad.opt1 .. currentItem
+	tes3mp.CustomMessageBox(pid, config.MainId, message, trad.opt2)
 end
 
 local function setSelectedObject(pid, refIndex)
@@ -200,54 +222,62 @@ Methods.OnGUIAction = function(pid, idGui, data)
 	
 	if idGui == config.MainId then
 		if tonumber(data) == 0 then --Move North
-			playerCurrentMode[pname] = "Move North"
+			playerCurrentMode[pname] = trad.movn
 			showPromptGUI(pid)
 			return true
 		elseif tonumber(data) == 1 then --Move East
-			playerCurrentMode[pname] = "Move East"
+			playerCurrentMode[pname] = trad.move
 			showPromptGUI(pid)
 			return true
 		elseif tonumber(data) == 2 then --Move Up
-			playerCurrentMode[pname] = "Move Up"
+			playerCurrentMode[pname] = trad.movup
 			showPromptGUI(pid)
 			return true
 		elseif tonumber(data) == 3 then --Rotate X
-			playerCurrentMode[pname] = "Rotate X"
+			playerCurrentMode[pname] = trad.rotx
 			showPromptGUI(pid)
 			return true
 		elseif tonumber(data) == 4 then --Rotate Y
-			playerCurrentMode[pname] = "Rotate Y"
+			playerCurrentMode[pname] = trad.roty
 			showPromptGUI(pid)
 			return true
 		elseif tonumber(data) == 5 then --Rotate Z
-			playerCurrentMode[pname] = "Rotate Z"
+			playerCurrentMode[pname] = trad.rotz
 			showPromptGUI(pid)
 			return true
 		elseif tonumber(data) == 6 then --Monter
-			playerCurrentMode[pname] = "Monter"
+			playerCurrentMode[pname] = trad.up
 			onEnterPrompt(pid, 0)			
 			return true, showMainGUI(pid)
 		elseif tonumber(data) == 7 then --Descendre
-			playerCurrentMode[pname] = "Descendre"
+			playerCurrentMode[pname] = trad.down
 			onEnterPrompt(pid, 0)			
 			return true, showMainGUI(pid)
 		elseif tonumber(data) == 8 then --Est
-			playerCurrentMode[pname] = "Est"
+			playerCurrentMode[pname] = trad.east
 			onEnterPrompt(pid, 0)			
 			return true, showMainGUI(pid)	
 		elseif tonumber(data) == 9 then --Ouest
-			playerCurrentMode[pname] = "Ouest"
+			playerCurrentMode[pname] = trad.west
 			onEnterPrompt(pid, 0)			
 			return true, showMainGUI(pid)
 		elseif tonumber(data) == 10 then --Nord
-			playerCurrentMode[pname] = "Nord"
+			playerCurrentMode[pname] = trad.north
 			onEnterPrompt(pid, 0)			
 			return true, showMainGUI(pid)
 		elseif tonumber(data) == 11 then --Sud
-			playerCurrentMode[pname] = "Sud"
+			playerCurrentMode[pname] = trad.sud
 			onEnterPrompt(pid, 0)
-			return true, showMainGUI(pid)			
-		elseif tonumber(data) == 12 then --Close
+			return true, showMainGUI(pid)
+		elseif tonumber(data) == 12 then --Agrandir
+			playerCurrentMode[pname] = trad.bigger
+			onEnterPrompt(pid, 0)			
+			return true, showMainGUI(pid)
+		elseif tonumber(data) == 13 then --Reduire
+			playerCurrentMode[pname] = trad.lower
+			onEnterPrompt(pid, 0)
+			return true, showMainGUI(pid)				
+		elseif tonumber(data) == 14 then --Close
 			--Do nothing
 			return true
 		end
@@ -270,5 +300,3 @@ Methods.OnCommand = function(pid)
 end
 
 return Methods
-
-
