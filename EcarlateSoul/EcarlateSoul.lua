@@ -1,8 +1,7 @@
 ---------------------------
 -- EcarlateSoul by Rickoff inspired by RageFire
--- Gain Xp when players kill creature
--- Up features, stats and more
--- Train over cap 100 all stats an talents
+--
+--
 ---------------------------
 jsonInterface = require("jsonInterface")
 
@@ -10,7 +9,7 @@ jsonInterface = require("jsonInterface")
 --MAIN CONFIG
 -- ===========
 -------------------------
-EcarlateSoul = {}
+local EcarlateSoul = {}
 
 EcarlateSoul.OnPlayerKillCreature = function(killerPid, refId)
 	
@@ -91,8 +90,8 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		if Comp == "Guerrier" and PointCount >= 3 then
 			local attrId = tes3mp.GetAttributeId("Strength")
 			local attrId2 = tes3mp.GetAttributeId("Endurance")	
-			local valueS = Players[Pid].data.attributes.Strength + 4
-			local valueS2 = Players[Pid].data.attributes.Endurance + 4				
+			local valueS = Players[Pid].data.attributes.Strength.base + 4
+			local valueS2 = Players[Pid].data.attributes.Endurance.base + 4				
 			tes3mp.SetAttributeBase(Pid, attrId, valueS)
 			tes3mp.SetAttributeBase(Pid, attrId2, valueS2)
 			if Players[Pid].data.customVariables.guerrier == nil then
@@ -108,8 +107,8 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		if Comp == "Voleur" and PointCount >= 3 then
 			local attrId = tes3mp.GetAttributeId("Agility")
 			local attrId2 = tes3mp.GetAttributeId("Speed")		
-			local valueS = Players[Pid].data.attributes.Agility + 4
-			local valueS2 = Players[Pid].data.attributes.Speed + 4			
+			local valueS = Players[Pid].data.attributes.Agility.base + 4
+			local valueS2 = Players[Pid].data.attributes.Speed.base + 4			
 			tes3mp.SetAttributeBase(Pid, attrId, valueS)
 			tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
 			if Players[Pid].data.customVariables.voleur == nil then			
@@ -125,8 +124,8 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		if Comp == "Mage" and PointCount >= 3 then
 			local attrId = tes3mp.GetAttributeId("Intelligence")
 			local attrId2 = tes3mp.GetAttributeId("Willpower")		
-			local valueS = Players[Pid].data.attributes.Intelligence + 4
-			local valueS2 = Players[Pid].data.attributes.Willpower + 4			
+			local valueS = Players[Pid].data.attributes.Intelligence.base + 4
+			local valueS2 = Players[Pid].data.attributes.Willpower.base + 4			
 			tes3mp.SetAttributeBase(Pid, attrId, valueS)
 			tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
 			if Players[Pid].data.customVariables.mage == nil then				
@@ -182,8 +181,8 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 			if Comp == "Roublard" and RoublardCount < 5 and PointCount >= 3 then
 				local attrId = tes3mp.GetAttributeId("Personality")
 				local attrId2 = tes3mp.GetAttributeId("Luck")		
-				local valueS = Players[Pid].data.attributes.Personality + 4
-				local valueS2 = Players[Pid].data.attributes.Luck + 4			
+				local valueS = Players[Pid].data.attributes.Personality.base + 4
+				local valueS2 = Players[Pid].data.attributes.Luck.base + 4			
 				tes3mp.SetAttributeBase(Pid, attrId, valueS)
 				tes3mp.SetAttributeBase(Pid, attrId2, valueS2)		
 				Players[Pid].data.customVariables.roublard = Players[Pid].data.customVariables.roublard + 1
@@ -233,7 +232,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end	
 		if Comp == "Block" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Block")
-			local valueC = Players[Pid].data.skills.Block + 10
+			local valueC = Players[Pid].data.skills.Block.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Block" and PointCount < 3 then
@@ -241,7 +240,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Alchemy" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Alchemy")
-			local valueC = Players[Pid].data.skills.Alchemy + 10
+			local valueC = Players[Pid].data.skills.Alchemy.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Alchemy" and PointCount < 3 then
@@ -249,7 +248,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end	
 		if Comp == "Handtohand" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Handtohand")
-			local valueC = Players[Pid].data.skills.Handtohand + 10
+			local valueC = Players[Pid].data.skills.Handtohand.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Handtohand" and PointCount < 3 then
@@ -257,7 +256,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Conjuration" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Conjuration")
-			local valueC = Players[Pid].data.skills.Conjuration + 10
+			local valueC = Players[Pid].data.skills.Conjuration.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Conjuration" and PointCount < 3 then
@@ -265,7 +264,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Shortblade" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Shortblade")
-			local valueC = Players[Pid].data.skills.Shortblade + 10
+			local valueC = Players[Pid].data.skills.Shortblade.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Shortblade" and PointCount < 3 then
@@ -273,7 +272,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Alteration" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Alteration")
-			local valueC = Players[Pid].data.skills.Alteration + 10
+			local valueC = Players[Pid].data.skills.Alteration.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Alteration" and PointCount < 3 then
@@ -281,7 +280,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Mediumarmor" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Mediumarmor")
-			local valueC = Players[Pid].data.skills.Mediumarmor + 10
+			local valueC = Players[Pid].data.skills.Mediumarmor.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Mediumarmor" and PointCount < 3 then
@@ -289,7 +288,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Heavyarmor" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Heavyarmor")
-			local valueC = Players[Pid].data.skills.Heavyarmor + 10
+			local valueC = Players[Pid].data.skills.Heavyarmor.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Heavyarmor" and PointCount < 3 then
@@ -297,7 +296,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Bluntweapon" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Bluntweapon")
-			local valueC = Players[Pid].data.skills.Bluntweapon + 10
+			local valueC = Players[Pid].data.skills.Bluntweapon.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Bluntweapon" and PointCount < 3 then
@@ -305,7 +304,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Marksman" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Marksman")
-			local valueC = Players[Pid].data.skills.Marksman + 10
+			local valueC = Players[Pid].data.skills.Marksman.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Marksman" and PointCount < 3 then
@@ -313,7 +312,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Acrobatics" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Acrobatics")
-			local valueC = Players[Pid].data.skills.Acrobatics + 10
+			local valueC = Players[Pid].data.skills.Acrobatics.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Acrobatics" and PointCount < 3 then
@@ -321,7 +320,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Sneak" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Sneak")
-			local valueC = Players[Pid].data.skills.Sneak + 10
+			local valueC = Players[Pid].data.skills.Sneak.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Sneak" and PointCount < 3 then
@@ -329,7 +328,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Lightarmor" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Lightarmor")
-			local valueC = Players[Pid].data.skills.Lightarmor + 10
+			local valueC = Players[Pid].data.skills.Lightarmor.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Lightarmor" and PointCount < 3 then
@@ -337,7 +336,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Longblade" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Longblade")
-			local valueC = Players[Pid].data.skills.Longblade + 10
+			local valueC = Players[Pid].data.skills.Longblade.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Longblade" and PointCount < 3 then
@@ -345,7 +344,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Armorer" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Armorer")
-			local valueC = Players[Pid].data.skills.Armorer + 10
+			local valueC = Players[Pid].data.skills.Armorer.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Armorer" and PointCount < 3 then
@@ -353,7 +352,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Speechcraft" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Speechcraft")
-			local valueC = Players[Pid].data.skills.Speechcraft + 10
+			local valueC = Players[Pid].data.skills.Speechcraft.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Speechcraft" and PointCount < 3 then
@@ -361,7 +360,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Axe" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Axe")
-			local valueC = Players[Pid].data.skills.Axe + 10
+			local valueC = Players[Pid].data.skills.Axe.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Axe" and PointCount < 3 then
@@ -369,7 +368,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Security" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Security")
-			local valueC = Players[Pid].data.skills.Security + 10
+			local valueC = Players[Pid].data.skills.Security.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Security" and PointCount < 3 then
@@ -377,7 +376,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Enchant" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Enchant")
-			local valueC = Players[Pid].data.skills.Enchant + 10
+			local valueC = Players[Pid].data.skills.Enchant.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Enchant" and PointCount < 3 then
@@ -385,7 +384,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Destruction" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Destruction")
-			local valueC = Players[Pid].data.skills.Destruction + 10
+			local valueC = Players[Pid].data.skills.Destruction.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Destruction" and PointCount < 3 then
@@ -393,7 +392,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Athletics" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Athletics")
-			local valueC = Players[Pid].data.skills.Athletics + 10
+			local valueC = Players[Pid].data.skills.Athletics.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Athletics" and PointCount < 3 then
@@ -401,7 +400,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Illusion" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Illusion")
-			local valueC = Players[Pid].data.skills.Illusion + 10
+			local valueC = Players[Pid].data.skills.Illusion.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Illusion" and PointCount < 3 then
@@ -409,7 +408,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Mysticism" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Mysticism")
-			local valueC = Players[Pid].data.skills.Mysticism + 10
+			local valueC = Players[Pid].data.skills.Mysticism.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Mysticism" and PointCount < 3 then
@@ -417,7 +416,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Spear" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Spear")
-			local valueC = Players[Pid].data.skills.Spear + 10
+			local valueC = Players[Pid].data.skills.Spear.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Spear" and PointCount < 3 then
@@ -425,7 +424,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Mercantile" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Mercantile")
-			local valueC = Players[Pid].data.skills.Mercantile + 10
+			local valueC = Players[Pid].data.skills.Mercantile.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Mercantile" and PointCount < 3 then
@@ -433,7 +432,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Restoration" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Restoration")
-			local valueC = Players[Pid].data.skills.Restoration + 10
+			local valueC = Players[Pid].data.skills.Restoration.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Restoration" and PointCount < 3 then
@@ -441,13 +440,13 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		end
 		if Comp == "Unarmored" and PointCount >= 3 then
 			local skillId = tes3mp.GetSkillId("Unarmored")
-			local valueC = Players[Pid].data.skills.Unarmored + 10
+			local valueC = Players[Pid].data.skills.Unarmored.base + 10
 			tes3mp.SetSkillBase(Pid, skillId, valueC)			
 			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
 		elseif Comp == "Unarmored" and PointCount < 3 then
 			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
-		end
-		Players[Pid]:SaveStatsDynamic()		
+		end	
+        Players[Pid]:SaveStatsDynamic()		
 		Players[Pid]:SaveAttributes()	
 		Players[Pid]:SaveSkills()			
 		tes3mp.SendAttributes(Pid)
