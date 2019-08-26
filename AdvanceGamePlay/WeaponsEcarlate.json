@@ -1,0 +1,4927 @@
+[
+  {
+    "ID": "steel mace",
+    "NAME": "Masse d'armes en acier",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "steel dagger",
+    "NAME": "Dague en acier",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "spiked club",
+    "NAME": "Gourdin à pointes",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "steel broadsword",
+    "NAME": "Epée large en acier",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel shortsword",
+    "NAME": "Epée courte en acier",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "imperial shortsword",
+    "NAME": "Epée courte impériale",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "steel spear",
+    "NAME": "Lance en acier",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "steel tanto",
+    "NAME": "Tanto en acier",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "imperial broadsword",
+    "NAME": "Epée large impériale",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "iron longsword",
+    "NAME": "Epée longue de fer",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "iron shortsword",
+    "NAME": "Epée courte de fer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "nordic claymore",
+    "NAME": "Claymore nordique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "steel dai-katana",
+    "NAME": "Daï-katana en acier",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "iron claymore",
+    "NAME": "Claymore de fer",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "silver longsword",
+    "NAME": "Epée longue d'argent",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "ebony shortsword",
+    "NAME": "Epée courte en ébonite",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "ebony longsword",
+    "NAME": "Epée longue en ébonite",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "silver shortsword",
+    "NAME": "Epée courte en argent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "daedric longsword",
+    "NAME": "Epée longue daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "nordic battle axe",
+    "NAME": "Hache d'armes nordique",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "steel axe",
+    "NAME": "Hache en acier",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "iron battle axe",
+    "NAME": "Hache d'armes de fer",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "steel claymore",
+    "NAME": "Claymore en acier",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "steel katana",
+    "NAME": "Katana en acier",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel saber",
+    "NAME": "Sabre en acier",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel wakizashi",
+    "NAME": "Wakizashi en acier",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "long bow",
+    "NAME": "Arc long",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "steel staff",
+    "NAME": "Bâton en acier",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "steel war axe",
+    "NAME": "Hache de guerre en acier",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "steel longsword",
+    "NAME": "Epée longue en acier",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel club",
+    "NAME": "Gourdin en acier",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "steel battle axe",
+    "NAME": "Hache d'armes en acier",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "steel warhammer",
+    "NAME": "Marteau de guerre en acier",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "steel halberd",
+    "NAME": "Hallebarde en acier",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "steel crossbow",
+    "NAME": "Arbalète en acier",
+    "TYPE": "MarksmanCrossbow"
+  },
+  {
+    "ID": "steel throwing star",
+    "NAME": "Shuriken en acier",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "steel throwing knife",
+    "NAME": "Couteau de lancer en acier",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "steel dart",
+    "NAME": "Dard en acier",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "chitin dagger",
+    "NAME": "Dague en chitine",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "chitin shortsword",
+    "NAME": "Epée courte en chitine",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "chitin club",
+    "NAME": "Gourdin en chitine",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "chitin war axe",
+    "NAME": "Hache d'armes en chitine",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "chitin spear",
+    "NAME": "Lance en chitine",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "chitin short bow",
+    "NAME": "Arc court en chitine",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "chitin throwing star",
+    "NAME": "Shuriken en chitine",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "iron dagger",
+    "NAME": "Dague de fer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "iron tanto",
+    "NAME": "Tanto de fer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "iron wakizashi",
+    "NAME": "Wakizashi de fer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "iron broadsword",
+    "NAME": "Epée large de fer",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "iron saber",
+    "NAME": "Sabre de fer",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "iron club",
+    "NAME": "Gourdin de fer",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "iron mace",
+    "NAME": "Masse d'armes de fer",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "iron warhammer",
+    "NAME": "Marteau de guerre en fer",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "iron war axe",
+    "NAME": "Hache de guerre en fer",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "iron spear",
+    "NAME": "Lance de fer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "iron halberd",
+    "NAME": "Hallebarde de fer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "daedric battle axe",
+    "NAME": "Hache d'armes daedrique",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "daedric claymore",
+    "NAME": "Claymore daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "daedric club",
+    "NAME": "Gourdin daedrique",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "daedric dagger",
+    "NAME": "Dague daedrique",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "daedric dai-katana",
+    "NAME": "Daï-katana daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "daedric dart",
+    "NAME": "Dard daedrique",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "daedric katana",
+    "NAME": "Katana daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "daedric long bow",
+    "NAME": "Arc long daedrique",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "daedric mace",
+    "NAME": "Masse d'armes daedrique",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "daedric shortsword",
+    "NAME": "Epée courte daedrique",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "daedric spear",
+    "NAME": "Lance daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "daedric staff",
+    "NAME": "Bâton daedrique",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "daedric tanto",
+    "NAME": "Tanto daedrique",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "daedric wakizashi",
+    "NAME": "Wakizashi daedrique",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "daedric war axe",
+    "NAME": "Hache de guerre daedrique",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "daedric warhammer",
+    "NAME": "Marteau de guerre daedrique",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "dreugh club",
+    "NAME": "Gourdin dreugh",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "dreugh staff",
+    "NAME": "Bâton dreugh",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "dwarven battle axe",
+    "NAME": "Hache d'armes dwemer",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "dwarven claymore",
+    "NAME": "Claymore dwemer",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "dwarven crossbow",
+    "NAME": "Arbalète dwemer",
+    "TYPE": "MarksmanCrossbow"
+  },
+  {
+    "ID": "dwarven halberd",
+    "NAME": "Hallebarde dwemer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "dwarven mace",
+    "NAME": "Masse d'armes dwemer",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "dwarven shortsword",
+    "NAME": "Epée courte dwemer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "dwarven spear",
+    "NAME": "Lance dwemer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "dwarven war axe",
+    "NAME": "Hache de guerre dwemer",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "dwarven warhammer",
+    "NAME": "Marteau de guerre dwemer",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "ebony broadsword",
+    "NAME": "Epée large en ébonite",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "ebony dart",
+    "NAME": "Dard en ébonite",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "ebony mace",
+    "NAME": "Masse d'armes en ébonite",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "ebony spear",
+    "NAME": "Lance en ébonite",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "ebony staff",
+    "NAME": "Bâton en ébonite",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "ebony throwing star",
+    "NAME": "Shuriken en ébonite",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "ebony war axe",
+    "NAME": "Hache de guerre en ébonite",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "glass claymore",
+    "NAME": "Claymore de verre",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "glass dagger",
+    "NAME": "Dague de verre",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "glass halberd",
+    "NAME": "Hallebarde de verre",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "glass longsword",
+    "NAME": "Epée de verre",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "glass staff",
+    "NAME": "Bâton de verre",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "glass throwing knife",
+    "NAME": "Couteau de lancer en verre",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "glass throwing star",
+    "NAME": "Shuriken de verre",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "glass war axe",
+    "NAME": "Hache de guerre en verre",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "iron throwing knife",
+    "NAME": "Couteau de lancer en fer",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "short bow",
+    "NAME": "Arc court",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "silver claymore",
+    "NAME": "Claymore d'argent",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "silver dagger",
+    "NAME": "Dague d'argent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "silver spear",
+    "NAME": "Lance d'argent",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "silver staff",
+    "NAME": "Bâton d'argent",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "silver throwing star",
+    "NAME": "Shuriken en argent",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "silver war axe",
+    "NAME": "Hache de guerre en argent",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "wooden staff",
+    "NAME": "Bâton en bois",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "nordic broadsword",
+    "NAME": "Epée large nordique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "Iron Long Spear",
+    "NAME": "Lance de fer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "lugrub's axe",
+    "NAME": "Hache de Lugrub",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "steel blade of heaven",
+    "NAME": "Lame des Cieux en acier",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "ebony wizard's staff",
+    "NAME": "Bâton de mage",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "steel jinkblade of the aegis",
+    "NAME": "Epée acier paralysante - Egide",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "fiend tanto",
+    "NAME": "Tanto fiélon",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "6th bell hammer",
+    "NAME": "Marteau de la Sixième Maison",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "dwarven war axe_redas",
+    "NAME": "Hache de guerre de Rédas",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "bonemold long bow",
+    "NAME": "Arc long d'ossements",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "clutterbane",
+    "NAME": "Fléau du Chaos",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "water spear",
+    "NAME": "Lance des Eaux",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "spear_of_light",
+    "NAME": "Lance de Lumière",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "fireblade",
+    "NAME": "Lame de feu",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "icebreaker",
+    "NAME": "Brise-Glace",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "stormblade",
+    "NAME": "Lame des Tempêtes",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "spiderbite",
+    "NAME": "Morsure d'Araignée",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "flamestar",
+    "NAME": "Shuriken de feu",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "shardstar",
+    "NAME": "Shuriken de plaie",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "viperstar",
+    "NAME": "Shuriken de venin",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "demon tanto",
+    "NAME": "Tanto démoniaque",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "demon katana",
+    "NAME": "Katana démoniaque",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel longbow",
+    "NAME": "Arc long en acier",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "demon longbow",
+    "NAME": "Arc long démoniaque",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "peacemaker",
+    "NAME": "Pacificatrice",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "cruel flameblade",
+    "NAME": "Dague de flamme cruelle",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "cruel shardblade",
+    "NAME": "Dague de plaie cruelle",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "cruel sparkblade",
+    "NAME": "Dague de choc cruel",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "cruel viperblade",
+    "NAME": "Dague de venin cruel",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "cruel flamesword",
+    "NAME": "Epée de flamme cruelle",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "cruel shardsword",
+    "NAME": "Epée de plaie cruelle",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "cruel sparksword",
+    "NAME": "Epée de choc cruel",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "cruel vipersword",
+    "NAME": "Epée de venin cruel",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "steel jinkblade",
+    "NAME": "Epée d'acier paralysante",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "steel jinksword",
+    "NAME": "Epée d'acier paralysante",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "steel firesword",
+    "NAME": "Epée de feu en acier",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel frostsword",
+    "NAME": "Epée de givre en acier",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel stormsword",
+    "NAME": "Epée des Tempêtes en acier",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel poisonsword",
+    "NAME": "Epée d'acier empoisonnée",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "iron flameblade",
+    "NAME": "Dague de feu en fer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "iron shardblade",
+    "NAME": "Dague de plaie en fer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "iron sparkblade",
+    "NAME": "Dague de choc en fer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "iron viperblade",
+    "NAME": "Dague de venin en fer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "iron flamecleaver",
+    "NAME": "Tranchoir de feu en fer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "iron shardcleaver",
+    "NAME": "Tranchoir de plaie en fer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "iron sparkcleaver",
+    "NAME": "Tranchoir de choc en fer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "iron vipercleaver",
+    "NAME": "Tranchoir de venin en fer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "iron flamesword",
+    "NAME": "Epée de feu en fer",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "iron sparksword",
+    "NAME": "Epée de choc en fer",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "iron shardsword",
+    "NAME": "Epée de plaie en fer",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "iron vipersword",
+    "NAME": "Epée de venin en fer",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "iron flamemace",
+    "NAME": "Masse d'armes de feu en fer",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "iron shardmace",
+    "NAME": "Masse d'armes de plaie en fer",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "iron sparkmace",
+    "NAME": "Masse d'armes de choc en fer",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "iron sparkaxe",
+    "NAME": "Hache de choc en fer",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "iron viperaxe",
+    "NAME": "Hache de venin en fer",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "iron flameslayer",
+    "NAME": "Lame de feu en fer",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "iron shardslayer",
+    "NAME": "Lame de plaie en fer",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "iron sparkslayer",
+    "NAME": "Lame de choc en fer",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "iron viperslayer",
+    "NAME": "Lame de venin en fer",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "iron flameskewer",
+    "NAME": "Rapière de feu en fer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "iron shardskewer",
+    "NAME": "Rapière de plaie en fer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "iron sparkskewer",
+    "NAME": "Rapière de choc en fer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "iron viperskewer",
+    "NAME": "Rapière de venin en fer",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "iron flamemauler",
+    "NAME": "Massue de feu en fer",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "iron sparkmauler",
+    "NAME": "Massue de choc en fer",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "iron shardmauler",
+    "NAME": "Massue de plaie en fer",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "iron vipermauler",
+    "NAME": "Massue de venin en fer",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "wooden staff of peace",
+    "NAME": "Bâton en bois de la Paix",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "wooden staff of war",
+    "NAME": "Bâton en bois de la Guerre",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "wooden staff of shaming",
+    "NAME": "Bâton en bois de l'Humiliation",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "wooden staff of chastening",
+    "NAME": "Bâton en bois de la Leçon",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "wooden staff of divine",
+    "NAME": "Bâton en bois du Jugement Divin",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "firebite sword",
+    "NAME": "Epée de feu mordant",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "firebite star",
+    "NAME": "Shuriken de feu mordant",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "firebite war axe",
+    "NAME": "Hache de guerre de feu mordant",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "firebite dagger",
+    "NAME": "Dague de feu mordant",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "firebite club",
+    "NAME": "Gourdin de feu mordant",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "shockbite mace",
+    "NAME": "Masse d'armes de choc mordant",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "shockbite halberd",
+    "NAME": "Hallebarde de choc mordant",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "shockbite battle axe",
+    "NAME": "Hache d'armes de choc mordant",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "shockbite war axe",
+    "NAME": "Hache de guerre de choc mordant",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "shockbite warhammer",
+    "NAME": "Marteau de choc mordant",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "last wish",
+    "NAME": "Dernières Volontés",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "icicle",
+    "NAME": "Glaçon",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "foeburner",
+    "NAME": "Incendieur",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "snowy crown",
+    "NAME": "Couronne Neigeuse",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "last rites",
+    "NAME": "Extrême-Onction",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "cruel flamestar",
+    "NAME": "Shuriken de flamme cruelle",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "cruel sparkstar",
+    "NAME": "Shuriken de choc cruel",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "cruel shardstar",
+    "NAME": "Shuriken de plaie cruelle",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "cruel viperstar",
+    "NAME": "Shuriken de venin cruel",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "dire flameblade",
+    "NAME": "Terrible dague de feu",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "dire shardblade",
+    "NAME": "Terrible dague de plaie",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "dire sparkblade",
+    "NAME": "Terrible dague de choc",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "dire viperblade",
+    "NAME": "Terrible dague de venin",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "dire flamesword",
+    "NAME": "Terrible épée de feu",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "dire shardsword",
+    "NAME": "Terrible épée de plaie",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "dire sparksword",
+    "NAME": "Terrible épée de choc",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "dire vipersword",
+    "NAME": "Terrible épée de venin",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "orcish warhammer",
+    "NAME": "Marteau de guerre orque",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "orcish battle axe",
+    "NAME": "Hache d'armes orque",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "steel flameblade",
+    "NAME": "Dague de feu en acier",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "steel shardblade",
+    "NAME": "Dague de plaie en acier",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "steel sparkblade",
+    "NAME": "Dague de choc en acier",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "steel viperblade",
+    "NAME": "Dague de venin en acier",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "steel flamesword",
+    "NAME": "Epée de feu en acier",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel shardsword",
+    "NAME": "Epée de plaie en acier",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel sparksword",
+    "NAME": "Epée de choc en acier",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel vipersword",
+    "NAME": "Epée de venin en acier",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel flamemace",
+    "NAME": "Masse d'armes de feu en acier",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "steel shardmace",
+    "NAME": "Masse d'armes de plaie en acier",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "steel sparkmace",
+    "NAME": "Masse d'armes de choc en acier",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "steel vipermace",
+    "NAME": "Masse d'armes de venin en acier",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "steel flameaxe",
+    "NAME": "Hache de feu en acier",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "steel sparkaxe",
+    "NAME": "Hache de choc en acier",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "steel shardaxe",
+    "NAME": "Hache de plaie en acier",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "steel viperaxe",
+    "NAME": "Hache de venin en acier",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "steel flameslayer",
+    "NAME": "Lame de feu en acier",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "steel shardslayer",
+    "NAME": "Lame de plaie en acier",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "steel sparkslayer",
+    "NAME": "Lame de choc en acier",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "steel viperslayer",
+    "NAME": "Lame de venin en acier",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "steel flamescythe",
+    "NAME": "Faux de feu en acier",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "steel shardscythe",
+    "NAME": "Faux de plaie en acier",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "steel sparkscythe",
+    "NAME": "Faux de choc en acier",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "steel viperscythe",
+    "NAME": "Faux de venin en acier",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "steel flamecleaver",
+    "NAME": "Tranchoir de feu en acier",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "steel shardcleaver",
+    "NAME": "Tranchoir de plaie en acier",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "steel sparkcleaver",
+    "NAME": "Tranchoir de choc en acier",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "steel vipercleaver",
+    "NAME": "Tranchoir de venin en acier",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "steel flameskewer",
+    "NAME": "Rapière de feu en acier",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "steel shardskewer",
+    "NAME": "Rapière de plaie en acier",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "steel sparkskewer",
+    "NAME": "Rapière de choc en acier",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "steel viperskewer",
+    "NAME": "Rapière de venin en acier",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "steel flamemauler",
+    "NAME": "Massue de feu en acier",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "steel shardmauler",
+    "NAME": "Massue de plaie en acier",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "steel sparkmauler",
+    "NAME": "Massue de choc en acier",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "steel vipermauler",
+    "NAME": "Massue de venin en acier",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "flying viper",
+    "NAME": "Vipère volante",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "steel staff of peace",
+    "NAME": "Bâton en acier de la Paix",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "steel staff of war",
+    "NAME": "Bâton en acier de la Guerre",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "steel staff of shaming",
+    "NAME": "Bâton en acier de l'Humiliation",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "steel staff of chastening",
+    "NAME": "Bâton en acier de la Leçon",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "steel staff of divine judgement",
+    "NAME": "Bâton en acier Jugement Divin",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "steel staff of the ancestors",
+    "NAME": "Bâton en acier des Ancêtres",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "battle axe of wounds",
+    "NAME": "Hache d'armes sanglantes",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "war axe of wounds",
+    "NAME": "Hache de guerre des Blessures",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "warhammer of wounds",
+    "NAME": "Marteau de guerre des Blessures",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "silver staff of reckoning",
+    "NAME": "Bâton d'argent de la Vengeance",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "wild flameblade",
+    "NAME": "Dague de feu sauvage",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "wild shardblade",
+    "NAME": "Dague de plaie sauvage",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "wild sparkblade",
+    "NAME": "Dague de choc sauvage",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "wild viperblade",
+    "NAME": "Dague de venin sauvage",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "wild flamesword",
+    "NAME": "Epée de feu sauvage",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "wild shardsword",
+    "NAME": "Epée de plaie sauvage",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "wild sparksword",
+    "NAME": "Epée de choc sauvage",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "wild vipersword",
+    "NAME": "Epée de venin sauvage",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "glass jinkblade",
+    "NAME": "Epée de verre paralysante",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "dwemer jinksword",
+    "NAME": "Epée dwemer paralysante",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "glass firesword",
+    "NAME": "Epée de feu en verre",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "glass frostsword",
+    "NAME": "Epée de givre en verre",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "glass stormsword",
+    "NAME": "Epée des Tempêtes en verre",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "glass poisonsword",
+    "NAME": "Epée de verre empoisonnée",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "silver flameblade",
+    "NAME": "Dague de feu en argent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "silver shardblade",
+    "NAME": "Dague de plaie en argent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "silver sparkblade",
+    "NAME": "Dague de choc en argent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "silver viperblade",
+    "NAME": "Dague de venin en argent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "silver flamesword",
+    "NAME": "Epée de feu en argent",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "silver shardsword",
+    "NAME": "Epée de plaie en argent",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "silver sparksword",
+    "NAME": "Epée de choc en argent",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "silver vipersword",
+    "NAME": "Epée de venin en argent",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "silver flameaxe",
+    "NAME": "Hache de feu en argent",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "silver sparkaxe",
+    "NAME": "Hache de choc en argent",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "silver shardaxe",
+    "NAME": "Hache de plaie en argent",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "silver viperaxe",
+    "NAME": "Hache de venin en argent",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "silver flameslayer",
+    "NAME": "Lame de feu en argent",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "silver shardslayer",
+    "NAME": "Lame de plaie en argent",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "silver sparkslayer",
+    "NAME": "Lame de choc en argent",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "silver viperslayer",
+    "NAME": "Lame de venin en argent",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "silver flameskewer",
+    "NAME": "Rapière de feu en argent",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "silver shardskewer",
+    "NAME": "Rapière de plaie en argent",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "silver sparkskewer",
+    "NAME": "Rapière de choc en argent",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "silver viperskewer",
+    "NAME": "Rapière de venin en argent",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "silver staff of peace",
+    "NAME": "Bâton d'argent de la Paix",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "steel warhammer of smiting",
+    "NAME": "Marteau de Fracassement acier",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "steel broadsword of hewing",
+    "NAME": "Epée large acier de Lacération",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel claymore of hewing",
+    "NAME": "Claymore en acier de Lacération",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "steel war axe of deep biting",
+    "NAME": "Hache de g Prof morsure acier",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "steel spear of impaling thrust",
+    "NAME": "Lance d'Empalement en acier",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "steel dagger of swiftblade",
+    "NAME": "Dague en acier de Vivelame",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "shortbow of sanguine sureflight",
+    "NAME": "Arc court Coup au but Sanguiyn",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "throwing knife of sureflight",
+    "NAME": "Couteau de lancer coup au but",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "gavel of the ordinator",
+    "NAME": "Marteau de l'Ordonnateur",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "light staff",
+    "NAME": "Bâton de Lumière",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "merisan club",
+    "NAME": "Gourdin mérisan",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "spirit-eater",
+    "NAME": "Mangeuse d'Ames",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "daunting mace",
+    "NAME": "Masse inquiétante",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "sword of white woe",
+    "NAME": "Epée du Blanc Malheur",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "staff of the forefathers",
+    "NAME": "Bâton des Pères",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "boethiah's walking stick",
+    "NAME": "Canne de Boéthia",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "mephala's teacher",
+    "NAME": "Mentor de Méphala",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "bound_longsword",
+    "NAME": "Epée longue à poignée de cuir",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "bound_mace",
+    "NAME": "Masse d'armes à poignée de cuir",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "bound_battle_axe",
+    "NAME": "Hache d'armes à poignée de cuir",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "bound_spear",
+    "NAME": "Lance à poignée de cuir",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "bound_longbow",
+    "NAME": "Arc long à poignée de cuir",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "fiend katana",
+    "NAME": "Katana fiélon",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "fiend battle axe",
+    "NAME": "Hache d'armes fiélonne",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "fiend spear",
+    "NAME": "Lance fiélonne",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "fiend longbow",
+    "NAME": "Arc long fiélon",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "silver staff of war",
+    "NAME": "Bâton d'argent de la Guerre",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "divine judgement silver staff",
+    "NAME": "Bâton argent Jugement Divin",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "silver staff of chastening",
+    "NAME": "Bâton d'argent de la Leçon",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "silver staff of shaming",
+    "NAME": "Bâton d'argent de l'Humiliation",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "devil tanto",
+    "NAME": "Tanto diabolique",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "devil katana",
+    "NAME": "Katana diabolique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "devil spear",
+    "NAME": "Lance diabolique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "devil longbow",
+    "NAME": "Arc long diabolique",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "saint's black sword",
+    "NAME": "Epée noire du Saint",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "daedric wakizashi_hhst",
+    "NAME": "Wakizashi daedrique",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "demon mace",
+    "NAME": "Masse d'armes démoniaque",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "chargen dagger",
+    "NAME": "Dague de fer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "ebony staff caper",
+    "NAME": "Bâton en ébonite de Félen",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "war_axe_airan_ammu",
+    "NAME": "Hache de guerre d'Airan Ammu",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "sunder",
+    "NAME": "Broyeur",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "keening",
+    "NAME": "Lamentation",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "steelstaffancestors_ttsa",
+    "NAME": "Bâton de sagesse ancestrale",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "cleaverstfelms",
+    "NAME": "Tranchoir de Saint Felme",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "crosierstllothis",
+    "NAME": "Crosse de Saint Llothis",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "ebony_bow_auriel",
+    "NAME": "Arc d'Auriel",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "dwarven_hammer_volendrung",
+    "NAME": "Volendrung",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "devil_tanto_tgamg",
+    "NAME": "Tanto du Diable d'Anareren",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "ebony_dagger_mehrunes",
+    "NAME": "Dague en ébonite",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "bound_dagger",
+    "NAME": "Dague à poignée de cuir",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "ebony_staff_tges",
+    "NAME": "Bâton de Maryon",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "daedric dagger_mtas",
+    "NAME": "Dague de Mains-Noires",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "daedric_club_tgdc",
+    "NAME": "Gourdin d'Anora",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "miner's pick",
+    "NAME": "Pic de mineur",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "glass_dagger_enamor",
+    "NAME": "Enamor",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "sparkstar",
+    "NAME": "Shuriken de choc",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "daedric_scourge_unique",
+    "NAME": "Châtiment",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "claymore_chrysamere_unique",
+    "NAME": "Chrysamère",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "staff_magnus_unique",
+    "NAME": "Bâton de Magnus",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "spear_mercy_unique",
+    "NAME": "Lance de Cruelle Miséricorde",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "longbow_shadows_unique",
+    "NAME": "Arc des Ombres",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "claymore_iceblade_unique",
+    "NAME": "Lame Glacée du Monarque",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "staff_hasedoki_unique",
+    "NAME": "Bâton d'Hasédoki",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "warhammer_crusher_unique",
+    "NAME": "Brise-Crânes",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "katana_goldbrand_unique",
+    "NAME": "Lamedor",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "dagger_fang_unique",
+    "NAME": "Croc d'Haynekhtnamet",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "longsword_umbra_unique",
+    "NAME": "Epée des Ombres",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "axe_queen_of_bats_unique",
+    "NAME": "Souveraine des Chauves-Souris",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "dagoth dagger",
+    "NAME": "Dague de Dagoth",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "mehrunes'_razor_unique",
+    "NAME": "Rasoir de Mérunès",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "azura_star_unique",
+    "NAME": "Etoile d'Azura",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "mace of molag bal_unique",
+    "NAME": "Masse de Molag Bal",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "erur_dan_spear_unique",
+    "NAME": "Lance d'Erud-Dan",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "ane_teria_mace_unique",
+    "NAME": "Masse d'Ane-Téria",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "conoon_chodala_axe_unique",
+    "NAME": "Hache de Conon Chodala",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "Rusty_Dagger_UNIQUE",
+    "NAME": "Dague rouillée",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "false_sunder",
+    "NAME": "* Broyeur *",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "fork_horripilation_unique",
+    "NAME": "Fourche d'Horripilation",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "widowmaker_unique",
+    "NAME": "Faiseuse de Veuves",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "bonebiter_bow_unique",
+    "NAME": "Arc Perforateur de Sul-Sénipul",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "herder_crook",
+    "NAME": "Crosse de berger",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "iron fork",
+    "NAME": "Fourche de fer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "cloudcleaver_unique",
+    "NAME": "Tranche-Nuées",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "sunder_fake",
+    "NAME": "* Broyeur *",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "we_hellfirestaff",
+    "NAME": "Bâton de Feu d'Enfer",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "we_stormforge",
+    "NAME": "Forge des Tempêtes",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "we_temreki",
+    "NAME": "Temréki, Enchaîneuse d'Ames",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "staff_of_llevule",
+    "NAME": "Bâton de Llévule",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "Dagger of Judgement",
+    "NAME": "Dague du Jugement",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "we_illkurok",
+    "NAME": "Illkurok",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "Silver Dagger_Hanin Cursed",
+    "NAME": "Ancienne dague en argent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "ebony_staff_trebonius",
+    "NAME": "Bâton de Trébonius",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "Fury",
+    "NAME": "Furie",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "Greed",
+    "NAME": "Cupidité",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "banhammer_unique",
+    "NAME": "Marteau de Bannissement",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "racerbeak",
+    "NAME": "Longbec",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "Wind of Ahaz",
+    "NAME": "Vent d'Ahaz",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "Karpal's Friend",
+    "NAME": "Ami de Karpal",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "we_shimsil",
+    "NAME": "Shimsil",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "iron spider dagger",
+    "NAME": "Dague d'araignée en fer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "steel spider blade",
+    "NAME": "Dague d'araignée en acier",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "imperial netch blade",
+    "NAME": "Epée de netch impériale",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "glass netch dagger",
+    "NAME": "Dague de netch en verre",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "claymore_Agustas",
+    "NAME": "Epée d'Agustas",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "ebony spear_hrce_unique",
+    "NAME": "Lance en ébonite",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "lightofday_unique",
+    "NAME": "Lumière du Jour",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "glass stormblade",
+    "NAME": "Dague de verre paralysante",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "daedric_crescent_unique",
+    "NAME": "Croissant daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "silver_staff_dawn_uniq",
+    "NAME": "Bâton d'argent",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "Airan_Ahhe's_Spirit_Spear_uniq",
+    "NAME": "Lance spirituelle d'Airan-Ahe",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "katana_bluebrand_unique",
+    "NAME": "Lamedazur",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "glass dagger_Dae_cursed",
+    "NAME": "Dague de verre",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "glass claymore_magebane",
+    "NAME": "Fléau des Mages",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "daedric warhammer_ttgd",
+    "NAME": "Jugement de Véloth",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "dart_uniq_judgement",
+    "NAME": "Dard du Jugement",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "Stormkiss",
+    "NAME": "Baiser des Tempêtes",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "dwarven axe_soultrap",
+    "NAME": "Piège pneumatique dwemer",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "silver staff of hunger",
+    "NAME": "Bâton d'argent de la Faim",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "daedric dagger_soultrap",
+    "NAME": "Buveuse d'Ames",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "dwarven halberd_soultrap",
+    "NAME": "Moissonneuse de Bthuangth",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "fiend spear_Dae_cursed",
+    "NAME": "Lance fiélonne",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "ebony broadsword_Dae_cursed",
+    "NAME": "Epée large en ébonite",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "iron shardaxe",
+    "NAME": "Hache de plaie en fer",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "dwe_jinksword_curse_Unique",
+    "NAME": "Epée paralysante dwemer (imp.)",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "iron dagger_telasero_unique",
+    "NAME": "Dague de fer",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "widowmaker",
+    "NAME": "Hache d’armes nordique",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "tw_sweeny_razor",
+    "NAME": "Cut-throat Razor",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "aaashansword",
+    "NAME": "Sword of Testing",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "aaashansword2",
+    "NAME": "Sword of Testing2",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "wl_frngpn",
+    "NAME": "Frying Pan",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "wl_broom",
+    "NAME": "Broom",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "wl_ice_dagger",
+    "NAME": "Ice",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "wl_psy_whisk",
+    "NAME": "Steel kitchen whiisk",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "wl_psy_castiron_pan",
+    "NAME": "Heavy duty cast iron pan",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "wl_rollingpin",
+    "NAME": "Rolling pin",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "wl_knife",
+    "NAME": "Wooden kitchen knife",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "wl_ladle",
+    "NAME": "Ladle",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "BE_Instrument_Mallet_01",
+    "NAME": "Percussion Mallet",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "tw_Mallet_01",
+    "NAME": "Percussion Mallet",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "tw_hammer_wpn",
+    "NAME": "Hammer",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "tw_hammer02",
+    "NAME": "Hammer",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "wl_spoon",
+    "NAME": "Spoon",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "zz_BottleClub",
+    "NAME": "Bottle Club",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "DAM_MortMop_01",
+    "NAME": "Mortar Mop",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "DAM_MortFire_01Ban",
+    "NAME": "Mortar Match",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "zz_ice_dagger",
+    "NAME": "Ice",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "zz_fire_dagger",
+    "NAME": "Fire",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "zz_bcj_razor",
+    "NAME": "Cut-throat Razor",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "b_frostmourne",
+    "NAME": "Frostmourne",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "dreadknight_claymore",
+    "NAME": "Claymore Chevalier de l'Effroi",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "dreadknight_longsword",
+    "NAME": "Epée longue Chevalier Effroi",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "dreadknight_battleaxe",
+    "NAME": "Hache d'armes Chevalier Effroi",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "dreadknight_waraxe",
+    "NAME": "Hache guerre Chevalier Effroi",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "dreadknight_mace",
+    "NAME": "Masse d'armes Chevalier Effroi",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "dreadknight_mace2h",
+    "NAME": "Gourdin lourd Chevalier Effroi",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "dreadknight_warhammer2h",
+    "NAME": "Marteau guerre Chevalier Effroi",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "dreadknight_bow",
+    "NAME": "Arc de Chevalier de l'Effroi",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "dreadknight_dagger",
+    "NAME": "Dague de Chevalier de l'Effroi",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "dreadknight_club",
+    "NAME": "Gourdin Chevalier de l'Effroi",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_overlord_staff",
+    "NAME": "Bâton de Souverain Drémora",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "plx_horror_damage",
+    "NAME": "",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_daedric long bow",
+    "NAME": "Arc long de Drémora mineur",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "plx_6thHouse_Staff",
+    "NAME": "Bâton de la Sixième Maison",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "plx_Dremora6_BattleAxe",
+    "NAME": "Hache d'armes Drémora",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_Claymore",
+    "NAME": "Claymore Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora1_Club",
+    "NAME": "Massue Drémora",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora5_Daikatana",
+    "NAME": "Daï-katana Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora3_katana",
+    "NAME": "Katana Drémora ",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_Longsword",
+    "NAME": "Epée longue Drémora",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_Mace",
+    "NAME": "Masse Drémora ",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_shortsword",
+    "NAME": "Epée courte Drémora",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora1_spear",
+    "NAME": "Lance Drémora",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_Dremora3_wakizashi",
+    "NAME": "Wakizashi Drémora ",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_waraxe",
+    "NAME": "Hache de guerre Drémora",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "plx_Dremora5_Warhammer",
+    "NAME": "Marteau de guerre Drémora",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "plx_Dremora1_Club_M_A",
+    "NAME": "Massue Drémora",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora1_spear_M_A",
+    "NAME": "Lance Drémora",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_Dremora2_Mace_M_A",
+    "NAME": "Masse Drémora ",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_waraxe_M_A",
+    "NAME": "Hache de guerre Drémora",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_katana_M_A",
+    "NAME": "Katana Drémora ",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_wakizashi_M_A",
+    "NAME": "Wakizashi Drémora ",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_Longsword_M_A",
+    "NAME": "Epée longue Drémora",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_shortsword_M_A",
+    "NAME": "Epée courte Drémora",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora5_Daikatana_M_A",
+    "NAME": "Daï-katana Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Warhammer_M_A",
+    "NAME": "Marteau de guerre Drémora",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_BattleAxe_M_A",
+    "NAME": "Hache d'armes Drémora",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_Claymore_M_A",
+    "NAME": "Claymore Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora1_Club_M_B",
+    "NAME": "Massue Drémora",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora1_Club_M_C",
+    "NAME": "Massue Drémora",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora1_Club_M_D",
+    "NAME": "Massue Drémora",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora1_Club_M_E",
+    "NAME": "Massue Drémora",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora1_Club_M_F",
+    "NAME": "Massue Drémora",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora1_Club_M_G",
+    "NAME": "Massue Drémora",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora1_Club_M_H",
+    "NAME": "Massue Drémora",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora1_Club_M_I",
+    "NAME": "Massue Drémora",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora1_spear_M_B",
+    "NAME": "Lance Drémora",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_Dremora1_spear_M_C",
+    "NAME": "Lance Drémora",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_Dremora1_spear_M_D",
+    "NAME": "Lance Drémora",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_Dremora1_spear_M_E",
+    "NAME": "Lance Drémora",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_Dremora1_spear_M_F",
+    "NAME": "Lance Drémora",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_Dremora1_spear_M_G",
+    "NAME": "Lance Drémora",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_Dremora1_spear_M_H",
+    "NAME": "Lance Drémora",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_Dremora1_spear_M_I",
+    "NAME": "Lance Drémora",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_Dremora2_Mace_M_B",
+    "NAME": "Masse Drémora ",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_Mace_M_C",
+    "NAME": "Masse Drémora ",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_Mace_M_D",
+    "NAME": "Masse Drémora ",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_Mace_M_E",
+    "NAME": "Masse Drémora ",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_Mace_M_F",
+    "NAME": "Masse Drémora ",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_Mace_M_G",
+    "NAME": "Masse Drémora ",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_Mace_M_H",
+    "NAME": "Masse Drémora ",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_Mace_M_I",
+    "NAME": "Masse Drémora ",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_waraxe_M_B",
+    "NAME": "Hache de guerre Drémora",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_waraxe_M_C",
+    "NAME": "Hache de guerre Drémora",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_waraxe_M_D",
+    "NAME": "Hache de guerre Drémora",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_waraxe_M_E",
+    "NAME": "Hache de guerre Drémora",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_waraxe_M_F",
+    "NAME": "Hache de guerre Drémora",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_waraxe_M_G",
+    "NAME": "Hache de guerre Drémora",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_waraxe_M_H",
+    "NAME": "Hache de guerre Drémora",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "plx_Dremora2_waraxe_M_I",
+    "NAME": "Hache de guerre Drémora",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "plx_Dremora6_BattleAxe_M_B",
+    "NAME": "Hache d'armes Drémora",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_BattleAxe_M_C",
+    "NAME": "Hache d'armes Drémora",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_BattleAxe_M_D",
+    "NAME": "Hache d'armes Drémora",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_BattleAxe_M_E",
+    "NAME": "Hache d'armes Drémora",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_BattleAxe_M_F",
+    "NAME": "Hache d'armes Drémora",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_BattleAxe_M_G",
+    "NAME": "Hache d'armes Drémora",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_BattleAxe_M_H",
+    "NAME": "Hache d'armes Drémora",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_BattleAxe_M_I",
+    "NAME": "Hache d'armes Drémora",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_Claymore_M_B",
+    "NAME": "Claymore Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_Claymore_M_C",
+    "NAME": "Claymore Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_Claymore_M_D",
+    "NAME": "Claymore Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_Claymore_M_E",
+    "NAME": "Claymore Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_Claymore_M_F",
+    "NAME": "Claymore Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_Claymore_M_G",
+    "NAME": "Claymore Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_Claymore_M_H",
+    "NAME": "Claymore Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora6_Claymore_M_I",
+    "NAME": "Claymore Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora3_katana_M_B",
+    "NAME": "Katana Drémora ",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_katana_M_C",
+    "NAME": "Katana Drémora ",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_katana_M_D",
+    "NAME": "Katana Drémora ",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_katana_M_E",
+    "NAME": "Katana Drémora ",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_katana_M_F",
+    "NAME": "Katana Drémora ",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_katana_M_G",
+    "NAME": "Katana Drémora ",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_katana_M_H",
+    "NAME": "Katana Drémora ",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_katana_M_I",
+    "NAME": "Katana Drémora ",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_wakizashi_M_B",
+    "NAME": "Wakizashi Drémora ",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_wakizashi_M_C",
+    "NAME": "Wakizashi Drémora ",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_wakizashi_M_D",
+    "NAME": "Wakizashi Drémora ",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_wakizashi_M_E",
+    "NAME": "Wakizashi Drémora ",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_wakizashi_M_F",
+    "NAME": "Wakizashi Drémora ",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_wakizashi_M_G",
+    "NAME": "Wakizashi Drémora ",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_wakizashi_M_H",
+    "NAME": "Wakizashi Drémora ",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora3_wakizashi_M_I",
+    "NAME": "Wakizashi Drémora ",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_Longsword_M_B",
+    "NAME": "Epée longue Drémora",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_Longsword_M_C",
+    "NAME": "Epée longue Drémora",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_Longsword_M_D",
+    "NAME": "Epée longue Drémora",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_Longsword_M_E",
+    "NAME": "Epée longue Drémora",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_Longsword_M_F",
+    "NAME": "Epée longue Drémora",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_Longsword_M_G",
+    "NAME": "Epée longue Drémora",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_Longsword_M_H",
+    "NAME": "Epée longue Drémora",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_Longsword_M_I",
+    "NAME": "Epée longue Drémora",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_shortsword_M_B",
+    "NAME": "Epée courte Drémora",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_shortsword_M_C",
+    "NAME": "Epée courte Drémora",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_shortsword_M_D",
+    "NAME": "Epée courte Drémora",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_shortsword_M_E",
+    "NAME": "Epée courte Drémora",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_shortsword_M_F",
+    "NAME": "Epée courte Drémora",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_shortsword_M_G",
+    "NAME": "Epée courte Drémora",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_shortsword_M_H",
+    "NAME": "Epée courte Drémora",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora4_shortsword_M_I",
+    "NAME": "Epée courte Drémora",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "plx_Dremora5_Daikatana_M_B",
+    "NAME": "Daï-katana Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Daikatana_M_C",
+    "NAME": "Daï-katana Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Daikatana_M_D",
+    "NAME": "Daï-katana Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Daikatana_M_E",
+    "NAME": "Daï-katana Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Daikatana_M_F",
+    "NAME": "Daï-katana Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Daikatana_M_G",
+    "NAME": "Daï-katana Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Daikatana_M_H",
+    "NAME": "Daï-katana Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Daikatana_M_I",
+    "NAME": "Daï-katana Drémora ",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Warhammer_M_B",
+    "NAME": "Marteau de guerre Drémora",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Warhammer_M_C",
+    "NAME": "Marteau de guerre Drémora",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Warhammer_M_D",
+    "NAME": "Marteau de guerre Drémora",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Warhammer_M_E",
+    "NAME": "Marteau de guerre Drémora",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Warhammer_M_F",
+    "NAME": "Marteau de guerre Drémora",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Warhammer_M_G",
+    "NAME": "Marteau de guerre Drémora",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Warhammer_M_H",
+    "NAME": "Marteau de guerre Drémora",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "plx_Dremora5_Warhammer_M_I",
+    "NAME": "Marteau de guerre Drémora",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "plx_dremora_dart",
+    "NAME": "Dard Drémora",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "plx_guard_r_steel mace",
+    "NAME": "Masse de garde rédoran",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "plx_guard_t_steel war axe",
+    "NAME": "Hache de guerre garde telvanni",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "plx_guard_t_steel longsword",
+    "NAME": "Epée longue de garde hlaalu",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint1_claymore",
+    "NAME": "Claymore en argent Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint1_spear",
+    "NAME": "Lance en argent Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint1_longsword",
+    "NAME": "Epée longue en argent Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint2_claymore",
+    "NAME": "Claymore en or Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint3_claymore",
+    "NAME": "Claymore noire Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint2_spear",
+    "NAME": "Lance en or Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint3_spear",
+    "NAME": "Lance noire Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint2_longsword",
+    "NAME": "Epée longue en or Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint3_longsword",
+    "NAME": "Epée longue noire Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint1_claymore_A",
+    "NAME": "Claymore en argent Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint1_claymore_B",
+    "NAME": "Claymore en argent Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint1_claymore_C",
+    "NAME": "Claymore en argent Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint1_claymore_D",
+    "NAME": "Claymore en argent Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint1_claymore_E",
+    "NAME": "Claymore en argent Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint1_claymore_F",
+    "NAME": "Claymore en argent Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint1_claymore_G",
+    "NAME": "Claymore en argent Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint1_claymore_H",
+    "NAME": "Claymore en argent Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint1_claymore_I",
+    "NAME": "Claymore en argent Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint1_longsword_A",
+    "NAME": "Epée longue en argent Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint1_longsword_B",
+    "NAME": "Epée longue en argent Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint1_longsword_C",
+    "NAME": "Epée longue en argent Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint1_longsword_D",
+    "NAME": "Epée longue en argent Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint1_longsword_E",
+    "NAME": "Epée longue en argent Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint1_longsword_F",
+    "NAME": "Epée longue en argent Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint1_longsword_G",
+    "NAME": "Epée longue en argent Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint1_longsword_H",
+    "NAME": "Epée longue en argent Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint1_longsword_I",
+    "NAME": "Epée longue en argent Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint1_spear_A",
+    "NAME": "Lance en argent Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint1_spear_B",
+    "NAME": "Lance en argent Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint1_spear_C",
+    "NAME": "Lance en argent Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint1_spear_D",
+    "NAME": "Lance en argent Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint1_spear_E",
+    "NAME": "Lance en argent Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint1_spear_F",
+    "NAME": "Lance en argent Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint1_spear_G",
+    "NAME": "Lance en argent Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint1_spear_H",
+    "NAME": "Lance en argent Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint1_spear_I",
+    "NAME": "Lance en argent Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint2_claymore_A",
+    "NAME": "Claymore en or Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint2_claymore_B",
+    "NAME": "Claymore en or Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint2_claymore_C",
+    "NAME": "Claymore en or Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint2_claymore_D",
+    "NAME": "Claymore en or Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint2_claymore_E",
+    "NAME": "Claymore en or Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint2_claymore_F",
+    "NAME": "Claymore en or Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint2_claymore_G",
+    "NAME": "Claymore en or Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint2_claymore_H",
+    "NAME": "Claymore en or Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint2_claymore_I",
+    "NAME": "Claymore en or Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint2_longsword_A",
+    "NAME": "Epée longue en or Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint2_longsword_B",
+    "NAME": "Epée longue en or Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint2_longsword_C",
+    "NAME": "Epée longue en or Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint2_longsword_D",
+    "NAME": "Epée longue en or Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint2_longsword_E",
+    "NAME": "Epée longue en or Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint2_longsword_F",
+    "NAME": "Epée longue en or Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint2_longsword_G",
+    "NAME": "Epée longue en or Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint2_longsword_H",
+    "NAME": "Epée longue en or Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint2_longsword_I",
+    "NAME": "Epée longue en or Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint2_spear_A",
+    "NAME": "Lance en or Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint2_spear_B",
+    "NAME": "Lance en or Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint2_spear_C",
+    "NAME": "Lance en or Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint2_spear_D",
+    "NAME": "Lance en or Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint2_spear_E",
+    "NAME": "Lance en or Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint2_spear_F",
+    "NAME": "Lance en or Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint2_spear_G",
+    "NAME": "Lance en or Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint2_spear_H",
+    "NAME": "Lance en or Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint2_spear_I",
+    "NAME": "Lance en or Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint3_claymore_A",
+    "NAME": "Claymore noire Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint3_longsword_A",
+    "NAME": "Epée longue noire Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint3_spear_A",
+    "NAME": "Lance noire Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint3_claymore_B",
+    "NAME": "Claymore noire Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint3_claymore_C",
+    "NAME": "Claymore noire Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint3_claymore_D",
+    "NAME": "Claymore noire Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint3_claymore_E",
+    "NAME": "Claymore noire Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint3_claymore_F",
+    "NAME": "Claymore noire Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint3_claymore_G",
+    "NAME": "Claymore noire Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint3_claymore_H",
+    "NAME": "Claymore noire Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint3_claymore_I",
+    "NAME": "Claymore noire Daedrique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "plx_saint3_longsword_B",
+    "NAME": "Epée longue noire Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint3_longsword_C",
+    "NAME": "Epée longue noire Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint3_longsword_D",
+    "NAME": "Epée longue noire Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint3_longsword_E",
+    "NAME": "Epée longue noire Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint3_longsword_F",
+    "NAME": "Epée longue noire Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint3_longsword_G",
+    "NAME": "Epée longue noire Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint3_longsword_H",
+    "NAME": "Epée longue noire Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint3_longsword_I",
+    "NAME": "Epée longue noire Daedrique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "plx_saint3_spear_B",
+    "NAME": "Lance noire Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint3_spear_C",
+    "NAME": "Lance noire Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint3_spear_D",
+    "NAME": "Lance noire Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint3_spear_E",
+    "NAME": "Lance noire Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint3_spear_F",
+    "NAME": "Lance noire Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint3_spear_G",
+    "NAME": "Lance noire Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint3_spear_H",
+    "NAME": "Lance noire Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "plx_saint3_spear_I",
+    "NAME": "Lance noire Daedrique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "gr_aetherium_dagger",
+    "NAME": "Dague d'aethérium",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "gr_aetherium_xbow",
+    "NAME": "Arbalète d'aethérium",
+    "TYPE": "MarksmanCrossbow"
+  },
+  {
+    "ID": "gr_aetherium_shortsword",
+    "NAME": "Epée courte d'aethérium",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "gr_aetherium_warhammer",
+    "NAME": "Marteau de guerre d'aethérium",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "gr_aetherium_waraxe",
+    "NAME": "Hache de guerre d'aethérium",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "gr_aetherium_spear",
+    "NAME": "Lance d'aethérium",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "gr_aetherium_claymore",
+    "NAME": "Claymore d'aethérium",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "gr_aetherium_mace",
+    "NAME": "Masse d'aethérium",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "gr_aetherium_halberd",
+    "NAME": "Hallebarde d'aethérium",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "gr_aetherium_battleaxe",
+    "NAME": "Hache d'armes d'aethérium",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "gr_aetherium_longspear",
+    "NAME": "Lance longue d'aethérium",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "gr_aetherium_longsword",
+    "NAME": "Epée longue d'aethérium",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "gr_aetherium_staff",
+    "NAME": "Bâton d'aethérium",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "gr_aetherium_javelin",
+    "NAME": "Javelot d'aethérium",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "gr_aetherium_dart",
+    "NAME": "Dard d'aethérium",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "gr_aetherium_hammer",
+    "NAME": "Marteau d'aethérium",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "gr_aetherium_throwaxe",
+    "NAME": "Hache de lancer d'aethérium",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "BM huntsman axe",
+    "NAME": "Hache du veneur",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "BM huntsman longsword",
+    "NAME": "Epée longue du veneur",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "BM Huntsman Spear",
+    "NAME": "Lance du veneur",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "BM ice longsword",
+    "NAME": "Epée longue en Stalhrim",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "BM ice mace",
+    "NAME": "Masse d'armes en Stalhrim",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "BM ice dagger",
+    "NAME": "Dague en Stalhrim",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "BM nordic silver axe",
+    "NAME": "Hache nordique en argent",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "BM nordic silver claymore",
+    "NAME": "Claymore nordique en argent",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "BM nordic silver battleaxe",
+    "NAME": "Hache d'armes nordique argent",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "BM nordic silver dagger",
+    "NAME": "Dague nordique en argent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "BM nordic silver longsword",
+    "NAME": "Epée longue nordique en argent",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "BM nordic silver mace",
+    "NAME": "Masse d'armes nordique argent",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "BM nordic silver shortsword",
+    "NAME": "Epée courte nordique en argent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "warhammer_rammekald_unique",
+    "NAME": "Rammekald",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "solvistapp",
+    "NAME": "Solvistapp",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "steel spear snow prince",
+    "NAME": "Lance du Prince des neiges",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "steel saber_elberoth",
+    "NAME": "Sabre d'Elbéroth",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "BM huntsman crossbow",
+    "NAME": "Arbalète du veneur",
+    "TYPE": "MarksmanCrossbow"
+  },
+  {
+    "ID": "BM ice war axe",
+    "NAME": "Hache de guerre en Stalhrim",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "BM huntsman war axe",
+    "NAME": "Hache de guerre du veneur",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "imperial shortsword severio",
+    "NAME": "Epée courte impériale de Severi",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "nordic claymore_stormfang",
+    "NAME": "Croc des tempêtes",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "BM silver dagger wolfender",
+    "NAME": "Dague Finduloup en argent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "BM_hunter_battleaxe_unique",
+    "NAME": "Hache d'armes nordique argent",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "BM_nordic_silver_lgswd_bloodska",
+    "NAME": "Sangskall",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "BM Nordic Pick",
+    "NAME": "Ancienne pioche nordique",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "BM_ice_minion_lance",
+    "NAME": "Lance riekeline",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "BM_dagger_wolfgiver",
+    "NAME": "Dague Donneloup en argent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "bm_saber_seasplitter",
+    "NAME": "Fendeur de flots",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "BM nordic_longsword_tracker",
+    "NAME": "Epée longue nordique en argent",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "BM riekling lance",
+    "NAME": "Lance riekeline",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "BM riekling sword",
+    "NAME": "Lame riekeline",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "W_art_Ice_mace",
+    "NAME": "Marks Mace of Pooftah Love",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "steel longbow_carnius",
+    "NAME": "Arc long en acier",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "silver axe of paralysis",
+    "NAME": "Hache de paralysie en argent",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "silver sword of paralysis",
+    "NAME": "Epée de paralysie en argent",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "silver staff of paralysis",
+    "NAME": "Bâton de paralysie en argent",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "BM nordic silver claymore_ber",
+    "NAME": "Claymore berserk en argent",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "BM nordic silver longsword_ber",
+    "NAME": "Epée longue berserk en argent",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "BM nordic silver axe_ber",
+    "NAME": "Hache berserk en argent",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "BM nordic silver battleaxe_ber",
+    "NAME": "Hache bataille berserk argent",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "BM nord leg",
+    "NAME": "Jambe nordique coupée",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "bm_ebony_staff_necro",
+    "NAME": "Bâton d'enchantement charnel",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "BM Winterwound Dagger",
+    "NAME": "Dague rongée par l'hiver",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "BM_axe_Heartfang_Unique",
+    "NAME": "Hache d'armes nordique argent",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "BM_Mace_Aevar_UNI",
+    "NAME": "Masse d'armes d'Aevar",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "BM ice longsword_FG_Unique",
+    "NAME": "Epée lg. de flammes Stalhrim",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "bm reaver battle axe",
+    "NAME": "Hache sanglante",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "BM nordic silver axe_spurius",
+    "NAME": "Hache de paralysie nordique",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "BM nordic silver longsword_cft",
+    "NAME": "Clanbringer",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "Lucky_Break",
+    "NAME": "Coup de chance de Haakon",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "BM frostgore",
+    "NAME": "Fendgivre",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "bm_ebonylongsword_s",
+    "NAME": "Dardombre",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "BM riekling sword_rusted",
+    "NAME": "Lame riekeline rouillée",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "BM_hunterspear_unique",
+    "NAME": "Lance du chasseur",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "Gravedigger",
+    "NAME": "Fossoyeuse",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "silver dagger_droth_unique",
+    "NAME": "Dague de Droth",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "spear_mercy_unique_x",
+    "NAME": "Lance de Cruelle Miséricorde",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "longsword_umbra_unique_x",
+    "NAME": "Epée des Ombres",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "dagger_fang_unique_x",
+    "NAME": "Croc d’Haynekhtnamet",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "ebony_bow_auriel_X",
+    "NAME": "Arc d'Auriel",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "daedric warhammer_ttgd_x",
+    "NAME": "Jugement de Véloth",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "mace of molag bal_unique_x",
+    "NAME": "Masse de Molag Bal",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "longbow_shadows_unique_x",
+    "NAME": "Arc des Ombres",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "katana_goldbrand_unique_x",
+    "NAME": "Lamedor",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "claymore_iceblade_unique_x",
+    "NAME": "Lame Glacée du Monarque",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "claymore_chrysamere_unique_x",
+    "NAME": "Chrysamère",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "warhammer_crusher_unique_x",
+    "NAME": "Brise-Crânes",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "staff_magnus_unique_x",
+    "NAME": "Bâton de Magnus",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "staff_hasedoki_unique_x",
+    "NAME": "Bâton d'Hasedoki",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "ebony war axe_elanande",
+    "NAME": "Hache de guerre d'Elanande",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "ebony shortsword_soscean",
+    "NAME": "Epée courte de Soscean",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "silver spear_uvenim",
+    "NAME": "Lance d'argent",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "goblin_club",
+    "NAME": "Gourdin gobelin",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "Mace of Slurring",
+    "NAME": "Masse de Bafouillage",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "Bipolar Blade",
+    "NAME": "Lame à Double Polarité",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "Ebony Scimitar",
+    "NAME": "Cimeterre d'ébonite",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "spite_dart",
+    "NAME": "Dard de rancune",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "King's_Oath",
+    "NAME": "Serment du Roi",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "Ebony Scimitar_her",
+    "NAME": "Son cimeterre d'ébonite",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "her dart",
+    "NAME": "Son dard",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "King's_Oath_pc",
+    "NAME": "Serment du Roi",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "dwarven mace_salandas",
+    "NAME": "Masse de Suldréni",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "Bipolar Blade_x",
+    "NAME": "Lame à Double Polarité",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "Mace of Slurring_x",
+    "NAME": "Masse de Bafouillage",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "spring dart",
+    "NAME": "Dard ductile",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "bleeder dart",
+    "NAME": "Dard saigneur",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "carmine dart",
+    "NAME": "Dard carmin",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "black dart",
+    "NAME": "Flèche noire",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "fine black dart",
+    "NAME": "Dard noir supérieur",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "fine carmine dart",
+    "NAME": "Dard carmin supérieur",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "fine bleeder dart",
+    "NAME": "Dard saigneur supérieur",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "fine spring dart",
+    "NAME": "Dard ductile supérieur",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "goblin_sword",
+    "NAME": "Epée gobeline",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "centurion_projectile_dart",
+    "NAME": "Dard de Nain",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "adamantium_shortsword",
+    "NAME": "Epée courte d'adamantium",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "adamantium_claymore",
+    "NAME": "Claymore d'adamantium",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "adamantium_axe",
+    "NAME": "Hache d'adamantium",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "adamantium_spear",
+    "NAME": "Lance d'adamantium",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "adamantium_mace",
+    "NAME": "Masse d'armes d'adamantium",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "nerevarblade_01",
+    "NAME": "Viveflamme",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "bladepiece_01",
+    "NAME": "Etrange arme dwemer",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "Sword of Almalexia",
+    "NAME": "Vifespoir ",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "ebony dart_db_unique",
+    "NAME": "Un Dard d'ébonite sculpté",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "stendar_hammer_unique",
+    "NAME": "Marteau de Stendarr",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "stendar_hammer_unique_x",
+    "NAME": "Marteau de Stendarr",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "centurion_projectile_dart_shock",
+    "NAME": "Dard de foudre de Nain",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "nerevarblade_01_flame",
+    "NAME": "Viveflamme",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "daedric dagger_bar",
+    "NAME": "Dague daedrique",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "adamantium_shortsword_db",
+    "NAME": "Epée sanglante paralysante",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "silver dagger_othril_unique",
+    "NAME": "Dague d'Othril",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "silver dagger_iryon_unique",
+    "NAME": "Dague d'Iryon",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "silver dagger_rathalas_unique",
+    "NAME": "Dague de Rathalas",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "ebony spear_blessed_unique",
+    "NAME": "Lance Bénite",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "glass dagger_symmachus_unique",
+    "NAME": "Dague de Symmachus",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "glass dagger_symmachus_unique_x",
+    "NAME": "Dague de Symmachus",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "silver dagger_droth_unique_a",
+    "NAME": "Dague de Droth",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "aa_nordicsilverspear",
+    "NAME": "Lance en argent nordique",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "aa_nordicsilverspear_Throwing",
+    "NAME": "Javelot en argent nordique",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "aa_nordic silver axe throwing",
+    "NAME": "Hache de lancer argent nordique",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "aa_Wunderbar_B_A",
+    "NAME": "Merveilleux",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "aa_Black Steel Battle Axe",
+    "NAME": "Hache de guerre en acier noir",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "aa_Black Steel Hack Axe",
+    "NAME": "Hache en acier noir",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "aa_Fjorgrin Bow",
+    "NAME": "Arc de Fjorngrin",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "aa_Nordic Oak Long Bow",
+    "NAME": "Arc long en chêne nordique",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "aa_Nordic Cedar Bow",
+    "NAME": "Arc long nordique en cèdre",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "aa_Nordic Golden Oak Lbow",
+    "NAME": "Arc long en chêne doré nordique",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "aa_steel warhammer_Clo Ti",
+    "NAME": "Heure de fermeture",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "aa_Axe Black_2hand",
+    "NAME": "Hache d'armes en acier noir",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "aa_warhammer_Thor_Bjorg",
+    "NAME": "Marteau de Thorjan Bjorg",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "aa_warhammer_Thor_Bjorg_Light",
+    "NAME": "Marteau de Thorjan Bjorg",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "aa_Kinslayer",
+    "NAME": "Tueuse de parents",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "aa_Grundsword",
+    "NAME": "Lame draconique",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "aa_LisNordCedarBow",
+    "NAME": "Arc long nordique en cèdre",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "aa_ZsGnarlLongBow_01",
+    "NAME": "Arc long nordique noueux",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "aa_Johansilvershortsword",
+    "NAME": "Epée courte en argent de Johan",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_ss_glimmerspike",
+    "NAME": "Pointe brillante",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "a_thugi_dagger",
+    "NAME": "Dague de Thugi",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_st_sword_01",
+    "NAME": "Epée de long sommeil",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_narayla_blade",
+    "NAME": "Epée courte d'adamantium",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_ss_soulbiter",
+    "NAME": "Piqueur d'âme",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_ss_valdagger",
+    "NAME": "Dague daedrique",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_thugi_shortsword",
+    "NAME": "Epée courte de Thugi",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_ss_ebonybow",
+    "NAME": "Arc en ébonite",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "a_ss_champsword",
+    "NAME": "Epée du champion",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "a_ss_deathlance",
+    "NAME": "Lance de la mort",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "a_ss_goldfang",
+    "NAME": "Dague Croc d'Or",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_ss_goldkatana",
+    "NAME": "Katana en or",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "a_ss_deathhead",
+    "NAME": "Masse Tête-de-mort",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "a_ss_sorcstaff",
+    "NAME": "Bâton de sorcier",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "a_ss_stendarr_hammer",
+    "NAME": "Marteau de Stendarr",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "a_ss_champsword_dp",
+    "NAME": "Epée du champion (étalage)",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "a_ss_deathhead_dp",
+    "NAME": "Masse Tête-de-mort (étalage)",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "a_ss_deathlance_dp",
+    "NAME": "Lance de la mort (étalage)",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "a_ss_ebonybow_dp",
+    "NAME": "Arc en ébonite (étalage)",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "a_ss_goldfang_dp",
+    "NAME": "Dague Croc d'Or (étalage)",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_ss_goldkatana_dp",
+    "NAME": "Katana en or (étalage)",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "a_ss_sorcstaff_dp",
+    "NAME": "Bâton de sorcier (étalage)",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "a_ss_stendarr_hammer_dp",
+    "NAME": "Marteau de Stendarr (étalage)",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "a_ss_iceblade",
+    "NAME": "Lame de glace",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "a_ss_iceblade_dp",
+    "NAME": "Lame de glace (étalage)",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "a_ss_vengarr_axe",
+    "NAME": "Hache de guerre de Vengarr",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "a_ss_shiv_sword",
+    "NAME": "Lame de Shiv",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_er_basher",
+    "NAME": "Cogneur",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "a_ms_talevknives",
+    "NAME": "Couteau de jet de Talev",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "a_ms_garnstar",
+    "NAME": "Shuriken en obsidienne",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "a_kg_mastersword",
+    "NAME": "Epée du Maître",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_ssh_dirge",
+    "NAME": "Oraison",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_sd_shard",
+    "NAME": "Echarde",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_md_dread",
+    "NAME": "Effroi",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "a_md_obsidianstar",
+    "NAME": "Shuriken de Volmeer",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "a_md_spear_01",
+    "NAME": "Lance d'argent",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "a_ss_shadiastaff",
+    "NAME": "Bâton de Shadia",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "a_ss_obsidianstar",
+    "NAME": "Shuriken en obsidienne",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "a_tt_malmace",
+    "NAME": "Masse de Malthius",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "a_ss_addersting",
+    "NAME": "Croc de vipère",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "a_kg_scorpion",
+    "NAME": "Scorpion",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_ak_engraveddag",
+    "NAME": "Dague d'acier gravée",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_ak_serpant_fang",
+    "NAME": "Croc de serpent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "a_ak_ingvaraxe",
+    "NAME": "Epée du géant",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "a_ak_longsword_crew",
+    "NAME": "Epée longue Rompeuse de vies",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "a_ak_cursedsword",
+    "NAME": "Claymore nordique en argent",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "a_ct_vilisword",
+    "NAME": "Claymore en acier",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "a_ak_wolfbow",
+    "NAME": "Arc en ébonite de Wolf",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "a_ak_wolfsword",
+    "NAME": "Croc de Wolf",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "_TUD_chitin spear",
+    "NAME": "Lance en chitine",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "_tud_vampiric_crescent",
+    "NAME": "Croissant Vampirique",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "staff_of_librarian",
+    "NAME": "Bâton du Bibliothécaire",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "_TUD_staff_of_librarian",
+    "NAME": "Bâton du Bibliothécaire",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "_mx_dragonstaff",
+    "NAME": "Bâton du Dragon",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "_DXXbonescepter",
+    "NAME": "Sceptre brut d'os",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "_DXXboneaxe",
+    "NAME": "Hache d'os nécromantique",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "tr_w_bottle_green",
+    "NAME": "Bouteille brisée",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "tr_w_imp_brsword_1",
+    "NAME": "Glaive impérial brisé",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "tr_w_imp_shsword_1",
+    "NAME": "Epée courte impériale brisée",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "TR_S_Dagger_01",
+    "NAME": "Dague cassée",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "sm_ayleidstaff",
+    "NAME": "Bâton Falmer",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "AT_LongBow_01",
+    "NAME": "Arc long",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_05_red",
+    "NAME": "Arc long rouge",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_03_blue",
+    "NAME": "Arc long bleu",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RecurveBow_01",
+    "NAME": "Arc long lourd",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RecurveBow_02_dark",
+    "NAME": "Arc long en bois sombre",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RecurveBow_03_oak",
+    "NAME": "Arc long en chêne",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RecurveBow_04_purple",
+    "NAME": "Arc long de lavande",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RecurveBow_05_cedar",
+    "NAME": "Arc long en cèdre",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RecurveBow_06_red",
+    "NAME": "Arc long d'or rouge",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RecurveBow_07_ebony",
+    "NAME": "Arc long lourd en ébonite",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RecurveBow_08_steel",
+    "NAME": "Arc long lourd en acier",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RecurveBow_09_elven",
+    "NAME": "Arc elfique lourd",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_06_elven",
+    "NAME": "arc long elfique",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RecurveBow_10_gold",
+    "NAME": "Arc long en or",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RecurveBow_11_dragon",
+    "NAME": "Arc long de tueur de dragon",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RecurveBow_12_scarrab",
+    "NAME": "Arc long du scarabé",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_longbow_02",
+    "NAME": "Arc de bois rouge renforcé",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_04_wrapped",
+    "NAME": "Arc long envelloppé",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RacerBoneBow_01",
+    "NAME": "Arc long chasseur de braillard",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_02_02",
+    "NAME": "Arc long elfique renforcé",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_04_02_redwood",
+    "NAME": "Arc long de bois rouge",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RacerBoneBow_02",
+    "NAME": "Arc long chasseur de braillard",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_09_gilded",
+    "NAME": "Arc long doré",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_10_oak",
+    "NAME": "Arc long en chêne",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_11_blackwood",
+    "NAME": "Arc long de bois noir",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_12_reinforced",
+    "NAME": "Arc long renforcé",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_RacerBoneBow_03_dragon",
+    "NAME": "Arc long en os de Dragon",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_Shortbow_05_walnut",
+    "NAME": "Arc court en noyer",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_Shortbow_04_ash",
+    "NAME": "Arc court des cendres",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_Shortbow_03_oak",
+    "NAME": "Arc court en chêne",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_Shortbow_02_cedar",
+    "NAME": "Arc court en cèdre",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_Shortbow_01",
+    "NAME": "Art court",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_Shortbow_06_pine",
+    "NAME": "Arc court en pin",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_dart_wooden",
+    "NAME": "Dard En bois  ",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "AT_Shortbow_07_elven",
+    "NAME": "Arc court elfique",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_14_01",
+    "NAME": "Arc long",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_14_02_cedar",
+    "NAME": "Arc long en cèdre",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_14_03_oak",
+    "NAME": "Arc long en chêne",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_14_04_ash",
+    "NAME": "Arc long des cendres",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_14_05_walnut",
+    "NAME": "Arc long en noyer",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_14_06_pine",
+    "NAME": "Arc long en pin",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_14_07_elven",
+    "NAME": "Arc long elfique",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_13_01_lion1",
+    "NAME": "Arc long façonné du lion ",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_13_03_dragon",
+    "NAME": "Arc long façonné du dragon",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "Zs_LongBow_13_03",
+    "NAME": "",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_13_02_lion2",
+    "NAME": "Arc long façonné du lion ",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "AT_LongBow_13_04_elven",
+    "NAME": "Arc long ouvragé elfique",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "false_sunderHarténovis",
+    "NAME": "Marteau d'Harténovis",
+    "TYPE": "BluntTwoClose"
+  },
+  {
+    "ID": "black_sword_unique",
+    "NAME": "Lame d'Oblivion",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "ash bow",
+    "NAME": "Arc de goule",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "6th_dagger",
+    "NAME": "Dague de la Sixiéme Maison",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "6th_dart",
+    "NAME": "Dard de la peste",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "ebony broadsword_holy",
+    "NAME": "Lame des divines flammes",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "daedric club_feral",
+    "NAME": "Masse de Feral",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "AM_Hammer",
+    "NAME": "Marteau de Forgeron",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "raz_staff_tharn",
+    "NAME": "Bâton de Tharn",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "Glad_excalibur",
+    "NAME": "Excalibur",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "W_Dwemer_frostaxe",
+    "NAME": "Hache de Glace Naine",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "K_fire_broadsword",
+    "NAME": "Epée de Feu",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "K_Firebomb",
+    "NAME": "Bombe de Feu",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "K_Shockbomb",
+    "NAME": "Bombe Explosive",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "POG_dague_karmapolis",
+    "NAME": "Dague gravée ",
+    "TYPE": 0
+  },
+  {
+    "ID": "cruel_shockbloom_star",
+    "NAME": "Shuriken nuage de choc cruel",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "cruel_firestorm_star",
+    "NAME": "Shuriken nuage de feu cruel",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "cruel_frostbloom_star",
+    "NAME": "Shuriken nuage de froid cruel",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "cruel_poisonbloom_star",
+    "NAME": "Shuriken nuage de poison cruel",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "cruel_firestorm_dart",
+    "NAME": "Dard nuage de feu cruel",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "cruel_frostbloom_dart",
+    "NAME": "Dard nuage de froid cruel",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "cruel_poisonbloom_dart",
+    "NAME": "Dard nuage de poison cruel",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "cruel_shockbloom_dart",
+    "NAME": "Dard nuage de choc cruel",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "dire_firestorm_dart",
+    "NAME": "Sombre dard nuage de feu",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "dire_frostbloom_dart",
+    "NAME": "Sombre dard nuage de froid",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "dire_poisonbloom_dart",
+    "NAME": "Sombre dard nuage de poison",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "dire_shockbloom_dart",
+    "NAME": "Sombre dard nuage de choc",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "dire_firestorm_star",
+    "NAME": "Sombre shuriken nuage de feu",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "dire_frostbloom_star",
+    "NAME": "Sombre shuriken nuage de froid",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "dire_poisonbloom_star",
+    "NAME": "Sombre shuriken nuage de poison",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "dire_shockbloom_star",
+    "NAME": "Sombre shuriken nuage de choc",
+    "TYPE": "MarksmanThrown"
+  },
+  {
+    "ID": "sk silver athame",
+    "NAME": "Athame d'argent",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "sk ritual sword",
+    "NAME": "Epée de rituel",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "kal_weapon_0021",
+    "NAME": "Bâton Bois",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "kal_weapon_00DD",
+    "NAME": "Arc long Daedric",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "kal_weapon_00E2",
+    "NAME": "Gourdin Daedric de Maîtrise",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "kal_TGprisonExcalibur",
+    "NAME": "Excalibur",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "kal_e_glass_01",
+    "NAME": "Epée de verre empoisonnée",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "kal_e_doigt_dieux_000",
+    "NAME": "Le doigt des dieux",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "kal_e_doigt_dieux_001",
+    "NAME": "Le doigt des dieux",
+    "TYPE": "AxeTwoClose"
+  },
+  {
+    "ID": "kal_e_doigt_dieux_002",
+    "NAME": "Le doigt des dieux",
+    "TYPE": "ShortBladeOneHand"
+  },
+  {
+    "ID": "kal_e_doigt_dieux_003",
+    "NAME": "Le doigt des dieux",
+    "TYPE": "MarksmanBow"
+  },
+  {
+    "ID": "kal_e_doigt_dieux_004",
+    "NAME": "Le doigt des dieux",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "kal_e_doigt_dieux_005",
+    "NAME": "Le doigt des dieux",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "kal_e_doigt_dieux_006",
+    "NAME": "Le doigt des dieux",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "kal_W_G11_Weapon_UNI",
+    "NAME": "Dai-katana Daedric de Cristal",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "3sanctuary_qitem3",
+    "NAME": "Epée du Vide",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "3sanctuary_i4",
+    "NAME": "Hache oubliée",
+    "TYPE": "AxeOneHand"
+  },
+  {
+    "ID": "3sanctuary_i3",
+    "NAME": "Lance oubliée",
+    "TYPE": "SpearTwoWide"
+  },
+  {
+    "ID": "3sanctuary_i2",
+    "NAME": "Masse oubliée",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "3sanctuary_i1",
+    "NAME": "Epée oubliée",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "wooden",
+    "NAME": "Bâton en bois",
+    "TYPE": "BluntTwoWide"
+  },
+  {
+    "ID": "Misc_Mallet_01",
+    "NAME": "Baguette",
+    "TYPE": "BluntOneHand"
+  },
+  {
+    "ID": "daedric nodachi",
+    "NAME": "Daedric Nodachi",
+    "TYPE": "LongBladeTwoClose"
+  },
+  {
+    "ID": "ecarlate_goldbrand_unique",
+    "NAME": "Lame en or",
+    "TYPE": "LongBladeOneHand"
+  },
+  {
+    "ID": "arkay_longsword",
+    "NAME": "Epée longue Arkay",
+    "TYPE": "LongBladeOneHand"
+  }
+]

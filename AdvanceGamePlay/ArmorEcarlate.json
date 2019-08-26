@@ -1,0 +1,4452 @@
+[
+  {
+    "NAME": "Epaulière de chitine (G)",
+    "ID": "chitin pauldron - left",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Epaulière de chitine (D)",
+    "ID": "chitin pauldron - right",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Bottes de chitine",
+    "ID": "chitin boots",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Jambières de chitine",
+    "ID": "chitin greaves",
+    "WEIGTH": 5.4
+  },
+  {
+    "NAME": "Casque de chitine",
+    "ID": "chitin helm",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Gantelet de chitine (G)",
+    "ID": "chitin guantlet - left",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Gantelet de chitine (D)",
+    "ID": "chitin guantlet - right",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bouclier d’Indoril",
+    "ID": "indoril shield",
+    "WEIGTH": 13.5
+  },
+  {
+    "NAME": "Epaulière Templier impérial (D)",
+    "ID": "templar_pauldron_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bottes de Templier impérial",
+    "ID": "templar boots",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Epaulière d’Indoril (G)",
+    "ID": "indoril pauldron left",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Epaulière d’Indoril (D)",
+    "ID": "indoril pauldron right",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Bracelet Templier impérial (G)",
+    "ID": "templar bracer left",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bracelet Templier impérial (D)",
+    "ID": "templar bracer right",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Epaulière Templier impérial (G)",
+    "ID": "templar_pauldron_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Cuirasse de Templier impérial",
+    "ID": "templar_cuirass",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Epaulière d’acier impériale (G)",
+    "ID": "imperial left pauldron",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière d’acier impériale (D)",
+    "ID": "imperial right pauldron",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Gantelet d’acier impérial (G)",
+    "ID": "imperial left gauntlet",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Gantelet d’acier impérial (D)",
+    "ID": "imperial right gauntlet",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bottes d’acier impériales",
+    "ID": "imperial boots",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Casque indoril",
+    "ID": "indoril helmet",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Casque d’acier impérial",
+    "ID": "imperial helmet armor",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Cuirasse d’Indoril",
+    "ID": "indoril cuirass",
+    "WEIGTH": 27
+  },
+  {
+    "NAME": "Gantelet d’Indoril (G)",
+    "ID": "indoril left gauntlet",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Gantelet d’Indoril (D)",
+    "ID": "indoril right gauntlet",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Bottes d’Indoril",
+    "ID": "indoril boots",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Bracelet de cuir (D)",
+    "ID": "right leather bracer",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Bracelet de cuir (G)",
+    "ID": "left leather bracer",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Bracelet en tissu (G)",
+    "ID": "cloth bracer left",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Bracelet en tissu (D)",
+    "ID": "cloth bracer right",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Bouclier impérial",
+    "ID": "imperial shield",
+    "WEIGTH": 14
+  },
+  {
+    "NAME": "Casque de cuir de netch",
+    "ID": "netch_leather_helm",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Casque de cuir de netch bouilli",
+    "ID": "netch_leather_boiled_helm",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Epaulière de cuir de netch (G)",
+    "ID": "netch_leather_pauldron_left",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Cuirasse de cuir de netch",
+    "ID": "netch_leather_cuirass",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Cuirasse cuir de netch bouilli",
+    "ID": "netch_leather_boiled_cuirass",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Gantelet de cuir de netch (G)",
+    "ID": "netch_leather_gauntlet_left",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Gantelet de cuir de netch (D)",
+    "ID": "netch_leather_gauntlet_right",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Jambières de cuir de netch",
+    "ID": "netch_leather_greaves",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Bottes de cuir de netch",
+    "ID": "netch_leather_boots",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Bouclier de cuir de netch",
+    "ID": "netch_leather_shield",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Ecu de cuir de netch",
+    "ID": "netch_leather_towershield",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Casque de fourrure nordique",
+    "ID": "fur_helm",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Casque en fourrure colovien",
+    "ID": "fur_colovian_helm",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Epaulière fourrure nordique (G)",
+    "ID": "fur_pauldron_left",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Cuirasse en fourrure nordique",
+    "ID": "fur_cuirass",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Cuirasse peau d’ours nordique",
+    "ID": "fur_bearskin_cuirass",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Bracelet fourrure nordique (G)",
+    "ID": "fur_bracer_left",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Bracelet fourrure nordique (D)",
+    "ID": "fur_bracer_right",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Jambières en fourrure nordiques",
+    "ID": "fur_greaves",
+    "WEIGTH": 5.4
+  },
+  {
+    "NAME": "Bottes de fourrure nordiques",
+    "ID": "fur_boots",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Bouclier de cuir nordique",
+    "ID": "nordic_leather_shield",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Casque d’adepte telvanni",
+    "ID": "dust_adept_helm",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Casque crabe telvanni",
+    "ID": "mole_crab_helm",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Casque céphalopode telvanni",
+    "ID": "cephalopod_helm",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Cuirasse cuir clouté impériale",
+    "ID": "imperial_studded_cuirass",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Coiffe de mailles impériale",
+    "ID": "imperial_chain_coif_helm",
+    "WEIGTH": 3.5
+  },
+  {
+    "NAME": "Cuirasse de mailles impériale",
+    "ID": "imperial_chain_cuirass",
+    "WEIGTH": 21
+  },
+  {
+    "NAME": "Cuirasse annelée nordique",
+    "ID": "nordic_ringmail_cuirass",
+    "WEIGTH": 21
+  },
+  {
+    "NAME": "Masque facial de chitine",
+    "ID": "chitin_mask_helm",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Casque de sentinelle rédoran",
+    "ID": "chitin_watchman_helm",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bouclier de chitine",
+    "ID": "chitin_shield",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Ecu de chitine",
+    "ID": "chitin_towershield",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Cuirasse écailles de varan imp.",
+    "ID": "newtscale_cuirass",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Casque d’argent impérial",
+    "ID": "silver_helm",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Cuirasse d’argent impériale",
+    "ID": "silver_cuirass",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Cuirasse d’argent garde du duc",
+    "ID": "silver_dukesguard_cuirass",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Jambières d’acier impériales",
+    "ID": "imperial_greaves",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Casque de fer nordique",
+    "ID": "nordic_iron_helm",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Cuirasse de fer nordique",
+    "ID": "nordic_iron_cuirass",
+    "WEIGTH": 35
+  },
+  {
+    "NAME": "Jambières de Templier impérial",
+    "ID": "templar_greaves",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Casque d'acier",
+    "ID": "steel_helm",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Epaulière en acier (G)",
+    "ID": "steel_pauldron_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière en acier (D)",
+    "ID": "steel_pauldron_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Cuirasse d'acier",
+    "ID": "steel_cuirass",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Bouclier en acier",
+    "ID": "steel_shield",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Ecu en acier",
+    "ID": "steel_towershield",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Gantelet d'acier (G)",
+    "ID": "steel_gauntlet_left",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Gantelet d'acier (D)",
+    "ID": "steel_gauntlet_right",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Jambières d'acier",
+    "ID": "steel_greaves",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Epaulière de fer (G)",
+    "ID": "iron_pauldron_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière de fer (D)",
+    "ID": "iron_pauldron_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Cuirasse de fer",
+    "ID": "iron_cuirass",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Bouclier de fer",
+    "ID": "iron_shield",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Ecu de fer",
+    "ID": "iron_towershield",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Bracelet d’esclave (G)",
+    "ID": "slave_bracer_left",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bracelet d’esclave (D)",
+    "ID": "slave_bracer_right",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bracelet de fer (G)",
+    "ID": "iron_bracer_left",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bracelet de fer (D)",
+    "ID": "iron_bracer_right",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Jambières de fer",
+    "ID": "iron_greaves",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Casque d’ossements de Gah-Julan",
+    "ID": "bonemold_gah-julan_helm",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Casque d’ossements de Chuzei",
+    "ID": "bonemold_chuzei_helm",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Casque d’ossements d’Armun-An",
+    "ID": "bonemold_armun-an_helm",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Casque de la Morag Tong",
+    "ID": "morag_tong_helm",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Epaulière ossem Gah-Julan (D)",
+    "ID": "bonemold_gah-julan_pauldron_r",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Epaulière ossem. d’Armun-An (D)",
+    "ID": "bonemold_armun-an_pauldron_r",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Epaulière ossem Gah-Julan (G)",
+    "ID": "bonemold_gah-julan_pauldron_l",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Epaulière ossem. d’Armun-An (G)",
+    "ID": "bonemold_armun-an_pauldron_l",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Cuirasse ossem. de Gah-Julan",
+    "ID": "bonemold_gah-julan_cuirass",
+    "WEIGTH": 24
+  },
+  {
+    "NAME": "Cuirasse d’ossements d’Armun-An",
+    "ID": "bonemold_armun-an_cuirass",
+    "WEIGTH": 24
+  },
+  {
+    "NAME": "Bracelet d'ossements (G)",
+    "ID": "bonemold_bracer_left",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Bracelet d'ossements (D)",
+    "ID": "bonemold_bracer_right",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Jambières d'ossements",
+    "ID": "bonemold_greaves",
+    "WEIGTH": 13.4
+  },
+  {
+    "NAME": "Bottes d'ossements",
+    "ID": "bonemold_boots",
+    "WEIGTH": 16
+  },
+  {
+    "NAME": "Bouclier d'ossements",
+    "ID": "bonemold_shield",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Ecu d’ossements",
+    "ID": "bonemold_towershield",
+    "WEIGTH": 13
+  },
+  {
+    "NAME": "Casque d'ossem. troll nordique",
+    "ID": "trollbone_helm",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Cuirasse d'ossem troll nordique",
+    "ID": "trollbone_cuirass",
+    "WEIGTH": 32
+  },
+  {
+    "NAME": "Bouclier d'ossem troll nordique",
+    "ID": "trollbone_shield",
+    "WEIGTH": 16
+  },
+  {
+    "NAME": "Casque d'écailles de dragon imp",
+    "ID": "dragonscale_helm",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Cuirasse écailles de dragon imp",
+    "ID": "dragonscale_cuirass",
+    "WEIGTH": 24
+  },
+  {
+    "NAME": "Ecu en écailles de dragon",
+    "ID": "dragonscale_towershield",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Casque dwemer",
+    "ID": "dwemer_helm",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Epaulière dwemer (D)",
+    "ID": "dwemer_pauldron_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière dwemer (G)",
+    "ID": "dwemer_pauldron_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Cuirasse dwemer",
+    "ID": "dwemer_cuirass",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Bracelet dwemer (G)",
+    "ID": "dwemer_bracer_left",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bracelet dwemer (D)",
+    "ID": "dwemer_bracer_right",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Jambières dwemers",
+    "ID": "dwemer_greaves",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Bottes dwemers",
+    "ID": "dwemer_boots",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Bouclier dwemer",
+    "ID": "dwemer_shield",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Casque orque",
+    "ID": "orcish_helm",
+    "WEIGTH": 4.4
+  },
+  {
+    "NAME": "Epaulière orque (D)",
+    "ID": "orcish_pauldron_right",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Epaulière orque (G)",
+    "ID": "orcish_pauldron_left",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Cuirasse orque",
+    "ID": "orcish_cuirass",
+    "WEIGTH": 26.5
+  },
+  {
+    "NAME": "Bracelet orque (G)",
+    "ID": "orcish_bracer_left",
+    "WEIGTH": 4.4
+  },
+  {
+    "NAME": "Jambières orques",
+    "ID": "orcish_greaves",
+    "WEIGTH": 13.45
+  },
+  {
+    "NAME": "Bottes orques",
+    "ID": "orcish_boots",
+    "WEIGTH": 17
+  },
+  {
+    "NAME": "Ecu orque",
+    "ID": "orcish_towershield",
+    "WEIGTH": 13.4
+  },
+  {
+    "NAME": "Casque dreugh",
+    "ID": "dreugh_helm",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Cuirasse dreugh",
+    "ID": "dreugh_cuirass",
+    "WEIGTH": 27
+  },
+  {
+    "NAME": "Bouclier dreugh",
+    "ID": "dreugh_shield",
+    "WEIGTH": 13.5
+  },
+  {
+    "NAME": "Casque rédoran",
+    "ID": "redoran_master_helm",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Casque de verre",
+    "ID": "glass_helm",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Cuirasse de verre",
+    "ID": "glass_cuirass",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Bouclier de verre",
+    "ID": "glass_shield",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Ecu de verre",
+    "ID": "glass_towershield",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Casque en ébonite",
+    "ID": "ebony_closed_helm",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière en ébonite (D)",
+    "ID": "ebony_pauldron_right",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Epaulière en ébonite (G)",
+    "ID": "ebony_pauldron_left",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Cuirasse en ébonite",
+    "ID": "ebony_cuirass",
+    "WEIGTH": 60
+  },
+  {
+    "NAME": "Bracelet en ébonite (G)",
+    "ID": "ebony_bracer_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bracelet en ébonite (D)",
+    "ID": "ebony_bracer_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Jambières en ébonite",
+    "ID": "ebony_greaves",
+    "WEIGTH": 36
+  },
+  {
+    "NAME": "Bottes en ébonite",
+    "ID": "ebony_boots",
+    "WEIGTH": 40
+  },
+  {
+    "NAME": "Bouclier en ébonite",
+    "ID": "ebony_shield",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Ecu en ébonite",
+    "ID": "ebony_towershield",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Inspiration Daedric ",
+    "ID": "daedric_fountain_helm",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Terreur Daedric",
+    "ID": "daedric_terrifying_helm",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Visage de Dieu daedrique",
+    "ID": "daedric_god_helm",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Epaule Droite Daedric",
+    "ID": "daedric_pauldron_right",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Epaule Gauche Daedric",
+    "ID": "daedric_pauldron_left",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Cuirasse Daedric",
+    "ID": "daedric_cuirass",
+    "WEIGTH": 90
+  },
+  {
+    "NAME": "Gant Gauche Daedric",
+    "ID": "daedric_gauntlet_left",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Gant Droit Daedric",
+    "ID": "daedric_gauntlet_right",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Jambiere Daedric",
+    "ID": "daedric_greaves",
+    "WEIGTH": 54
+  },
+  {
+    "NAME": "Bottes Daedric",
+    "ID": "daedric_boots",
+    "WEIGTH": 60
+  },
+  {
+    "NAME": "Bouclier daedrique",
+    "ID": "daedric_shield",
+    "WEIGTH": 45
+  },
+  {
+    "NAME": "Ecu daedrique",
+    "ID": "daedric_towershield",
+    "WEIGTH": 45
+  },
+  {
+    "NAME": "Epaulière de cuir de netch (D)",
+    "ID": "netch_leather_pauldron_right",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Epaulière fourrure nordique (D)",
+    "ID": "fur_pauldron_right",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Bracelet orque (D)",
+    "ID": "orcish_bracer_right",
+    "WEIGTH": 4.4
+  },
+  {
+    "NAME": "Jambières de mailles impériales",
+    "ID": "imperial_chain_greaves",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Casque de Templier impérial",
+    "ID": "templar_helmet_armor",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Cuirasse d'acier impériale",
+    "ID": "imperial cuirass_armor",
+    "WEIGTH": 29
+  },
+  {
+    "NAME": "Gantelet fourrure nordique (G)",
+    "ID": "fur_gauntlet_left",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Gantelet fourrure nordique (D)",
+    "ID": "fur_gauntlet_right",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Epaulière mailles impériale (D)",
+    "ID": "imperial_chain_pauldron_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière mailles impériale (G)",
+    "ID": "imperial_chain_pauldron_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Gantelet de fer (G)",
+    "ID": "iron_gauntlet_left",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Gantelet de fer (D)",
+    "ID": "iron_gauntlet_right",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Casque de fer",
+    "ID": "iron_helmet",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bouclier de garde hlaalu",
+    "ID": "bonemold_tshield_hlaaluguard",
+    "WEIGTH": 13
+  },
+  {
+    "NAME": "Bouclier de garde rédoran",
+    "ID": "bonemold_tshield_redoranguard",
+    "WEIGTH": 13
+  },
+  {
+    "NAME": "Bouclier de garde telvanni",
+    "ID": "bonemold_tshield_telvanniguard",
+    "WEIGTH": 13
+  },
+  {
+    "NAME": "Casque père fondateur rédoran",
+    "ID": "bonemold_founders_helm",
+    "WEIGTH": 4.4
+  },
+  {
+    "NAME": "Epaulière de verre (G)",
+    "ID": "glass_pauldron_left",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Epaulière de verre (D)",
+    "ID": "glass_pauldron_right",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Casque en ébonite de Sarano",
+    "ID": "ebony_closed_helm_fghl",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Cuirasse mérissanne",
+    "ID": "merisan_cuirass",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Bouclier de Lumière",
+    "ID": "shield_of_light",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Cuirasse des Réprimandes",
+    "ID": "the_chiding_cuirass",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Casque vélothi",
+    "ID": "velothian_helm",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bouclier à plumes",
+    "ID": "feather_shield",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Bouclier vélothi",
+    "ID": "velothis_shield",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Bouclier sacré",
+    "ID": "holy_shield",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Bouclier béni",
+    "ID": "blessed_shield",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Ecu de Véloth",
+    "ID": "veloths_tower_shield",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Ecu sacré",
+    "ID": "holy_tower_shield",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Casque de démon",
+    "ID": "demon helm",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Casque de crabe-démon",
+    "ID": "demon mole crab",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Casque de démon céphalopode",
+    "ID": "demon cephalopod",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Gant de Poing clouté (D)",
+    "ID": "right horny fist gauntlet",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Gant de Poing clouté (G)",
+    "ID": "left_horny_fist_gauntlet",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Casque sanguinaire",
+    "ID": "helm of wounding",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bouclier des Blessures",
+    "ID": "shield of wounds",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Casque des Tempêtes",
+    "ID": "storm helm",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Muraille du Coeur",
+    "ID": "heart wall",
+    "WEIGTH": 24
+  },
+  {
+    "NAME": "Gantelet de Poing clouté (D)",
+    "ID": "right gauntlet of horny fist",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Gantelet de Poing clouté (G)",
+    "ID": "left gauntlet of the horny fist",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bouclier vélothi",
+    "ID": "velothian shield",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Sauveur d’Indoril",
+    "ID": "succour of indoril",
+    "WEIGTH": 13.5
+  },
+  {
+    "NAME": "Casque mérissan",
+    "ID": "merisan helm",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Poitrail de feu",
+    "ID": "chest of fire",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Bracelet ossem. de Poing clouté",
+    "ID": "lbonemold brace of horny fist",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Bracelet ossem. de Poing clouté",
+    "ID": "rbonemold bracer of horny fist",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Casque du Feu sacré",
+    "ID": "helm of holy fire",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Esprit d’Indoril",
+    "ID": "spirit of indoril",
+    "WEIGTH": 13.5
+  },
+  {
+    "NAME": "Bouclier du Saint",
+    "ID": "saint's shield",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Serviteur d’Azura",
+    "ID": "azura's servant",
+    "WEIGTH": 45
+  },
+  {
+    "NAME": "Bound Cuirass",
+    "ID": "bound_cuirass",
+    "WEIGTH": 0
+  },
+  {
+    "NAME": "Bound_Helm",
+    "ID": "bound_helm",
+    "WEIGTH": 0
+  },
+  {
+    "NAME": "Bound Boots",
+    "ID": "bound_boots",
+    "WEIGTH": 0
+  },
+  {
+    "NAME": "Bouclier lacé",
+    "ID": "bound_shield",
+    "WEIGTH": 0
+  },
+  {
+    "NAME": "Casque de fiélon",
+    "ID": "fiend helm",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Casque de diable",
+    "ID": "devil helm",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Casque de crabe-diable",
+    "ID": "devil mole crab helm",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Casque de diable céphalopode",
+    "ID": "devil cephalopod helm",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Bracelet tissu Poing clouté (D)",
+    "ID": "right cloth horny fist bracer",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Bracelet tissu Poing clouté (G)",
+    "ID": "left cloth horny fist bracer",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Bottes en acier",
+    "ID": "steel_boots",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Pavois rédoran",
+    "ID": "bonemold_tshield_hrlb",
+    "WEIGTH": 13
+  },
+  {
+    "NAME": "Casque d’ossements de Gah-Julan",
+    "ID": "bonemold_gah-julan_hhda",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Bottes de vol dwemers",
+    "ID": "dwemer_boots of flying",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Casque d'ossements",
+    "ID": "bonemold_helm",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Epaulière d'ossements (D)",
+    "ID": "bonemold_pauldron_r",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Epaulière d’ossements (G)",
+    "ID": "bonemold_pauldron_l",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Cuirasse d'ossements",
+    "ID": "bonemold_cuirass",
+    "WEIGTH": 24
+  },
+  {
+    "NAME": "Bottes de fer",
+    "ID": "iron boots",
+    "WEIGTH": 19
+  },
+  {
+    "NAME": "Bottes de cuir rigide",
+    "ID": "heavy_leather_boots",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Cuirasse Daedric ",
+    "ID": "daedric_cuirass_htab",
+    "WEIGTH": 90
+  },
+  {
+    "NAME": "Jambiere Daedric",
+    "ID": "daedric_greaves_htab",
+    "WEIGTH": 54
+  },
+  {
+    "NAME": "Bouclier d’Ombre",
+    "ID": "shadow_shield",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Garde spectrale",
+    "ID": "wraithguard",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Garde spectrale",
+    "ID": "wraithguard_jury_rig",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bottes de Sept Lieues",
+    "ID": "tenpaceboots",
+    "WEIGTH": 60
+  },
+  {
+    "NAME": "Bottes de verre",
+    "ID": "glass_boots",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Jambières de verre",
+    "ID": "glass_greaves",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Cuirasse dreugh",
+    "ID": "dreugh_cuirass_ttrm",
+    "WEIGTH": 27
+  },
+  {
+    "NAME": "Bouclier d’Auriel",
+    "ID": "ebony_shield_auriel",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Masque du Vil Clavicus",
+    "ID": "daedric_helm_clavicusvile",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bound Right Gauntlet",
+    "ID": "bound_gauntlet_right",
+    "WEIGTH": 0
+  },
+  {
+    "NAME": "Bound Left Gauntlet",
+    "ID": "bound_gauntlet_left",
+    "WEIGTH": 0
+  },
+  {
+    "NAME": "Bracelet en ébonite (G)",
+    "ID": "ebony_bracer_left_tgeb",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bracelet en ébonite (D)",
+    "ID": "ebony_bracer_right_tgeb",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bottes de Vitesse",
+    "ID": "boots of blinding speed[unique]",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Bouclier vélothi",
+    "ID": "veloths_shield",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Gantelet de Poing clouté (D)",
+    "ID": "gauntlet_horny_fist_r",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Gantelet de Poing clouté (G)",
+    "ID": "gauntlet _horny_fist_l",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Ecu béni",
+    "ID": "blessed_tower_shield",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Armure du Seigneur",
+    "ID": "lords_cuirass_unique",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Armure à plaques en ébonite",
+    "ID": "ebon_plate_cuirass_unique",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Brise-Sorts",
+    "ID": "spell_breaker_unique",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Cuirasse en Peau du Sauveur",
+    "ID": "cuirass_savior_unique",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Poing de Randagulf (G)",
+    "ID": "gauntlet_fists_l_unique",
+    "WEIGTH": 16
+  },
+  {
+    "NAME": "Poing de Randagulf (D)",
+    "ID": "gauntlet_fists_r_unique",
+    "WEIGTH": 16
+  },
+  {
+    "NAME": "Protecteur d’Eleidon",
+    "ID": "towershield_eleidon_unique",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Cuirasse en os de dragon",
+    "ID": "dragonbone_cuirass_unique",
+    "WEIGTH": 50
+  },
+  {
+    "NAME": "Casque d’Oreyn Griffedours",
+    "ID": "helm_bearclaw_unique",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bottes de l’Apôtre",
+    "ID": "boots_apostle_unique",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bouclier de l’Indomptable",
+    "ID": "shield of the undaunted",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Casque de Graff le Blanc",
+    "ID": "imperial_helm_frald_uniq",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Cuirasse d’Erur-Dan",
+    "ID": "erur_dan_cuirass_unique",
+    "WEIGTH": 24
+  },
+  {
+    "NAME": "Bottes de Conon Chodala",
+    "ID": "conoon_chodala_boots_unique",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Calotte glaciaire",
+    "ID": "icecap_unique",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Gantelet d’os tissés",
+    "ID": "boneweave gauntlet",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Gantelet de danseur d’os",
+    "ID": "bonedancer gauntlet",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Esprit des Montagnes",
+    "ID": "Mountain Spirit",
+    "WEIGTH": 24
+  },
+  {
+    "NAME": "Bouclier en ébonite",
+    "ID": "darksun_shield_unique",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Casque du Ver sanguinaire",
+    "ID": "bloodworm_helm_unique",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Casque céphalopode de Gothren",
+    "ID": "cephalopod_helm_HTNK",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Bouclier sanguinaire",
+    "ID": "Blood_Feast_Shield",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Gantelet de la Gloire (G)",
+    "ID": "Gauntlet_of_Glory_left",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Gantelet de la Gloire (D)",
+    "ID": "gauntlet_of_glory_right",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Casque de gondolier",
+    "ID": "gondolier_helm",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Casque d’acier impérial",
+    "ID": "imperial helmet armor_Dae_curse",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bracelet de verre (G)",
+    "ID": "glass_bracer_left",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Bracelet de verre (D)",
+    "ID": "glass_bracer_right",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Bowler",
+    "ID": "tw_tophat5br_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "tw_tophat3gr_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "tw_tophat2bl_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "tw_tophat2_silk_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Flatcap",
+    "ID": "tw_flatcap4_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "tw_tophat3brLace_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Alchemists' Lenses",
+    "ID": "_KD_alchemy",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Aventurer brown coat",
+    "ID": "mand_farwestcoat_01",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Flatcap with hair",
+    "ID": "tw_hairflatcap",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Flatcap with hair",
+    "ID": "zz_hairflatcap",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat2gr_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat3bl_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat4bl_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bowler",
+    "ID": "zz_tw_tophat5br_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bowler",
+    "ID": "zz_tw_tophat5bl_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat3gr_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat3br_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat2bl_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat4br_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat4gr_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat5gr_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Flatcap",
+    "ID": "zz_tw_flatcap3_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat2_silk_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Flatcap",
+    "ID": "zz_tw_flatcap4_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat3brLace_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Female Falconer Armored Boots",
+    "ID": "zz_Falconer_Arm_boots_leather_F",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Female Falconer Lace Up Greeves",
+    "ID": "zz_BC_Falconer_Agreeves_LU_F",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Black Hat with Feather",
+    "ID": "zz_BC_Black_hat_feather_F",
+    "WEIGTH": 3.3
+  },
+  {
+    "NAME": "Black Tunic",
+    "ID": "zz_bc_R11 Shirt_f",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Professional Bodice and Bracers",
+    "ID": "zz_BC_Professional_Curiass_M",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Armored Coat",
+    "ID": "zz_BC_msk4_coatA",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Red Leather Boots",
+    "ID": "zz_BC_gothboot_red_M",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Brocade Tail Coat - Red",
+    "ID": "zz_BC_goth4_broccoat2_M",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Brocade Tail Coat - Blue",
+    "ID": "zz_BC_goth4_broccoat4_M",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Leather Workboots - Brown",
+    "ID": "zz_BC_goth4_workboot_2_M",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Fedora - Brown - Black",
+    "ID": "zz_BC_goth4_fedora_a_1",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Fedora - Red - Black",
+    "ID": "zz_BC_goth4_fedora_b_1",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Fedora - Black - Black",
+    "ID": "zz_BC_goth4_fedora_d_1",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Fedora - Black - Brown",
+    "ID": "zz_BC_goth4_fedora_d_4",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Fedora - Black - Red",
+    "ID": "zz_BC_goth4_fedora_d_5",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Fedora - Grey - Black",
+    "ID": "zz_BC_goth4_fedora_e_1",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "British Hussar Boots",
+    "ID": "zz_BC_hussar_boots_M",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "British Hussar Glove Left",
+    "ID": "zz_BC_hussar_glove_l_M",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "British Hussar Glove Right",
+    "ID": "zz_BC_hussar_glove_r_M",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "British Hussar Pants",
+    "ID": "zz_BC_hussar_pants_M",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat3brLaceHBd_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat3blLaceHBd_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Tophat",
+    "ID": "zz_tw_tophat3GrLaceHBd_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Fedora - Green - Black",
+    "ID": "zz_BC_goth4_fedora_c_6",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Laced Leather Vest",
+    "ID": "zz_2pl_mvest_1",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Alchemists' Lenses",
+    "ID": "zz_KD_alchemy",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Aventurer brown coat",
+    "ID": "zz_mand_farwestcoat_01",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Black Leather Matrix Coat",
+    "ID": "zz_as_gothadd_trench_01",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Fedora - Black - Brown",
+    "ID": "BC_goth4_fedora_d_4",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Black Leather Matrix Coat",
+    "ID": "as_gothadd_trench_01",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Brown Leather Boots",
+    "ID": "BC_gothboot_brown_M",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "sitting pants",
+    "ID": "zz_sittingpants",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Falconer Armored Coat",
+    "ID": "zz_Falconer_Coat_F",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Targeter test",
+    "ID": "zz_targeter",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Flatcap",
+    "ID": "tw_flatcap3_a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Jambières liées",
+    "ID": "bound_greaves",
+    "WEIGTH": 0
+  },
+  {
+    "NAME": "Epaulière liée (G)",
+    "ID": "bound_pauldron_left",
+    "WEIGTH": 0
+  },
+  {
+    "NAME": "Epaulière liée (D)",
+    "ID": "bound_pauldron_right",
+    "WEIGTH": 0
+  },
+  {
+    "NAME": "Cuirasse d'Arthas",
+    "ID": "deathknight_cuirass",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bottes d'Arthas",
+    "ID": "deathknight_boots",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Jambières d'Arthas",
+    "ID": "deathknight_greaves",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Gantelet d'Arthas (G)",
+    "ID": "deathknight_glove_l",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Gantelet d'Arthas (D)",
+    "ID": "deathknight_glove_r",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Épaulière d'Arthas (G)",
+    "ID": "deathknight_pauldron_l",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Épaulière d'Arthas (D)",
+    "ID": "deathknight_pauldron_r",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Heaume de la Domination",
+    "ID": "lichking_crown",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Cuirasse Chevalier de l'Effroi",
+    "ID": "dreadknight_cuirass",
+    "WEIGTH": 80
+  },
+  {
+    "NAME": "Jambières Chevalier de l'Effroi",
+    "ID": "dreadknight_greaves",
+    "WEIGTH": 40
+  },
+  {
+    "NAME": "Bottes du Chevalier de l'Effroi",
+    "ID": "dreadknight_boots",
+    "WEIGTH": 50
+  },
+  {
+    "NAME": "Gantelet Chevalier Effroi (G)",
+    "ID": "dreadknight_glovel",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Gantelet Chevalier Effroi (D)",
+    "ID": "dreadknight_glover",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière Chevalier Effroi (G)",
+    "ID": "dreadknight_pauldronl",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Epaulière Chevalier Effroi (D)",
+    "ID": "dreadknight_pauldronr",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Casque fermé Chevalier Effroi",
+    "ID": "dreadknight_helmfull",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Casque Chevalier de l'Effroi",
+    "ID": "dreadknight_helm",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Ecu dwemer",
+    "ID": "plx_dwemer_towershield",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "",
+    "ID": "plx_horror_block",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "",
+    "ID": "plx_iceworm_rock1",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "",
+    "ID": "plx_iceworm_rock2",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "",
+    "ID": "plx_iceworm_rock3",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "",
+    "ID": "plx_iceworm_rock4",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "",
+    "ID": "plx_iceworm_rock5",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Heaume d'Araignée Daedra",
+    "ID": "plx_SpiderD_Helmet",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Cuirasse d'Araignée Daedra",
+    "ID": "plx_SpiderD_Curaiss",
+    "WEIGTH": 27
+  },
+  {
+    "NAME": "Spallière d'Araignée Daedra (G)",
+    "ID": "plx_SpiderD_Pauld_L",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Spallière d'Araignée Daedra (D)",
+    "ID": "plx_SpiderD_Pauld_R",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Bracelet d'Araignée Daedra (G)",
+    "ID": "plx_SpiderD_Bracer_L",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Bracelet d'Araignée Daedra (D)",
+    "ID": "plx_SpiderD_Bracer_R",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Solerets de Chair",
+    "ID": "plx_fleshdrem_armor_boots",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Cuissards de Chair",
+    "ID": "plx_fleshdrem_armor_greaves",
+    "WEIGTH": 13
+  },
+  {
+    "NAME": "Cuirasse de Chair",
+    "ID": "plx_fleshdrem_armor_chest",
+    "WEIGTH": 27
+  },
+  {
+    "NAME": "Spallière de Chair (G)",
+    "ID": "plx_fleshdrem_armor_pauld",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Spallière de Chair (D)",
+    "ID": "plx_fleshdrem_armor_pauld2",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Heaume de Chair",
+    "ID": "plx_fleshdrem_armor_helm",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Gantelet de Chair (G)",
+    "ID": "plx_fleshdrem_armor_gauntlets",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Gantelet de Chair (D)",
+    "ID": "plx_fleshdrem_armor_gauntlets2",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Solerets de Seigneur Daedra",
+    "ID": "plx_daedricol_boots",
+    "WEIGTH": 60
+  },
+  {
+    "NAME": "Cuirasse de Seigneur Daedra",
+    "ID": "plx_daedricol_cuirass",
+    "WEIGTH": 90
+  },
+  {
+    "NAME": "Cuissards de Seigneur Daedra",
+    "ID": "plx_daedricol_greaves",
+    "WEIGTH": 54
+  },
+  {
+    "NAME": "Pince de Dreugh",
+    "ID": "plx_Dreugh_Claw",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Solerets du Rêve Obscurci",
+    "ID": "plx_6th_boots",
+    "WEIGTH": 44
+  },
+  {
+    "NAME": "Bracelet du Rêve Obscurci (G)",
+    "ID": "plx_6th_bracer_left",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Bracelet du Rêve Obscurci (D)",
+    "ID": "plx_6th_bracer_right",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Cuirasse du Rêve Obscurci",
+    "ID": "plx_6th_cuirass",
+    "WEIGTH": 70
+  },
+  {
+    "NAME": "Cuissards du Rêve Obscurci",
+    "ID": "plx_6th_greaves",
+    "WEIGTH": 42
+  },
+  {
+    "NAME": "Spallière du Rêve Obscurci (G)",
+    "ID": "plx_6th_pauldron_left",
+    "WEIGTH": 23
+  },
+  {
+    "NAME": "Spallière du Rêve Obscurci (D)",
+    "ID": "plx_6th_pauldron_right",
+    "WEIGTH": 23
+  },
+  {
+    "NAME": "Bouclier de Drémora",
+    "ID": "plx_dremora_shield1",
+    "WEIGTH": 45
+  },
+  {
+    "NAME": "Bouclier de Drémora Kynval",
+    "ID": "plx_dremora_shield2",
+    "WEIGTH": 45
+  },
+  {
+    "NAME": "Bouclier de Drémora Kynreeve",
+    "ID": "plx_dremora_shield3",
+    "WEIGTH": 45
+  },
+  {
+    "NAME": "Bouclier en argent Daedrique",
+    "ID": "plx_saint1_shield",
+    "WEIGTH": 23
+  },
+  {
+    "NAME": "Bouclier en or Daedrique",
+    "ID": "plx_saint2_shield",
+    "WEIGTH": 31
+  },
+  {
+    "NAME": "Bouclier noir Daedrique",
+    "ID": "plx_saint3_shield",
+    "WEIGTH": 39
+  },
+  {
+    "NAME": "Bottes d'aethérium",
+    "ID": "gr_aetherium_boots",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Cuirasse d'aethérium",
+    "ID": "gr_aetherium_cuirass",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Casque d'aethérium",
+    "ID": "gr_aetherium_helm",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Gantelet d'aethérium (G)",
+    "ID": "gr_aetherium_gauntlet_left",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Gantelet d'aethérium (D)",
+    "ID": "gr_aetherium_gauntlet_right",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Jambières d'aethérium",
+    "ID": "gr_aetherium_greaves",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Epaulière d'aethérium (G)",
+    "ID": "gr_aetherium_pauldron_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière d'aethérium (D)",
+    "ID": "gr_aetherium_pauldron_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bouclier d'aethérium",
+    "ID": "gr_aetherium_shield",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bottes bestiales d'aethérium",
+    "ID": "gr_aetherium_boots_beast",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Casque bestial d'aethérium",
+    "ID": "gr_aetherium_helm_beast",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bottes en ours",
+    "ID": "BM bear boots",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Cuirasse en ours",
+    "ID": "BM bear cuirass",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Gantelet en ours (G)",
+    "ID": "bm bear left gauntlet",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Gantelet en ours (D)",
+    "ID": "BM bear right gauntlet",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Jambières en ours",
+    "ID": "BM bear greaves",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Casque en ours",
+    "ID": "BM Bear Helmet",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Epaulière en ours (D)",
+    "ID": "BM bear right pauldron",
+    "WEIGTH": 2.4
+  },
+  {
+    "NAME": "Epaulière en ours (G)",
+    "ID": "BM Bear left Pauldron",
+    "WEIGTH": 2.4
+  },
+  {
+    "NAME": "Cuirasse en loup",
+    "ID": "BM wolf cuirass",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Jambières en loup",
+    "ID": "BM wolf greaves",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Casque en loup",
+    "ID": "BM Wolf Helmet",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Gantelet en loup (G)",
+    "ID": "bm wolf left gauntlet",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Epaulière en loup (G)",
+    "ID": "BM Wolf Left Pauldron",
+    "WEIGTH": 2.4
+  },
+  {
+    "NAME": "Gantelet en loup (D)",
+    "ID": "BM wolf right gauntlet",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Epaulière en loup (D)",
+    "ID": "BM Wolf right pauldron",
+    "WEIGTH": 2.4
+  },
+  {
+    "NAME": "Anciennes bottes en acier",
+    "ID": "steel_boots_ancient",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Ancienne cuirasse en acier",
+    "ID": "steel_cuirass_ancient",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Ancien gantelet en acier (G)",
+    "ID": "steel_gauntlet_left_ancient",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Ancien gantelet en acier (D)",
+    "ID": "steel_gauntlet_right_ancient",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Anciennes jambières en acier",
+    "ID": "steel_greaves_ancient",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Ancien casque en acier",
+    "ID": "steel_helm_ancient",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Ancienne épaulière en acier (G)",
+    "ID": "steel_pauldron_left_ancient",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Ancienne épaulière en acier (D)",
+    "ID": "steel_pauldron_right_ancient",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Ecu antique en acier",
+    "ID": "steel_towershield_ancient",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Bottes en loup",
+    "ID": "BM wolf boots",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Casque fourrure colovien rouge",
+    "ID": "fur_colovian_helm_red",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Casque fourrure colovien blanc",
+    "ID": "fur_colovian_helm_white",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Bouclier riekelin",
+    "ID": "BM_Ice minion_Shield1",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Cuirasse en loup des neiges",
+    "ID": "BM_wolf_cuirass_snow",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Jambières en loup des neiges",
+    "ID": "BM_wolf_greaves_snow",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Casque en loup des neiges",
+    "ID": "BM_wolf_helmet_snow",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Gantelet en loup des neiges (G)",
+    "ID": "BM_wolf_left_gauntlet_snow",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Epaulière en loup des neiges G",
+    "ID": "BM_wolf_left_pauldron_snow",
+    "WEIGTH": 2.4
+  },
+  {
+    "NAME": "Gantelet en loup des neiges (D)",
+    "ID": "BM_wolf_right_gauntlet_snow",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Epaulière en loup des neiges D",
+    "ID": "BM_wolf_right_pauldron_snow",
+    "WEIGTH": 2.4
+  },
+  {
+    "NAME": "Bottes en ours des neiges",
+    "ID": "BM_bear_boots_snow",
+    "WEIGTH": 14
+  },
+  {
+    "NAME": "Cuirasse en ours des neiges",
+    "ID": "BM_bear_cuirass_snow",
+    "WEIGTH": 22.5
+  },
+  {
+    "NAME": "Jambières en ours des neiges",
+    "ID": "BM_bear_greaves_snow",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Casque en ours des neiges",
+    "ID": "BM_bear_helmet_snow",
+    "WEIGTH": 3.5
+  },
+  {
+    "NAME": "Gantelet en ours des neiges (G)",
+    "ID": "BM_bear_left_gauntlet_snow",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Epaulière en ours des neiges G",
+    "ID": "BM_Bear_left_Pauldron_snow",
+    "WEIGTH": 7.5
+  },
+  {
+    "NAME": "Gantelet en ours des neiges (D)",
+    "ID": "BM_bear_right_gauntlet_snow",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Epaulière en ours des neiges D",
+    "ID": "BM_bear_right_pauldron_snow",
+    "WEIGTH": 7.5
+  },
+  {
+    "NAME": "Bottes en loup des neiges",
+    "ID": "BM_wolf_boots_snow",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Casque de l’odorat de l'ours",
+    "ID": "BM Bear Helmet eddard",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Bottes, mailles nordiques",
+    "ID": "BM_NordicMail_Boots",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Cuirasse, mailles nordiques",
+    "ID": "BM_NordicMail_cuirass",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Epaulière, mailles nordiques G",
+    "ID": "BM_NordicMail_PauldronL",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Epaulière, mailles nordiques D",
+    "ID": "BM_NordicMail_PauldronR",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Gantelet, mailles nordiques (G)",
+    "ID": "BM_NordicMail_gauntletL",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Gantelet, mailles nordiques (D)",
+    "ID": "BM_NordicMail_gauntletR",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Casque, mailles nordiques",
+    "ID": "BM_NordicMail_Helmet",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Jambières, mailles nordiques",
+    "ID": "BM_NordicMail_greaves",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Bottes d'armure de glace",
+    "ID": "BM_Ice_Boots",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Cuirasse d'armure de glace",
+    "ID": "BM_Ice_cuirass",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Gantelet d'armure de glace (G)",
+    "ID": "BM_Ice_gauntletL",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Gantelet d'armure de glace (D)",
+    "ID": "BM_Ice_gauntletR",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Jambières d'armure de glace",
+    "ID": "BM_Ice_greaves",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Casque d'armure de glace",
+    "ID": "BM_Ice_Helmet",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Epaulière d'armure de glace (G)",
+    "ID": "BM_Ice_PauldronL",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Epaulière d'armure de glace (D)",
+    "ID": "BM_Ice_PauldronR",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Casque des ursidés",
+    "ID": "BM Bear Helmet_ber",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Bouclier en mailles nordiques",
+    "ID": "BM_NordicMail_Shield",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Bouclier de glace",
+    "ID": "BM_Ice_Shield",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Bouclier du loup",
+    "ID": "BM wolf shield",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Bouclier de l'ours",
+    "ID": "BM bear shield",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Casque du coeur de loup",
+    "ID": "BM Wolf Helmet_heartfang",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Pattes de Vif-Loup",
+    "ID": "wolfwalkers",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Protecteur d’Eleidon",
+    "ID": "towershield_eleidon_unique_x",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Armure du Seigneur",
+    "ID": "lords_cuirass_unique_x",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Cuirasse en Peau du Sauveur",
+    "ID": "cuirass_savior_unique_x",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bottes de Sept Lieues",
+    "ID": "tenpaceboots_x",
+    "WEIGTH": 60
+  },
+  {
+    "NAME": "Armure d'Ebène",
+    "ID": "ebon_plate_cuirass_unique_x",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Bottes de l'Apôtre",
+    "ID": "boots_apostle_unique_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bouclier d'Auriel",
+    "ID": "ebony_shield_auriel_x",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Bottes de rapidité",
+    "ID": "boots of blinding speed_x",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Cuirasse des Dragons",
+    "ID": "dragonbone_cuirass_unique_x",
+    "WEIGTH": 50
+  },
+  {
+    "NAME": "Casque d’Oreyn Griffedours",
+    "ID": "helm_bearclaw_unique_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Brise-Sorts",
+    "ID": "spell_breaker_unique_x",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Casque du Ver Sanguinaire",
+    "ID": "bloodworm_helm_unique_x",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Cuirasse de Soscean",
+    "ID": "ebony_cuirass_soscean",
+    "WEIGTH": 60
+  },
+  {
+    "NAME": "Casque d'argent impérial",
+    "ID": "silver_helm_uvenim",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Casque de Ses Mains",
+    "ID": "Indoril_Almalexia_helmet",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bottes de Ses Mains",
+    "ID": "Indoril_Almalexia_boots",
+    "WEIGTH": 60
+  },
+  {
+    "NAME": "Cuirasse de Ses Mains",
+    "ID": "Indoril_Almalexia_Cuirass",
+    "WEIGTH": 90
+  },
+  {
+    "NAME": "Jambières de Ses Mains",
+    "ID": "Indoril_Almalexia_Greaves",
+    "WEIGTH": 45
+  },
+  {
+    "NAME": "Epaulière de Ses Mains (G)",
+    "ID": "Indoril_Almalexia_Pauldron_L",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Epaulière de Ses Mains (D)",
+    "ID": "Indoril_Almalexia_Pauldron_R",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Gantelet de Ses Mains (D)",
+    "ID": "Indoril_Almalexia_gauntlet_R",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Gantelet de Ses Mains (G)",
+    "ID": "Indoril_Almalexia_gauntlet_L",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Casque de la Garde royale",
+    "ID": "Helsethguard_Helmet",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Bottes de la Garde royale",
+    "ID": "Helsethguard_boots",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Cuirasse de la Garde royale",
+    "ID": "Helsethguard_cuirass",
+    "WEIGTH": 27
+  },
+  {
+    "NAME": "Jambières de la Garde royale",
+    "ID": "Helsethguard_greaves",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Gantelet de la Garde royale (G)",
+    "ID": "Helsethguard_gauntlet_left",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Gantelet de la Garde royale (D)",
+    "ID": "Helsethguard_gauntlet_right",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Epaulière Garde royale (G)",
+    "ID": "Helsethguard_pauldron_left",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Epaulière Garde royale (D)",
+    "ID": "Helsethguard_pauldron_right",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Casque de la Confrérie noire",
+    "ID": "DarkBrotherhood Helm",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Cuirasse de la Confrérie noire",
+    "ID": "DarkBrotherhood Cuirass",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Jambières de la Confrérie noire",
+    "ID": "DarkBrotherhood greaves",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Epaulière Confrérie noire (G)",
+    "ID": "DarkBrotherhood pauldron_L",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Epaulière Confrérie noire (D)",
+    "ID": "DarkBrotherhood pauldron_R",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Gantelet Confrérie noire (G)",
+    "ID": "DarkBrotherhood gauntlet_L",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Gantelet Confrérie noire (D)",
+    "ID": "DarkBrotherhood gauntlet_R",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bottes de la Confrérie noire",
+    "ID": "DarkBrotherhood Boots",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Bottes d'adamantium",
+    "ID": "adamantium boots",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bracelet d'adamantium (G)",
+    "ID": "adamantium_bracer_left",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Bracelet d'adamantium (D)",
+    "ID": "adamantium_bracer_right",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Cuirasse d'adamantium",
+    "ID": "adamantium_cuirass",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Jambières d'adamantium",
+    "ID": "adamantium_greaves",
+    "WEIGTH": 13
+  },
+  {
+    "NAME": "Epaulière d'adamantium (D)",
+    "ID": "adamantium_pauldron_right",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Epaulière d'adamantium (G)",
+    "ID": "adamantium_pauldron_left",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Casque d'adamantium",
+    "ID": "addamantium_helm",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Ecu gobelin",
+    "ID": "goblin_shield",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bouclier de Ses Mains",
+    "ID": "Indoril_Almalexia_shield",
+    "WEIGTH": 17
+  },
+  {
+    "NAME": "Bouclier de guerre Dwemer",
+    "ID": "dwemer_shield_battle_unique",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bottes de Ses Mains",
+    "ID": "Indoril_MH_Guard_boots",
+    "WEIGTH": 60
+  },
+  {
+    "NAME": "Cuirasse de Ses Mains",
+    "ID": "Indoril_MH_Guard_Cuirass",
+    "WEIGTH": 90
+  },
+  {
+    "NAME": "Gantelet de Ses Mains (G)",
+    "ID": "Indoril_MH_Guard_gauntlet_L",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Gantelet de Ses Mains (D)",
+    "ID": "Indoril_MH_Guard_gauntlet_R",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Jambières de Ses Mains",
+    "ID": "Indoril_MH_Guard_Greaves",
+    "WEIGTH": 45
+  },
+  {
+    "NAME": "Casque de Ses Mains",
+    "ID": "Indoril_MH_Guard_helmet",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Epaulière de Ses Mains (G)",
+    "ID": "Indoril_MH_Guard_Pauldron_L",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Epaulière de Ses Mains (D)",
+    "ID": "Indoril_MH_Guard_Pauldron_R",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Bouclier de Ses Mains",
+    "ID": "Indoril_MH_Guard_shield",
+    "WEIGTH": 17
+  },
+  {
+    "NAME": "Ecu gobelin",
+    "ID": "goblin_shield_durgok_uni",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Casque d'adamantium",
+    "ID": "adamantium_helm",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Pattes du Serval",
+    "ID": "aa_Boots of the Wolverene",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Griffe gauche du Serval",
+    "ID": "aa_Left Gauntlet  Wolverene",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Griffe droite du Serval",
+    "ID": "aa_Right Gauntlet Wolverene",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Petit Chaperon Rouge",
+    "ID": "aa_Ice_A_LRRH_capehood_g",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Bouclier riekelin",
+    "ID": "_BME_Ice_minion_Shield2",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Jambières en loup des neiges",
+    "ID": "aa_wolf_greaves_snow_norm",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Bottes en loup des neiges",
+    "ID": "aa_wolf_boots_snow_norm",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Cuirasse ours neiges berserker",
+    "ID": "aa_bear_cuirass_snow_norm",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Bottes ours neiges berserker",
+    "ID": "aa_bear_boots_snow_norm",
+    "WEIGTH": 14
+  },
+  {
+    "NAME": "Jambières ours neiges berserker",
+    "ID": "aa_bear_greaves_snow_norm",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Gantelet ours neiges berserk -G",
+    "ID": "aa_bear_left_gauntlet_snow_norm",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Gantelet ours neiges berserk -D",
+    "ID": "aa_bear_right_gauntlet_snow_nor",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Epaulière D ours neiges berserk",
+    "ID": "aa_bear_right_pauldron_snow_nor",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Epaulière G ours neiges berserk",
+    "ID": "aa_Bear_left_Pauldron_snow_norm",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Bouclier en loup des neiges",
+    "ID": "aa_wolf_ shield_snow",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Cuirasse en loup des neiges",
+    "ID": "aa_wolf_cuirass_snow_norm",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Gantelet en loup des neiges (D)",
+    "ID": "aa_wolf_right_gauntlet_snow_nor",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Epaulière en loup des neiges -D",
+    "ID": "aa_wolf_right_pauldron_snow_nor",
+    "WEIGTH": 2.4
+  },
+  {
+    "NAME": "Epaulière en loup des neiges -G",
+    "ID": "aa_wolf_left_pauldron_snow_norm",
+    "WEIGTH": 2.4
+  },
+  {
+    "NAME": "Casque en loup des neiges",
+    "ID": "aa_wolf_helmet_snow_norm",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Bouclier-crâne en acier noir",
+    "ID": "aa_Black Steel Skull",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Bouclier pointu en acier noir",
+    "ID": "aa_Black Steel Spiked ",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Bouclier en acier noir",
+    "ID": "aa_Black Steel Shield",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Bouclier en bois",
+    "ID": "aa_Wooden Shield_1",
+    "WEIGTH": 13
+  },
+  {
+    "NAME": "Bouclier en bois pointu",
+    "ID": "aa_Wooden Spike Shield_1",
+    "WEIGTH": 13
+  },
+  {
+    "NAME": "Bouclier en bois pointu",
+    "ID": "aa_Wooden Spike Shield_2",
+    "WEIGTH": 13
+  },
+  {
+    "NAME": "Gantelet de Thorjan Bjorg (D)",
+    "ID": "aa_Right Gauntlet Thorjon",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Gantelet de Thorjan Bjorg (G)",
+    "ID": "aa_Left Gauntlet Thorjon",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Carquois en cuir nordique",
+    "ID": "aa_Nordic Leather Quiver",
+    "WEIGTH": 3.5
+  },
+  {
+    "NAME": "Queue-de-cheval blanche/diadème",
+    "ID": "aa_Ice_wig_tiara05w_N",
+    "WEIGTH": 0.01
+  },
+  {
+    "NAME": "Bottes en cuir de cieux cuivrés",
+    "ID": "aa_Ice_MQI_Copper_boots",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Gantelet en loup des neiges (G)",
+    "ID": "aa_wolf_left_gauntlet_snow_norm",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Casque de fer nordique d'Erik",
+    "ID": "aa_erik_helm",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Cuirasse annelée nord. d'Erik",
+    "ID": "aa_erik_cuirass",
+    "WEIGTH": 21
+  },
+  {
+    "NAME": "Epaulière d'Erik (G)",
+    "ID": "aa_Erik_PauldronL",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière d'Erik (D)",
+    "ID": "aa_Erik_PauldronR",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Jambières mailles nord. d'Erik",
+    "ID": "aa_Erik_greaves",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Bottes mailles nordiques d'Erik",
+    "ID": "aa_Erik_Boots",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Gantelet d'Erik (G)",
+    "ID": "aa_erik_gauntletL",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Gantelet d'Erik (D)",
+    "ID": "aa_Erik_gauntletR",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Casque du Taureau fou",
+    "ID": "aa_DD_Helm",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Bouclier en ours des neiges",
+    "ID": "aa_bear_ shield_snow",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bouclier en ours des neiges",
+    "ID": "aa_grandpa_shield_snow",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Cuirasse du Taureau fou",
+    "ID": "aa_1em_darkdragon_cuirass",
+    "WEIGTH": 35
+  },
+  {
+    "NAME": "Cuirasse argent léopard neiges",
+    "ID": "aa_1em_Dosilvsnowl_cuirass",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Gantelet en argent (G)",
+    "ID": "aa_1em_silv_gauntlet_L",
+    "WEIGTH": 3.5
+  },
+  {
+    "NAME": "Gantelet en argent (D)",
+    "ID": "aa_1em_silv_gauntlet_R",
+    "WEIGTH": 3.5
+  },
+  {
+    "NAME": "Bottes en argent léopard neiges",
+    "ID": "aa_1em_silvleopboots",
+    "WEIGTH": 13
+  },
+  {
+    "NAME": "Jambières en argent",
+    "ID": "aa_1em_silv_greaves",
+    "WEIGTH": 9.5
+  },
+  {
+    "NAME": "Casque en argent",
+    "ID": "aa_1em_silv_helm",
+    "WEIGTH": 3.5
+  },
+  {
+    "NAME": "Epaulière en argent (G)",
+    "ID": "aa_1em_silv_pauldron_L",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Epaulière en argent (D)",
+    "ID": "aa_1em_silv_pauldron_R",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Gantelet de Thorjan Bjorg (G)",
+    "ID": "aa_Left Gauntlet Thorjon2",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Gantelet de Thorjan Bjorg (D)",
+    "ID": "aa_Right Gauntlet Thorjon2",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Carquois cuir nord. de Gunder",
+    "ID": "aa_GunderQuiver",
+    "WEIGTH": 3.5
+  },
+  {
+    "NAME": "Bottes de la Blodfan",
+    "ID": "a_bloodfang_boots",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Jambières de la Blodfan",
+    "ID": "a_bloodfang_greaves",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Epaulière de la Blodfan (G)",
+    "ID": "a_bloodfang_left_pauldron",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Epaulière de la Blodfan (D)",
+    "ID": "a_bloodfang_right_pauldron",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Cuirasse de la Blodfan",
+    "ID": "a_bloodfang_cuirass",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Casque de la Blodfan",
+    "ID": "a_bloodfang_helm",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bracelet de la Blodfan (G)",
+    "ID": "a_bloodfang_left_gauntlet",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bracelet de la Blodfan (D)",
+    "ID": "a_bloodfang_right_gauntlet",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Cuirasse du sauveur",
+    "ID": "a_ss_saviors_cuirass",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Cuirasse en os de wyverne",
+    "ID": "a_ss_wyvernbone_cuirass",
+    "WEIGTH": 50
+  },
+  {
+    "NAME": "Cuirasse du sauveur (étalage)",
+    "ID": "a_ss_saviors_cuirass_dp",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Cuirasse en os de wyverne (ét.)",
+    "ID": "a_ss_wyvernbone_cuirass_dp",
+    "WEIGTH": 50
+  },
+  {
+    "NAME": "Casque de griffedours",
+    "ID": "a_ss_bearclaw_helm",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Casque de griffedours (étalage)",
+    "ID": "a_ss_bearclaw_helm_dp",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Armure d'ébène",
+    "ID": "a_ss_ebonplate_cuirass",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Armure d'ébène (étalage)",
+    "ID": "a_ss_ebonplate_cuirass_dp",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Ecu du champion",
+    "ID": "a_ss_championshield",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Bottes du champion",
+    "ID": "a_ss_championboots",
+    "WEIGTH": 60
+  },
+  {
+    "NAME": "Bottes du champion (étalage)",
+    "ID": "a_ss_championboots_dp",
+    "WEIGTH": 60
+  },
+  {
+    "NAME": "Ecu du champion (étalage)",
+    "ID": "a_ss_championshield_dp",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Bracelet de Randagulf (G)",
+    "ID": "a_ss_l_Randagulf_gaun",
+    "WEIGTH": 16
+  },
+  {
+    "NAME": "Bracelet de Randagulf (D)",
+    "ID": "a_ss_r_randagulf_gaun",
+    "WEIGTH": 16
+  },
+  {
+    "NAME": "Bracelet de Randagulf (G) (ét.)",
+    "ID": "a_ss_l_Randagulf_gaun_dp",
+    "WEIGTH": 16
+  },
+  {
+    "NAME": "Bracelet de Randagulf (D) (ét.)",
+    "ID": "a_ss_r_randagulf_gaun_dp",
+    "WEIGTH": 16
+  },
+  {
+    "NAME": "Ecu de Xardig",
+    "ID": "a_ga_xardig_shield",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Cuirasse du loup terrible",
+    "ID": "a_dire_wolf_cuirass",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Jambières du loup terrible",
+    "ID": "a_dire_wolf_greaves",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Casque du loup terrible",
+    "ID": "a_dire_wolf_helmet",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Bracelet du loup terrible (G)",
+    "ID": "a_dire_wolf_left_gauntlet",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Epaulière du loup terrible (G)",
+    "ID": "a_dire_wolf_left_pauldron",
+    "WEIGTH": 2.4
+  },
+  {
+    "NAME": "Bracelet du loup terrible (D)",
+    "ID": "a_dire_wolf_right_gauntlet",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Epaulière du loup terrible (D)",
+    "ID": "a_dire_wolf_right_pauldron",
+    "WEIGTH": 2.4
+  },
+  {
+    "NAME": "Bottes du loup terrible",
+    "ID": "a_dire_wolf_boots",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Bottes du loup terrible",
+    "ID": "a_dire_wolf_boots_wf",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Cuirasse du loup terrible",
+    "ID": "a_dire_wolf_cuirass_wf",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Jambières du loup terrible",
+    "ID": "a_dire_wolf_greaves_wf",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Casque du loup terrible",
+    "ID": "a_dire_wolf_helmet_wf",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Bracelet du loup terrible (G)",
+    "ID": "a_dire_wolf_left_gauntlet_wf",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Epaulière du loup terrible (G)",
+    "ID": "a_dire_wolf_left_pauldron_wf",
+    "WEIGTH": 2.4
+  },
+  {
+    "NAME": "Bracelet du loup terrible (D)",
+    "ID": "a_dire_wolf_right_gauntlet_wf",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Epaulière du loup terrible (D)",
+    "ID": "a_dire_wolf_right_pauldron_wf",
+    "WEIGTH": 2.4
+  },
+  {
+    "NAME": "Bottes de Rapidité",
+    "ID": "_tud_boots of speed",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Cuirasse d'Archer",
+    "ID": "_archer_leather_cuirass_02",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Capuche fermée brune",
+    "ID": "_archer_hood_brown01",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Capuche fermée verte",
+    "ID": "_archer_hood_green_01",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Carquois en cuir noir",
+    "ID": "_archer_leather_Quiver_01",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Cape brune",
+    "ID": "_archer_leather_cape_01",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Cape verte",
+    "ID": "_archer_leather_cape_02",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Gantelet G en cuir d'archer",
+    "ID": "archer leather gauntlet-L",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Gantelet D en cuir d'archer",
+    "ID": "archer leather gauntlet-R",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Epaulière G en cuir d'archer",
+    "ID": "archer leather pauldron-L",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Cuirasse en cuir d'archer",
+    "ID": "archer_leather_cuirass_",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bottes en cuir d'Archer",
+    "ID": "archer_leather_boots",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Capuche marron d'Archer",
+    "ID": "archer_hood_brown",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Carquois en maille impérial",
+    "ID": "AT_guarskin_quiver_impchain",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Carquois en cuir Netch",
+    "ID": "AT_leather_quiver_netch",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Carquois d'Adamantium en cuir",
+    "ID": "AT_leather_quiver_adamantium",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Carquois d'ossement en cuir",
+    "ID": "AT_leather_quiver_bonemold",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Carquois en cuir Daedric",
+    "ID": "AT_leather_quiver_daedric",
+    "WEIGTH": 32
+  },
+  {
+    "NAME": "Carquois  Dwemer en cuir",
+    "ID": "AT_leather_quiver_dwemer",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Carquois d'ébonite en cuir",
+    "ID": "AT_leather_quiver_ebony",
+    "WEIGTH": 21
+  },
+  {
+    "NAME": "Carquois de verre en cuir",
+    "ID": "AT_leather_quiver_glass",
+    "WEIGTH": 3.5
+  },
+  {
+    "NAME": "Carquois d'acier impériale",
+    "ID": "AT_leather_quiver_imp",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Carquois d'Indoril en cuir",
+    "ID": "AT_leather_quiver_indoril",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Carquois de fer en cuir",
+    "ID": "AT_leather_quiver_iron",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Carquois de Chitin en cuir",
+    "ID": "AT_leather_quiver_chitin",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Carquois en maille impérial",
+    "ID": "AT_leather_quiver_impchain",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Carquois de fourrure nordique",
+    "ID": "AT_leather_quiver_nordfur",
+    "WEIGTH": 3.5
+  },
+  {
+    "NAME": "Carquois d'Orc en cuir",
+    "ID": "AT_leather_quiver_orc",
+    "WEIGTH": 8.5
+  },
+  {
+    "NAME": "Carquois en acier",
+    "ID": "AT_leather_quiver_steel",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Carquois en cuir du Templier",
+    "ID": "AT_leather_quiver_templar",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Carquois en cuir de Netch",
+    "ID": "AT_guarskin_quiver_netch",
+    "WEIGTH": 4.5
+  },
+  {
+    "NAME": "Carquois d'Adamantium en guar",
+    "ID": "AT_guarskin_quiver_adamantium",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Carquois d'ossement en guar",
+    "ID": "AT_guarskin_quiver_bonemold",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Carquois en guar Daedric",
+    "ID": "AT_guarskin_quiver_daedric",
+    "WEIGTH": 32
+  },
+  {
+    "NAME": "Carquois Dwemer en peau de guar",
+    "ID": "AT_guarskin_quiver_dwemer",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Carquois d'ébonite en guar",
+    "ID": "AT_guarskin_quiver_ebony",
+    "WEIGTH": 21
+  },
+  {
+    "NAME": "Carquois de vere en guar",
+    "ID": "AT_guarskin_quiver_glass",
+    "WEIGTH": 3.5
+  },
+  {
+    "NAME": "Carquois impérial en guar",
+    "ID": "AT_guarskin_quiver_imp",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Carquois d'indoril en guar",
+    "ID": "AT_guarskin_quiver_indoril",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Carquois de fer en guar",
+    "ID": "AT_guarskin_quiver_iron",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Carquois de chitin en guar",
+    "ID": "AT_guarskin_quiver_chitin",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Carquois Nordique en guar",
+    "ID": "AT_guarskin_quiver_nordfur",
+    "WEIGTH": 3.5
+  },
+  {
+    "NAME": "Carquois d'Orc en peau de guar",
+    "ID": "AT_guarskin_quiver_orc",
+    "WEIGTH": 8.5
+  },
+  {
+    "NAME": "Carquois d'acier en guar",
+    "ID": "AT_guarskin_quiver_steel",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Carquois de Templier en guar",
+    "ID": "AT_guarskin_quiver_templar",
+    "WEIGTH": 11
+  },
+  {
+    "NAME": "Epaulière G d'archer",
+    "ID": "archer leather pauldron02-L",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Epaulière D d'archer",
+    "ID": "archer leather pauldron02-R",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Capuche verte d'Archer",
+    "ID": "archer_hood_green",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Jambière en cuir d'archer",
+    "ID": "archer leather greaves",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Epaulière D de cuir d'archer",
+    "ID": "archer leather pauldron-R",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Carquois en cuir d'archer",
+    "ID": "AT_leather_quiver_archer",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Craquois en guar d'archer",
+    "ID": "AT_guarskin_quiver_archer",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "",
+    "ID": "_JPZ_collierdanseuse",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Casque en fourrure colovien",
+    "ID": "HF_Eco_fur_colovian_helm",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Linceul noir",
+    "ID": "6th_shroud",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Linceul des visions ",
+    "ID": "6th_shroud_vision",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Crâne d'Hlevul",
+    "ID": "trollbone_helm_hlevul",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Casque paradisiaque",
+    "ID": "silver_helm_heaven",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "",
+    "ID": "zz_ridingpants",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bottes d'ossements",
+    "ID": "bonemold_c_boots",
+    "WEIGTH": 16
+  },
+  {
+    "NAME": "Cuirasse d'adamantium",
+    "ID": "AM_BrooMShield",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Luth",
+    "ID": "AM_Lute",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Marteau de forgeron",
+    "ID": "AM_SmithHammer",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Livre",
+    "ID": "AM_Book",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Gantelet de cuir de netch (D)",
+    "ID": "AM_meat",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Gantelet de cuir de netch (D)",
+    "ID": "AM_Tankard",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Canne à pêche",
+    "ID": "AM_FishingPole",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Pilon",
+    "ID": "AM_Pestle",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Viande",
+    "ID": "AM_CorprusMeat",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Gant gauche",
+    "ID": "AM_CamonnaKnifeBracer",
+    "WEIGTH": 1.5
+  },
+  {
+    "NAME": "Pic de mineur",
+    "ID": "AM_MinerPick",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Gros oeuf de kwama",
+    "ID": "AM_Miner2Egg",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Ebonite brute",
+    "ID": "AM_Miner2Ebony",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Éponge",
+    "ID": "AM_CleanerSponge",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bracelet d’esclave (D)",
+    "ID": "AM_FarmerScythe",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bracelet d’esclave (D)",
+    "ID": "AM_FarmerSack",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bottes de dragon",
+    "ID": "raz_dragon_boots",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Cuirasse de Maille en Or",
+    "ID": "K_regen_armor",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Bras mécanique",
+    "ID": "POG_6_bras1",
+    "WEIGTH": 50
+  },
+  {
+    "NAME": "Bras mécanique",
+    "ID": "POG_6_bras2",
+    "WEIGTH": 50
+  },
+  {
+    "NAME": "Bras mécanique",
+    "ID": "POG_6_bras3",
+    "WEIGTH": 50
+  },
+  {
+    "NAME": "Bras mécanique",
+    "ID": "POG_6_bras4",
+    "WEIGTH": 50
+  },
+  {
+    "NAME": "Bras mécanique",
+    "ID": "POG_6_bras5",
+    "WEIGTH": 50
+  },
+  {
+    "NAME": "invisible armure",
+    "ID": "zz_armure",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "invisible jambe",
+    "ID": "zz_jambes",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "invisible tete",
+    "ID": "zz_tete",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "invisible bras L",
+    "ID": "zz_brasl",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "invisible bras R",
+    "ID": "zz_brasR",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "invisible botte",
+    "ID": "zz_boots",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bouclier Ordre d'Alessia",
+    "ID": "kal_leo_shield",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bottes Ordre d'Alessia",
+    "ID": "kal_leo_boots",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Cuirasse Ordre d'Alessia",
+    "ID": "kal_leo_cuirass",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Gantelet (G) Ordre d'Alessia",
+    "ID": "kal_leo_gauntlet_left",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Gantelet (D) Ordre d'Alessia",
+    "ID": "kal_leo_gauntlet_right",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Jambières Ordre d'Alessia",
+    "ID": "kal_leo_greaves",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Heaume Ordre d'Alessia",
+    "ID": "kal_leo_helm",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Epaulière (D) Ordre d'Alessia",
+    "ID": "kal_leo_pauldron_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière (G) Ordre d'Alessia",
+    "ID": "kal_leo_pauldron_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Cuirasse Ordre d'Arkay",
+    "ID": "kal_Ark_cuirass",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Gantelet (G) Ordre d'Arkay",
+    "ID": "kal_Ark_gauntlet_left",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Gantelet (D) Ordre d'Arkay",
+    "ID": "kal_Ark_gauntlet_right",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Jambières Ordre d'Arkay",
+    "ID": "kal_Ark_greaves",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Heaume Ordre d'Arkay",
+    "ID": "kal_Ark_helmet_1",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Heaume Necro Ordre d'Arkay",
+    "ID": "kal_Ark_helmet_2",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bouclier Ordre d'Arkay",
+    "ID": "kal_Ark_shield",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Epaulière (G) Ordre d'Arkay",
+    "ID": "kal_Ark_pauldron_left",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Epaulière (D) Ordre d'Arkay",
+    "ID": "kal_Ark_pauldron_right",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "BottesOrdre d'Akatosh",
+    "ID": "kal_aka_boots",
+    "WEIGTH": 40
+  },
+  {
+    "NAME": "Jambières Ordre d'Akatosh",
+    "ID": "kal_aka_greaves",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Epaulière (G) Ordre d'Akatosh",
+    "ID": "kal_aka_pauldron_left",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Epaulière (D) Ordre d'Akatosh",
+    "ID": "kal_aka_pauldron_right",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Heaume Ordre d'Akatosh",
+    "ID": "kal_aka_helm",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Cuirasse Ordre d'Akatosh",
+    "ID": "kal_aka_cuirass",
+    "WEIGTH": 40
+  },
+  {
+    "NAME": "Bouclier d'Akatosh",
+    "ID": "kal_aka_shield_x",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Gantelet (G) Ordre d'Akatosh",
+    "ID": "kal_aka_gauntlet_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Gantelet (D) Ordre d'Akatosh",
+    "ID": "kal_aka_gauntlet_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Cuirasse Ordre de Kynareth",
+    "ID": "kal_kyn_cuirass",
+    "WEIGTH": 35
+  },
+  {
+    "NAME": "Jambières Ordre de Kynareth",
+    "ID": "kal_kyn_greaves",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Bottes Ordre de Kynareth",
+    "ID": "kal_kyn_boots",
+    "WEIGTH": 19
+  },
+  {
+    "NAME": "Epaulière(G) Ordre de Kynareth",
+    "ID": "kal_kyn_pauldron_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière(D) Ordre de Kynareth",
+    "ID": "kal_kyn_pauldron_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Heaume Ordre de Kynareth",
+    "ID": "kal_kyn_helm",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Gantelet (G) Ordre de Kynareth",
+    "ID": "kal_kyn_gauntlet_left",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Gantelet (D) Ordre de Kynareth",
+    "ID": "kal_kyn_gauntlet_right",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Bouclier Prince Ordre Kynareth",
+    "ID": "kal_kyn_shield_03",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Casque Princier Ordre Kynareth",
+    "ID": "kal_kyn_open_helm",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bouclier Ordre de Kynareth",
+    "ID": "kal_Kyn_shield_04",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bouclier Ordre d'Alessia",
+    "ID": "kal_leo_shield4",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Bouclier Ordre de Dibella",
+    "ID": "kal_dib_shield4",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Bouclier Ordre d'Arkay",
+    "ID": "kal_ark_shield04",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Casque Ordre de Kynareth",
+    "ID": "kal_kyn_open_helm2",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Cuirasse Ordre de Dibella",
+    "ID": "kal_dib_cuirass",
+    "WEIGTH": 40
+  },
+  {
+    "NAME": "Bottes Ordre de Dibella",
+    "ID": "kal_dib_boots",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Gantelet (G) Ordre de Dibella",
+    "ID": "kal_dib_gauntlet_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Gantelet (D) Ordre de  Dibella",
+    "ID": "kal_dib_gauntlet_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière (G) Ordre de Dibella",
+    "ID": "kal_dib_pauldron_left",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Epaulière (D) Ordre de Dibella",
+    "ID": "kal_dib_pauldron_right",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bouclier Ordre de Dibella",
+    "ID": "kal_dib_shield",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Heaume Ordre de Dibella",
+    "ID": "kal_dib_helmet",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Jambieres Ordre de Dibella",
+    "ID": "kal_dib_greaves",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Cuirasse Ordre de Mara",
+    "ID": "kal_mar_cuirass",
+    "WEIGTH": 40
+  },
+  {
+    "NAME": "Jambières Ordre de Mara",
+    "ID": "kal_mar_greaves",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Bottes Ordre de Mara",
+    "ID": "kal_mar_boots",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Epaulière (G) Ordre de Mara",
+    "ID": "kal_mar_pauldron_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière (D) Ordre de Mara",
+    "ID": "kal_mar_pauldron_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bouclier Ordre de Mara",
+    "ID": "kal_mar_shield",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Gantelet (G) Ordre de Mara",
+    "ID": "kal_mar_gauntlet_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Gantelet (D) Ordre de Mara",
+    "ID": "kal_mar_gauntlet_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Casque Ordre de Mara",
+    "ID": "kal_mar_helm",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Bouclier Princier Ordre de Mara",
+    "ID": "kal_mar_shield_01",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Vulnérable Casque Cuir Netch",
+    "ID": "kal_armor_000F",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Casque Gondolier",
+    "ID": "kal_armor_0171",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Usagée Epaulière(D) Ebonite",
+    "ID": "kal_armor_02A3",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Epaulière(G) Verre de Capacité",
+    "ID": "kal_armor_045F",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Vulnérable Bouclier Cuir Netch",
+    "ID": "kal_armor_0588",
+    "WEIGTH": 6
+  },
+  {
+    "NAME": "Bottes d'Akatosh",
+    "ID": "kal_aka_boots_x",
+    "WEIGTH": 40
+  },
+  {
+    "NAME": "Cuirasse d'Akatosh",
+    "ID": "kal_aka_cuirass_x",
+    "WEIGTH": 40
+  },
+  {
+    "NAME": "Gantelet (G) d'Akatosh",
+    "ID": "kal_aka_gauntlet_left_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Gantelet (D) d'Akatosh",
+    "ID": "kal_aka_gauntlet_right_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Jambières d'Akatosh",
+    "ID": "kal_aka_greaves_x",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Heaume d'Akatosh",
+    "ID": "kal_aka_helm_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière (G) d'Akatosh",
+    "ID": "kal_aka_pauldron_left_x",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Epaulière (D) d'Akatosh",
+    "ID": "kal_aka_pauldron_right_x",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bottes d'Arkay",
+    "ID": "kal_Ark_boots_x",
+    "WEIGTH": 19
+  },
+  {
+    "NAME": "Cuirasse d'Arkay",
+    "ID": "kal_Ark_cuirass_x",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Gantelet (G) d'Arkay",
+    "ID": "kal_Ark_gauntlet_left_x",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Gantelet (D) d'Arkay",
+    "ID": "kal_Ark_gauntlet_right_x",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Jambières d'Arkay",
+    "ID": "kal_Ark_greaves_x",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Heaume d'Arkay",
+    "ID": "kal_Ark_helmet_1_x",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Heaume Necro d'Arkay",
+    "ID": "kal_Ark_helmet_2_x",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Epaulière (G) d'Arkay",
+    "ID": "kal_Ark_pauldron_left_x",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Epaulière (D) d'Arkay",
+    "ID": "kal_Ark_pauldron_right_x",
+    "WEIGTH": 12
+  },
+  {
+    "NAME": "Bouclier d'Arkay",
+    "ID": "kal_Ark_shield_x",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Bouclier d'Arkay",
+    "ID": "kal_ark_shield04_x",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Bouclier de Dibella",
+    "ID": "kal_dib_shield4_x",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Bottes de Kynareth",
+    "ID": "kal_kyn_boots_x",
+    "WEIGTH": 19
+  },
+  {
+    "NAME": "Cuirasse de Kynareth",
+    "ID": "kal_kyn_cuirass_x",
+    "WEIGTH": 35
+  },
+  {
+    "NAME": "Gantelet (G) de Kynareth",
+    "ID": "kal_kyn_gauntlet_left_x",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Gantelet (D) de Kynareth",
+    "ID": "kal_kyn_gauntlet_right_x",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Jambières de Kynareth",
+    "ID": "kal_kyn_greaves_x",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Heaume de Kynareth",
+    "ID": "kal_kyn_helm_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Casque Princier de Kynareth",
+    "ID": "kal_kyn_open_helm_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Casque de Kynareth",
+    "ID": "kal_kyn_open_helm2_x",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Epaulière(G) de Kynareth",
+    "ID": "kal_kyn_pauldron_left_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière(D) de Kynareth",
+    "ID": "kal_kyn_pauldron_right_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bouclier Princier de Kynareth",
+    "ID": "kal_kyn_shield_03_x",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Bouclier de Kynareth",
+    "ID": "kal_Kyn_shield_04_x",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bottes d'Alessia",
+    "ID": "kal_leo_boots_x",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Cuirasse d'Alessia",
+    "ID": "kal_leo_cuirass_x",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Gantelet (G) d'Alessia",
+    "ID": "kal_leo_gauntlet_left_x",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Gantelet (D) d'Alessia",
+    "ID": "kal_leo_gauntlet_right_x",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Jambières d'Alessia",
+    "ID": "kal_leo_greaves_x",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Heaume d'Alessia",
+    "ID": "kal_leo_helm_x",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Epaulière (G) d'Alessia",
+    "ID": "kal_leo_pauldron_left_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière (D) d'Alessia",
+    "ID": "kal_leo_pauldron_right_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bouclier d'Alessia",
+    "ID": "kal_leo_shield_x",
+    "WEIGTH": 15
+  },
+  {
+    "NAME": "Bouclier d'Alessia",
+    "ID": "kal_leo_shield4_x",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Bottes de Mara",
+    "ID": "kal_mar_boots_x",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Cuirasse de Mara",
+    "ID": "kal_mar_cuirass_x",
+    "WEIGTH": 40
+  },
+  {
+    "NAME": "Gantelet (G) de Mara",
+    "ID": "kal_mar_gauntlet_left_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Gantelet (D) de Mara",
+    "ID": "kal_mar_gauntlet_right_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Jambières de Mara",
+    "ID": "kal_mar_greaves_x",
+    "WEIGTH": 20
+  },
+  {
+    "NAME": "Casque de Mara",
+    "ID": "kal_mar_helm_x",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Epaulière (G) de Mara",
+    "ID": "kal_mar_pauldron_left_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière (D) de Mara",
+    "ID": "kal_mar_pauldron_right_x",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bouclier de Mara",
+    "ID": "kal_mar_shield_x",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Bouclier Princier de Mara",
+    "ID": "kal_mar_shield_01_x",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Protecteur du vampire",
+    "ID": "kal_VA_bouclier",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Protecteur du vampire",
+    "ID": "kal_VA_bouclierbis",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Casque céphalopode",
+    "ID": "kal_e_cephalopod_helm",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Cuirasse de Templier",
+    "ID": "ka_e_templar_cuirass_peri",
+    "WEIGTH": 30
+  },
+  {
+    "NAME": "Epaulière de Templier (G)",
+    "ID": "kal_e_templar_pauldron_left",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Epaulière de Templier (D)",
+    "ID": "kal_e_templar_pauldron_right",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Jambières de Templier",
+    "ID": "kal_e_templar_greaves",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Bouclier des abysses",
+    "ID": "3sanctuary_qitem1",
+    "WEIGTH": 5
+  },
+  {
+    "NAME": "Sac à dos du voyageur",
+    "ID": "WAR_MLSND_BACKPACK1",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Lunettes de voyageur",
+    "ID": "WAR_MLSND_GOGGLES1",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Turban d'Elsweyr",
+    "ID": "WAR_KHAJIIT_TURBAN01",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Turban d'Elsweyr",
+    "ID": "WAR_KHAJIIT_TURBAN02",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Turban d'Elsweyr (Masquant)",
+    "ID": "WAR_KHAJIIT_TURBAN01x",
+    "WEIGTH": 1.2
+  },
+  {
+    "NAME": "Turban d'Elsweyr (Masquant)",
+    "ID": "WAR_KHAJIIT_TURBAN02x",
+    "WEIGTH": 1.2
+  },
+  {
+    "NAME": "Echarpe d'Elsweyr",
+    "ID": "WAR_KHAJIIT_MASK01",
+    "WEIGTH": 0.7
+  },
+  {
+    "NAME": "Echarpe d'Elsweyr",
+    "ID": "WAR_KHAJIIT_MASK02",
+    "WEIGTH": 0.7
+  },
+  {
+    "NAME": "Sac à dos d'aventurier (Cuir)",
+    "ID": "WAR_MISC_BACKPACK01a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Sac à dos d'aventurier (Cuir)",
+    "ID": "WAR_MISC_BACKPACK01b",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Sac à dos d'aventurier (Cuir)",
+    "ID": "WAR_MISC_BACKPACK01c",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Sac à dos d'aventurier (Tissu)",
+    "ID": "WAR_MISC_BACKPACK02a",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Sac à dos d'aventurier (Tissu)",
+    "ID": "WAR_MISC_BACKPACK02b",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Sac à dos d'aventurier (Tissu)",
+    "ID": "WAR_MISC_BACKPACK02c",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Sac à dos d'aventurier (Tissu)",
+    "ID": "WAR_MISC_BACKPACK02d",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Sacoche d'aventurier",
+    "ID": "WAR_MISC_POUCH01",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Sacoche d'aventurier",
+    "ID": "WAR_MISC_POUCH02",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Sacoche d'aventurier",
+    "ID": "WAR_MISC_POUCH03",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Sacoche d'aventurier",
+    "ID": "WAR_MISC_POUCH04",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Visage de l'Hortator",
+    "ID": "1FH_Dae_Hortator",
+    "WEIGTH": 25
+  },
+  {
+    "NAME": "Cuirasse de Sotonhorian",
+    "ID": "sotonhorian_cuirass",
+    "WEIGTH": 18
+  },
+  {
+    "NAME": "Bottes de Sotonhorian",
+    "ID": "sotonhorian_boots",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Gant gauche de Sotonhorian",
+    "ID": "sotonhorian_glove_left",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Gant droit de Sotonhorian",
+    "ID": "sotonhorian_glove_right",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Jambières de Sotonhorian",
+    "ID": "sotonhorian_greaves",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Epaulière gauche de Sotonhorian",
+    "ID": "sotonhorian_pauldron_left",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Epaulière droite de Sotonhorian",
+    "ID": "sotonhorian_pauldron_right",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Jambières courtes Sotonhorian",
+    "ID": "sotonhorian_greaves_short",
+    "WEIGTH": 8
+  },
+  {
+    "NAME": "Casque de Sotonhorian",
+    "ID": "sotonhorian_helm",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Capuche de Sotonhorian",
+    "ID": "sotonhorian_hood",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Bouclier de Sotonhorian",
+    "ID": "sotonhorian_shield",
+    "WEIGTH": 9
+  },
+  {
+    "NAME": "Bottes bestiales de Sotonhorian",
+    "ID": "sotonhorian_bootsb",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Epaulière d'Exalté (D)",
+    "ID": "1ba_pauldron_right",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Epaulière d'Exalté (G)",
+    "ID": "1ba_pauldron_left",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Gantelet d'Exalté (D)",
+    "ID": "1ba_guantlet_right",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Bracelet d'Exalté (G)",
+    "ID": "1ba_bracer_left",
+    "WEIGTH": 2
+  },
+  {
+    "NAME": "Jambières d'Exalté",
+    "ID": "1ba_greaves",
+    "WEIGTH": 7
+  },
+  {
+    "NAME": "Cuirasse d'Exalté",
+    "ID": "1ba_cuirass",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Bottes d'Exalté",
+    "ID": "1ba_boots",
+    "WEIGTH": 4
+  },
+  {
+    "NAME": "Robe de combat d'Exalté",
+    "ID": "1ba_cuirass02",
+    "WEIGTH": 10
+  },
+  {
+    "NAME": "Casque d'Exalté",
+    "ID": "1ba_helm",
+    "WEIGTH": 3
+  },
+  {
+    "NAME": "Capuche d'Exalté",
+    "ID": "1ba_hood_",
+    "WEIGTH": 1
+  },
+  {
+    "NAME": "Foulard d'Exalté",
+    "ID": "1ba_scarf_",
+    "WEIGTH": 1
+  }
+]
