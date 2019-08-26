@@ -1,4 +1,7 @@
 --GameplayAdvance.lua
+--Find in serverCore.lua "function OnServerInit()" and add
+
+--       GameplayAdvance.StartCheck()
 
 tableHelper = require("tableHelper")
 jsonInterface = require("jsonInterface")
