@@ -1,7 +1,7 @@
 --fixVamp.lua by rickoff
 
 --INSTALLATION
---add fixVamp.lua file in mp-stuff/script
+--add fixVamp.lua file in server/script
 --open serverCore.lua and find function OnPlayerCellChange(pid) and a add in :
 --fixVamp.tcheckVamp(pid)	
 --fixVamp.tcheckWolf(pid)
@@ -14,15 +14,9 @@ fixVamp.tcheckVamp = function(pid)
 	
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		for slot, k in pairs(Players[pid].data.spellbook) do
-			if Players[pid].data.spellbook[slot] == "vampire berne specials" then
+			if Players[pid].data.spellbook[slot] == "vampire sun damage" then
 				consoleTcheckvamp = "set PCVampire to 1"
-				logicHandler.RunConsoleCommandOnPlayer(pid, consoleTcheckvamp)	
-			elseif Players[pid].data.spellbook[slot] == "vampire aundae specials" then
-				consoleTcheckvamp = "set PCVampire to 1"
-				logicHandler.RunConsoleCommandOnPlayer(pid, consoleTcheckvamp)	
-			elseif Players[pid].data.spellbook[slot] == "vampire quarra specials" then
-				consoleTcheckvamp = "set PCVampire to 1"
-				logicHandler.RunConsoleCommandOnPlayer(pid, consoleTcheckvamp)					
+				logicHandler.RunConsoleCommandOnPlayer(pid, consoleTcheckvamp)				
 			end
 		end	
 	end
