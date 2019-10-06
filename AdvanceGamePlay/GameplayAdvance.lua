@@ -9,7 +9,7 @@ jsonInterface = require("jsonInterface")
 local weaponsData = {}
 local armorData = {}
 
-local TimerDrawState = tes3mp.CreateTimer("StartCheckDraw", time.seconds(0.5))
+local TimerDrawState = tes3mp.CreateTimer("StartCheckDraw", time.seconds(1))
 
 local weaponsLoader = jsonInterface.load("WeaponsEcarlate.json")
 for index, item in pairs(weaponsLoader) do
@@ -37,71 +37,73 @@ function StartCheckDraw()
 			end
 		end
 	end
-	tes3mp.RestartTimer(TimerDrawState, time.seconds(0.5))
+	tes3mp.RestartTimer(TimerDrawState, time.seconds(1))
 end
 
 GameplayAdvance.Speed = function(pid)
 
 	local drawState = tes3mp.GetDrawState(pid)
-
-	if drawState == 1 then
-		local itemEquipment = {}
-		for x, y in pairs(Players[pid].data.equipment) do
-			local equipement = (Players[pid].data.equipment[x])
-			table.insert(itemEquipment, equipement)
-		end
-		if itemEquipment ~= nil then
-			local Malus = 2	
-			for x, y in pairs(weaponsData) do
-				if tableHelper.containsValue(itemEquipment, y.REFID, true) then		
-					local Type = y.TYPE
-					tes3mp.LogAppend(enumerations.log.INFO, Type)		
-					if Type == "ShortBladeOneHand" then
-						Malus = 3
-					elseif Type == "MarksmanThrown" then	
-						Malus = 3
-					elseif Type == "AxeOneHand" then		
-						Malus = 6
-					elseif Type == "LongBladeOneHand" then	
-						Malus = 5
-					elseif Type == "BluntOneHand" then	
-						Malus = 4
-					elseif Type == "AxeTwoClose" then		
-						Malus = 8
-					elseif Type == "SpearTwoWide" then 	
-						Malus = 5	
-					elseif Type == "LongBladeTwoClose" then
-						Malus = 6
-					elseif Type == "BluntTwoWide" then	
-						Malus = 4
-					elseif Type == "BluntTwoClose" then
-						Malus = 10						
-					elseif Type == "MarksmanBow" then
-						Malus = 4
-					elseif Type == "MarksmanCrossbow" then
-						Malus = 10
+	local levelP = tes3mp.GetLevel(pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() and levelP > 1 then
+		if drawState == 1 then
+			local itemEquipment = {}
+			for x, y in pairs(Players[pid].data.equipment) do
+				local equipement = (Players[pid].data.equipment[x])
+				table.insert(itemEquipment, equipement)
+			end
+			if itemEquipment ~= nil then
+				local Malus = 2	
+				for x, y in pairs(weaponsData) do
+					if tableHelper.containsValue(itemEquipment, y.REFID, true) then		
+						local Type = y.TYPE
+						tes3mp.LogAppend(enumerations.log.INFO, Type)		
+						if Type == "ShortBladeOneHand" then
+							Malus = 1.1
+						elseif Type == "MarksmanThrown" then	
+							Malus = 1.2
+						elseif Type == "BluntOneHand" then	
+							Malus = 1.3
+						elseif Type == "BluntTwoWide" then	
+							Malus = 1.4
+						elseif Type == "AxeOneHand" then		
+							Malus = 1.5						
+						elseif Type == "SpearTwoWide" then 	
+							Malus = 1.6	
+						elseif Type == "LongBladeOneHand" then	
+							Malus = 1.7						
+						elseif Type == "LongBladeTwoClose" then
+							Malus = 1.8					
+						elseif Type == "AxeTwoClose" then		
+							Malus = 1.9						
+						elseif Type == "BluntTwoClose" then
+							Malus = 2.0						
+						elseif Type == "MarksmanBow" then
+							Malus = 2.5
+						elseif Type == "MarksmanCrossbow" then
+							Malus = 3.0
+						end
 					end
 				end
-			end
+				local PlayerSpeedBase = Players[pid].data.customVariables.PlayerSpeedBase
+				local PlayerSpeedCurrently = Players[pid].data.attributes.Speed.base
+				if PlayerSpeedBase == nil then
+					PlayerSpeedBase = PlayerSpeedCurrently
+					Players[pid].data.customVariables.PlayerSpeedBase = PlayerSpeedBase	
+				else
+					Players[pid].data.attributes.Speed.base = PlayerSpeedBase / Malus	
+					Players[pid]:LoadAttributes()
+				end				
+			end	
+		else
 			local PlayerSpeedBase = Players[pid].data.customVariables.PlayerSpeedBase
-			local PlayerSpeedCurrently = Players[pid].data.attributes.Speed
+			local PlayerSpeedCurrently = Players[pid].data.attributes.Speed.base
 			if PlayerSpeedBase == nil then
 				PlayerSpeedBase = PlayerSpeedCurrently
 				Players[pid].data.customVariables.PlayerSpeedBase = PlayerSpeedBase	
 			else
-				Players[pid].data.attributes.Speed = PlayerSpeedBase / Malus	
+				Players[pid].data.attributes.Speed.base = PlayerSpeedBase
 				Players[pid]:LoadAttributes()
-			end				
-		end	
-	else
-		local PlayerSpeedBase = Players[pid].data.customVariables.PlayerSpeedBase
-		local PlayerSpeedCurrently = Players[pid].data.attributes.Speed
-		if PlayerSpeedBase == nil then
-			PlayerSpeedBase = PlayerSpeedCurrently
-			Players[pid].data.customVariables.PlayerSpeedBase = PlayerSpeedBase	
-		else
-			Players[pid].data.attributes.Speed = PlayerSpeedBase
-			Players[pid]:LoadAttributes()
+			end
 		end
 	end
 end
@@ -109,33 +111,24 @@ end
 GameplayAdvance.Athletics = function(pid)
 
 	local itemEquipment = {}
-	for x, y in pairs(Players[pid].data.equipment) do
-		local equipement = (Players[pid].data.equipment[x])
-		table.insert(itemEquipment, equipement)
-	end
-	if itemEquipment ~= nil then
-		local Weigth = 0	
-		for x, y in pairs(armorData) do
-			if tableHelper.containsValue(itemEquipment, y.REFID, true) then		
-				Weigth = Weigth + y.WEIGTH
-			end
+	local levelP = tes3mp.GetLevel(pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() and levelP > 1 then
+		for x, y in pairs(Players[pid].data.equipment) do
+			local equipement = (Players[pid].data.equipment[x])
+			table.insert(itemEquipment, equipement)
 		end
-		
-		local PlayerAthleticsBase = Players[pid].data.customVariables.PlayerAthleticsBase
-		local PlayerAthleticsCurrently = Players[pid].data.skills.Athletics.base
-		if PlayerAthleticsBase == nil then
-			PlayerAthleticsBase = PlayerAthleticsCurrently
-			Players[pid].data.customVariables.PlayerAthleticsBase = PlayerAthleticsBase	
-		else
-			local skillId = tes3mp.GetSkillId("Athletics")
-			local valueC = PlayerAthleticsBase - Weigth
-			tes3mp.SetSkillBase(pid, skillId, valueC)
-			Players[pid]:SaveStatsDynamic()		
-			Players[pid]:SaveSkills()
-			tes3mp.SendSkills(pid)	
-			tes3mp.SendStatsDynamic(pid)
-		end	
-	end	
+		if itemEquipment ~= nil then
+			local Weigth = 0	
+			for x, y in pairs(armorData) do
+				if tableHelper.containsValue(itemEquipment, y.REFID, true) then		
+					Weigth = (Weigth + y.WEIGTH)
+				end
+			end
+
+			Players[pid].data.skills.Athletics.damage = Weigth / 3
+			Players[pid]:LoadSkills()
+		end
+	end
 end
 
 return GameplayAdvance	
