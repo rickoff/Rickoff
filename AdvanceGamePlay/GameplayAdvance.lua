@@ -1,4 +1,19 @@
 --GameplayAdvance.lua
+--Find in serverCore.lua "function OnServerInit()" and add
+
+--       GameplayAdvance.StartCheck()
+
+--Find in eventHandler.lua "eventHandler.OnPlayerEquipment = function(pid)" and add
+
+--       GameplayAdvance.Athletics(pid)
+-- like this:
+--eventHandler.OnPlayerEquipment = function(pid)
+--    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+--		GameplayAdvance.Athletics(pid)	
+--       	Players[pid]:SaveEquipment()
+--		Players[pid]:Save()
+--    end
+--end
 
 tableHelper = require("tableHelper")
 jsonInterface = require("jsonInterface")
