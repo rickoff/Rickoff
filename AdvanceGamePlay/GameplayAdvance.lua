@@ -3,16 +3,14 @@
 
 --       GameplayAdvance.StartCheck()
 
---Find in eventHandler.lua "eventHandler.OnPlayerEquipment = function(pid)" and add
+--Find in servercore.lua "function OnPlayerEquipment(pid)" and add
 
 --       GameplayAdvance.Athletics(pid)
 -- like this:
---eventHandler.OnPlayerEquipment = function(pid)
---    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
---		GameplayAdvance.Athletics(pid)	
---       	Players[pid]:SaveEquipment()
---		Players[pid]:Save()
---    end
+--function OnPlayerEquipment(pid)
+--	tes3mp.LogMessage(enumerations.log.INFO, "Called \"OnPlayerEquipment\" for " .. logicHandler.GetChatName(pid))
+--	GameplayAdvance.Athletics(pid)	
+--	eventHandler.OnPlayerEquipment(pid)
 --end
 
 tableHelper = require("tableHelper")
