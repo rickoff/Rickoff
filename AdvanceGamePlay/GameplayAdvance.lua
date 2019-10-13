@@ -1,7 +1,4 @@
 --GameplayAdvance.lua
---Find in serverCore.lua "function OnServerInit()" and add
-
---       GameplayAdvance.StartCheck()
 
 tableHelper = require("tableHelper")
 jsonInterface = require("jsonInterface")
@@ -84,26 +81,14 @@ GameplayAdvance.Speed = function(pid)
 						end
 					end
 				end
-				local PlayerSpeedBase = Players[pid].data.customVariables.PlayerSpeedBase
+
 				local PlayerSpeedCurrently = Players[pid].data.attributes.Speed.base
-				if PlayerSpeedBase == nil then
-					PlayerSpeedBase = PlayerSpeedCurrently
-					Players[pid].data.customVariables.PlayerSpeedBase = PlayerSpeedBase	
-				else
-					Players[pid].data.attributes.Speed.base = PlayerSpeedBase / Malus	
-					Players[pid]:LoadAttributes()
-				end				
+				Players[pid].data.attributes.Speed.damage = math.floor(PlayerSpeedCurrently / Malus)	
+				Players[pid]:LoadAttributes()		
 			end	
 		else
-			local PlayerSpeedBase = Players[pid].data.customVariables.PlayerSpeedBase
-			local PlayerSpeedCurrently = Players[pid].data.attributes.Speed.base
-			if PlayerSpeedBase == nil then
-				PlayerSpeedBase = PlayerSpeedCurrently
-				Players[pid].data.customVariables.PlayerSpeedBase = PlayerSpeedBase	
-			else
-				Players[pid].data.attributes.Speed.base = PlayerSpeedBase
-				Players[pid]:LoadAttributes()
-			end
+			Players[pid].data.attributes.Speed.damage = 0
+			Players[pid]:LoadAttributes()	
 		end
 	end
 end
@@ -130,5 +115,3 @@ GameplayAdvance.Athletics = function(pid)
 		end
 	end
 end
-
-return GameplayAdvance	
