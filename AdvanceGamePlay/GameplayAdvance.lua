@@ -54,11 +54,9 @@ GameplayAdvance.StartCheck = function()
 end
 
 function StartCheckDraw()
-	if tableHelper.getCount(Players) > 0 then
-		for pid , value in pairs(Players) do
-			if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then		
-				GameplayAdvance.Speed(pid)
-			end
+	for pid , value in pairs(Players) do
+		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then		
+			GameplayAdvance.Speed(pid)
 		end
 	end
 	tes3mp.RestartTimer(TimerDrawState, time.seconds(1))
@@ -166,7 +164,6 @@ GameplayAdvance.Athletics = function(pid)
 					Weigth = (Weigth + y.WEIGTH)
 				end
 			end
-			local skillId = tes3mp.GetSkillId("Athletics")
 			Players[pid].data.skills.Athletics.damage = math.floor((Weigth + Malus) / 3)			
 			Players[pid]:LoadSkills()			
 		end		
