@@ -63,9 +63,9 @@ function StartCheckDraw()
 end
 
 GameplayAdvance.Speed = function(pid)
-
 	local drawState = tes3mp.GetDrawState(pid)
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+	local levelP = tes3mp.GetLevel(pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() and levelP > 1 then
 		if drawState == 1 then
 			local Malus = 20
 			local Type
@@ -86,8 +86,7 @@ GameplayAdvance.Speed = function(pid)
 						end
 					end
 				end
-			end
-			
+			end			
 			if itemEquipment ~= nil then
 				for x, y in pairs(weaponsData) do
 					local RefId = y.REFID				
@@ -95,8 +94,7 @@ GameplayAdvance.Speed = function(pid)
 						Type = y.TYPE		
 					end
 				end
-			end
-			
+			end			
 			if Type ~= nil then
 				if Type == "ShortBladeOneHand" then
 					Malus = 30
@@ -123,12 +121,10 @@ GameplayAdvance.Speed = function(pid)
 				elseif Type == "MarksmanCrossbow" then
 					Malus = 50
 				end
-			end
-			
+			end			
 			local PlayerSpeedCurrently = Players[pid].data.attributes.Speed.base
 			Players[pid].data.attributes.Speed.damage = math.floor((PlayerSpeedCurrently * Malus) / 100)	
 			Players[pid]:LoadAttributes()			
-
 		else
 			Players[pid].data.attributes.Speed.damage = 0
 			Players[pid]:LoadAttributes()	
@@ -137,9 +133,9 @@ GameplayAdvance.Speed = function(pid)
 end
 
 GameplayAdvance.Athletics = function(pid)
-
 	local itemEquipment = {}
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
+	local levelP = tes3mp.GetLevel(pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() and levelP > 1 then	
 		local Malus = 0		
 		for x, y in pairs(Players[pid].data.equipment) do
 			local equipement = (Players[pid].data.equipment[x])
