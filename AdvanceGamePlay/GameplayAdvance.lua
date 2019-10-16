@@ -11,6 +11,10 @@
 --	eventHandler.OnPlayerEquipment(pid)
 --	GameplayAdvance.Athletics(pid)	
 --end
+--find in evenhandler eventHandler.OnPlayerItemUse = function(pid) and add like this
+--		if not GameplayAdvance.LimitPotion(pid, itemRefId) then 
+--			tes3mp.SendItemUse(pid)
+--		end	
 
 --GameplayAdvance.lua
 
