@@ -1,0 +1,1574 @@
+[
+  {
+    "Name": "Flin",
+    "RefId": "Potion_Cyro_Whiskey_01"
+  },
+  {
+    "Name": "Shein",
+    "RefId": "potion_comberry_wine_01"
+  },
+  {
+    "Name": "Cognac de Cyrodil",
+    "RefId": "potion_cyro_brandy_01"
+  },
+  {
+    "Name": "Greef",
+    "RefId": "potion_comberry_brandy_01"
+  },
+  {
+    "Name": "Mazte",
+    "RefId": "Potion_Local_Brew_01"
+  },
+  {
+    "Name": "Sujamma",
+    "RefId": "potion_local_liquor_01"
+  },
+  {
+    "Name": "Musc d'insecte telvanni",
+    "RefId": "potion_t_bug_musk_01"
+  },
+  {
+    "Name": "Potion de Fardeau standard",
+    "RefId": "p_burden_s"
+  },
+  {
+    "Name": "Potion Bouclier de feu standard",
+    "RefId": "p_fire_shield_s"
+  },
+  {
+    "Name": "Potion d'Endurance standard",
+    "RefId": "p_fortify_endurance_s"
+  },
+  {
+    "Name": "Potion de Personnalité standard",
+    "RefId": "p_fortify_personality_s"
+  },
+  {
+    "Name": "Potion de Rapidité standard",
+    "RefId": "p_fortify_speed_s"
+  },
+  {
+    "Name": "Potion de Force standard",
+    "RefId": "p_fortify_strength_s"
+  },
+  {
+    "Name": "Potion de Santé standard",
+    "RefId": "p_fortify_health_s"
+  },
+  {
+    "Name": "Potion d'Invisibilité standard",
+    "RefId": "p_invisibility_s"
+  },
+  {
+    "Name": "Potion de Lumière standard",
+    "RefId": "p_light_s"
+  },
+  {
+    "Name": "Pot. Bouclier foudre standard",
+    "RefId": "p_lightning shield_s"
+  },
+  {
+    "Name": "Potion Vision nocturne standard",
+    "RefId": "p_night-eye_s"
+  },
+  {
+    "Name": "Potion de Paralysie standard",
+    "RefId": "p_paralyze_s"
+  },
+  {
+    "Name": "Potion de Réflexion standard",
+    "RefId": "p_reflection_s"
+  },
+  {
+    "Name": "Pot. Résistance au feu standard",
+    "RefId": "p_fire resistance_s"
+  },
+  {
+    "Name": "Pot. Résistance magie standard",
+    "RefId": "p_magicka_resistance_s"
+  },
+  {
+    "Name": "Pot. Résistance poison standard",
+    "RefId": "p_poison_resistance_s"
+  },
+  {
+    "Name": "Potion Résist. foudre standard",
+    "RefId": "p_shock_resistance_s"
+  },
+  {
+    "Name": "Pot. Regain d'Agilité standard",
+    "RefId": "p_restore_agility_s"
+  },
+  {
+    "Name": "Pot. Regain Endurance standard",
+    "RefId": "p_restore_endurance_s"
+  },
+  {
+    "Name": "Pot. Regain Intell. standard",
+    "RefId": "p_restore_intelligence_s"
+  },
+  {
+    "Name": "Pot. Regain de Chance standard",
+    "RefId": "p_restore_luck_s"
+  },
+  {
+    "Name": "Pot. Regain Person. standard",
+    "RefId": "p_restore_personality_s"
+  },
+  {
+    "Name": "Pot. Regain Rapidité standard",
+    "RefId": "p_restore_speed_s"
+  },
+  {
+    "Name": "Potion Regain de Force standard",
+    "RefId": "p_restore_strength_s"
+  },
+  {
+    "Name": "Pot. Regain de Volonté standard",
+    "RefId": "p_restore_willpower_s"
+  },
+  {
+    "Name": "Pot. Regain de Fatigue standard",
+    "RefId": "p_restore_fatigue_s"
+  },
+  {
+    "Name": "Potion de Silence standard",
+    "RefId": "p_silence_s"
+  },
+  {
+    "Name": "Pot. Absorption sorts standard",
+    "RefId": "p_spell_absorption_s"
+  },
+  {
+    "Name": "Potion de Lévitation standard",
+    "RefId": "p_levitation_s"
+  },
+  {
+    "Name": "Pot. contre la Fatigue standard",
+    "RefId": "p_fortify_fatigue_s"
+  },
+  {
+    "Name": "Potion de Fardeau à bas prix",
+    "RefId": "p_burden_c"
+  },
+  {
+    "Name": "Potion de Fardeau bradée",
+    "RefId": "p_burden_b"
+  },
+  {
+    "Name": "Potion de Fardeau de qualité",
+    "RefId": "p_burden_q"
+  },
+  {
+    "Name": "Potion de Fardeau de choix",
+    "RefId": "p_burden_e"
+  },
+  {
+    "Name": "Potion Chute de plume avariée",
+    "RefId": "p_drain_agility_q"
+  },
+  {
+    "Name": "Potion Chute de plume avariée",
+    "RefId": "p_drain_endurance_q"
+  },
+  {
+    "Name": "Potion de Nage rapide avariée",
+    "RefId": "p_drain_intelligence_q"
+  },
+  {
+    "Name": "Pot. Guérison maladies avariée",
+    "RefId": "p_drain_luck_q"
+  },
+  {
+    "Name": "Potion Guérison poison avariée",
+    "RefId": "p_drain_magicka_q"
+  },
+  {
+    "Name": "Potion de Nage rapide avariée",
+    "RefId": "p_drain_personality_q"
+  },
+  {
+    "Name": "Potion Guérison poison avariée",
+    "RefId": "p_drain_speed_q"
+  },
+  {
+    "Name": "Pot. Guérison maladies avariée",
+    "RefId": "p_drain_strength_q"
+  },
+  {
+    "Name": "Pot. Guérison maladies avariée",
+    "RefId": "p_drain willpower_q"
+  },
+  {
+    "Name": "Potion de Plume à bas prix",
+    "RefId": "p_feather_c"
+  },
+  {
+    "Name": "Potion de Plume bradée",
+    "RefId": "p_feather_b"
+  },
+  {
+    "Name": "Potion de Plume de choix",
+    "RefId": "p_feather_e"
+  },
+  {
+    "Name": "Potion de Plume de qualité",
+    "RefId": "p_feather_q"
+  },
+  {
+    "Name": "Pot. Bouclier de feu à bas prix",
+    "RefId": "p_fire_shield_c"
+  },
+  {
+    "Name": "Potion Bouclier de feu bradée",
+    "RefId": "p_fire_shield_b"
+  },
+  {
+    "Name": "Pot. Bouclier de feu de choix",
+    "RefId": "p_fire_shield_e"
+  },
+  {
+    "Name": "Potion Bouclier de feu de qual.",
+    "RefId": "p_fire_shield_q"
+  },
+  {
+    "Name": "Potion d'Agilité à bas prix",
+    "RefId": "p_fortify_agility_c"
+  },
+  {
+    "Name": "Potion d'Agilité bradée",
+    "RefId": "p_fortify_agility_b"
+  },
+  {
+    "Name": "Potion d'Agilité de qualité",
+    "RefId": "p_fortify_agility_q"
+  },
+  {
+    "Name": "Potion d'Agilité de choix",
+    "RefId": "p_fortify_agility_e"
+  },
+  {
+    "Name": "Potion d'Endurance à bas prix",
+    "RefId": "p_fortify_endurance_c"
+  },
+  {
+    "Name": "Potion d'Endurance bradée",
+    "RefId": "p_fortify_endurance_b"
+  },
+  {
+    "Name": "Potion d'Endurance de qualité",
+    "RefId": "p_fortify_endurance_q"
+  },
+  {
+    "Name": "Potion d'Endurance de choix",
+    "RefId": "p_fortify_endurance_e"
+  },
+  {
+    "Name": "Pot. contre Fatigue à bas prix",
+    "RefId": "p_fortify_fatigue_c"
+  },
+  {
+    "Name": "Potion contre la Fatigue bradée",
+    "RefId": "p_fortify_fatigue_b"
+  },
+  {
+    "Name": "Pot. contre la Fatigue de choix",
+    "RefId": "p_fortify_fatigue_e"
+  },
+  {
+    "Name": "Pot. contre Fatigue de qualité",
+    "RefId": "p_fortify_fatigue_q"
+  },
+  {
+    "Name": "Potion de Santé à bas prix",
+    "RefId": "p_fortify_health_c"
+  },
+  {
+    "Name": "Potion de Santé de choix",
+    "RefId": "p_fortify_health_e"
+  },
+  {
+    "Name": "Potion de Santé de qualité",
+    "RefId": "p_fortify_health_q"
+  },
+  {
+    "Name": "Potion Intelligence à bas prix",
+    "RefId": "p_fortify_intelligence_c"
+  },
+  {
+    "Name": "Potion d'Intelligence bradée",
+    "RefId": "p_fortify_intelligence_b"
+  },
+  {
+    "Name": "Potion d'Intelligence de choix",
+    "RefId": "p_fortify_intelligence_e"
+  },
+  {
+    "Name": "Potion Intelligence de qualité",
+    "RefId": "p_fortify_intelligence_q"
+  },
+  {
+    "Name": "Potion de Chance à bas prix",
+    "RefId": "p_fortify_luck_c"
+  },
+  {
+    "Name": "Potion de Chance bradée",
+    "RefId": "p_fortify_luck_b"
+  },
+  {
+    "Name": "Potion de Chance de qualité",
+    "RefId": "p_fortify_luck_q"
+  },
+  {
+    "Name": "Potion de Chance de choix",
+    "RefId": "p_fortify_luck_e"
+  },
+  {
+    "Name": "Potion de Magie à bas prix",
+    "RefId": "p_fortify_magicka_c"
+  },
+  {
+    "Name": "Potion de Magie de choix",
+    "RefId": "p_fortify_magicka_e"
+  },
+  {
+    "Name": "Potion de Magie de qualité",
+    "RefId": "p_fortify_magicka_q"
+  },
+  {
+    "Name": "Potion de Magie bradée",
+    "RefId": "p_fortify_magicka_b"
+  },
+  {
+    "Name": "Potion Personnalité à bas prix",
+    "RefId": "p_fortify_personality_c"
+  },
+  {
+    "Name": "Potion de Personnalité de choix",
+    "RefId": "p_fortify_personality_e"
+  },
+  {
+    "Name": "Potion de Personnalité bradée",
+    "RefId": "p_fortify_personality_b"
+  },
+  {
+    "Name": "Potion de Personnalité de qual.",
+    "RefId": "p_fortify_personality_q"
+  },
+  {
+    "Name": "Potion de Rapidité à bas prix",
+    "RefId": "p_fortify_speed_c"
+  },
+  {
+    "Name": "Potion de Rapidité bradée",
+    "RefId": "p_fortify_speed_b"
+  },
+  {
+    "Name": "Potion de Rapidité de qualité",
+    "RefId": "p_fortify_speed_q"
+  },
+  {
+    "Name": "Potion de Rapidité de choix",
+    "RefId": "p_fortify_speed_e"
+  },
+  {
+    "Name": "Potion de Force à bas prix",
+    "RefId": "p_fortify_strength_c"
+  },
+  {
+    "Name": "Potion de Force bradée",
+    "RefId": "p_fortify_strength_b"
+  },
+  {
+    "Name": "Potion de Force de choix",
+    "RefId": "p_fortify_strength_e"
+  },
+  {
+    "Name": "Potion de Force de qualité",
+    "RefId": "p_fortify_strength_q"
+  },
+  {
+    "Name": "Potion de Volonté à bas prix",
+    "RefId": "p_fortify_willpower_c"
+  },
+  {
+    "Name": "Potion de Volonté bradée",
+    "RefId": "p_fortify_willpower_b"
+  },
+  {
+    "Name": "Potion de Volonté de qualité",
+    "RefId": "p_fortify_willpower_q"
+  },
+  {
+    "Name": "Potion de Volonté de choix",
+    "RefId": "p_fortify_willpower_e"
+  },
+  {
+    "Name": "Pot. Bouclier froid à bas prix",
+    "RefId": "p_frost_shield_c"
+  },
+  {
+    "Name": "Potion Bouclier de froid bradée",
+    "RefId": "p_frost_shield_b"
+  },
+  {
+    "Name": "Pot. Bouclier de froid de choix",
+    "RefId": "p_frost_shield_e"
+  },
+  {
+    "Name": "Pot. Bouclier de froid de qual.",
+    "RefId": "p_frost_shield_q"
+  },
+  {
+    "Name": "Potion Invisibilité à bas prix",
+    "RefId": "p_invisibility_c"
+  },
+  {
+    "Name": "Potion d'Invisibilité bradée",
+    "RefId": "p_invisibility_b"
+  },
+  {
+    "Name": "Potion Invisibilité de qualité",
+    "RefId": "p_invisibility_q"
+  },
+  {
+    "Name": "Potion d'Invisibilité de choix",
+    "RefId": "p_invisibility_e"
+  },
+  {
+    "Name": "Potion de Saut à bas prix",
+    "RefId": "p_jump_c"
+  },
+  {
+    "Name": "Potion de Saut bradée",
+    "RefId": "p_jump_b"
+  },
+  {
+    "Name": "Potion de Saut de choix",
+    "RefId": "p_jump_e"
+  },
+  {
+    "Name": "Potion de Saut standard",
+    "RefId": "p_jump_s"
+  },
+  {
+    "Name": "Potion de Saut de qualité",
+    "RefId": "p_jump_q"
+  },
+  {
+    "Name": "Potion de Lévitation à bas prix",
+    "RefId": "p_levitation_c"
+  },
+  {
+    "Name": "Potion de Lévitation bradée",
+    "RefId": "p_levitation_b"
+  },
+  {
+    "Name": "Potion de Lévitation de qualité",
+    "RefId": "P_Levitation_Q"
+  },
+  {
+    "Name": "Potion de Lévitation de choix",
+    "RefId": "p_levitation_e"
+  },
+  {
+    "Name": "Potion de Lumière à bas prix",
+    "RefId": "p_light_c"
+  },
+  {
+    "Name": "Potion de Lumière bradée",
+    "RefId": "p_light_b"
+  },
+  {
+    "Name": "Potion de Lumière de choix",
+    "RefId": "p_light_e"
+  },
+  {
+    "Name": "Potion de Lumière de qualité",
+    "RefId": "p_light_q"
+  },
+  {
+    "Name": "Pot. Bouclier foudre à bas prix",
+    "RefId": "p_lightning shield_c"
+  },
+  {
+    "Name": "Pot. Bouclier foudre de choix",
+    "RefId": "p_lightning shield_e"
+  },
+  {
+    "Name": "Potion Bouclier foudre de qual.",
+    "RefId": "p_lightning shield_q"
+  },
+  {
+    "Name": "Pot. Bouclier de foudre bradée",
+    "RefId": "p_lightning shield_b"
+  },
+  {
+    "Name": "Pot. Vision nocturne à bas prix",
+    "RefId": "p_night-eye_c"
+  },
+  {
+    "Name": "Potion Vision nocturne bradée",
+    "RefId": "p_night-eye_b"
+  },
+  {
+    "Name": "Potion Vision nocturne de qual.",
+    "RefId": "p_night-eye_q"
+  },
+  {
+    "Name": "Potion Vision nocturne de choix",
+    "RefId": "p_night-eye_e"
+  },
+  {
+    "Name": "Potion de Paralysie à bas prix",
+    "RefId": "p_paralyze_c"
+  },
+  {
+    "Name": "Potion de Paralysie bradée",
+    "RefId": "p_paralyze_b"
+  },
+  {
+    "Name": "Potion de Paralysie de choix",
+    "RefId": "p_paralyze_e"
+  },
+  {
+    "Name": "Potion de Paralysie de qualité",
+    "RefId": "p_paralyze_q"
+  },
+  {
+    "Name": "Potion de Réflexion à bas prix",
+    "RefId": "p_reflection_c"
+  },
+  {
+    "Name": "Potion de Réflexion bradée",
+    "RefId": "p_reflection_b"
+  },
+  {
+    "Name": "Potion de Réflexion de qualité",
+    "RefId": "p_reflection_q"
+  },
+  {
+    "Name": "Potion de Réflexion de choix",
+    "RefId": "p_reflection_e"
+  },
+  {
+    "Name": "Pot. Résist. maladie à bas prix",
+    "RefId": "p_disease_resistance_c"
+  },
+  {
+    "Name": "Pot. Résist. maladie standard",
+    "RefId": "p_disease_resistance_s"
+  },
+  {
+    "Name": "Potion Résist. maladie bradée",
+    "RefId": "p_disease_resistance_b"
+  },
+  {
+    "Name": "Pot. Résist. maladie de qualité",
+    "RefId": "p_disease_resistance_q"
+  },
+  {
+    "Name": "Potion Résist. maladie de choix",
+    "RefId": "p_disease_resistance_e"
+  },
+  {
+    "Name": "Potion Résist. feu à bas prix",
+    "RefId": "p_fire_resistance_c"
+  },
+  {
+    "Name": "Potion Résistance au feu bradée",
+    "RefId": "p_fire_resistance_b"
+  },
+  {
+    "Name": "Pot. Résistance feu de qualité",
+    "RefId": "p_fire_resistance_q"
+  },
+  {
+    "Name": "Potion Résist. au feu de choix",
+    "RefId": "p_fire_resistance_e"
+  },
+  {
+    "Name": "Potion Résist. froid à bas prix",
+    "RefId": "p_frost_resistance_c"
+  },
+  {
+    "Name": "Potion Résist. au froid bradée",
+    "RefId": "p_frost_resistance_b"
+  },
+  {
+    "Name": "Pot. Résistance froid de choix",
+    "RefId": "p_frost_resistance_e"
+  },
+  {
+    "Name": "Pot. Résist. froid de qualité",
+    "RefId": "p_frost_resistance_q"
+  },
+  {
+    "Name": "Potion Résist. magie à bas prix",
+    "RefId": "p_magicka_resistance_c"
+  },
+  {
+    "Name": "Pot. Résist. à la magie bradée",
+    "RefId": "p_magicka_resistance_b"
+  },
+  {
+    "Name": "Pot. Résistance magie de choix",
+    "RefId": "p_magicka_resistance_e"
+  },
+  {
+    "Name": "Pot. Résistance magie de qual.",
+    "RefId": "p_magicka_resistance_q"
+  },
+  {
+    "Name": "Pot. Résist. poison à bas prix",
+    "RefId": "p_poison_resistance_c"
+  },
+  {
+    "Name": "Potion de Résist. poison bradée",
+    "RefId": "p_poison_resistance_b"
+  },
+  {
+    "Name": "Potion Résist. poison de choix",
+    "RefId": "p_poison_resistance_e"
+  },
+  {
+    "Name": "Pot. Résistance poison de qual.",
+    "RefId": "p_poison_resistance_q"
+  },
+  {
+    "Name": "Pot. Résist. foudre à bas prix",
+    "RefId": "p_shock_resistance_c"
+  },
+  {
+    "Name": "Potion de Résist. foudre bradée",
+    "RefId": "p_shock_resistance_b"
+  },
+  {
+    "Name": "Pot. Résist. foudre de choix",
+    "RefId": "p_shock_resistance_e"
+  },
+  {
+    "Name": "Pot. Résist. foudre de qualité",
+    "RefId": "p_shock_resistance_q"
+  },
+  {
+    "Name": "Pot. Regain Agilité à bas prix",
+    "RefId": "p_restore_agility_c"
+  },
+  {
+    "Name": "Potion Regain d'Agilité bradée",
+    "RefId": "p_restore_agility_b"
+  },
+  {
+    "Name": "Pot. de Regain Agilité de qual.",
+    "RefId": "p_restore_agility_q"
+  },
+  {
+    "Name": "Potion Regain Agilité de choix",
+    "RefId": "p_restore_agility_e"
+  },
+  {
+    "Name": "Pot. Regain Endur. à bas prix",
+    "RefId": "p_restore_endurance_c"
+  },
+  {
+    "Name": "Pot. Regain d'Endurance bradée",
+    "RefId": "p_restore_endurance_b"
+  },
+  {
+    "Name": "Pot. Regain Endurance de qual.",
+    "RefId": "p_restore_endurance_q"
+  },
+  {
+    "Name": "Pot. Regain Endurance de choix",
+    "RefId": "p_restore_endurance_e"
+  },
+  {
+    "Name": "Pot. Regain Fatigue à bas prix",
+    "RefId": "p_restore_fatigue_c"
+  },
+  {
+    "Name": "Potion Regain de Fatigue bradée",
+    "RefId": "p_restore_fatigue_b"
+  },
+  {
+    "Name": "Pot. Regain de Fatigue de qual.",
+    "RefId": "p_restore_fatigue_q"
+  },
+  {
+    "Name": "Pot. Regain de Fatigue de choix",
+    "RefId": "p_restore_fatigue_e"
+  },
+  {
+    "Name": "Potion de Guérison à bas prix",
+    "RefId": "p_restore_health_c"
+  },
+  {
+    "Name": "Pot. Regain Intell. à bas prix",
+    "RefId": "p_restore_intelligence_c"
+  },
+  {
+    "Name": "Pot. Regain d'Intel. de choix",
+    "RefId": "p_restore_intelligence_e"
+  },
+  {
+    "Name": "Pot. Regain d'Intel. de qual.",
+    "RefId": "p_restore_intelligence_q"
+  },
+  {
+    "Name": "Pot. Regain Intelligence bradée",
+    "RefId": "p_restore_intelligence_b"
+  },
+  {
+    "Name": "Potion Regain de Chance bradée",
+    "RefId": "p_restore_luck_b"
+  },
+  {
+    "Name": "Pot. Regain de Chance de qual.",
+    "RefId": "p_restore_luck_q"
+  },
+  {
+    "Name": "Pot. Regain de Chance de choix",
+    "RefId": "p_restore_luck_e"
+  },
+  {
+    "Name": "Pot. Regain Chance à bas prix",
+    "RefId": "p_restore_luck_c"
+  },
+  {
+    "Name": "Pot. Regain Personnalité bradée",
+    "RefId": "p_restore_personality_b"
+  },
+  {
+    "Name": "Pot. Regain Person. à bas prix",
+    "RefId": "p_restore_personality_c"
+  },
+  {
+    "Name": "Pot. Regain de Person. de choix",
+    "RefId": "p_restore_personality_e"
+  },
+  {
+    "Name": "Potion Regain Person. de qual.",
+    "RefId": "p_restore_personality_q"
+  },
+  {
+    "Name": "Pot. Regain Rapidité à bas prix",
+    "RefId": "p_restore_speed_c"
+  },
+  {
+    "Name": "Pot. Regain de Rapidité bradée",
+    "RefId": "p_restore_speed_b"
+  },
+  {
+    "Name": "Potion Regain Rapidité de qual.",
+    "RefId": "p_restore_speed_q"
+  },
+  {
+    "Name": "Pot. Regain Rapidité de choix",
+    "RefId": "p_restore_speed_e"
+  },
+  {
+    "Name": "Pot. Regain de Magie à bas prix",
+    "RefId": "p_restore_magicka_c"
+  },
+  {
+    "Name": "Potion Regain de Magie bradée",
+    "RefId": "p_restore_magicka_b"
+  },
+  {
+    "Name": "Potion Regain de Magie de qual.",
+    "RefId": "p_restore_magicka_q"
+  },
+  {
+    "Name": "Potion Regain de Magie de choix",
+    "RefId": "p_restore_magicka_e"
+  },
+  {
+    "Name": "Pot. Regain de Force à bas prix",
+    "RefId": "p_restore_strength_c"
+  },
+  {
+    "Name": "Potion Regain de Force bradée",
+    "RefId": "p_restore_strength_b"
+  },
+  {
+    "Name": "Potion Regain de Force de qual.",
+    "RefId": "p_restore_strength_q"
+  },
+  {
+    "Name": "Potion Regain de Force de choix",
+    "RefId": "p_restore_strength_e"
+  },
+  {
+    "Name": "Pot. Regain Volonté à bas prix",
+    "RefId": "p_restore_willpower_c"
+  },
+  {
+    "Name": "Potion Regain de Volonté bradée",
+    "RefId": "p_restore_willpower_b"
+  },
+  {
+    "Name": "Pot. Regain de Volonté de qual.",
+    "RefId": "p_restore_willpower_q"
+  },
+  {
+    "Name": "Pot. Regain de Volonté de choix",
+    "RefId": "p_restore_willpower_e"
+  },
+  {
+    "Name": "Potion d'Ombre à bas prix",
+    "RefId": "p_chameleon_c"
+  },
+  {
+    "Name": "Potion d'Ombre bradée",
+    "RefId": "p_chameleon_b"
+  },
+  {
+    "Name": "Potion d'Ombre standard",
+    "RefId": "p_chameleon_s"
+  },
+  {
+    "Name": "Potion d'Ombre de qualité",
+    "RefId": "p_chameleon_q"
+  },
+  {
+    "Name": "Potion d'Ombre de choix",
+    "RefId": "p_chameleon_e"
+  },
+  {
+    "Name": "Potion de Silence à bas prix",
+    "RefId": "p_silence_c"
+  },
+  {
+    "Name": "Potion de Silence bradée",
+    "RefId": "p_silence_b"
+  },
+  {
+    "Name": "Potion de Silence de qualité",
+    "RefId": "p_silence_q"
+  },
+  {
+    "Name": "Potion de Silence de choix",
+    "RefId": "p_silence_e"
+  },
+  {
+    "Name": "Pot. Absorpt. sorts à bas prix",
+    "RefId": "p_spell_absorption_c"
+  },
+  {
+    "Name": "Potion Absorption sorts bradée",
+    "RefId": "p_spell_absorption_b"
+  },
+  {
+    "Name": "Pot. Absorption sorts de qual.",
+    "RefId": "p_spell_absorption_q"
+  },
+  {
+    "Name": "Pot. Absorption sorts de choix",
+    "RefId": "p_spell_absorption_e"
+  },
+  {
+    "Name": "Potion Nage rapide à bas prix",
+    "RefId": "p_swift_swim_c"
+  },
+  {
+    "Name": "Potion de Nage rapide bradée",
+    "RefId": "p_swift_swim_b"
+  },
+  {
+    "Name": "Potion Nage rapide de qualité",
+    "RefId": "p_swift_swim_q"
+  },
+  {
+    "Name": "Potion de Nage rapide de choix",
+    "RefId": "p_swift_swim_e"
+  },
+  {
+    "Name": "Potion de Guérison bradée",
+    "RefId": "p_restore_health_b"
+  },
+  {
+    "Name": "Potion de Guérison de qualité",
+    "RefId": "p_restore_health_q"
+  },
+  {
+    "Name": "Potion de Guérison de choix",
+    "RefId": "p_restore_health_e"
+  },
+  {
+    "Name": "Vieux cognac de Dagoth",
+    "RefId": "potion_ancient_brandy"
+  },
+  {
+    "Name": "Potion de Chance des intrépides",
+    "RefId": "p_almsivi_intervention_s"
+  },
+  {
+    "Name": "Potion Détection de créatures",
+    "RefId": "p_detect_creatures_s"
+  },
+  {
+    "Name": "Potion de Guérison des maladies",
+    "RefId": "p_cure_common_s"
+  },
+  {
+    "Name": "Potion de Guérison du Fléau",
+    "RefId": "p_cure_blight_s"
+  },
+  {
+    "Name": "Potion Guérison de la paralysie",
+    "RefId": "p_cure_paralyzation_s"
+  },
+  {
+    "Name": "Potion de Guérison du poison",
+    "RefId": "p_cure_poison_s"
+  },
+  {
+    "Name": "Potion de Détection des clés",
+    "RefId": "p_detect_key_s"
+  },
+  {
+    "Name": "Potion de Dissipation",
+    "RefId": "p_dispel_s"
+  },
+  {
+    "Name": "Potion d'Agilité standard",
+    "RefId": "p_fortify_agility_s"
+  },
+  {
+    "Name": "Potion d'Intelligence standard",
+    "RefId": "p_fortify_intelligence_s"
+  },
+  {
+    "Name": "Potion de Chance standard",
+    "RefId": "p_fortify_luck_s"
+  },
+  {
+    "Name": "Potion de Volonté standard",
+    "RefId": "p_fortify_willpower_s"
+  },
+  {
+    "Name": "Potion de Santé bradée",
+    "RefId": "p_fortify_health_b"
+  },
+  {
+    "Name": "Potion de Magie standard",
+    "RefId": "p_fortify_magicka_s"
+  },
+  {
+    "Name": "Potion du Signe",
+    "RefId": "p_mark_s"
+  },
+  {
+    "Name": "Pot. Résistance froid standard",
+    "RefId": "p_frost_resistance_s"
+  },
+  {
+    "Name": "Potion de Chute de plume",
+    "RefId": "p_slowfall_s"
+  },
+  {
+    "Name": "Potion de Télékinésie",
+    "RefId": "p_telekinesis_s"
+  },
+  {
+    "Name": "Potion de Respiration aquatique",
+    "RefId": "p_water_breathing_s"
+  },
+  {
+    "Name": "Potion de Marche sur l'eau",
+    "RefId": "p_water_walking_s"
+  },
+  {
+    "Name": "Cognac millésimé",
+    "RefId": "p_vintagecomberrybrandy1"
+  },
+  {
+    "Name": "Pot. Bouclier de froid standard",
+    "RefId": "p_frost_shield_s"
+  },
+  {
+    "Name": "Pot. Regain de Magie standard",
+    "RefId": "p_restore_magicka_s"
+  },
+  {
+    "Name": "Potion d'Attaque de choix",
+    "RefId": "p_fortify_attack_e"
+  },
+  {
+    "Name": "Potion de Soins de Trébonius",
+    "RefId": "p_cure_common_unique"
+  },
+  {
+    "Name": "Potion de Guérison standard",
+    "RefId": "p_restore_health_s"
+  },
+  {
+    "Name": "Pot. Détection d'enchantement ",
+    "RefId": "p_detect_enchantment_s"
+  },
+  {
+    "Name": "Sang des maîtres Quarra",
+    "RefId": "p_quarrablood_UNIQUE"
+  },
+  {
+    "Name": "Potion de Sinyaramen",
+    "RefId": "p_sinyaramen_UNIQUE"
+  },
+  {
+    "Name": "Potion d'Héroïsme",
+    "RefId": "p_heroism_s"
+  },
+  {
+    "Name": "Philtre d'amour",
+    "RefId": "p_lovepotion_unique"
+  },
+  {
+    "Name": "Potion de Rappel",
+    "RefId": "p_recall_s"
+  },
+  {
+    "Name": "Medicine Bottle",
+    "RefId": "bar_medicinebottle"
+  },
+  {
+    "Name": "Tarte",
+    "RefId": "bar_pie"
+  },
+  {
+    "Name": "Tarte",
+    "RefId": "bar_pie01"
+  },
+  {
+    "Name": "Custard Pie",
+    "RefId": "bar_pie02"
+  },
+  {
+    "Name": "Gingerbeer",
+    "RefId": "bar_gingerbeer"
+  },
+  {
+    "Name": "Poison Botle",
+    "RefId": "bar_poisonbottle"
+  },
+  {
+    "Name": "Wine",
+    "RefId": "san_food_wine1"
+  },
+  {
+    "Name": "Wine",
+    "RefId": "san_food_wine2"
+  },
+  {
+    "Name": "Wine",
+    "RefId": "san_food_wine3"
+  },
+  {
+    "Name": "Bière",
+    "RefId": "san_food_beer2"
+  },
+  {
+    "Name": "Gateau",
+    "RefId": "san_food_cake3"
+  },
+  {
+    "Name": "Gateau",
+    "RefId": "san_food_cake3b"
+  },
+  {
+    "Name": "Gateau",
+    "RefId": "san_food_cake8"
+  },
+  {
+    "Name": "Gateau",
+    "RefId": "san_food_cake8b"
+  },
+  {
+    "Name": "Gateau",
+    "RefId": "san_food_cake_a"
+  },
+  {
+    "Name": "Gateau",
+    "RefId": "san_food_cake_b"
+  },
+  {
+    "Name": "Gateau",
+    "RefId": "san_food_cake_c"
+  },
+  {
+    "Name": "Gateau",
+    "RefId": "san_food_cake_d"
+  },
+  {
+    "Name": "Bière dwemer",
+    "RefId": "NOM_beer_09"
+  },
+  {
+    "Name": "Etoile chanceuse",
+    "RefId": "NOM_beer_02"
+  },
+  {
+    "Name": "Pichet de bière",
+    "RefId": "NOM_beer_03"
+  },
+  {
+    "Name": "Rune blanche",
+    "RefId": "NOM_beer_04"
+  },
+  {
+    "Name": "Bière",
+    "RefId": "NOM_beer_08"
+  },
+  {
+    "Name": "Jus de pomme",
+    "RefId": "NOM_juice_apple"
+  },
+  {
+    "Name": "Jus de baie",
+    "RefId": "NOM_juice_comberry"
+  },
+  {
+    "Name": "Jus d'orange",
+    "RefId": "NOM_juice_orange"
+  },
+  {
+    "Name": "Jus de poire",
+    "RefId": "NOM_juice_pear"
+  },
+  {
+    "Name": "Vin de Cyrodil",
+    "RefId": "NOM_wine_02"
+  },
+  {
+    "Name": "Pichet de vin bon marché",
+    "RefId": "NOM_wine_03"
+  },
+  {
+    "Name": "Queue de renard",
+    "RefId": "NOM_wine_04"
+  },
+  {
+    "Name": "Piquette",
+    "RefId": "NOM_wine_08"
+  },
+  {
+    "Name": "Larme de lune",
+    "RefId": "NOM_wine_09"
+  },
+  {
+    "Name": "Essence of Sweet Sorrow",
+    "RefId": "p_perfume_sweet"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_08g"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P1"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P2"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P3"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P4"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P5"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P6"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P7"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P8"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P9"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P10"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P11"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P12"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P13"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P14"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P15"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P16"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P17"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P18"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P19"
+  },
+  {
+    "Name": "Poison",
+    "RefId": "tw_bottle_P20"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PE2"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PE5"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PE10"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PE14"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PE15"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PE18"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PE20"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PO1"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PO3"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PO4"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PO7"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PO9"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PO10"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PO12"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PO14"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PO15"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PO18"
+  },
+  {
+    "Name": "",
+    "RefId": "tw_bottle_PO19"
+  },
+  {
+    "Name": "Snake Oil",
+    "RefId": "tw_bottle_PE21"
+  },
+  {
+    "Name": "Snake Oil",
+    "RefId": "zz_SnakeOil_Pete"
+  },
+  {
+    "Name": "Bière",
+    "RefId": "san_food_beer1b"
+  },
+  {
+    "Name": "Lait de guar",
+    "RefId": "plx_Guar_Milk"
+  },
+  {
+    "Name": "Hydromel nordique",
+    "RefId": "potion_nord_mead"
+  },
+  {
+    "Name": "Poix pyrophore",
+    "RefId": "pyroil_tar_unique"
+  },
+  {
+    "Name": "Huile dwemer avariée",
+    "RefId": "p_dwemer_lubricant00"
+  },
+  {
+    "Name": "Elixir du sauroïde infectieux",
+    "RefId": "verminous_fabricant_elixir"
+  },
+  {
+    "Name": "Elixir du sauroïde mastodonte",
+    "RefId": "hulking_fabricant_elixir"
+  },
+  {
+    "Name": "Elixir de l'Imparfait",
+    "RefId": "p_Imperfect_Elixir"
+  },
+  {
+    "Name": "Enorme choppe breuvage spécial",
+    "RefId": "aa_Big Ass Mug of Special Brew"
+  },
+  {
+    "Name": "Hydromel nordique de Lokken",
+    "RefId": "aa_Lokken_nord_mead"
+  },
+  {
+    "Name": "Hydromel nordique fort Lokken",
+    "RefId": "aa_Lokken_nord_meadstrong"
+  },
+  {
+    "Name": "Guérison du poison pour loups",
+    "RefId": "aa_p_cure_wolf_potion"
+  },
+  {
+    "Name": "Gigantesque chope d'hydromel",
+    "RefId": "aa_Big Ass Mug O' Mead"
+  },
+  {
+    "Name": "Remède pour les mini-berserkers",
+    "RefId": "aa_cure_berserk"
+  },
+  {
+    "Name": "Cidre aux baies de houx",
+    "RefId": "KO_mug_tea_CH"
+  },
+  {
+    "Name": "Huile des marais",
+    "RefId": "NOM_swamp_oil"
+  },
+  {
+    "Name": "Bouteille de cognac vide",
+    "RefId": "a_cr_emptybrandy"
+  },
+  {
+    "Name": "Elixir reconstituant",
+    "RefId": "a_sd_restorative"
+  },
+  {
+    "Name": "Cognac de Cyrodil",
+    "RefId": "a_ct_brandy_trap_01"
+  },
+  {
+    "Name": "Vieux cognac de Dagoth",
+    "RefId": "a_ct_brandy_trap_02"
+  },
+  {
+    "Name": "Exilir de sang de Wolf",
+    "RefId": "a_ak_wolfblood_p"
+  },
+  {
+    "Name": "Sang de Garm",
+    "RefId": "a_ak_garmsblood"
+  },
+  {
+    "Name": "Pierre Sila",
+    "RefId": "sm_weklyndstone_P"
+  },
+  {
+    "Name": "cognac Dwemer",
+    "RefId": "potion_dwemer"
+  },
+  {
+    "Name": "Parfum de choix",
+    "RefId": "JPZ_parfum1"
+  },
+  {
+    "Name": "Parfum de prix",
+    "RefId": "JPZ_parfum2"
+  },
+  {
+    "Name": "Parfum rare et précieux",
+    "RefId": "JPZ_parfum3"
+  },
+  {
+    "Name": "Pot. Regain de Fatigue standard",
+    "RefId": "HF_Eco_p_restore_fatigue_s"
+  },
+  {
+    "Name": "Potion de Guérison standard",
+    "RefId": "HF_Eco_p_restore_health_s"
+  },
+  {
+    "Name": "Potion de Guérison à bas prix",
+    "RefId": "HF_Ecop_restore_health_c"
+  },
+  {
+    "Name": "Potion de Volonté standard",
+    "RefId": "HF_Eco_p_fortify_willpower_s"
+  },
+  {
+    "Name": "Pot. Regain de Magie standard",
+    "RefId": "HF_Eco_p_restore_magicka_s"
+  },
+  {
+    "Name": "Huile de bain à la rose",
+    "RefId": "KO_Bath_Oil"
+  },
+  {
+    "Name": "Huile de bain à la lavande",
+    "RefId": "KO_Bath_Oil_lavender"
+  },
+  {
+    "Name": "Huile de bain au thé vert",
+    "RefId": "KO_Bath_Oil_GTea"
+  },
+  {
+    "Name": "Huile de bain à la vanille",
+    "RefId": "KO_Bath_Oil_vanilla"
+  },
+  {
+    "Name": "Après rasage",
+    "RefId": "KO_aftershave"
+  },
+  {
+    "Name": "Eau de Cologne impériale",
+    "RefId": "KO_Cologne"
+  },
+  {
+    "Name": "Parfum à la lavande",
+    "RefId": "KO_parfuem"
+  },
+  {
+    "Name": "Sels de bain",
+    "RefId": "KO_Bath_Salts"
+  },
+  {
+    "Name": "Lotion au lait de guar",
+    "RefId": "KO_Body_lotion"
+  },
+  {
+    "Name": "Parfum aux fleurs",
+    "RefId": "KO_parfuem_pink"
+  },
+  {
+    "Name": "Parfum à la rose ",
+    "RefId": "KO_parrfuem_red"
+  },
+  {
+    "Name": "Arabesque pour l'Homme",
+    "RefId": "KO_Cologne_2"
+  },
+  {
+    "Name": "Shampooing de la déesse",
+    "RefId": "KO_Shampoo"
+  },
+  {
+    "Name": "Bain moussant",
+    "RefId": "KO_BubbleBath"
+  },
+  {
+    "Name": "Déodorant Désir de Lune",
+    "RefId": "KO_MoonLust"
+  },
+  {
+    "Name": "Déodorant Brume nocturne",
+    "RefId": "KO_EveningHaze"
+  },
+  {
+    "Name": "Déodorant Sombre passion",
+    "RefId": "KO_DarkPassion"
+  },
+  {
+    "Name": "Esprit de sang",
+    "RefId": "KO_Blood Musk"
+  },
+  {
+    "Name": "Potion spéciale de Volce #1",
+    "RefId": "kal_misc_flask_Volce_01"
+  },
+  {
+    "Name": "Potion spéciale de Volce #2",
+    "RefId": "kal_potion_bargain_volcce_02"
+  },
+  {
+    "Name": "Potion spéciale de Volce #3",
+    "RefId": "kal_misc_potion_volce_03"
+  },
+  {
+    "Name": "Potion spéciale de Volce #4",
+    "RefId": "kal_comberry_volce_04"
+  },
+  {
+    "Name": "Potion spéciale de Volce #5",
+    "RefId": "kal_potion_skooma_volce_05"
+  },
+  {
+    "Name": "Potion spéciale de Volce #6",
+    "RefId": "kal_potion_brew_volce_06"
+  },
+  {
+    "Name": "Potion de Chance d'Alessia",
+    "RefId": "kal_p_alessia_intervention"
+  },
+  {
+    "Name": "Mauvais cognac de Cyrodil",
+    "RefId": "kal_TG_piquette"
+  },
+  {
+    "Name": "Fiole hermétiquement fermée",
+    "RefId": "kal_TG_poison"
+  },
+  {
+    "Name": "Une fiole vide",
+    "RefId": "kal_e_fiole_vide"
+  },
+  {
+    "Name": "Une fiole pleine",
+    "RefId": "kal_e_fiole_pleine"
+  },
+  {
+    "Name": "Huile du Centurion géant",
+    "RefId": "kal_pir_huileCenturion"
+  }
+]
