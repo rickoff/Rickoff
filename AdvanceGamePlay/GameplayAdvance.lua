@@ -17,12 +17,18 @@
 tableHelper = require("tableHelper")
 jsonInterface = require("jsonInterface")
 
+local config = {}
+config.limitedstart = 30
+
 local weaponsData = {}
 local armorData = {}
+local potionData= {}
 local weaponsCustomData = {}
 local armorCustomData = {}
+local potionCustomData = {}
 
 local TimerDrawState = tes3mp.CreateTimer("StartCheckDraw", time.seconds(1))
+local TimerPotionState = tes3mp.CreateTimer("StartCheckPotion", time.seconds(config.limitedstart))
 
 local weaponsLoader = jsonInterface.load("WeaponsEcarlate.json")
 for index, item in pairs(weaponsLoader) do
@@ -32,6 +38,11 @@ end
 local armorLoader = jsonInterface.load("ArmorEcarlate.json")
 for index, item in pairs(armorLoader) do
 	table.insert(armorData, {NAME = item.NAME, REFID = item.ID, WEIGTH = item.WEIGTH})
+end
+
+local potionLoader = jsonInterface.load("EcarlatePotions.json")
+for index, item in pairs(potionLoader) do
+	table.insert(potionData, {NAME = item.Name, REFID = item.RefId})
 end
 
 local weaponsCustom = jsonInterface.load("recordstore/weapon.json")
@@ -46,10 +57,17 @@ for index, item in pairs(armorCustom.generatedRecords) do
 	table.insert(armorCustomData, {NAME = Slot.name, REFID = Slot.baseId, CUSTOMID = index})
 end
 
+local potionCustom = jsonInterface.load("recordstore/potion.json")
+for index, item in pairs(potionCustom.generatedRecords) do
+	local Slot = potionCustom.generatedRecords[index]
+	table.insert(potionCustomData, {NAME = Slot.name, CUSTOMID = index})
+end
+
 local GameplayAdvance = {}
 
 GameplayAdvance.StartCheck = function()
 	tes3mp.StartTimer(TimerDrawState)
+	tes3mp.StartTimer(TimerPotionState)	
 	tes3mp.LogAppend(enumerations.log.INFO, "....START TIMER DRAW STATE....")		
 end
 
@@ -60,6 +78,15 @@ function StartCheckDraw()
 		end
 	end
 	tes3mp.RestartTimer(TimerDrawState, time.seconds(1))
+end
+
+function StartCheckPotion()
+	for pid , value in pairs(Players) do
+		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then		
+			GameplayAdvance.LimitedTimer(pid)
+		end
+	end
+	tes3mp.RestartTimer(TimerPotionState, time.seconds(config.limitedstart))
 end
 
 GameplayAdvance.Speed = function(pid)
@@ -77,9 +104,9 @@ GameplayAdvance.Speed = function(pid)
 				
 				if tableHelper.containsValue(weaponsCustomData, refequip, true) then
 					for x, y in pairs(weaponsData) do
-						local RefId = y.REFID	
+						local RefId = string.lower(y.REFID)	
 						for s, v in pairs(weaponsCustomData) do
-							local CustomId = v.REFID
+							local CustomId = string.lower(v.REFID)
 							if RefId == CustomId then						
 								Type = y.TYPE
 							end
@@ -143,26 +170,69 @@ GameplayAdvance.Athletics = function(pid)
 			local refequip = (equipement.refId)
 			if tableHelper.containsValue(armorCustomData, refequip, true) then
 				for x, y in pairs(armorData) do
-					local RefId = y.REFID	
+					local RefId = string.lower(y.REFID)	
 					for s, v in pairs(armorCustomData) do
-						local CustomId = v.REFID
+						local CustomId = string.lower(v.REFID)
 						if RefId == CustomId then						
 							Malus = y.WEIGTH
 						end
 					end
 				end
-			end		
+			end				
 		end		
 		if itemEquipment ~= nil then
 			local Weigth = 0	
 			for x, y in pairs(armorData) do
 				if tableHelper.containsValue(itemEquipment, y.REFID, true) then		
 					Weigth = (Weigth + y.WEIGTH)
-				end
-			end
-			Players[pid].data.skills.Athletics.damage = math.floor((Weigth + Malus) / 3)			
+				end			
+			end		
+			Players[pid].data.skills.Athletics.damage = math.floor((Weigth + Malus) / 3)
+			Players[pid].data.skills.Acrobatics.damage = math.floor((Weigth + Malus) / 3)			
 			Players[pid]:LoadSkills()			
 		end		
+	end
+end
+
+GameplayAdvance.LimitPotion = function(pid, Refid)
+
+	local limitedPotion = Players[pid].data.customVariables.limitedPotion	
+	
+	if limitedPotion == nil then
+		Players[pid].data.customVariables.limitedPotion = 0
+	end
+	
+	if tableHelper.containsValue(potionCustomData, Refid, true) then	
+		if limitedPotion == 0 then				
+			tes3mp.MessageBox(pid, -1, color.Yellow.. "Vous avez pris une potion")	
+			Players[pid].data.customVariables.limitedPotion	= 1
+			return false
+		elseif limitedPotion == 1 then
+			tes3mp.MessageBox(pid, -1, color.Red.. "ATTENTION !!!\n" ..color.Yellow.. " Vous avez déjà pris une potion.")
+			return true
+		end
+	end	
+	
+	if tableHelper.containsValue(potionData, Refid, true) then	
+		if limitedPotion == 0 then
+			tes3mp.MessageBox(pid, -1, color.Yellow.. "Vous avez pris une potion")
+			Players[pid].data.customVariables.limitedPotion	= 1
+			return false
+		elseif limitedPotion == 1 then
+			tes3mp.MessageBox(pid, -1, color.Red.. "ATTENTION !!!\n" ..color.Yellow.. " Vous avez déjà pris une potion.")
+			return true
+		end
+	end	
+end
+
+GameplayAdvance.LimitedTimer = function(pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local limitedPotion = Players[pid].data.customVariables.limitedPotion				
+		if limitedPotion == nil then
+			Players[pid].data.customVariables.limitedPotion = 0	
+		elseif limitedPotion > 0 then
+			Players[pid].data.customVariables.limitedPotion	= 0
+		end
 	end
 end
 
