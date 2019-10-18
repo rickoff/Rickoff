@@ -116,7 +116,7 @@ https://github.com/Skvysh/TES3MP-Scripts/tree/master/Criminals
 
 - do you know minecraft? the same thing in better
 
-**GameplaAdvance**
+**GameplayAdvance**
 
 - The modification of the speed during the release of a weapon adds a notion of Gameplay (walking, running, sprinting), a modification of the athletics and acrobatics according to the weight of the armor worn and the limitation of the use of potion in the time.
 
