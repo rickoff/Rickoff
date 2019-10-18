@@ -14,7 +14,7 @@ description:
 - creation of a corresponding channel in discord
 - displacement of the users on the good channel if it is already present in a vocal channel
 - delete of the unused channel
-- add a role to your discord at the top of your role list, such as voice name. When the player has this role it will be switched to the game's vocal in the corresponding area otherwise it will not be moved.
+- add a role to your discord of your role list, such as voice name. When the player has this role it will be switched to the game's vocal in the corresponding area otherwise it will not be moved.
 
 **DynamicDifficulty**
 
