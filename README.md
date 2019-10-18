@@ -25,10 +25,6 @@ inspired by https://github.com/TES3MP-TeamFOSS/Scripts thank you for your work a
 
 - Add a maximum level for the players
 
-**GameplayAdvance**
-
-- Slow down the player according to the type of weapon used and his weight of armor
-
 **DeathDrop**
 
 - This is the modified version of DeathDrop made for Rickoff so that only gold is left to death except 100
