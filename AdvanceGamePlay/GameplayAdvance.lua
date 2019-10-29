@@ -271,7 +271,7 @@ GameplayAdvance.NoKeyPotion = function(pid)
         local slot = tes3mp.GetQuickKeySlot(pid, index)
         local itemKeys = tes3mp.GetQuickKeyItemId(pid, index)
 
-        if itemKeys ~= "invalid" then
+        if itemKeys ~= "" then
             if tableHelper.containsValue(potionCustomData, string.lower(itemKeys), true) or
             tableHelper.containsValue(potionData, string.lower(itemKeys), true) then
                 shouldReloadKeys = true
