@@ -1,21 +1,42 @@
---GameplayAdvance.lua
---Find in serverCore.lua "function OnServerInit()" and add
+--[[SETUP
+Find in serverCore.lua "function OnServerInit()" and add
 
---       GameplayAdvance.StartCheck()
+       GameplayAdvance.StartCheck()
 
---Find in servercore.lua "function OnPlayerEquipment(pid)" and add
---       GameplayAdvance.Athletics(pid)
--- like this:
---function OnPlayerEquipment(pid)
---	tes3mp.LogMessage(enumerations.log.INFO, "Called \"OnPlayerEquipment\" for " .. logicHandler.GetChatName(pid))
---	eventHandler.OnPlayerEquipment(pid)
---	GameplayAdvance.Athletics(pid)	
---end
---find in evenhandler eventHandler.OnPlayerItemUse = function(pid) and add like this
---		if not GameplayAdvance.LimitPotion(pid, itemRefId) then 
---			tes3mp.SendItemUse(pid)
---		end	
+Find in servercore.lua "function OnPlayerEquipment(pid)" and add
+       GameplayAdvance.Athletics(pid)
+like this:
+function OnPlayerEquipment(pid)
+	tes3mp.LogMessage(enumerations.log.INFO, "Called \"OnPlayerEquipment\" for " .. logicHandler.GetChatName(pid))
+	eventHandler.OnPlayerEquipment(pid)
+	GameplayAdvance.Athletics(pid)	
+end
+find in evenhandler eventHandler.OnPlayerItemUse = function(pid) and add like this
+		if not GameplayAdvance.LimitPotion(pid, itemRefId) then 
+			tes3mp.SendItemUse(pid)
+		end
 
+find in evenhandler evenhandler.OnPlayerQuickKeys and add like this:
+eventHandler.OnPlayerQuickKeys = function(pid)
+    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		if GameplayAdvance.NoKeyPotion(pid) then
+			Players[pid]:SaveQuickKeys()
+		end
+    end
+end
+
+Add in customrecord/potion.json :
+  "permanentRecords":{
+    "placeholder":{
+      "name":"PlaceHolder",
+      "value":0,
+      "weight":0,
+      "autoCalc":0,
+      "icon":"",
+      "model":""
+    }
+  },	
+]]
 --GameplayAdvance.lua
 
 tableHelper = require("tableHelper")
@@ -216,6 +237,7 @@ GameplayAdvance.LimitPotion = function(pid, Refid)
 	
 	if limitedPotion == nil then
 		Players[pid].data.customVariables.limitedPotion = 0
+		limitedPotion = Players[pid].data.customVariables.limitedPotion	
 	end
 	
 	if tableHelper.containsValue(potionCustomData, string.lower(Refid), true) then	
@@ -241,6 +263,38 @@ GameplayAdvance.LimitPotion = function(pid, Refid)
 	end	
 end
 
+GameplayAdvance.NoKeyPotion = function(pid)
+
+    local shouldReloadKeys = false
+
+    for index = 0, tes3mp.GetQuickKeyChangesSize(pid) - 1 do
+        local slot = tes3mp.GetQuickKeySlot(pid, index)
+        local itemKeys = tes3mp.GetQuickKeyItemId(pid, index)
+
+        if itemKeys ~= "invalid" then
+            if tableHelper.containsValue(potionCustomData, string.lower(itemKeys), true) or
+            tableHelper.containsValue(potionData, string.lower(itemKeys), true) then
+                shouldReloadKeys = true
+
+                Players[pid].data.quickKeys[slot] = {
+                    keyType = 0,
+                    itemId = "placeholder"
+                }
+            end
+        end
+    end
+
+    if shouldReloadKeys then
+        logicHandler.RunConsoleCommandOnPlayer(pid, "player->additem placeholder 1")
+        tes3mp.MessageBox(pid, -1, color.Red.. "ATTENTION !!!\n" ..color.Yellow.. " Les potions sont interdite dans les raccourcis!")
+        Players[pid]:LoadQuickKeys() 
+        logicHandler.RunConsoleCommandOnPlayer(pid, "player->removeitem placeholder 1")
+        return false
+    end
+
+    return true
+end
+
 GameplayAdvance.LimitedTimer = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local limitedPotion = Players[pid].data.customVariables.limitedPotion				
@@ -252,4 +306,4 @@ GameplayAdvance.LimitedTimer = function(pid)
 	end
 end
 
-return GameplayAdvance	
+return GameplayAdvance		
