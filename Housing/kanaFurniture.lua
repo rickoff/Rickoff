@@ -1,15 +1,11 @@
 
 -- kanaFurniture - Release 2 - For tes3mp v0.7.0 For Ecarlate server
 
--- REQUIRES: decorateHelp (https://github.com/Atkana/tes3mp-scripts/blob/master/decorateHelp.lua)
+-- REQUIRES: decorateHelp
 
 -- Purchase and place an assortment of furniture
 
-
-
 -- NOTE FOR SCRIPTS: pname requires the name to be in all LOWERCASE
-
-
 
 --[[ INSTALLATION:
 
@@ -34,9 +30,8 @@
 
 
 ]]
-
 local config = {}
-config.whitelist = true --If true, the player must be given permission to place items in the cell that they're in (set using this script's methods, or editing the world.json). Note that this only prevents placement, players can still move/remove items they've placed in the cell.
+config.whitelist = false --If true, the player must be given permission to place items in the cell that they're in (set using this script's methods, or editing the world.json). Note that this only prevents placement, players can still move/remove items they've placed in the cell.
 config.sellbackModifier = 1.0 -- The base cost that an item is multiplied by when selling the items back (0.75 is 75%)
 
 --GUI Ids used for the script's GUIs. Shouldn't have to be edited.
@@ -240,7 +235,7 @@ local furnitureData = {
 {name = "Squelette 1", refId = "contain_corpse00", price = 122}, --120 for weight + 2 for the bonemeal :P
 {name = "Squelette 2", refId = "contain_corpse10", price = 122},
 {name = "Squelette 3", refId = "contain_corpse20", price = 122},
-{name = "mannequin", refId = "armor mannequin", price = 100},
+{name = "Mannequin", refId = "armor mannequin", price = 100},
 
 --Misc
 {name = "", refId = "#option", price = 00},
@@ -308,7 +303,7 @@ local furnitureData = {
 {name = "Barriere en bois", refId = "ex_S_fence_01", price = 100},
 {name = "Hute en bois", refId = "Ex_S_FoodHut", price = 10000},
 {name = "Fenetre", refId = "ex_S_window01", price = 500},
-
+{name = "Puits", refId = "nom_well_common_01", price = 10000},
 
 
 --Personnage (garde , vendeur , ect , ...)
@@ -490,7 +485,7 @@ local function getObject(refIndex, cell)
 	
 	if not LoadedCells[cell] then
 		--TODO: Should ideally be temporary
-		eventHandler.LoadCell(cell)
+		logicHandler.LoadCell(cell)
 	end
 
 	if LoadedCells[cell]:ContainsObject(refIndex)  then 
@@ -595,17 +590,20 @@ local function placeFurniture(refId, loc, cell)
 		rotX = 0, rotY = 0, rotZ = 0
 	}
 	local refIndex =  0 .. "-" .. mpNum
+	local scale = 1
 	
 	WorldInstance:SetCurrentMpNum(mpNum)
 	tes3mp.SetCurrentMpNum(mpNum)
 	
 	if not LoadedCells[cell] then
 		--TODO: Should ideally be temporary
-		eventHandler.LoadCell(cell)
+		logicHandler.LoadCell(cell)
 	end
 
 	LoadedCells[cell]:InitializeObjectData(refIndex, refId)
 	LoadedCells[cell].data.objectData[refIndex].location = location
+	LoadedCells[cell].data.objectData[refIndex].scale = scale
+	table.insert(LoadedCells[cell].data.packets.scale, refIndex)
 	table.insert(LoadedCells[cell].data.packets.place, refIndex)
  
 	for onlinePid, player in pairs(Players) do
@@ -617,6 +615,7 @@ local function placeFurniture(refId, loc, cell)
 			tes3mp.SetObjectMpNum(mpNum)
 			tes3mp.SetObjectPosition(location.posX, location.posY, location.posZ)
 			tes3mp.SetObjectRotation(location.rotX, location.rotY, location.rotZ)
+			tes3mp.SetObjectScale(scale)
 			tes3mp.AddWorldObject()
 			tes3mp.SendObjectPlace()
 		end
@@ -631,7 +630,7 @@ local function removeFurniture(refIndex, cell)
 	--If for some reason the cell isn't loaded, load it. Causes a bit of spam in the server log, but that can't really be helped.
 	--TODO: Ideally this should only be a temporary load
 	if LoadedCells[cell] == nil then
-		eventHandler.LoadCell(cell)
+		logicHandler.LoadCell(cell)
 	end
 	
 	if LoadedCells[cell]:ContainsObject(refIndex) and not tableHelper.containsValue(LoadedCells[cell].data.packets.delete, refIndex) then --Shouldn't ever have a delete packet, but it's worth checking anyway
@@ -833,10 +832,10 @@ showViewOptionsGUI = function(pid, loc)
 	local choice = playerViewOptions[getName(pid)][loc]
 	local fdata = getFurnitureData(choice.refId)
 	
-	message = message .. "Item Name: " .. fdata.name .. " (RefIndex: " .. choice.refIndex .. "). Price: " .. fdata.price .. " (Sell price: " .. getSellValue(fdata.price) .. ")"
+	message = message .. "Nom: " .. fdata.name .. " (RefIndex: " .. choice.refIndex .. "). Prix d'achat: " .. fdata.price .. " (Prix de vente: " .. getSellValue(fdata.price) .. ")"
 	
 	playerViewChoice[getName(pid)] = choice
-	tes3mp.CustomMessageBox(pid, config.ViewOptionsGUI, message, "Sélectionnez;mettre à l'écart;vendre;fermer")
+	tes3mp.CustomMessageBox(pid, config.ViewOptionsGUI, message, "Sélectionnez;Enlever;Vendre;Retour")
 end
 
 local function onViewOptionSelect(pid)
@@ -884,7 +883,7 @@ local function onViewOptionSell(pid)
 		removePlaced(choice.refIndex, cell, true)
 		
 		--Inform the player
-		tes3mp.MessageBox(pid, -1, saleGold .. " L'or a été ajouté à votre inventaire et le mobilier a été retiré de la cellule.")
+		tes3mp.MessageBox(pid, -1, saleGold .. " d'or a été ajouté à votre inventaire et le mobilier a été retiré de la cellule.")
 	else
 		tes3mp.MessageBox(pid, -1, "L'objet semble avoir été retiré.")
 	end
@@ -896,7 +895,7 @@ showViewGUI = function(pid)
 	local cell = tes3mp.GetCell(pid)
 	local options = getPlayerPlacedInCell(pname, cell)
 	
-	local list = "* CLOSE *\n"
+	local list = "* Retour *\n"
 	local newOptions = {}
 	
 	if options and #options > 0 then
@@ -932,29 +931,37 @@ showInventoryOptionsGUI = function(pid, loc)
 	local choice = playerInventoryOptions[getName(pid)][loc]
 	local fdata = getFurnitureData(choice.refId)
 	
-	message = message .. "Item Name: " .. choice.name .. ". Price: " .. fdata.price .. " (Sell price: " .. getSellValue(fdata.price) .. ")"
+	message = message .. "Nom: " .. choice.name .. ". Prix d'achat: " .. fdata.price .. " (Prix de vente: " .. getSellValue(fdata.price) .. ")"
 	
 	playerInventoryChoice[getName(pid)] = choice
-	tes3mp.CustomMessageBox(pid, config.InventoryOptionsGUI, message, "Lieu;Vendre;Fermer")
+	tes3mp.CustomMessageBox(pid, config.InventoryOptionsGUI, message, "Lieu;Vendre;Retour")
 end
 
 local function onInventoryOptionPlace(pid)
 	local pname = getName(pid)
 	local curCell = tes3mp.GetCell(pid)
 	local choice = playerInventoryChoice[pname]
-	
+	local playerAngle = tes3mp.GetRotZ(pid)
+	if playerAngle > 3.0 then
+		playerAngle = 3.0
+	elseif playerAngle < -3.0 then
+		playerAngle = -3.0
+	end
+	local PosX = (100 * math.sin(playerAngle) + tes3mp.GetPosX(pid))
+	local PosY = (100 * math.cos(playerAngle) + tes3mp.GetPosY(pid))
+	local PosZ = tes3mp.GetPosZ(pid)		
 	--First check the player is allowed to place items where they are currently
 	if config.whitelist and not hasPlacePermission(pname, curCell) then
 		--Player isn't allowed
 		tes3mp.MessageBox(pid, -1, "Vous n'avez pas la permission de placer des meubles ici.")
 		return false
 	end
-	
 	--Remove 1 instance of the item from the player's inventory
 	addFurnitureItem(pname, choice.refId, -1, true)
 	
-	--Place the furniture in the world
-	local pPos = {x = tes3mp.GetPosX(pid), y = tes3mp.GetPosY(pid), z = tes3mp.GetPosZ(pid)}
+	--Place the furniture in the world	
+
+	local pPos = {x = PosX, y = PosY, z = PosZ}
 	local furnRefIndex = placeFurniture(choice.refId, pPos, curCell)
 	
 	--Update the database of all placed furniture
@@ -982,7 +989,7 @@ end
 -- INVENTORY (MAIN)
 showInventoryGUI = function(pid)
 	local options = getSortedPlayerFurnitureInventory(pid)
-	local list = "* CLOSE *\n"
+	local list = "* Retour *\n"
 	
 	for i = 1, #options do
 		list = list .. options[i].name .. " (" .. options[i].count .. ")"
@@ -1002,7 +1009,7 @@ end
 -- BUY (MAIN)
 showBuyGUI = function(pid)
 	local options = getAvailableFurnitureStock(pid)
-	local list = "* CLOSE *\n"
+	local list = "* Retour *\n"
 	
 	for i = 1, #options do
 		if (options[i].price == 00) then
@@ -1038,8 +1045,8 @@ end
 
 -- MAIN
 showMainGUI = function(pid)
-	local message = color.Green .. "BIENVENUE DANS LA BOUTIQUE.\n" .. color.Brown .. "\nAcheter pour acheter des meubles.\n Inventaire pour afficher les articles de mobilier que vous possédez.\n Afficher pour afficher une liste de tous les meubles que vous possédez dans la cellule où vous vous trouvez actuellement." .. color.Default
-	tes3mp.CustomMessageBox(pid, config.MainGUI, message, "Acheter;Inventaire;Afficher;Fermer")
+	local message = color.Green.."BIENVENUE DANS LE MAGASIN.\n\n"..color.Yellow.."Acheter "..color.White.."pour acheter des meubles pour votre inventaire de meubles\n\n"..color.Yellow.."Inventaire "..color.White.."pour afficher les articles de meubles que vous possédez\n\n"..color.Yellow.."Afficher "..color.White.."pour afficher la liste de tous les meubles que vous possédez dans la cellule où vous êtes actuellement\n\n"
+	tes3mp.CustomMessageBox(pid, config.MainGUI, message, "Acheter;Inventaire;Afficher;Retour")
 end
 
 local function onMainBuy(pid)
@@ -1068,40 +1075,41 @@ Methods.OnGUIAction = function(pid, idGui, data)
 			onMainView(pid)
 			return true
 		elseif tonumber(data) == 3 then -- Close
-			--Do nothing
+			Players[pid].currentCustomMenu = "menu player"
+			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
 			return true
 		end
 	elseif idGui == config.BuyGUI then -- Buy
 		if tonumber(data) == 0 or tonumber(data) == 18446744073709551615 then --Close/Nothing Selected
 			--Do nothing
-			return true
+			return showMainGUI(pid)
 		else
 			onBuyChoice(pid, tonumber(data))
-			return true
+			return onMainBuy(pid)
 		end
 	elseif idGui == config.InventoryGUI then --Inventory main
 		if tonumber(data) == 0 or tonumber(data) == 18446744073709551615 then --Close/Nothing Selected
 			--Do nothing
-			return true
+			return showMainGUI(pid)
 		else
 			onInventoryChoice(pid, tonumber(data))
-			return true
+			return true 
 		end
 	elseif idGui == config.InventoryOptionsGUI then --Inventory options
 		if tonumber(data) == 0 then --Place
 			onInventoryOptionPlace(pid)
-			return true
+			return onMainInventory(pid)
 		elseif tonumber(data) == 1 then --Sell
 			onInventoryOptionSell(pid)
-			return true
+			return onMainInventory
 		else --Close
 			--Do nothing
-			return true
+			return showMainGUI(pid)
 		end
 	elseif idGui == config.ViewGUI then --View
 		if tonumber(data) == 0 or tonumber(data) == 18446744073709551615 then --Close/Nothing Selected
 			--Do nothing
-			return true
+			return showMainGUI(pid)
 		else
 			onViewChoice(pid, tonumber(data))
 			return true
@@ -1112,11 +1120,13 @@ Methods.OnGUIAction = function(pid, idGui, data)
 			return true
 		elseif tonumber(data) == 1 then --Put away
 			onViewOptionPutAway(pid)
+			return onMainView(pid)
 		elseif tonumber(data) == 2 then --Sell
 			onViewOptionSell(pid)
+			return onMainView(pid)		
 		else --Close
 			--Do nothing
-			return true
+			return showMainGUI(pid)
 		end
 	end
 end
