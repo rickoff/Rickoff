@@ -51,11 +51,10 @@ trad.opt2 = "Ajuster le Nord;Ajuster l'est;Ajuster la hauteur;Tourner X;Tourner 
 ------
 
 local Methods = {}
-
+local TimerDrop = tes3mp.CreateTimer("StartDrop", time.seconds(0.01))
 local playerSelectedObject = {}
 local playerCurrentMode = {}
 local playersTab = { player = {} }
-local TimerDrop = tes3mp.CreateTimer("StartDrop", time.seconds(0.01))
 
 function StartDrop()	
 	for pid, value in pairs(playersTab.player) do
@@ -63,7 +62,7 @@ function StartDrop()
 			local namep = playersTab.player[pid].name
 			for pid1, value in pairs(Players) do	
 				if Players[pid1] ~= nil and Players[pid1]:IsLoggedIn() then			
-					local name = Players[pid].name
+					local name = Players[pid1].name
 					if name == namep then
 						Methods.moveObject(pid1)
 					end
@@ -372,7 +371,8 @@ Methods.moveObject = function(pid)
 			resendPlaceToAll(playerSelectedObject[pname], cell)			
 		end
 		if tes3mp.GetSneakState(pid) then		
-			tes3mp.MessageBox(pid, -1, trad.placeobjet)				
+			tes3mp.MessageBox(pid, -1, trad.placeobjet)	
+			playersTab.player[pid] = nil		
 			return false
 		else
 			tes3mp.RestartTimer(TimerDrop, time.seconds(0.01))	
