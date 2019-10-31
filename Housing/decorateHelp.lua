@@ -45,6 +45,7 @@ trad.drop = "Attraper"
 trad.noselect = "Aucun objet sélectionné."
 trad.nooption = "Objet impossible à modifier."
 trad.placeobjet = "L'objet vient d'être placé."
+trad.warningcell = "Attention l'objet sort de la zone !!!"
 trad.info = "Pour poser l'objet passez en mode discretion."
 trad.opt1 = "Choisir une option. Votre article actuel: "
 trad.opt2 = "Ajuster le Nord;Ajuster l'est;Ajuster la hauteur;Tourner X;Tourner Y;Tourner Z;Monter;Descendre;Est;Ouest;Nord;Sud;Agrandir;Réduire;Attraper;Fermer"
@@ -86,60 +87,62 @@ end
 
 local function resendPlaceToAll(refIndex, cell)
 	local object = getObject(refIndex, cell)
-	
+    local cellSize = 8192
+
 	if not object then
+		tes3mp.MessageBox(pid, -1, trad.noselect)	
 		return false
-	end
-	
-	local refId = object.refId
-	local count = object.count or 1
-	local charge = object.charge or -1
-	local posX, posY, posZ = object.location.posX, object.location.posY, object.location.posZ
-	local rotX, rotY, rotZ = object.location.rotX, object.location.rotY, object.location.rotZ
-	local scale = object.scale
+	else		
+		local refId = object.refId
+		local count = object.count or 1
+		local charge = object.charge or -1
+		local posX, posY, posZ = object.location.posX, object.location.posY, object.location.posZ
+		local rotX, rotY, rotZ = object.location.rotX, object.location.rotY, object.location.rotZ
+		local scale = object.scale
 
-	local refIndex = refIndex
-	
-	local inventory = object.inventory or nil
-	
-	local splitIndex = refIndex:split("-")
-	
-	for pid, pdata in pairs(Players) do
-		if Players[pid]:IsLoggedIn() then
-			--First, delete the original
-			tes3mp.InitializeEvent(pid)
-			tes3mp.SetEventCell(cell)
-			tes3mp.SetObjectRefNumIndex(0)
-			tes3mp.SetObjectMpNum(splitIndex[2])
-			tes3mp.AddWorldObject() --?
-			tes3mp.SendObjectDelete()
-			
-			--Now remake it
-			tes3mp.InitializeEvent(pid)
-			tes3mp.SetEventCell(cell)
-			tes3mp.SetObjectRefId(refId)
-			tes3mp.SetObjectCount(count)
-			tes3mp.SetObjectCharge(charge)
-			tes3mp.SetObjectPosition(posX, posY, posZ)
-			tes3mp.SetObjectRotation(rotX, rotY, rotZ)
-			tes3mp.SetObjectScale(scale)
-			tes3mp.SetObjectRefNumIndex(0)
-			tes3mp.SetObjectMpNum(splitIndex[2])
-			if inventory then
-				for itemIndex, item in pairs(inventory) do
-					tes3mp.SetContainerItemRefId(item.refId)
-					tes3mp.SetContainerItemCount(item.count)
-					tes3mp.SetContainerItemCharge(item.charge)
+		local refIndex = refIndex
+		
+		local inventory = object.inventory or nil
+		
+		local splitIndex = refIndex:split("-")
+		
+		for pid, pdata in pairs(Players) do
+			if Players[pid]:IsLoggedIn() then
+				--First, delete the original
+				tes3mp.InitializeEvent(pid)
+				tes3mp.SetEventCell(cell)
+				tes3mp.SetObjectRefNumIndex(0)
+				tes3mp.SetObjectMpNum(splitIndex[2])
+				tes3mp.AddWorldObject() --?
+				tes3mp.SendObjectDelete()
+				
+				--Now remake it
+				tes3mp.InitializeEvent(pid)
+				tes3mp.SetEventCell(cell)
+				tes3mp.SetObjectRefId(refId)
+				tes3mp.SetObjectCount(count)
+				tes3mp.SetObjectCharge(charge)
+				tes3mp.SetObjectPosition(posX, posY, posZ)
+				tes3mp.SetObjectRotation(rotX, rotY, rotZ)
+				tes3mp.SetObjectScale(scale)
+				tes3mp.SetObjectRefNumIndex(0)
+				tes3mp.SetObjectMpNum(splitIndex[2])
+				if inventory then
+					for itemIndex, item in pairs(inventory) do
+						tes3mp.SetContainerItemRefId(item.refId)
+						tes3mp.SetContainerItemCount(item.count)
+						tes3mp.SetContainerItemCharge(item.charge)
 
-					tes3mp.AddContainerItem()
+						tes3mp.AddContainerItem()
+					end
 				end
-			end
-			
-			tes3mp.AddWorldObject()
-			tes3mp.SendObjectPlace()
-			tes3mp.SendObjectScale()
-			if inventory then
-				tes3mp.SendContainer()
+				
+				tes3mp.AddWorldObject()
+				tes3mp.SendObjectPlace()
+				tes3mp.SendObjectScale()
+				if inventory then
+					tes3mp.SendContainer()
+				end
 			end
 		end
 	end
@@ -162,7 +165,7 @@ local function onEnterPrompt(pid, data)
 	local object = getObject(playerSelectedObject[pname], cell)
 	
 	if not object then
-		tes3mp.MessageBox(pid, -1, trad.noselect)	
+		tes3mp.MessageBox(pid, -1, trad.noselect)		
 		return false
 	else
 		local scaling = object.scale	
@@ -343,9 +346,10 @@ end
 
 Methods.moveObject = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local cellSize = 8192	
 		local cell = tes3mp.GetCell(pid)
 		local pname = tes3mp.GetName(pid)
-		local object = getObject(playerSelectedObject[pname], cell)
+		local object = getObject(playerSelectedObject[pname], cell)	
 		if not object then
 			tes3mp.MessageBox(pid, -1, trad.noselect)	
 			return false
@@ -365,6 +369,18 @@ Methods.moveObject = function(pid)
 			local PosX = (200 * math.sin(playerAngleZ) + tes3mp.GetPosX(pid))
 			local PosY = (200 * math.cos(playerAngleZ) + tes3mp.GetPosY(pid))
 			local PosZ = (200 * math.sin(-playerAngleX) + (tes3mp.GetPosZ(pid) + 100))
+			if tes3mp.IsInExterior(pid) == true then
+				local correctGridX = math.floor(PosX / cellSize)
+				local correctGridY = math.floor(PosY / cellSize)
+
+				if LoadedCells[cell].gridX ~= correctGridX or LoadedCells[cell].gridY ~= correctGridY then
+					PosX = tes3mp.GetPosX(pid)
+					PosY = tes3mp.GetPosY(pid)
+					PosZ = (tes3mp.GetPosZ(pid) - 10000)
+					tes3mp.MessageBox(pid, -1, trad.warningcell)	
+				end
+			end			
+			
 			object.location.posX = PosX
 			object.location.posY = PosY
 			object.location.posZ = PosZ
