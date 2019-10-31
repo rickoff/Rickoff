@@ -65,7 +65,8 @@ config.requiredAdminRank = 1 --The admin rank required to use the admin GUI
 config.allowWarp = true --Whether or not players can use the option to warp to their home
 config.logging = true --If the script reports its own information to the server log
 config.chatColor = "#FFDC00" --The color used for the script's chat messages
-config.blackList = {"in_hlaalu_loaddoor_01", "in_de_shack_door", "ex_nord_door_02", "in_velothismall_ndoor_01", "ex_common_door_01", "in_c_door_arched", "bar_ex_door02", "bar_ex_door03"}
+config.blackList = {"elokiel_kaal_transp", "elokiel_coeur_transp", "elokiel_port_temple", "elokiel_port_temple2", "in_hlaalu_loaddoor_01", "in_de_shack_door", "ex_nord_door_02", "in_velothismall_ndoor_01", "ex_common_door_01",
+ "in_c_door_arched", "bar_ex_door02", "bar_ex_door03", "door_cavern_doors10", "in_r_s_door_01"}
 
 config.AdminMainGUI = 31371
 config.AdminHouseCreateGUI = 31372
@@ -671,7 +672,7 @@ local function unlockChecks(cell)
 		for cellName, ddata in pairs(hdata.doors) do
 			if cellName == cell then
 				if LoadedCells[cell] == nil then
-					eventHandler.LoadCell(cell)
+					logicHandler.LoadCell(cell)
 				end
 				
 				for i, doorData in pairs(ddata) do
@@ -1693,6 +1694,10 @@ Methods.OnGUIAction = function(pid, idGui, data)
             return true
         end  		
 	end
+end
+
+Methods.OnUserMyHouse = function(pid)
+	return onPlayerMainEdit(pid)
 end
 
 Methods.OnUserCommand = function(pid)
