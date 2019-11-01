@@ -46,7 +46,7 @@ trad.noselect = "Aucun objet sélectionné."
 trad.nooption = "Objet impossible à modifier."
 trad.placeobjet = "L'objet vient d'être placé."
 trad.warningcell = "Attention l'objet sort de la zone !!!"
-trad.info = "Pour poser l'objet passez en mode discretion."
+trad.info = "Pour poser l'objet passez en mode discretion.\nPour faire pivoter sortez votre arme ou votre magie."
 trad.opt1 = "Choisir une option. Votre article actuel: "
 trad.opt2 = "Ajuster le Nord;Ajuster l'est;Ajuster la hauteur;Tourner X;Tourner Y;Tourner Z;Monter;Descendre;Est;Ouest;Nord;Sud;Agrandir;Réduire;Attraper;Fermer"
 ------
@@ -350,6 +350,7 @@ Methods.moveObject = function(pid)
 		local cell = tes3mp.GetCell(pid)
 		local pname = tes3mp.GetName(pid)
 		local object = getObject(playerSelectedObject[pname], cell)	
+		local drawState = tes3mp.GetDrawState(pid)
 		if not object then
 			tes3mp.MessageBox(pid, -1, trad.noselect)	
 			return false
@@ -380,7 +381,15 @@ Methods.moveObject = function(pid)
 					tes3mp.MessageBox(pid, -1, trad.warningcell)	
 				end
 			end			
-			
+			if drawState == 1 then
+				local curDegrees = math.deg(object.location.rotZ)
+				local newDegrees = (curDegrees + 1) % 360
+				object.location.rotZ = math.rad(newDegrees)
+			elseif drawState == 2 then
+				local curDegrees = math.deg(object.location.rotX)
+				local newDegrees = (curDegrees + 1) % 360
+				object.location.rotX = math.rad(newDegrees)
+			end			
 			object.location.posX = PosX
 			object.location.posY = PosY
 			object.location.posZ = PosZ
@@ -405,3 +414,4 @@ Methods.OnCommand = function(pid)
 end
 
 return Methods
+
