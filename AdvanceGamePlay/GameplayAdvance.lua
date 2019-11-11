@@ -26,6 +26,9 @@ GameplayAdvance = require("custom.GameplayAdvance")
 Edits to config.lua
 add in config.menuHelperFiles, "MenuAdvance"
 ---------------------------
+FUNCTION:
+/menujoueur in your chat for open menu
+---------------------------
 ]]
 
 tableHelper = require("tableHelper")
