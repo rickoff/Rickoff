@@ -81,7 +81,8 @@ https://github.com/Skvysh/TES3MP-Scripts/tree/master/Criminals
 - The limitation of the use of potion in the time
 - Automatically touch and reduce the jump according to your fatigue
 - Three selectable racing mode
-- Level cap
+- Level cap 50
+- Dynamic Difficulty
 - Talent reduction to dynamic death followed the level
 - Activation of the player to relive or invite to the group (require TeamGroup.lua)
 - Player's time counter
