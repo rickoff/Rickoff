@@ -28,14 +28,11 @@ jsonInterface = require("jsonInterface")
 -------------------------
 local config = {}
 --blacklist cell for protect to spawnadd some native spawn
-config.blackList = {"-3, -1", "-3, -2", "-3, -3", "-4, -3", "-4, -4", "-2, -1", "Mine d'oeufs de Shulk", "Mine d'oeufs de Shulk, antre de la reine", "Jarvik, Port", "Jarvik, Brasseurs, Quartier",
- "Jarvik, Vieux Quartier", "Ald'ruhn, temple", "Gnisis, temple", "Balmora, temple"}
+config.blackList = {"-3, -1", "-3, -2", "-3, -3", "-4, -3", "-4, -4", "-2, -1"}
 
 --blacklist nativespawn creature for protect spawnadd 
-config.blackListCrea = {"raz_reddragon", "raz_bluedragon", "raz_adult_blackdragon", "raz_adult_greendragon", "plx_vamphunter1", "plx_vamphunter2", "plx_vamphunter3", "plx_vamphunter4", "plx_vamphunter5", "plx_wolfhunter1", "plx_wolfhunter2", "plx_wolfhunter3",
- "plx_wolfhunter4", "plx_wolfhunter5", "cait_seagull01", "cait_seagull02", "cait_seagull03", "sparrow1", "sparrow2", "sparrow3", "squirrel1", "squirrel2", "squirrel3",
- "plx_butterfly", "plx_butterfly2", "chickadee", "goldfinch1", "goldfinch2", "robin", "slaughterfish", "slaughterfish_small", "plx_razorfish", "plx_aqua netch", "plx_seahorse",
- "dreugh", "plx_slaughtershark", "bm_wolf_grey", "bm_wolf_red", "ancestor_ghost_summon", "atronach_flame_summon", "atronach_frost_summon", "atronach_storm_summon",
+config.blackListCrea = {"goldfinch1", "goldfinch2", "robin", "slaughterfish", "slaughterfish_small", "plx_razorfish", "plx_aqua netch", "plx_seahorse",
+ "dreugh", "bm_wolf_grey", "bm_wolf_red", "ancestor_ghost_summon", "atronach_flame_summon", "atronach_frost_summon", "atronach_storm_summon",
  "bm_bear_black_summon", "bm_wolf_grey_summon", "bonelord_summon", "bonewalker_summon", "centurion_sphere_summon", "clannfear_summon", "daedroth_summon",
  "dremora_summon", "fabricant_summon", "golden saint_summon", "hunger_summon", "scamp_summon", "skeleton_summon", "winged twilight_summon", "bm_wolf_bone_summon", "cait_shark02"}
  
@@ -47,7 +44,7 @@ config.timerPrice = 3600
 --price when players kill a boss
 config.count = 5000
 --list id boss
-config.bosses = {"Ecarlate_bandit_04", "Ecarlate_bandit_03", "Ecarlate_bandit_02", "Ecarlate_bandit_01"}
+config.bosses = {""}
 --timer for respawn all npc and creature in cell
 config.timerRespawn = 1800
 HunterWorld = {}
@@ -64,8 +61,8 @@ HunterWorld.TimerEventWorld = function(eventStatus)
 	local rando2
 
 	function EventSpawn()	
-		local cellTable = jsonInterface.load("EcarlateCreaturesSpawn.json")
-		local creatureTable = jsonInterface.load("EcarlateCreatures.json")
+		local cellTable = jsonInterface.load("CreaturesSpawn.json")
+		local creatureTable = jsonInterface.load("CreaturesVanilla.json")
 		local creatureRefId
 		local creaturename
 		local cellId
