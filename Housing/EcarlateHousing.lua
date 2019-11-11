@@ -25,6 +25,10 @@ FUNCTION:
 
 EcarlateFurniture = require("custom.EcarlateFurniture")
 
+local trad = {}
+trad.WaitJail = color.White .. "Vous êtes en prison pour une durée de " .. color.Red .. "5 " .. color.White .. "minutes"
+trad.StopJail = color.White .. "Votre temps de " .. color.Red .. "prison " .. color.White .. "vient de se terminer"
+
 local config = {}
 
 config.defaultPrice = 5000 --The price a house defaults to when it's created
@@ -2214,13 +2218,13 @@ Methods.PunishPrison = function(pid) -- Used to a player into the prison
 		end
 		local TimerJail = tes3mp.CreateTimer("EventJail", time.seconds(300))
 		tes3mp.StartTimer(TimerJail)
-		tes3mp.MessageBox(pid, -1, message.WaitJail)		
+		tes3mp.MessageBox(pid, -1, trad.WaitJail)		
 		function EventJail()
 			for pid, player in pairs(Players) do
 				if Players[pid] ~= nil and player:IsLoggedIn() then
 					if Players[pid].data.customVariables.Jailer == true then
 						Players[pid].data.customVariables.Jailer = false
-						tes3mp.MessageBox(pid, -1, message.StopJail)
+						tes3mp.MessageBox(pid, -1, trad.StopJail)
 						tes3mp.SetCell(pid, "-3, -2")  
 						tes3mp.SetPos(pid, -23974, -15787, 505)
 						tes3mp.SetRot(pid, 0, 0)
