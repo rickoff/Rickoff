@@ -16,6 +16,9 @@ EcarlateSoul = require("custom.EcarlateSoul")
 Edits to config.lua
 add in config.menuHelperFiles, "MenuSoul"
 ---------------------------
+FUNCTION:
+/MenuSoul in your chat for open menu
+---------------------------
 ]]
 
 jsonInterface = require("jsonInterface")
