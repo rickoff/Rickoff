@@ -14,6 +14,8 @@ resfresh all creature and npc after a timers
 INSTALLATION:
 Save the file as HunterWorld.lua inside your server/scripts/custom folder.
 
+Save the file as CreaturesVanilla.json and CreatureSpawn.json inside your server/data folder.
+
 Edits to customScripts.lua
 HunterWorld = require("custom.HunterWorld")
 ]]
@@ -194,7 +196,7 @@ HunterWorld.OnCreatureSpawn = function(eventStatus, pid, cellDescription, object
 				if not tableHelper.containsValue(config.blackList, cellDescription) then
 					if not tableHelper.containsValue(config.blackListCrea, ObjectRefid) then		
 
-						local creatureTable = jsonInterface.load("EcarlateCreaturesLigth.json")
+						local creatureTable = jsonInterface.load("CreaturesVanilla.json")
 						local creatureRefId
 						local creaturename
 				
