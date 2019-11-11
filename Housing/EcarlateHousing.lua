@@ -1018,6 +1018,7 @@ showAllHousesList = function(pid)
 	for houseName, v in pairs(housingData.houses) do
 		table.insert(options, houseName)
 	end
+	table.sort(options, function(a,b) return a<b end)
 	for i=1, #options do
 		list = list .. options[i]
 		if not (i == #options) then
@@ -1048,6 +1049,7 @@ showSellHousesList = function(pid)
 			end
 		end
 	end
+	table.sort(options, function(a,b) return a<b end)	
 	for i=1, #options do
 		list = list .. options[i]
 		if not (i == #options) then
@@ -1072,6 +1074,7 @@ showShopHousesList = function(pid)
 			table.insert(options, houseName)
 		end
 	end
+	table.sort(options, function(a,b) return a<b end)	
 	for i=1, #options do
 		list = list .. options[i]
 		if not (i == #options) then
