@@ -76,7 +76,16 @@ https://github.com/Skvysh/TES3MP-Scripts/tree/master/Criminals
 
 **GameplayAdvance**
 
-- The modification of the speed during the release of a weapon adds a notion of Gameplay (walking, running, sprinting), a modification of the athletics and acrobatics according to the weight of the armor worn and the limitation of the use of potion in the time.
+- The modification of the speed during the release of a weapon adds a notion of Gameplay (walking, running, sprinting)
+- A modification of the athletics and acrobatics according to the weight of the armor worn
+- The limitation of the use of potion in the time
+- Automatically touch and reduce the jump according to your fatigue
+- Three selectable racing mode
+- Level cap
+- Talent reduction to dynamic death followed the level
+- Activation of the player to relive or invite to the group (require TeamGroup.lua)
+- Player's time counter
+- Object limitation effect enchanted for recordcustom
 
 **GroupTeam**
 
