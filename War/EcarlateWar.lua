@@ -1246,12 +1246,15 @@ Methods.OnPlayerSendMessage = function(eventStatus, pid, message)
 
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then 
 		tes3mp.LogMessage(enumerations.log.INFO, logicHandler.GetChatName(pid) .. ": " .. message) 
-		local RankP = tonumber(Players[pid].data.ecWar.rang)
+		local RankP = Players[pid].data.ecWar.team
         -- Is this a chat command? If so, pass it over to the commandHandler
-        if not message:sub(1, 1) == '/' then
+		if message:sub(1, 1) == '/' then
+			local command = (message:sub(2, #message)):split(" ")
+			commandHandler.ProcessCommand(pid, command)
+		else
 			local message1 = color.Grey .. logicHandler.GetChatName(pid) .. color.White .. " : " .. message
 
-            if Players[pid]:IsServerStaff() then 
+			if Players[pid]:IsServerStaff() then 
 				if Players[pid]:IsServerOwner() then
 					message1 = config.rankColors.serverOwner .. "[Adm] " .. message1 .. "\n"
 				elseif Players[pid]:IsAdmin() then
@@ -1261,19 +1264,19 @@ Methods.OnPlayerSendMessage = function(eventStatus, pid, message)
 				end
 			else
 				if RankP == 4 then
-					message1 = config.rankColors.pelerin .. "[Pel] ".. message1	.. "\n"
+					message1 = color.DarkGreen .. "[Pel] ".. message1	.. "\n"
 				elseif RankP == 1 then
-					message1 = config.rankColors.temple .. "[Tem] ".. message1 .. "\n"
+					message1 = color.DarkCyan .. "[Tem] ".. message1 .. "\n"
 				elseif RankP == 2 then
-					message1 = config.rankColors.empire .. "[Emp] ".. message1 .. "\n"
+					message1 = color.DarkRed .. "[Emp] ".. message1 .. "\n"
 				elseif RankP == 3 then
-					message1 = config.rankColors.renegat .. "[Ren] ".. message1	.. "\n"			
+					message1 = color.DarkBrown .. "[Ren] ".. message1	.. "\n"			
 				end
 			end
 			if message:sub(1, 1) == '!' then			
-				tes3mp.SendGlobalMessage(pid, message1, true)
+				Methods.SendGlobalMessage(pid, message1, true)
 			else
-				tes3mp.SendLocalMessage(pid, message1, true)
+				Methods.SendLocalMessage(pid, message1, true)
 			end
 
 			return customEventHooks.makeEventStatus(false,false)	
@@ -1291,7 +1294,7 @@ end
 
 Methods.SendLocalMessage = function(pid, message, useName)
 	local playerName = Players[pid].name
-	
+	local localChatCellRadius = 1	
 	-- Get top left cell from our cell
 	local myCellDescription = Players[pid].data.location.cell
 	
@@ -1311,18 +1314,18 @@ Methods.SendLocalMessage = function(pid, message, useName)
 				-- send message to each player in cell
 				if LoadedCells[tempCell] ~= nil then
 					if useName == true then
-						SendMessageToAllInCell(tempCell, message.."\n")
+						SendMessageToAllInCell(tempCell, message)
 					else
-						SendMessageToAllInCell(tempCell, message.."\n")
+						SendMessageToAllInCell(tempCell, message)
 					end
 				end
 			end
 		end
 	else
 		if useName == true then
-			SendMessageToAllInCell(myCellDescription, message.."\n")
+			SendMessageToAllInCell(myCellDescription, message)
 		else
-			SendMessageToAllInCell(myCellDescription, message.."\n")
+			SendMessageToAllInCell(myCellDescription, message)
 		end
 	end
 end
@@ -1344,10 +1347,10 @@ Methods.OnPlayerConnect = function(eventStatus, pid)
 		message = "" .. color.Blue .. "Bienvenue " .. playerName .. ".\nVous avez " .. color.Yellow .. tostring(config.loginTime) .. color.Blue .. " secondes pour vous "
 
 		if Players[pid]:HasAccount() then
-			message = message .. " connecter.\n"
+			message = message .. "connecter.\n"
 			guiHelper.ShowLogin(pid)
 		else
-			message = message .. " enregistrer.\n"
+			message = message .. "enregistrer.\n"
 			guiHelper.ShowRegister(pid)
 		end
 
@@ -1357,7 +1360,7 @@ Methods.OnPlayerConnect = function(eventStatus, pid)
 			time.seconds(config.loginTime), "i", pid)
 		tes3mp.StartTimer(Players[pid].loginTimerId)
 
-		return customEventHooks.makeEventStatus(false,false)	
+		return customEventHooks.makeEventStatus(false,true)	
 	end
 end
 
