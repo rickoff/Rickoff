@@ -1,17 +1,16 @@
---GoldBank.lua by RickOff for tes3mp 0.7.0
+--[[
+GoldBank by Rickoff
+tes3mp 0.7.0
+---------------------------
+DESCRIPTION :
+Stocker votre or en banque
+---------------------------
+INSTALLATION:
+Save the file as GoldBank.lua inside your server/scripts/custom folder.
 
---[[ INSTALLATION
-1) Save this file as "GoldBank.lua" in mp-stuff/scripts
-
-2) Add [ GoldBank = require("GoldBank") ] to the top of server.lua
-
-3) Add the following to the elseif chain for commands in "OnPlayerSendMessage" inside server.lua
-[		elseif cmd[1] == "bank" then
-			GoldBank.showMainGUI(pid)
-]	
-		
-4) Add the following to OnGUIAction in server.lua
-	[ if GoldBank.OnGUIAction(pid, idGui, data) then return end ]
+Edits to customScripts.lua
+GoldBank = require("custom.GoldBank")
+---------------------------
 ]]
 -- ===========
 --MAIN CONFIG
@@ -52,7 +51,7 @@ GoldBank.showMainGUI = function(pid)
 			goldPlayerCount = Players[pid].data.inventory[goldLoc].count
 		end
 		local message = color.Orange .. "BIENVENUE DANS LA BANQUE ECARLATE.\n\n" .. color.Yellow .. "Déposer :" .. color.White .. " pour transférer l'or de votre inventaire à la banque.\n\n" .. color.Yellow .. "Retirer :" .. color.White .. " pour retirer l'or de votre banque dans votre inventaire.\n\n" .. color.Yellow .. "Banque : " .. color.Red .. goldBankCount .. "\n\n" .. color.Yellow .. "Inventaire : " .. color.Red .. goldPlayerCount .. "\n\n" .. color.Yellow .. "Taxe : " .. color.Red .. config.TaxGold .. " %\n\n"
-		tes3mp.CustomMessageBox(pid, config.MainGUI, message, "Déposer;Retirer;Fermer")
+		tes3mp.CustomMessageBox(pid, config.MainGUI, message, "Déposer;Retirer;Retour")
 	end
 end
 
@@ -65,7 +64,9 @@ GoldBank.OnGUIAction = function(pid, idGui, data)
             GoldBank.onViewOptionRemove(pid)
             return true	
         elseif tonumber(data) == 2 then --Exit
-			return true	
+			Players[pid].currentCustomMenu = "menu player"
+			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
+			return true
         end
     elseif idGui == config.BankAddGold then
         if tonumber(data) == 0 or tonumber(data) == 18446744073709551615 then --Close/Nothing Selected
@@ -123,7 +124,7 @@ GoldBank.PlayerAddGold = function(pid, count)
 						Players[pid].data.customVariables.goldBank = Players[pid].data.customVariables.goldBank + totalCount
 					end
 					local itemref = {refId = "gold_001", count = count, charge = -1}			
-					Players[pid]:Save()
+					Players[pid]:SaveToDrive()
 					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)					
 				end
 			end
@@ -150,11 +151,17 @@ GoldBank.PlayerRemoveGold = function(pid, count)
 			end
 			Players[pid].data.customVariables.goldBank = Players[pid].data.customVariables.goldBank - count
 			local itemref = {refId = "gold_001", count = count, charge = -1}			
-			Players[pid]:Save()
+			Players[pid]:SaveToDrive()
 			Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
 			tes3mp.MessageBox(pid, -1, color.White.."Vous avez récupéré "..color.Yellow..count..color.White.." pièces d'or de la banque.")			
 		end
 	end	
 end
+
+customCommandHooks.registerCommand("bank", GoldBank.showMainGUI)
+customEventHooks.registerHandler("OnGUIAction", function(eventStatus, pid, idGui, data)
+	if GoldBank.OnGUIAction(pid, idGui, data) then return end 
+end)
+
 
 return GoldBank
