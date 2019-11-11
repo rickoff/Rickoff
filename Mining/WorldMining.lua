@@ -1,118 +1,21 @@
 --[[
-WorldMining.lua by DiscorPeter, RickOff
+WorldMining by Rickoff and Discordpeter
+tes3mp 0.7.0
+---------------------------
+DESCRIPTION :
+Miner, fabriquer, construire
+---------------------------
+INSTALLATION:
+Save the file as WorldMining.lua inside your server/scripts/custom folder.
 
-1)add WorldMining.lua in mpstuff/script folder
-
-2) Add [ WorldMining = require("WorldMining") ] to the top of serverCore.lua
-
-4) add to eventHandlers.lua OnActivate under if doesObjectHaveActivatingPlayer then :
-	if isValid == true and objectRefId and tes3mp.IsInExterior(pid) then
-		isValid = not WorldMining.OnHitActivate(pid, objectUniqueIndex, objectRefId, tes3mp.GetObjectRefNum(index), tes3mp.GetObjectMpNum(index))
-	end 
-
-5) add to eventHandler.lua OnObjectDelete under for index = 0, tes3mp.GetObjectListSize() - 1 do :
-	if isValid == true then
-		isValid = not WorldMining.OnObjectDelete(pid)
-	end
-	
-6) copy miscellaneous recordStore 
-
-7) add rocks.json and flora.json in mpstuff/data folder	
-
-8) add in menu.lua :
-Menus["menu prison house"] = {
-    text = {
-		color.Red .. "WARNING !!!",
-		color.White .. "\n\nYou just committed a crime against the server.",
-		color.Red .. "\n\ n\nTENTATIVE OF GLITCH !!!",
-		color.Yellow .. "\n\nA message to was recorded in the server logs to warn the moderation",
-		color.White .. "\n\nFeel attention next time",
-		color.Yellow .. "\n\nThe object to was disabled only for you during this game session",
-		color.White .. "\n\nTo make it reappear you can disconnect and reconnect",
-		color.Cyan .. "\n\nGood play, fairplay and role play.",
-		color.Red .. "\n\n\nBy continuing you agree not to duplicate this action?"
-	},
-    buttons = {                        
-        { caption = "yes",
-            destinations = {
-                menuHelper.destinations.setDefault(nil,
-                { 
-                    menuHelper.effects.runGlobalFunction("WorldMining", "PunishPrison", 
-                    {
-                        menuHelper.variables.currentPid(), menuHelper.variables.currentPid()
-                    })					
-                })
-            }
-        },             
-        { caption = "no",
-            destinations = {
-                menuHelper.destinations.setDefault(nil,
-                { 
-                    menuHelper.effects.runGlobalFunction("WorldMining", "PunishKick", 
-                    {
-                        menuHelper.variables.currentPid(),
-                    })					
-                })
-            }
-        }		
-    }
-}
-9) copy the provided jsons all over the place
-
-10) add to eventHandlers OnActivate under if doesObjectHaveActivatingPlayer then
-
-	activatingPid = tes3mp.GetObjectActivatingPid(index)
-	debugMessage = debugMessage .. logicHandler.GetChatName(activatingPid)
-	
-		--eventHandler OnActivate exchange for this door with uniqueIndex
-		-- if its door and uniqueIndex is in placed list in WorldInstance
-	if objectRefId and objectRefId == "ex_nord_door_01" then
-		local cell = tes3mp.GetCell(pid)
-		if WorldInstance.data.customVariables.WorldMining.placed[cellDescription] ~= nil then
-			if WorldInstance.data.customVariables.WorldMining.placed[cellDescription][objectUniqueIndex] then
-				WorldMining.OnDoor(pid, objectUniqueIndex)
-				isValid = false
-			else
-				print("door was not in worldinstance")
-			end
-		end
-	end
-	
-11) change to contentFixers.lua add AddpreexistingObjects function
-
-function contentFixer.AddPreexistingObjects(cellDescription)
-	
-	if WorldInstance.data.customVariables ~= nil and WorldInstance.data.customVariables.WorldMining ~= nil and WorldInstance.data.customVariables.WorldMining.placed ~= nil then
-		local placed = WorldInstance.data.customVariables.WorldMining.placed
-		if placed[cellDescription] ~= nil then
-			local unique = {}
-			
-			for refIndex, object in pairs(placed[cellDescription]) do
-				--place kanaFurniture
-				unique[refIndex] = logicHandler.CreateObjectAtLocation(cellDescription, object.loc, object.refId, "place")
-			end
-			
-			for refIndex, uniqueId in pairs(unique) do
-				-- swap positions in table after we created them
-				WorldInstance.data.customVariables.WorldMining.placed[cellDescription][uniqueId] = WorldInstance.data.customVariables.WorldMining.placed[cellDescription][refIndex]
-				WorldInstance.data.customVariables.WorldMining.placed[cellDescription][refIndex] = nil
-			end
-			
-		LoadedCells[cellDescription].forceActorListRequest = true
-		end
-	end
-	
-end
-
-12) add to logicHandler.LoadCell under LoadedCells[cellDescription]:CreateEntry()
-		contentFixer.AddPreexistingObjects(cellDescription)
-			
-13) Add the following to OnGUIAction in serverCore.lua
-	[ if WorldMining.OnGUIAction(pid, idGui, data) then return end ]
-14) Add the following to the end of  OnServerPostInit in serverCore.lua
-	[ WorldMining.OnServerPostInit() ]
-end	
+Edits to customScripts.lua
+WorldMining = require("custom.WorldMining")
+---------------------------
+FUNCTION:
+/mining in your chat for open menu
+---------------------------
 ]]
+
 tableHelper = require("tableHelper")
 logicHandler = require("logicHandler")
 jsonInterface = require("jsonInterface")
@@ -153,13 +56,10 @@ message.AddFurn = color.White.." a était ajouté à votre inventaire de fournit
 message.SelectFurn = color.White.."l'objet a était sélectionné utilisez /dh pour le déplacer"
 message.InvOption = "Placer;Vendre;Retour" 
 message.ViewOption = "Sélectionner;Récuperer;Vendre;Retour"
-message.ChooseDoor = color.White.."Choisissez l'une de vos portes"
 message.OnBuild = color.White.."Choisissez une option"
-message.OnBuildOption = "Créatures;Pnjs;Meubles;Intèrieurs;Rochers;Plantes;Extèrieurs;Construction;Portes;Retour"
-message.WhereDoor = "Où cette porte devrait-elle aller?"
+message.OnBuildOption = "Meubles;Construction;Retour"
 message.WelcomeFurn = color.Green.."BIENVENUE DANS L'ATELIER.\n\n"..color.Yellow.."Acheter "..color.White.."pour acheter des objets pour votre réserve\n\n"..color.Yellow.."Inventaire "..color.White.."pour afficher les articles de meubles que vous possédez\n\n"..color.Yellow.."Afficher "..color.White.."pour afficher la liste de tous les meubles que vous possédez dans la cellule où vous êtes actuellement\n\n"
 message.MainChoice = "Inventaire;Afficher;Construction;Materiel;Retour"
-message.MyDoor = "Nouveau donjon;Une de mes portes;Supprimer porte;Retour"
 message.NoCraft = "Vous n'avez pas assez de roches et de bois\n"
 message.CraftOption = "Fabriquer;Retour"
 message.Wood = "Bois: "
@@ -177,29 +77,9 @@ local craftTableFlora = {}
 local craftTable = {}
 local furnitureData = {}
 
-local furnLoader = jsonInterface.load("npc.json")
-for index, item in pairs(furnLoader) do
-	table.insert(furnitureData, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "npc", need = "spawn"})
-end
-
-local furnLoader = jsonInterface.load("creature.json")
-for index, item in pairs(furnLoader) do
-	table.insert(furnitureData, {name = item.name, refId = item.id, material = item.material, price = item.price, tip = "creature", need = "spawn"} )
-end
-
-local furnLoader = jsonInterface.load("cave.json")
-for index, item in pairs(furnLoader) do
-	table.insert(furnitureData, {name = item.id, refId = item.id, material = item.material, price = item.price, tip = "dungeon", need = "place"} )
-end
-
 local furnLoader = jsonInterface.load("furn.json")
 for index, item in pairs(furnLoader) do
 	table.insert(furnitureData, {name = item.id, refId = item.id, material = item.material, price = item.price, tip = "furn", need = "place"} )
-end
-
-local furnLoader = jsonInterface.load("exterior.json")
-for index, item in pairs(furnLoader) do
-	table.insert(furnitureData, {name = item.id, refId = item.id, material = item.material, price = item.price, tip = "exterior", need = "place"} )
 end
 
 local furnLoader = jsonInterface.load("static.json")
@@ -211,14 +91,12 @@ local rocksLoader = jsonInterface.load("rocks.json")
 for index, item in pairs(rocksLoader) do
 	table.insert(craftTableRock, {name = item.id, refId = item.id, material = item.material, price = item.price, tip = "rocks"})
 	table.insert(craftTable, {name = item.id, refId = item.id, material = item.material, price = item.price, tip = "rocks"})
-	table.insert(furnitureData, {name = item.id, refId = item.id, material = item.material, price = item.price, tip = "rocks", need = "place"} )
 end
 
 local floreLoader = jsonInterface.load("flora.json")
 for index, item in pairs(floreLoader) do
 	table.insert(craftTableFlora, {name = item.id, refId = item.id, material = item.material, price = item.price, tip = "flora"})
 	table.insert(craftTable, {name = item.id, refId = item.id, material = item.material, price = item.price, tip = "flora"})
-	table.insert(furnitureData, {name = item.id, refId = item.id, material = item.material, price = item.price, tip = "flora", need = "place"} )
 end
 
 local WorldMining = {}
@@ -302,7 +180,7 @@ WorldMining.OnGUIAction = function(pid, idGui, data)
 	elseif idGui == config.InventoryOptionsGUI then --Inventory options
 		if tonumber(data) == 0 then --Place
 			onInventoryOptionPlace(pid)
-			return onMainInventory
+			return true
 		elseif tonumber(data) == 1 then --Sell
 			onInventoryOptionSell(pid)
 			return onMainInventory
@@ -332,52 +210,13 @@ WorldMining.OnGUIAction = function(pid, idGui, data)
 		end
 	elseif idGui == 1334 then
 		if tonumber(data) == 0 then
-			--WorldMining.showBuyGUIall(pid,"creature")
-			return showMainGUI(pid)
-		elseif tonumber(data) == 1 then
-			--WorldMining.showBuyGUIall(pid,"npc")
-			return showMainGUI(pid)
-		elseif tonumber(data) == 2 then
 			WorldMining.showBuyGUIall(pid,"furn")
-		elseif tonumber(data) == 3 then
-			WorldMining.showBuyGUIall(pid,"dungeon")
-		elseif tonumber(data) == 4 then
-			WorldMining.showBuyGUIall(pid,"rocks")
-		elseif tonumber(data) == 5 then
-			WorldMining.showBuyGUIall(pid,"flora")
-		elseif tonumber(data) == 6 then
-			WorldMining.showBuyGUIall(pid,"exterior")
-		elseif tonumber(data) == 7 then
+		elseif tonumber(data) == 1 then
 			WorldMining.showBuyGUIall(pid,"static")
-		elseif tonumber(data) == 8 then -- door
-			--tes3mp.CustomMessageBox(pid, 1335, message.WhereDoor, message.MyDoor, message.Return)
-			return showMainGUI(pid)
-		elseif tonumber(data) == 9 then -- return
+		elseif tonumber(data) == 2 then -- return
 			return showMainGUI(pid)
 		end
 	elseif idGui == 1335 then
-		if tonumber(data) == 0 then --new door dungeon
-			newDungeon(pid)
-		elseif tonumber(data) == 1 then --create exist door
-			toDoor(pid)
-		elseif tonumber(data) == 2 then -- delete exist door
-			DeleteDoor(pid)
-		elseif tonumber(data) == 3 then -- return
-			return WorldMining.OnBuild(pid)
-		end
-	elseif idGui == 1336 then
-		if Players[pid].DoorOptions[tonumber(data)] ~= nil then
-			toDoorSecond(pid, tonumber(data))
-		else
-			print("error with dooroptions")
-		end
-	elseif idGui == 1337 then
-		if Players[pid].DoorOptions[tonumber(data)] ~= nil then
-			toDeleteDoor(pid, tonumber(data))
-		else
-			print("error with dooroptions")
-		end		
-	elseif idGui == 1338 then
 		if tonumber(data) == 0 then
 			craft(pid)
 		elseif tonumber(data) == 1 then
@@ -394,186 +233,7 @@ end
 WorldMining.OnBuild = function(pid)
 	tes3mp.CustomMessageBox(pid, 1334, message.OnBuild, message.OnBuildOption)
 end
-
-newDungeon = function(pid) --just create some doors in interiors
-	local interiors = jsonInterface.load("exampleInteriors.json")
-	local dungeonCell
-	local counter = 0
-	local currentCell = tes3mp.GetCell(pid)
-	local pname = getName(pid)
-	-- on interior get necessary variables
-	-- choose any interior
-	-- if player is in interior take this one
-	if tes3mp.IsInExterior(pid) == false then
-		dungeonCell = tes3mp.GetCell(pid)
-	else
-		-- else choose from list --make a good example list
-		-- get the one with smallest dungeonCount from example list
-		for index, item in pairs(interiors) do
-			if item.dungeonCount < counter or counter == 0 then
-				counter = item.dungeonCount
-				dungeonCell = index
-			end
-		end
-	end
-
-	-- save which examples have been taken how many times
-	-- increase dungeoncount
-	if interiors[dungeonCell] == nil then interiors[dungeonCell] = {} end
-	if interiors[dungeonCell].dungeonCount == nil then
-		interiors[dungeonCell].dungeonCount = 1
-	else
-		interiors[dungeonCell].dungeonCount = interiors[dungeonCell].dungeonCount + 1
-	end
-	-- save interiors json back inter
-	jsonInterface.save("exampleInteriors.json", interiors)
-	--now we got a cell for it
-	-- get location in that cell
-	local Ilse = interiors[dungeonCell].dungeonCount + 1
-	local dungeonLocation = {posX = 0, posY = 0, posZ = 100000 * Ilse,  rotX = 0, rotY = 0, rotZ= 0 }	
-	--save door into json for OnActivate
-	--save loc
-	local pPos = {posX = tes3mp.GetPosX(pid), posY = tes3mp.GetPosY(pid), posZ = tes3mp.GetPosZ(pid),  rotX = tes3mp.GetRotX(pid), rotY = 0, rotZ= tes3mp.GetRotZ(pid) }
-	--save door with loc and owner into json
-	--plus desination
-	myDoor = {location = pPos, owner = pname, destination = {cell = dungeonCell, location = dungeonLocation}}	
-	local doors = jsonInterface.load("createdDoors.json")
-	if doors[currentCell] == nil then doors[currentCell] = {} end
-	table.insert(doors[currentCell], myDoor)
-	jsonInterface.save("createdDoors.json", doors)
-	--spawn door 
-	local furnRefIndex = placeFurniture("ex_nord_door_01", myDoor.location, currentCell, "place")	--Update the database of all placed furniture
-	-- save to all placed ones
-	addPlaced(furnRefIndex, currentCell, pname, "ex_nord_door_01", true, myDoor.location, "place")
-	--Set the placed item as the player's active object for decorateHelp to use
-	-- dont do this since we spawn him in new cell instead
-	--decorateHelp.SetSelectedObject(pid, furnRefIndex)
-	--spawn plate in this cell
-	local furnRefIndex = placeFurniture("ex_de_docks_end", dungeonLocation, dungeonCell, "place")	--Update the database of all placed furniture
-	-- save to all placed ones
-	addPlaced(furnRefIndex, dungeonCell, pname, "ex_de_docks_end", true, dungeonLocation, "place")
-	--Set the placed item as the player's active object for decorateHelp to use
-	decorateHelp.SetSelectedObject(pid, furnRefIndex)
-	--spawn player on top of plate	
-	tes3mp.SetCell(pid, dungeonCell)
-	tes3mp.SendCell(pid)
-	tes3mp.SetPos(pid, dungeonLocation.posX, dungeonLocation.posY, dungeonLocation.posZ + 10)
-	tes3mp.SetRot(pid, 0, 0)
-	tes3mp.SendPos(pid)	
-	-- send fancy message
-end
 	
-toDoor = function(pid)
-	--on players door.
-	--check json for a list of existing doors
-	local doors = jsonInterface.load("createdDoors.json")
-	
-	local list = ""
-	local count = 0
-	local pname = getName(pid)
-	Players[pid].DoorOptions = {}
-	
-	for cell, item2 in pairs(doors) do
-		for index, item in pairs(item2) do
-			if item.owner == pname then
-				Players[pid].DoorOptions[count] = {cell = cell, loc = item.location}
-				count = count + 1
-				list = list.."Door in Cell "..cell.."\n"
-			end
-		end
-	end
-	
-	tes3mp.ListBox(pid, 1336, message.ChooseDoor, list)
-end
-
-toDoorSecond = function(pid, data)	
-
-	-- get old door
-	local chosen = Players[pid].DoorOptions[data]
-	local chosenCell = chosen.cell
-	local chosenLoc = chosen.loc
-	local currentCell = tes3mp.GetCell(pid)
-	local pname = getName(pid)
-	local doors = jsonInterface.load("createdDoors.json")
-
-	--save new door into json for OnActivate
-	--save loc
-	local pPos = {posX = tes3mp.GetPosX(pid), posY = tes3mp.GetPosY(pid), posZ = tes3mp.GetPosZ(pid),  rotX = tes3mp.GetRotX(pid), rotY = 0, rotZ= tes3mp.GetRotZ(pid) }
-
-	--save door with loc and owner into json
-	--plus desination
-	myDoor = {location = pPos, owner = pname, destination = {cell = chosenCell, location = chosenLoc}}
-
-	if doors[currentCell] == nil then doors[currentCell] = {} end
-	table.insert(doors[currentCell], myDoor)
-	jsonInterface.save("createdDoors.json", doors)
-
-
-	--spawn new door
-	local furnRefIndex = placeFurniture("ex_nord_door_01", myDoor.location, currentCell, "place")	--Update the database of all placed furniture
-	-- save to all placed ones
-	addPlaced(furnRefIndex, currentCell, pname, "ex_nord_door_01", true, myDoor.location, "place")
-	--Set the placed item as the player's active object for decorateHelp to use
-	-- dont do this since we spawn him in new cell instead
-	--decorateHelp.SetSelectedObject(pid, furnRefIndex)
-	decorateHelp.SetSelectedObject(pid, furnRefIndex)	
-	--fancy message
-	
-end
-
-DeleteDoor = function(pid)
-	--on players door.
-	--check json for a list of existing doors
-	local doors = jsonInterface.load("createdDoors.json")
-	
-	local list = ""
-	local count = 0
-	local pname = getName(pid)
-	Players[pid].DoorOptions = {}
-	
-	for cell, item2 in pairs(doors) do
-		for index, item in pairs(item2) do
-			if item.owner == pname then
-				Players[pid].DoorOptions[count] = {cell = cell, loc = item.location}
-				count = count + 1
-				list = list.."Door in Cell "..cell.."\n"
-			end
-		end
-	end
-	
-	tes3mp.ListBox(pid, 1337, message.ChooseDoor, list)
-end
-
-toDeleteDoor = function(pid, data)
-
-	-- get old door
-	local chosen = Players[pid].DoorOptions[data]
-	local chosenCell = chosen.cell
-	local CellLower = string.lower(chosen.cell)
-	local chosenLoc = chosen.loc
-	local pname = getName(pid)
-	local doors = jsonInterface.load("createdDoors.json")
-	--delete door into createddoor.json
-	for x, y in pairs(doors[chosenCell]) do
-		if doors[chosenCell][x].owner == pname then
-			doors[chosenCell][x] = nil
-		end
-	end	
-	jsonInterface.save("createdDoors.json", doors)
-	
-	local placed = getPlacedTable()
-	local cInfo = placed[CellLower]	
-	--delete door into World.json
-	--delete door into Cell.json
-	for refIndex, info in pairs(cInfo) do
-		if info.owner == pname and info.refId == "ex_nord_door_01" then
-			removeFurniture(refIndex, CellLower)
-			removePlaced(refIndex, CellLower, false)
-		end
-	end
-	WorldInstance:Save()
-end
-
 -- ===========
 --  DATA ACCESS
 -- ===========
@@ -643,7 +303,7 @@ addFurnitureItem = function(pname, refId, count, save)
 	end
 end
 
-WorldMining.OnServerPostInit = function()
+WorldMining.OnServerPostInit = function(eventStatus)
 	--Create the script's required data if it doesn't exits
 	if WorldInstance.data.customVariables.WorldMining == nil then
 		WorldInstance.data.customVariables.WorldMining = {}
@@ -1050,7 +710,7 @@ WorldMining.TransferOwnership = function(refIndex, cell, playerCurrentName, play
 	
 	--Unset the current player's selected item, just in case they had that furniture as their selected item
 	if playerCurrentName and logicHandler.IsPlayerNameLoggedIn(playerCurrentName) then
-		decorateHelp.SetSelectedObject(logicHandler.GetPlayerByName(playerCurrentName).pid, "")
+		DecorateHelp.SetSelectedObject(logicHandler.GetPlayerByName(playerCurrentName).pid, "")
 	end
 end
 
@@ -1074,7 +734,7 @@ WorldMining.TransferAllOwnership = function(cell, playerCurrentName, playerToNam
 	
 	--Unset the current player's selected item, just in case they had any of the furniture as their selected item
 	if playerCurrentName and logicHandler.IsPlayerNameLoggedIn(playerCurrentName) then
-		decorateHelp.SetSelectedObject(logicHandler.GetPlayerByName(playerCurrentName).pid, "")
+		DecorateHelp.SetSelectedObject(logicHandler.GetPlayerByName(playerCurrentName).pid, "")
 	end
 end
 
@@ -1108,7 +768,7 @@ onViewOptionSelect = function(pid)
 	local cell = tes3mp.GetCell(pid)
 	
 	if getObject(choice.refIndex, cell) then
-		decorateHelp.SetSelectedObject(pid, choice.refIndex)
+		DecorateHelp.SetSelectedObject(pid, choice.refIndex)
 		tes3mp.MessageBox(pid, -1, message.SelectFurn)
 	else
 		tes3mp.MessageBox(pid, -1, message.UnFurn)
@@ -1244,8 +904,9 @@ onInventoryOptionPlace = function(pid)
 	
 	--Update the database of all placed furniture
 	addPlaced(furnRefIndex, curCell, pname, choice.refId, true, pPos, choice.need)
-	--Set the placed item as the player's active object for decorateHelp to use
-	decorateHelp.SetSelectedObject(pid, furnRefIndex)
+	--Set the placed item as the player's active object for DecorateHelp to use
+	DecorateHelp.SetSelectedObject(pid, furnRefIndex)
+	DecorateHelp.OnGUIAction(pid, 31360, 14)	
 end
 
 onInventoryOptionSell = function(pid)
@@ -1297,28 +958,13 @@ end
 WorldMining.showBuyGUIall = function(pid, tip)
 	local options = getAvailableFurnitureStock(pid, tip)
 	local list = message.Return
-	if tip == "creature" or tip == "npc" then
-		
-		for i = 1, #options do
-			list = list..options[i].name..color.Yellow.." "..message.Price..color.Default..options[i].price
-			if not(i == #options) then
-				list = list .. "\n"
-			end
-		end	
-	elseif tip == "furn" or tip == "exterior" or tip == "dungeon" or tip == "static" then	
+	if tip == "furn" or tip == "static" then	
 		for i = 1, #options do
 			list = list..options[i].name..color.Yellow.." "..message.Price..color.Default..options[i].price..color.Yellow.." "..message.Hardware..color.White..options[i].material
 			if not(i == #options) then
 				list = list .. "\n"
 			end
-		end					
-	elseif tip == "rocks" or tip == "flora" then
-		for i = 1, #options do
-			list = list..options[i].name..color.Yellow.." "..message.Hardware..color.Default..options[i].material
-			if not(i == #options) then
-				list = list .. "\n"
-			end
-		end
+		end	
 	end
 	playerBuyOptions[getName(pid)] = options
 	tes3mp.ListBox(pid, config.BuyGUI, message.SelectBuy, list)
@@ -1370,162 +1016,168 @@ onBuyChoice = function(pid, loc)
 	return true
 end
 
-WorldMining.OnHitActivate = function(pid, unique, refId, refNum, mpNum)
-	--count to 3 for uniqueId
-	local drawState = tes3mp.GetDrawState(pid)
+WorldMining.OnHitActivate = function(eventStatus, pid, cellDescription, objects)
+	local ObjectIndex
+	local ObjectRefid
+	for _, object in pairs(objects) do
+		ObjectIndex = object.uniqueIndex
+		ObjectRefid = object.refId
+	end	
+	if ObjectIndex ~= nil and ObjectRefid ~= nil then
+		local drawState = tes3mp.GetDrawState(pid)
+		local objectUniqueIndex = ObjectIndex
+		local cell = tes3mp.GetCell(pid)
+		local itemEquipment = {}
+		for x, y in pairs(Players[pid].data.equipment) do
+			table.insert(itemEquipment, (Players[pid].data.equipment[x]))
+		end
+		if tableHelper.containsValue(craftTableRock, ObjectRefid, true) then
+			if drawState == 1 then	
+				if tableHelper.containsValue(itemEquipment, config.MinerTools, true) then			
+					logicHandler.RunConsoleCommandOnPlayer(pid, "player->say, \"AM/MinerSOund1.wav\", \"\"", false)
+					logicHandler.RunConsoleCommandOnPlayer(pid, "player->PlayGroup, PickProbe, 0", false)
+					if Players[pid].data.customVariables.craftUnique == nil then
+						Players[pid].data.customVariables.craftUnique = ObjectIndex
+						Players[pid].data.customVariables.craftCount = 1
 
-	local itemEquipment = {}
-	for x, y in pairs(Players[pid].data.equipment) do
-		table.insert(itemEquipment, (Players[pid].data.equipment[x]))
-	end
-	if tableHelper.containsValue(craftTableRock, refId, true) then
-		if drawState == 1 then	
-			if tableHelper.containsValue(itemEquipment, config.MinerTools, true) then			
-				logicHandler.RunConsoleCommandOnPlayer(pid, "player->say, \"AM/MinerSOund1.wav\", \"\"", false)
-				logicHandler.RunConsoleCommandOnPlayer(pid, "player->PlayGroup, PickProbe, 0", false)
-				if Players[pid].data.customVariables.craftUnique == nil then
-					Players[pid].data.customVariables.craftUnique = unique
-					Players[pid].data.customVariables.craftCount = 1
-					return true
-				elseif Players[pid].data.customVariables.craftUnique == unique then
-					if Players[pid].data.customVariables.craftCount < config.Hit then
-						Players[pid].data.customVariables.craftCount = Players[pid].data.customVariables.craftCount + 1
-						return true
-					else
-						-- he hit 3 times get him a rock or tree
-						for index, item in pairs(craftTableRock) do
-							if string.lower(item.refId) == refId then
-								if item.tip == "rocks" then -- should we go over inventory at all, or store just in a table instead?
-									inventoryHelper.addItem(Players[pid].data.inventory, "craftrock", 1, -1, -1, "")
-									local itemref = {refId = "craftrock", count = 1, charge = -1}	
-									Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)	
+					elseif Players[pid].data.customVariables.craftUnique == ObjectIndex then
+						if Players[pid].data.customVariables.craftCount < config.Hit then
+							Players[pid].data.customVariables.craftCount = Players[pid].data.customVariables.craftCount + 1
+						else
+							-- he hit 3 times get him a rock or tree
+							for index, item in pairs(craftTableRock) do
+								if string.lower(item.refId) == ObjectRefid then
+									if item.tip == "rocks" then -- should we go over inventory at all, or store just in a table instead?
+										inventoryHelper.addItem(Players[pid].data.inventory, "craftrock", 1, -1, -1, "")
+										local itemref = {refId = "craftrock", count = 1, charge = -1}	
+										Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)	
+									end
+									break -- found one match for that inventory item break loop
 								end
-								break -- found one match for that inventory item break loop
 							end
+							local cellIndex = cell:split(", ")
+							local cell1 = ((cellIndex[1] + 1)..", "..cellIndex[2])
+							local cell2 = ((cellIndex[1] - 1)..", "..cellIndex[2])
+							local cell3 = (cellIndex[1]..", "..(cellIndex[2] + 1))
+							local cell4 = (cellIndex[1]..", "..(cellIndex[2] - 1))
+							logicHandler.RunConsoleCommandOnObject(pid, "disable", cell, objectUniqueIndex)
+							logicHandler.RunConsoleCommandOnObject(pid, "disable", cell1, objectUniqueIndex)
+							logicHandler.RunConsoleCommandOnObject(pid, "disable", cell2, objectUniqueIndex)
+							logicHandler.RunConsoleCommandOnObject(pid, "disable", cell3, objectUniqueIndex)
+							logicHandler.RunConsoleCommandOnObject(pid, "disable", cell4, objectUniqueIndex)						
+							Players[pid].data.customVariables.craftCount = 0
+							tes3mp.MessageBox(pid, -1, message.Rock)
+							--send fancy message
 						end
-						objectUniqueIndex = (refNum .. "-" .. mpNum)
-						local cell = tes3mp.GetCell(pid)
-						local cellIndex = cell:split(", ")
-						local cell1 = ((cellIndex[1] + 1)..", "..cellIndex[2])
-						local cell2 = ((cellIndex[1] - 1)..", "..cellIndex[2])
-						local cell3 = (cellIndex[1]..", "..(cellIndex[2] + 1))
-						local cell4 = (cellIndex[1]..", "..(cellIndex[2] - 1))
-						logicHandler.RunConsoleCommandOnObject(pid, "disable", cell, objectUniqueIndex)
-						logicHandler.RunConsoleCommandOnObject(pid, "disable", cell1, objectUniqueIndex)
-						logicHandler.RunConsoleCommandOnObject(pid, "disable", cell2, objectUniqueIndex)
-						logicHandler.RunConsoleCommandOnObject(pid, "disable", cell3, objectUniqueIndex)
-						logicHandler.RunConsoleCommandOnObject(pid, "disable", cell4, objectUniqueIndex)						
-						Players[pid].data.customVariables.craftCount = 0
-						tes3mp.MessageBox(pid, -1, message.Rock)
-						--send fancy message
+					else -- if he activated another one
+						Players[pid].data.customVariables.craftUnique = ObjectIndex
+						Players[pid].data.customVariables.craftCount = 1
 					end
-				else -- if he activated another one
-					Players[pid].data.customVariables.craftUnique = unique
-					Players[pid].data.customVariables.craftCount = 1
+				else
+					tes3mp.MessageBox(pid, -1, message.Pick)
 				end
 			else
-				tes3mp.MessageBox(pid, -1, message.Pick)
-			end
-		else
-			tes3mp.MessageBox(pid, -1, message.Tools)
-		end	
-		return true
-	elseif tableHelper.containsValue(craftTableFlora, refId, true) then
-		if drawState == 1 then		
-			if tableHelper.containsValue(itemEquipment, config.LumberTools, true) then			
-				logicHandler.RunConsoleCommandOnPlayer(pid, "player->say, \"AM/MinerSound2.wav\", \"\"", false)
-				logicHandler.RunConsoleCommandOnPlayer(pid, "player->PlayGroup, PickProbe, 0", false)
-				if Players[pid].data.customVariables.craftUnique == nil then
-					Players[pid].data.customVariables.craftUnique = unique
-					Players[pid].data.customVariables.craftCount = 1
-				elseif Players[pid].data.customVariables.craftUnique == unique then
-					if Players[pid].data.customVariables.craftCount < config.Hit then
-						Players[pid].data.customVariables.craftCount = Players[pid].data.customVariables.craftCount + 1
-					else
-						-- he hit 3 times get him a rock or tree
-						for index, item in pairs(craftTableFlora) do
-							if string.lower(item.refId) == refId then
-								if item.tip == "flora" then
-									inventoryHelper.addItem(Players[pid].data.inventory, "crafttree", 1, -1, -1, "")
-									local itemref = {refId = "crafttree", count = 1, charge = -1}	
-									Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)	
+				tes3mp.MessageBox(pid, -1, message.Tools)
+			end	
+			return customEventHooks.makeEventStatus(false,false) 
+		elseif tableHelper.containsValue(craftTableFlora, ObjectRefid, true) then
+			if drawState == 1 then		
+				if tableHelper.containsValue(itemEquipment, config.LumberTools, true) then			
+					logicHandler.RunConsoleCommandOnPlayer(pid, "player->say, \"AM/MinerSound2.wav\", \"\"", false)
+					logicHandler.RunConsoleCommandOnPlayer(pid, "player->PlayGroup, PickProbe, 0", false)
+					if Players[pid].data.customVariables.craftUnique == nil then
+						Players[pid].data.customVariables.craftUnique = ObjectIndex
+						Players[pid].data.customVariables.craftCount = 1
+					elseif Players[pid].data.customVariables.craftUnique == ObjectIndex then
+						if Players[pid].data.customVariables.craftCount < config.Hit then
+							Players[pid].data.customVariables.craftCount = Players[pid].data.customVariables.craftCount + 1
+						else
+							-- he hit 3 times get him a rock or tree
+							for index, item in pairs(craftTableFlora) do
+								if string.lower(item.refId) == ObjectRefid then
+									if item.tip == "flora" then
+										inventoryHelper.addItem(Players[pid].data.inventory, "crafttree", 1, -1, -1, "")
+										local itemref = {refId = "crafttree", count = 1, charge = -1}	
+										Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)	
+									end
+									break -- found one match for that inventory item break loop
 								end
-								break -- found one match for that inventory item break loop
 							end
+							local cell = tes3mp.GetCell(pid)
+							local cellIndex = cell:split(", ")
+							local cell1 = ((cellIndex[1] + 1)..", "..cellIndex[2])
+							local cell2 = ((cellIndex[1] - 1)..", "..cellIndex[2])
+							local cell3 = (cellIndex[1]..", "..(cellIndex[2] + 1))
+							local cell4 = (cellIndex[1]..", "..(cellIndex[2] - 1))
+							logicHandler.RunConsoleCommandOnObject(pid, "disable", cell, objectUniqueIndex)
+							logicHandler.RunConsoleCommandOnObject(pid, "disable", cell1, objectUniqueIndex)
+							logicHandler.RunConsoleCommandOnObject(pid, "disable", cell2, objectUniqueIndex)
+							logicHandler.RunConsoleCommandOnObject(pid, "disable", cell3, objectUniqueIndex)
+							logicHandler.RunConsoleCommandOnObject(pid, "disable", cell4, objectUniqueIndex)
+							Players[pid].data.customVariables.craftCount = 0
+							tes3mp.MessageBox(pid, -1, message.Flore)
+							--send fancy message
 						end
-						objectUniqueIndex = (refNum .. "-" .. mpNum)
-						local cell = tes3mp.GetCell(pid)
-						local cellIndex = cell:split(", ")
-						local cell1 = ((cellIndex[1] + 1)..", "..cellIndex[2])
-						local cell2 = ((cellIndex[1] - 1)..", "..cellIndex[2])
-						local cell3 = (cellIndex[1]..", "..(cellIndex[2] + 1))
-						local cell4 = (cellIndex[1]..", "..(cellIndex[2] - 1))
-						logicHandler.RunConsoleCommandOnObject(pid, "disable", cell, objectUniqueIndex)
-						logicHandler.RunConsoleCommandOnObject(pid, "disable", cell1, objectUniqueIndex)
-						logicHandler.RunConsoleCommandOnObject(pid, "disable", cell2, objectUniqueIndex)
-						logicHandler.RunConsoleCommandOnObject(pid, "disable", cell3, objectUniqueIndex)
-						logicHandler.RunConsoleCommandOnObject(pid, "disable", cell4, objectUniqueIndex)
-						Players[pid].data.customVariables.craftCount = 0
-						tes3mp.MessageBox(pid, -1, message.Flore)
-						--send fancy message
+					else -- if he activated another one
+						Players[pid].data.customVariables.craftUnique = ObjectIndex
+						Players[pid].data.customVariables.craftCount = 1
 					end
-				else -- if he activated another one
-					Players[pid].data.customVariables.craftUnique = unique
-					Players[pid].data.customVariables.craftCount = 1
+				else
+					tes3mp.MessageBox(pid, -1, message.Axe)
 				end
 			else
-				tes3mp.MessageBox(pid, -1, message.Axe)
-			end
-		else
-			tes3mp.MessageBox(pid, -1, message.Tools)
-		end			
-		return true
-	else
-		return false
+				tes3mp.MessageBox(pid, -1, message.Tools)
+			end			
+			return customEventHooks.makeEventStatus(false,false) 
+		end
 	end
 end
 
-WorldMining.OnObjectDelete = function(pid)
-	tes3mp.ReadLastEvent()
-	local refId = tes3mp.GetObjectRefId(0)
-	local cellId = tes3mp.GetCell(pid)
-	local location = {
-		posX = tes3mp.GetPosX(pid), posY = tes3mp.GetPosY(pid), posZ = tes3mp.GetPosZ(pid),
-		rotX = tes3mp.GetRotX(pid), rotY = 0, rotZ = tes3mp.GetRotZ(pid)
-	}
-	if tableHelper.containsValue(craftTable, refId, true) then
-		local removedCount = 1 -- you need to get the real count the player wants to remove
-		local existingIndex = nil				
-		for slot, item in pairs(Players[pid].data.inventory) do -- does item exist in inventory
-			if Players[pid].data.inventory[slot].refId == refId then
-				existingIndex = slot
-			end
-		end			 
-		if existingIndex ~= nil then -- if he got item then change count and or remove 
-			local inventoryItem = Players[pid].data.inventory[existingIndex] -- get it for working					
-			local itemid = inventoryItem.refId -- save for adding into hdvinv					
-			for slot, inv in pairs(Players[pid].data.equipment) do -- does player have item equipped
-				if inv.refId == itemid then
-					Players[pid].data.equipment[slot] = nil
-				end    
-			end							
-			inventoryItem.count = inventoryItem.count - removedCount					
-			if inventoryItem.count < 1 then
-				inventoryItem = nil
+WorldMining.OnObjectDelete = function(eventStatus, pid, cellDescription, objects)
+	local ObjectIndex
+	local ObjectRefid
+	for _, object in pairs(objects) do
+		ObjectIndex = object.uniqueIndex
+		ObjectRefid = object.refId
+	end	
+	if ObjectIndex ~= nil and ObjectRefid ~= nil then
+		local refId = ObjectRefid
+		local cellId = cellDescription
+		local location = {
+			posX = tes3mp.GetPosX(pid), posY = tes3mp.GetPosY(pid), posZ = tes3mp.GetPosZ(pid),
+			rotX = tes3mp.GetRotX(pid), rotY = 0, rotZ = tes3mp.GetRotZ(pid)
+		}
+		if tableHelper.containsValue(craftTable, refId, true) then
+			local removedCount = 1 -- you need to get the real count the player wants to remove
+			local existingIndex = nil				
+			for slot, item in pairs(Players[pid].data.inventory) do -- does item exist in inventory
+				if Players[pid].data.inventory[slot].refId == refId then
+					existingIndex = slot
+				end
 			end			 
-			Players[pid].data.inventory[existingIndex] = inventoryItem -- pack it back
-			local itemref = {refId = refId, count = 1, charge = -1}
-			Players[pid]:Save()
-			Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)
-			--logicHandler.CreateObjectAtLocation(cellId, location, refId, "place")			
-			Players[pid].currentCustomMenu = "menu avertissement mining"--Avertissement
-			menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
-			return true
-		else
-			return true
+			if existingIndex ~= nil then -- if he got item then change count and or remove 
+				local inventoryItem = Players[pid].data.inventory[existingIndex] -- get it for working					
+				local itemid = inventoryItem.refId -- save for adding into hdvinv					
+				for slot, inv in pairs(Players[pid].data.equipment) do -- does player have item equipped
+					if inv.refId == itemid then
+						Players[pid].data.equipment[slot] = nil
+					end    
+				end							
+				inventoryItem.count = inventoryItem.count - removedCount					
+				if inventoryItem.count < 1 then
+					inventoryItem = nil
+				end			 
+				Players[pid].data.inventory[existingIndex] = inventoryItem -- pack it back
+				local itemref = {refId = refId, count = 1, charge = -1}
+				Players[pid]:Save()
+				Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)		
+				Players[pid].currentCustomMenu = "menu avertissement mining"--Avertissement
+				menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)
+				return customEventHooks.makeEventStatus(false,false) 
+			else
+				return customEventHooks.makeEventStatus(false,false) 
+			end
 		end
-	else
-		return false
 	end
 end
 
@@ -1568,42 +1220,6 @@ WorldMining.PunishKick = function(pid, targetPlayer) -- Used to send a player in
 	Players[pid]:Kick()
 end
 
-WorldMining.OnDoor = function(pid, unqId)
-	local cell = tes3mp.GetCell(pid)
-	local activated = WorldInstance.data.customVariables.WorldMining.placed[cell][unqId]
-	local solution
-	-- if thers more than one door in that cell compare with position in json
-	-- and take the one that is closer to the activated one
-	local doors = jsonInterface.load("createdDoors.json")
-	if #doors[cell] > 1 then
-			--beginn complicated math
-		local distance = {}
-		for index, item in pairs(doors[cell]) do
-			distance[index] = math.sqrt((item.location.posX - activated.loc.posX)^2 + (item.location.posY - activated.loc.posY)^2 + (item.location.posZ - activated.loc.posZ)^2)
-		end
-			--get smallest distance
-		local count = -1
-		for index, item in pairs(distance) do
-			if item < count or count == -1 then
-				solution = doors[cell][index] -- we got the best door in solution
-				count = item
-			end
-		end
-	else
-		for index, item in pairs(doors[cell]) do
-			solution = doors[cell][index]
-			break
-		end
-	end
-	--teleport to destination
-	tes3mp.SetCell(pid, solution.destination.cell)
-	tes3mp.SendCell(pid)
-	tes3mp.SetPos(pid, solution.destination.location.posX, solution.destination.location.posY, solution.destination.location.posZ + 10)
-	tes3mp.SetRot(pid, 0, 0)
-	tes3mp.SendPos(pid)
-	--maybe fancy message you entered one of playerNames doors
-end
-
 craft = function(pid)
 	--require material while kanaFurnin
 	--remove one of each
@@ -1638,11 +1254,44 @@ WorldMining.OnCraftCommand = function(pid)
 	--craftrock, crafttree
 	if count.terrain > 0 and count.flora > 0 and count.material >= 0 then
 		local msgCustom = color.Yellow..message.Stone..color.White..count.terrain.."   "..color.Yellow..message.Wood..color.White..count.flora.."   "..color.Yellow..message.Hardware..color.White..count.material.."\n"
-		tes3mp.CustomMessageBox(pid, 1338, msgCustom, message.CraftOption)	
+		tes3mp.CustomMessageBox(pid, 1335, msgCustom, message.CraftOption)	
 	else
 		tes3mp.SendMessage(pid, message.NoCraft, false)
 		return showMainGUI(pid)
 	end
 end
 
+WorldMining.OnCellload = function(eventStatus, pid, cellDescription)
+	if WorldInstance.data.customVariables ~= nil and WorldInstance.data.customVariables.WorldMining ~= nil and WorldInstance.data.customVariables.WorldMining.placed ~= nil then
+		local placed = WorldInstance.data.customVariables.WorldMining.placed
+		if placed[cellDescription] ~= nil then
+			local unique = {}
+			
+			for refIndex, object in pairs(placed[cellDescription]) do
+				--place kanaFurniture
+				unique[refIndex] = logicHandler.CreateObjectAtLocation(cellDescription, object.loc, object.refId, "place")
+			end
+			
+			for refIndex, uniqueId in pairs(unique) do
+				-- swap positions in table after we created them
+				WorldInstance.data.customVariables.WorldMining.placed[cellDescription][uniqueId] = WorldInstance.data.customVariables.WorldMining.placed[cellDescription][refIndex]
+				WorldInstance.data.customVariables.WorldMining.placed[cellDescription][refIndex] = nil
+			end
+			
+		LoadedCells[cellDescription].forceActorListRequest = true
+		end
+	end
+end
+
+customCommandHooks.registerCommand("mining", WorldMining.OnCommand)
+customCommandHooks.registerCommand("build", WorldMining.OnBuild)
+customCommandHooks.registerCommand("material", WorldMining.OnCraftCommand)			
+customEventHooks.registerValidator("OnObjectActivate", WorldMining.OnHitActivate)
+customEventHooks.registerValidator("OnObjectDelete", WorldMining.OnObjectDelete)
+customEventHooks.registerHandler("OnGUIAction", function(eventStatus, pid, idGui, data)
+	if WorldMining.OnGUIAction(pid, idGui, data) then return end	
+end)
+customEventHooks.registerHandler("OnServerPostInit", WorldMining.OnServerPostInit)
+customEventHooks.registerHandler("OnCellLoad", WorldMining.OnCellLoad)
+	
 return WorldMining
