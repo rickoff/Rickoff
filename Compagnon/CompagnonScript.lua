@@ -122,9 +122,11 @@ add this list on permanent record in server\data\recordstore\npc.json
       "level":25
     },	
   },  
-
----------------------------  
---]]
+--------------------------- 
+FUNCTION:
+/menucomp in your chat for open menu
+--------------------------- 
+]]
 
 local CompagnonScript = {}
 
