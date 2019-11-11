@@ -28,7 +28,3 @@ end
 
 
 customCommandHooks.registerCommand("menu", MainMenu.MainMenu)
-
-
-
-
