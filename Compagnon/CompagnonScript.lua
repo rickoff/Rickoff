@@ -9,10 +9,13 @@ Invoquer et donner des ordres a un compagnon
 INSTALLATION:
 Save the file as CompagnonScript.lua inside your server/scripts/custom folder.
 
+Save the file as MenuComp.lua in server/scripts/menu folder
+
 Edits to customScripts.lua
 CompagnonScript = require("custom.CompagnonScript")
 
-add MenuComp.lua in server\scripts\menu
+Edits to config.lua
+add in config.menuHelperFiles, "MenuComp"
 
 add this list on permanent record in server\data\recordstore\npc.json
 
