@@ -2196,6 +2196,50 @@ Methods.MainMenu = function(houseName)
 	end
 end
 
+Methods.PunishPrison = function(pid) -- Used to a player into the prison
+    if Players[pid]~= nil and Players[pid]:IsLoggedIn() then
+		local targetPlayerName = Players[pid].name
+		local msg = color.Orange .. "SERVER: " .. targetPlayerName .. " est en prison.\n"
+		local cell = "Coeurébène, Fort Noctuelle"
+		tes3mp.SetCell(pid, cell)
+		tes3mp.SendCell(pid)	
+		tes3mp.SetPos(pid, 756, 2560, -383)
+		tes3mp.SetRot(pid, 0, 0)
+		tes3mp.SendPos(pid)	
+		tes3mp.SendMessage(pid, msg, true)
+		if Players[pid].data.customVariables.Jailer == nil then
+			Players[pid].data.customVariables.Jailer = true
+		else	
+			Players[pid].data.customVariables.Jailer = true
+		end
+		local TimerJail = tes3mp.CreateTimer("EventJail", time.seconds(300))
+		tes3mp.StartTimer(TimerJail)
+		tes3mp.MessageBox(pid, -1, message.WaitJail)		
+		function EventJail()
+			for pid, player in pairs(Players) do
+				if Players[pid] ~= nil and player:IsLoggedIn() then
+					if Players[pid].data.customVariables.Jailer == true then
+						Players[pid].data.customVariables.Jailer = false
+						tes3mp.MessageBox(pid, -1, message.StopJail)
+						tes3mp.SetCell(pid, "-3, -2")  
+						tes3mp.SetPos(pid, -23974, -15787, 505)
+						tes3mp.SetRot(pid, 0, 0)
+						tes3mp.SendCell(pid)    
+						tes3mp.SendPos(pid)
+					end
+				end
+			end
+		end
+	else
+		message = color.Gold .. "Ce joueur n'est pas connecté.\n"
+		tes3mp.SendMessage(pid, message, false)	
+	end	
+end
+
+Methods.PunishKick = function(pid) -- Used to send a player into the kick
+	Players[pid]:Kick()
+end
+
 customCommandHooks.registerCommand("menuimmo", Methods.OnUserMyHouse)
 customCommandHooks.registerCommand("myhouse", Methods.OnUserMyHouse)
 customCommandHooks.registerCommand("house", Methods.OnUserCommand)
