@@ -1,72 +1,27 @@
---TeamGroup.lua
---[[ INSTALLATION
+--[[
+TeamGroup by Rickoff
+tes3mp 0.7.0
+---------------------------
+DESCRIPTION :
+Create a group inviting players
+---------------------------
+INSTALLATION:
+Save the file as TeamGroup.lua inside your server/scripts/custom folder.
 
-Add on the top in servercore.lua :
-TeamGroup = require("TeamGroup")
+Save the file as MenuTeam.lua inside your scripts/menu folder
 
-Find function, OnPlayerDisconnect(pid), on servercore.lua and add under:
-	TeamGroup.ExitGroup(pid)
-	
-Find function, function OnGUIAction(pid, idGui, data), on servercore.lua:
-	if TeamGroup.OnGUIAction(pid, idGui, data) then return end	
+Edits to customScripts.lua
+TeamGroup = require("custom.TeamGroup")
 
-Find function, eventHandler.OnObjectActivate = function(pid, cellDescription), on eventHandler.lua and add under, if isObjectPlayer then :
-						Players[activatingPid].data.targetPid = objectPid
-						Players[objectPid].data.targetPid = activatingPid
-						Players[activatingPid].currentCustomMenu = "invite player"--Invite Menu
-						menuHelper.DisplayMenu(activatingPid, Players[activatingPid].currentCustomMenu)	
-
-Add following the chain of command on commandeHandler.lua :
-		elseif cmd[1] == "maingroup" then
-			TeamGroup.onMainGui(pid)				
-
-If you have a customScript for Experience in your serveur use CountBonus as a gain multiplier like this EcarlateSoul.lua, add this in your script like this:
-	CountBonus = TeamGroup.EcarlateBonus(killerPid)	
-
-Add in your Menu.lua :
-Menus["invite player"] = {
-    text = color.Gold .. "Voulez vous inviter\n" .. color.LightGreen ..
-    " le joueur dans le groupe ?\n" ..
-        color.White .. "...",
-    buttons = {						
-        { caption = "oui",
-            destinations = {menuHelper.destinations.setDefault(nil,
-            { 
-				menuHelper.effects.runGlobalFunction("TeamGroup", "ActiveMenu", 
-					{menuHelper.variables.currentPlayerDataVariable("targetPid")}),
-				menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage",
-						{menuHelper.variables.currentPid(), "/maingroup"})					
-                })
-            }
-        },			
-        { caption = "non", 
-			destinations = {menuHelper.destinations.setDefault(nil,	
-            { 
-				menuHelper.effects.runGlobalFunction(nil, "OnPlayerSendMessage", 
-					{menuHelper.variables.currentPid(), "/maingroup"})	
-				})
-			}
-		}
-    }
-}
-
-Menus["reponse player"] = {
-    text = color.Gold .. "Voulez vous rejoindre\n" .. color.LightGreen ..
-    " le groupe ?\n" ..
-        color.White .. "...",
-    buttons = {						
-        { caption = "oui",
-            destinations = {menuHelper.destinations.setDefault(nil,
-            { 
-				menuHelper.effects.runGlobalFunction("TeamGroup", "RegisterGroup", 
-					{menuHelper.variables.currentPlayerDataVariable("targetPid"), menuHelper.variables.currentPid()})
-                })
-            }
-        },			
-        { caption = "non", destinations = nil }
-    }
-}
+Edits to config.lua
+add in config.menuHelperFiles, "MenuTeam"
+---------------------------
+FUNCTION:
+/menugroup in your chat for open menu
+Activate player for invite in your group or use a menu
+---------------------------
 ]]
+
 tableHelper = require("tableHelper")
 
 local playerGroup = {}
@@ -501,7 +456,7 @@ TeamGroup.OnGUIAction = function(pid, idGui, data)
         else   
 			TeamGroup.onChoiceMessage(pid, tostring(data)) 
             return TeamGroup.onMainGui(pid)
-        end		
+		end		
 	end
 end
 
@@ -509,5 +464,13 @@ TeamGroup.ActiveMenu = function(pid)
 	Players[pid].currentCustomMenu = "reponse player"--Invite Menu
 	menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
 end
-	
+
+customEventHooks.registerValidator("OnPlayerDisconnect", function(eventStatus, pid)
+	TeamGroup.ExitGroup(pid)
+end)	
+customEventHooks.registerHandler("OnGUIAction", function(eventStatus, pid, idGui, data)
+	if TeamGroup.OnGUIAction(pid, idGui, data) then return end	
+end)
+customCommandHooks.registerCommand("menugroup", TeamGroup.onMainGui)
+
 return TeamGroup
