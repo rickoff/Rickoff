@@ -67,7 +67,7 @@ Menus["menu prison house"] = {
             destinations = {
                 menuHelper.destinations.setDefault(nil,
                 { 
-                    menuHelper.effects.runGlobalFunction("ecarlateScript", "PunishPrison", 
+                    menuHelper.effects.runGlobalFunction("EcarlateHousing", "PunishPrison", 
                     {
                         menuHelper.variables.currentPid(), menuHelper.variables.currentPid()
                     })					
@@ -78,7 +78,7 @@ Menus["menu prison house"] = {
             destinations = {
                 menuHelper.destinations.setDefault(nil,
                 { 
-                    menuHelper.effects.runGlobalFunction("ecarlateScript", "PunishKick", 
+                    menuHelper.effects.runGlobalFunction("EcarlateHousing", "PunishKick", 
                     {
                         menuHelper.variables.currentPid(),
                     })					
@@ -86,4 +86,4 @@ Menus["menu prison house"] = {
             }
         }		
     }
-}	
+}
