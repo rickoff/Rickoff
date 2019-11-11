@@ -1,14 +1,21 @@
---fixVamp.lua by rickoff
+--[[
+FixVamp by Rickoff
+tes3mp 0.7.0
+---------------------------
+DESCRIPTION :
+Corige un bug lié a la detection des vampires et loupgarou
+---------------------------
+INSTALLATION:
+Save the file as FixVamp.lua inside your server/scripts/custom folder.
 
---INSTALLATION
---add fixVamp.lua file in server/script
---open serverCore.lua and find function OnPlayerCellChange(pid) and a add in :
---fixVamp.tcheckVamp(pid)	
---fixVamp.tcheckWolf(pid)
+Edits to customScripts.lua
+FixVamp = require("custom.FixVamp")
+---------------------------
+]]
 
-local fixVamp = {}	
+local FixVamp = {}	
 	
-fixVamp.tcheckVamp = function(pid)	
+FixVamp.checkVamp = function(pid)	
 
     local consoleTcheckvamp
 	
@@ -22,7 +29,7 @@ fixVamp.tcheckVamp = function(pid)
 	end
 end
 
-fixVamp.tcheckWolf = function(pid)	
+FixVamp.checkWolf = function(pid)	
 
 	local consoleTcheckwolf
 	
@@ -36,4 +43,7 @@ fixVamp.tcheckWolf = function(pid)
 	end
 end
 
-return fixVamp
+customEventHooks.registerHandler("OnPlayerCellChange", FixVamp.checkVamp)
+customEventHooks.registerHandler("OnPlayerCellChange", FixVamp.checkWolf)
+
+return FixVamp
