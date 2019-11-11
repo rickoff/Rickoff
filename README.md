@@ -3,8 +3,6 @@ Ecarlate server Fr
 Tes3mp 0.7.0
 OpenMw 0.44
 
-version 0.0.4
-
 **DiscordBot = Bot Vocal Discord with position player in server tes3mp**
 
 the name of the players on the game should match the nickname of the user on discord
