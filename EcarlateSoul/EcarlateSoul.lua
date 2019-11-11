@@ -1,8 +1,23 @@
+--[[
+EcarlateSoul by Rickoff
+tes3mp 0.7.0
 ---------------------------
--- EcarlateSoul by Rickoff inspired by RageFire
---
---
+DESCRIPTION :
+Syteme d'experience et de competences
 ---------------------------
+INSTALLATION:
+Save the file as EcarlateSoul.lua inside your server/scripts/custom folder.
+
+Save the file as MenuSoul.lua inside your scripts/menu folder
+
+Edits to customScripts.lua
+EcarlateSoul = require("custom.EcarlateSoul")
+
+Edits to config.lua
+add in config.menuHelperFiles, "MenuSoul"
+---------------------------
+]]
+
 jsonInterface = require("jsonInterface")
 
 -- ===========
@@ -11,62 +26,96 @@ jsonInterface = require("jsonInterface")
 -------------------------
 local EcarlateSoul = {}
 
-EcarlateSoul.OnPlayerKillCreature = function(killerPid, refId)
-	
-	local creatureTable = jsonInterface.load("EcarlateCreatures.json")
-	local soulLoc = Players[killerPid].data.customVariables.soul
-	local levelSoul = Players[killerPid].data.customVariables.levelSoul	
-	local capSoul = Players[killerPid].data.customVariables.capSoul
-	local pointSoul = Players[killerPid].data.customVariables.pointSoul
-	
-	if soulLoc == nil then
-		Players[killerPid].data.customVariables.soul = 0
-	end
-	if levelSoul == nil then
-		Players[killerPid].data.customVariables.levelSoul = 1
-	end	
-	if capSoul ~= nil then
-		Players[killerPid].data.customVariables.capSoul = 20000
-	else 
-		Players[killerPid].data.customVariables.capSoul = 20000
-	end	
-	if pointSoul == nil then
-		Players[killerPid].data.customVariables.pointSoul = 0
-	end	
+EcarlateSoul.OnPlayerKillCreature = function(eventStatut, pid, cellDescription)
 
-	local creatureRefId
-	local creaturename
-	local creatureSoul
-	rando1 = math.random(0, 25)
-	
-	if levelSoul ~= nil then
-		for slot, creature in pairs(creatureTable.creatures) do
-			creatureRefId = creature.Refid
-			if creatureRefId == refId then
-				creaturename = creature.name
-				creatureSoul = creature.Soul
-				local totalGain = creatureSoul + rando1	
-				if Players[killerPid] ~= nil then	
-					if soulLoc == nil then
-						Players[killerPid].data.customVariables.soul = totalGain	
-					else
-						Players[killerPid].data.customVariables.soul = Players[killerPid].data.customVariables.soul + totalGain
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
+		if LoadedCells[cellDescription] ~= nil then		
+			LoadedCells[cellDescription]:SaveActorDeath(pid)			
+			local actorIndex = tes3mp.GetActorListSize() - 1			
+			if actorIndex ~= nil then			
+				local uniqueIndex = tes3mp.GetActorRefNum(actorIndex) .. "-" .. tes3mp.GetActorMpNum(actorIndex)				
+				local killerPid = tes3mp.GetActorKillerPid(actorIndex)				
+				if uniqueIndex ~= nil and killerPid ~= nil then				
+					if LoadedCells[cellDescription].data.objectData[uniqueIndex] then					
+						local refId = LoadedCells[cellDescription].data.objectData[uniqueIndex].refId						
+						if refId ~= nil then						
+							if tes3mp.DoesActorHavePlayerKiller(actorIndex) then			
+								local creatureTable = jsonInterface.load("EcarlateCreatures.json")
+								local soulLoc = Players[killerPid].data.customVariables.soul
+								local levelSoul = Players[killerPid].data.customVariables.levelSoul	
+								local capSoul = Players[killerPid].data.customVariables.capSoul
+								local pointSoul = Players[killerPid].data.customVariables.pointSoul
+
+							 
+								
+								if soulLoc == nil then
+									Players[killerPid].data.customVariables.soul = 0
+								end
+								if levelSoul == nil then
+									Players[killerPid].data.customVariables.levelSoul = 1
+								end	
+								if capSoul == nil then
+									Players[killerPid].data.customVariables.capSoul = 500
+								end	
+								if pointSoul == nil then
+									Players[killerPid].data.customVariables.pointSoul = 0
+								end	
+
+								local creatureRefId
+								local creaturename
+								local creatureSoul
+								local Count
+								rando1 = math.random(0, 25)
+								
+								if levelSoul ~= nil then
+									for slot, creature in pairs(creatureTable.creatures) do
+										creatureRefId = creature.Refid
+										if creatureRefId == refId then
+											creaturename = creature.name
+											creatureSoul = creature.Soul
+											if TeamGroup then
+												Count = TeamGroup.EcarlateBonus(killerPid)
+											else
+												Count = 1
+											end
+											if Count == 0 then
+												Count = 1
+											elseif Count > 10 then
+												Count = 10
+											end
+											local totalGain = (creatureSoul + rando1) * Count	
+											if Players[killerPid] ~= nil then	
+												if soulLoc == nil then
+													Players[killerPid].data.customVariables.soul = totalGain	
+												else
+													Players[killerPid].data.customVariables.soul = Players[killerPid].data.customVariables.soul + totalGain
+												end
+												if Count > 0 then
+													tes3mp.MessageBox(killerPid, -1, color.Default.. "Vous avez gagné : "..color.Green.. totalGain ..color.Default.. " points d'" ..color.Yellow.. "exp\n\n" ..color.Green.. "Bonus de groupe * " ..color.Yellow.. Count)
+												else
+													tes3mp.MessageBox(killerPid, -1, color.Default.. "Vous avez gagné : "..color.Green.. totalGain ..color.Default.. " points d'" ..color.Yellow.. "exp.")					
+												end
+											end	
+										end
+									end
+								
+									if soulLoc ~= nil and capSoul ~= nil and soulLoc >= capSoul then
+										Players[killerPid].data.customVariables.levelSoul = Players[killerPid].data.customVariables.levelSoul + 1
+										Players[killerPid].data.customVariables.soul = 0
+										Players[killerPid].data.customVariables.capSoul = math.floor((levelSoul + 1) * 500)
+										Players[killerPid].data.customVariables.pointSoul = Players[killerPid].data.customVariables.pointSoul + 5
+										tes3mp.MessageBox(killerPid, -1, color.Default.. "Vous avez gagné un niveau félicitation : "..color.Green.. "/menu>joueur>compétences" ..color.Default.. " pour dépenser vos points d'" ..color.Yellow.. "exp.")		
+									end	
+								end
+								Players[killerPid]:SaveToDrive()
+								Players[killerPid]:LoadFromDrive()
+							end
+						end
 					end
-					tes3mp.MessageBox(killerPid, -1, color.Default.. "Vous avez gagné : "..color.Green.. totalGain ..color.Default.. " points d'" ..color.Yellow.. "exp.")								
-				end	
+				end
 			end
 		end
-	
-		if soulLoc ~= nil and capSoul ~= nil and soulLoc >= capSoul then
-			Players[killerPid].data.customVariables.levelSoul = Players[killerPid].data.customVariables.levelSoul + 1
-			Players[killerPid].data.customVariables.soul = 0
-			Players[killerPid].data.customVariables.capSoul = 20000
-			Players[killerPid].data.customVariables.pointSoul = Players[killerPid].data.customVariables.pointSoul + 5
-			tes3mp.MessageBox(killerPid, -1, color.Default.. "Vous avez gagné un niveau félicitation : "..color.Green.. "/menu>joueur>compétences" ..color.Default.. " pour dépenser vos points d'" ..color.Yellow.. "exp.")		
-		end	
 	end
-	Players[killerPid]:Save()
-	Players[killerPid]:Load()	
 end	 
 
 EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
@@ -490,7 +539,7 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 		elseif Comp == "Unarmored" and PointCount < 3 then
 			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 		end	
-        	Players[Pid]:SaveStatsDynamic()		
+        Players[Pid]:SaveStatsDynamic()		
 		Players[Pid]:SaveAttributes()	
 		Players[Pid]:SaveSkills()			
 		tes3mp.SendAttributes(Pid)
@@ -501,32 +550,48 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 	end
 end	
 
-EcarlateSoul.OnPlayerDeath = function(Pid)
-	local soulLoc = Players[Pid].data.customVariables.soul
-	local levelSoul = Players[Pid].data.customVariables.levelSoul	
-	local capSoul = Players[Pid].data.customVariables.capSoul
-	local pointSoul = Players[Pid].data.customVariables.pointSoul
-	local totalPerte 
-	if levelSoul == nil then
-		Players[Pid].data.customVariables.levelSoul = 1
-	end	
-	if capSoul ~= nil then
-		Players[Pid].data.customVariables.capSoul = 20000
-	else 
-		Players[Pid].data.customVariables.capSoul = 20000
-	end	
-	if pointSoul == nil then
-		Players[Pid].data.customVariables.pointSoul = 0
-	end	
-	if soulLoc == nil then
-		Players[Pid].data.customVariables.soul = 0	
-		soulLoc = Players[Pid].data.customVariables.soul
-		totalPerte = 0
-	else
-		totalPerte = math.floor((soulLoc * 25) / 100)	
-		Players[Pid].data.customVariables.soul = Players[Pid].data.customVariables.soul - totalPerte
-	end	
-	tes3mp.MessageBox(Pid, -1, color.Default.. "Vous avez perdu : "..color.Green.. totalPerte ..color.Default.. " points d'" ..color.Yellow.. "exp.")		
+EcarlateSoul.OnPlayerDeath = function(eventStatut, Pid)
+	if Players[Pid] ~= nil and Players[Pid]:IsLoggedIn() then	
+		local soulLoc = Players[Pid].data.customVariables.soul
+		local levelSoul = Players[Pid].data.customVariables.levelSoul	
+		local capSoul = Players[Pid].data.customVariables.capSoul
+		local pointSoul = Players[Pid].data.customVariables.pointSoul
+		local totalPerte 
+		if levelSoul == nil then
+			Players[Pid].data.customVariables.levelSoul = 1
+			levelSoul = Players[Pid].data.customVariables.levelSoul
+		end	
+		if capSoul ~= nil then
+			Players[Pid].data.customVariables.capSoul = levelSoul * 500
+		else 
+			Players[Pid].data.customVariables.capSoul = levelSoul * 500
+			capSoul = Players[Pid].data.customVariables.capSoul
+		end	
+		if pointSoul == nil then
+			Players[Pid].data.customVariables.pointSoul = 0
+			pointSoul = Players[Pid].data.customVariables.pointSoul
+		end	
+		if soulLoc == nil then
+			Players[Pid].data.customVariables.soul = 0	
+			soulLoc = Players[Pid].data.customVariables.soul
+			totalPerte = 0
+		else
+			totalPerte = math.floor((soulLoc * 25) / 100)	
+			Players[Pid].data.customVariables.soul = Players[Pid].data.customVariables.soul - totalPerte
+		end	
+		tes3mp.MessageBox(Pid, -1, color.Default.. "Vous avez perdu : "..color.Green.. totalPerte ..color.Default.. " points d'" ..color.Yellow.. "exp.")	
+	end
 end
+
+EcarlateSoul.MainMenu = function(Pid)
+    if Players[pid]~= nil and Players[pid]:IsLoggedIn() then
+		Players[pid].currentCustomMenu = "menu cmp ecarlate"
+		menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
+	end
+end
+
+customCommandHooks.registerCommand("MenuSoul", EcarlateSoul.MainMenu)
+customEventHooks.registerHandler("OnActorDeath", EcarlateSoul.OnPlayerKillCreature)
+customEventHooks.registerHandler("OnPlayerDeath", EcarlateSoul.OnPlayerDeath)
 
 return EcarlateSoul
