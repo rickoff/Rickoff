@@ -1,8 +1,17 @@
---VocalDiscordCheck by Rick-Off
---
---
---
---v 0.2
+--[[
+VocalDiscord by Rickoff
+tes3mp 0.7.0
+---------------------------
+DESCRIPTION :
+Check the player in discord vocal or not
+---------------------------
+INSTALLATION:
+Save the file as VocalDiscord.lua inside your server/scripts/custom folder.
+
+Edits to customScripts.lua
+VocalDiscord = require("custom.VocalDiscord")
+---------------------------
+]]
 
 jsonInterface = require("jsonInterface")
 tableHelper = require("tableHelper")
@@ -12,11 +21,10 @@ config.timerstartvocal = 60
 
 VocalDiscord = {}
 
-VocalDiscord.OnCheckPlayer = function(pid)
+VocalDiscord.OnCheckPlayer = function(eventStatus, pid)
 
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-	
-		if Players[pid].data.settings.staffRank ~= 2 then
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
+		if Players[pid].data.settings.staffRank ~= 2 then		
 			if Players[pid].data.settings.staffRank ~= 1 then
 				local playerdiscordTable = jsonInterface.load("userdiscord.json")
 				local playerName = Players[pid].name
@@ -39,7 +47,55 @@ VocalDiscord.OnCheckPlayer = function(pid)
 			end
 		end
 	end
-
 end
+
+VocalDiscord.OnPlayerCellChange = function(eventStatus, pid)
+
+    if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local playerLocations = {players={}}
+		for pid, ply in pairs(Players) do
+			local newindex = #playerLocations.players+1
+			playerLocations.players[newindex] = {}
+			for k, v in pairs(ply.data.location) do
+				playerLocations.players[newindex][k] = v -- We're copying the table here or else we modify the player's actual data in the following assignment
+			end
+			playerLocations.players[newindex].name = ply.accountName
+			playerLocations.players[newindex].level = ply.data.stats.level
+			if ply.data.customVariables.levelSoul ~= nil then
+				playerLocations.players[newindex].levelSoul = ply.data.customVariables.levelSoul
+			else
+				playerLocations.players[newindex].levelSoul = 0
+			end
+		end
+		jsonInterface.save("playerLocations.json", playerLocations)
+    end
+end
+
+VocalDiscord.PlayerDisconnect = function(pid)
+	local playerLocations = {players={}}
+	for pid, ply in pairs(Players) do
+		local newindex = #playerLocations.players+1
+		playerLocations.players[newindex] = {}
+		for k, v in pairs(ply.data.location) do
+			playerLocations.players[newindex][k] = v -- We're copying the table here or else we modify the player's actual data in the following assignment
+		end
+		playerLocations.players[newindex].name = ply.accountName
+		playerLocations.players[newindex].level = ply.data.stats.level
+		if ply.data.customVariables.levelSoul ~= nil then
+			playerLocations.players[newindex].levelSoul = ply.data.customVariables.levelSoul
+		else
+			playerLocations.players[newindex].levelSoul = 0
+		end
+	end
+	jsonInterface.save("playerLocations.json", playerLocations)
+end
+
+
+customEventHooks.registerHandler("OnPlayerDisconnect", function(eventStatus, pid)
+	VocalDiscord.PlayerDisconnect(pid)
+end)
+customEventHooks.registerHandler("OnPlayerCellChange", VocalDiscord.OnCheckPlayer)
+customEventHooks.registerHandler("OnPlayerCellChange", VocalDiscord.OnPlayerCellChange)
+
 
 return VocalDiscord
