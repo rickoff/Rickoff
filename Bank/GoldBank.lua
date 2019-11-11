@@ -11,6 +11,9 @@ Save the file as GoldBank.lua inside your server/scripts/custom folder.
 Edits to customScripts.lua
 GoldBank = require("custom.GoldBank")
 ---------------------------
+FUNCTION:
+/bank in your chat for open menu
+---------------------------
 ]]
 -- ===========
 --MAIN CONFIG
