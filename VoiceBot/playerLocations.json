@@ -1,0 +1,14 @@
+{
+  "players":[{
+      "level":50,
+      "posZ":658.66650390625,
+      "levelSoul":18,
+      "regionName":"west gash region",
+      "rotZ":0,
+      "posX":-20480,
+      "posY":-12288,
+      "rotX":0,
+      "name":"aradul bartheon",
+      "cell":"-3, -2"
+    }]
+}
