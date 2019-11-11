@@ -1,20 +1,33 @@
---eventRush.lua
+--[[
+EventRush by Rickoff
+tes3mp 0.7.0
+---------------------------
+DESCRIPTION :
+Course pvp sur parcour aléatoire
+---------------------------
+INSTALLATION:
+Save the file as EventRush.lua inside your server/scripts/custom folder.
+
+Edits to customScripts.lua
+EventRush = require("custom.EventRush")
+---------------------------
+]]
 
 tableHelper = require("tableHelper")
 inventoryHelper = require("inventoryHelper")
-jsonInterface = require("jsonInterface")
-
 
 local config = {}
 
-config.timerevent = 60
+config.timereventrush = 60
 config.rushstart = 300
 config.rushstop = 150
 config.countregister = 100
 config.timerespawn = 3
 config.timerstand = 15
+config.gainxp = 2500
+config.listCell = {"-2, 2", "0, -7", "2, 5", "15, 1", "12, 13"}
 
-local eventRush = {}
+local EventRush = {}
 
 local RushStart = tes3mp.CreateTimer("RushEvent", time.seconds(config.rushstart))
 local RushStop = tes3mp.CreateTimer("StopRush", time.seconds(config.rushstop))
@@ -26,15 +39,15 @@ local eventrush = "inactive"
 
 local rushTab = { player = {} }
 
-eventRush.TimerStartEvent = function()
+EventRush.TimerStartEvent = function(eventStatus)
 	tes3mp.StartTimer(RushStart)
 	tes3mp.LogAppend(enumerations.log.INFO, "....START TIMER EVENT RUSH....")		
 end
 
 function RushEvent()
-	if tableHelper.getCount(Players) > 0 then
+	if tableHelper.getCount(Players) > 0 and eventrush == "inactive" then
 		Playerpid = tableHelper.getAnyValue(Players).pid
-		eventRush.AdminStart(Playerpid)
+		EventRush.AdminStart(Playerpid)
 		rushRandom = math.random(1, 5)
 	else
 		tes3mp.RestartTimer(RushStart, time.seconds(config.rushstart))
@@ -44,7 +57,7 @@ end
 function StopRush()
 	if tableHelper.getCount(Players) > 0 and eventrush == "active" then
 		Playerpid = tableHelper.getAnyValue(Players).pid
-		eventRush.End(Playerpid)
+		EventRush.End(Playerpid)
 	else
 		tes3mp.RestartTimer(RushStart, time.seconds(config.rushstart))
 	end
@@ -59,50 +72,58 @@ function StartRush()
 	end
 end
 
-eventRush.AdminStart = function(pid)
+EventRush.AdminStart = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-		local TimerEvent = tes3mp.CreateTimer("StartR", time.seconds(config.timerevent))
-		local Timerthirty = tes3mp.CreateTimer("CallforRush", time.seconds(config.timerevent / 2))
-		local Timerthree = tes3mp.CreateTimer("threeR", time.seconds((config.timerevent + config.timerstand) - 3))
-		local Timertwo = tes3mp.CreateTimer("twoR", time.seconds((config.timerevent + config.timerstand) - 2))
-		local Timerone = tes3mp.CreateTimer("oneR", time.seconds((config.timerevent + config.timerstand) - 1))
-		local Timerzero = tes3mp.CreateTimer("zeroR", time.seconds(config.timerevent + config.timerstand))	
-		tes3mp.StartTimer(TimerEvent)
-		tes3mp.StartTimer(Timerthirty)
+		local timereventrush = tes3mp.CreateTimer("StartR", time.seconds(config.timereventrush))
+		local Timerthree = tes3mp.CreateTimer("threeR", time.seconds((config.timereventrush + config.timerstand) - 3))
+		local Timertwo = tes3mp.CreateTimer("twoR", time.seconds((config.timereventrush + config.timerstand) - 2))
+		local Timerone = tes3mp.CreateTimer("oneR", time.seconds((config.timereventrush + config.timerstand) - 1))
+		local Timerzero = tes3mp.CreateTimer("zeroR", time.seconds(config.timereventrush + config.timerstand))	
+		tes3mp.StartTimer(timereventrush)
 		tes3mp.StartTimer(Timerthree)
 		tes3mp.StartTimer(Timertwo)
 		tes3mp.StartTimer(Timerone)
 		tes3mp.StartTimer(Timerzero)	
-		tes3mp.SendMessage(pid,color.Default.."L'événement de"..color.Red.." rush"..color.Default.." a été lancé."..color.Yellow.."Tout le monde a 60 secondes pour s'inscrire. Taper /rush"..color.Yellow.." coût:"..color.Default.." 100 pièces d'or.\n",true)
+		tes3mp.SendMessage(pid,color.White.."L'événement de"..color.Red.." rush"..color.White.." a été lancé.\nEntrez"..color.Red.." /rush"..color.White.." pour vous inscrire"..color.Yellow.."\ncoût :"..color.White.." 100 pièces d'or.\n",true)
 	end
 end
 
 
-eventRush.Register = function(pid)
+EventRush.Register = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-		local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
-		
-		if goldLoc ~= nil then
-			local goldamount = Players[pid].data.inventory[goldLoc].count
-			local newcount = config.countregister
-			if goldamount < newcount then
-				tes3mp.SendMessage(pid,"Vous n'avez pas assez d'or pour vous inscrire a la course ! \n",false)	
-			else
-				Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - newcount	
-				tes3mp.SendMessage(pid,"Vous vous êtes inscrit au prochain rush !  \n",false)
-				rushTab.player[pid] = {score = 0}
-				local itemref = {refId = "gold_001", count = newcount, charge = -1}			
-				Players[pid]:Save()
-				Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)		
-			end	
+		local checkevent = Players[pid].data.customVariables.event	
+		if checkevent == nil then
+			Players[pid].data.customVariables.event = false
+		end	
+		local event = Players[pid].data.customVariables.event
+		if event == false then	
+			local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
 			
-		elseif goldLoc == nil then
-			tes3mp.SendMessage(pid,"Vous n'avez pas d'or pour vous inscrire a la course ! \n",false)
-		end
+			if goldLoc ~= nil then
+				local goldamount = Players[pid].data.inventory[goldLoc].count
+				local newcount = config.countregister
+				if goldamount < newcount then
+					tes3mp.SendMessage(pid,"Vous n'avez pas assez d'or pour vous inscrire a la course ! \n",false)	
+				else
+					Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - newcount	
+					tes3mp.SendMessage(pid,"Vous vous êtes inscrit au prochain rush !  \n",false)
+					rushTab.player[pid] = {score = 0}
+					local itemref = {refId = "gold_001", count = newcount, charge = -1}			
+					Players[pid]:SaveToDrive()
+					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)
+					Players[pid].data.customVariables.event	= true						
+				end	
+				
+			elseif goldLoc == nil then
+				tes3mp.SendMessage(pid,"Vous n'avez pas d'or pour vous inscrire a la course ! \n",false)
+			end
+		else
+			tes3mp.SendMessage(pid,"Vous êtes déjà inscrit dans un autre évènement ! \n",false)
+		end				
 	end
 end
 
-eventRush.spawn = function(pid)
+EventRush.spawn = function(pid)
     if Players[pid] ~= nil and rushRandom ~= nil and Players[pid]:IsLoggedIn() then
 		if rushRandom == 1 then
 			local posx = -19606
@@ -148,12 +169,14 @@ eventRush.spawn = function(pid)
 	end
 end
 
-eventRush.tcheckcell = function(pid)
+EventRush.checkcell = function(eventStatus, pid)
 
 	local count = 0
 	
 	for pid, pl in pairs(rushTab.player) do
-		count = count + 1
+		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+			count = count + 1
+		end
 	end
 
 	local newprice = config.countregister * count
@@ -163,109 +186,62 @@ eventRush.tcheckcell = function(pid)
 			if plr:IsLoggedIn() then
 				local cell = tes3mp.GetCell(pid1)
 				if rushTab.player[pid1] then
-					if rushRandom == 1 and cell == "-2, 2" then 
-						tes3mp.SendMessage(pid,"Le gagnant est "..color.Yellow..Players[pid].name..color.Default..". Le tournoi est fini.  \n",true)
+					if tableHelper.containsValue(config.listCell, cell) then
+						tes3mp.SendMessage(pid,"Le gagnant est "..color.Yellow..Players[pid].name..color.Default..".\nLa course est fini.  \n",true)
 						local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
 						if goldLoc == nil then
-							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi ! \n",false)
+							tes3mp.SendMessage(pid,"Vous venez de gagner la course ! \n",false)
 							table.insert(Players[pid].data.inventory, {refId = "gold_001", count = newprice, charge = -1})
 						else
 							Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + newprice	
-							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi !  \n",false)
-						end				
-						local itemref = {refId = "gold_001", count = newprice, charge = -1}			
-						Players[pid]:Save()
-						Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
-						eventRush.End(pid)
-					elseif rushRandom == 2 and cell == "0, -7" then 	
-						tes3mp.SendMessage(pid,"Le gagnant est "..color.Yellow..Players[pid].name..color.Default..". Le tournoi est fini.  \n",true)
-						local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
-						if goldLoc == nil then
-							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi ! \n",false)
-							table.insert(Players[pid].data.inventory, {refId = "gold_001", count = newprice, charge = -1})
+							tes3mp.SendMessage(pid,"Vous venez de gagner la course !  \n",false)
+						end	
+						local soulLoc = Players[pid].data.customVariables.soul
+						if soulLoc == nil then
+							Players[pid].data.customVariables.soul = config.gainxp 	
 						else
-							Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + newprice	
-							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi !  \n",false)
-						end				
+							Players[pid].data.customVariables.soul = Players[pid].data.customVariables.soul + config.gainxp 
+						end
+						tes3mp.MessageBox(pid, -1, color.Default.. "Vous avez gagné : "..color.Green.. config.gainxp ..color.Default.. " points d'" ..color.Yellow.. "exp.")																		
 						local itemref = {refId = "gold_001", count = newprice, charge = -1}			
-						Players[pid]:Save()
+						Players[pid]:SaveToDrive()
 						Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
-						eventRush.End(pid)					
-					elseif rushRandom == 3 and cell == "2, 5" then 	
-						tes3mp.SendMessage(pid,"Le gagnant est "..color.Yellow..Players[pid].name..color.Default..". Le tournoi est fini.  \n",true)
-						local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
-						if goldLoc == nil then
-							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi ! \n",false)
-							table.insert(Players[pid].data.inventory, {refId = "gold_001", count = newprice, charge = -1})
-						else
-							Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + newprice	
-							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi !  \n",false)
-						end				
-						local itemref = {refId = "gold_001", count = newprice, charge = -1}			
-						Players[pid]:Save()
-						Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
-						eventRush.End(pid)					
-					elseif rushRandom == 4 and cell == "15, 1" then 	
-						tes3mp.SendMessage(pid,"Le gagnant est "..color.Yellow..Players[pid].name..color.Default..". Le tournoi est fini.  \n",true)
-						local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
-						if goldLoc == nil then
-							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi ! \n",false)
-							table.insert(Players[pid].data.inventory, {refId = "gold_001", count = newprice, charge = -1})
-						else
-							Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + newprice	
-							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi !  \n",false)
-						end				
-						local itemref = {refId = "gold_001", count = newprice, charge = -1}			
-						Players[pid]:Save()
-						Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
-						eventRush.End(pid)					
-					elseif rushRandom == 5 and cell == "12, 13" then 	
-						tes3mp.SendMessage(pid,"Le gagnant est "..color.Yellow..Players[pid].name..color.Default..". Le tournoi est fini.  \n",true)
-						local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)
-						if goldLoc == nil then
-							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi ! \n",false)
-							table.insert(Players[pid].data.inventory, {refId = "gold_001", count = newprice, charge = -1})
-						else
-							Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + newprice	
-							tes3mp.SendMessage(pid,"Vous venez de gagner le tournoi !  \n",false)
-						end				
-						local itemref = {refId = "gold_001", count = newprice, charge = -1}			
-						Players[pid]:Save()
-						Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
-						eventRush.End(pid)					
+						EventRush.End(pid)
 					end
 				end
 			end
 		end
 	end   	
 end
-
-function CallforRush()
-	for p , pl in pairs(Players) do
-		tes3mp.SendMessage(p,"Il ne vous reste que"..color.Yellow.." 30"..color.Default.." secondes pour vous inscrire à la course. Utilisez"..color.Red.." /rush"..color.Default..", cout:100 pièces d'or.\n",false)
-	end
-end
 	
 function threeR()
 	for pid, value in pairs(rushTab.player) do
-		tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 3 ...\n",false)
+		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+			tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 3 ...\n",false)
+		end
 	end
 end
 function twoR()
 	for pid, value in pairs(rushTab.player) do
-		tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 2 ..\n",false)
+		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+			tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 2 ..\n",false)
+		end
 	end
 end
 
 function oneR()
 	for pid, value in pairs(rushTab.player) do
-		tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 1 .\n",false)
+		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+			tes3mp.SendMessage(pid,"La course commence dans"..color.Red.." 1 .\n",false)
+		end
 	end
 end
 
 function zeroR()
 	for pid, value in pairs(rushTab.player) do
-		tes3mp.SendMessage(pid,color.Red.."Ruuuusssshhhh !!!!!\n",false)
+		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+			tes3mp.SendMessage(pid,color.Red.."Ruuuusssshhhh !!!!!\n",false)
+		end	
 	end
 end
 
@@ -279,59 +255,63 @@ function StartR()
 
 	if count >= 2 then
 		for pid, value in pairs(rushTab.player) do	
-			if rushRandom == 1 then
-				tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.." Le premier à Caldera remporte la mise !\n",false)
-			elseif rushRandom == 2 then	
-				tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.." Le premier à Pelagiad remporte la mise !\n",false)			
-			elseif rushRandom == 3 then	
-				tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.." Le premier à la Porte des âmes remporte la mise !\n",false)			
-			elseif rushRandom == 4 then	
-				tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.." Le premier à Tel Fyr remporte la mise !\n",false)			
-			elseif rushRandom == 5 then	
-				tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.." Le premier à Vos remporte la mise !\n",false)			
+			if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+				if rushRandom == 1 then
+					tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.."\nLe premier à "..color.Red.."Caldera "..color.White.."remporte la mise !\n",false)
+				elseif rushRandom == 2 then	
+					tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.."\nLe premier à "..color.Red.."Pelagiad "..color.White.."remporte la mise !\n",false)			
+				elseif rushRandom == 3 then	
+					tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.."\nLe premier à "..color.Red.."la Porte des âmes "..color.White.."remporte la mise !\n",false)			
+				elseif rushRandom == 4 then	
+					tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.."\nLe premier à "..color.Red.."Tel Fyr "..color.White.."remporte la mise !\n",false)			
+				elseif rushRandom == 5 then	
+					tes3mp.SendMessage(pid,"La course va commencer !"..color.Red.." preparez vous !"..color.Default.."\nLe premier à "..color.Red.."Vos "..color.White.."remporte la mise !\n",false)			
+				end
+				EventRush.spawn(pid) 
+				logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerControls")					
+				logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerFighting")			
+				logicHandler.RunConsoleCommandOnPlayer(pid, "DisableTeleporting")
+				logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerJumping")	
 			end
-			eventRush.spawn(pid) 
-			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerControls")					
-			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerFighting")			
-			logicHandler.RunConsoleCommandOnPlayer(pid, "DisableTeleporting")
-			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerJumping")	
 		end
 		eventrush = "active" 
 		tes3mp.StartTimer(TimerRush)		
 		tes3mp.StartTimer(RushStop)		
 	else
 		for pid, value in pairs(rushTab.player) do
-			tes3mp.SendMessage(pid,"Il n'y a pas assez de participant pour commencer la course !\n",false)	
+			if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then		
+				tes3mp.SendMessage(pid,"Il n'y a pas assez de participant pour commencer la course !\n",false)
+				Players[pid].data.customVariables.event	= false
+			end
 		end	
 		eventrush = "inactive"
 		tes3mp.RestartTimer(RushStart, time.seconds(config.rushstart))
 	end
 end
 
-eventRush.TcheckKill = function(pid)
+EventRush.checkKill = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		if eventrush == "active" and rushTab.player[pid] ~= nil then
-			eventRush.OnKill(pid)
-		else
-			return false
+			EventRush.OnKill(pid)		
+			return customEventHooks.makeEventStatus(false,false)
 		end	
 	end
 end
 
-eventRush.OnKill = function(pid)
+EventRush.OnKill = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-		local timer = tes3mp.CreateTimerEx("Revive", time.seconds(config.timerespawn), "i", pid)
+		local timer = tes3mp.CreateTimerEx("Reviverush", time.seconds(config.timerespawn), "i", pid)
 		tes3mp.StartTimer(timer)
 	end
 end
 
-function Revive(pid)	
+function Reviverush(pid)	
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
         tes3mp.Resurrect(pid,0)
     end	
 end
 
-eventRush.End = function(pid)
+EventRush.End = function(pid)
 
 	eventrush = "inactive"
 	
@@ -344,7 +324,8 @@ eventRush.End = function(pid)
 				tes3mp.SendCell(pid)    
 				tes3mp.SendPos(pid)	
 				logicHandler.RunConsoleCommandOnPlayer(pid, "EnableTeleporting")
-				logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerJumping")	
+				logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerJumping")
+				Players[pid].data.customVariables.event	= false	
 			end
 		end
 	end
@@ -354,4 +335,32 @@ eventRush.End = function(pid)
 	tes3mp.RestartTimer(RushStart, time.seconds(config.rushstart))	
 end
 
-return eventRush
+EventRush.PlayerConnect = function(eventStatus, pid)
+	Players[pid].data.customVariables.event	= false	
+end
+
+EventRush.OnCheckStatePlayer = function(eventStatus, pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() and eventrush == "active" then 
+		if rushTab.player[pid] then
+			return customEventHooks.makeEventStatus(false,false)
+		end
+	end
+end
+
+EventRush.OnDeathTimeExpiration = function(eventStatus, pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() and eventrush == "active" then 
+		if rushTab.player[pid] then
+			return customEventHooks.makeEventStatus(false,false)
+		end
+	end
+end
+
+customEventHooks.registerHandler("OnPlayerFinishLogin", EventRush.PlayerConnect)
+customEventHooks.registerHandler("OnServerInit", EventRush.TimerStartEvent)
+customEventHooks.registerHandler("OnPlayerCellChange", EventRush.checkcell)
+customEventHooks.registerValidator("OnPlayerDeath", EventRush.checkKill)
+customEventHooks.registerValidator("OnDeathTimeExpiration", EventRush.OnDeathTimeExpiration)
+customEventHooks.registerValidator("OnObjectActivate", EventRush.OnCheckStatePlayer)
+customCommandHooks.registerCommand("rush", EventRush.Register)
+
+return EventRush
