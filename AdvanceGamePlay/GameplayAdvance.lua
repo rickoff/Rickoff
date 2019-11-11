@@ -14,11 +14,17 @@ Prevent some custom effect on your custom potions
 The maximum level is parametrable
 ---------------------------
 INSTALLATION:
-Save the file as GameplayAdvance.lua inside your server/scripts/custom folder.
+Save the file as GameplayAdvance.lua inside your server/scripts/custom folder
+
 Save the file as MenuAdvance.lua inside your server/scripts/menu folder
+
 Save the data file as .json inside your server/data folder
+
 Edits to customScripts.lua
 GameplayAdvance = require("custom.GameplayAdvance")
+
+Edits to config.lua
+add in config.menuHelperFiles, "MenuAdvance"
 ---------------------------
 ]]
 
