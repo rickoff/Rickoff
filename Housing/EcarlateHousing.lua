@@ -1,11 +1,13 @@
 --[[
-EcarlateHousing by Rickoff
+EcarlateHousing by Rickoff original script by Atkana
 tes3mp 0.7.0
 ---------------------------
 DESCRIPTION :
-Script principal guerrie de faction, prime, resurrect
+Script principal housing
 ---------------------------
 INSTALLATION:
+Require DecorateHelp, EcarlateFurniture
+
 Save the file as EcarlateHousing.lua inside your server/scripts/custom folder.
 
 Save the file as MenuImmo.lua inside your scripts/menu folder
@@ -15,6 +17,9 @@ EcarlateHousing = require("custom.EcarlateHousing")
 
 Edits to config.lua
 add in config.menuHelperFiles, "MenuImmo"
+---------------------------
+FUNCTION:
+/menuimmo in your chat for open menu
 ---------------------------
 ]]
 
