@@ -1,19 +1,3 @@
---[[
-MainMenu by Rickoff
-tes3mp 0.7.0
----------------------------
-DESCRIPTION :
-Script principal Main Menu for manage all script Ecarlate
----------------------------
-INSTALLATION:
-
-Save the file as Menu.lua inside your scripts/menu folder
-
-Edits to config.lua
-add in config.menuHelperFiles, "Menu"
----------------------------
-]]
-
 Menus["menu player"] = {
     text = {color.Orange .. "MENU DES COMMANDES\n",
 		color.White .. "le menu global vous permet d'éxécuter différentes fonctions\n\n",
