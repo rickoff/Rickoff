@@ -8,12 +8,17 @@ Miner, fabriquer, construire
 INSTALLATION:
 Save the file as WorldMining.lua inside your server/scripts/custom folder.
 
+Save the file as MenuMining.lua inside your server/scripts/menu folder
+
 Save the file as rocks, flora, furn and static.json inside your server/data folder.
 
 Save the file as miscellaneous.json inside your server/data/recordstore folder.
 
 Edits to customScripts.lua
 WorldMining = require("custom.WorldMining")
+
+Edits to config.lua
+add in config.menuHelperFiles, "MenuMining"
 ---------------------------
 FUNCTION:
 /mining in your chat for open menu
