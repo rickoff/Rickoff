@@ -1,4 +1,4 @@
-attention script is carried for 0.7.0
+Script is carried for 0.7.0
 Ecarlate server Fr
 Tes3mp 0.7.0
 OpenMw 0.44
