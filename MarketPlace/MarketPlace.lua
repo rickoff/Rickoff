@@ -1,51 +1,22 @@
+--[[
+MarketPlace by Rickoff and DiscordPeter
+tes3mp 0.7.0
 ---------------------------
---MarketPlace by Rickoff and DiscordPeter
---helped by David.C
---for version tes3mp 0.7.0
+DESCRIPTION :
+Hotel de vente entre joueur avec menu
 ---------------------------
---[[ INSTALLATION
-1) Save this file as "MarketPlace.lua" in mp-stuff/scripts and EcarlateItems.json in mpstuff/data
+INSTALLATION:
+Save the file as MarketPlace.lua inside your server/scripts/custom folder.
 
-2) Add [ MarketPlace = require("MarketPlace") ] to the top of serverCore.lua
-
-3) Add the following to the elseif chain for commands in "OnPlayerSendMessage" inside commandHandler.lua
-[		elseif cmd[1] == "hdv" then
-			MarketPlace.showMainGUI(pid)
-]	
-		
-4) Add the following to OnGUIAction in serverCore.lua
-	[ if MarketPlace.OnGUIAction(pid, idGui, data) then return end ]
-	
-5) Add under pluginlist = {} in serverCore.lua
-hdvlist = {}
-hdvinv = {}
-
-6) Add under function LoadPluginList() in serverCore.lua
-
-function Loadhdvlist()
-	tes3mp.LogMessage(2, "Reading hdvlist.json")
-	
-	hdvlist = jsonInterface.load("hdvlist.json")
-	
-	if hdvlist == nil then
-		hdvlist.players = {}
-	end
-end
-
-function Loadhdvinv()
-	tes3mp.LogMessage(2, "Reading hdvinv.json")
-	
-	hdvinv = jsonInterface.load("hdvinv.json")
-	
-	if hdvinv == nil then
-		hdvinv.players = {}
-	end
-end
-
-7) Find function OnServerInit() and add above LoadPluginList() in serverCore.lua
-	Loadhdvlist()
-	Loadhdvinv()	
+Edits to customScripts.lua
+MarketPlace = require("custom.MarketPlace")
+---------------------------
+FUNCTION:
+/hdv in your chat for open menu
+---------------------------
 ]]
+
+
 
 local config = {}
  
@@ -64,7 +35,7 @@ inventoryHelper = require("inventoryHelper")
 math.randomseed( os.time() )
  
  
-MarketPlace = {}
+local MarketPlace = {}
 --Forward declarations:
 local showMainGUI, showBuyGUI, showInventoryGUI, showViewGUI, showInventoryOptionsGUI, showViewOptionsGUI, showEditPricePrompt
 ------------
@@ -73,17 +44,35 @@ local playerInventoryOptions = {}
 local playerInventoryChoice = {}
 local playerViewOptions = {}
 local playerViewChoice = {}
- 
+local hdvlist = {}
+local hdvinv = {}
 -- ===========
 --  FONCTION LOCAL
 -- ===========
 -------------------------
+local function Loadhdvlist()
+	tes3mp.LogMessage(2, "Reading hdvlist.json")
+	
+	hdvlist = jsonInterface.load("hdvlist.json")
+	
+	if hdvlist == nil then
+		hdvlist.players = {}
+	end
+end
+
+local function Loadhdvinv()
+	tes3mp.LogMessage(2, "Reading hdvinv.json")
+	
+	hdvinv = jsonInterface.load("hdvinv.json")
+	
+	if hdvinv == nil then
+		hdvinv.players = {}
+	end
+end
  
 local function getAvailableFurnitureStock(pid)  -- pack players.inventory.refId into table options
  
-    local options = {}
-    local playerName = Players[pid].name
-    local ipAddress = tes3mp.GetIP(pid)    
+    local options = {}   
     local itemTable = jsonInterface.load("EcarlateItems.json")
 	
     for slot, k in pairs(Players[pid].data.inventory) do
@@ -96,8 +85,7 @@ local function getAvailableFurnitureStock(pid)  -- pack players.inventory.refId 
 		end 
 		
     end
-    
-   
+ 
     return options
 end
  
@@ -121,7 +109,6 @@ local function getHdvInventoryStock(pid) -- does the same with hdvinv
    
     local options = {}
     local playerName = Players[pid].name
-    local ipAddress = tes3mp.GetIP(pid)
     local hdvinv = jsonInterface.load("hdvinv.json")   
    
     for slot, k in pairs(hdvinv.players[playerName].items) do
@@ -140,7 +127,6 @@ end
 local function priceAdd(pid, price, data) --- where is that called. messed up. adds price to item in hdvinv
  
     local playerName = Players[pid].name
-    local ipAddress = tes3mp.GetIP(pid)
     local newItemid = data
     local newprice = price
     local newItem = { itemid = newItemid, price = newprice }
@@ -158,7 +144,6 @@ end
 local function addHdv(pid, data) -- packs item from hdvinv into hdvlist. complicated
  
 	local playerName = Players[pid].name
-	local ipAddress = tes3mp.GetIP(pid)
 	local newItemid = data
 	local newItem = { itemid = newItemid, price = 0 }  -- where comes that price from?
 	local hdvinv = jsonInterface.load("hdvinv.json")
@@ -218,7 +203,7 @@ local function itemAdd(pid, newItemid) -- gets itemrefId into data and removes 3
         Players[pid].data.inventory[existingIndex] = inventoryItem -- pack it back
 
 		local itemref = {refId = newItem.itemid, count = 1, charge = -1}
-		Players[pid]:Save()
+		Players[pid]:SaveToDrive()
 		Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)		
        
     end
@@ -232,7 +217,6 @@ end
 local function itemAchat(pid, data)
 
     local playerName = Players[pid].name
-    local ipAddress = tes3mp.GetIP(pid)
     local newItemid = data.itemid
     local hdvlist = jsonInterface.load("hdvlist.json")
 	local existingIndex = 0
@@ -269,7 +253,7 @@ local function itemAchat(pid, data)
 				table.insert(Players[pid].data.inventory, {refId = newItem.itemid, count = count, charge = -1})
 				local goldprice = {refId = "gold_001", count = newPrice, charge = -1}	
 				local itemref = {refId = newItem.itemid, count = count, charge = -1}
-				Players[pid]:Save()
+				Players[pid]:SaveToDrive()
 				Players[pid]:LoadItemChanges({goldprice}, enumerations.inventory.REMOVE)				
 				Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)	
 				
@@ -289,12 +273,12 @@ local function itemAchat(pid, data)
 					if player:IsLoggedIn() then
 						--If the player is logged in, we have to update their inventory to reflect the changes
 						local itemref = {refId = "gold_001", count = newPrice, charge = -1}	
-						player:Save()
+						player:SaveToDrive()
 						player:LoadItemChanges({itemref}, enumerations.inventory.ADD)						
 					else
 						--If the player isn't logged in, we have to temporarily set the player's logged in variable to true, otherwise the Save function won't save the player's data
 						player.loggedIn = true
-						player:Save()
+						player:SaveToDrive()
 						player.loggedIn = false
 					end
 				else
@@ -302,12 +286,12 @@ local function itemAchat(pid, data)
 					if player:IsLoggedIn() then
 						--If the player is logged in, we have to update their inventory to reflect the changes
 						local itemref = {refId = "gold_001", count = newPrice, charge = -1}	
-						player:Save()
+						player:SaveToDrive()
 						player:LoadItemChanges({itemref}, enumerations.inventory.ADD)
 					else
 						--If the player isn't logged in, we have to temporarily set the player's logged in variable to true, otherwise the Save function won't save the player's data
 						player.loggedIn = true
-						player:Save()
+						player:SaveToDrive()
 						player.loggedIn = false
 					end
 				end
@@ -322,7 +306,6 @@ end
 local function addItemPlayer(pid, data)
 
     local playerName = Players[pid].name
-    local ipAddress = tes3mp.GetIP(pid)
     local newItemid = data
     local hdvinv = jsonInterface.load("hdvinv.json")
     --local existingIndex = tableHelper.getIndexByNestedKeyValue(hdvlist.players[playerName].items, "itemid", newItemid)
@@ -350,11 +333,16 @@ local function addItemPlayer(pid, data)
 		jsonInterface.save("hdvinv.json", hdvinv)
 		table.insert(Players[pid].data.inventory, {refId = newItem.itemid, count = count, charge = -1})
 		local itemref = {refId = newItem.itemid, count = count, charge = -1}
-		Players[pid]:Save()
+		Players[pid]:SaveToDrive()
 		Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)						
 
 	end
 	
+end
+
+MarketPlace.OnServerPostInit = function(eventStatus)
+	Loadhdvlist()
+	Loadhdvinv()
 end
 -- ===========
 --  MAIN MENU
@@ -385,7 +373,6 @@ end
  
 MarketPlace.showBuyGUI = function(pid)
     local playerName = Players[pid].name
-    local ipAddress = tes3mp.GetIP(pid)
     local options = getAvailableFurnitureStock(pid) -- gets all available refIds in Inventory
     local list = "* Retour *\n"
     local listItemChanged = false
@@ -438,7 +425,6 @@ end
  
 MarketPlace.showInventoryGUI = function(pid)
     local playerName = Players[pid].name
-    local ipAddress = tes3mp.GetIP(pid)
     local options = getHdvFurnitureStock(pid) -- gets hdvlist 
     local list = "* Retour *\n"
     local listItemChanged = false
@@ -511,7 +497,6 @@ end
 MarketPlace.showViewGUI = function(pid)
  
     local playerName = Players[pid].name
-    local ipAddress = tes3mp.GetIP(pid)
     local options = getHdvInventoryStock(pid) -- gets hdvinv for pid
     local list = "* Retour *\n"
     local listItemChanged = false
@@ -630,10 +615,9 @@ function nilItemCheck(playerName) -- Used to create and manage entries in tokenl
 end
  
 MarketPlace.listCheck = function(pid)
-				--tes3mp.SendMessage(pid,"inside listcheck called",false)
+	--tes3mp.SendMessage(pid,"inside listcheck called",false)
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-        local playerName = Players[pid].name
-        local ipAddress = tes3mp.GetIP(pid)    
+        local playerName = Players[pid].name   
         nilListCheck(playerName)        
     end
 end
@@ -658,9 +642,9 @@ function nilListCheck(playerName) -- Used to create and manage entries in tokenl
         hdvinv.players[playerName] = player
         jsonInterface.save("hdvinv.json", hdvinv)
        
-    -- If this IP address does exist check whether player has been logged
+    -- If this playerName does exist check whether player has been logged
     else
-        -- If this IP address already exists for another character, then add this character to it
+        -- If this playerName already exists for another character, then add this character to it
         if tableHelper.containsValue(hdvinv.players[playerName].names, playerName) == false then
             table.insert(hdvinv.players[playerName].names, playerName)
             jsonInterface.save("hdvinv.json", hdvlist)    
@@ -742,7 +726,11 @@ MarketPlace.OnGUIAction = function(pid, idGui, data)
         end
     end
 end
- 
- 
- 
+
+customEventHooks.registerHandler("OnServerPostInit", MarketPlace.OnServerPostInit)
+customCommandHooks.registerCommand("hdv", MarketPlace.showMainGUI)
+customEventHooks.registerHandler("OnGUIAction", function(eventStatus, pid, idGui, data)
+	if MarketPlace.OnGUIAction(pid, idGui, data) then return end
+end)
+
 return MarketPlace
