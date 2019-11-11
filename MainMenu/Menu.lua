@@ -12,9 +12,6 @@ Save the file as Menu.lua inside your scripts/menu folder
 Edits to config.lua
 add in config.menuHelperFiles, "Menu"
 ---------------------------
-FUNCTION:
-/menu in your chat for open menu
----------------------------
 ]]
 
 Menus["menu player"] = {
