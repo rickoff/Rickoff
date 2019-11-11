@@ -631,8 +631,39 @@ GameplayAdvance.OnRecordDynamic = function(eventStatus, pid)
             end
         end
 	end
-end	
+end
+	
+GameplayAdvance.OnPlayerDiff = function(eventStatus, pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local difficultyMin = 0
+		local currentLevel = Players[pid].data.stats.level
+		local difficultyTest
+		local difficulty
+		
+		if currentLevel <= 10 then
+			difficultyTest = difficultyMin + (currentLevel * 5)
+		elseif currentLevel > 10 and currentLevel <= 25 then
+			difficultyTest = difficultyMin + (currentLevel * 6)
+		elseif currentLevel > 25 and currentLevel <= 50 then
+			difficultyTest = difficultyMin + (currentLevel * 7)
+		end
+		
+		if difficultyTest >= 0 then 
+			difficulty = difficultyTest
+			Players[pid].data.settings.difficulty = difficultyTest
+		else
+			difficulty = difficultyMin
+			Players[pid].data.settings.difficulty = difficulty        
+		end
 
+		tes3mp.SetDifficulty(Players[pid].pid, difficulty)
+		tes3mp.LogMessage(enumerations.log.INFO, "Set difficulty to " .. tostring(difficulty) .. " for " ..
+			logicHandler.GetChatName(Players[pid].pid))
+	end
+end
+
+customEventHooks.registerHandler("OnPlayerAuthentified", GameplayAdvance.OnPlayerDiff)
+customEventHooks.registerHandler("OnPlayerLevel", GameplayAdvance.OnPlayerDiff)
 customEventHooks.registerHandler("OnObjectActivate", GameplayAdvance.OnCheckStatePlayer)
 customEventHooks.registerHandler("OnServerInit", GameplayAdvance.StartCheck)
 customEventHooks.registerHandler("OnPlayerEquipment", GameplayAdvance.Athletics)
@@ -649,4 +680,3 @@ customCommandHooks.registerCommand("playtimeall", GameplayAdvance.ShowPlayTimeAl
 customCommandHooks.registerCommand("playtime", GameplayAdvance.ShowPlayTime)
 
 return GameplayAdvance	
-		
