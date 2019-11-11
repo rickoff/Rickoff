@@ -21,15 +21,11 @@ description:
 - A module that increases the difficulty linearly based on player level.
 inspired by https://github.com/TES3MP-TeamFOSS/Scripts thank you for your work and Capostrophic for your help
 
-**LevelCapMax**
-
-- Add a maximum level for the players
-
 **DeathDrop**
 
 - This is the modified version of DeathDrop made for Rickoff so that only gold is left to death except 100
 
-**TeamWorldMatch**
+**EcarlateWar**
 
 - This is the modified version of mwTDM by Texafornian made for Rickoff for a constant war between 4 factions
 
@@ -37,38 +33,14 @@ inspired by https://github.com/TES3MP-TeamFOSS/Scripts thank you for your work a
 
 - A way to reset guild data such as rank, eviction, reputation, and quest log entries
 
-**NudeCap**
-
-- unequip all items when a player goes overboard
-
-**Forge de verre**
-
-- an object creation menu of weapons and vanilla armor glass
-
-**Forge d'ebonite**
-
-- an object creation menu of weapons and vanilla armor ebony
-
-**BountyCriminal**
-
-- allows players to spend gold to put a bounty on other players
-
 **Criminals**
 
 - the Skvysh script translates and adapts for the Ecarlate server
 https://github.com/Skvysh/TES3MP-Scripts/tree/master/Criminals
 
-**Menu**
+**EcarlateHousing, EcarlateFurniture, DecorateHelp**
 
-- the lord of the menu that executes the commands with buttons thanks to the menuhelper and inventoryHelper 0.7.0
-
-**Spectate**
-
-- the spectator mode to spy on other players in peace
-
-**kanaHousing, kanaFurniture, decorateHelp**
-
-- the ultimate script for buying house, land and supply,shop system, also allows placing objects in the space.written by Atkana translated and adapted for the Ecarlate server https://github.com/Atkana/tes3mp-scripts
+- the ultimate script for buying house, land and supply,shop system, also allows placing objects in the space written by Atkana translated, adapted and improved for the Ecarlate server. original script: https://github.com/Atkana/tes3mp-scripts
 
 **MarketPlace**
 
@@ -85,19 +57,11 @@ https://github.com/Skvysh/TES3MP-Scripts/tree/master/Criminals
 
 **Tournament**
 
-- sign up! wait for the countdown! fight! win prizes!
+- EventPvp, EventOblivion, EventDungeon, EventRush
 
 **GuildsReset**
 
 - allows players to reinitialize the ranks, reputation and expulsion of guilds
-
-**ActivatePlayer**
-
-- Raises a player by activating it for now
-- later: pickpocketing, direct haggling, invitation
-
-**QuestsReset**
-
 - reset your quest log by selecting a quest line
 
 **EcarlateSoul**
