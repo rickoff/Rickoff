@@ -8,6 +8,10 @@ Miner, fabriquer, construire
 INSTALLATION:
 Save the file as WorldMining.lua inside your server/scripts/custom folder.
 
+Save the file as rocks, flora, furn and static.json inside your server/data folder.
+
+Save the file as miscellaneous.json inside your server/data/recordstore folder.
+
 Edits to customScripts.lua
 WorldMining = require("custom.WorldMining")
 ---------------------------
