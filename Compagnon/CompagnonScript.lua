@@ -191,7 +191,7 @@ local function CreateCompagnon(refId, pid)
 		else
 			Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - newcount	
 			tes3mp.SendMessage(compagnonData.pid,"Vous venez d'engager un compagnons !  \n",false)
-			local itemref = {refId = "gold_001", count = newcount, charge = -1}			
+			local itemref = {refId = "gold_001", count = newcount, charge = -1, soul = -1}			
 			Players[pid]:SaveToDrive()
 			Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)	
 			LoadedCells[compagnonData.cell]:InitializeObjectData(compagnonData.uniqueIndex, refId)
