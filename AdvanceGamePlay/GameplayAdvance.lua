@@ -15,14 +15,10 @@ The maximum level is parametrable
 ---------------------------
 INSTALLATION:
 Save the file as GameplayAdvance.lua inside your server/scripts/custom folder
-
 Save the file as MenuAdvance.lua inside your server/scripts/menu folder
-
 Save the data file as .json inside your server/data folder
-
 Edits to customScripts.lua
 GameplayAdvance = require("custom.GameplayAdvance")
-
 Edits to config.lua
 add in config.menuHelperFiles, "MenuAdvance"
 ---------------------------
@@ -30,6 +26,7 @@ FUNCTION:
 /menujoueur in your chat for open menu
 ---------------------------
 ]]
+
 
 tableHelper = require("tableHelper")
 jsonInterface = require("jsonInterface")
@@ -39,7 +36,7 @@ configL.limitedstart = 10
 
 local weaponsData = {}
 local armorData = {}
-local potionData= {}
+local potionData = {}
 local weaponsCustomData = {}
 local armorCustomData = {}
 local potionCustomData = {}
@@ -47,6 +44,7 @@ local potionCustomData = {}
 local TimerDrawState = tes3mp.CreateTimer("StartCheckDraw", time.seconds(1))
 local TimerPotionState = tes3mp.CreateTimer("StartCheckPotion", time.seconds(configL.limitedstart))
 local playTimeGuiID = 01245780
+
 
 local weaponsLoader = jsonInterface.load("WeaponsEcarlate.json")
 for index, item in pairs(weaponsLoader) do
@@ -93,6 +91,8 @@ function StartCheckDraw()
 	for pid , value in pairs(Players) do
 		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then		
 			GameplayAdvance.Speed(pid)
+			GameplayAdvance.UpdatePlayTime()
+			GameplayAdvance.TemporalyLoadSkills()
 		end
 	end
 	tes3mp.RestartTimer(TimerDrawState, time.seconds(1))
@@ -183,6 +183,8 @@ GameplayAdvance.Speed = function(pid)
 	end
 end
 
+local GameplayAdvanceTab = { player = {} }
+	
 GameplayAdvance.Athletics = function(eventStatus, pid)
 	local itemEquipment = {}
 	local levelP = tes3mp.GetLevel(pid)
@@ -206,7 +208,7 @@ GameplayAdvance.Athletics = function(eventStatus, pid)
 					end
 				end
 			end				
-		end		
+		end	
 		if itemEquipment ~= nil then
 			local Weigth = 0	
 			for x, y in pairs(armorData) do
@@ -216,9 +218,22 @@ GameplayAdvance.Athletics = function(eventStatus, pid)
 			end	
 			value = math.floor((Weigth + Malus) / 3)						
 		end	
+		
 		if value ~= nil then
+			GameplayAdvanceTab.player[pid] = value
+		end	
+		
+	end
+end
+
+GameplayAdvance.TemporalyLoadSkills = function()
+	for pid, value in pairs(GameplayAdvanceTab.player) do
+		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+			if value == nil then value = 0 end
+			local skillId = tes3mp.GetSkillId("Athletics")
+			local skillId2 = tes3mp.GetSkillId("Acrobatics")
 			tes3mp.SetSkillDamage(pid, skillId, value)
-			tes3mp.SetSkillDamage(pid, skillId2, value)
+			tes3mp.SetSkillDamage(pid, skillId2, value)	
 			tes3mp.SendSkills(pid)
 		end
 	end
@@ -600,6 +615,7 @@ GameplayAdvance.OnRecordDynamic = function(eventStatus, pid)
             if recordNumericalType ~= enumerations.recordType.ENCHANTMENT and not logicHandler.IsNameAllowed(recordName) then
                 table.insert(rejectedRecords, recordName)
                 Players[pid]:Message("Vous n'êtes pas autorisé à créer!" .. recordName .. "\n")
+				isValid = false
 				return customEventHooks.makeEventStatus(false,false) 				
             elseif recordNumericalType == enumerations.recordType.ENCHANTMENT then
 
@@ -609,6 +625,7 @@ GameplayAdvance.OnRecordDynamic = function(eventStatus, pid)
 
                     if tableHelper.containsKeyValue(effects, "id", disallowedEffectId) then
                         Players[pid]:Message("Vous n'êtes pas autorisé à créer un enchantment avec cette effet!")
+						isValid = false
 						return customEventHooks.makeEventStatus(false,false) 						
                     end
                 end
@@ -631,8 +648,8 @@ GameplayAdvance.OnRecordDynamic = function(eventStatus, pid)
             end
         end
 	end
-end
-	
+end	
+
 GameplayAdvance.OnPlayerDiff = function(eventStatus, pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local difficultyMin = 0
@@ -662,6 +679,29 @@ GameplayAdvance.OnPlayerDiff = function(eventStatus, pid)
 	end
 end
 
+GameplayAdvance.ReloadCustom = function(eventStatus, pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local weaponsCustom = jsonInterface.load("recordstore/weapon.json")
+		for index, item in pairs(weaponsCustom.generatedRecords) do
+			local Slot = weaponsCustom.generatedRecords[index]
+			table.insert(weaponsCustomData, {NAME = string.lower(Slot.name), REFID = string.lower(Slot.baseId), CUSTOMID = index})
+		end
+
+		local armorCustom = jsonInterface.load("recordstore/armor.json")
+		for index, item in pairs(armorCustom.generatedRecords) do
+			local Slot = armorCustom.generatedRecords[index]
+			table.insert(armorCustomData, {NAME = string.lower(Slot.name), REFID = string.lower(Slot.baseId), CUSTOMID = index})
+		end
+
+		local potionCustom = jsonInterface.load("recordstore/potion.json")
+		for index, item in pairs(potionCustom.generatedRecords) do
+			local Slot = potionCustom.generatedRecords[index]
+			table.insert(potionCustomData, {NAME = string.lower(Slot.name), CUSTOMID = index})
+		end
+	end
+end
+
+customEventHooks.registerHandler("OnRecordDynamic", GameplayAdvance.ReloadCustom)
 customEventHooks.registerHandler("OnPlayerAuthentified", GameplayAdvance.OnPlayerDiff)
 customEventHooks.registerHandler("OnPlayerLevel", GameplayAdvance.OnPlayerDiff)
 customEventHooks.registerHandler("OnObjectActivate", GameplayAdvance.OnCheckStatePlayer)
