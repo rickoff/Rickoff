@@ -307,7 +307,7 @@ Methods.SwitchTeamsTemple = function(pid)
 				local count = item.count
 				local reste = (item.count - 10000)
 				if count >= 10000 then
-					local itemref = {refId = "gold_001", count = 10000, charge = -1}			
+					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = -1}			
 					player.data.inventory[goldL].count = player.data.inventory[goldL].count - 10000
 					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)
 					local message = "Vous venez de dépenser 10000 pièces pour changer de faction\n"
@@ -357,7 +357,7 @@ Methods.SwitchTeamsEmpire = function(pid)
 				local count = item.count
 				local reste = (item.count - 10000)
 				if count >= 10000 then
-					local itemref = {refId = "gold_001", count = 10000, charge = -1}			
+					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = -1}			
 					player.data.inventory[goldL].count = player.data.inventory[goldL].count - 10000
 					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)			
 					local message = "Vous venez de dépenser 10000 pièces pour changer de faction\n"
@@ -406,7 +406,7 @@ Methods.SwitchTeamsRenegats = function(pid)
 				local count = item.count
 				local reste = (item.count - 10000)
 				if count >= 10000 then
-					local itemref = {refId = "gold_001", count = 10000, charge = -1}			
+					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = -1}			
 					player.data.inventory[goldL].count = player.data.inventory[goldL].count - 10000
 					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)			
 					local message = "Vous venez de dépenser 10000 pièces pour changer de faction\n"
@@ -674,9 +674,9 @@ function ScoreCheck(pid, teamNumber) -- Called from function OnPlayerDeath, chec
             if p ~= nil and p:IsLoggedIn() and p.data.ecWar ~= nil then
                 
                 if Players[i].data.ecWar.team == winningTeam then
-					local itemref = {refId = "gold_001", count = 10000, charge = -1}
+					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = -1}
                     --table.insert(Players[i].data.inventory, itemRef)
-					table.insert(Players[i].data.inventory, {refId = "gold_001", count = 10000, charge = -1})
+					table.insert(Players[i].data.inventory, {refId = "gold_001", count = 10000, charge = -1, soul = -1})
 					Players[pid]:QuicksaveToDrive()
 					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)
                 end
@@ -1100,7 +1100,7 @@ Methods.StopPrimeToPlayer = function(pid, originPid, targetPid)
 				local count = item.count
 				local reste = (item.count - 10000)
 				if count >= 10000 then
-					local itemref = {refId = "gold_001", count = 10000, charge = -1}			
+					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = -1}			
 					player.data.inventory[goldL].count = player.data.inventory[goldL].count - 10000
 					Players[pid]:QuicksaveToDrive()
 					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)
@@ -1153,7 +1153,7 @@ Methods.PrimeToPlayer = function(pid, originPid, targetPid)
 			local count = item.count
 			local reste = (item.count - 10000)
 			if count >= 10000 then
-				local itemref = {refId = "gold_001", count = 10000, charge = -1}			
+				local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = -1}			
 				player.data.inventory[goldL].count = player.data.inventory[goldL].count - 10000
 				Players[pid]:QuicksaveToDrive()
 				Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)
@@ -1245,12 +1245,17 @@ end
 Methods.OnPlayerSendMessage = function(eventStatus, pid, message)
 
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then 
+		if Players[pid].data.customVariables.Jailer == nil then
+			Players[pid].data.customVariables.Jailer = false
+		end	
 		tes3mp.LogMessage(enumerations.log.INFO, logicHandler.GetChatName(pid) .. ": " .. message) 
 		local RankP = Players[pid].data.ecWar.team
-        -- Is this a chat command? If so, pass it over to the commandHandler
-		if message:sub(1, 1) == '/' then
-			local command = (message:sub(2, #message)):split(" ")
-			commandHandler.ProcessCommand(pid, command)
+		-- Is this a chat command? If so, pass it over to the commandHandler
+		if message:sub(1, 1) == '/' then	
+			if Players[pid].data.customVariables.Jailer == true then
+				tes3mp.MessageBox(pid, -1, color.Red.."Les commandes sont interdite en prison !")
+				return customEventHooks.makeEventStatus(false,false)	
+			end	
 		else
 			local message1 = color.Grey .. logicHandler.GetChatName(pid) .. color.White .. " : " .. message
 
@@ -1280,7 +1285,7 @@ Methods.OnPlayerSendMessage = function(eventStatus, pid, message)
 			end
 
 			return customEventHooks.makeEventStatus(false,false)	
-		end	
+		end		
 	end
 end
 
