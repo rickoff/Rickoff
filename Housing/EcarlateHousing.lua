@@ -147,14 +147,14 @@ local function addGold(playerName, amount) --playerName is the name of the playe
 		else
 			--Only create a new entry for gold if the amount is actually above 0, otherwise we'll have negative money.
 			if amount > 0 then
-				table.insert(player.data.inventory, {refId = "gold_001", count = amount, charge = -1})
+				table.insert(player.data.inventory, {refId = "gold_001", count = amount, charge = -1, soul = -1})
 			end
 		end
 		
 		--How we save the character is different depending on whether or not the player is online
 		if player:IsLoggedIn() then
 			--If the player is logged in, we have to update their inventory to reflect the changes
-			local itemref = {refId = "gold_001", count = amount, charge = -1}	
+			local itemref = {refId = "gold_001", count = amount, charge = -1, soul = -1}	
 			player:SaveToDrive()
 			player:LoadItemChanges({itemref}, enumerations.inventory.ADD)
 		else
@@ -191,14 +191,14 @@ local function removeGold(playerName, amount) --playerName is the name of the pl
 		else
 			--Only create a new entry for gold if the amount is actually above 0, otherwise we'll have negative money.
 			if amount > 0 then
-				table.insert(player.data.inventory, {refId = "gold_001", count = amount, charge = -1})
+				table.insert(player.data.inventory, {refId = "gold_001", count = amount, charge = -1, soul = -1})
 			end
 		end
 		
 		--How we save the character is different depending on whether or not the player is online
 		if player:IsLoggedIn() then
 			--If the player is logged in, we have to update their inventory to reflect the changes
-			local itemref = {refId = "gold_001", count = amount, charge = -1}	
+			local itemref = {refId = "gold_001", count = amount, charge = -1, soul = -1}	
 			player:SaveToDrive()
 			player:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)
 		else
@@ -1806,47 +1806,45 @@ Methods.OnContainer = function(eventStatus, pid, cellDescription, objects)
 			local houseName, cdata = getIsInHouse(pid)			
 			if houseName then -- The player isn't in a house cell, so we don't care			
 				if getHouseOwnerName(houseName) then --It's not really stealing if nobody owns the house			
-					if not tes3mp.GetObjectChangesSize() < 1 then --Something funky is going on and causes crashes if we continue					
-						if action == enumerations.container.REMOVE then
-							if not isOwner(pname, houseName) and not isCoOwner(pname, houseName) then --We aren't interested in what the owners or co owners get up to in the cells they own.
-								--Check if the container is listed in the cell's resetInfo, to see if they're taking from a container important for a quest.
-								local dirtyThief = true --Guilty until proven innocent
-								for index, resetData in pairs(cdata.resetInfo) do
-									if resetData.refIndex == ObjectIndex then
-										dirtyThief = false
-										break
-									end
-								end
-								
-								if dirtyThief then
-									doLog("Voleur potentiel :" .. getName(pid) .. "a pris un objet du récipient" .. ObjectIndex .. " dans " .. cdata.name .. " (Partie de " .. getHouseOwnerName(cdata.house) .. "La maison: " .. cdata.house .. ")Et ce conteneur n'a pas été marqué comme un conteneur de quête!")
-									onDirtyThief(pid)
-									return customEventHooks.makeEventStatus(false,false)
-								else
-									doLog(getName(pid) .. " a pris un objet du récipient " .. ObjectIndex .. " dans " .. cdata.name .. " (Partie de " .. getHouseOwnerName(cdata.house) .. "La maison: " .. cdata.house .. ") mais c'est bon parce qu'il est marqué comme un conteneur de quête.") --Necessary to log?
+					if action == enumerations.container.REMOVE then
+						if not isOwner(pname, houseName) and not isCoOwner(pname, houseName) then --We aren't interested in what the owners or co owners get up to in the cells they own.
+							--Check if the container is listed in the cell's resetInfo, to see if they're taking from a container important for a quest.
+							local dirtyThief = true --Guilty until proven innocent
+							for index, resetData in pairs(cdata.resetInfo) do
+								if resetData.refIndex == ObjectIndex then
+									dirtyThief = false
+									break
 								end
 							end
-						elseif action == enumerations.container.SET then
-							doLog("DEBUG: Container stuff container is SET")
-							if not isOwner(pname, houseName) and not isCoOwner(pname, houseName) then --We aren't interested in what the owners or co owners get up to in the cells they own.
-								--Check if the container is listed in the cell's resetInfo, to see if they're taking from a container important for a quest.
-								local dirtyThief = true --Guilty until proven innocent
-								for index, resetData in pairs(cdata.resetInfo) do
-									if resetData.refIndex == ObjectIndex then
-										dirtyThief = false
-										break
-									end
-								end
-								
-								if dirtyThief then
-									doLog("Voleur potentiel : " .. getName(pid) .. " Peut avoir pris tout du conteneur" .. ObjectIndex .. " dans " .. cdata.name .. " (Partie de " .. getHouseOwnerName(cdata.house) .. "la maison: " .. cdata.house .. ")Et ce conteneur n'a pas été marqué comme un conteneur de quête! Il se peut, cependant, qu'ils aient juste généré la cellule pour la première fois.")
-								else
-									doLog(getName(pid) .. "Peut avoir pris tout du conteneur " .. ObjectIndex .. " dans " .. cdata.name .. " (partie de " .. getHouseOwnerName(cdata.house) .. "la maison: " .. cdata.house .. ")mais c'est bon parce qu'il est marqué comme un conteneur de quête.") --Necessary to log?
-								end
+							
+							if dirtyThief then
+								doLog("Voleur potentiel :" .. getName(pid) .. "a pris un objet du récipient" .. ObjectIndex .. " dans " .. cdata.name .. " (Partie de " .. getHouseOwnerName(cdata.house) .. "La maison: " .. cdata.house .. ")Et ce conteneur n'a pas été marqué comme un conteneur de quête!")
+								onDirtyThief(pid)
+								return customEventHooks.makeEventStatus(false,false)
+							else
+								doLog(getName(pid) .. " a pris un objet du récipient " .. ObjectIndex .. " dans " .. cdata.name .. " (Partie de " .. getHouseOwnerName(cdata.house) .. "La maison: " .. cdata.house .. ") mais c'est bon parce qu'il est marqué comme un conteneur de quête.") --Necessary to log?
 							end
 						end
-						doLog("DEBUG: Container stuff done")
+					elseif action == enumerations.container.SET then
+						doLog("DEBUG: Container stuff container is SET")
+						if not isOwner(pname, houseName) and not isCoOwner(pname, houseName) then --We aren't interested in what the owners or co owners get up to in the cells they own.
+							--Check if the container is listed in the cell's resetInfo, to see if they're taking from a container important for a quest.
+							local dirtyThief = true --Guilty until proven innocent
+							for index, resetData in pairs(cdata.resetInfo) do
+								if resetData.refIndex == ObjectIndex then
+									dirtyThief = false
+									break
+								end
+							end
+							
+							if dirtyThief then
+								doLog("Voleur potentiel : " .. getName(pid) .. " Peut avoir pris tout du conteneur" .. ObjectIndex .. " dans " .. cdata.name .. " (Partie de " .. getHouseOwnerName(cdata.house) .. "la maison: " .. cdata.house .. ")Et ce conteneur n'a pas été marqué comme un conteneur de quête! Il se peut, cependant, qu'ils aient juste généré la cellule pour la première fois.")
+							else
+								doLog(getName(pid) .. "Peut avoir pris tout du conteneur " .. ObjectIndex .. " dans " .. cdata.name .. " (partie de " .. getHouseOwnerName(cdata.house) .. "la maison: " .. cdata.house .. ")mais c'est bon parce qu'il est marqué comme un conteneur de quête.") --Necessary to log?
+							end
+						end
 					end
+					doLog("DEBUG: Container stuff done")
 				end
 			end
 		end
@@ -2044,9 +2042,9 @@ Methods.onShopOptionSelect = function(pid)
 				cell:SaveToDrive()		
 				Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - price
 				tes3mp.MessageBox(pid, -1, "Vous avez acheté un objet !")
-				table.insert(Players[pid].data.inventory, {refId = choice, count = 1, charge = -1})	
-				local itemref1 = {refId = choice, count = 1 , charge = -1}				
-				local itemref = {refId = "gold_001", count = price, charge = -1}			
+				table.insert(Players[pid].data.inventory, {refId = choice, count = 1, charge = -1, soul = -1})	
+				local itemref1 = {refId = choice, count = 1 , charge = -1, soul = -1}				
+				local itemref = {refId = "gold_001", count = price, charge = -1, soul = -1}			
 				Players[pid]:SaveToDrive()
 				Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)
 				Players[pid]:LoadItemChanges({itemref1}, enumerations.inventory.ADD)
@@ -2067,7 +2065,7 @@ Methods.onShopOptionSelect = function(pid)
 				
 					if player:IsLoggedIn() then
 						--If the player is logged in, we have to update their inventory to reflect the changes
-						local itemref = {refId = "gold_001", count = price, charge = -1}	
+						local itemref = {refId = "gold_001", count = price, charge = -1, soul = -1}	
 						player:SaveToDrive()
 						player:LoadItemChanges({itemref}, enumerations.inventory.ADD)						
 					else
@@ -2077,10 +2075,10 @@ Methods.onShopOptionSelect = function(pid)
 						player.loggedIn = false
 					end
 				else
-					table.insert(player.data.inventory, {refId = "gold_001", count = price, charge = -1})	
+					table.insert(player.data.inventory, {refId = "gold_001", count = price, charge = -1, soul = -1})	
 					if player:IsLoggedIn() then
 						--If the player is logged in, we have to update their inventory to reflect the changes
-						local itemref = {refId = "gold_001", count = price, charge = -1}	
+						local itemref = {refId = "gold_001", count = price, charge = -1, soul = -1}	
 						player:SaveToDrive()
 						player:LoadItemChanges({itemref}, enumerations.inventory.ADD)
 					else
