@@ -126,7 +126,7 @@ GoldBank.PlayerAddGold = function(pid, count)
 					else
 						Players[pid].data.customVariables.goldBank = Players[pid].data.customVariables.goldBank + totalCount
 					end
-					local itemref = {refId = "gold_001", count = count, charge = -1}			
+					local itemref = {refId = "gold_001", count = count, charge = -1, soul = -1}			
 					Players[pid]:SaveToDrive()
 					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)					
 				end
@@ -148,12 +148,12 @@ GoldBank.PlayerRemoveGold = function(pid, count)
 		if goldBankCount ~= nil and goldBankCount >= count then		
 			local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)			
 			if goldLoc == nil then
-				table.insert(Players[pid].data.inventory, {refId = "gold_001", count = count, charge = -1})				
+				table.insert(Players[pid].data.inventory, {refId = "gold_001", count = count, charge = -1, soul = -1})				
 			else
 				Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + count									
 			end
 			Players[pid].data.customVariables.goldBank = Players[pid].data.customVariables.goldBank - count
-			local itemref = {refId = "gold_001", count = count, charge = -1}			
+			local itemref = {refId = "gold_001", count = count, charge = -1, soul = -1}			
 			Players[pid]:SaveToDrive()
 			Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
 			tes3mp.MessageBox(pid, -1, color.White.."Vous avez récupéré "..color.Yellow..count..color.White.." pièces d'or de la banque.")			
