@@ -41,7 +41,7 @@ DeathDrop.Drop = function(eventStatus, pid)
 			local removeGold = math.floor((totalcount * config.pourcent) / 100)
 			local reste = totalcount - removeGold
 			local refIndex =  0 .. "-" .. mpNum
-			local itemref = {refId = "gold_001", count = (removeGold), charge = -1}		
+			local itemref = {refId = "gold_001", count = (removeGold), charge = -1, soul = -1}		
 			player.data.inventory[goldLoc].count = reste
 			Players[pid]:SaveToDrive()
 			Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)	
