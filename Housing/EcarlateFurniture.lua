@@ -496,10 +496,10 @@ local function addGold(pid, amount)
 	if goldLoc then
 		Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count + amount
 	else
-		table.insert(Players[pid].data.inventory, {refId = "gold_001", count = amount, charge = -1})
+		table.insert(Players[pid].data.inventory, {refId = "gold_001", count = amount, charge = -1, soul = -1})
 	end
 	
-	local itemref = {refId = "gold_001", count = amount, charge = -1}			
+	local itemref = {refId = "gold_001", count = amount, charge = -1, soul = -1}			
 	Players[pid]:SaveToDrive()
 	Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)			
 end
@@ -509,7 +509,7 @@ local function removeGold(pid, amount)
 	local goldLoc = inventoryHelper.getItemIndex(Players[pid].data.inventory, "gold_001", -1)	
 	Players[pid].data.inventory[goldLoc].count = Players[pid].data.inventory[goldLoc].count - amount
 	
-	local itemref = {refId = "gold_001", count = amount, charge = -1}			
+	local itemref = {refId = "gold_001", count = amount, charge = -1, soul = -1}			
 	Players[pid]:SaveToDrive()
 	Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)			
 end
