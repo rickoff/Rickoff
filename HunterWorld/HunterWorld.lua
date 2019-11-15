@@ -14,8 +14,6 @@ resfresh all creature and npc after a timers
 INSTALLATION:
 Save the file as HunterWorld.lua inside your server/scripts/custom folder.
 
-Save the file as CreaturesVanilla.json and CreatureSpawn.json inside your server/data folder.
-
 Edits to customScripts.lua
 HunterWorld = require("custom.HunterWorld")
 ]]
@@ -30,11 +28,14 @@ jsonInterface = require("jsonInterface")
 -------------------------
 local config = {}
 --blacklist cell for protect to spawnadd some native spawn
-config.blackList = {"-3, -1", "-3, -2", "-3, -3", "-4, -3", "-4, -4", "-2, -1"}
+config.blackList = {"-3, -1", "-3, -2", "-3, -3", "-4, -3", "-4, -4", "-2, -1", "Mine d'oeufs de Shulk", "Mine d'oeufs de Shulk, antre de la reine", "Jarvik, Port", "Jarvik, Brasseurs, Quartier",
+ "Jarvik, Vieux Quartier", "Ald'ruhn, temple", "Gnisis, temple", "Balmora, temple"}
 
 --blacklist nativespawn creature for protect spawnadd 
-config.blackListCrea = {"goldfinch1", "goldfinch2", "robin", "slaughterfish", "slaughterfish_small", "plx_razorfish", "plx_aqua netch", "plx_seahorse",
- "dreugh", "bm_wolf_grey", "bm_wolf_red", "ancestor_ghost_summon", "atronach_flame_summon", "atronach_frost_summon", "atronach_storm_summon",
+config.blackListCrea = {"raz_reddragon", "raz_bluedragon", "raz_adult_blackdragon", "raz_adult_greendragon", "plx_vamphunter1", "plx_vamphunter2", "plx_vamphunter3", "plx_vamphunter4", "plx_vamphunter5", "plx_wolfhunter1", "plx_wolfhunter2", "plx_wolfhunter3",
+ "plx_wolfhunter4", "plx_wolfhunter5", "cait_seagull01", "cait_seagull02", "cait_seagull03", "sparrow1", "sparrow2", "sparrow3", "squirrel1", "squirrel2", "squirrel3",
+ "plx_butterfly", "plx_butterfly2", "chickadee", "goldfinch1", "goldfinch2", "robin", "slaughterfish", "slaughterfish_small", "plx_razorfish", "plx_aqua netch", "plx_seahorse",
+ "dreugh", "plx_slaughtershark", "bm_wolf_grey", "bm_wolf_red", "ancestor_ghost_summon", "atronach_flame_summon", "atronach_frost_summon", "atronach_storm_summon",
  "bm_bear_black_summon", "bm_wolf_grey_summon", "bonelord_summon", "bonewalker_summon", "centurion_sphere_summon", "clannfear_summon", "daedroth_summon",
  "dremora_summon", "fabricant_summon", "golden saint_summon", "hunger_summon", "scamp_summon", "skeleton_summon", "winged twilight_summon", "bm_wolf_bone_summon", "cait_shark02"}
  
@@ -44,9 +45,11 @@ config.timerSpawn = 120
 --timer price
 config.timerPrice = 3600
 --price when players kill a boss
+config.timerClean = 3600*6
+--timer for clean cell
 config.count = 5000
 --list id boss
-config.bosses = {""}
+config.bosses = {"ecarlate_bandit_04", "ecarlate_bandit_03", "ecarlate_bandit_02", "ecarlate_bandit_01"}
 --timer for respawn all npc and creature in cell
 config.timerRespawn = 1800
 HunterWorld = {}
@@ -54,8 +57,11 @@ HunterWorld = {}
 HunterWorld.TimerEventWorld = function(eventStatus)
 	local TimerEvent = tes3mp.CreateTimer("EventSpawn", time.seconds(config.timerSpawn))
 	local TimerPrice = tes3mp.CreateTimer("EventPrice", time.seconds(config.timerPrice))
+	local TimerClean = tes3mp.CreateTimer("EventClean", time.seconds(config.timerClean))
+	
 	tes3mp.StartTimer(TimerEvent)
 	tes3mp.StartTimer(TimerPrice)
+	tes3mp.StartTimer(TimerClean)
 	tes3mp.LogAppend(enumerations.log.INFO, "....START TIMER HUNTER WORLD....")		
 	local packetType = "spawn"
 	local count
@@ -63,8 +69,8 @@ HunterWorld.TimerEventWorld = function(eventStatus)
 	local rando2
 
 	function EventSpawn()	
-		local cellTable = jsonInterface.load("CreatureSpawn.json")
-		local creatureTable = jsonInterface.load("CreaturesVanilla.json")
+		local cellTable = jsonInterface.load("EcarlateCreaturesSpawn.json")
+		local creatureTable = jsonInterface.load("EcarlateCreatures.json")
 		local creatureRefId
 		local creaturename
 		local cellId
@@ -121,17 +127,55 @@ HunterWorld.TimerEventWorld = function(eventStatus)
 					local refId = item.refId
 					local count = item.count
 					local rest = (item.count + 1000)
-					player.data.inventory[goldL] = {refId = "gold_001", count = rest, charge = -1}			
+					player.data.inventory[goldL] = {refId = "gold_001", count = rest, charge = -1, soul = -1}			
 				else
-					table.insert(Players[pid].data.inventory, {refId = "gold_001", count = 1000, charge = -1})
+					table.insert(Players[pid].data.inventory, {refId = "gold_001", count = 1000, charge = -1, soul = -1})
 				end	
-				local itemref = {refId = "gold_001", count = 1000, charge = -1}			
+				local itemref = {refId = "gold_001", count = 1000, charge = -1, soul = -1}			
 				Players[pid]:SaveToDrive()
 				Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)					
 			end
 		end
 		tes3mp.RestartTimer(TimerPrice, time.seconds(config.timerPrice))
 	end
+
+	function EventClean()
+		for slot2, cell in pairs(cellTable.cells) do
+			cellDescription = cell.Refid
+			if cellDescription ~= nil then
+				local cell = LoadedCells[cellDescription]
+				local useTemporaryLoad = false	
+				if cell == nil then
+					logicHandler.LoadCell(cellDescription)
+					useTemporaryLoad = true
+					cell = LoadedCells[cellDescription]	
+					for _, uniqueIndex in pairs(cell.data.packets.spawn) do
+						if cell.data.objectData[uniqueIndex] ~= nil then
+							cell.data.objectData[uniqueIndex] = nil
+							tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)	
+							if tableHelper.getCount(Players) > 0 then		
+								logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)
+							end
+						end
+					end
+					cell:SaveToDrive()			
+				elseif cell ~= nil then	
+					for _, uniqueIndex in pairs(cell.data.packets.spawn) do
+						if cell.data.objectData[uniqueIndex] ~= nil then
+							cell.data.objectData[uniqueIndex] = nil
+							tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)
+							logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)				
+						end
+					end
+					cell:SaveToDrive()
+				end	
+				if useTemporaryLoad == true then
+					logicHandler.UnloadCell(cellDescription)
+				end
+			end
+		end
+		tes3mp.RestartTimer(TimerClean, time.seconds(config.timerClean))
+	end	
 end 
 
 
@@ -152,14 +196,14 @@ HunterWorld.HunterPrime = function(eventStatus, pid, cellDescription)
 							local message = color.Red.. "Une créature rare vient d'être tuée !\n"	
 							if tableHelper.containsValue(config.bosses, refId) then
 								if goldLoc == nil then
-									table.insert(Players[killerPid].data.inventory, {refId = "gold_001", count = config.count, charge = -1})			
+									table.insert(Players[killerPid].data.inventory, {refId = "gold_001", count = config.count, charge = -1, soul = -1})			
 								else
 									Players[killerPid].data.inventory[goldLoc].count = Players[killerPid].data.inventory[goldLoc].count + config.count
 									local countprice = Players[killerPid].data.inventory[goldLoc].count + config.count
 								end
 								tes3mp.MessageBox(killerPid, -1, "Tu a récupéré une prime de chasse !")
 								tes3mp.SendMessage(killerPid, message, true)
-								local itemref = {refId = "gold_001", count = config.count, charge = -1}			
+								local itemref = {refId = "gold_001", count = config.count, charge = -1, soul = -1}			
 								Players[killerPid]:SaveToDrive()
 								Players[killerPid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)						
 							end
@@ -196,7 +240,7 @@ HunterWorld.OnCreatureSpawn = function(eventStatus, pid, cellDescription, object
 				if not tableHelper.containsValue(config.blackList, cellDescription) then
 					if not tableHelper.containsValue(config.blackListCrea, ObjectRefid) then		
 
-						local creatureTable = jsonInterface.load("CreaturesVanilla.json")
+						local creatureTable = jsonInterface.load("EcarlateCreaturesLigth.json")
 						local creatureRefId
 						local creaturename
 				
@@ -281,6 +325,7 @@ HunterWorld.OnPlayerChangeCell = function(eventStatus, pid)
 		end
 	end
 end
+
 
 customEventHooks.registerHandler("OnServerInit", HunterWorld.TimerEventWorld)
 customEventHooks.registerHandler("OnPlayerCellChange", HunterWorld.OnPlayerChangeCell)
