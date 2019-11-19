@@ -7,12 +7,9 @@ Syteme d'experience et de competences
 ---------------------------
 INSTALLATION:
 Save the file as EcarlateSoul.lua inside your server/scripts/custom folder.
-
 Save the file as MenuSoul.lua inside your scripts/menu folder
-
 Edits to customScripts.lua
 EcarlateSoul = require("custom.EcarlateSoul")
-
 Edits to config.lua
 add in config.menuHelperFiles, "MenuSoul"
 ---------------------------
@@ -83,10 +80,13 @@ EcarlateSoul.OnPlayerKillCreature = function(eventStatut, pid, cellDescription)
 											end
 											if Count == 0 then
 												Count = 1
-											elseif Count > 10 then
-												Count = 10
+											elseif Count > 2 then
+												Count = 2
 											end
-											local totalGain = (creatureSoul + rando1) * Count	
+											local totalGain = (creatureSoul + rando1) * Count
+											if TeamGroup then
+												TeamGroup.SendSoul(killerPid, totalGain)
+											end
 											if Players[killerPid] ~= nil then	
 												if soulLoc == nil then
 													Players[killerPid].data.customVariables.soul = totalGain	
