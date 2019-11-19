@@ -40,9 +40,11 @@ local potionData = {}
 local weaponsCustomData = {}
 local armorCustomData = {}
 local potionCustomData = {}
-
+local GameplayAdvanceTab = { player = {} }
+local GameplayAdvanceTabAtt = { player = {} }
 local TimerDrawState = tes3mp.CreateTimer("StartCheckDraw", time.seconds(1))
 local TimerPotionState = tes3mp.CreateTimer("StartCheckPotion", time.seconds(configL.limitedstart))
+local TimerSkillsState = tes3mp.CreateTimer("TemporalyLoadSkills", time.seconds(1))
 local playTimeGuiID = 01245780
 
 
@@ -83,7 +85,7 @@ local GameplayAdvance = {}
 
 GameplayAdvance.StartCheck = function(eventStatus)
 	tes3mp.StartTimer(TimerDrawState)
-	tes3mp.StartTimer(TimerPotionState)	
+	tes3mp.StartTimer(TimerPotionState)
 	tes3mp.LogAppend(enumerations.log.INFO, "....START TIMER DRAW STATE....")		
 end
 
@@ -92,7 +94,6 @@ function StartCheckDraw()
 		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then		
 			GameplayAdvance.Speed(pid)
 			GameplayAdvance.UpdatePlayTime()
-			GameplayAdvance.TemporalyLoadSkills()
 		end
 	end
 	tes3mp.RestartTimer(TimerDrawState, time.seconds(1))
@@ -107,11 +108,29 @@ function StartCheckPotion()
 	tes3mp.RestartTimer(TimerPotionState, time.seconds(configL.limitedstart))
 end
 
+function TemporalyLoadSkills()
+	for pid, value in pairs(GameplayAdvanceTab.player) do
+		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+			if value == nil then value = 0 end
+			if value ~= nil and value ~= Players[pid].data.skills.Athletics.damage then	
+				local skillId = tes3mp.GetSkillId("Athletics")
+				local skillId2 = tes3mp.GetSkillId("Acrobatics")			
+				tes3mp.SetSkillDamage(pid, skillId, value)
+				tes3mp.SetSkillDamage(pid, skillId2, value)	
+				tes3mp.SendSkills(pid)
+				GameplayAdvanceTab.player[pid] = nil
+			end
+		end
+	end
+end
+
 GameplayAdvance.Speed = function(pid)
 	local drawState = tes3mp.GetDrawState(pid)
 	local levelP = tes3mp.GetLevel(pid)	
 	local attributeId = tes3mp.GetAttributeId("Speed")	
 	local value
+	local basevalue = GameplayAdvanceTabAtt.player[pid]
+	if basevalue == nil then basevalue = 0 end
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() and levelP > 1 then
 		local PlayerSpeedCurrently = Players[pid].data.attributes.Speed.base
 		if drawState == 1 then
@@ -176,14 +195,14 @@ GameplayAdvance.Speed = function(pid)
 		else
 			value = 0
 		end	
-		if value ~= nil then
-			tes3mp.SetAttributeDamage(pid, attributeId, value)
-			tes3mp.SendAttributes(pid)
-		end
 	end
+	if value ~= nil and basevalue ~= nil and value ~= basevalue then
+		tes3mp.SetAttributeDamage(pid, attributeId, value)	
+		tes3mp.SendAttributes(pid)
+		tes3mp.SendEquipment(pid)
+		GameplayAdvanceTabAtt.player[pid] = value
+	end	
 end
-
-local GameplayAdvanceTab = { player = {} }
 	
 GameplayAdvance.Athletics = function(eventStatus, pid)
 	local itemEquipment = {}
@@ -216,26 +235,14 @@ GameplayAdvance.Athletics = function(eventStatus, pid)
 					Weigth = (Weigth + y.WEIGTH)
 				end			
 			end	
-			value = math.floor((Weigth + Malus) / 3)						
+			value = math.floor((Weigth + Malus) / 10)						
 		end	
 		
 		if value ~= nil then
 			GameplayAdvanceTab.player[pid] = value
+			tes3mp.StartTimer(TimerSkillsState)
 		end	
 		
-	end
-end
-
-GameplayAdvance.TemporalyLoadSkills = function()
-	for pid, value in pairs(GameplayAdvanceTab.player) do
-		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-			if value == nil then value = 0 end
-			local skillId = tes3mp.GetSkillId("Athletics")
-			local skillId2 = tes3mp.GetSkillId("Acrobatics")
-			tes3mp.SetSkillDamage(pid, skillId, value)
-			tes3mp.SetSkillDamage(pid, skillId2, value)	
-			tes3mp.SendSkills(pid)
-		end
 	end
 end
 
