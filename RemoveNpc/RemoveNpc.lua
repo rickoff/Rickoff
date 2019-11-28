@@ -21,61 +21,6 @@ config.allReset = true--if is true all npc in cell is delete, if false npc cible
 
 local RemoveNpc = {}
 
-RemoveNpc.OnServerPostInit = function()
-	for x, cellDescription in pairs(config.tabCell) do
-		tes3mp.LogAppend(enumerations.log.INFO, cellDescription)
-		if cellDescription ~= nil then
-			local cell = LoadedCells[cellDescription]
-			local useTemporaryLoad = false	
-			if cell == nil then
-				logicHandler.LoadCell(cellDescription)
-				useTemporaryLoad = true
-				cell = LoadedCells[cellDescription]	
-				if tableHelper.containsValue(config.tabCell, cellDescription) then
-					if config.allReset == true then  			 
-						for _, uniqueIndex in pairs(cell.data.packets.actorList) do
-							cell.data.objectData[uniqueIndex] = nil
-							tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
-							logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)                
-						end
-					else
-						for _, uniqueIndex in pairs(cell.data.packets.actorList) do			
-							if tableHelper.containsValue(config.tabNpc, cell.data.objectData[uniqueIndex].refId) then
-								cell.data.objectData[uniqueIndex] = nil
-								tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
-								logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)   
-							end
-						end
-					end
-					cell:SaveToDrive()
-				end
-			elseif cell ~= nil then
-				if tableHelper.containsValue(config.tabCell, cellDescription) then
-					if config.allReset == true then  			 
-						for _, uniqueIndex in pairs(cell.data.packets.actorList) do
-							cell.data.objectData[uniqueIndex] = nil
-							tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
-							logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)                
-						end
-					else
-						for _, uniqueIndex in pairs(cell.data.packets.actorList) do			
-							if tableHelper.containsValue(config.tabNpc, cell.data.objectData[uniqueIndex].refId) then
-								cell.data.objectData[uniqueIndex] = nil
-								tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
-								logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)   
-							end
-						end
-					end
-					cell:SaveToDrive()
-				end
-			end	
-			if useTemporaryLoad == true then
-				logicHandler.UnloadCell(cellDescription)
-			end
-		end
-	end
-end
-
 RemoveNpc.OnActorList = function(eventStatus, pid, cellDescription)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		if cellDescription ~= nil then
@@ -130,7 +75,6 @@ RemoveNpc.OnActorList = function(eventStatus, pid, cellDescription)
 	end
 end
 
-customEventHooks.registerHandler("OnServerPostInit", RemoveNpc.OnServerPostInit)
 customEventHooks.registerHandler("OnActorList", RemoveNpc.OnActorList)
 
 return RemoveNpc
