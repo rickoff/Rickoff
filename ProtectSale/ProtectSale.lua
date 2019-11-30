@@ -7,7 +7,7 @@ Protect item sale
 ---------------------------
 INSTALLATION:
 Save the file as ProtectSale.lua inside your server/scripts/custom folder.
-save the file as EcarlateNpc.json inside your server/data
+
 Edits to customScripts.lua
 ProtectSale = require("custom.ProtectSale")
 ---------------------------
@@ -17,6 +17,7 @@ jsonInterface = require("jsonInterface")
 
 local config = {}
 config.tabItem = {"misc_soulgem_azura", "misc_soulgem_common", "misc_soulgem_grand", "misc_soulgem_greater", "misc_soulgem_lesser", "misc_soulgem_petty"}--add in list your item not sale
+config.soul = true
 
 local ProtectSaleNpcTab = { player = {} }
 local ProtectSaleTab = { player = {} }
@@ -69,8 +70,12 @@ ProtectSale.OnPlayerInventory = function(eventStatus, pid)
 							enchantmentCharge = tes3mp.GetInventoryItemEnchantmentCharge(pid, index),
 							soul = tes3mp.GetInventoryItemSoul(pid, index)
 						}
-						if tableHelper.containsValue(config.tabItem, item.refId, true) then				
-							if item.soul ~= nil and item.soul ~= "" then
+						if tableHelper.containsValue(config.tabItem, item.refId, true) then	
+							if config.soul == true then
+								if item.soul ~= nil and item.soul ~= "" then
+									ProtectSaleTab.player[pid] = true
+								end
+							else
 								ProtectSaleTab.player[pid] = true
 							end
 						end
