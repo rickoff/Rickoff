@@ -35,7 +35,6 @@ ProtectSale.OnObjectActivate = function(eventStatus, pid, cellDescription, objec
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local ObjectIndex
 		local ObjectRefid
-		local pname = getName(pid)
 		for _, object in pairs(objects) do
 			ObjectIndex = object.uniqueIndex
 			ObjectRefid = object.refId
