@@ -7,7 +7,7 @@ Protect item sale
 ---------------------------
 INSTALLATION:
 Save the file as ProtectSale.lua inside your server/scripts/custom folder.
-
+Save the file as EcarlateNpc.lua inside your server/data folder.
 Edits to customScripts.lua
 ProtectSale = require("custom.ProtectSale")
 ---------------------------
