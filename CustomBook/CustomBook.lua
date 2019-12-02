@@ -72,12 +72,12 @@ function CustomBook.onCommand(pid, cmd)
         msg(pid, trad.title)
     elseif cmd[2] == "addtext" then
         CustomBook.startBook(name)
-	message = (table.concat(cmd, " ", 3) .. "<p>")
+		message = (table.concat(cmd, " ", 3) .. "<p>")
         CustomBook.currentBooks[name].text = CustomBook.currentBooks[name].text .. message
         msg(pid, trad.addText)
     elseif cmd[2] == "settext" then
         CustomBook.startBook(name)
-	message = (table.concat(cmd, " ", 3) .. "<p>")
+		message = (table.concat(cmd, " ", 3) .. "<p>")
         CustomBook.currentBooks[name].text = message
         msg(pid, trad.setText)
     elseif cmd[2] == "done" then
