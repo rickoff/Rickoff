@@ -1,5 +1,5 @@
 --[[
-Version: 0.3 for 0.7-alpha rewrite by Rickoff orignal script by Jakob
+Version: 0.3 for 0.7-alpha rewrite by Rickoff original script by Jakob
 
 Install:
 Put this file in server/scripts/custom/
