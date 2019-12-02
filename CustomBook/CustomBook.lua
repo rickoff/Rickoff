@@ -1,9 +1,9 @@
 --[[
-Version: 0.2 for 0.7-alpha
+Version: 0.3 for 0.7-alpha rewrite by Rickoff orignal script by Jakob
 
 Install:
-	Put this file in server/scripts/custom/
-	Put [ require("custom.CustomBook") ] in customScripts.lua
+Put this file in server/scripts/custom/
+Put [ require("custom.CustomBook") ] in customScripts.lua
 	
 Commands:
     /book: Help menu
@@ -72,12 +72,12 @@ function CustomBook.onCommand(pid, cmd)
         msg(pid, trad.title)
     elseif cmd[2] == "addtext" then
         CustomBook.startBook(name)
-		message = (table.concat(cmd, " ", 3) .. "<p>")
+	message = (table.concat(cmd, " ", 3) .. "<p>")
         CustomBook.currentBooks[name].text = CustomBook.currentBooks[name].text .. message
         msg(pid, trad.addText)
     elseif cmd[2] == "settext" then
         CustomBook.startBook(name)
-		message = (table.concat(cmd, " ", 3) .. "<p>")
+	message = (table.concat(cmd, " ", 3) .. "<p>")
         CustomBook.currentBooks[name].text = message
         msg(pid, trad.setText)
     elseif cmd[2] == "done" then
