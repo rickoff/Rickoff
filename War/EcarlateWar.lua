@@ -230,56 +230,56 @@ Methods.OnGUIAction = function(eventStatus, pid, idGui, data)
 					Players[pid]:Message("Mot de passe incorrect!\n")
 					guiHelper.ShowLogin(pid)
 				end
-
 				Players[pid]:LoadFromDrive()
-
 				-- Just in case the password from the data file is a number, make sure to turn it into a string
 				if tostring(Players[pid].data.login.password) ~= data then
 					Players[pid]:Message("Mot de passe incorrect!\n")
 					guiHelper.ShowLogin(pid)
+				elseif tostring(Players[pid].data.login.password) == data then
+					-- Is this player on the banlist? If so, store their new IP and ban them
+					if tableHelper.containsValue(banList.playerNames, string.lower(Players[pid].accountName)) == true then
+						Players[pid]:QuicksaveToDriveIpAddress()
+						Players[pid]:Message(Players[pid].accountName .. " est banni de ce serveur.\n")
+						tes3mp.BanAddress(tes3mp.GetIP(pid))
+					else		
+						if Players[pid].data.ecWar == nil then
+							JSONCheck(pid)
+						elseif Players[pid].data.ecWar == 1 then
+							Players[pid].data.ecWar.team = 1
+							Players[pid].data.ecWar.status = 1	
+						elseif Players[pid].data.ecWar == 2 then
+							Players[pid].data.ecWar.team = 2
+							Players[pid].data.ecWar.status = 1	
+						elseif Players[pid].data.ecWar == 3 then
+							Players[pid].data.ecWar.team = 3
+							Players[pid].data.ecWar.status = 1	
+						elseif Players[pid].data.ecWar == 4 then
+							Players[pid].data.ecWar.team = 4
+							Players[pid].data.ecWar.status = 1					
+						end
+						if tostring(Players[pid].data.login.password) == data then
+							Players[pid]:FinishLogin()
+							Players[pid]:Message("" .. color.White .. "Vous vous êtes connecté avec succès.\nUtilisez" ..color.Yellow.." Y" ..color.White.." pour utiliser la messagerie.\nEntrez " .. color.Red .. "/menu " .. color.White .. "pour plus d'informations.\n")			
+							TeamHandler(pid)
+							tes3mp.CustomMessageBox(pid, -1, ""..color.Red.."Bienvenue sur Ecarlate!"..color.Default.."\n\nle serveur pour la communauté rôleplay française!"..color.Green.."\n\nReboot :"..color.White.."\nToutes les 6h"..color.Yellow.."\n6h/12h ; 18h/00h\n"..color.Default.."\n\nVeuillez lire les règles pour le confort de tous sur notre discord :\n"..color.Cyan.."\nhttps://discord.gg/KgqkCGD\n"..color.Red.."\nAvertissement :\n"..color.White.."\nToutes formes de triches est strictement interdite.\n"..color.Green.."\nBon jeu à tous. \n\n ", "Ok")
+							if Players[pid].data.customVariables.Jailer == nil then
+								Players[pid].data.customVariables.Jailer = false
+							elseif Players[pid].data.customVariables.Jailer == true then	
+								WorldMining.PunishPrison(pid, pid)
+							end
+						end
+					end	
 				end
-
-				-- Is this player on the banlist? If so, store their new IP and ban them
-				if tableHelper.containsValue(banList.playerNames, string.lower(Players[pid].accountName)) == true then
-					Players[pid]:QuicksaveToDriveIpAddress()
-					Players[pid]:Message(Players[pid].accountName .. " est banni de ce serveur.\n")
-					tes3mp.BanAddress(tes3mp.GetIP(pid))
-				else
-					
-					if Players[pid].data.ecWar == nil then
-						JSONCheck(pid)
-					elseif Players[pid].data.ecWar == 1 then
-						Players[pid].data.ecWar.team = 1
-						Players[pid].data.ecWar.status = 1	
-					elseif Players[pid].data.ecWar == 2 then
-						Players[pid].data.ecWar.team = 2
-						Players[pid].data.ecWar.status = 1	
-					elseif Players[pid].data.ecWar == 3 then
-						Players[pid].data.ecWar.team = 3
-						Players[pid].data.ecWar.status = 1	
-					elseif Players[pid].data.ecWar == 4 then
-						Players[pid].data.ecWar.team = 4
-						Players[pid].data.ecWar.status = 1					
-					end
-					Players[pid]:FinishLogin()
-					Players[pid]:Message("" .. color.White .. "Vous vous êtes connecté avec succès.\nUtilisez" ..color.Yellow.." Y" ..color.White.." pour utiliser la messagerie.\nEntrez " .. color.Red .. "/menu " .. color.White .. "pour plus d'informations.\n")			
-					TeamHandler(pid)
-					tes3mp.CustomMessageBox(pid, -1, ""..color.Red.."Bienvenue sur Ecarlate!"..color.Default.."\n\nle serveur pour la communauté rôleplay française!"..color.Green.."\n\nReboot :"..color.White.."\nToutes les 6h"..color.Yellow.."\n6h/12h ; 18h/00h\n"..color.Default.."\n\nVeuillez lire les règles pour le confort de tous sur notre discord :\n"..color.Cyan.."\nhttps://discord.gg/KgqkCGD\n"..color.Red.."\nAvertissement :\n"..color.White.."\nToutes formes de triches est strictement interdite.\n"..color.Green.."\nBon jeu à tous. \n\n ", "Ok")
-					if Players[pid].data.customVariables.Jailer == nil then
-						Players[pid].data.customVariables.Jailer = false
-					elseif Players[pid].data.customVariables.Jailer == true then	
-						WorldMining.PunishPrison(pid, pid)
-					end						
-				end	
 				
 			elseif idGui == guiHelper.ID.REGISTER then
 				if data == nil then
 					Players[pid]:Message("Le mot de passe ne peut pas être vide\n")
 					guiHelper.ShowRegister(pid)
+				else
+					Players[pid]:Register(data)
+					Players[pid]:Message("" .. color.White .. "Vous vous êtes connecté avec succès.\nUtilisez" ..color.Yellow.." Y" ..color.White.." pour utiliser la messagerie.\nEntrez " .. color.Red .. "/menu " .. color.White .. "pour plus d'informations.\n")
+					tes3mp.CustomMessageBox(pid, -1, ""..color.Red.."Bienvenue sur Ecarlate!"..color.Default.."\n\nle serveur pour la communauté rôleplay française!"..color.Green.."\n\nReboot :"..color.White.."\nToutes les 6h"..color.Yellow.."\n6h/12h ; 18h/00h\n"..color.Default.."\n\nVeuillez lire les règles pour le confort de tous sur notre discord :\n"..color.Cyan.."\nhttps://discord.gg/KgqkCGD\n"..color.Red.."\nAvertissement :\n"..color.White.."\nToutes formes de triches est strictement interdite.\n"..color.Green.."\nBon jeu à tous. \n\n ", "Ok")              
 				end
-				Players[pid]:Register(data)
-				Players[pid]:Message("" .. color.White .. "Vous vous êtes connecté avec succès.\nUtilisez" ..color.Yellow.." Y" ..color.White.." pour utiliser la messagerie.\nEntrez " .. color.Red .. "/menu " .. color.White .. "pour plus d'informations.\n")
-				tes3mp.CustomMessageBox(pid, -1, ""..color.Red.."Bienvenue sur Ecarlate!"..color.Default.."\n\nle serveur pour la communauté rôleplay française!"..color.Green.."\n\nReboot :"..color.White.."\nToutes les 6h"..color.Yellow.."\n6h/12h ; 18h/00h\n"..color.Default.."\n\nVeuillez lire les règles pour le confort de tous sur notre discord :\n"..color.Cyan.."\nhttps://discord.gg/KgqkCGD\n"..color.Red.."\nAvertissement :\n"..color.White.."\nToutes formes de triches est strictement interdite.\n"..color.Green.."\nBon jeu à tous. \n\n ", "Ok")              
 			end
 		end
 		return customEventHooks.makeEventStatus(false,false) 
@@ -307,8 +307,9 @@ Methods.SwitchTeamsTemple = function(pid)
 				local count = item.count
 				local reste = (item.count - 10000)
 				if count >= 10000 then
-					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = -1}			
+					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = ""}			
 					player.data.inventory[goldL].count = player.data.inventory[goldL].count - 10000
+					Players[pid]:SaveToDrive()
 					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)
 					local message = "Vous venez de dépenser 10000 pièces pour changer de faction\n"
 					tes3mp.SendMessage(pid, message, false)
@@ -357,8 +358,9 @@ Methods.SwitchTeamsEmpire = function(pid)
 				local count = item.count
 				local reste = (item.count - 10000)
 				if count >= 10000 then
-					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = -1}			
+					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = ""}			
 					player.data.inventory[goldL].count = player.data.inventory[goldL].count - 10000
+					Players[pid]:SaveToDrive()
 					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)			
 					local message = "Vous venez de dépenser 10000 pièces pour changer de faction\n"
 					tes3mp.SendMessage(pid, message, false)			
@@ -406,8 +408,9 @@ Methods.SwitchTeamsRenegats = function(pid)
 				local count = item.count
 				local reste = (item.count - 10000)
 				if count >= 10000 then
-					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = -1}			
+					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = ""}			
 					player.data.inventory[goldL].count = player.data.inventory[goldL].count - 10000
+					Players[pid]:SaveToDrive()
 					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)			
 					local message = "Vous venez de dépenser 10000 pièces pour changer de faction\n"
 					tes3mp.SendMessage(pid, message, false)
@@ -674,9 +677,8 @@ function ScoreCheck(pid, teamNumber) -- Called from function OnPlayerDeath, chec
             if p ~= nil and p:IsLoggedIn() and p.data.ecWar ~= nil then
                 
                 if Players[i].data.ecWar.team == winningTeam then
-					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = -1}
-                    --table.insert(Players[i].data.inventory, itemRef)
-					table.insert(Players[i].data.inventory, {refId = "gold_001", count = 10000, charge = -1, soul = -1})
+					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = ""}
+                    table.insert(Players[i].data.inventory, itemRef)
 					Players[pid]:QuicksaveToDrive()
 					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)
                 end
@@ -1100,7 +1102,7 @@ Methods.StopPrimeToPlayer = function(pid, originPid, targetPid)
 				local count = item.count
 				local reste = (item.count - 10000)
 				if count >= 10000 then
-					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = -1}			
+					local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = ""}			
 					player.data.inventory[goldL].count = player.data.inventory[goldL].count - 10000
 					Players[pid]:QuicksaveToDrive()
 					Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)
@@ -1153,7 +1155,7 @@ Methods.PrimeToPlayer = function(pid, originPid, targetPid)
 			local count = item.count
 			local reste = (item.count - 10000)
 			if count >= 10000 then
-				local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = -1}			
+				local itemref = {refId = "gold_001", count = 10000, charge = -1, soul = ""}			
 				player.data.inventory[goldL].count = player.data.inventory[goldL].count - 10000
 				Players[pid]:QuicksaveToDrive()
 				Players[pid]:LoadItemChanges({itemref}, enumerations.inventory.REMOVE)
@@ -1205,16 +1207,18 @@ Methods.ResVamp = function(pid)
 		tes3mp.SendCell(pid)    
 		tes3mp.SendPos(pid)	
 		tes3mp.Resurrect(pid,0)			
+		local levelPlayer = math.floor((tes3mp.GetLevel(pid) * 5) / 100) 
 		if config.deathPenaltyJailDays > 0 then
-			local levelPlayer = math.floor((tes3mp.GetLevel(pid) * 80) / 100) 		
 			local resurrectionText = "Vous avez été réanimé et ramené ici, " ..
 				"mais vos compétences ont été affectées par "
 			local jailTime = config.deathPenaltyJailDays * levelPlayer
+
 			if config.bountyResetOnDeath == true then
 				if config.bountyDeathPenalty == true then
 					local currentBounty = tes3mp.GetBounty(pid)
+
 					if currentBounty > 0 then
-						jailTime = ((jailTime + math.floor(currentBounty / 100)) * levelPlayer ) 
+						jailTime = ((jailTime + math.floor(currentBounty / 100)) * levelPlayer )
 						resurrectionText = resurrectionText .. "votre prime et "
 					end
 				end
@@ -1222,8 +1226,9 @@ Methods.ResVamp = function(pid)
 				tes3mp.SendBounty(pid)
 				Players[pid]:SaveBounty()
 			end
+			resurrectionText = resurrectionText .. "votre temps passé inactif.\n"
 			tes3mp.Jail(pid, jailTime, true, true, "Récupération", resurrectionText)
-		end	
+		end
 	end
 end		
 
@@ -1245,43 +1250,33 @@ end
 Methods.OnPlayerSendMessage = function(eventStatus, pid, message)
 
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then 
-		if Players[pid].data.customVariables.Jailer == nil then
-			Players[pid].data.customVariables.Jailer = false
-		end	
-		tes3mp.LogMessage(enumerations.log.INFO, logicHandler.GetChatName(pid) .. ": " .. message) 
-		local RankP = Players[pid].data.ecWar.team
-		-- Is this a chat command? If so, pass it over to the commandHandler
 		if message:sub(1, 1) == '/' then	
-			if Players[pid].data.customVariables.Jailer == true then
-				tes3mp.MessageBox(pid, -1, color.Red.."Les commandes sont interdite en prison !")
-				return customEventHooks.makeEventStatus(false,false)	
-			end	
 		else
-			local message1 = color.Grey .. logicHandler.GetChatName(pid) .. color.White .. " : " .. message
+			local message1 = color.Grey .. logicHandler.GetChatName(pid) .. color.White .. " : " .. message .. "\n"
 
 			if Players[pid]:IsServerStaff() then 
 				if Players[pid]:IsServerOwner() then
-					message1 = config.rankColors.serverOwner .. "[Adm] " .. message1 .. "\n"
+					message1 = config.rankColors.serverOwner .. "[Adm] " .. message1
 				elseif Players[pid]:IsAdmin() then
-					message1 = config.rankColors.admin .. "[Adm] " .. message1 .. "\n"
+					message1 = config.rankColors.admin .. "[Adm] " .. message1
 				elseif Players[pid]:IsModerator() then
-					message1 = config.rankColors.moderator .. "[Mod] " .. message1 .. "\n"
+					message1 = config.rankColors.moderator .. "[Mod] " .. message1
 				end
 			else
 				if RankP == 4 then
-					message1 = color.DarkGreen .. "[Pel] ".. message1	.. "\n"
+					message1 = color.DarkGreen .. "[Pel] ".. message1
 				elseif RankP == 1 then
-					message1 = color.DarkCyan .. "[Tem] ".. message1 .. "\n"
+					message1 = color.DarkCyan .. "[Tem] ".. message1
 				elseif RankP == 2 then
-					message1 = color.DarkRed .. "[Emp] ".. message1 .. "\n"
+					message1 = color.DarkRed .. "[Emp] ".. message1
 				elseif RankP == 3 then
-					message1 = color.DarkBrown .. "[Ren] ".. message1	.. "\n"			
+					message1 = color.DarkBrown .. "[Ren] ".. message1		
 				end
 			end
 			if message:sub(1, 1) == '!' then			
-				Methods.SendGlobalMessage(pid, message1, true)
+				Methods.SendGlobalMessage(pid, message1)
 			else
-				Methods.SendLocalMessage(pid, message1, true)
+				Methods.SendLocalMessage(pid, message1)
 			end
 
 			return customEventHooks.makeEventStatus(false,false)	
@@ -1289,15 +1284,11 @@ Methods.OnPlayerSendMessage = function(eventStatus, pid, message)
 	end
 end
 
-Methods.SendGlobalMessage = function(pid, message, useName)
-	if useName == true then
-		tes3mp.SendMessage(pid, message, true)
-	else
-		tes3mp.SendMessage(pid, message, true)
-	end
+Methods.SendGlobalMessage = function(pid, message)
+	tes3mp.SendMessage(pid, message, true)
 end
 
-Methods.SendLocalMessage = function(pid, message, useName)
+Methods.SendLocalMessage = function(pid, message)
 	local playerName = Players[pid].name
 	local localChatCellRadius = 1	
 	-- Get top left cell from our cell
@@ -1318,27 +1309,29 @@ Methods.SendLocalMessage = function(pid, message, useName)
 				local tempCell = (x+firstCellX)..", "..(firstCellY-y)
 				-- send message to each player in cell
 				if LoadedCells[tempCell] ~= nil then
-					if useName == true then
-						SendMessageToAllInCell(tempCell, message)
-					else
-						SendMessageToAllInCell(tempCell, message)
-					end
+					SendMessageToAllInCell(pid, tempCell, message)
 				end
 			end
 		end
 	else
-		if useName == true then
-			SendMessageToAllInCell(myCellDescription, message)
-		else
-			SendMessageToAllInCell(myCellDescription, message)
-		end
+		SendMessageToAllInCell(pid, myCellDescription, message)
 	end
 end
 
-function SendMessageToAllInCell(cellDescription, message)
+function SendMessageToAllInCell(pidcible, cellDescription, message)
+	local playerPosX = tes3mp.GetPosX(pidcible)
+	local playerPosY = tes3mp.GetPosY(pidcible)
+	local playerPosZ = tes3mp.GetPosZ(pidcible)	
+
 	for index,pid in pairs(LoadedCells[cellDescription].visitors) do
 		if Players[pid].data.location.cell == cellDescription then
-			tes3mp.SendMessage(pid, message, false)
+			local pPosX = tes3mp.GetPosX(pid)
+			local pPosY = tes3mp.GetPosY(pid)
+			local pPosZ = tes3mp.GetPosZ(pid)	
+			local distance = math.sqrt((playerPosX - pPosX) * (playerPosX - pPosX) + (playerPosY - pPosY) * (playerPosY - pPosY)) 
+			if distance < 500 then
+				tes3mp.SendMessage(pid, message, false)
+			end
 		end
 	end
 end
