@@ -923,7 +923,7 @@ Methods.Expulser = function(pid, cmd)
 					tes3mp.SendMessage(pid, color.DarkOrange .. Players[pid].data.login.name .. " vient de rejoindre le combat pour " .. teamThree .. ".\n", true)			
 					Players[TargetPid]:QuicksaveToDrive()
 				else
-					local message = targetName .. " fait déjà parti de la faction.\n"
+					local message = targetName .. " ne fait pas parti de la faction.\n"
 					tes3mp.SendMessage(pid, message, true)					
 				end	
 			elseif RankP == 2 then
@@ -934,7 +934,7 @@ Methods.Expulser = function(pid, cmd)
 					tes3mp.SendMessage(pid, color.DarkRed .. Players[pid].data.login.name .. " vient de rejoindre le combat pour " .. teamTwo .. ".\n", true)			
 					Players[TargetPid]:QuicksaveToDrive()
 				else
-					local message = targetName .. " fait déjà parti de la faction.\n"
+					local message = targetName .. " ne fait pas parti de la faction.\n"
 					tes3mp.SendMessage(pid, message, true)					
 				end	
 			elseif RankP == 1 then
@@ -945,7 +945,7 @@ Methods.Expulser = function(pid, cmd)
 					tes3mp.SendMessage(pid, color.DarkCyan .. Players[pid].data.login.name .. " vient de rejoindre le combat pour " .. teamOne .. ".\n", true)			
 					Players[TargetPid]:QuicksaveToDrive()
 				else
-					local message = targetName .. " fait déjà parti de la faction.\n"
+					local message = targetName .. " ne fait pas parti de la faction.\n"
 					tes3mp.SendMessage(pid, message, true)					
 				end	
 			end
@@ -1250,6 +1250,7 @@ end
 Methods.OnPlayerSendMessage = function(eventStatus, pid, message)
 
     if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then 
+		local team = Players[pid].data.ecWar.team	
 		if message:sub(1, 1) == '/' then	
 		else
 			local message1 = color.Grey .. logicHandler.GetChatName(pid) .. color.White .. " : " .. message .. "\n"
@@ -1263,20 +1264,24 @@ Methods.OnPlayerSendMessage = function(eventStatus, pid, message)
 					message1 = config.rankColors.moderator .. "[Mod] " .. message1
 				end
 			else
-				if RankP == 4 then
+				if team == 4 then
 					message1 = color.DarkGreen .. "[Pel] ".. message1
-				elseif RankP == 1 then
+				elseif team == 1 then
 					message1 = color.DarkCyan .. "[Tem] ".. message1
-				elseif RankP == 2 then
+				elseif team == 2 then
 					message1 = color.DarkRed .. "[Emp] ".. message1
-				elseif RankP == 3 then
+				elseif team == 3 then
 					message1 = color.DarkBrown .. "[Ren] ".. message1		
 				end
-			end
-			if message:sub(1, 1) == '!' then			
+			end			
+			if message:sub(1, 1) == '!' then --GLOBAL			
 				Methods.SendGlobalMessage(pid, message1)
-			else
-				Methods.SendLocalMessage(pid, message1)
+			elseif message:sub(1, 1) == ';' then --WHISPER
+				Methods.SendLocalMessage(pid, message1, "whisper")
+			elseif message:sub(1, 1) == ',' then --YELL
+				Methods.SendLocalMessage(pid, message1, "yell")				
+			else --SPEAK
+				Methods.SendLocalMessage(pid, message1, "speak")
 			end
 
 			return customEventHooks.makeEventStatus(false,false)	
@@ -1288,7 +1293,7 @@ Methods.SendGlobalMessage = function(pid, message)
 	tes3mp.SendMessage(pid, message, true)
 end
 
-Methods.SendLocalMessage = function(pid, message)
+Methods.SendLocalMessage = function(pid, message, state)
 	local playerName = Players[pid].name
 	local localChatCellRadius = 1	
 	-- Get top left cell from our cell
@@ -1309,16 +1314,22 @@ Methods.SendLocalMessage = function(pid, message)
 				local tempCell = (x+firstCellX)..", "..(firstCellY-y)
 				-- send message to each player in cell
 				if LoadedCells[tempCell] ~= nil then
-					SendMessageToAllInCell(pid, tempCell, message)
+					SendMessageToAllInCell(pid, tempCell, message, state)
 				end
 			end
 		end
 	else
-		SendMessageToAllInCell(pid, myCellDescription, message)
+		SendMessageToAllInCell(pid, myCellDescription, message, state)
 	end
 end
 
-function SendMessageToAllInCell(pidcible, cellDescription, message)
+function SendMessageToAllInCell(pidcible, cellDescription, message, state)
+	local mult = 1
+	if state == "whisper" then
+		mult = 2
+	elseif state == "yell" then	
+		mult = 0.5
+	end
 	local playerPosX = tes3mp.GetPosX(pidcible)
 	local playerPosY = tes3mp.GetPosY(pidcible)
 	local playerPosZ = tes3mp.GetPosZ(pidcible)	
@@ -1329,7 +1340,7 @@ function SendMessageToAllInCell(pidcible, cellDescription, message)
 			local pPosY = tes3mp.GetPosY(pid)
 			local pPosZ = tes3mp.GetPosZ(pid)	
 			local distance = math.sqrt((playerPosX - pPosX) * (playerPosX - pPosX) + (playerPosY - pPosY) * (playerPosY - pPosY)) 
-			if distance < 500 then
+			if distance < (500 / mult) then
 				tes3mp.SendMessage(pid, message, false)
 			end
 		end
@@ -1385,6 +1396,6 @@ customCommandHooks.registerCommand("prime", Methods.Prime)
 customCommandHooks.registerCommand("resurrectplayer", Methods.ResPlayer)
 customCommandHooks.registerCommand("resurrectvamp", Methods.ResVamp)
 customCommandHooks.registerCommand("resurrect", Methods.Res)
-customCommandHooks.registerCommand("menufaction", Methods.StartMenu)
+customCommandHooks.registerCommand("fac", Methods.StartMenu)
 
 return Methods
