@@ -1,15 +1,13 @@
 --[[
 DragonDoor by Rickoff
 tes3mp 0.7.0
-script version 0.1
+script version 0.2
 ---------------------------
 DESCRIPTION :
-
 ---------------------------
 INSTALLATION:
 Save the file as DragonDoor.lua inside your server/scripts/custom folder.
 Save the file as EcarlateDoor.lua inside your server/data/custom folder.
-
 Edits to customScripts.lua
 DragonDoor = require("custom.DragonDoor")
 ]]
@@ -18,7 +16,7 @@ tableHelper = require("tableHelper")
 jsonInterface = require("jsonInterface")
 
 local cfg = {}
-cfg.rad = 1000
+cfg.rad = 500
 
 local DoorData = {}
 local DoorList = jsonInterface.load("custom/EcarlateDoor.json")
@@ -35,6 +33,7 @@ local DragonDoor = {}
 
 DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, objects)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		logicHandler.LoadCell(cellDescription)	
 		local ObjectIndex
 		local ObjectRefid
 		local playerPosX = tes3mp.GetPosX(pid)
@@ -49,22 +48,21 @@ DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, object
 				doorTab.player[pid] = {object = ObjectRefid} 
 				cellTab.player[pid] = {cell = cellDescription} 
 				creaTab.player[pid] = {}
-				indexTab.player[pid] = {}				
+				indexTab.player[pid] = {}	
 				for _, uniqueIndex in pairs(cell.data.packets.spawn) do
 					if cell.data.objectData[uniqueIndex] then
-						creatureRefId = cell.data.objectData[uniqueIndex].refId								
-						if cell.data.objectData[uniqueIndex].location and cell.data.objectData[uniqueIndex].stats then
-							local healthCurrent = cell.data.objectData[uniqueIndex].stats.healthCurrent							
+						if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
+							local creatureRefId = cell.data.objectData[uniqueIndex].refId							
 							local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
 							local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
 							local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
-							if distance < cfg.rad and healthCurrent > 0 then
+							if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) then
 								table.insert(creaTab.player[pid], creatureRefId)
 								table.insert(indexTab.player[pid], uniqueIndex)							
 							end	
 						end
 					end
-				end	
+				end					
 			end
 		end
 	end
@@ -83,7 +81,7 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 					for x, y in pairs(creaTab.player[pid]) do					
 						creatureRefId = creaTab.player[pid][x]								
 						logicHandler.CreateObjectAtLocation(cellId, position, creatureRefId, "spawn")
-					end
+					end			
 					if cellTab.player[pid].cell ~= nil then
 						local cell = LoadedCells[cellTab.player[pid].cell]
 						local useTemporaryLoad = false	
@@ -94,23 +92,19 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 							for _, uniqueIndex in pairs(cell.data.packets.spawn) do
 								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
 									cell.data.objectData[uniqueIndex] = nil
-									tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)	
-									if tableHelper.getCount(Players) > 0 then		
-										logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)
-									end
+									tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)									
+									logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)
 								end
-							end
+							end					
 							cell:SaveToDrive()			
 						elseif cell ~= nil then	
 							for _, uniqueIndex in pairs(cell.data.packets.spawn) do
 								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
 									cell.data.objectData[uniqueIndex] = nil
 									tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)
-									if tableHelper.getCount(Players) > 0 then	
-										logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)	
-									end
+									logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)	
 								end
-							end
+							end						
 							cell:SaveToDrive()
 						end	
 						if useTemporaryLoad == true then
@@ -128,6 +122,6 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 end
 
 customEventHooks.registerValidator("OnObjectActivate", DragonDoor.OnObjectActivate)
-customEventHooks.registerHandler("OnPlayerCellChange", DragonDoor.OnPlayerCellChange)
+customEventHooks.registerValidator("OnPlayerCellChange", DragonDoor.OnPlayerCellChange)
 
 return DragonDoor
