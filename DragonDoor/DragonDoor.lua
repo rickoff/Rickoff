@@ -1,9 +1,10 @@
 --[[
 DragonDoor by Rickoff
 tes3mp 0.7.0
-script version 0.2
+script version 0.3
 ---------------------------
 DESCRIPTION :
+creatures and npc follow players through doors
 ---------------------------
 INSTALLATION:
 Save the file as DragonDoor.lua inside your server/scripts/custom folder.
@@ -56,7 +57,21 @@ DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, object
 							local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
 							local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
 							local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
-							if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) then
+							if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) and not tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
+								table.insert(creaTab.player[pid], creatureRefId)
+								table.insert(indexTab.player[pid], uniqueIndex)							
+							end	
+						end
+					end
+				end
+				for _, uniqueIndex in pairs(cell.data.packets.actorList) do
+					if cell.data.objectData[uniqueIndex] then
+						if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
+							local creatureRefId = cell.data.objectData[uniqueIndex].refId							
+							local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
+							local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
+							local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
+							if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) and not tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
 								table.insert(creaTab.player[pid], creatureRefId)
 								table.insert(indexTab.player[pid], uniqueIndex)							
 							end	
@@ -81,6 +96,13 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 					for x, y in pairs(creaTab.player[pid]) do					
 						creatureRefId = creaTab.player[pid][x]								
 						logicHandler.CreateObjectAtLocation(cellId, position, creatureRefId, "spawn")
+						for _, uniqueIndex in pairs(LoadedCells[cellId].data.packets.actorList) do
+							if LoadedCells[cellId].data.objectData[uniqueIndex] then
+								if LoadedCells[cellId].data.objectData[uniqueIndex].refId == creatureRefId then
+									logicHandler.SetAIForActor(LoadedCells[cellId], uniqueIndex, "2", pid)
+								end
+							end
+						end
 					end			
 					if cellTab.player[pid].cell ~= nil then
 						local cell = LoadedCells[cellTab.player[pid].cell]
@@ -92,11 +114,18 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 							for _, uniqueIndex in pairs(cell.data.packets.spawn) do
 								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
 									cell.data.objectData[uniqueIndex] = nil
-									tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)									
+									tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)
 									logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)
 								end
-							end					
-							cell:SaveToDrive()			
+							end	
+							for _, uniqueIndex in pairs(cell.data.packets.actorList) do
+								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
+									cell.data.objectData[uniqueIndex] = nil
+									tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
+									logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)
+								end
+							end								
+							cell:QuicksaveToDrive()			
 						elseif cell ~= nil then	
 							for _, uniqueIndex in pairs(cell.data.packets.spawn) do
 								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
@@ -104,8 +133,15 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 									tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)
 									logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)	
 								end
-							end						
-							cell:SaveToDrive()
+							end	
+							for _, uniqueIndex in pairs(cell.data.packets.actorList) do
+								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
+									cell.data.objectData[uniqueIndex] = nil
+									tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
+									logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)
+								end
+							end								
+							cell:QuicksaveToDrive()
 						end	
 						if useTemporaryLoad == true then
 							logicHandler.UnloadCell(cellTab.player[pid].cell)
@@ -121,7 +157,7 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 	end
 end
 
-customEventHooks.registerValidator("OnObjectActivate", DragonDoor.OnObjectActivate)
-customEventHooks.registerValidator("OnPlayerCellChange", DragonDoor.OnPlayerCellChange)
+customEventHooks.registerHandler("OnObjectActivate", DragonDoor.OnObjectActivate)
+customEventHooks.registerHandler("OnPlayerCellChange", DragonDoor.OnPlayerCellChange)
 
 return DragonDoor
