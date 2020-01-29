@@ -29,7 +29,12 @@ local doorTab = { player = {} }
 local creaTab = { player = {} }
 local indexTab = { player = {} }
 local cellTab = { player = {} }
-
+local listEscort = {"compagnon_guerrier", "compagnon_magicien", "compagnon_rodeur", "rat_pack_rerlas", "chien_pack_rerlas", "guar_pack_rerlas", "plx_butterfly", 
+"assaba-bentus", "botrir", "ciralinde", "corky", "dandsa", "davina", "delyna mandas", "deval beleth", "din", "drerel indaren", "edras oril", "falura llervu",
+"fjorgeir", "fonus rathryon", "frelene acques", "hannat zainsubani", "hides-his-foot", "hlormar wine-sot", "huleeya", "itermerel", "jadier mannick", "j'saddha", 
+"larienna macrina", "madura seran", "malexa", "manilian scerius", "mathis dalobar", "menelras", "nartise arobar", "nevrasa dralor", "paur maston", "pemenie",
+"rabinna", "ragash gra-shuzgub", "reeh-jah", "rollie the guar", "s'bakha", "saprius entius", "satyana", "shock centurion", "sinnammu mirpal",
+"sondaale of shimmerene", "tarvyn faren", "tenyeminwe", "teres arothan", "teris raledran", "tul", "ulyne henim", "varvur sarethi", "vedelea othril", "viatrix petilia"}
 local DragonDoor = {}
 
 DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, objects)
@@ -123,13 +128,15 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 			if doorTab.player[pid].object ~= nil then
 				if tableHelper.containsValue(DoorData, string.lower(doorTab.player[pid].object), true) then
 					for x, y in pairs(creaTab.player[pid]) do					
-						creatureRefId = creaTab.player[pid][x]								
-						logicHandler.CreateObjectAtLocation(cellId, position, creatureRefId, "spawn")
-						for _, uniqueIndex in pairs(LoadedCells[cellId].data.packets.actorList) do
-							if LoadedCells[cellId].data.objectData[uniqueIndex] then
-								if LoadedCells[cellId].data.objectData[uniqueIndex].refId == creatureRefId then
-									logicHandler.SetAIForActor(LoadedCells[cellId], uniqueIndex, "5", nil, nil, PosX, PosY, playerPosZ)
-									logicHandler.SetAIForActor(LoadedCells[cellId], uniqueIndex, "2", pid)
+						creatureRefId = creaTab.player[pid][x]
+						if not tableHelper.containsValue(listEscort, string.lower(creatureRefId))
+							logicHandler.CreateObjectAtLocation(cellId, position, creatureRefId, "spawn")
+							for _, uniqueIndex in pairs(LoadedCells[cellId].data.packets.actorList) do
+								if LoadedCells[cellId].data.objectData[uniqueIndex] then
+									if LoadedCells[cellId].data.objectData[uniqueIndex].refId == creatureRefId then
+										logicHandler.SetAIForActor(LoadedCells[cellId], uniqueIndex, "5", nil, nil, PosX, PosY, playerPosZ)
+										logicHandler.SetAIForActor(LoadedCells[cellId], uniqueIndex, "2", pid)
+									end
 								end
 							end
 						end
