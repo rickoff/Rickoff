@@ -1,7 +1,7 @@
 --[[
 DragonDoor by Rickoff
 tes3mp 0.7.0
-script version 0.3
+script version 0.4
 ---------------------------
 DESCRIPTION :
 creatures and npc follow players through doors
@@ -17,7 +17,7 @@ tableHelper = require("tableHelper")
 jsonInterface = require("jsonInterface")
 
 local cfg = {}
-cfg.rad = 500
+cfg.rad = 1000
 
 local DoorData = {}
 local DoorList = jsonInterface.load("custom/EcarlateDoor.json")
@@ -57,7 +57,7 @@ DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, object
 							local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
 							local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
 							local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
-							if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) and not tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
+							if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) and not tableHelper.containsValue(indexTab.player, uniqueIndex, true) then
 								table.insert(creaTab.player[pid], creatureRefId)
 								table.insert(indexTab.player[pid], uniqueIndex)							
 							end	
@@ -71,10 +71,31 @@ DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, object
 							local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
 							local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
 							local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
-							if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) and not tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
-								table.insert(creaTab.player[pid], creatureRefId)
-								table.insert(indexTab.player[pid], uniqueIndex)							
-							end	
+							local fatigueBase
+							local fatigueCurrent
+							
+							tes3mp.ReadCellActorList(cell.description)
+							local actorListSize = tes3mp.GetActorListSize()
+
+							if actorListSize == 0 then
+								return
+							end
+
+							for objectIndex = 0, actorListSize - 1 do
+
+								local uniqueIndexCheck = tes3mp.GetActorRefNum(objectIndex) .. "-" .. tes3mp.GetActorMpNum(objectIndex)
+
+								if tes3mp.DoesActorHaveStatsDynamic(objectIndex) == true and cell:ContainsObject(uniqueIndex) and uniqueIndexCheck == uniqueIndex then						
+									fatigueBase = tes3mp.GetActorFatigueModified(objectIndex)
+									fatigueCurrent = tes3mp.GetActorFatigueCurrent(objectIndex)
+								end
+							end
+							if fatigueBase ~= nil and fatigueCurrent ~= nil then
+								if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) and not tableHelper.containsValue(indexTab.player, uniqueIndex, true) and fatigueCurrent ~= fatigueBase then
+									table.insert(creaTab.player[pid], creatureRefId)
+									table.insert(indexTab.player[pid], uniqueIndex)							
+								end	
+							end
 						end
 					end
 				end					
@@ -88,6 +109,14 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 		local playerPosX = tes3mp.GetPosX(pid)
 		local playerPosY = tes3mp.GetPosY(pid)
 		local playerPosZ = tes3mp.GetPosZ(pid)
+		local playerAngleZ = tes3mp.GetRotZ(pid)
+		if playerAngleZ > 3.0 then
+			playerAngleZ = 3.0
+		elseif playerAngleZ < -3.0 then
+			playerAngleZ = -3.0
+		end		
+		local PosX = (100 * math.sin(playerAngleZ) + tes3mp.GetPosX(pid))
+		local PosY = (100 * math.cos(playerAngleZ) + tes3mp.GetPosY(pid))		
 		local position = { posX = playerPosX, posY = playerPosY, posZ = playerPosZ, rotX = 0, rotY = 0, rotZ = 0 }
 		local cellId = tes3mp.GetCell(pid)
 		if creaTab.player[pid] and doorTab.player[pid] then
@@ -99,6 +128,7 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 						for _, uniqueIndex in pairs(LoadedCells[cellId].data.packets.actorList) do
 							if LoadedCells[cellId].data.objectData[uniqueIndex] then
 								if LoadedCells[cellId].data.objectData[uniqueIndex].refId == creatureRefId then
+									logicHandler.SetAIForActor(LoadedCells[cellId], uniqueIndex, "5", nil, nil, PosX, PosY, playerPosZ)
 									logicHandler.SetAIForActor(LoadedCells[cellId], uniqueIndex, "2", pid)
 								end
 							end
