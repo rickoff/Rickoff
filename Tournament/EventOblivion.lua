@@ -201,13 +201,13 @@ EventOblivion.Prime = function(eventStatus, pid, cellDescription)
 							local cell = tes3mp.GetCell(killerPid)							
 							if tableHelper.containsValue(config.bosses, refId) and eventoblivion == "active" and cell == cellId then
 								if goldLoc == nil then
-									table.insert(Players[killerPid].data.inventory, {refId = "gold_001", count = config.count, charge = -1})			
+									table.insert(Players[killerPid].data.inventory, {refId = "gold_001", count = config.count, charge = -1, soul = ""})			
 								else
 									Players[killerPid].data.inventory[goldLoc].count = Players[killerPid].data.inventory[goldLoc].count + config.count
 								end
 								tes3mp.MessageBox(killerPid, -1, "Tu a récupéré une prime !")
-								local itemref = {refId = "gold_001", count = config.count, charge = -1}			
-								Players[killerPid]:SaveToDrive()
+								local itemref = {refId = "gold_001", count = config.count, charge = -1, soul = ""}			
+								Players[killerPid]:QuicksaveToDrive()
 								Players[killerPid]:LoadItemChanges({itemref}, enumerations.inventory.ADD)						
 							end
 						end
@@ -249,8 +249,8 @@ EventOblivion.CleanCell = function(cellDescription)
 				creatureRefId = crea		
 				for _, uniqueIndex in pairs(cell.data.packets.spawn) do
 					if cell.data.objectData[uniqueIndex].refId == creatureRefId then
-						cell.data.objectData[uniqueIndex] = nil
-						tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)	
+						tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+						tableHelper.removeValue(cell.data.packets, uniqueIndex)
 						if tableHelper.getCount(Players) > 0 then		
 							logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)
 						end
@@ -259,34 +259,38 @@ EventOblivion.CleanCell = function(cellDescription)
 			end
 			for _, uniqueIndex in pairs(cell.data.packets.place) do			
 				if cell.data.objectData[uniqueIndex].refId == portailRefId then
-					cell.data.objectData[uniqueIndex] = nil
-					tableHelper.removeValue(cell.data.packets.place, uniqueIndex)
+					tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+					tableHelper.removeValue(cell.data.packets, uniqueIndex)
 					if tableHelper.getCount(Players) > 0 then		
 						logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)
 					end					
 				end
 			end
-			cell:SaveToDrive()			
+			cell:QuicksaveToDrive()			
 		elseif cell ~= nil then
 			local creatureRefId		
 			for x, crea in pairs(config.creatures) do
 				creatureRefId = crea		
 				for _, uniqueIndex in pairs(cell.data.packets.spawn) do
 					if cell.data.objectData[uniqueIndex].refId == creatureRefId then
-						cell.data.objectData[uniqueIndex] = nil
-						tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)
-						logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)				
+						tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+						tableHelper.removeValue(cell.data.packets, uniqueIndex)
+						if tableHelper.getCount(Players) > 0 then		
+							logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)
+						end					
 					end
 				end
 			end
 			for _, uniqueIndex in pairs(cell.data.packets.place) do			
 				if cell.data.objectData[uniqueIndex].refId == portailRefId then
-					cell.data.objectData[uniqueIndex] = nil
-					tableHelper.removeValue(cell.data.packets.place, uniqueIndex)
-					logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)	
+					tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+					tableHelper.removeValue(cell.data.packets, uniqueIndex)
+					if tableHelper.getCount(Players) > 0 then		
+						logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)
+					end		
 				end
 			end
-			cell:SaveToDrive()
+			cell:QuicksaveToDrive()
 		end	
 		if useTemporaryLoad == true then
 			logicHandler.UnloadCell(cellDescription)
