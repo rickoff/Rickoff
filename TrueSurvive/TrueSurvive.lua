@@ -7,9 +7,12 @@ Survival script
 ---------------------------
 INSTALLATION:
 Save the file as TrueSurvive.lua inside your server/scripts/custom folder.
+Save the file as MenuSurvive.lua inside your server/scripts/menu folder.
 
 Edits to customScripts.lua
 TrueSurvive = require("custom.TrueSurvive")
+Edits to config.lua
+add in config.menuHelperFiles, "MenuSurvive"
 ---------------------------
 add custom spell permanent records:
 
