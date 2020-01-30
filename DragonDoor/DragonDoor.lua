@@ -1,7 +1,7 @@
 --[[
 DragonDoor by Rickoff
 tes3mp 0.7.0
-script version 0.4
+script version 0.5
 ---------------------------
 DESCRIPTION :
 creatures and npc follow players through doors
@@ -29,17 +29,18 @@ local doorTab = { player = {} }
 local creaTab = { player = {} }
 local indexTab = { player = {} }
 local cellTab = { player = {} }
+
 local listEscort = {"compagnon_guerrier", "compagnon_magicien", "compagnon_rodeur", "rat_pack_rerlas", "chien_pack_rerlas", "guar_pack_rerlas", "plx_butterfly", 
 "assaba-bentus", "botrir", "ciralinde", "corky", "dandsa", "davina", "delyna mandas", "deval beleth", "din", "drerel indaren", "edras oril", "falura llervu",
 "fjorgeir", "fonus rathryon", "frelene acques", "hannat zainsubani", "hides-his-foot", "hlormar wine-sot", "huleeya", "itermerel", "jadier mannick", "j'saddha", 
 "larienna macrina", "madura seran", "malexa", "manilian scerius", "mathis dalobar", "menelras", "nartise arobar", "nevrasa dralor", "paur maston", "pemenie",
 "rabinna", "ragash gra-shuzgub", "reeh-jah", "rollie the guar", "s'bakha", "saprius entius", "satyana", "shock centurion", "sinnammu mirpal",
 "sondaale of shimmerene", "tarvyn faren", "tenyeminwe", "teres arothan", "teris raledran", "tul", "ulyne henim", "varvur sarethi", "vedelea othril", "viatrix petilia"}
+
 local DragonDoor = {}
 
 DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, objects)
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-		logicHandler.LoadCell(cellDescription)	
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
 		local ObjectIndex
 		local ObjectRefid
 		local playerPosX = tes3mp.GetPosX(pid)
@@ -113,15 +114,7 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local playerPosX = tes3mp.GetPosX(pid)
 		local playerPosY = tes3mp.GetPosY(pid)
-		local playerPosZ = tes3mp.GetPosZ(pid)
-		local playerAngleZ = tes3mp.GetRotZ(pid)
-		if playerAngleZ > 3.0 then
-			playerAngleZ = 3.0
-		elseif playerAngleZ < -3.0 then
-			playerAngleZ = -3.0
-		end		
-		local PosX = (100 * math.sin(playerAngleZ) + tes3mp.GetPosX(pid))
-		local PosY = (100 * math.cos(playerAngleZ) + tes3mp.GetPosY(pid))		
+		local playerPosZ = tes3mp.GetPosZ(pid)	
 		local position = { posX = playerPosX, posY = playerPosY, posZ = playerPosZ, rotX = 0, rotY = 0, rotZ = 0 }
 		local cellId = tes3mp.GetCell(pid)
 		if creaTab.player[pid] and doorTab.player[pid] then
@@ -129,18 +122,18 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 				if tableHelper.containsValue(DoorData, string.lower(doorTab.player[pid].object), true) then
 					for x, y in pairs(creaTab.player[pid]) do					
 						creatureRefId = creaTab.player[pid][x]
-						if not tableHelper.containsValue(listEscort, string.lower(creatureRefId))
+						if not tableHelper.containsValue(listEscort, string.lower(creatureRefId), true) then
 							logicHandler.CreateObjectAtLocation(cellId, position, creatureRefId, "spawn")
 							for _, uniqueIndex in pairs(LoadedCells[cellId].data.packets.actorList) do
 								if LoadedCells[cellId].data.objectData[uniqueIndex] then
 									if LoadedCells[cellId].data.objectData[uniqueIndex].refId == creatureRefId then
-										logicHandler.SetAIForActor(LoadedCells[cellId], uniqueIndex, "5", nil, nil, PosX, PosY, playerPosZ)
 										logicHandler.SetAIForActor(LoadedCells[cellId], uniqueIndex, "2", pid)
 									end
 								end
 							end
 						end
-					end			
+					end	
+					LoadedCells[cellId]:QuicksaveToDrive()						
 					if cellTab.player[pid].cell ~= nil then
 						local cell = LoadedCells[cellTab.player[pid].cell]
 						local useTemporaryLoad = false	
@@ -150,15 +143,15 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 							cell = LoadedCells[cellTab.player[pid].cell]	
 							for _, uniqueIndex in pairs(cell.data.packets.spawn) do
 								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
-									cell.data.objectData[uniqueIndex] = nil
-									tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)
+									tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+									tableHelper.removeValue(cell.data.packets, uniqueIndex)
 									logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)
 								end
 							end	
 							for _, uniqueIndex in pairs(cell.data.packets.actorList) do
 								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
-									cell.data.objectData[uniqueIndex] = nil
-									tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
+									tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+									tableHelper.removeValue(cell.data.packets, uniqueIndex)
 									logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)
 								end
 							end								
@@ -166,15 +159,15 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 						elseif cell ~= nil then	
 							for _, uniqueIndex in pairs(cell.data.packets.spawn) do
 								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
-									cell.data.objectData[uniqueIndex] = nil
-									tableHelper.removeValue(cell.data.packets.spawn, uniqueIndex)
+									tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+									tableHelper.removeValue(cell.data.packets, uniqueIndex)
 									logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)	
 								end
 							end	
 							for _, uniqueIndex in pairs(cell.data.packets.actorList) do
 								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
-									cell.data.objectData[uniqueIndex] = nil
-									tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
+									tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+									tableHelper.removeValue(cell.data.packets, uniqueIndex)
 									logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)
 								end
 							end								
