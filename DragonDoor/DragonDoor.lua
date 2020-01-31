@@ -1,7 +1,7 @@
 --[[
 DragonDoor by Rickoff
 tes3mp 0.7.0
-script version 0.5
+script version 0.6
 ---------------------------
 DESCRIPTION :
 creatures and npc follow players through doors
@@ -16,8 +16,11 @@ DragonDoor = require("custom.DragonDoor")
 tableHelper = require("tableHelper")
 jsonInterface = require("jsonInterface")
 
+local Start = tes3mp.CreateTimer("Chase", time.seconds(1))
+
 local cfg = {}
 cfg.rad = 1000
+cfg.chase = 2500
 
 local DoorData = {}
 local DoorList = jsonInterface.load("custom/EcarlateDoor.json")
@@ -29,6 +32,7 @@ local doorTab = { player = {} }
 local creaTab = { player = {} }
 local indexTab = { player = {} }
 local cellTab = { player = {} }
+local chaseTab = { player = {} }
 
 local listEscort = {"compagnon_guerrier", "compagnon_magicien", "compagnon_rodeur", "rat_pack_rerlas", "chien_pack_rerlas", "guar_pack_rerlas", "plx_butterfly", 
 "assaba-bentus", "botrir", "ciralinde", "corky", "dandsa", "davina", "delyna mandas", "deval beleth", "din", "drerel indaren", "edras oril", "falura llervu",
@@ -38,6 +42,49 @@ local listEscort = {"compagnon_guerrier", "compagnon_magicien", "compagnon_rodeu
 "sondaale of shimmerene", "tarvyn faren", "tenyeminwe", "teres arothan", "teris raledran", "tul", "ulyne henim", "varvur sarethi", "vedelea othril", "viatrix petilia"}
 
 local DragonDoor = {}
+
+DragonDoor.TimerStart = function(eventStatus)
+	tes3mp.StartTimer(Start)
+	tes3mp.LogAppend(enumerations.log.INFO, "....START TIMER DRAGONDOOR CHASE....")
+end
+
+DragonDoor.OnPlayerConnect = function(eventStatus, pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
+		doorTab.player[pid] = nil
+		cellTab.player[pid] = nil
+		creaTab.player[pid] = nil
+		indexTab.player[pid] = nil
+		chaseTab.player[pid] = nil
+	end
+end
+
+function Chase()
+	for pid, y in pairs(chaseTab.player) do
+		if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
+			if chaseTab.player[pid].chase == true then
+				if tes3mp.GetSneakState(pid) then
+					local cell = tes3mp.GetCell(pid)
+					for _, uniqueIndex in pairs(LoadedCells[cell].data.packets.actorList) do
+						if LoadedCells[cell].data.objectData[uniqueIndex] then
+							if LoadedCells[cell].data.objectData[uniqueIndex].location then
+								local playerPosX = tes3mp.GetPosX(pid)
+								local playerPosY = tes3mp.GetPosY(pid)							
+								local creaturePosX = LoadedCells[cell].data.objectData[uniqueIndex].location.posX
+								local creaturePosY = LoadedCells[cell].data.objectData[uniqueIndex].location.posY
+								local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 	
+								if distance > cfg.chase then
+									logicHandler.SetAIForActor(LoadedCells[cell], uniqueIndex, "0", pid)
+									logicHandler.SetAIForActor(LoadedCells[cell], uniqueIndex, "6", pid)
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	tes3mp.RestartTimer(Start, time.seconds(1))
+end
 
 DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, objects)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
@@ -50,6 +97,7 @@ DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, object
 			ObjectIndex = object.uniqueIndex
 			ObjectRefid = object.refId
 		end	
+		logicHandler.LoadCell(cellDescription)		
 		if ObjectIndex ~= nil and ObjectRefid ~= nil then	
 			if tableHelper.containsValue(DoorData, string.lower(ObjectRefid), true) then	
 				doorTab.player[pid] = {object = ObjectRefid} 
@@ -78,33 +126,33 @@ DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, object
 							local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
 							local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
 							local fatigueBase
-							local fatigueCurrent
-							
+							local fatigueCurrent							
 							tes3mp.ReadCellActorList(cell.description)
 							local actorListSize = tes3mp.GetActorListSize()
-
 							if actorListSize == 0 then
 								return
 							end
-
 							for objectIndex = 0, actorListSize - 1 do
-
 								local uniqueIndexCheck = tes3mp.GetActorRefNum(objectIndex) .. "-" .. tes3mp.GetActorMpNum(objectIndex)
-
 								if tes3mp.DoesActorHaveStatsDynamic(objectIndex) == true and cell:ContainsObject(uniqueIndex) and uniqueIndexCheck == uniqueIndex then						
 									fatigueBase = tes3mp.GetActorFatigueModified(objectIndex)
 									fatigueCurrent = tes3mp.GetActorFatigueCurrent(objectIndex)
 								end
 							end
 							if fatigueBase ~= nil and fatigueCurrent ~= nil then
-								if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) and not tableHelper.containsValue(indexTab.player, uniqueIndex, true) and fatigueCurrent ~= fatigueBase then
+								if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) and not tableHelper.containsValue(listEscort, string.lower(creatureRefId), true) and not tableHelper.containsValue(indexTab.player, uniqueIndex, true) and fatigueCurrent ~= fatigueBase then
 									table.insert(creaTab.player[pid], creatureRefId)
 									table.insert(indexTab.player[pid], uniqueIndex)							
 								end	
 							end
 						end
 					end
-				end					
+				end	
+				if creaTab.player[pid] ~= nil then
+					chaseTab.player[pid] = {chase = true}
+				else
+					chaseTab.player[pid] = {chase = false}
+				end
 			end
 		end
 	end
@@ -122,13 +170,11 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 				if tableHelper.containsValue(DoorData, string.lower(doorTab.player[pid].object), true) then
 					for x, y in pairs(creaTab.player[pid]) do					
 						creatureRefId = creaTab.player[pid][x]
-						if not tableHelper.containsValue(listEscort, string.lower(creatureRefId), true) then
-							logicHandler.CreateObjectAtLocation(cellId, position, creatureRefId, "spawn")
-							for _, uniqueIndex in pairs(LoadedCells[cellId].data.packets.actorList) do
-								if LoadedCells[cellId].data.objectData[uniqueIndex] then
-									if LoadedCells[cellId].data.objectData[uniqueIndex].refId == creatureRefId then
-										logicHandler.SetAIForActor(LoadedCells[cellId], uniqueIndex, "2", pid)
-									end
+						logicHandler.CreateObjectAtLocation(cellId, position, creatureRefId, "spawn")
+						for _, uniqueIndex in pairs(LoadedCells[cellId].data.packets.actorList) do
+							if LoadedCells[cellId].data.objectData[uniqueIndex] then
+								if LoadedCells[cellId].data.objectData[uniqueIndex].refId == creatureRefId then
+									logicHandler.SetAIForActor(LoadedCells[cellId], uniqueIndex, "2", pid)
 								end
 							end
 						end
@@ -187,6 +233,8 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 	end
 end
 
+customEventHooks.registerHandler("OnServerInit", DragonDoor.TimerStart)
+customEventHooks.registerHandler("OnPlayerAuthentified", DragonDoor.OnPlayerConnect)
 customEventHooks.registerHandler("OnObjectActivate", DragonDoor.OnObjectActivate)
 customEventHooks.registerHandler("OnPlayerCellChange", DragonDoor.OnPlayerCellChange)
 
