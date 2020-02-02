@@ -70,7 +70,7 @@ EcarlateSoul.OnPlayerKillCreature = function(eventStatut, pid, cellDescription)
 								if levelSoul ~= nil then
 									for slot, creature in pairs(creatureTable.creatures) do
 										creatureRefId = creature.Refid
-										if creatureRefId == string.lower(refId) then
+										if string.lower(creatureRefId) == string.lower(refId) then
 											creaturename = creature.name
 											creatureSoul = creature.Soul
 											if TeamGroup then
