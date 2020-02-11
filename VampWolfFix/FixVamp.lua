@@ -29,11 +29,11 @@ FixVamp.check = function(eventStatus, pid)
 		end
 		
 		local consoleCheckClan	
-		if tableHelper.containsValue(Players[pid].data.spellbook, "Vampire Aundae Specials", true) then	
+		if tableHelper.containsValue(Players[pid].data.spellbook, "vampire aundae specials", true) then	
 			consoleCheckClan = "set VampClan to 1"		
-		elseif tableHelper.containsValue(Players[pid].data.spellbook, "Vampire Berne Specials", true) then			
+		elseif tableHelper.containsValue(Players[pid].data.spellbook, "vampire berne specials", true) then			
 			consoleCheckClan = "set VampClan to 2"
-		elseif tableHelper.containsValue(Players[pid].data.spellbook, "Vampire Quarra Specials", true) then			
+		elseif tableHelper.containsValue(Players[pid].data.spellbook, "vampire quarra specials", true) then			
 			consoleCheckClan = "set VampClan to 3"
 		end				
 		if consoleCheckClan ~= nil then
