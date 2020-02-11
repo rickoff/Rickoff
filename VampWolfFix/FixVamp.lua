@@ -3,7 +3,7 @@ FixVamp by Rickoff
 tes3mp 0.7.0
 ---------------------------
 DESCRIPTION :
-Corrige un bug lié a la detection des vampires et loupgarou
+Fix Wolf and Vamp
 ---------------------------
 INSTALLATION:
 Save the file as FixVamp.lua inside your server/scripts/custom folder.
@@ -19,7 +19,7 @@ local FixVamp = {}
 FixVamp.check = function(eventStatus, pid)	
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local consoleCheck	
-		if tableHelper.containsValue(Players[pid].data.spellbook, "vampire sun damage", true) then	
+		if tableHelper.containsValue(Players[pid].data.spellbook, "vampire attributes", true) then	
 			consoleCheck = "set PCVampire to 1"		
 		elseif tableHelper.containsValue(Players[pid].data.spellbook, "werewolf blood", true) then			
 			consoleCheck = "set PCWerewolf to 1"
@@ -27,9 +27,21 @@ FixVamp.check = function(eventStatus, pid)
 		if consoleCheck ~= nil then
 			logicHandler.RunConsoleCommandOnPlayer(pid, consoleCheck)
 		end
+		
+		local consoleCheckClan	
+		if tableHelper.containsValue(Players[pid].data.spellbook, "Vampire Aundae Specials", true) then	
+			consoleCheckClan = "set VampClan to 1"		
+		elseif tableHelper.containsValue(Players[pid].data.spellbook, "Vampire Berne Specials", true) then			
+			consoleCheckClan = "set VampClan to 2"
+		elseif tableHelper.containsValue(Players[pid].data.spellbook, "Vampire Quarra Specials", true) then			
+			consoleCheckClan = "set VampClan to 3"
+		end				
+		if consoleCheckClan ~= nil then
+			logicHandler.RunConsoleCommandOnPlayer(pid, consoleCheckClan)
+		end		
 	end
 end
-
+	
 customEventHooks.registerHandler("OnPlayerCellChange", FixVamp.check)
 
 return FixVamp
