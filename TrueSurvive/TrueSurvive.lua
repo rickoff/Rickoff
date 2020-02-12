@@ -42,7 +42,6 @@ config.drinkTime = 600
 local TrueSurvive = {}
 local TimerStartStats = tes3mp.CreateTimer("StartCheckStats", time.seconds(config.timerCheck))
 local TimerStartMessage = tes3mp.CreateTimer("StartCheckMessage", time.seconds(config.timerMessage))
-local tablePlayerSleep = {}
 
 local ListActivableDrinkingObjects = {"furn_mudcave_spout00", "may_barrelbanshee", "potion_ancient_brandy", "may_barrelbansheeb", "san_food_beer1b", "san_food_beer2", "aa_big ass mug o' mead", "ko_mug_tea_ch", "nom_beer_02", "nom_beer_03",
  "nom_beer_04", "nom_beer_08", "nom_beer_09", "nom_juice_apple", "nom_juice_comberry", "nom_juice_orange", "nom_juice_pear", "nom_wine_02", "nom_wine_03", "nom_wine_04", "nom_wine_08", "nom_wine_09", "p_vintagecomberrybrandy1", "plx_guar_milk",
