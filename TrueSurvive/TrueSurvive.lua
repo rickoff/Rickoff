@@ -14,503 +14,19 @@ TrueSurvive = require("custom.TrueSurvive")
 Edits to config.lua
 add in config.menuHelperFiles, "MenuSurvive"
 ---------------------------
-add custom spell permanent records:
-
-  "permanentRecords":{
-    "true_weather_blizzard":{
-      "name":"Blizzard",
-      "subtype":4,
-      "cost":0,
-      "flags":0,
-      "effects":[{
-          "id":17,
-          "attribute":0,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":1,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":3,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":19
-        },{
-          "id":17,
-          "attribute":4,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        }]
-    },  
-    "true_weather_snow":{
-      "name":"Neige",
-      "subtype":4,
-      "cost":0,
-      "flags":0,
-      "effects":[{
-          "id":17,
-          "attribute":0,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":0,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":5,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":3,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        },{
-          "id":17,
-          "attribute":4,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        }]
-    },  
-    "true_weather_blight":{
-      "name":"Tempête de rouille",
-      "subtype":4,
-      "cost":0,
-      "flags":0,
-      "effects":[{
-          "id":17,
-          "attribute":1,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":2,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":3,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":6,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        }]
-    },  
-    "true_weather_ash":{
-      "name":"Tempête des cendres",
-      "subtype":4,
-      "cost":0,
-      "flags":0,
-      "effects":[{
-          "id":17,
-          "attribute":0,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        },{
-          "id":17,
-          "attribute":4,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        },{
-          "id":17,
-          "attribute":2,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        },{
-          "id":17,
-          "attribute":7,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":30,
-          "magnitudeMin":30
-        }]
-    },  
-    "true_weather_thunder":{
-      "name":"Tonnerre",
-      "subtype":4,
-      "cost":0,
-      "flags":0,
-      "effects":[{
-          "id":17,
-          "attribute":1,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":2,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":6,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":7,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        }]
-    },  
-    "true_weather_rain":{
-      "name":"Pluie",
-      "subtype":4,
-      "cost":0,
-      "flags":0,
-      "effects":[{
-          "id":17,
-          "attribute":4,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":2,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":7,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":20,
-          "magnitudeMin":20
-        },{
-          "id":17,
-          "attribute":1,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        }]
-    },  
-    "true_weather_overcast":{
-      "name":"Temp couvert",
-      "subtype":4,
-      "cost":0,
-      "flags":0,
-      "effects":[{
-          "id":17,
-          "attribute":7,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        },{
-          "id":17,
-          "attribute":6,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        },{
-          "id":17,
-          "attribute":2,
-          "skill":-1,
-          "rangeType":1,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        }]
-    },  
-    "true_weather_fog":{
-      "name":"Brouillard",
-      "subtype":4,
-      "cost":0,
-      "flags":0,
-      "effects":[{
-          "id":17,
-          "attribute":3,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        },{
-          "id":17,
-          "attribute":4,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        },{
-          "id":17,
-          "attribute":7,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        }]
-    },  
-    "true_weather_clear":{
-      "name":"Temps clair",
-      "subtype":4,
-      "cost":0,
-      "flags":0,
-      "effects":[{
-          "id":79,
-          "attribute":4,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        },{
-          "id":79,
-          "attribute":2,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        },{
-          "id":79,
-          "attribute":3,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        },{
-          "id":79,
-          "attribute":7,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":-1,
-          "magnitudeMax":10,
-          "magnitudeMin":10
-        }]
-    },  
-    "true_survive_digestion":{
-      "name":"Digestion",
-      "subtype":4,
-      "cost":1,
-      "flags":0,
-      "effects":[{
-          "id":75,
-          "attribute":-1,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":0,
-          "magnitudeMax":1,
-          "magnitudeMin":1
-        }]
-    },
-    "true_survive_fatigue":{
-      "name":"Fatigue",
-      "subtype":4,
-      "cost":1,
-      "flags":0,
-      "effects":[{
-          "id":88,
-          "attribute":-1,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":0,
-          "magnitudeMax":5,
-          "magnitudeMin":5
-        }]
-    },
-    "true_survive_thirsth":{
-      "name":"Soif",
-      "subtype":4,
-      "cost":1,
-      "flags":0,
-      "effects":[{
-          "id":87,
-          "attribute":-1,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":0,
-          "magnitudeMax":1,
-          "magnitudeMin":1
-        }]
-    },
-    "true_survive_hunger":{
-      "name":"Faim",
-      "subtype":4,
-      "cost":1,
-      "flags":0,
-      "effects":[{
-          "id":23,
-          "attribute":-1,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":0,
-          "magnitudeMax":1,
-          "magnitudeMin":1
-        }]
-    },
-    "true_survive_hydrated":{
-      "name":"Hydraté",
-      "subtype":4,
-      "cost":1,
-      "flags":0,
-      "effects":[{
-          "id":76,
-          "attribute":-1,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":1,
-          "magnitudeMax":1,
-          "magnitudeMin":1
-        }]
-    },
-    "true_survive_attack":{
-      "name":"Attaque Max",
-      "subtype":4,
-      "cost":1,
-      "flags":0,
-      "effects":[{
-          "id":117,
-          "attribute":-1,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":1,
-          "magnitudeMax":100,
-          "magnitudeMin":100
-        }]
-    },
-    "true_survive_rests":{
-      "name":"Reposé",
-      "subtype":4,
-      "cost":1,
-      "flags":0,
-      "effects":[{
-          "id":77,
-          "attribute":-1,
-          "skill":-1,
-          "rangeType":0,
-          "area":0,
-          "duration":1,
-          "magnitudeMax":1,
-          "magnitudeMin":1
-        }]
-    }
-  },
 ]]
 
 
 tableHelper = require("tableHelper")
+jsonInterface = require("jsonInterface")
 inventoryHelper = require("inventoryHelper")
 
 local list_survive_eatdrinksleep = {"true_survive_fatigue", "true_survive_hunger", "true_survive_thirsth"}
 local list_survive_weather = {"true_weather_ash", "true_weather_blight", "true_weather_snow", "true_weather_blizzard", "true_weather_thunder", "true_weather_rain", "true_weather_overcast", "true_weather_fog", "true_weather_clear"}
 
 local SurviveMessage = {}
-SurviveMessage.Fatigue = "Vous êtes fatigué, vous devriez aller dormir !"
-SurviveMessage.Hunger = "Vous avez faim, vous devriez vous restaurer !"
+SurviveMessage.Fatigue = "Vous êtes fatigué, vous devriez dormir !"
+SurviveMessage.Hunger = "Vous avez faim, vous devriez manger !"
 SurviveMessage.Thirsth = "Vous avez soif, vous devriez boire !"
 SurviveMessage.Sleep = "Vous vous reposez ."
 SurviveMessage.Eat = "Vous avez mangé ."
@@ -521,10 +37,12 @@ config.timerMessage = 10
 config.timerCheck = 3 
 config.sleepTime = 1200 
 config.eatTime = 600 
-config.drinkTime = 600 
+config.drinkTime = 600
+
 local TrueSurvive = {}
 local TimerStartStats = tes3mp.CreateTimer("StartCheckStats", time.seconds(config.timerCheck))
 local TimerStartMessage = tes3mp.CreateTimer("StartCheckMessage", time.seconds(config.timerMessage))
+local tablePlayerSleep = {}
 
 local ListActivableDrinkingObjects = {"furn_mudcave_spout00", "may_barrelbanshee", "potion_ancient_brandy", "may_barrelbansheeb", "san_food_beer1b", "san_food_beer2", "aa_big ass mug o' mead", "ko_mug_tea_ch", "nom_beer_02", "nom_beer_03",
  "nom_beer_04", "nom_beer_08", "nom_beer_09", "nom_juice_apple", "nom_juice_comberry", "nom_juice_orange", "nom_juice_pear", "nom_wine_02", "nom_wine_03", "nom_wine_04", "nom_wine_08", "nom_wine_09", "p_vintagecomberrybrandy1", "plx_guar_milk",
@@ -585,6 +103,531 @@ function StartCheckMessage()
 
     tes3mp.RestartTimer(TimerStartMessage, time.seconds(config.timerMessage))
 end
+
+TrueSurvive.StartCheckRecordSpell = function(eventStatus)
+	local spellCustom = jsonInterface.load("recordstore/spell.json")
+	local recordStore = RecordStores["spell"]
+	
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_survive_attack") then
+		local recordTable = {
+		  name = "Attaque Max",
+		  subtype = 1,
+		  cost = 1,
+		  flags = 0,
+		  effects = {{
+			  id = 117,
+			  attribute = -1,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = 1,
+			  magnitudeMax = 100,
+			  magnitudeMin = 100
+			}}
+		}
+		recordStore.data.permanentRecords["true_survive_attack"] = recordTable
+	end		
+	
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_survive_digestion") then
+		local recordTable = {
+		  name = "Digestion",
+		  subtype = 1,
+		  cost = 1,
+		  flags = 0,
+		  effects = {{
+			  id = 75,
+			  attribute = -1,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = 0,
+			  magnitudeMax = 1,
+			  magnitudeMin = 1
+			}}
+		}
+		recordStore.data.permanentRecords["true_survive_digestion"] = recordTable
+	end		
+	
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_survive_hydrated") then
+		local recordTable = {
+		  name = "Hydraté",
+		  subtype = 1,
+		  cost = 1,
+		  flags = 0,
+		  effects = {{
+			  id = 76,
+			  attribute = -1,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = 1,
+			  magnitudeMax = 1,
+			  magnitudeMin = 1
+			}}
+		}
+		recordStore.data.permanentRecords["true_survive_hydrated"] = recordTable
+	end		
+	
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_survive_rests") then
+		local recordTable = {
+		  name = "Reposé",
+		  subtype = 1,
+		  cost = 1,
+		  flags = 0,
+		  effects = {{
+			  id = 77,
+			  attribute = -1,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = 1,
+			  magnitudeMax = 1,
+			  magnitudeMin = 1
+			}}
+		}
+		recordStore.data.permanentRecords["true_survive_rests"] = recordTable
+	end		
+	
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_survive_thirsth") then
+		local recordTable = {
+		  name = "Soif",
+		  subtype = 1,
+		  cost = 1,
+		  flags = 0,
+		  effects = {{
+			  id = 87,
+			  attribute = -1,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = 0,
+			  magnitudeMax = 1,
+			  magnitudeMin = 1
+			}}
+		}
+		recordStore.data.permanentRecords["true_survive_thirsth"] = recordTable
+	end	
+	
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_survive_hunger") then
+		local recordTable = {
+		  name = "Faim",
+		  subtype = 1,
+		  cost = 1,
+		  flags = 0,
+		  effects = {{
+			  id = 17,
+			  attribute = 4,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 200,
+			  magnitudeMin = 200
+			}}
+		}
+		recordStore.data.permanentRecords["true_survive_hunger"] = recordTable
+	end
+	
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_survive_fatigue") then
+		local recordTable = {
+		  name = "Fatigue",
+		  subtype = 1,
+		  cost = 1,
+		  flags = 0,
+		  effects = {{
+			  id = 88,
+			  attribute = -1,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = 0,
+			  magnitudeMax = 5,
+			  magnitudeMin = 5
+			}}
+		}
+		recordStore.data.permanentRecords["true_survive_fatigue"] = recordTable
+	end
+	
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_weather_ash") then
+		local recordTable = {
+		  name = "Tempête des cendres",
+		  subtype = 1,
+		  cost = 0,
+		  flags = 0,
+		  effects = {{
+			  id = 17,
+			  attribute = 4,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 17,
+			  attribute = 2,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 17,
+			  attribute = 7,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 30,
+			  magnitudeMin = 30
+			}}
+		}
+		recordStore.data.permanentRecords["true_weather_ash"] = recordTable
+	end
+	
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_weather_blight") then
+		local recordTable = {
+		  name = "Tempête de rouille",
+		  subtype = 1,
+		  cost = 0,
+		  flags = 0,
+		  effects = {{
+			  id = 17,
+			  attribute = 1,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 17,
+			  attribute = 2,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 17,
+			  attribute = 3,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 17,
+			  attribute = 6,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			}}
+		}
+		recordStore.data.permanentRecords["true_weather_blight"] = recordTable		
+	end
+
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_weather_snow") then
+		local recordTable = {
+		  name = "Neige",
+		  subtype = 1,
+		  cost = 0,
+		  flags = 0,
+		  effects = {{
+			  id = 17,
+			  attribute = 5,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 5,
+			  magnitudeMin = 5
+			},{
+			  id = 17,
+			  attribute = 3,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 5,
+			  magnitudeMin = 5
+			},{
+			  id = 17,
+			  attribute = 4,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 5,
+			  magnitudeMin = 5
+			}}
+		}
+		recordStore.data.permanentRecords["true_weather_snow"] = recordTable		
+	end	
+
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_weather_blizzard") then
+		local recordTable = {
+		  name = "Blizzard",
+		  subtype = 1,
+		  cost = 0,
+		  flags = 0,
+		  effects = {{
+			  id = 17,
+			  attribute = 1,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 20,
+			  magnitudeMin = 20
+			},{
+			  id = 17,
+			  attribute = 3,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 20,
+			  magnitudeMin = 20
+			},{
+			  id = 17,
+			  attribute = 4,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 20,
+			  magnitudeMin = 20
+			}}
+		}
+		recordStore.data.permanentRecords["true_weather_blizzard"] = recordTable		
+	end	
+
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_weather_thunder") then
+		local recordTable = {
+		  name = "Tonnerre",
+		  subtype = 1,
+		  cost = 0,
+		  flags = 0,
+		  effects = {{
+			  id = 17,
+			  attribute = 1,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 17,
+			  attribute = 2,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 17,
+			  attribute = 6,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 17,
+			  attribute = 7,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			}}
+		}
+		recordStore.data.permanentRecords["true_weather_thunder"] = recordTable	
+	end	
+
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_weather_rain") then
+		local recordTable = {
+		  name = "Pluie",
+		  subtype = 1,
+		  cost = 0,
+		  flags = 0,
+		  effects = {{
+			  id = 17,
+			  attribute = 4,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 17,
+			  attribute = 2,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 17,
+			  attribute = 7,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 17,
+			  attribute = 1,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			}}
+		}
+		recordStore.data.permanentRecords["true_weather_rain"] = recordTable			
+	end
+
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_weather_overcast") then
+		local recordTable = {
+		  name = "Temp couvert",
+		  subtype = 1,
+		  cost = 0,
+		  flags = 0,
+		  effects = {{
+			  id = 17,
+			  attribute = 7,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 5,
+			  magnitudeMin = 5
+			},{
+			  id = 17,
+			  attribute = 6,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 5,
+			  magnitudeMin = 5
+			},{
+			  id = 17,
+			  attribute = 2,
+			  skill = -1,
+			  rangeType = 1,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 5,
+			  magnitudeMin = 5
+			}}
+		}
+		recordStore.data.permanentRecords["true_weather_overcast"] = recordTable			
+	end
+
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_weather_fog") then
+		local recordTable = {
+		  name = "Brouillard",
+		  subtype = 1,
+		  cost = 0,
+		  flags = 0,
+		  effects = {{
+			  id = 17,
+			  attribute = 3,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 5,
+			  magnitudeMin = 5
+			},{
+			  id = 17,
+			  attribute = 4,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 5,
+			  magnitudeMin = 5
+			},{
+			  id = 17,
+			  attribute = 7,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 5,
+			  magnitudeMin = 5
+			}}
+		}
+		recordStore.data.permanentRecords["true_weather_fog"] = recordTable	
+	end	
+
+	if not tableHelper.containsValue(spellCustom.permanentRecords, "true_weather_clear") then
+		local recordTable = {
+		  name = "Temps clair",
+		  subtype = 1,
+		  cost = 0,
+		  flags = 0,
+		  effects = {{
+			  id = 79,
+			  attribute = 4,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 79,
+			  attribute = 2,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 79,
+			  attribute = 3,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			},{
+			  id = 79,
+			  attribute = 7,
+			  skill = -1,
+			  rangeType = 0,
+			  area = 0,
+			  duration = -1,
+			  magnitudeMax = 10,
+			  magnitudeMin = 10
+			}}
+		}
+		recordStore.data.permanentRecords["true_weather_clear"] = recordTable		
+	end
+	
+    recordStore:Save()	
+end	
 -- ==================
 -- CHECK TIMER PLAYER
 -- ==================
@@ -629,46 +672,35 @@ TrueSurvive.OnCheckTimePlayers = function(pid)
 			ThirsthTimeMax = config.drinkTime
 		end
 		
-		for slot, k in pairs(Players[pid].data.spellbook) do
-			if Players[pid].data.spellbook[slot] == "vampire sun damage" then
-				SleepTime = 0
-				HungerTime = 0
-				for slot1, x in pairs(Players[pid].data.spellbook) do
-					if Players[pid].data.spellbook[slot1] == "true_survive_rests" then					
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests", false)
-					elseif Players[pid].data.spellbook[slot1] == "true_survive_digestion" then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_digestion", false)						
-					elseif Players[pid].data.spellbook[slot1] == "true_survive_hunger" then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger", false)
-					elseif Players[pid].data.spellbook[slot1] == "true_survive_fatigue" then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue", false)							
-					elseif Players[pid].data.spellbook[slot1] == "werewolf blood" then
-						HungerTime = Players[pid].data.customVariables.HungerTime + 1
-						ThirsthTime = Players[pid].data.customVariables.ThirsthTime + 1
-						SleepTime = Players[pid].data.customVariables.SleepTime + 1						
-					end
-				end
-			elseif Players[pid].data.spellbook[slot] == "werewolf blood" then
-				SleepTime = 0
-				ThirsthTime = 0	
-				for slot2, y in pairs(Players[pid].data.spellbook) do
-					if Players[pid].data.spellbook[slot2] == "true_survive_hydrated" then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hydrated", false)
-					elseif Players[pid].data.spellbook[slot2] == "true_survive_fatigue" then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue", false)
-					elseif Players[pid].data.spellbook[slot1] == "true_survive_rests" then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests", false)	
-					elseif Players[pid].data.spellbook[slot1] == "true_survive_thirsth" then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth", false)							
-					elseif Players[pid].data.spellbook[slot1] == "vampire sun damage" then
-						HungerTime = Players[pid].data.customVariables.HungerTime + 1					
-						ThirsthTime = Players[pid].data.customVariables.ThirsthTime + 1
-						SleepTime = Players[pid].data.customVariables.SleepTime + 1												
-					end
-				end	
+		if tableHelper.containsValue(Players[pid].data.spellbook, "vampire attributes", true) and not tableHelper.containsValue(Players[pid].data.spellbook, "werewolf blood", true) then	
+			SleepTime = 0
+			HungerTime = 0		
+			if tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_rests", true) then	
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests", false)
+			elseif tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_hunger", true) then
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger", false)			
+			elseif tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_fatigue", true) then
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue", false)
 			end
-		end		
-			
+		elseif not tableHelper.containsValue(Players[pid].data.spellbook, "vampire attributes", true) and tableHelper.containsValue(Players[pid].data.spellbook, "werewolf blood", true) then	
+			SleepTime = 0
+			ThirsthTime = 0		
+			if tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_hydrated", true) then	
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hydrated", false)
+			elseif tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_fatigue", true) then
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue", false)			
+			elseif tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_thirsth", true) then
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth", false)
+			end
+		elseif tableHelper.containsValue(Players[pid].data.spellbook, "vampire attributes", true) and tableHelper.containsValue(Players[pid].data.spellbook, "werewolf blood", true) then
+			SleepTime = 0		
+			HungerTime = Players[pid].data.customVariables.HungerTime + 1
+			ThirsthTime = Players[pid].data.customVariables.ThirsthTime + 1
+			if tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_rests", true) then	
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests", false)
+			end
+		end	
+	
 		Players[pid].data.customVariables.SleepTime = SleepTime	
 		Players[pid].data.customVariables.HungerTime = HungerTime				
 		Players[pid].data.customVariables.ThirsthTime = ThirsthTime				
@@ -683,21 +715,8 @@ end
 -- CHECK STAT PLAYER
 -- =================
 TrueSurvive.OnCheckStatePlayer = function(pid)
-
-	local listattack = {"true_survive_attack"}
-	local listfatigue = {"true_survive_fatigue"}	
-	local attackspell
-	local fatiguespell
 	
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-	
-		for slot, k in pairs(Players[pid].data.spellbook) do
-			if Players[pid].data.spellbook[slot] == "true_survive_attack" then
-				attackspell = Players[pid].data.spellbook[slot]
-			elseif Players[pid].data.spellbook[slot] == "true_survive_fatigue" then 
-				fatiguespell = Players[pid].data.spellbook[slot]
-			end
-		end	
 		
 		local PlayerHealth = tes3mp.GetHealthCurrent(pid)
 		local PlayerHealthBase = tes3mp.GetHealthBase(pid)	
@@ -706,15 +725,15 @@ TrueSurvive.OnCheckStatePlayer = function(pid)
 		local PlayerFatigue = tes3mp.GetFatigueCurrent(pid)
 		local PlayerFatigueBase = tes3mp.GetFatigueBase(pid)
 
-		if PlayerFatigue <= (PlayerFatigueBase / 3) and PlayerFatigue > 0 and tableHelper.containsValue(listattack, attackspell) then	
+		if PlayerFatigue <= (PlayerFatigueBase / 3) and PlayerFatigue > 0 and tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_attack") then	
 			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_attack", false)
 			logicHandler.RunConsoleCommandOnPlayer(pid, "DisablePlayerJumping", false)
 			
-		elseif PlayerFatigue > (PlayerFatigueBase / 3) and not tableHelper.containsValue(listattack, attackspell) then	
+		elseif PlayerFatigue > (PlayerFatigueBase / 3) and not tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_attack") then	
 			logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_attack", false)
 			logicHandler.RunConsoleCommandOnPlayer(pid, "EnablePlayerJumping", false)
 			
-		elseif PlayerFatigue <= 0 and tableHelper.containsValue(listfatigue, fatiguespell) then				
+		elseif PlayerFatigue <= 0 and tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_fatigue") then				
 			logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue", false)		
 		end
 		
@@ -735,49 +754,29 @@ TrueSurvive.OnCheckMessagePlayersSleep = function(pid)
 		local PlayerFatigue = tes3mp.GetFatigueCurrent(pid)	
 		local SleepTime = Players[pid].data.customVariables.SleepTime
 		local SleepTimeMax = Players[pid].data.customVariables.SleepTimeMax
+		
 		if SleepTime ~= nil and SleepTimeMax ~= nil and SleepTime >= SleepTimeMax then
 			if PlayerFatigue > 0 then		
-				local spellid
-				local spellcible
-				for slot, k in pairs(Players[pid].data.spellbook) do
-					if Players[pid].data.spellbook[slot] ~= "true_survive_rests" then
-						if Players[pid].data.spellbook[slot] == "true_survive_fatigue" then
-							spellid = Players[pid].data.spellbook[slot]
-						end
-					else
-						spellcible = true
-					end
-				end	
 				
-				if spellcible ~= nil then
+				if tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_rests") then
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests", false)
 				end	
 			
-				if tableHelper.containsValue(list_survive_eatdrinksleep, spellid) then				
-					--tes3mp.MessageBox(pid, -1, SurviveMessage.Fatigue)
+				if tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_fatigue") then			
 					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2", false)
-					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2", false)
-					
+					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2", false)			
 				else
 					tes3mp.MessageBox(pid, -1, SurviveMessage.Fatigue)
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_fatigue", false)
 					logicHandler.RunConsoleCommandOnPlayer(pid, "FadeOut, 2", false)
 					logicHandler.RunConsoleCommandOnPlayer(pid, "Fadein, 2", false)			
-
 				end
-			end		
+			end	
+			
 		elseif SleepTime ~= nil and SleepTimeMax ~= nil and SleepTime >= (SleepTimeMax / 2) and SleepTime < SleepTimeMax then
-			if PlayerFatigue > 0 then			
-				local spellcible
-				for slot, k in pairs(Players[pid].data.spellbook) do
-					if Players[pid].data.spellbook[slot] ~= "true_survive_rests" then
-
-					else
-						spellcible = true
-					end
-				end		
-				
-				if spellcible ~= nil then
+		
+			if PlayerFatigue > 0 then								
+				if tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_rests") then
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_rests", false)
 				end	
 			end
@@ -795,45 +794,26 @@ TrueSurvive.OnCheckMessagePlayersHunger = function(pid)
 		local PlayerHealth = tes3mp.GetHealthCurrent(pid)
 		local HungerTime = Players[pid].data.customVariables.HungerTime
 		local HungerTimeMax = Players[pid].data.customVariables.HungerTimeMax
+		
 		if HungerTime ~= nil and HungerTimeMax ~= nil and HungerTime >= HungerTimeMax then	
 		
 			if PlayerHealth > 0 then		
-				local spellid
-				local spellcible
-				for slot, k in pairs(Players[pid].data.spellbook) do
-					if Players[pid].data.spellbook[slot] ~= "true_survive_digestion" then
-						if Players[pid].data.spellbook[slot] == "true_survive_hunger" then
-							spellid = Players[pid].data.spellbook[slot]
-						end
-					else
-						spellcible = true
-					end
-				end	
 				
-				if spellcible ~= nil then
+				if tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_digestion") then
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_digestion", false)
 				end			
 			
-				if tableHelper.containsValue(list_survive_eatdrinksleep, spellid) then
-					--tes3mp.MessageBox(pid, -1, SurviveMessage.Hunger)
-				else
+				if not tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_hunger") then
 					tes3mp.MessageBox(pid, -1, SurviveMessage.Hunger)					
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_hunger", false)
 				end
-			end			
+			end		
+			
 		elseif HungerTime ~= nil and HungerTimeMax ~= nil and HungerTime >= (HungerTimeMax / 2) and HungerTime < HungerTimeMax then
 		
-			if PlayerHealth > 0 then			
-				local spellcible
-				for slot, k in pairs(Players[pid].data.spellbook) do
-					if Players[pid].data.spellbook[slot] ~= "true_survive_digestion" then
-
-					else
-						spellcible = true
-					end
-				end		
+			if PlayerHealth > 0 then				
 				
-				if spellcible ~= nil then
+				if tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_digestion") then
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_digestion", false)
 				end	
 			end	
@@ -850,45 +830,26 @@ TrueSurvive.OnCheckMessagePlayersThirsth = function(pid)
 	
 		local PlayerMagicka = tes3mp.GetMagickaCurrent(pid)	
 		local ThirsthTime = Players[pid].data.customVariables.ThirsthTime
-		local ThirsthTimeMax = Players[pid].data.customVariables.ThirsthTimeMax		
+		local ThirsthTimeMax = Players[pid].data.customVariables.ThirsthTimeMax	
+		
 		if ThirsthTime ~= nil and ThirsthTimeMax ~= nil and ThirsthTime >= ThirsthTimeMax then
 		
-			if PlayerMagicka > 0 then		
-				local spellid
-				local spellcible
-				for slot, k in pairs(Players[pid].data.spellbook) do
-					if Players[pid].data.spellbook[slot] ~= "true_survive_hydrated" then
-						if Players[pid].data.spellbook[slot] == "true_survive_thirsth" then
-							spellid = Players[pid].data.spellbook[slot]
-						end
-					else
-						spellcible = true
-					end
-				end	
+			if PlayerMagicka > 0 then
 				
-				if spellcible ~= nil then
+				if tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_hydrated") then
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hydrated", false)
 				end			
 			
-				if tableHelper.containsValue(list_survive_eatdrinksleep, spellid) then					
-					--tes3mp.MessageBox(pid, -1, SurviveMessage.Thirsth)	
-				else					
+				if not tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_thirsth") then									
 					tes3mp.MessageBox(pid, -1, SurviveMessage.Thirsth)
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_survive_thirsth", false)											
 				end
 			end			
 		elseif ThirsthTime ~= nil and ThirsthTime >= (ThirsthTimeMax / 2) and ThirsthTime < ThirsthTimeMax then	
-			if PlayerMagicka > 0 then			
-				local spellcible
-				for slot, k in pairs(Players[pid].data.spellbook) do
-					if Players[pid].data.spellbook[slot] ~= "true_survive_hydrated" then
 
-					else
-						spellcible = true
-					end
-				end		
+			if PlayerMagicka > 0 then				
 				
-				if spellcible ~= nil then
+				if tableHelper.containsValue(Players[pid].data.spellbook, "true_survive_hydrated") then
 					logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hydrated", false)
 				end	
 			end			
@@ -1078,6 +1039,8 @@ TrueSurvive.OnCheckMessagePlayersWeather = function(pid)
 					for slot, k in pairs(Players[pid].data.spellbook) do
 						if Players[pid].data.spellbook[slot] ~= "true_weather_blizzard" then
 							spell = Players[pid].data.spellbook[slot]
+						else
+							spellcible = true
 						end
 						
 						if tableHelper.containsValue(list_survive_weather, spell) then				
@@ -1123,18 +1086,16 @@ TrueSurvive.OnActivatedObject = function(eventStatus, pid, cellDescription, obje
 			local Thirsth = true
 			local Vamp = false
 			local Wolf = false
-			for slot, k in pairs(Players[pid].data.spellbook) do
-				if Players[pid].data.spellbook[slot] == "vampire sun damage" then
-					Sleep = false
-					Hunger = false
-					Thirsth = false
-					Vamp = true
-				elseif Players[pid].data.spellbook[slot] == "werewolf blood" then
-					Sleep = false
-					Hunger = false
-					Thirsth = false
-					Wolf = true
-				end
+			if tableHelper.containsValue(Players[pid].data.spellbook, "vampire attributes") then	
+				Sleep = false
+				Hunger = false
+				Thirsth = false
+				Vamp = true
+			elseif tableHelper.containsValue(Players[pid].data.spellbook, "werewolf blood") then				
+				Sleep = false
+				Hunger = false
+				Thirsth = false
+				Wolf = true
 			end	
 			
 			if tableHelper.containsValue(ListActivableDrinkingObjects, ObjectRefid) and Thirsth == true then	-- drink
@@ -1201,7 +1162,6 @@ end
 -- OBJECT ACTIVATED
 -- ================
 TrueSurvive.OnHungerObject = function(pid)
-
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local HungerTime = 0
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger", false)
@@ -1212,7 +1172,6 @@ TrueSurvive.OnHungerObject = function(pid)
 end
 
 TrueSurvive.OnDrinkObject = function(pid)
-
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local Thirsth = 0
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth", false)
@@ -1223,7 +1182,6 @@ TrueSurvive.OnDrinkObject = function(pid)
 end
 
 TrueSurvive.OnSleepObject = function(pid)
-
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local SleepTime = 0
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_fatigue", false)	
@@ -1235,8 +1193,13 @@ TrueSurvive.OnSleepObject = function(pid)
 	end
 end
 
-TrueSurvive.OnVampDrink = function(pid)
+TrueSurvive.OnSleepObjectVanilla = function(pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		logicHandler.RunConsoleCommandOnPlayer(pid, "ShowRestMenu", false)
+	end
+end
 
+TrueSurvive.OnVampDrink = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local Thirsth = 0
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_thirsth", false)
@@ -1247,7 +1210,6 @@ TrueSurvive.OnVampDrink = function(pid)
 end
 
 TrueSurvive.OnWolfHunger = function(pid)
-
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local Hunger = 0
 		logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell true_survive_hunger", false)
@@ -1259,5 +1221,6 @@ end
 
 customEventHooks.registerValidator("OnObjectActivate", TrueSurvive.OnActivatedObject)
 customEventHooks.registerHandler("OnServerInit", TrueSurvive.TimerStartCheck)
+customEventHooks.registerHandler("OnServerInit", TrueSurvive.StartCheckRecordSpell)
 
 return TrueSurvive
