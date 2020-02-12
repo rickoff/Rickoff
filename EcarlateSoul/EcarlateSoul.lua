@@ -16,7 +16,7 @@ Edits to config.lua
 add in config.menuHelperFiles, "MenuSoul"
 ---------------------------
 FUNCTION:
-/menusoul in your chat for open menu
+/soul in your chat for open menu
 ---------------------------
 ]]
 
