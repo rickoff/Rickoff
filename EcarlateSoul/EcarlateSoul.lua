@@ -8,13 +8,15 @@ Syteme d'experience et de competences
 INSTALLATION:
 Save the file as EcarlateSoul.lua inside your server/scripts/custom folder.
 Save the file as MenuSoul.lua inside your scripts/menu folder
+
 Edits to customScripts.lua
 EcarlateSoul = require("custom.EcarlateSoul")
+
 Edits to config.lua
 add in config.menuHelperFiles, "MenuSoul"
 ---------------------------
 FUNCTION:
-/MenuSoul in your chat for open menu
+/menusoul in your chat for open menu
 ---------------------------
 ]]
 
@@ -44,10 +46,7 @@ EcarlateSoul.OnPlayerKillCreature = function(eventStatut, pid, cellDescription)
 								local soulLoc = Players[killerPid].data.customVariables.soul
 								local levelSoul = Players[killerPid].data.customVariables.levelSoul	
 								local capSoul = Players[killerPid].data.customVariables.capSoul
-								local pointSoul = Players[killerPid].data.customVariables.pointSoul
-
-							 
-								
+								local pointSoul = Players[killerPid].data.customVariables.pointSoul							
 								if soulLoc == nil then
 									Players[killerPid].data.customVariables.soul = 0
 								end
@@ -60,13 +59,11 @@ EcarlateSoul.OnPlayerKillCreature = function(eventStatut, pid, cellDescription)
 								if pointSoul == nil then
 									Players[killerPid].data.customVariables.pointSoul = 0
 								end	
-
 								local creatureRefId
 								local creaturename
 								local creatureSoul
 								local Count
-								rando1 = math.random(0, 25)
-								
+								rando1 = math.random(0, 25)								
 								if levelSoul ~= nil then
 									for slot, creature in pairs(creatureTable.creatures) do
 										creatureRefId = creature.Refid
@@ -100,8 +97,7 @@ EcarlateSoul.OnPlayerKillCreature = function(eventStatut, pid, cellDescription)
 												end
 											end	
 										end
-									end
-								
+									end								
 									if soulLoc ~= nil and capSoul ~= nil and soulLoc >= capSoul then
 										Players[killerPid].data.customVariables.levelSoul = Players[killerPid].data.customVariables.levelSoul + 1
 										Players[killerPid].data.customVariables.soul = 0
@@ -121,7 +117,7 @@ EcarlateSoul.OnPlayerKillCreature = function(eventStatut, pid, cellDescription)
 	end
 end	 
 
-EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
+EcarlateSoul.OnPlayerCompetence = function(Pid, Comp, State)
 
 	local levelSoul = Players[Pid].data.customVariables.levelSoul	
 	local LifeCount = Players[Pid].data.customVariables.life
@@ -130,418 +126,978 @@ EcarlateSoul.OnPlayerCompetence = function(Pid, Comp)
 	local PointCount = Players[Pid].data.customVariables.pointSoul
 	local HungerCount = Players[Pid].data.customVariables.hungerCount
 	local ThirstCount = Players[Pid].data.customVariables.thirstCount
-	local SleepCount = Players[Pid].data.customVariables.sleepCount	
+	local SleepCount = Players[Pid].data.customVariables.sleepCount
+	local ForceCount = Players[Pid].data.customVariables.forceCount
+	local EnduranceCount = Players[Pid].data.customVariables.enduranceCount
+	local AgiliteCount = Players[Pid].data.customVariables.agiliteCount
+	local RapiditeCount = Players[Pid].data.customVariables.rapiditeCount
+	local IntelligenceCount = Players[Pid].data.customVariables.intelligenceCount
+	local VolonteCount = Players[Pid].data.customVariables.volonteCount
+	local PersonnaliteCount = Players[Pid].data.customVariables.personnaliteCount
+	local ChanceCount = Players[Pid].data.customVariables.chanceCount
+	local BlockCount = Players[Pid].data.customVariables.blockCount
+	local AlchemyCount = Players[Pid].data.customVariables.alchemyCount
+	local HandtohandCount = Players[Pid].data.customVariables.handtohandCount
+	local ConjurationCount = Players[Pid].data.customVariables.conjurationCount
+	local ShortbladeCount = Players[Pid].data.customVariables.shortbladeCount
+	local AlterationCount = Players[Pid].data.customVariables.alterationCount
+	local MediumarmorCount = Players[Pid].data.customVariables.mediumarmorCount
+	local HeavyarmorCount = Players[Pid].data.customVariables.heavyarmorCount
+	local BluntweaponCount = Players[Pid].data.customVariables.bluntweaponCount
+	local MarksmanCount = Players[Pid].data.customVariables.marksmanCount
+	local AcrobaticsCount = Players[Pid].data.customVariables.acrobaticsCount
+	local SneakCount = Players[Pid].data.customVariables.sneakCount
+	local LightarmorCount = Players[Pid].data.customVariables.lightarmorCount
+	local LongbladeCount = Players[Pid].data.customVariables.longbladeCount
+	local ArmorerCount = Players[Pid].data.customVariables.armorerCount
+	local SpeechcraftCount = Players[Pid].data.customVariables.speechcraftCount
+	local AxeCount = Players[Pid].data.customVariables.axeCount
+	local SecurityCount = Players[Pid].data.customVariables.securityCount
+	local EnchantCount = Players[Pid].data.customVariables.enchantCount
+	local DestructionCount = Players[Pid].data.customVariables.destructionCount
+	local AthleticsCount = Players[Pid].data.customVariables.athleticsCount
+	local IllusionCount = Players[Pid].data.customVariables.illusionCount
+	local MysticismCount = Players[Pid].data.customVariables.mysticismCount
+	local SpearCount = Players[Pid].data.customVariables.spearCount
+	local MercantileCount = Players[Pid].data.customVariables.mercantileCount
+	local RestorationCount = Players[Pid].data.customVariables.restorationCount
+	local UnarmoredCount = Players[Pid].data.customVariables.unarmoredCount
+	
 	if PointCount == nil then
 		Players[Pid].data.customVariables.pointSoul = 0
 		PointCount = Players[Pid].data.customVariables.pointSoul			
-	end		
+	end	
+	
 	if levelSoul == nil then
 		Players[Pid].data.customVariables.levelSoul = 1
 		levelSoul = Players[Pid].data.customVariables.levelSoul	
-	elseif levelSoul ~= nil then	
-		if Comp == "Force" and PointCount >= 3 then
-			local attrId = tes3mp.GetAttributeId("Strength")
-			local valueS = Players[Pid].data.attributes.Strength.base + 4		
-			tes3mp.SetAttributeBase(Pid, attrId, valueS)
-			if Players[Pid].data.customVariables.force == nil then
-				Players[Pid].data.customVariables.force = 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3				
-			else
-				Players[Pid].data.customVariables.force = Players[Pid].data.customVariables.force + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+	elseif levelSoul ~= nil then
+	
+		if ForceCount == nil then
+			Players[Pid].data.customVariables.forceCount = 0
+			ForceCount = Players[Pid].data.customVariables.forceCount			
+		else	
+			if Comp == "Force" and PointCount >= 1 and State == "Add" then
+				local attrId = tes3mp.GetAttributeId("Strength")
+				local valueS = Players[Pid].data.attributes.Strength.base + 1	
+				tes3mp.SetAttributeBase(Pid, attrId, valueS)
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.forceCount = Players[Pid].data.customVariables.forceCount + 1
+			elseif Comp == "Force" and ForceCount > 0 and State == "Remove" then	
+				local attrId = tes3mp.GetAttributeId("Strength")
+				local valueS = Players[Pid].data.attributes.Strength.base - 1	
+				tes3mp.SetAttributeBase(Pid, attrId, valueS)
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.forceCount = Players[Pid].data.customVariables.forceCount - 1
+			elseif Comp == "Force" and ForceCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Force" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")					
 			end
-		elseif Comp == "Force" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")					
 		end
-		if Comp == "Endurance" and PointCount >= 3 then
-			local attrId2 = tes3mp.GetAttributeId("Endurance")	
-			local valueS2 = Players[Pid].data.attributes.Endurance.base + 4	
-			tes3mp.SetAttributeBase(Pid, attrId2, valueS2)
-			if Players[Pid].data.customVariables.endurance == nil then
-				Players[Pid].data.customVariables.endurance = 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3				
-			else
-				Players[Pid].data.customVariables.endurance = Players[Pid].data.customVariables.endurance + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+		
+		if EnduranceCount == nil then
+			Players[Pid].data.customVariables.enduranceCount = 0
+			EnduranceCount = Players[Pid].data.customVariables.enduranceCount			
+		else		
+			if Comp == "Endurance" and PointCount >= 1 and State == "Add" then
+				local attrId2 = tes3mp.GetAttributeId("Endurance")	
+				local valueS2 = Players[Pid].data.attributes.Endurance.base + 1	
+				tes3mp.SetAttributeBase(Pid, attrId2, valueS2)
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.enduranceCount = Players[Pid].data.customVariables.enduranceCount + 1				
+			elseif Comp == "Endurance" and EnduranceCount > 0 and State == "Remove" then
+				local attrId2 = tes3mp.GetAttributeId("Endurance")	
+				local valueS2 = Players[Pid].data.attributes.Endurance.base - 1	
+				tes3mp.SetAttributeBase(Pid, attrId2, valueS2)
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.enduranceCount = Players[Pid].data.customVariables.enduranceCount - 1
+			elseif Comp == "Endurance" and EnduranceCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Endurance" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")					
 			end
-		elseif Comp == "Endurance" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")					
 		end
-		if Comp == "Agilité" and PointCount >= 3 then
-			local attrId = tes3mp.GetAttributeId("Agility")	
-			local valueS = Players[Pid].data.attributes.Agility.base + 4	
-			tes3mp.SetAttributeBase(Pid, attrId, valueS)
-			if Players[Pid].data.customVariables.agilite == nil then			
-				Players[Pid].data.customVariables.agilite = 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
-			else
-				Players[Pid].data.customVariables.agilite = Players[Pid].data.customVariables.agilite + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+		
+		if AgiliteCount == nil then
+			Players[Pid].data.customVariables.agiliteCount = 0
+			AgiliteCount = Players[Pid].data.customVariables.agiliteCount			
+		else			
+			if Comp == "Agilité" and PointCount >= 1 and State == "Add" then
+				local attrId = tes3mp.GetAttributeId("Agility")	
+				local valueS = Players[Pid].data.attributes.Agility.base + 1	
+				tes3mp.SetAttributeBase(Pid, attrId, valueS)
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.agiliteCount = Players[Pid].data.customVariables.agiliteCount + 1
+			elseif Comp == "Agilité" and AgiliteCount > 0 and State == "Remove" then
+				local attrId = tes3mp.GetAttributeId("Agility")	
+				local valueS = Players[Pid].data.attributes.Agility.base - 1	
+				tes3mp.SetAttributeBase(Pid, attrId, valueS)
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.agiliteCount = Players[Pid].data.customVariables.agiliteCount - 1
+			elseif Comp == "Agilité" and AgiliteCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Agilité" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
 			end
-		elseif Comp == "Agilité" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 		end
-		if Comp == "Rapidité" and PointCount >= 3 then
-			local attrId2 = tes3mp.GetAttributeId("Speed")		
-			local valueS2 = Players[Pid].data.attributes.Speed.base + 4	
-			tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
-			if Players[Pid].data.customVariables.rapidite == nil then			
-				Players[Pid].data.customVariables.rapidite = 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
-			else
-				Players[Pid].data.customVariables.rapidite = Players[Pid].data.customVariables.rapidite + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
-			end
-		elseif Comp == "Rapidité" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
-		end		
-		if Comp == "Intelligence" and PointCount >= 3 then
-			local attrId = tes3mp.GetAttributeId("Intelligence")	
-			local valueS = Players[Pid].data.attributes.Intelligence.base + 4	
-			tes3mp.SetAttributeBase(Pid, attrId, valueS)
-			if Players[Pid].data.customVariables.intelligence == nil then				
-				Players[Pid].data.customVariables.intelligence = 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
-			else
-				Players[Pid].data.customVariables.intelligence = Players[Pid].data.customVariables.intelligence + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
-			end
-		elseif Comp == "Intelligence" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+		
+		if RapiditeCount == nil then
+			Players[Pid].data.customVariables.rapiditeCount = 0
+			RapiditeCount = Players[Pid].data.customVariables.rapiditeCount			
+		else		
+			if Comp == "Rapidité" and PointCount >= 1 and State == "Add" then
+				local attrId2 = tes3mp.GetAttributeId("Speed")		
+				local valueS2 = Players[Pid].data.attributes.Speed.base + 1
+				tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.rapiditeCount	 = Players[Pid].data.customVariables.rapiditeCount + 1
+			elseif Comp == "Rapidité" and RapiditeCount > 0 and State == "Remove" then
+				local attrId2 = tes3mp.GetAttributeId("Speed")		
+				local valueS2 = Players[Pid].data.attributes.Speed.base - 1
+				tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.rapiditeCount	 = Players[Pid].data.customVariables.rapiditeCount - 1
+			elseif Comp == "Rapidité" and RapiditeCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Rapidité" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end	
 		end
-		if Comp == "Volonté" and PointCount >= 3 then
-			local attrId2 = tes3mp.GetAttributeId("Willpower")		
-			local valueS2 = Players[Pid].data.attributes.Willpower.base + 4
-			tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
-			if Players[Pid].data.customVariables.volonte == nil then				
-				Players[Pid].data.customVariables.volonte = 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
-			else
-				Players[Pid].data.customVariables.volonte = Players[Pid].data.customVariables.volonte + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+
+		if IntelligenceCount == nil then
+			Players[Pid].data.customVariables.intelligenceCount = 0
+			IntelligenceCount = Players[Pid].data.customVariables.intelligenceCount			
+		else			
+			if Comp == "Intelligence" and PointCount >= 1 and State == "Add" then
+				local attrId = tes3mp.GetAttributeId("Intelligence")	
+				local valueS = Players[Pid].data.attributes.Intelligence.base + 1	
+				tes3mp.SetAttributeBase(Pid, attrId, valueS)
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.intelligenceCount	 = Players[Pid].data.customVariables.intelligenceCount + 1
+			elseif Comp == "Intelligence" and IntelligenceCount > 0 and State == "Remove" then
+				local attrId = tes3mp.GetAttributeId("Intelligence")	
+				local valueS = Players[Pid].data.attributes.Intelligence.base - 1	
+				tes3mp.SetAttributeBase(Pid, attrId, valueS)
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.intelligenceCount	 = Players[Pid].data.customVariables.intelligenceCount - 1
+			elseif Comp == "Intelligence" and IntelligenceCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Intelligence" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
 			end
-		elseif Comp == "Volonté" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 		end
-		if Comp == "Personnalité" and PointCount >= 3 then
-			local attrId = tes3mp.GetAttributeId("Personality")	
-			local valueS = Players[Pid].data.attributes.Personality.base + 4	
-			tes3mp.SetAttributeBase(Pid, attrId, valueS)
-			if Players[Pid].data.customVariables.personnalite == nil then				
-				Players[Pid].data.customVariables.personnalite = 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
-			else
-				Players[Pid].data.customVariables.personnalite = Players[Pid].data.customVariables.personnalite + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+
+		if VolonteCount == nil then
+			Players[Pid].data.customVariables.volonteCount = 0
+			VolonteCount = Players[Pid].data.customVariables.volonteCount			
+		else			
+			if Comp == "Volonté" and PointCount >= 1 and State == "Add" then
+				local attrId2 = tes3mp.GetAttributeId("Willpower")		
+				local valueS2 = Players[Pid].data.attributes.Willpower.base + 1
+				tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.volonteCount = Players[Pid].data.customVariables.volonteCount + 1
+			elseif Comp == "Volonté" and VolonteCount > 0 and State == "Remove" then
+				local attrId2 = tes3mp.GetAttributeId("Willpower")		
+				local valueS2 = Players[Pid].data.attributes.Willpower.base - 1
+				tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.volonteCount = Players[Pid].data.customVariables.volonteCount - 1	
+			elseif Comp == "Volonté" and VolonteCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Volonté" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
 			end
-		elseif Comp == "Personnalité" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 		end
-		if Comp == "Chance" and PointCount >= 3 then
-			local attrId2 = tes3mp.GetAttributeId("Luck")		
-			local valueS2 = Players[Pid].data.attributes.Luck.base + 4
-			tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
-			if Players[Pid].data.customVariables.chance == nil then				
-				Players[Pid].data.customVariables.chance = 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
-			else
-				Players[Pid].data.customVariables.chance = Players[Pid].data.customVariables.chance + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+
+		if PersonnaliteCount == nil then
+			Players[Pid].data.customVariables.personnaliteCount = 0
+			PersonnaliteCount = Players[Pid].data.customVariables.personnaliteCount			
+		else		
+			if Comp == "Personnalité" and PointCount >= 1 and State == "Add" then
+				local attrId = tes3mp.GetAttributeId("Personality")	
+				local valueS = Players[Pid].data.attributes.Personality.base + 1	
+				tes3mp.SetAttributeBase(Pid, attrId, valueS)
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.personnaliteCount	= Players[Pid].data.customVariables.personnaliteCount + 1
+			elseif Comp == "Personnalité" and PersonnaliteCount > 0 and State == "Remove" then
+				local attrId = tes3mp.GetAttributeId("Personality")	
+				local valueS = Players[Pid].data.attributes.Personality.base - 1	
+				tes3mp.SetAttributeBase(Pid, attrId, valueS)
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.personnaliteCount	= Players[Pid].data.customVariables.personnaliteCount - 1
+			elseif Comp == "Personnalité" and PersonnaliteCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Personnalité" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
 			end
-		elseif Comp == "Chance" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
-		end		
+		end
+		
+		if ChanceCount == nil then
+			Players[Pid].data.customVariables.chanceCount = 0
+			ChanceCount = Players[Pid].data.customVariables.chanceCount			
+		else			
+			if Comp == "Chance" and PointCount >= 1 and State == "Add" then
+				local attrId2 = tes3mp.GetAttributeId("Luck")		
+				local valueS2 = Players[Pid].data.attributes.Luck.base + 1
+				tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.chanceCount = Players[Pid].data.customVariables.chanceCount + 1
+			elseif Comp == "Chance" and ChanceCount > 0 and State == "Remove" then
+				local attrId2 = tes3mp.GetAttributeId("Luck")		
+				local valueS2 = Players[Pid].data.attributes.Luck.base - 1
+				tes3mp.SetAttributeBase(Pid, attrId2, valueS2)	
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.chanceCount = Players[Pid].data.customVariables.chanceCount - 1
+			elseif Comp == "Chance" and ChanceCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Chance" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end	
+		end
+		
 		if HungerCount == nil then
 			Players[Pid].data.customVariables.hungerCount = 0
 			HungerCount = Players[Pid].data.customVariables.hungerCount			
 		else
-			if Comp == "Hunger" and HungerCount < 5 and PointCount >= 3 then
+			if Comp == "Hunger" and HungerCount < 5 and PointCount >= 3 and State == "Add" then
 				Players[Pid].data.customVariables.HungerTimeMax = Players[Pid].data.customVariables.HungerTimeMax + 60
 				Players[Pid].data.customVariables.hungerCount = Players[Pid].data.customVariables.hungerCount + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3	
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+			elseif Comp == "Hunger" and HungerCount > 0 and State == "Remove" then
+				Players[Pid].data.customVariables.HungerTimeMax = Players[Pid].data.customVariables.HungerTimeMax - 60
+				Players[Pid].data.customVariables.hungerCount = Players[Pid].data.customVariables.hungerCount - 1
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 3
+			elseif Comp == "Hunger" and HungerCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
 			elseif Comp == "Hunger" and HungerCount ~= nil and PointCount < 3 then
 				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 			end
 		end
+		
 		if ThirstCount == nil then
 			Players[Pid].data.customVariables.thirstCount = 0
 			ThirstCount = Players[Pid].data.customVariables.thirstCount			
 		else
-			if Comp == "Thirst" and ThirstCount < 5 and PointCount >= 3 then
+			if Comp == "Thirst" and ThirstCount < 5 and PointCount >= 3 and State == "Add" then
 				Players[Pid].data.customVariables.ThirsthTimeMax = Players[Pid].data.customVariables.ThirsthTimeMax + 60			
 				Players[Pid].data.customVariables.thirstCount = Players[Pid].data.customVariables.thirstCount + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3	
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+			elseif Comp == "Thirst" and ThirstCount > 0 and State == "Remove" then
+				Players[Pid].data.customVariables.ThirsthTimeMax = Players[Pid].data.customVariables.ThirsthTimeMax - 60			
+				Players[Pid].data.customVariables.thirstCount = Players[Pid].data.customVariables.thirstCount - 1
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 3
+			elseif Comp == "Thirst" and ThirstCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
 			elseif Comp == "Thirst" and ThirstCount ~= nil and PointCount < 3 then
 				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 			end
 		end
+		
 		if SleepCount == nil then
 			Players[Pid].data.customVariables.sleepCount = 0
 			SleepCount = Players[Pid].data.customVariables.sleepCount			
 		else
-			if Comp == "Sleep" and SleepCount < 5 and PointCount >= 3 then
+			if Comp == "Sleep" and SleepCount < 5 and PointCount >= 3 and State == "Add" then
 				Players[Pid].data.customVariables.SleepTimeMax = Players[Pid].data.customVariables.SleepTimeMax + 120
 				Players[Pid].data.customVariables.sleepCount = Players[Pid].data.customVariables.sleepCount + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3	
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+			elseif Comp == "Sleep" and SleepCount > 0 and State == "Remove" then
+				Players[Pid].data.customVariables.SleepTimeMax = Players[Pid].data.customVariables.SleepTimeMax - 120
+				Players[Pid].data.customVariables.sleepCount = Players[Pid].data.customVariables.sleepCount - 1
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 3
+			elseif Comp == "Sleep" and SleepCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
 			elseif Comp == "Sleep" and SleepCount ~= nil and PointCount < 3 then
 				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 			end
-		end					
+		end	
+		
 		if LifeCount == nil then
 			Players[Pid].data.customVariables.life = 0
 			LifeCount = Players[Pid].data.customVariables.life		
 		else
-			if Comp == "Life" and LifeCount < 5 and PointCount >= 3 then -- guerrier
+			if Comp == "Life" and LifeCount < 5 and PointCount >= 3 and State == "Add" then -- guerrier
 				local valueS = Players[Pid].data.stats.healthBase + 10		
 				tes3mp.SetHealthBase(Pid, valueS)
 				Players[Pid].data.customVariables.life = Players[Pid].data.customVariables.life + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3	
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+			elseif Comp == "Life" and LifeCount > 0 and State == "Remove" then -- guerrier
+				local valueS = Players[Pid].data.stats.healthBase - 10		
+				tes3mp.SetHealthBase(Pid, valueS)
+				Players[Pid].data.customVariables.life = Players[Pid].data.customVariables.life - 1
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 3
+			elseif Comp == "Life" and LifeCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
 			elseif Comp == "Life" and LifeCount ~= nil and PointCount < 3 then
 				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 			end
 		end	
+		
 		if PeauCount == nil then
 			Players[Pid].data.customVariables.peau = 0
 			PeauCount = Players[Pid].data.customVariables.peau			
 		else
-			if Comp == "Peau" and PeauCount < 5 and PointCount >= 3 then	-- mage
+			if Comp == "Peau" and PeauCount < 5 and PointCount >= 3 and State == "Add" then	-- mage
 				local valueS = Players[Pid].data.stats.magickaBase + 10	
 				tes3mp.SetMagickaBase(Pid, valueS)	
 				Players[Pid].data.customVariables.peau = Players[Pid].data.customVariables.peau + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3	
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+			elseif Comp == "Peau" and PeauCount > 0 and State == "Remove" then	-- mage
+				local valueS = Players[Pid].data.stats.magickaBase - 10	
+				tes3mp.SetMagickaBase(Pid, valueS)	
+				Players[Pid].data.customVariables.peau = Players[Pid].data.customVariables.peau - 1
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 3
+			elseif Comp == "Peau" and PeauCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
 			elseif Comp == "Peau" and PeauCount ~= nil and PointCount < 3 then
 				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 			end
 		end	
+		
 		if GuexpCount == nil then
 			Players[Pid].data.customVariables.guexp = 0
 			GuexpCount = Players[Pid].data.customVariables.guexp		
 		else
-			if Comp == "Guexp" and GuexpCount < 5 and PointCount >= 3 then -- voleur	
+			if Comp == "Guexp" and GuexpCount < 5 and PointCount >= 3 and State == "Add" then -- voleur	
 				local valueS2 = Players[Pid].data.stats.fatigueBase + 10
 				tes3mp.SetFatigueBase(Pid, valueS2)					
 				Players[Pid].data.customVariables.guexp = Players[Pid].data.customVariables.guexp + 1
-				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3	
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3
+			elseif Comp == "Guexp" and GuexpCount > 0 and State == "Remove" then -- voleur	
+				local valueS2 = Players[Pid].data.stats.fatigueBase - 10
+				tes3mp.SetFatigueBase(Pid, valueS2)					
+				Players[Pid].data.customVariables.guexp = Players[Pid].data.customVariables.guexp - 1
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 3
+			elseif Comp == "Guexp" and GuexpCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
 			elseif Comp == "Guexp" and GuexpCount ~= nil and PointCount < 3 then
 				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
 			end
 		end	
-		if Comp == "Block" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Block")
-			local valueC = Players[Pid].data.skills.Block.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Block" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if BlockCount == nil then
+			Players[Pid].data.customVariables.blockCount = 0
+			BlockCount = Players[Pid].data.customVariables.blockCount		
+		else		
+			if Comp == "Block" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Block")
+				local valueC = Players[Pid].data.skills.Block.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.blockCount = Players[Pid].data.customVariables.blockCount + 1	
+			elseif Comp == "Block" and BlockCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Block")
+				local valueC = Players[Pid].data.skills.Block.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.blockCount = Players[Pid].data.customVariables.blockCount - 1
+			elseif Comp == "Block" and BlockCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Block" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Alchemy" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Alchemy")
-			local valueC = Players[Pid].data.skills.Alchemy.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Alchemy" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
-		end	
-		if Comp == "Handtohand" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Handtohand")
-			local valueC = Players[Pid].data.skills.Handtohand.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Handtohand" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if AlchemyCount == nil then
+			Players[Pid].data.customVariables.alchemyCount = 0
+			AlchemyCount = Players[Pid].data.customVariables.alchemyCount		
+		else		
+			if Comp == "Alchemy" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Alchemy")
+				local valueC = Players[Pid].data.skills.Alchemy.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.alchemyCount = Players[Pid].data.customVariables.alchemyCount + 1					
+			elseif Comp == "Alchemy" and AlchemyCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Alchemy")
+				local valueC = Players[Pid].data.skills.Alchemy.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.alchemyCount = Players[Pid].data.customVariables.alchemyCount - 1
+			elseif Comp == "Alchemy" and AlchemyCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Alchemy" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Conjuration" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Conjuration")
-			local valueC = Players[Pid].data.skills.Conjuration.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Conjuration" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if HandtohandCount == nil then
+			Players[Pid].data.customVariables.handtohandCount = 0
+			HandtohandCount = Players[Pid].data.customVariables.handtohandCount		
+		else		
+			if Comp == "Handtohand" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Handtohand")
+				local valueC = Players[Pid].data.skills.Handtohand.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.handtohandCount = Players[Pid].data.customVariables.handtohandCount + 1					
+			elseif Comp == "Handtohand" and HandtohandCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Handtohand")
+				local valueC = Players[Pid].data.skills.Handtohand.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.handtohandCount = Players[Pid].data.customVariables.handtohandCount - 1
+			elseif Comp == "Handtohand" and HandtohandCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Handtohand" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Shortblade" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Shortblade")
-			local valueC = Players[Pid].data.skills.Shortblade.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Shortblade" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if ConjurationCount == nil then
+			Players[Pid].data.customVariables.conjurationCount = 0
+			ConjurationCount = Players[Pid].data.customVariables.conjurationCount		
+		else		
+			if Comp == "Conjuration" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Conjuration")
+				local valueC = Players[Pid].data.skills.Conjuration.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.conjurationCount = Players[Pid].data.customVariables.conjurationCount + 1
+			elseif Comp == "Conjuration" and ConjurationCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Conjuration")
+				local valueC = Players[Pid].data.skills.Conjuration.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.conjurationCount = Players[Pid].data.customVariables.conjurationCount - 1
+			elseif Comp == "Conjuration" and ConjurationCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Conjuration" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Alteration" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Alteration")
-			local valueC = Players[Pid].data.skills.Alteration.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Alteration" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if ShortbladeCount == nil then
+			Players[Pid].data.customVariables.shortbladeCount = 0
+			ShortbladeCount = Players[Pid].data.customVariables.shortbladeCount		
+		else		
+			if Comp == "Shortblade" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Shortblade")
+				local valueC = Players[Pid].data.skills.Shortblade.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.shortbladeCount = Players[Pid].data.customVariables.shortbladeCount + 1
+			elseif Comp == "Shortblade" and ShortbladeCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Shortblade")
+				local valueC = Players[Pid].data.skills.Shortblade.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.shortbladeCount = Players[Pid].data.customVariables.shortbladeCount - 1
+			elseif Comp == "Shortblade" and ShortbladeCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Shortblade" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Mediumarmor" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Mediumarmor")
-			local valueC = Players[Pid].data.skills.Mediumarmor.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Mediumarmor" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if AlterationCount == nil then
+			Players[Pid].data.customVariables.alterationCount = 0
+			AlterationCount = Players[Pid].data.customVariables.alterationCount		
+		else		
+			if Comp == "Alteration" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Alteration")
+				local valueC = Players[Pid].data.skills.Alteration.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.alterationCount = Players[Pid].data.customVariables.alterationCount + 1
+			elseif Comp == "Alteration" and AlterationCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Alteration")
+				local valueC = Players[Pid].data.skills.Alteration.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.alterationCount = Players[Pid].data.customVariables.alterationCount - 1
+			elseif Comp == "Alteration" and AlterationCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Alteration" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Heavyarmor" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Heavyarmor")
-			local valueC = Players[Pid].data.skills.Heavyarmor.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Heavyarmor" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if MediumarmorCount == nil then
+			Players[Pid].data.customVariables.mediumarmorCount = 0
+			MediumarmorCount = Players[Pid].data.customVariables.mediumarmorCount		
+		else			
+			if Comp == "Mediumarmor" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Mediumarmor")
+				local valueC = Players[Pid].data.skills.Mediumarmor.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.mediumarmorCount = Players[Pid].data.customVariables.mediumarmorCount + 1
+			elseif Comp == "Mediumarmor" and MediumarmorCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Mediumarmor")
+				local valueC = Players[Pid].data.skills.Mediumarmor.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.mediumarmorCount = Players[Pid].data.customVariables.mediumarmorCount - 1
+			elseif Comp == "Mediumarmor" and MediumarmorCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Mediumarmor" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Bluntweapon" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Bluntweapon")
-			local valueC = Players[Pid].data.skills.Bluntweapon.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Bluntweapon" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if HeavyarmorCount == nil then
+			Players[Pid].data.customVariables.heavyarmorCount = 0
+			HeavyarmorCount = Players[Pid].data.customVariables.heavyarmorCount		
+		else			
+			if Comp == "Heavyarmor" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Heavyarmor")
+				local valueC = Players[Pid].data.skills.Heavyarmor.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.heavyarmorCount = Players[Pid].data.customVariables.heavyarmorCount + 1
+			elseif Comp == "Heavyarmor" and HeavyarmorCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Heavyarmor")
+				local valueC = Players[Pid].data.skills.Heavyarmor.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.heavyarmorCount = Players[Pid].data.customVariables.heavyarmorCount - 1
+			elseif Comp == "Heavyarmor" and HeavyarmorCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Heavyarmor" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Marksman" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Marksman")
-			local valueC = Players[Pid].data.skills.Marksman.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Marksman" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if BluntweaponCount == nil then
+			Players[Pid].data.customVariables.bluntweaponCount = 0
+			BluntweaponCount = Players[Pid].data.customVariables.bluntweaponCount		
+		else		
+			if Comp == "Bluntweapon" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Bluntweapon")
+				local valueC = Players[Pid].data.skills.Bluntweapon.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.bluntweaponCount = Players[Pid].data.customVariables.bluntweaponCount + 1
+			elseif Comp == "Bluntweapon" and BluntweaponCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Bluntweapon")
+				local valueC = Players[Pid].data.skills.Bluntweapon.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.bluntweaponCount = Players[Pid].data.customVariables.bluntweaponCount - 1	
+			elseif Comp == "Bluntweapon" and BluntweaponCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Bluntweapon" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Acrobatics" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Acrobatics")
-			local valueC = Players[Pid].data.skills.Acrobatics.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Acrobatics" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if MarksmanCount == nil then
+			Players[Pid].data.customVariables.marksmanCount = 0
+			MarksmanCount = Players[Pid].data.customVariables.marksmanCount		
+		else		
+			if Comp == "Marksman" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Marksman")
+				local valueC = Players[Pid].data.skills.Marksman.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.marksmanCount	= Players[Pid].data.customVariables.marksmanCount + 1	
+			elseif Comp == "Marksman" and MarksmanCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Marksman")
+				local valueC = Players[Pid].data.skills.Marksman.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.marksmanCount	= Players[Pid].data.customVariables.marksmanCount - 1
+			elseif Comp == "Marksman" and MarksmanCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Marksman" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Sneak" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Sneak")
-			local valueC = Players[Pid].data.skills.Sneak.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Sneak" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if AcrobaticsCount == nil then
+			Players[Pid].data.customVariables.acrobaticsCount = 0
+			AcrobaticsCount = Players[Pid].data.customVariables.acrobaticsCount		
+		else		
+			if Comp == "Acrobatics" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Acrobatics")
+				local valueC = Players[Pid].data.skills.Acrobatics.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.acrobaticsCount = Players[Pid].data.customVariables.acrobaticsCount + 1
+			elseif Comp == "Acrobatics" and AcrobaticsCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Acrobatics")
+				local valueC = Players[Pid].data.skills.Acrobatics.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.acrobaticsCount = Players[Pid].data.customVariables.acrobaticsCount - 1
+			elseif Comp == "Acrobatics" and AcrobaticsCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Acrobatics" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Lightarmor" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Lightarmor")
-			local valueC = Players[Pid].data.skills.Lightarmor.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Lightarmor" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if SneakCount == nil then
+			Players[Pid].data.customVariables.sneakCount = 0
+			SneakCount = Players[Pid].data.customVariables.sneakCount		
+		else		
+			if Comp == "Sneak" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Sneak")
+				local valueC = Players[Pid].data.skills.Sneak.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.sneakCount = Players[Pid].data.customVariables.sneakCount	+ 1	
+			elseif Comp == "Sneak" and SneakCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Sneak")
+				local valueC = Players[Pid].data.skills.Sneak.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.sneakCount = Players[Pid].data.customVariables.sneakCount	- 1	
+			elseif Comp == "Sneak" and SneakCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Sneak" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Longblade" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Longblade")
-			local valueC = Players[Pid].data.skills.Longblade.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Longblade" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if LightarmorCount == nil then
+			Players[Pid].data.customVariables.lightarmorCount = 0
+			LightarmorCount = Players[Pid].data.customVariables.lightarmorCount		
+		else		
+			if Comp == "Lightarmor" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Lightarmor")
+				local valueC = Players[Pid].data.skills.Lightarmor.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.lightarmorCount = Players[Pid].data.customVariables.lightarmorCount + 1
+			elseif Comp == "Lightarmor" and LightarmorCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Lightarmor")
+				local valueC = Players[Pid].data.skills.Lightarmor.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.lightarmorCount = Players[Pid].data.customVariables.lightarmorCount - 1
+			elseif Comp == "Lightarmor" and LightarmorCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Lightarmor" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Armorer" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Armorer")
-			local valueC = Players[Pid].data.skills.Armorer.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Armorer" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if LongbladeCount == nil then
+			Players[Pid].data.customVariables.longbladeCount = 0
+			LongbladeCount = Players[Pid].data.customVariables.longbladeCount		
+		else		
+			if Comp == "Longblade" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Longblade")
+				local valueC = Players[Pid].data.skills.Longblade.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.longbladeCount = Players[Pid].data.customVariables.longbladeCount + 1
+			elseif Comp == "Longblade" and LongbladeCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Longblade")
+				local valueC = Players[Pid].data.skills.Longblade.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.longbladeCount = Players[Pid].data.customVariables.longbladeCount - 1
+			elseif Comp == "Longblade" and LongbladeCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Longblade" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Speechcraft" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Speechcraft")
-			local valueC = Players[Pid].data.skills.Speechcraft.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Speechcraft" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if ArmorerCount == nil then
+			Players[Pid].data.customVariables.armorerCount = 0
+			ArmorerCount = Players[Pid].data.customVariables.armorerCount		
+		else		
+			if Comp == "Armorer" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Armorer")
+				local valueC = Players[Pid].data.skills.Armorer.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.armorerCount = Players[Pid].data.customVariables.armorerCount + 1
+			elseif Comp == "Armorer" and ArmorerCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Armorer")
+				local valueC = Players[Pid].data.skills.Armorer.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.armorerCount = Players[Pid].data.customVariables.armorerCount - 1
+			elseif Comp == "Armorer" and ArmorerCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Armorer" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Axe" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Axe")
-			local valueC = Players[Pid].data.skills.Axe.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Axe" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if SpeechcraftCount == nil then
+			Players[Pid].data.customVariables.speechcraftCount = 0
+			SpeechcraftCount = Players[Pid].data.customVariables.speechcraftCount		
+		else			
+			if Comp == "Speechcraft" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Speechcraft")
+				local valueC = Players[Pid].data.skills.Speechcraft.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.speechcraftCount = Players[Pid].data.customVariables.speechcraftCount + 1
+			elseif Comp == "Speechcraft" and SpeechcraftCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Speechcraft")
+				local valueC = Players[Pid].data.skills.Speechcraft.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.speechcraftCount = Players[Pid].data.customVariables.speechcraftCount - 1	
+			elseif Comp == "Speechcraft" and SpeechcraftCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Speechcraft" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Security" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Security")
-			local valueC = Players[Pid].data.skills.Security.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Security" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if AxeCount == nil then
+			Players[Pid].data.customVariables.axeCount = 0
+			AxeCount = Players[Pid].data.customVariables.axeCount		
+		else		
+			if Comp == "Axe" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Axe")
+				local valueC = Players[Pid].data.skills.Axe.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.axeCount = Players[Pid].data.customVariables.axeCount + 1
+			elseif Comp == "Axe" and AxeCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Axe")
+				local valueC = Players[Pid].data.skills.Axe.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.axeCount = Players[Pid].data.customVariables.axeCount - 1
+			elseif Comp == "Axe" and AxeCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Axe" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Enchant" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Enchant")
-			local valueC = Players[Pid].data.skills.Enchant.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Enchant" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if SecurityCount == nil then
+			Players[Pid].data.customVariables.securityCount = 0
+			SecurityCount = Players[Pid].data.customVariables.securityCount		
+		else		
+			if Comp == "Security" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Security")
+				local valueC = Players[Pid].data.skills.Security.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.securityCount = Players[Pid].data.customVariables.securityCount + 1
+			elseif Comp == "Security" and SecurityCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Security")
+				local valueC = Players[Pid].data.skills.Security.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.securityCount = Players[Pid].data.customVariables.securityCount - 1
+			elseif Comp == "Security" and SecurityCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Security" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Destruction" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Destruction")
-			local valueC = Players[Pid].data.skills.Destruction.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Destruction" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if EnchantCount == nil then
+			Players[Pid].data.customVariables.enchantCount = 0
+			EnchantCount = Players[Pid].data.customVariables.enchantCount		
+		else			
+			if Comp == "Enchant" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Enchant")
+				local valueC = Players[Pid].data.skills.Enchant.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.enchantCount = Players[Pid].data.customVariables.enchantCount + 1
+			elseif Comp == "Enchant" and EnchantCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Enchant")
+				local valueC = Players[Pid].data.skills.Enchant.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.enchantCount = Players[Pid].data.customVariables.enchantCount - 1
+			elseif Comp == "Enchant" and EnchantCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Enchant" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Athletics" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Athletics")
-			local valueC = Players[Pid].data.skills.Athletics.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Athletics" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if DestructionCount == nil then
+			Players[Pid].data.customVariables.destructionCount = 0
+			DestructionCount = Players[Pid].data.customVariables.destructionCount		
+		else		
+			if Comp == "Destruction" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Destruction")
+				local valueC = Players[Pid].data.skills.Destruction.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.destructionCount = Players[Pid].data.customVariables.destructionCount + 1
+			elseif Comp == "Destruction" and DestructionCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Destruction")
+				local valueC = Players[Pid].data.skills.Destruction.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.destructionCount = Players[Pid].data.customVariables.destructionCount - 1
+			elseif Comp == "Destruction" and DestructionCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Destruction" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Illusion" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Illusion")
-			local valueC = Players[Pid].data.skills.Illusion.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Illusion" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if AthleticsCount == nil then
+			Players[Pid].data.customVariables.athleticsCount = 0
+			AthleticsCount = Players[Pid].data.customVariables.athleticsCount		
+		else		
+			if Comp == "Athletics" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Athletics")
+				local valueC = Players[Pid].data.skills.Athletics.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.athleticsCount = Players[Pid].data.customVariables.athleticsCount + 1
+			elseif Comp == "Athletics" and AthleticsCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Athletics")
+				local valueC = Players[Pid].data.skills.Athletics.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.athleticsCount = Players[Pid].data.customVariables.athleticsCount - 1	
+			elseif Comp == "Athletics" and AthleticsCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Athletics" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Mysticism" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Mysticism")
-			local valueC = Players[Pid].data.skills.Mysticism.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Mysticism" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if IllusionCount == nil then
+			Players[Pid].data.customVariables.illusionCount = 0
+			IllusionCount = Players[Pid].data.customVariables.illusionCount		
+		else		
+			if Comp == "Illusion" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Illusion")
+				local valueC = Players[Pid].data.skills.Illusion.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.illusionCount	= Players[Pid].data.customVariables.illusionCount + 1
+			elseif Comp == "Illusion" and IllusionCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Illusion")
+				local valueC = Players[Pid].data.skills.Illusion.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.illusionCount	= Players[Pid].data.customVariables.illusionCount - 1
+			elseif Comp == "Illusion" and IllusionCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Illusion" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Spear" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Spear")
-			local valueC = Players[Pid].data.skills.Spear.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Spear" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if MysticismCount == nil then
+			Players[Pid].data.customVariables.mysticismCount = 0
+			MysticismCount = Players[Pid].data.customVariables.mysticismCount		
+		else		
+			if Comp == "Mysticism" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Mysticism")
+				local valueC = Players[Pid].data.skills.Mysticism.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.mysticismCount = Players[Pid].data.customVariables.mysticismCount + 1
+			elseif Comp == "Mysticism" and MysticismCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Mysticism")
+				local valueC = Players[Pid].data.skills.Mysticism.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.mysticismCount = Players[Pid].data.customVariables.mysticismCount - 1
+			elseif Comp == "Mysticism" and MysticismCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Mysticism" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Mercantile" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Mercantile")
-			local valueC = Players[Pid].data.skills.Mercantile.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Mercantile" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if SpearCount == nil then
+			Players[Pid].data.customVariables.spearCount = 0
+			SpearCount = Players[Pid].data.customVariables.spearCount		
+		else		
+			if Comp == "Spear" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Spear")
+				local valueC = Players[Pid].data.skills.Spear.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.spearCount = Players[Pid].data.customVariables.spearCount + 1
+			elseif Comp == "Spear" and SpearCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Spear")
+				local valueC = Players[Pid].data.skills.Spear.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.spearCount = Players[Pid].data.customVariables.spearCount - 1
+			elseif Comp == "Spear" and SpearCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Spear" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Restoration" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Restoration")
-			local valueC = Players[Pid].data.skills.Restoration.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Restoration" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
+
+		if MercantileCount == nil then
+			Players[Pid].data.customVariables.mercantileCount = 0
+			MercantileCount = Players[Pid].data.customVariables.mercantileCount		
+		else		
+			if Comp == "Mercantile" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Mercantile")
+				local valueC = Players[Pid].data.skills.Mercantile.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.mercantileCount = Players[Pid].data.customVariables.mercantileCount + 1
+			elseif Comp == "Mercantile" and MercantileCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Mercantile")
+				local valueC = Players[Pid].data.skills.Mercantile.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.mercantileCount = Players[Pid].data.customVariables.mercantileCount - 1
+			elseif Comp == "Mercantile" and MercantileCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")					
+			elseif Comp == "Mercantile" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
 		end
-		if Comp == "Unarmored" and PointCount >= 3 then
-			local skillId = tes3mp.GetSkillId("Unarmored")
-			local valueC = Players[Pid].data.skills.Unarmored.base + 10
-			tes3mp.SetSkillBase(Pid, skillId, valueC)			
-			Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 3		
-		elseif Comp == "Unarmored" and PointCount < 3 then
-			tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "3.")								
-		end	
+
+		if RestorationCount == nil then
+			Players[Pid].data.customVariables.restorationCount = 0
+			RestorationCount = Players[Pid].data.customVariables.restorationCount		
+		else		
+			if Comp == "Restoration" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Restoration")
+				local valueC = Players[Pid].data.skills.Restoration.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.restorationCount = Players[Pid].data.customVariables.restorationCount + 1
+			elseif Comp == "Restoration" and RestorationCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Restoration")
+				local valueC = Players[Pid].data.skills.Restoration.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.restorationCount = Players[Pid].data.customVariables.restorationCount - 1
+			elseif Comp == "Restoration" and RestorationCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Restoration" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
+		end
+
+		if UnarmoredCount == nil then
+			Players[Pid].data.customVariables.unarmoredCount = 0
+			UnarmoredCount = Players[Pid].data.customVariables.unarmoredCount		
+		else		
+			if Comp == "Unarmored" and PointCount >= 1 and State == "Add" then
+				local skillId = tes3mp.GetSkillId("Unarmored")
+				local valueC = Players[Pid].data.skills.Unarmored.base + 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul - 1
+				Players[Pid].data.customVariables.unarmoredCount = Players[Pid].data.customVariables.unarmoredCount + 1
+			elseif Comp == "Unarmored" and UnarmoredCount > 0 and State == "Remove" then
+				local skillId = tes3mp.GetSkillId("Unarmored")
+				local valueC = Players[Pid].data.skills.Unarmored.base - 1
+				tes3mp.SetSkillBase(Pid, skillId, valueC)			
+				Players[Pid].data.customVariables.pointSoul = Players[Pid].data.customVariables.pointSoul + 1
+				Players[Pid].data.customVariables.unarmoredCount = Players[Pid].data.customVariables.unarmoredCount - 1
+			elseif Comp == "Unarmored" and UnarmoredCount == 0 and State == "Remove" then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas de points de compétences à diminuer")				
+			elseif Comp == "Unarmored" and PointCount < 1 then
+				tes3mp.MessageBox(Pid, -1, color.Default.. "Vous n'avez pas assez de points de compétences, actuel : "..color.Green.. PointCount ..color.Default.. " requis : " ..color.Yellow.. "1.")								
+			end
+		end
+		
         Players[Pid]:SaveStatsDynamic()		
 		Players[Pid]:SaveAttributes()	
 		Players[Pid]:SaveSkills()			
@@ -587,13 +1143,13 @@ EcarlateSoul.OnPlayerDeath = function(eventStatut, Pid)
 end
 
 EcarlateSoul.MainMenu = function(Pid)
-    if Players[pid]~= nil and Players[pid]:IsLoggedIn() then
-		Players[pid].currentCustomMenu = "menu cmp ecarlate"
-		menuHelper.DisplayMenu(pid, Players[pid].currentCustomMenu)	
+    if Players[Pid]~= nil and Players[Pid]:IsLoggedIn() then
+		Players[Pid].currentCustomMenu = "menu cmp ecarlate"
+		menuHelper.DisplayMenu(Pid, Players[Pid].currentCustomMenu)	
 	end
 end
 
-customCommandHooks.registerCommand("MenuSoul", EcarlateSoul.MainMenu)
+customCommandHooks.registerCommand("soul", EcarlateSoul.MainMenu)
 customEventHooks.registerHandler("OnActorDeath", EcarlateSoul.OnPlayerKillCreature)
 customEventHooks.registerHandler("OnPlayerDeath", EcarlateSoul.OnPlayerDeath)
 
