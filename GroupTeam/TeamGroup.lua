@@ -149,7 +149,7 @@ TeamGroup.CheckPlayerExit = function(pid)
     local listItemChanged = false
     local listItem = ""
 	
-    for i = 1, #options do
+    for i, z in pairs(options) do
 		for x, y in pairs(Players) do
 			if y:IsLoggedIn() then
 				if Players[x].name == options[i] then
