@@ -3,19 +3,13 @@ TeamGroup by Rickoff
 tes3mp 0.7.0
 ---------------------------
 DESCRIPTION :
-Create a group inviting players
+Créer un groupe inviter des joueurs ce teleporter
 ---------------------------
 INSTALLATION:
 Save the file as TeamGroup.lua inside your server/scripts/custom folder.
-Save the file as MenuTeam.lua inside your scripts/menu folder
+
 Edits to customScripts.lua
 TeamGroup = require("custom.TeamGroup")
-Edits to config.lua
-add in config.menuHelperFiles, "MenuTeam"
----------------------------
-FUNCTION:
-/menugroup in your chat for open menu
-Activate player for invite in your group or use a menu
 ---------------------------
 ]]
 
@@ -144,7 +138,7 @@ end
 TeamGroup.CheckPlayerExit = function(pid)
 
     local playerName = Players[pid].name
-    local options = getListPlayer(pid)
+    local options = getListMemberGroup(pid)
     local list = "* Retour *\n"
     local listItemChanged = false
     local listItem = ""
@@ -202,7 +196,7 @@ TeamGroup.showChoiceExit = function(pid, loc)
 						end
 					end	
 					for r, s in pairs(playerGroup[x].name) do
-						if playerGroup[x].name[r] == Players[pid].name then
+						if playerGroup[x].name[r] == Players[targetPid].name then
 							playerGroup[x] = nil
 							tes3mp.SendMessage(pid,"Vous venez de supprimer votre groupe !  \n",false)
 						end
@@ -307,8 +301,7 @@ TeamGroup.CheckGroup = function(pid)
     local listItemChanged = false
     local listItem = ""
 	
-    for i, z in pairs(options) do
- 
+    for i, z in pairs(options) do 
 		for x, y in pairs(playerGroup) do
 			for name, value in pairs(playerGroup[x].members) do	
 				if playerGroup[x].members[name] == options[i] then
@@ -355,7 +348,6 @@ TeamGroup.showChoiceList = function(pid, loc)
 end
 
 TeamGroup.RegisterGroup = function(pid, invitePid)	
-
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		if not tableHelper.containsValue(playerGroup, Players[invitePid].name, true) then	
 			for x, y in pairs(playerGroup) do	
@@ -502,6 +494,6 @@ end)
 customEventHooks.registerHandler("OnGUIAction", function(eventStatus, pid, idGui, data)
 	if TeamGroup.OnGUIAction(pid, idGui, data) then return end	
 end)
-customCommandHooks.registerCommand("menugroup", TeamGroup.onMainGui)
+customCommandHooks.registerCommand("group", TeamGroup.onMainGui)
 
 return TeamGroup
