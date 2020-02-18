@@ -247,7 +247,7 @@ TeamGroup.CheckPlayer = function(pid)
     local listItemChanged = false
     local listItem = ""
 	
-    for i = 1, #options do
+    for i, z in pairs(options) do
 		for x, y in pairs(Players) do
 			if y:IsLoggedIn() then
 				if Players[x].name == options[i] then
@@ -307,7 +307,7 @@ TeamGroup.CheckGroup = function(pid)
     local listItemChanged = false
     local listItem = ""
 	
-    for i = 1, #options do
+    for i, z in pairs(options) do
  
 		for x, y in pairs(playerGroup) do
 			for name, value in pairs(playerGroup[x].members) do	
