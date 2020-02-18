@@ -86,9 +86,11 @@ EcarlateSoul.OnPlayerKillCreature = function(eventStatut, pid, cellDescription)
 											end
 											if Players[killerPid] ~= nil then	
 												if soulLoc == nil then
-													Players[killerPid].data.customVariables.soul = totalGain	
+													Players[killerPid].data.customVariables.soul = totalGain
+													soulLoc = Players[killerPid].data.customVariables.soul	
 												else
 													Players[killerPid].data.customVariables.soul = Players[killerPid].data.customVariables.soul + totalGain
+													soulLoc = Players[killerPid].data.customVariables.soul
 												end
 												if Count > 0 then
 													tes3mp.MessageBox(killerPid, -1, color.Default.. "Vous avez gagné : "..color.Green.. totalGain ..color.Default.. " points d'" ..color.Yellow.. "exp\n\n" ..color.Green.. "Bonus de groupe * " ..color.Yellow.. Count)
