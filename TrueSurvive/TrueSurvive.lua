@@ -1124,6 +1124,11 @@ TrueSurvive.OnActivatedObject = function(eventStatus, pid, cellDescription, obje
 				tes3mp.LogAppend(enumerations.log.INFO, ObjectRefid)
 				return customEventHooks.makeEventStatus(false,false) 
 			end	
+
+			if tableHelper.containsValue(ListActivatableSleepingObjects, ObjectRefid) and Wolf == true then -- sleep wolf	
+				TrueSurvive.OnSleepObjectVanilla(pid)
+				return customEventHooks.makeEventStatus(false,false)				
+			end	
 			
 			if Vamp == true then
 				if tes3mp.GetSneakState(pid) then
@@ -1194,7 +1199,19 @@ end
 
 TrueSurvive.OnSleepObjectVanilla = function(pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-		logicHandler.RunConsoleCommandOnPlayer(pid, "ShowRestMenu", false)
+		if not tableHelper.containsValue(Players[pid].data.spellbook, "werewolf blood", true) then			
+			logicHandler.RunConsoleCommandOnPlayer(pid, "ShowRestMenu", false)
+		else
+			if Players[pid].data.stats.levelProgress == 20 then
+				if tes3mp.GetSneakState(pid) then				
+					logicHandler.RunConsoleCommandOnPlayer(pid, "ShowRestMenu", false)
+				else
+					tes3mp.MessageBox(pid, -1, "Pour monter de niveau en tant que loup garou vous devez passer en mode discretion")
+				end
+			else
+				logicHandler.RunConsoleCommandOnPlayer(pid, "ShowRestMenu", false)
+			end
+		end
 	end
 end
 
@@ -1216,6 +1233,10 @@ TrueSurvive.OnWolfHunger = function(pid)
 		tes3mp.MessageBox(pid, -1, SurviveMessage.Eat)		
 		Players[pid].data.customVariables.HungerTime = Hunger	
 	end	
+end
+
+TrueSurvive.PlaySound = function(pid, sound)
+    logicHandler.RunConsoleCommandOnPlayer(pid, "playsound " .. sound)
 end
 
 customEventHooks.registerValidator("OnObjectActivate", TrueSurvive.OnActivatedObject)
