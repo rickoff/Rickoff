@@ -16,7 +16,10 @@ Menus["survive hunger"] = {
                         menuHelper.variables.currentPlayerDataVariable("targetCellDescription"),
                         menuHelper.variables.currentPlayerDataVariable("targetUniqueIndex")
                     }),
-					menuHelper.effects.runFunction("PlaySound", {"swallow"})					
+					menuHelper.effects.runGlobalFunction("TrueSurvive", "PlaySound", 
+					{
+                        menuHelper.variables.currentPid(), "swallow"
+                    }),					
                 })
             }
         },            
@@ -53,7 +56,10 @@ Menus["survive drink"] = {
                         menuHelper.variables.currentPlayerDataVariable("targetCellDescription"),
                         menuHelper.variables.currentPlayerDataVariable("targetUniqueIndex")
                     }),
-					menuHelper.effects.runFunction("PlaySound", {"drink"})						
+					menuHelper.effects.runGlobalFunction("TrueSurvive", "PlaySound", 
+					{
+                        menuHelper.variables.currentPid(), "drink"
+                    }),											
                 })
             }
         },            
@@ -85,7 +91,10 @@ Menus["survive drink active"] = {
                     {
                         menuHelper.variables.currentPid()
                     }),
-					menuHelper.effects.runFunction("PlaySound", {"drink"})					
+					menuHelper.effects.runGlobalFunction("TrueSurvive", "PlaySound", 
+					{
+                        menuHelper.variables.currentPid(), "drink"
+                    }),										
                 })
             }
         },            
@@ -141,7 +150,10 @@ Menus["survive vamp"] = {
                     {
                         menuHelper.variables.currentPid()
                     }),
-					menuHelper.effects.runFunction("PlaySound", {"drink"})					
+					menuHelper.effects.runGlobalFunction("TrueSurvive", "PlaySound", 
+					{
+                        menuHelper.variables.currentPid(), "drink"
+                    }),					
                 })
             }
         },            
@@ -173,7 +185,10 @@ Menus["survive wolf"] = {
                     {
                         menuHelper.variables.currentPid()
                     }),
-					menuHelper.effects.runFunction("PlaySound", {"weregrowl"})					
+					menuHelper.effects.runGlobalFunction("TrueSurvive", "PlaySound", 
+					{
+                        menuHelper.variables.currentPid(), "weregrowl"
+                    }),					
                 })
             }
         },            
