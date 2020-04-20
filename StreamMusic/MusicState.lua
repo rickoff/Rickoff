@@ -7,6 +7,7 @@ MusicState script
 ---------------------------
 INSTALLATION:
 Save the file as MusicState.lua inside your server/scripts/custom folder.
+Save files EcarlateNpc.json and EcarlateCreaIa.json in your custom data folder.
 
 Edits to customScripts.lua
 MusicState = require("custom.MusicState")
