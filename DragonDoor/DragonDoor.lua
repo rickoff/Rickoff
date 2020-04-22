@@ -1,7 +1,7 @@
 --[[
 DragonDoor by Rickoff
 tes3mp 0.7.0
-script version 0.8
+script version 0.9
 ---------------------------
 DESCRIPTION :
 creatures and npc follow players through doors
@@ -60,37 +60,39 @@ end
 
 DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, objects)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
-		local ObjectIndex
-		local ObjectRefid
-		local playerPosX = tes3mp.GetPosX(pid)
-		local playerPosY = tes3mp.GetPosY(pid)
-		local cell = LoadedCells[cellDescription]			
+		local ObjectRefid			
 		for _, object in pairs(objects) do
-			ObjectIndex = object.uniqueIndex
 			ObjectRefid = object.refId
 		end	
-		if ObjectIndex ~= nil and ObjectRefid ~= nil and cell ~= nil then	
+		if ObjectRefid ~= nil then	
 			if tableHelper.containsValue(DoorData, string.lower(ObjectRefid), true) then	
 				doorTab.player[pid] = {object = ObjectRefid} 
 				cellTab.player[pid] = {cell = cellDescription} 
 				creaTab.player[pid] = {}
-				indexTab.player[pid] = {}			
-				for _, uniqueIndex in pairs(cell.data.packets.actorList) do
-					if cell.data.objectData[uniqueIndex] then
-						if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
-							local creatureRefId = cell.data.objectData[uniqueIndex].refId
-							if tableHelper.containsValue(NpcData, string.lower(creatureRefId), true) then							
-								local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
-								local creaturePosY = cell.data.objectData[uniqueIndex].location.posY							
-								local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 							
-								if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) and not tableHelper.containsValue(indexTab.player, uniqueIndex, true) then
-									table.insert(creaTab.player[pid], creatureRefId)
-									table.insert(indexTab.player[pid], uniqueIndex)							
-								end	
+				indexTab.player[pid] = {}
+				LoadedCells[cellDescription]:QuicksaveToDrive()
+				logicHandler.LoadCell(cellDescription)
+				local playerPosX = tes3mp.GetPosX(pid)
+				local playerPosY = tes3mp.GetPosY(pid)
+				local cell = LoadedCells[cellDescription]				
+				if cell ~= nil then				
+					for _, uniqueIndex in pairs(cell.data.packets.actorList) do
+						if cell.data.objectData[uniqueIndex] then
+							if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
+								local creatureRefId = cell.data.objectData[uniqueIndex].refId
+								if tableHelper.containsValue(NpcData, string.lower(creatureRefId), true) then							
+									local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
+									local creaturePosY = cell.data.objectData[uniqueIndex].location.posY							
+									local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 									
+									if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) and not tableHelper.containsValue(indexTab.player, uniqueIndex, true) then
+										table.insert(creaTab.player[pid], creatureRefId)
+										table.insert(indexTab.player[pid], uniqueIndex)								
+									end	
+								end
 							end
 						end
-					end
-				end			
+					end	
+				end
 			end
 		end		
 	end
@@ -124,8 +126,7 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 						if cell == nil then
 							logicHandler.LoadCell(cellTab.player[pid].cell)
 							useTemporaryLoad = true
-							cell = LoadedCells[cellTab.player[pid].cell]	
-							
+							cell = LoadedCells[cellTab.player[pid].cell]							
 							for _, uniqueIndex in pairs(cell.data.packets.actorList) do
 								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
 									tableHelper.removeValue(cell.data.objectData, uniqueIndex)
@@ -136,8 +137,7 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 								end
 							end							
 							cell:QuicksaveToDrive()			
-						elseif cell ~= nil then	
-							
+						elseif cell ~= nil then								
 							for _, uniqueIndex in pairs(cell.data.packets.actorList) do
 								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
 									tableHelper.removeValue(cell.data.objectData, uniqueIndex)
