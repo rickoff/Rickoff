@@ -1,7 +1,7 @@
 --[[
 DragonDoor by Rickoff
 tes3mp 0.7.0
-script version 0.7
+script version 0.6
 ---------------------------
 DESCRIPTION :
 creatures and npc follow players through doors
