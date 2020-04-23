@@ -1,7 +1,7 @@
 --[[
 DragonDoor by Rickoff
 tes3mp 0.7.0
-script version 0.8
+script version 0.7
 ---------------------------
 DESCRIPTION :
 creatures and npc follow players through doors
@@ -21,21 +21,22 @@ jsonInterface = require("jsonInterface")
 local DoorData = {}
 local DoorList = jsonInterface.load("custom/EcarlateDoor.json")
 for index, item in pairs(DoorList) do
-	table.insert(DoorData, {REFID = string.lower(item.Refid)})
+	table.insert(DoorData, {NAME = item.name, REFID = string.lower(item.Refid)})
 end
 
 local NpcData = {}
 local NpcList = jsonInterface.load("custom/EcarlateNpc.json")
-local CreaList = jsonInterface.load("custom/EcarlateCreaIa.json")
 for index, item in pairs(NpcList) do
-	if item.figth > 80 then
-		table.insert(NpcData, {REFID = string.lower(item.refid)})
+	if item.figth > 50 then
+		table.insert(NpcData, {NAME = item.name, REFID = string.lower(item.refid)})
 	end
 end
 
+local CreaData = {}
+local CreaList = jsonInterface.load("custom/EcarlateCreaIa.json")
 for index, item in pairs(CreaList) do
-	if item.figth > 60 then
-		table.insert(NpcData, {REFID = string.lower(item.refid)})
+	if item.figth > 80 then
+		table.insert(CreaData, {NAME = item.name, REFID = string.lower(item.refid)})
 	end
 end
 
@@ -51,10 +52,10 @@ local DragonDoor = {}
 
 DragonDoor.OnPlayerConnect = function(eventStatus, pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
-		doorTab.player[pid] = {}
-		cellTab.player[pid] = {}
-		creaTab.player[pid] = {}
-		indexTab.player[pid] = {}
+		doorTab.player[pid] = nil
+		cellTab.player[pid] = nil
+		creaTab.player[pid] = nil
+		indexTab.player[pid] = nil
 	end
 end
 
@@ -64,7 +65,8 @@ DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, object
 		local ObjectRefid
 		local playerPosX = tes3mp.GetPosX(pid)
 		local playerPosY = tes3mp.GetPosY(pid)
-		local cell = LoadedCells[cellDescription]			
+		local cell = LoadedCells[cellDescription]
+		local useTemporaryLoad = false			
 		for _, object in pairs(objects) do
 			ObjectIndex = object.uniqueIndex
 			ObjectRefid = object.refId
@@ -74,7 +76,23 @@ DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, object
 				doorTab.player[pid] = {object = ObjectRefid} 
 				cellTab.player[pid] = {cell = cellDescription} 
 				creaTab.player[pid] = {}
-				indexTab.player[pid] = {}			
+				indexTab.player[pid] = {}	
+				for _, uniqueIndex in pairs(cell.data.packets.spawn) do
+					if cell.data.objectData[uniqueIndex] then
+						if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
+							local creatureRefId = cell.data.objectData[uniqueIndex].refId	
+							if tableHelper.containsValue(CreaData, string.lower(creatureRefId), true) then								
+								local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
+								local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
+								local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
+								if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) and not tableHelper.containsValue(indexTab.player, uniqueIndex, true) then
+									table.insert(creaTab.player[pid], creatureRefId)
+									table.insert(indexTab.player[pid], uniqueIndex)							
+								end
+							end
+						end
+					end
+				end			
 				for _, uniqueIndex in pairs(cell.data.packets.actorList) do
 					if cell.data.objectData[uniqueIndex] then
 						if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
@@ -125,6 +143,15 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 							logicHandler.LoadCell(cellTab.player[pid].cell)
 							useTemporaryLoad = true
 							cell = LoadedCells[cellTab.player[pid].cell]	
+							for _, uniqueIndex in pairs(cell.data.packets.spawn) do
+								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
+									tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+									tableHelper.removeValue(cell.data.packets, uniqueIndex)
+									if tableHelper.getCount(Players) > 0 then
+										logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)
+									end
+								end
+							end	
 							
 							for _, uniqueIndex in pairs(cell.data.packets.actorList) do
 								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
@@ -134,9 +161,19 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 										logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)
 									end
 								end
-							end							
+							end	
+						
 							cell:QuicksaveToDrive()			
 						elseif cell ~= nil then	
+							for _, uniqueIndex in pairs(cell.data.packets.spawn) do
+								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
+									tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+									tableHelper.removeValue(cell.data.packets, uniqueIndex)
+									if tableHelper.getCount(Players) > 0 then
+										logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)
+									end	
+								end
+							end
 							
 							for _, uniqueIndex in pairs(cell.data.packets.actorList) do
 								if tableHelper.containsValue(indexTab.player[pid], uniqueIndex, true) then
@@ -146,20 +183,21 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 										logicHandler.DeleteObjectForEveryone(cellTab.player[pid].cell, uniqueIndex)
 									end
 								end
-							end							
+							end	
+						
 							cell:QuicksaveToDrive()
 						end	
 						if useTemporaryLoad == true then
 							logicHandler.UnloadCell(cellTab.player[pid].cell)
 						end			
 					end
+					doorTab.player[pid].object = nil
+					cellTab.player[pid].cell = nil
+					creaTab.player[pid] = nil
+					indexTab.player[pid] = nil
 				end
 			end
 		end
-		doorTab.player[pid] = {}
-		cellTab.player[pid] = {}
-		creaTab.player[pid] = {}
-		indexTab.player[pid] = {}	
 	end
 end
 
