@@ -57,29 +57,25 @@ function FunctionMusicBattle()
 				local playerPosX = tes3mp.GetPosX(pid)
 				local playerPosY = tes3mp.GetPosY(pid)
 				local cellDescription = tes3mp.GetCell(pid)
-				if LoadedCells[cellDescription] then
-					LoadedCells[cellDescription]:QuicksaveToDrive()
-					logicHandler.LoadCell(cellDescription)				
-					local cell = LoadedCells[cellDescription]	
-					if cell ~= nil then
-						for _, uniqueIndex in pairs(cell.data.packets.actorList) do
-							if cell.data.objectData[uniqueIndex] then
-								if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
-									local creatureRefId = cell.data.objectData[uniqueIndex].refId	
-									if tableHelper.containsValue(NpcData, string.lower(creatureRefId), true) then								
-										local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
-										local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
-										local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
-										if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) then
-											PlayerPid = pid
-											MusicPlayerBattle = true
-											break
-										end	
-									end
+				local cell = LoadedCells[cellDescription]	
+				if cell ~= nil then
+					for _, uniqueIndex in pairs(cell.data.packets.actorList) do
+						if cell.data.objectData[uniqueIndex] then
+							if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
+								local creatureRefId = cell.data.objectData[uniqueIndex].refId	
+								if tableHelper.containsValue(NpcData, string.lower(creatureRefId), true) then								
+									local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
+									local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
+									local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
+									if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) then
+										PlayerPid = pid
+										MusicPlayerBattle = true
+										break
+									end	
 								end
 							end
-						end					
-					end
+						end
+					end					
 				end
 			end
 		end
@@ -108,29 +104,25 @@ function FunctionMusicExplore()
 				local playerPosX = tes3mp.GetPosX(pid)
 				local playerPosY = tes3mp.GetPosY(pid)
 				local cellDescription = tes3mp.GetCell(pid)
-				if LoadedCells[cellDescription] then
-					LoadedCells[cellDescription]:QuicksaveToDrive()
-					logicHandler.LoadCell(cellDescription)				
-					local cell = LoadedCells[cellDescription]	
-					if cell ~= nil then
-						for _, uniqueIndex in pairs(cell.data.packets.actorList) do
-							if cell.data.objectData[uniqueIndex] then
-								if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
-									local creatureRefId = cell.data.objectData[uniqueIndex].refId
-									if tableHelper.containsValue(NpcData, string.lower(creatureRefId), true) then							
-										local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
-										local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
-										local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
-										if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) then
-											PlayerSafe = false
-											MusicPlayerBattle = true
-											break
-										end	
-									end
+				local cell = LoadedCells[cellDescription]	
+				if cell ~= nil then
+					for _, uniqueIndex in pairs(cell.data.packets.actorList) do
+						if cell.data.objectData[uniqueIndex] then
+							if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
+								local creatureRefId = cell.data.objectData[uniqueIndex].refId
+								if tableHelper.containsValue(NpcData, string.lower(creatureRefId), true) then							
+									local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
+									local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
+									local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
+									if distance < cfg.rad and not tableHelper.containsValue(cell.data.packets.death, uniqueIndex, true) then
+										PlayerSafe = false
+										MusicPlayerBattle = true
+										break
+									end	
 								end
 							end
-						end					
-					end
+						end
+					end					
 				end
 			end
 		end
