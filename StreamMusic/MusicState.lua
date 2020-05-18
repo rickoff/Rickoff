@@ -58,7 +58,6 @@ function FunctionMusicBattle()
 				local playerPosY = tes3mp.GetPosY(pid)
 				local cellDescription = tes3mp.GetCell(pid)
 				if LoadedCells[cellDescription] then
-					LoadedCells[cellDescription]:QuicksaveToDrive()
 					logicHandler.LoadCell(cellDescription)				
 					local cell = LoadedCells[cellDescription]	
 					if cell ~= nil then
@@ -109,7 +108,6 @@ function FunctionMusicExplore()
 				local playerPosY = tes3mp.GetPosY(pid)
 				local cellDescription = tes3mp.GetCell(pid)
 				if LoadedCells[cellDescription] then
-					LoadedCells[cellDescription]:QuicksaveToDrive()
 					logicHandler.LoadCell(cellDescription)				
 					local cell = LoadedCells[cellDescription]	
 					if cell ~= nil then
