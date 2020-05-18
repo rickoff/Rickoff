@@ -202,7 +202,6 @@ GameplayAdvance.Speed = function(pid)
 	if value ~= nil and basevalue ~= nil and value ~= basevalue then
 		tes3mp.SetAttributeDamage(pid, attributeId, value)	
 		tes3mp.SendAttributes(pid)
-		tes3mp.SendEquipment(pid)
 		GameplayAdvanceTabAtt.player[pid] = value
 	end	
 end
@@ -752,16 +751,6 @@ GameplayAdvance.ReloadCustom = function(eventStatus, pid)
 	end
 end
 
-GameplayAdvance.CheckDraw = function(eventStatus, pid)
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-		local drawState = tes3mp.GetDrawState(pid)	
-		if drawState == 1 then
-			return customEventHooks.makeEventStatus(false,false)
-		end
-	end
-end
-
-customEventHooks.registerValidator("OnPlayerEquipment", GameplayAdvance.CheckDraw)
 customEventHooks.registerValidator("OnRecordDynamic", GameplayAdvance.OnRecordDynamic)
 customEventHooks.registerValidator("OnPlayerLevel", GameplayAdvance.LevelMax)
 customEventHooks.registerValidator("OnPlayerQuickKeys", GameplayAdvance.NoKeyPotion)
