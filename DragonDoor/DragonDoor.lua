@@ -70,7 +70,6 @@ DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, object
 				cellTab.player[pid] = {cell = cellDescription} 
 				creaTab.player[pid] = {}
 				indexTab.player[pid] = {}
-				LoadedCells[cellDescription]:QuicksaveToDrive()
 				logicHandler.LoadCell(cellDescription)
 				local playerPosX = tes3mp.GetPosX(pid)
 				local playerPosY = tes3mp.GetPosY(pid)
