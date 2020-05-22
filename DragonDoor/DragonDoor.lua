@@ -71,15 +71,15 @@ DragonDoor.OnObjectActivate = function(eventStatus, pid, cellDescription, object
 				creaTab.player[pid] = {}
 				indexTab.player[pid] = {}
 				logicHandler.LoadCell(cellDescription)
-				local playerPosX = tes3mp.GetPosX(pid)
-				local playerPosY = tes3mp.GetPosY(pid)
 				local cell = LoadedCells[cellDescription]				
 				if cell ~= nil then				
 					for _, uniqueIndex in pairs(cell.data.packets.actorList) do
 						if cell.data.objectData[uniqueIndex] then
 							if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
 								local creatureRefId = cell.data.objectData[uniqueIndex].refId
-								if tableHelper.containsValue(NpcData, string.lower(creatureRefId), true) then							
+								if tableHelper.containsValue(NpcData, string.lower(creatureRefId), true) then	
+									local playerPosX = tes3mp.GetPosX(pid)
+									local playerPosY = tes3mp.GetPosY(pid)						
 									local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
 									local creaturePosY = cell.data.objectData[uniqueIndex].location.posY							
 									local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 									
