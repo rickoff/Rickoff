@@ -54,8 +54,6 @@ function FunctionMusicBattle()
 	if MusicPlayerBattle == false then
 		for pid ,value in pairs(Players) do
 			if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
-				local playerPosX = tes3mp.GetPosX(pid)
-				local playerPosY = tes3mp.GetPosY(pid)
 				local cellDescription = tes3mp.GetCell(pid)
 				if LoadedCells[cellDescription] then
 					logicHandler.LoadCell(cellDescription)				
@@ -65,7 +63,9 @@ function FunctionMusicBattle()
 							if cell.data.objectData[uniqueIndex] then
 								if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
 									local creatureRefId = cell.data.objectData[uniqueIndex].refId	
-									if tableHelper.containsValue(NpcData, string.lower(creatureRefId), true) then								
+									if tableHelper.containsValue(NpcData, string.lower(creatureRefId), true) then
+										local playerPosX = tes3mp.GetPosX(pid)
+										local playerPosY = tes3mp.GetPosY(pid)								
 										local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
 										local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
 										local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
@@ -104,8 +104,6 @@ function FunctionMusicExplore()
 		for pid ,value in pairs(Players) do
 			if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 				PlayerPid = pid
-				local playerPosX = tes3mp.GetPosX(pid)
-				local playerPosY = tes3mp.GetPosY(pid)
 				local cellDescription = tes3mp.GetCell(pid)
 				if LoadedCells[cellDescription] then
 					logicHandler.LoadCell(cellDescription)				
@@ -115,7 +113,9 @@ function FunctionMusicExplore()
 							if cell.data.objectData[uniqueIndex] then
 								if cell.data.objectData[uniqueIndex].refId and cell.data.objectData[uniqueIndex].location then
 									local creatureRefId = cell.data.objectData[uniqueIndex].refId
-									if tableHelper.containsValue(NpcData, string.lower(creatureRefId), true) then							
+									if tableHelper.containsValue(NpcData, string.lower(creatureRefId), true) then	
+										local playerPosX = tes3mp.GetPosX(pid)
+										local playerPosY = tes3mp.GetPosY(pid)						
 										local creaturePosX = cell.data.objectData[uniqueIndex].location.posX
 										local creaturePosY = cell.data.objectData[uniqueIndex].location.posY
 										local distance = math.sqrt((playerPosX - creaturePosX) * (playerPosX - creaturePosX) + (playerPosY - creaturePosY) * (playerPosY - creaturePosY)) 
