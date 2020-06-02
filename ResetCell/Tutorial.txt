@@ -1,0 +1,110 @@
+TUTORIAL FOR RESET SCRIPT
+
+INSTALLATION:
+
+
+Folder Scripts:
+
+Save the file as ResetData.lua inside your server/scripts/custom folder.
+Save the file as DataBaseScript.lua inside your server/scripts/custom folder.
+Save the file as struct.lua inside your server/scripts/custom folder.
+Drop the folder as espParser inside your server/scripts/custom folder.
+Drop the folder as DataManager.lua inside your server/scripts/custom folder.
+
+Folder Data:
+
+Drop the folder as CellDataBase inside your server/data/custom folder.
+Drop the folder as esps inside your server/data/custom folder.
+Save your files as Morrowind.esm,Tribunal.esm,Bloodmoon.esm inside your server/data/custom/esps
+
+
+Edits to customScripts.lua:
+
+struct = require("custom.struct")
+require("custom.DataManager.main")
+require("custom.espParser.main")
+DataBaseScript = require("custom.DataBaseScript")
+ResetData = require("custom.ResetData")
+
+
+FIRST LAUNCH:
+
+for the first launch the server will create its database containing everything necessary for resetting the cells, this can be long, wait while watching your console work with good coffee, whiskey or both
+
+once finished close the server
+
+
+MAIN LAUNCH:
+
+Edits to customScripts.lua:
+
+--struct = require("custom.struct")
+--require("custom.DataManager.main")
+--require("custom.espParser.main")
+--DataBaseScript = require("custom.DataBaseScript")
+ResetData = require("custom.ResetData")
+
+Edits to server/data/cell/base.lua:
+
+function BaseCell:LoadInitialCellData(pid)
+
+	if not jsonInterface.load("cell/"..self.description..".json") then
+		self:EnsurePacketTables()
+		self:EnsurePacketValidity()
+
+		tes3mp.LogMessage(enumerations.log.INFO, "Loading data of cell " .. self.description .. " for " ..
+			logicHandler.GetChatName(pid))
+
+		local objectData = self.data.objectData
+		local packets = self.data.packets
+
+		self:LoadObjectsDeleted(pid, objectData, packets.delete)
+		self:LoadObjectsPlaced(pid, objectData, packets.place)
+		self:LoadObjectsSpawned(pid, objectData, packets.spawn)
+		self:LoadObjectsLocked(pid, objectData, packets.lock)
+		self:LoadObjectTrapsTriggered(pid, objectData, packets.trap)
+		self:LoadObjectsScaled(pid, objectData, packets.scale)
+		self:LoadObjectStates(pid, objectData, packets.state)
+		self:LoadDoorStates(pid, objectData, packets.doorState)
+
+		if self:HasContainerData() == true then
+			tes3mp.LogAppend(enumerations.log.INFO, "- Had container data")
+			self:LoadContainers(pid, objectData, packets.container)
+		elseif not self.isRequestingContainers then
+			tes3mp.LogAppend(enumerations.log.INFO, "- Requesting containers")
+			self:RequestContainers(pid)
+		end
+
+		if self:HasActorData() == true then
+			tes3mp.LogAppend(enumerations.log.INFO, "- Had actor data")
+			self:LoadActorCellChanges(pid, objectData)
+			self:LoadActorEquipment(pid, objectData, packets.equipment)
+			self:LoadActorAI(pid, objectData, packets.ai)
+		elseif not self.isRequestingActorList then
+			tes3mp.LogAppend(enumerations.log.INFO, "- Requesting actor list")
+			self:RequestActorList(pid)
+		end
+	else
+        self:LoadMomentaryCellData(pid)
+	end
+end
+
+function BaseCell:LoadMomentaryCellData(pid)
+
+    if self:HasActorData() == true then
+        local objectData = self.data.objectData
+        local packets = self.data.packets
+
+        self:LoadActorPositions(pid, objectData, packets.position)
+        self:LoadActorStatsDynamic(pid, objectData, packets.statsDynamic)
+    end
+    self:RequestContainers(pid)	
+end
+
+USE FOR YOUR SCRIPTS:
+
+ResetData.Reset()
+
+add the function where you want to perform the reset
+
+save files modify and run server
