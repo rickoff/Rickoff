@@ -396,24 +396,36 @@ TeamGroup.SendSoul = function(pid, soul)
 				if tableHelper.containsValue(playerGroup[x].members, Players[pid].name, true) then		
 					for name, value in pairs(playerGroup[x].members) do
 						local targetPid = logicHandler.GetPlayerByName(playerGroup[x].members[name]).pid
-						local CellTarget = tes3mp.GetCell(targetPid)
-						local soulLoc = Players[targetPid].data.customVariables.soul
-						local levelSoul = Players[targetPid].data.customVariables.levelSoul	
-						local capSoul = Players[targetPid].data.customVariables.capSoul						
-						if CellPlayer == CellTarget and targetPid ~= pid then
-							if soulLoc == nil then
-								Players[targetPid].data.customVariables.soul = soul
-								tes3mp.MessageBox(targetPid, -1, color.Default.. "Vous avez gagné : "..color.Green.. soul ..color.Default.. " points d'" ..color.Yellow.. "exp\n\n" ..color.Green.. "Bonus de groupe * " ..color.Yellow.. 2)		
-							elseif soulLoc >= capSoul then
-								Players[targetPid].data.customVariables.levelSoul = Players[targetPid].data.customVariables.levelSoul + 1
-								Players[targetPid].data.customVariables.soul = 0
-								Players[targetPid].data.customVariables.capSoul = math.floor((levelSoul + 1) * 500)
-								Players[targetPid].data.customVariables.pointSoul = Players[targetPid].data.customVariables.pointSoul + 5
-								tes3mp.MessageBox(targetPid, -1, color.Default.. "Vous avez gagné un niveau félicitation : "..color.Green.. "/menu>joueur>compétences" ..color.Default.. " pour dépenser vos points d'" ..color.Yellow.. "exp.")										
-							else
-								Players[targetPid].data.customVariables.soul = Players[targetPid].data.customVariables.soul + soul
-								tes3mp.MessageBox(targetPid, -1, color.Default.. "Vous avez gagné : "..color.Green.. soul ..color.Default.. " points d'" ..color.Yellow.. "exp\n\n" ..color.Green.. "Bonus de groupe * " ..color.Yellow.. 2)		
-							end							
+						if targetPid then
+							local CellTarget = tes3mp.GetCell(targetPid)
+							if CellTarget then
+								local soulLoc = Players[targetPid].data.customVariables.soul
+								local levelSoul = Players[targetPid].data.customVariables.levelSoul	
+								local capSoul = Players[targetPid].data.customVariables.capSoul
+								if levelSoul == nil then 
+									Players[targetPid].data.customVariables.levelSoul = 1
+									levelSoul = Players[targetPid].data.customVariables.levelSoul
+								end
+								if capSoul == nil then 
+									Players[targetPid].data.customVariables.capSoul = 500 
+									capSoul = Players[targetPid].data.customVariables.capSoul
+								end
+								if CellPlayer == CellTarget and targetPid ~= pid then
+									if soulLoc == nil then
+										Players[targetPid].data.customVariables.soul = soul
+										tes3mp.MessageBox(targetPid, -1, color.Default.. "Vous avez gagné : "..color.Green.. soul ..color.Default.. " points d'" ..color.Yellow.. "exp\n\n" ..color.Green.. "Bonus de groupe * " ..color.Yellow.. 2)		
+									elseif soulLoc >= capSoul then
+										Players[targetPid].data.customVariables.levelSoul = Players[targetPid].data.customVariables.levelSoul + 1
+										Players[targetPid].data.customVariables.soul = 0
+										Players[targetPid].data.customVariables.capSoul = math.floor((levelSoul + 1) * 500)
+										Players[targetPid].data.customVariables.pointSoul = Players[targetPid].data.customVariables.pointSoul + 5
+										tes3mp.MessageBox(targetPid, -1, color.Default.. "Vous avez gagné un niveau félicitation : "..color.Green.. "/menu>joueur>compétences" ..color.Default.. " pour dépenser vos points d'" ..color.Yellow.. "exp.")										
+									else
+										Players[targetPid].data.customVariables.soul = Players[targetPid].data.customVariables.soul + soul
+										tes3mp.MessageBox(targetPid, -1, color.Default.. "Vous avez gagné : "..color.Green.. soul ..color.Default.. " points d'" ..color.Yellow.. "exp\n\n" ..color.Green.. "Bonus de groupe * " ..color.Yellow.. 2)		
+									end							
+								end
+							end
 						end
 					end	
 				end
