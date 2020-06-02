@@ -24,7 +24,7 @@ struct = require("custom.struct")
 require("custom.DataManager.main")
 require("custom.espParser.main")
 DataBaseScript = require("custom.DataBaseScript")
-ResetData = require("custom.ResetData")
+--ResetData = require("custom.ResetData")
 
 
 FIRST LAUNCH:
