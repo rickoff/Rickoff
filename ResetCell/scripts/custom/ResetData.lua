@@ -16,6 +16,7 @@ CONFIG :
 config.preservePlace used to conserve items dropped by players
 config.preserveNpc used to conserve npc in the cell
 config.preserveCreature used to conserve creature in the cell
+config.resetTimerCell used to reset cell visited if config.resetCell = true
 add cells you don't want to reset in BlackCellList like this: local BlackCellList = {"-3, -2", "Balmora, temple"}
 ]]
 
@@ -24,7 +25,7 @@ config.preservePlace = false
 config.preserveNpc = false
 config.preserveCreature = false
 config.resetCell = true
-config.resetTimerCell = 60
+config.resetTimerCell = 3600*6
  
 local NpcData = {}
 local CreaData = {}
