@@ -85,7 +85,7 @@ function BaseCell:LoadInitialCellData(pid)
 			self:RequestActorList(pid)
 		end
 	else
-        self:LoadMomentaryCellData(pid)
+        	self:LoadMomentaryCellData(pid)
 	end
 end
 
