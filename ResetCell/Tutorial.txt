@@ -104,7 +104,8 @@ end
 USE FOR YOUR SCRIPTS:
 
 ResetData.Reset()
-
 add the function where you want to perform the reset
+
+Edit config in ResetData.lua
 
 save files modify and run server
