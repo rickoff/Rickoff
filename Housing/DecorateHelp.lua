@@ -44,11 +44,12 @@ trad.opt1 = "Choisir une option. Votre article actuel: "
 trad.opt2 = "Ajuster le Nord;Ajuster l'est;Ajuster la hauteur;Tourner X;Tourner Y;Tourner Z;Monter;Descendre;Est;Ouest;Nord;Sud;Agrandir;Réduire;Attraper;Fermer"
 ------
 
-local Methods = {}
 local TimerDrop = tes3mp.CreateTimer("StartDrop", time.seconds(0.01))
 local playerSelectedObject = {}
 local playerCurrentMode = {}
 local playersTab = { player = {} }
+
+local Methods = {}
 
 function StartDrop()	
 	for pid, value in pairs(playersTab.player) do
@@ -80,66 +81,75 @@ end
 
 local function resendPlaceToAll(refIndex, cell)
 	local object = getObject(refIndex, cell)
+	local refId = object.refId
+	local count = object.count or 1
+	local charge = object.charge or -1
+	local posX, posY, posZ = object.location.posX, object.location.posY, object.location.posZ
+	local rotX, rotY, rotZ = object.location.rotX, object.location.rotY, object.location.rotZ
+	local scale = object.scale
 
-	if not object then
-		tes3mp.MessageBox(pid, -1, trad.noselect)	
-		return false
-	else		
-		local refId = object.refId
-		local count = object.count or 1
-		local charge = object.charge or -1
-		local posX, posY, posZ = object.location.posX, object.location.posY, object.location.posZ
-		local rotX, rotY, rotZ = object.location.rotX, object.location.rotY, object.location.rotZ
-		local scale = object.scale
+	local refIndex = refIndex
+	
+	local inventory = object.inventory or nil
+	
+	local splitIndex = refIndex:split("-")
 
-		local refIndex = refIndex
-		
-		local inventory = object.inventory or nil
-		
-		local splitIndex = refIndex:split("-")
-		
-		for pid, pdata in pairs(Players) do
-			if Players[pid]:IsLoggedIn() then
-				--First, delete the original
-				tes3mp.InitializeEvent(pid)
-				tes3mp.SetEventCell(cell)
-				tes3mp.SetObjectRefNumIndex(0)
-				tes3mp.SetObjectMpNum(splitIndex[2])
-				tes3mp.AddWorldObject() --?
-				tes3mp.SendObjectDelete()
-				
-				--Now remake it
-				tes3mp.InitializeEvent(pid)
-				tes3mp.SetEventCell(cell)
-				tes3mp.SetObjectRefId(refId)
-				tes3mp.SetObjectCount(count)
-				tes3mp.SetObjectCharge(charge)
-				tes3mp.SetObjectPosition(posX, posY, posZ)
-				tes3mp.SetObjectRotation(rotX, rotY, rotZ)
-				tes3mp.SetObjectScale(scale)
-				tes3mp.SetObjectRefNumIndex(0)
-				tes3mp.SetObjectMpNum(splitIndex[2])
-				if inventory then
-					for itemIndex, item in pairs(inventory) do
-						tes3mp.SetContainerItemRefId(item.refId)
-						tes3mp.SetContainerItemCount(item.count)
-						tes3mp.SetContainerItemCharge(item.charge)
+	for pid, pdata in pairs(Players) do
+		if Players[pid]:IsLoggedIn() then
+			--First, delete the original
+			tes3mp.InitializeEvent(pid)
+			tes3mp.SetEventCell(cell)
+			tes3mp.SetObjectRefNumIndex(0)
+			tes3mp.SetObjectMpNum(splitIndex[2])
+			tes3mp.AddWorldObject() --?
+			tes3mp.SendObjectDelete()
+			
+			--Now remake it
+			tes3mp.InitializeEvent(pid)
+			tes3mp.SetEventCell(cell)
+			tes3mp.SetObjectRefId(refId)
+			tes3mp.SetObjectCount(count)
+			tes3mp.SetObjectCharge(charge)
+			tes3mp.SetObjectPosition(posX, posY, posZ)
+			tes3mp.SetObjectRotation(rotX, rotY, rotZ)
+			tes3mp.SetObjectScale(scale)
+			tes3mp.SetObjectRefNumIndex(0)
+			tes3mp.SetObjectMpNum(splitIndex[2])
+			if inventory then
+				for itemIndex, item in pairs(inventory) do
+					tes3mp.SetContainerItemRefId(item.refId)
+					tes3mp.SetContainerItemCount(item.count)
+					tes3mp.SetContainerItemCharge(item.charge)
 
-						tes3mp.AddContainerItem()
-					end
+					tes3mp.AddContainerItem()
 				end
-				
-				tes3mp.AddWorldObject()
-				tes3mp.SendObjectPlace()
-				tes3mp.SendObjectScale()
-				if inventory then
-					tes3mp.SendContainer()
-				end
+			end
+			
+			tes3mp.AddWorldObject()
+			tes3mp.SendObjectPlace()
+			tes3mp.SendObjectScale()
+			if inventory then
+				tes3mp.SendContainer()
 			end
 		end
 	end
-	
-	LoadedCells[cell]:SaveToDrive() --Not needed, but it's nice to do anyways
+	if WorldMining then
+		if WorldInstance.data.customVariables.WorldMining.placed[cell] then
+			if WorldInstance.data.customVariables.WorldMining.placed[cell][refIndex] then
+				WorldInstance.data.customVariables.WorldMining.placed[cell][refIndex]["loc"] = object.location
+				WorldInstance:QuicksaveToDrive()
+			end
+		end
+	end
+	if EcarlateFurniture then
+		if WorldInstance.data.customVariables.EcarlateFurniture.placed[cell] then	
+			if WorldInstance.data.customVariables.EcarlateFurniture.placed[cell][refIndex] then
+				WorldInstance.data.customVariables.EcarlateFurniture.placed[cell][refIndex]["loc"] = object.location
+				WorldInstance:QuicksaveToDrive()
+			end	
+		end
+	end
+	LoadedCells[cell]:QuicksaveToDrive()
 end
 
 
@@ -150,88 +160,104 @@ local function showPromptGUI(pid)
 end
 
 local function onEnterPrompt(pid, data)
-	local cell = tes3mp.GetCell(pid)
-	local pname = tes3mp.GetName(pid)
-	local mode = playerCurrentMode[pname]
-	local data = tonumber(data) or 0
-	local object = getObject(playerSelectedObject[pname], cell)
-	
-	if not object then
-		tes3mp.MessageBox(pid, -1, trad.noselect)		
-		return false
-	else
-		local scaling = object.scale	
-		if mode == trad.rotx then
-			local curDegrees = math.deg(object.location.rotX)
-			local newDegrees = (curDegrees + data) % 360
-			object.location.rotX = math.rad(newDegrees)
-		elseif mode == trad.roty then
-			local curDegrees = math.deg(object.location.rotY)
-			local newDegrees = (curDegrees + data) % 360
-			object.location.rotY = math.rad(newDegrees)
-		elseif mode == trad.rotz then
-			local curDegrees = math.deg(object.location.rotZ)
-			local newDegrees = (curDegrees + data) % 360
-			object.location.rotZ = math.rad(newDegrees)
-		elseif mode == trad.movn then
-			object.location.posY = object.location.posY + data
-		elseif mode == trad.move then
-			object.location.posX = object.location.posX + data
-		elseif mode == trad.movup then
-			object.location.posZ = object.location.posZ + data
-		elseif mode == trad.up then
-			object.location.posZ = object.location.posZ + 10
-		elseif mode == trad.down then
-			object.location.posZ = object.location.posZ - 10
-		elseif mode == trad.east then
-			object.location.posX = object.location.posX + 10
-		elseif mode == trad.west then
-			object.location.posX = object.location.posX - 10
-		elseif mode == trad.north then
-			object.location.posY = object.location.posY + 10
-		elseif mode == trad.sud then
-			object.location.posY = object.location.posY - 10
-		elseif mode == trad.bigger then
-			if scaling ~= nil then
-				if scaling < 2 then
-					object.scale = object.scale + 0.1
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local cell = tes3mp.GetCell(pid)
+		local pname = tes3mp.GetName(pid)
+		local mode = playerCurrentMode[pname]
+		local data = tonumber(data) or 0
+		local object = getObject(playerSelectedObject[pname], cell)
+		local cellSize = 8192	
+		local checkPosSafe = true	
+		if not object then
+			tes3mp.MessageBox(pid, -1, trad.noselect)		
+			return false
+		else
+			local scaling = object.scale	
+			if mode == trad.rotx then
+				local curDegrees = math.deg(object.location.rotX)
+				local newDegrees = (curDegrees + data) % 360
+				object.location.rotX = math.rad(newDegrees)
+			elseif mode == trad.roty then
+				local curDegrees = math.deg(object.location.rotY)
+				local newDegrees = (curDegrees + data) % 360
+				object.location.rotY = math.rad(newDegrees)
+			elseif mode == trad.rotz then
+				local curDegrees = math.deg(object.location.rotZ)
+				local newDegrees = (curDegrees + data) % 360
+				object.location.rotZ = math.rad(newDegrees)
+			elseif mode == trad.movn then
+				object.location.posY = object.location.posY + data
+			elseif mode == trad.move then
+				object.location.posX = object.location.posX + data
+			elseif mode == trad.movup then
+				object.location.posZ = object.location.posZ + data
+			elseif mode == trad.up then
+				object.location.posZ = object.location.posZ + 10
+			elseif mode == trad.down then
+				object.location.posZ = object.location.posZ - 10
+			elseif mode == trad.east then
+				object.location.posX = object.location.posX + 10
+			elseif mode == trad.west then
+				object.location.posX = object.location.posX - 10
+			elseif mode == trad.north then
+				object.location.posY = object.location.posY + 10
+			elseif mode == trad.sud then
+				object.location.posY = object.location.posY - 10
+			elseif mode == trad.bigger then
+				if scaling ~= nil then
+					if scaling < 2 then
+						object.scale = object.scale + 0.1
+					else
+						object.scale = object.scale
+					end
 				else
-					object.scale = object.scale
+					tes3mp.MessageBox(pid, -1, trad.nooption)		
 				end
-			else
-				tes3mp.MessageBox(pid, -1, trad.nooption)		
+			elseif mode == trad.lower then
+				if scaling ~= nil then
+					if scaling > 0.1 then
+						object.scale = object.scale - 0.1
+					else
+						object.scale = object.scale
+					end
+				else
+					tes3mp.MessageBox(pid, -1, trad.nooption)		
+				end		
+			elseif mode == "return" then
+				object.location.posY = object.location.posY		
+				return
 			end
-		elseif mode == trad.lower then
-			if scaling ~= nil then
-				if scaling > 0.1 then
-					object.scale = object.scale - 0.1
-				else
-					object.scale = object.scale
-				end
-			else
-				tes3mp.MessageBox(pid, -1, trad.nooption)		
-			end		
-		elseif mode == "return" then
-			object.location.posY = object.location.posY		
-			return
+		end
+
+		if tes3mp.IsInExterior(pid) then
+			local correctGridX = math.floor(object.location.posX / cellSize)
+			local correctGridY = math.floor(object.location.posY / cellSize)
+			if LoadedCells[cell].gridX ~= correctGridX or LoadedCells[cell].gridY ~= correctGridY then
+				checkPosSafe = false
+			end
+		end
+		if checkPosSafe == true then		
+			resendPlaceToAll(playerSelectedObject[pname], cell)
+		else
+			tes3mp.MessageBox(pid, -1, trad.warningcell)
 		end
 	end
-	
-	resendPlaceToAll(playerSelectedObject[pname], cell)
 end
 
 local function showMainGUI(pid)
-	--Determine if the player has an item
-	local currentItem = "None" --default
-	local selected = playerSelectedObject[tes3mp.GetName(pid)]
-	local object = getObject(selected, tes3mp.GetCell(pid))
-	
-	if selected and object then --If they have an entry and it isn't gone
-		currentItem = object.refId .. " (" .. selected .. ")"
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		--Determine if the player has an item
+		local currentItem = "None" --default
+		local selected = playerSelectedObject[tes3mp.GetName(pid)]
+		local object = getObject(selected, tes3mp.GetCell(pid))
+		
+		if selected and object then --If they have an entry and it isn't gone
+			currentItem = object.refId .. " (" .. selected .. ")"
+		end
+		
+		local message = trad.opt1 .. currentItem
+		tes3mp.CustomMessageBox(pid, config.MainId, message, trad.opt2)
 	end
-	
-	local message = trad.opt1 .. currentItem
-	tes3mp.CustomMessageBox(pid, config.MainId, message, trad.opt2)
 end
 
 local function setSelectedObject(pid, refIndex)
@@ -258,86 +284,88 @@ Methods.OnObjectPlace = function(eventStatus, pid, cellDescription)
 end
 
 Methods.OnGUIAction = function(pid, idGui, data)
-	local pname = tes3mp.GetName(pid)
-	
-	if idGui == config.MainId then
-		if tonumber(data) == 0 then --Move North
-			playerCurrentMode[pname] = trad.movn
-			showPromptGUI(pid)
-			return true
-		elseif tonumber(data) == 1 then --Move East
-			playerCurrentMode[pname] = trad.move
-			showPromptGUI(pid)
-			return true
-		elseif tonumber(data) == 2 then --Move Up
-			playerCurrentMode[pname] = trad.movup
-			showPromptGUI(pid)
-			return true
-		elseif tonumber(data) == 3 then --Rotate X
-			playerCurrentMode[pname] = trad.rotx
-			showPromptGUI(pid)
-			return true
-		elseif tonumber(data) == 4 then --Rotate Y
-			playerCurrentMode[pname] = trad.roty
-			showPromptGUI(pid)
-			return true
-		elseif tonumber(data) == 5 then --Rotate Z
-			playerCurrentMode[pname] = trad.rotz
-			showPromptGUI(pid)
-			return true
-		elseif tonumber(data) == 6 then --Monter
-			playerCurrentMode[pname] = trad.up
-			onEnterPrompt(pid, 0)			
-			return true, showMainGUI(pid)
-		elseif tonumber(data) == 7 then --Descendre
-			playerCurrentMode[pname] = trad.down
-			onEnterPrompt(pid, 0)			
-			return true, showMainGUI(pid)
-		elseif tonumber(data) == 8 then --Est
-			playerCurrentMode[pname] = trad.east
-			onEnterPrompt(pid, 0)			
-			return true, showMainGUI(pid)	
-		elseif tonumber(data) == 9 then --Ouest
-			playerCurrentMode[pname] = trad.west
-			onEnterPrompt(pid, 0)			
-			return true, showMainGUI(pid)
-		elseif tonumber(data) == 10 then --Nord
-			playerCurrentMode[pname] = trad.north
-			onEnterPrompt(pid, 0)			
-			return true, showMainGUI(pid)
-		elseif tonumber(data) == 11 then --Sud
-			playerCurrentMode[pname] = trad.sud
-			onEnterPrompt(pid, 0)
-			return true, showMainGUI(pid)
-		elseif tonumber(data) == 12 then --Agrandir
-			playerCurrentMode[pname] = trad.bigger
-			onEnterPrompt(pid, 0)			
-			return true, showMainGUI(pid)
-		elseif tonumber(data) == 13 then --Reduire
-			playerCurrentMode[pname] = trad.lower
-			onEnterPrompt(pid, 0)
-			return true, showMainGUI(pid)	
-		elseif tonumber(data) == 14 then --Attraper
-			playersTab.player[pid] = {name = Players[pid].name}
-			tes3mp.MessageBox(pid, -1, trad.info)	
-			Methods.StartDropTimer()
-			return true				
-		elseif tonumber(data) == 15 then --Close
-			--Do nothing
-			return true
-		end
-	elseif idGui == config.PromptId then
-		if data ~= nil and data ~= "" and tonumber(data) then
-			onEnterPrompt(pid, data)
-		end
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local pname = tes3mp.GetName(pid)
 		
-		playerCurrentMode[tes3mp.GetName(pid)] = nil
-		return true, showMainGUI(pid)
+		if idGui == config.MainId then
+			if tonumber(data) == 0 then --Move North
+				playerCurrentMode[pname] = trad.movn
+				showPromptGUI(pid)
+				return true
+			elseif tonumber(data) == 1 then --Move East
+				playerCurrentMode[pname] = trad.move
+				showPromptGUI(pid)
+				return true
+			elseif tonumber(data) == 2 then --Move Up
+				playerCurrentMode[pname] = trad.movup
+				showPromptGUI(pid)
+				return true
+			elseif tonumber(data) == 3 then --Rotate X
+				playerCurrentMode[pname] = trad.rotx
+				showPromptGUI(pid)
+				return true
+			elseif tonumber(data) == 4 then --Rotate Y
+				playerCurrentMode[pname] = trad.roty
+				showPromptGUI(pid)
+				return true
+			elseif tonumber(data) == 5 then --Rotate Z
+				playerCurrentMode[pname] = trad.rotz
+				showPromptGUI(pid)
+				return true
+			elseif tonumber(data) == 6 then --Monter
+				playerCurrentMode[pname] = trad.up
+				onEnterPrompt(pid, 0)			
+				return true, showMainGUI(pid)
+			elseif tonumber(data) == 7 then --Descendre
+				playerCurrentMode[pname] = trad.down
+				onEnterPrompt(pid, 0)			
+				return true, showMainGUI(pid)
+			elseif tonumber(data) == 8 then --Est
+				playerCurrentMode[pname] = trad.east
+				onEnterPrompt(pid, 0)			
+				return true, showMainGUI(pid)	
+			elseif tonumber(data) == 9 then --Ouest
+				playerCurrentMode[pname] = trad.west
+				onEnterPrompt(pid, 0)			
+				return true, showMainGUI(pid)
+			elseif tonumber(data) == 10 then --Nord
+				playerCurrentMode[pname] = trad.north
+				onEnterPrompt(pid, 0)			
+				return true, showMainGUI(pid)
+			elseif tonumber(data) == 11 then --Sud
+				playerCurrentMode[pname] = trad.sud
+				onEnterPrompt(pid, 0)
+				return true, showMainGUI(pid)
+			elseif tonumber(data) == 12 then --Agrandir
+				playerCurrentMode[pname] = trad.bigger
+				onEnterPrompt(pid, 0)			
+				return true, showMainGUI(pid)
+			elseif tonumber(data) == 13 then --Reduire
+				playerCurrentMode[pname] = trad.lower
+				onEnterPrompt(pid, 0)
+				return true, showMainGUI(pid)	
+			elseif tonumber(data) == 14 then --Attraper
+				playersTab.player[pid] = {name = Players[pid].name}
+				tes3mp.MessageBox(pid, -1, trad.info)	
+				Methods.StartDropTimer()
+				return true				
+			elseif tonumber(data) == 15 then --Close
+				--Do nothing
+				return true
+			end
+		elseif idGui == config.PromptId then
+			if data ~= nil and data ~= "" and tonumber(data) then
+				onEnterPrompt(pid, data)
+			end
+			
+			playerCurrentMode[tes3mp.GetName(pid)] = nil
+			return true, showMainGUI(pid)
+		end
 	end
 end
 
 Methods.moveObject = function(pid)
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
 		local cellSize = 8192	
 		local cell = tes3mp.GetCell(pid)
 		local pname = tes3mp.GetName(pid)
@@ -387,7 +415,7 @@ Methods.moveObject = function(pid)
 			object.location.posZ = PosZ
 			resendPlaceToAll(playerSelectedObject[pname], cell)			
 		end
-		if tes3mp.GetSneakState(pid) then		
+		if tes3mp.GetSneakState(pid) then			
 			tes3mp.MessageBox(pid, -1, trad.placeobjet)	
 			playersTab.player[pid] = nil		
 			return false
@@ -397,19 +425,40 @@ Methods.moveObject = function(pid)
 	end
 end
 
+Methods.OnCheckStateMove = function(eventStatus, pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then 
+		if playersTab.player[pid] then
+			return customEventHooks.makeEventStatus(false,false)
+		end
+	end
+end
+
 Methods.OnPlayerCellChange = function(eventStatus, pid)
-	playerSelectedObject[tes3mp.GetName(pid)] = nil
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then 
+		playerSelectedObject[tes3mp.GetName(pid)] = nil
+		if playersTab.player[pid] then
+			playersTab.player[pid] = nil
+		end
+	end
 end
 
 Methods.OnCommand = function(pid)
 	showMainGUI(pid)
 end
 
+Methods.PlayerConnect = function(eventStatus, pid)
+	if playersTab.player[pid] then
+		playersTab.player[pid] = nil
+	end
+end
+
+customEventHooks.registerValidator("OnObjectActivate", Methods.OnCheckStateMove)
 customCommandHooks.registerCommand("dh", Methods.OnCommand)
 customEventHooks.registerHandler("OnGUIAction", function(eventStatus, pid, idGui, data)
 	if DecorateHelp.OnGUIAction(pid, idGui, data) then return end
 end)
 customEventHooks.registerHandler("OnObjectPlace", Methods.OnObjectPlace)
 customEventHooks.registerHandler("OnPlayerCellChange", Methods.OnPlayerCellChange)
+customEventHooks.registerHandler("OnPlayerAuthentified", Methods.PlayerConnect)
 
 return Methods
