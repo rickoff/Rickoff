@@ -84,7 +84,7 @@ function FunctionMusicBattle()
 		end
 		if MusicPlayerBattle == true and PlayerPid ~= nil then
 			if Players[PlayerPid] ~= nil and Players[PlayerPid]:IsLoggedIn() then	
-				local rando = math.random(1, 10)
+				local rando = math.random(1, #Battle)
 				local BattleMusic 		
 				for slot, music in pairs(Battle) do
 					if slot == rando then
