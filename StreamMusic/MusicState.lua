@@ -134,7 +134,7 @@ function FunctionMusicExplore()
 		end
 		if PlayerSafe == true and PlayerPid ~= nil then	
 			if Players[PlayerPid] ~= nil and Players[PlayerPid]:IsLoggedIn() then	
-				local rando = math.random(1, 10)
+				local rando = math.random(1, #Explore)
 				local ExploreMusic 		
 				for slot, music in pairs(Explore) do
 					if slot == rando then
