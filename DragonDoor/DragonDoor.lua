@@ -175,7 +175,6 @@ end
 
 customEventHooks.registerHandler("OnPlayerDeath", DragonDoor.OnPlayerDeath)
 customEventHooks.registerHandler("OnPlayerAuthentified", DragonDoor.OnPlayerConnect)
-customEventHooks.registerHandler("OnPlayerAuthentified", DragonDoor.OnPlayerConnect)
 customEventHooks.registerHandler("OnObjectActivate", DragonDoor.OnObjectActivate)
 customEventHooks.registerHandler("OnPlayerCellChange", DragonDoor.OnPlayerCellChange)
 
