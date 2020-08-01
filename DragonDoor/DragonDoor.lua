@@ -162,6 +162,19 @@ DragonDoor.OnPlayerCellChange = function(eventStatus, pid)
 	end
 end
 
+DragonDoor.OnPlayerDeath = function(eventStatus, pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		if doorTab.player[pid] then
+			doorTab.player[pid] = {}
+			cellTab.player[pid] = {}
+			creaTab.player[pid] = {}
+			indexTab.player[pid] = {}
+		end
+	end
+end
+
+customEventHooks.registerHandler("OnPlayerDeath", DragonDoor.OnPlayerDeath)
+customEventHooks.registerHandler("OnPlayerAuthentified", DragonDoor.OnPlayerConnect)
 customEventHooks.registerHandler("OnPlayerAuthentified", DragonDoor.OnPlayerConnect)
 customEventHooks.registerHandler("OnObjectActivate", DragonDoor.OnObjectActivate)
 customEventHooks.registerHandler("OnPlayerCellChange", DragonDoor.OnPlayerCellChange)
