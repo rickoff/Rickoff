@@ -455,7 +455,7 @@ end
 customEventHooks.registerValidator("OnObjectActivate", Methods.OnCheckStateMove)
 customCommandHooks.registerCommand("dh", Methods.OnCommand)
 customEventHooks.registerHandler("OnGUIAction", function(eventStatus, pid, idGui, data)
-	if DecorateHelp.OnGUIAction(pid, idGui, data) then return end
+	DecorateHelp.OnGUIAction(pid, idGui, data)
 end)
 customEventHooks.registerHandler("OnObjectPlace", Methods.OnObjectPlace)
 customEventHooks.registerHandler("OnPlayerCellChange", Methods.OnPlayerCellChange)
