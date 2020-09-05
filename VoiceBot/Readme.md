@@ -3,7 +3,7 @@
 * --------------------------
 * DESCRIPTION :
 * Check the player in discord vocal or not
-* Use /vocal for active instancied vocal
+* Use /vocal for active or disable instancied vocal
 * ---------------------------
 * REQUIRE:
 * create a bot on your discord https://discord.com/developers/applications
