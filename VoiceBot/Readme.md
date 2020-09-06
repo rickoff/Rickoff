@@ -6,9 +6,9 @@
 * Use /vocal for active or disable instancied vocal
 * ---------------------------
 * REQUIRE:
-* create a bot on your discord https://discord.com/developers/applications
-* drop folder luadiscord in server/lib
-* edit the config.lua file in server/lib/luadiscord
+* Create a bot on your discord https://discord.com/developers/applications
+* Drop folder luadiscord in server/lib
+* Edit the config.lua file in server/lib/luadiscord
 * ---------------------------
 * INSTALLATION:
 * Save the file as VocalDiscord.lua inside your server/scripts/custom folder.
