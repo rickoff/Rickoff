@@ -7,7 +7,7 @@
 * ---------------------------
 * REQUIRE:
 * Create a bot on your discord https://discord.com/developers/applications
-* Drop folder luadiscord in server/lib
+* Unzip and Drop folder luadiscord in server/lib
 * Edit the config.lua file in server/lib/luadiscord
 * ---------------------------
 * INSTALLATION:
