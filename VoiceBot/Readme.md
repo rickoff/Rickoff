@@ -17,3 +17,4 @@
 * Save the file as playerLocations.lua inside your server/data/custom folder.
 * Edits to customScripts.lua : VocalDiscord = require("custom.VocalDiscord")
 ---------------------------
+ ![alt-text](https://github.com/rickoff/Tes3mp-Ecarlate-Script/blob/0.7.0/VoiceBot/ac7c1c20e9390b53baedc525f231e44f.gif)
