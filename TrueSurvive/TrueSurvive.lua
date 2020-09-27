@@ -861,208 +861,62 @@ end
 -- ====================
 TrueSurvive.OnCheckMessagePlayersWeather = function(pid)	
 
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+	local regionName = Players[pid].data.location.regionName
 	
-		local regionName = Players[pid].data.location.regionName
-		
-		if regionName ~= "" and regionName ~= nil then	
-		
-			if WorldInstance.storedRegions[regionName].currentWeather ~= nil then
+	if regionName ~= "" and regionName ~= nil then	
+	
+		if WorldInstance.storedRegions[regionName].currentWeather ~= nil then
 
-				if WorldInstance.storedRegions[regionName].currentWeather == 0 then	
-					--clear		
-					local spell
-					local spellcible
-					for slot, k in pairs(Players[pid].data.spellbook) do
-						if Players[pid].data.spellbook[slot] ~= "true_weather_clear" then
-							spell = Players[pid].data.spellbook[slot]
-						else
-							spellcible = true
-						end
-						
-						if tableHelper.containsValue(list_survive_weather, spell) then				
-							logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
-						end
-					end	
-					
-					if spellcible == nil then
-						--logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_clear", false)
-					end								
-				elseif WorldInstance.storedRegions[regionName].currentWeather == 1 then
-					--Cloudy			
-					local spell				
-					for slot, k in pairs(Players[pid].data.spellbook) do
-						spell = Players[pid].data.spellbook[slot]
-				
-						if tableHelper.containsValue(list_survive_weather, spell) then				
-							logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
-						end
-					end									
-				elseif WorldInstance.storedRegions[regionName].currentWeather == 2 then
-					--Foggy
-					local spell
-					local spellcible				
-					for slot, k in pairs(Players[pid].data.spellbook) do
-						if Players[pid].data.spellbook[slot] ~= "true_weather_fog" then
-							spell = Players[pid].data.spellbook[slot]
-						else
-							spellcible = true
-						end
-						
-						if tableHelper.containsValue(list_survive_weather, spell) then				
-							logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
-						end
-					end	
-					
-					if spellcible == nil then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_fog", false)
-					end									
-				elseif WorldInstance.storedRegions[regionName].currentWeather == 3 then
-					--Overcast
-					local spell
-					local spellcible					
-					for slot, k in pairs(Players[pid].data.spellbook) do
-						if Players[pid].data.spellbook[slot] ~= "true_weather_overcast" then
-							spell = Players[pid].data.spellbook[slot]
-						else
-							spellcible = true
-						end
-						
-						if tableHelper.containsValue(list_survive_weather, spell) then				
-							logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
-						end
-					end	
-					
-					if spellcible == nil then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_overcast", false)		
-					end								
-				elseif WorldInstance.storedRegions[regionName].currentWeather == 4 then
-					--Rain
-					local spell
-					local spellcible
-					for slot, k in pairs(Players[pid].data.spellbook) do
-						if Players[pid].data.spellbook[slot] ~= "true_weather_rain" then
-							spell = Players[pid].data.spellbook[slot]
-						else
-							spellcible = true
-						end
-						
-						if tableHelper.containsValue(list_survive_weather, spell) then				
-							logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
-						end
-					end	
-
-					if spellcible == nil then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_rain", false)		
-					end								
-				elseif WorldInstance.storedRegions[regionName].currentWeather == 5 then
-					--Thunder
-					local spell
-					local spellcible
-					for slot, k in pairs(Players[pid].data.spellbook) do
-						if Players[pid].data.spellbook[slot] ~= "true_weather_thunder" then
-							spell = Players[pid].data.spellbook[slot]
-						else
-							spellcible = true
-						end
-						
-						if tableHelper.containsValue(list_survive_weather, spell) then				
-							logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
-						end
-					end		
-
-					if spellcible == nil then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_thunder", false)		
-					end					
-				elseif WorldInstance.storedRegions[regionName].currentWeather == 6 then
-					--Ash		
-					local spell
-					local spellcible
-					for slot, k in pairs(Players[pid].data.spellbook) do
-						if Players[pid].data.spellbook[slot] ~= "true_weather_ash" then
-							spell = Players[pid].data.spellbook[slot]
-						else
-							spellcible = true
-						end
-						
-						if tableHelper.containsValue(list_survive_weather, spell) then				
-							logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
-						end
-					end		
-					
-					if spellcible == nil then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_ash", false)	
-					end					
-				elseif WorldInstance.storedRegions[regionName].currentWeather == 7 then
-					--Blight
-					local spell
-					local spellcible
-					for slot, k in pairs(Players[pid].data.spellbook) do
-						if Players[pid].data.spellbook[slot] ~= "true_weather_blight" then
-							spell = Players[pid].data.spellbook[slot]
-						else
-							spellcible = true
-						end
-						
-						if tableHelper.containsValue(list_survive_weather, spell) then				
-							logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
-						end
-					end	
-
-					if spellcible == nil then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_blight", false)		
-					end					
-				elseif WorldInstance.storedRegions[regionName].currentWeather == 8 then
-					--Snow 
-					local spell
-					local spellcible
-					for slot, k in pairs(Players[pid].data.spellbook) do
-						if Players[pid].data.spellbook[slot] ~= "true_weather_snow" then
-							spell = Players[pid].data.spellbook[slot]
-						else
-							spellcible = true
-						end
-						
-						if tableHelper.containsValue(list_survive_weather, spell) then				
-							logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
-						end
-					end	
-
-					if spellcible == nil then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_snow", false)	
-					end								
-				elseif WorldInstance.storedRegions[regionName].currentWeather == 9 then
-					--Blizzard  
-					local spell
-					local spellcible
-					for slot, k in pairs(Players[pid].data.spellbook) do
-						if Players[pid].data.spellbook[slot] ~= "true_weather_blizzard" then
-							spell = Players[pid].data.spellbook[slot]
-						else
-							spellcible = true
-						end
-						
-						if tableHelper.containsValue(list_survive_weather, spell) then				
-							logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
-						end
-					end	
-					
-					if spellcible == nil then
-						logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell true_weather_blizzard", false)
-					end					
-				end
+			local SpellCible		
+			local CurrentWeather = WorldInstance.storedRegions[regionName].currentWeather
+			local SpellList = Players[pid].data.spellbook
+			
+			if CurrentWeather == 0 then	
+				--clear	
+			elseif CurrentWeather == 1 then
+				--Cloudy	
+			elseif CurrentWeather == 2 then SpellCible = "true_weather_fog"
+				--Foggy
+			elseif CurrentWeather == 3 then SpellCible = "true_weather_overcast"
+				--Overcast
+			elseif CurrentWeather == 4 then SpellCible = "true_weather_rain"
+				--Rain
+			elseif CurrentWeather == 5 then SpellCible = "true_weather_thunder"
+				--Thunder	
+			elseif CurrentWeather == 6 then SpellCible = "true_weather_ash"	
+				--Ash					
+			elseif CurrentWeather == 7 then SpellCible = "true_weather_blight"
+				--Blight				
+			elseif CurrentWeather == 8 then SpellCible = "true_weather_snow"
+				--Snow 							
+			elseif CurrentWeather == 9 then SpellCible = "true_weather_blizzard"
+				--Blizzard 				
 			end
-		else
-			local spell
-			for slot, k in pairs(Players[pid].data.spellbook) do
-				spell = Players[pid].data.spellbook[slot]
-		
-				if tableHelper.containsValue(list_survive_weather, spell) then				
-					logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
-				end
+			
+			if SpellCible ~= nil then
+				if not tableHelper.containsValue(SpellList, SpellCible, true) then
+					for slot, spell in pairs(SpellList) do				
+						if tableHelper.containsValue(list_survive_weather, spell) then				
+							logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
+						end
+					end
+					logicHandler.RunConsoleCommandOnPlayer(pid, "player->addspell "..SpellCible, false)					
+				end	
+			else
+				for slot, spell in pairs(SpellList) do				
+					if tableHelper.containsValue(list_survive_weather, spell) then				
+						logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
+					end
+				end	
 			end
-		end	
-	end
+		end
+	else
+		for slot, spell in pairs(Players[pid].data.spellbook) do
+			if tableHelper.containsValue(list_survive_weather, spell) then				
+				logicHandler.RunConsoleCommandOnPlayer(pid, "player->removespell "..spell, false)
+			end
+		end
+	end	
 end
 -- =====================
 -- OBJECT ACTIVATED MENU
