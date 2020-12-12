@@ -17,7 +17,7 @@ tableHelper = require("tableHelper")
 local config = {}
 config.tabCell = {""}--add in list your cell cible
 config.tabNpc = {""}--add in list your npc cible if allReset is false
-config.allReset = true--if is true all npc in cell is delete, if false npc cible is delete
+config.allReset = true --if is true all npc in cell is delete, if false npc cible is delete
 
 local RemoveNpc = {}
 
@@ -29,44 +29,25 @@ RemoveNpc.OnActorList = function(eventStatus, pid, cellDescription)
 			if cell == nil then
 				logicHandler.LoadCell(cellDescription)
 				useTemporaryLoad = true
-				cell = LoadedCells[cellDescription]	
-				if tableHelper.containsValue(config.tabCell, cellDescription) then
-					if config.allReset == true then  			 
-						for _, uniqueIndex in pairs(cell.data.packets.actorList) do
-							cell.data.objectData[uniqueIndex] = nil
+				cell = LoadedCells[cellDescription]
+			end
+			if tableHelper.containsValue(config.tabCell, cellDescription) then
+				if config.allReset == true then  			 
+					for _, uniqueIndex in pairs(cell.data.packets.actorList) do
+						tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+						tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
+						logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)                
+					end
+				else
+					for _, uniqueIndex in pairs(cell.data.packets.actorList) do			
+						if tableHelper.containsValue(config.tabNpc, cell.data.objectData[uniqueIndex].refId) then
+							tableHelper.removeValue(cell.data.objectData, uniqueIndex)
 							tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
-							logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)                
-						end
-					else
-						for _, uniqueIndex in pairs(cell.data.packets.actorList) do			
-							if tableHelper.containsValue(config.tabNpc, cell.data.objectData[uniqueIndex].refId) then
-								cell.data.objectData[uniqueIndex] = nil
-								tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
-								logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)   
-							end
+							logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)   
 						end
 					end
-					cell:SaveToDrive()
 				end
-			elseif cell ~= nil then
-				if tableHelper.containsValue(config.tabCell, cellDescription) then
-					if config.allReset == true then  			 
-						for _, uniqueIndex in pairs(cell.data.packets.actorList) do
-							cell.data.objectData[uniqueIndex] = nil
-							tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
-							logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)                
-						end
-					else
-						for _, uniqueIndex in pairs(cell.data.packets.actorList) do			
-							if tableHelper.containsValue(config.tabNpc, cell.data.objectData[uniqueIndex].refId) then
-								cell.data.objectData[uniqueIndex] = nil
-								tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
-								logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)   
-							end
-						end
-					end
-					cell:SaveToDrive()
-				end
+				cell:SaveToDrive()
 			end	
 			if useTemporaryLoad == true then
 				logicHandler.UnloadCell(cellDescription)
