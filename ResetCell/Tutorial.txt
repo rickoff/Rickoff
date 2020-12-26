@@ -1,4 +1,4 @@
-TUTORIAL FOR RESET SCRIPT
+TUTORIAL FOR RESET SCRIPT V0.2
 
 INSTALLATION:
 
@@ -24,6 +24,7 @@ struct = require("custom.struct")
 require("custom.DataManager.main")
 require("custom.espParser.main")
 DataBaseScript = require("custom.DataBaseScript")
+Normalize = require("custom.Normalize")
 --ResetData = require("custom.ResetData")
 
 
@@ -31,7 +32,7 @@ FIRST LAUNCH:
 
 for the first launch the server will create its database containing everything necessary for resetting the cells, this can be long, wait while watching your console work with good coffee, whiskey or both
 
-once finished close the server
+once finished close the server, open the last log and and see if you haven't had a conversion problem "io2.open(): bad conversion".
 
 
 MAIN LAUNCH:
@@ -42,6 +43,7 @@ Edits to customScripts.lua:
 --require("custom.DataManager.main")
 --require("custom.espParser.main")
 --DataBaseScript = require("custom.DataBaseScript")
+--Normalize = require("custom.Normalize")
 ResetData = require("custom.ResetData")
 
 Edits to server/data/cell/base.lua:
@@ -90,22 +92,24 @@ function BaseCell:LoadInitialCellData(pid)
 end
 
 function BaseCell:LoadMomentaryCellData(pid)
-
-    if self:HasActorData() == true then
-        local objectData = self.data.objectData
-        local packets = self.data.packets
-
-        self:LoadActorPositions(pid, objectData, packets.position)
-        self:LoadActorStatsDynamic(pid, objectData, packets.statsDynamic)
-    end
-    self:RequestContainers(pid)	
+	local objectData = self.data.objectData
+	local packets = self.data.packets
+	self:RequestContainers(pid)
+	
+	if self:HasActorData() == true then
+		self:LoadActorPositions(pid, objectData, packets.position)
+		self:LoadActorStatsDynamic(pid, objectData, packets.statsDynamic)
+	elseif not self.isRequestingActorList then
+		tes3mp.LogAppend(enumerations.log.ERROR, "- Requesting actor list")	
+		self:RequestActorList(pid)	
+	end
 end
+
+- Edit config in ResetData.lua
+
+- Save files and run server
 
 USE FOR YOUR SCRIPTS:
 
 ResetData.Reset()
 add the function where you want to perform the reset
-
-Edit config in ResetData.lua
-
-save files modify and run server
