@@ -1,10 +1,10 @@
 --[[
 DataBaseScript by Rickoff
 tes3mp 0.7.0
-script version 0.1
+script version 0.2
 ---------------------------
 DESCRIPTION :
-Create a big database for resetscript
+Create a database for resetscript
 ---------------------------
 INSTALLATION:
 Save the file as DataBaseScript.lua inside your server/scripts/custom folder.
@@ -103,7 +103,7 @@ DataBaseScript.CreateJsonDataBase = function(eventStatus)
 				cell.name = cell.gridX .. ", " .. cell.gridY
 			else --its a internal cell
 				cell.isExterior = false
-			end
+			end		
 			cell.objects = {}
 			local currentIndex = nil
 			for _, subrecord in pairs(record.subRecords) do
@@ -134,11 +134,14 @@ DataBaseScript.CreateJsonDataBase = function(eventStatus)
 					end
 				end
 			end	
-			DataBaseCellContent[cell.name] = {}
-			table.insert(DataBaseCellContent[cell.name], cell)				
-			if not jsonInterface.load("custom/CellDataBase/"..cell.name..".json") then
-				jsonInterface.save("custom/CellDataBase/"..cell.name..".json", DataBaseCellContent[cell.name])	
-			end
+			jsonCellName = Normalize.stripChars(cell.name)			
+			DataBaseCellContent[jsonCellName] = {}
+			table.insert(DataBaseCellContent[jsonCellName], cell)
+			tes3mp.LogMessage(enumerations.log.ERROR, jsonCellName)
+			file = io.open("logDataBase.txt", 'w')
+			file:write(cell.name, '\n')
+			file:close()
+			jsonInterface.save("custom/CellDataBase/"..jsonCellName..".json", DataBaseCellContent[jsonCellName])	
 		end
 	end
 	for x, file in pairs(config.files) do
