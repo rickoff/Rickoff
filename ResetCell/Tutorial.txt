@@ -7,6 +7,7 @@ Folder Scripts:
 
 Save the file as ResetData.lua inside your server/scripts/custom folder.
 Save the file as DataBaseScript.lua inside your server/scripts/custom folder.
+Save the file as Normalize.lua inside your server/scripts/custom folder.
 Save the file as struct.lua inside your server/scripts/custom folder.
 Drop the folder as espParser inside your server/scripts/custom folder.
 Drop the folder as DataManager.lua inside your server/scripts/custom folder.
