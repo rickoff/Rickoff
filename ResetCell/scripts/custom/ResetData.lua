@@ -1,14 +1,13 @@
 --[[
 ResetData by Rickoff
 tes3mp 0.7.0
-script version 0.1
+script version 0.2
 ---------------------------
 DESCRIPTION :
 ResetData cell visited
 ---------------------------
 INSTALLATION:
 Save the file as ResetData.lua inside your server/scripts/custom folder.
-
 Edits to customScripts.lua
 ResetData = require("custom.ResetData")
 ---------------------------
@@ -21,18 +20,21 @@ add cells you don't want to reset in BlackCellList like this: local BlackCellLis
 ]]
 
 local ResetData = {}
-config.preservePlace = false
-config.preserveNpc = false
-config.preserveCreature = false
+config.preservePlace = true
+config.preserveNpc = true
+config.preserveCreature = true
 config.resetCell = true
-config.resetTimerCell = 3600*6
+config.messageBox = false
+config.resetTimerCell = 60
  
 local NpcData = {}
 local CreaData = {}
 local Statdata = {}
+local DoorData = {}
 local NpcList = jsonInterface.load("custom/CellDataBase/CellDataBaseNpc.json")
 local CreaList = jsonInterface.load("custom/CellDataBase/CellDataBaseCrea.json")
 local StaticList = jsonInterface.load("custom/CellDataBase/CellDataBaseStat.json")
+local DoorList = jsonInterface.load("custom/EcarlateDoor.json")
 local BlackCellList = {}
 local CellVisit = {}
 
@@ -50,6 +52,10 @@ for index, item in pairs(StaticList) do
 	table.insert(Statdata, string.lower(item))
 end
 
+for index, item in pairs(DoorList) do
+	table.insert(DoorData, string.lower(item.Refid))
+end
+
 function StartReset()
 	ResetData.Reset()
 end
@@ -62,45 +68,55 @@ ResetData.TimerStart = function(eventStatus)
 end
 
 ResetData.Reset = function()
-	for pid, player in pairs(Players) do
-		tes3mp.MessageBox(pid, -1, color.Red.. "* WAIT FOR RESET WORLD *")	
-	end	
+	if config.messageBox == true then
+		for pid, player in pairs(Players) do
+			tes3mp.MessageBox(pid, -1, color.Red.."*--------------------*\nWAIT FOR RESET WORLD\n*--------------------*")	
+		end	
+	end
+	local celldes
 	for index, cell in pairs(CellVisit) do 
+		local tableIndex = {}
 		local celldes = LoadedCells[cell]
 		local useTemporaryLoad = false	
 		if celldes == nil then
 			logicHandler.LoadCell(cell)
-			useTemporaryLoad = true	
+			useTemporaryLoad = true
+			celldes = LoadedCells[cell]
 		end
-		for key, x in pairs(LoadedCells[cell].data.packets) do
-			for x, uniqueIndex in pairs(LoadedCells[cell].data.packets[key]) do	
-				if config.preservePlace == true then
-					if tableHelper.containsValue(LoadedCells[cell].data.packets.place, uniqueIndex) and not tableHelper.containsValue(LoadedCells[cell].data.packets.spawn, uniqueIndex) then
+		local cellNameJson = cell
+		local cellData = jsonInterface.load("custom/CellDataBase/"..cellNameJson..".json")	
+		if cellData then			
+			for key, x in pairs(celldes.data.packets) do
+				for x, uniqueIndex in pairs(celldes.data.packets[key]) do			
+					if config.preservePlace == true and tableHelper.containsValue(celldes.data.packets.place, uniqueIndex) 
+						and not tableHelper.containsValue(LoadedCells[cell].data.packets.spawn, uniqueIndex)
+						and not tableHelper.containsValue(LoadedCells[cell].data.packets.container, uniqueIndex) then
 					else
-						tableHelper.removeValue(LoadedCells[cell].data.objectData, uniqueIndex)
-						tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
-						if tableHelper.getCount(Players) > 0 then						
-							logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
+						local refId = celldes.data.objectData[uniqueIndex].refId	
+						if refId then
+							if not tableHelper.containsValue(DoorData, string.lower(refId)) then				
+								tableHelper.removeValue(celldes.data.objectData, uniqueIndex)
+								tableHelper.removeValue(celldes.data.packets, uniqueIndex)
+								if tableHelper.getCount(Players) > 0 then						
+									logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
+								end
+							end
 						end
 					end
-				else
-					tableHelper.removeValue(LoadedCells[cell].data.objectData, uniqueIndex)
-					tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
-					if tableHelper.getCount(Players) > 0 then
-						logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)	
-					end
 				end
-			end
-		end	
-		local cellData = jsonInterface.load("custom/CellDataBase/"..cell..".json")		
-		if cellData then
+			end	
 			for index, y in pairs(cellData[1].objects) do
 				if not cellData[1].objects[index]["doorDest"] then
 					local uniqueIndex = index .. "-" .. 0				
 					local refId = cellData[1].objects[index]["refId"]
-					if not tableHelper.containsValue(Statdata, string.lower(refId), true) then
+					if not tableHelper.containsValue(Statdata, string.lower(refId), true) and not tableHelper.containsValue(DoorData, string.lower(refId), true) then			
 						local packetType
 						local checkCreate
+						tableHelper.removeValue(celldes.data.objectData, uniqueIndex)
+						tableHelper.removeValue(celldes.data.packets, uniqueIndex)						
+						if tableHelper.getCount(Players) > 0 then
+							logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
+						end							
 						if tableHelper.containsValue(NpcData, string.lower(refId), true) then
 							packetType = "spawn"
 							if config.preserveNpc == true then
@@ -110,7 +126,7 @@ ResetData.Reset = function()
 							end
 						elseif tableHelper.containsValue(CreaData, string.lower(refId), true) then
 							packetType = "spawn"
-							if config.preserveCrea == true then
+							if config.preserveCreature == true then
 								checkCreate = true
 							else
 								checkCreate = false
@@ -118,32 +134,35 @@ ResetData.Reset = function()
 						else
 							packetType = "place"
 							checkCreate = true
-						end					
-						tableHelper.removeValue(LoadedCells[cell].data.objectData, uniqueIndex)
-						tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
+						end						
 						if checkCreate == true then
 							local scale = cellData[1].objects[index]["scale"] or 1
 							local location = { posX = tonumber(cellData[1].objects[index]["pos"]["XPos"]), posY = tonumber(cellData[1].objects[index]["pos"]["YPos"]), posZ = tonumber(cellData[1].objects[index]["pos"]["ZPos"]), rotX = tonumber(cellData[1].objects[index]["pos"]["XRot"]), rotY = tonumber(cellData[1].objects[index]["pos"]["YRot"]), rotZ = tonumber(cellData[1].objects[index]["pos"]["ZRot"])}										
 							local newIndex = ResetData.CreateObjectAtLocation(cell, location, refId, packetType, scale)
-							for pid, player in pairs(Players) do
-								LoadedCells[cell]:RequestContainers(pid, {newIndex})
-							end
-						end
-						if tableHelper.getCount(Players) > 0 then
-							logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
+							table.insert(tableIndex, newIndex)
 						end
 					end
 				end
-			end
-			LoadedCells[cell]:QuicksaveToDrive()
-		end	
+			end		
+		else
+			tes3mp.LogMessage(enumerations.log.ERROR, "WARNING : THE CELL "..cell.." NOT RESET CHECK CELL DATA BASE")
+		end
+		celldes:QuicksaveToDrive()
+		for pid, player in pairs(Players) do
+			celldes:RequestContainers(pid, tableIndex)
+		end
 		if useTemporaryLoad == true then
 			logicHandler.UnloadCell(cell)
 		end	
-		CellVisit[index] = nil
 	end 
+	CellVisit = {}
 	for pid, player in pairs(Players) do
-		tes3mp.MessageBox(pid, -1, color.Red.. "* RESET WORLD DONE *")	
+		local NewCell = tes3mp.GetCell(pid)
+		local cellNameJson = NewCell		
+		if cellNameJson and not tableHelper.containsValue(CellVisit, cellNameJson, true) then table.insert(CellVisit, cellNameJson) end
+		if config.messageBox == true then		
+			tes3mp.MessageBox(pid, -1, color.Red.. "*--------------------*\nRESET WORLD DONE\n*--------------------*")	
+		end
 	end	 
 	if config.resetCell == true then
 		tes3mp.RestartTimer(TimerStartResetCell, time.seconds(config.resetTimerCell))
@@ -233,17 +252,19 @@ end
 ResetData.OnPlayerCellChange = function(eventStatus, pid)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
 		local cell = tes3mp.GetCell(pid)
-		if not tableHelper.containsValue(BlackCellList, cell, true) then
-			if not tableHelper.containsValue(CellVisit, cell, true) then
-				table.insert(CellVisit, cell)
+		local cellNameJson = cell
+		if not tableHelper.containsValue(BlackCellList, cellNameJson, true) then
+			if not tableHelper.containsValue(CellVisit, cellNameJson, true) then
+				table.insert(CellVisit, cellNameJson)
 			end	
 		end
 	end
 end	
 
 ResetData.OnCellLoad = function(eventStatus, pid, cell)
-	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then	
-		local cellData = jsonInterface.load("custom/CellDataBase/"..cell..".json")		
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local cellName = cell
+		local cellData = jsonInterface.load("custom/CellDataBase/"..cellName..".json")		
 		if cellData then
 			for index, y in pairs(cellData[1].objects) do
 				if not cellData[1].objects[index]["doorDest"] then
@@ -258,7 +279,7 @@ ResetData.OnCellLoad = function(eventStatus, pid, cell)
 							end	
 						end					
 					end
-					if config.preserveCrea == false then
+					if config.preserveCreature == false then
 						if tableHelper.containsValue(CreaData, string.lower(refId), true) then
 							tableHelper.removeValue(LoadedCells[cell].data.objectData, uniqueIndex)
 							tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
@@ -278,7 +299,7 @@ ResetData.OnCellLoad = function(eventStatus, pid, cell)
 									end
 								end
 							end
-							if config.preserveCrea == false then
+							if config.preserveCreature == false then
 								if tableHelper.containsValue(CreaData, string.lower(LoadedCells[cell].data.objectData[uniqueIndex].refId), true) then
 									tableHelper.removeValue(LoadedCells[cell].data.objectData, uniqueIndex)
 									tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
