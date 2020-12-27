@@ -187,4 +187,4 @@ end
 
 customEventHooks.registerHandler("OnServerPostInit", DataBaseScript.CreateJsonDataBase)
 
-return CopyCell
+return DataBaseScript
