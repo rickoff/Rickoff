@@ -45,14 +45,7 @@ function OnSaveEchantementChargeInventory(pid)
 					if currentItem.maxCharge then			
 						if currentItem.enchantmentCharge ~= -1 and currentItem.enchantmentCharge < currentItem.maxCharge then
 							currentItem.enchantmentCharge = math.floor(currentItem.enchantmentCharge + config.rechargeCharge)	
-							local itemRef = {
-								refId = currentItem.refId,
-								count = currentItem.count,
-								charge = currentItem.charge,
-								enchantmentCharge = currentItem.enchantmentCharge,
-								soul = currentItem.soul							
-							}
-							table.insert(TableChange, itemRef)	
+							table.insert(TableChange, currentItem)	
 							Change = true
 							if config.log then
 								tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE : "..currentItem.refId.." RECHARGE CHARGE ENCHANT "..currentItem.enchantmentCharge)
@@ -60,14 +53,7 @@ function OnSaveEchantementChargeInventory(pid)
 							
 						elseif currentItem.enchantmentCharge ~= -1 and currentItem.enchantmentCharge > currentItem.maxCharge then
 							currentItem.enchantmentCharge = -1	
-							local itemRef = {
-								refId = currentItem.refId,
-								count = currentItem.count,
-								charge = currentItem.charge,
-								enchantmentCharge = currentItem.enchantmentCharge,
-								soul = currentItem.soul							
-							}
-							table.insert(TableChange, itemRef)
+							table.insert(TableChange, currentItem)
 							Change = true
 							if config.log then
 								tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE : "..currentItem.refId.." RESET CHARGE ENCHANT "..currentItem.enchantmentCharge)
