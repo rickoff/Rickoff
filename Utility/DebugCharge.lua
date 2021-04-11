@@ -28,8 +28,8 @@ end
 
 function OnSaveEchantementCharge(pid)
 	local Change = false
-    for index = 0, tes3mp.GetEquipmentSize() - 1 do
-        local itemRefId = tes3mp.GetEquipmentItemRefId(pid, index)
+	for index = 0, tes3mp.GetEquipmentSize() - 1 do
+        	local itemRefId = tes3mp.GetEquipmentItemRefId(pid, index)
 		if itemRefId ~= "" then
 			local enchantmentCharge = tes3mp.GetEquipmentItemEnchantmentCharge(pid, index)
 			
