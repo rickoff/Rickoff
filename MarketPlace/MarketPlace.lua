@@ -523,10 +523,6 @@ MarketPlace.onInventoryOptionBuy = function(pid, loc)
 		end
 	end
 end
- 
-MarketPlace.onInventoryOptionRec = function(pid)
-end
- 
 -- ===========
 --  HOTEL ATTENTE MENU
 -- ===========
