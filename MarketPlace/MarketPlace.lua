@@ -15,13 +15,6 @@ Edits to customScripts.lua
 MarketPlace = require("custom.MarketPlace")
 ---------------------------
 ]]
- 
-jsonInterface = require("jsonInterface")
-tableHelper = require("tableHelper")
-inventoryHelper = require("inventoryHelper")
- 
-math.randomseed( os.time() )
-
 local config = {}
 config.MainGUI = 231363
 config.BuyGUI = 231364
