@@ -8,6 +8,7 @@ version 0.7 does not dynamically save enchantment charges in the inventory file.
 CONFIGURATION :
 change config.timeCheck for config the time of check all enchantmentCharge
 change config.rechargeCharge for config the gain of enchantmentCharge
+change config.showlog to true or false for show process in your log
 ---------------------------
 INSTALLATION:
 Save the file as DebugCharge.lua inside your server/scripts/custom folder.
@@ -19,20 +20,11 @@ DebugCharge = require("custom.DebugCharge")
 local config = {}
 config.timeCheck = 10
 config.rechargeCharge = 1
-config.log = false
+config.showlog = true
 
 local TimerStartDebugCharge = tes3mp.CreateTimer("StartDebugCharge", time.seconds(config.timeCheck))
 
 local DebugCharge = {}
-
-function getIndexByValueRefId(inputTable, valueToFind)
-    for key, value in pairs(inputTable) do
-        if value.refId == valueToFind then
-            return key
-        end
-    end
-    return nil
-end
 
 function OnSaveEchantementChargeInventory(pid)
 	local Change = false
@@ -40,25 +32,24 @@ function OnSaveEchantementChargeInventory(pid)
 	for index, currentItem in pairs(Players[pid].data.inventory) do
 		if currentItem ~= "" and currentItem ~= nil then
 			index = index - 1
-			if currentItem.refId then
-				if not tableHelper.containsValue(Players[pid].data.equipment, currentItem.refId, true) then	
-					if currentItem.maxCharge then			
-						if currentItem.enchantmentCharge ~= -1 and currentItem.enchantmentCharge < currentItem.maxCharge then
-							currentItem.enchantmentCharge = math.floor(currentItem.enchantmentCharge + config.rechargeCharge)	
-							table.insert(TableChange, currentItem)	
-							Change = true
-							if config.log then
-								tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE : "..currentItem.refId.." RECHARGE CHARGE ENCHANT "..currentItem.enchantmentCharge)
-							end							
-							
-						elseif currentItem.enchantmentCharge ~= -1 and currentItem.enchantmentCharge > currentItem.maxCharge then
-							currentItem.enchantmentCharge = -1	
-							table.insert(TableChange, currentItem)
-							Change = true
-							if config.log then
-								tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE : "..currentItem.refId.." RESET CHARGE ENCHANT "..currentItem.enchantmentCharge)
-							end							
-						end
+			if currentItem.refId and currentItem.enchantmentCharge and currentItem.maxCharge then
+				if not tableHelper.containsValue(Players[pid].data.equipment, currentItem.refId, true) then			
+					if currentItem.enchantmentCharge ~= -1 and currentItem.enchantmentCharge < currentItem.maxCharge then
+						currentItem.enchantmentCharge = math.floor(currentItem.enchantmentCharge + config.rechargeCharge)	
+						table.insert(TableChange, currentItem)	
+						Change = true
+						if config.showlog then
+							tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE : "..currentItem.refId
+							.." RECHARGE CHARGE ENCHANT "..currentItem.enchantmentCharge)
+						end						
+					elseif currentItem.enchantmentCharge ~= -1 and currentItem.enchantmentCharge > currentItem.maxCharge then
+						currentItem.enchantmentCharge = -1	
+						table.insert(TableChange, currentItem)
+						Change = true
+						if config.showlog then
+							tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE : "..currentItem.refId
+							.." RESET CHARGE ENCHANT "..currentItem.enchantmentCharge)
+						end							
 					end
 				end
 			end
@@ -75,23 +66,26 @@ end
 
 function OnSaveEchantementChargeEquipment(pid)
 	local Change = false
-	for index = 0, tes3mp.GetEquipmentSize() - 1 do
-		local itemRefId = tes3mp.GetEquipmentItemRefId(pid, index)
-		if itemRefId ~= "" then
-			local enchantmentCharge = tes3mp.GetEquipmentItemEnchantmentCharge(pid, index)
+    	for index = 0, tes3mp.GetEquipmentSize() - 1 do
+        	local itemRefId = tes3mp.GetEquipmentItemRefId(pid, index)
+		if itemRefId ~= "" and itemRefId ~= nil then
+			local enchantmentCharge = math.floor(tes3mp.GetEquipmentItemEnchantmentCharge(pid, index))
 			if enchantmentCharge ~= nil then
-				local index = getIndexByValueRefId(Players[pid].data.inventory, itemRefId)
+				local index = tableHelper.getIndexByNestedKeyValue(Players[pid].data.inventory, "refId", itemRefId)		
 				if index then
 					if Players[pid].data.inventory[index].enchantmentCharge ~= enchantmentCharge then
 						Players[pid].data.inventory[index].enchantmentCharge = enchantmentCharge
+						local effectiveCost = math.floor(50 - (Players[pid].data.skills.Enchant.base / 2.24))
+						if effectiveCost <= 0 then effectiveCost = 1 end
 						if Players[pid].data.inventory[index].maxCharge == nil and enchantmentCharge ~= -1 then
-							Players[pid].data.inventory[index].maxCharge = math.floor(enchantmentCharge + 1)
-						elseif Players[pid].data.inventory[index].maxCharge ~= nil and Players[pid].data.inventory[index].maxCharge < enchantmentCharge then
-							Players[pid].data.inventory[index].maxCharge = math.floor(enchantmentCharge)
+							Players[pid].data.inventory[index].maxCharge = enchantmentCharge + effectiveCost
+						elseif Players[pid].data.inventory[index].maxCharge ~= nil and Players[pid].data.inventory[index].maxCharge < enchantmentCharge then						
+							Players[pid].data.inventory[index].maxCharge = enchantmentCharge
 						end
 						Change = true						
-						if config.log then						
-							tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE : "..itemRefId.." COPY CHARGE ENCHANT "..enchantmentCharge)
+						if config.showlog then						
+							tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE : "..itemRefId
+							.." COPY CHARGE ENCHANT "..enchantmentCharge)
 						end
 					end
 				end
@@ -114,7 +108,10 @@ end
 
 DebugCharge.OnServerInit = function(eventStatus)
 	tes3mp.StartTimer(TimerStartDebugCharge)
-	tes3mp.LogAppend(enumerations.log.INFO, "....START TIMER DEBUG CHARGE....")		
+	if config.showlog then		
+		tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE CONFIGURATION TIMER : "..config.timeCheck)
+		tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE CONFIGURATION RECHARGE : "..config.rechargeCharge)		
+	end
 end
 
 DebugCharge.OnPlayerEquipment = function(eventStatus, pid)
@@ -122,6 +119,8 @@ DebugCharge.OnPlayerEquipment = function(eventStatus, pid)
 		OnSaveEchantementChargeEquipment(pid)
 	end
 end
+
 customEventHooks.registerHandler("OnServerInit", DebugCharge.OnServerInit)
 customEventHooks.registerHandler("OnPlayerEquipment", DebugCharge.OnPlayerEquipment)
+
 return DebugCharge
