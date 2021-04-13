@@ -3,11 +3,12 @@ DebugCharge.lua
 tes3mp 0.7.0
 ---------------------------
 DESCRIPTION :
-version 0.7 does not dynamically save enchantment charges in the inventory file. This script tries to solve this
+version 0.7 does not dynamically save enchantment charges and durability in the inventory file. This script solve this
 ---------------------------
 CONFIGURATION :
 change config.timeCheck for config the time of check all enchantmentCharge
 change config.rechargeCharge for config the gain of enchantmentCharge
+change config.naturalRecovery to true or false for dynamic save charge enchant in your inventory(process slow your server)
 change config.showlog to true or false for show process in your log
 ---------------------------
 INSTALLATION:
@@ -20,7 +21,8 @@ DebugCharge = require("custom.DebugCharge")
 local config = {}
 config.timeCheck = 10
 config.rechargeCharge = 1
-config.showlog = true
+config.naturalRecovery = true
+config.showlog = false
 
 local TimerStartDebugCharge = tes3mp.CreateTimer("StartDebugCharge", time.seconds(config.timeCheck))
 
@@ -69,8 +71,9 @@ function OnSaveEchantementChargeEquipment(pid)
     	for index = 0, tes3mp.GetEquipmentSize() - 1 do
         	local itemRefId = tes3mp.GetEquipmentItemRefId(pid, index)
 		if itemRefId ~= "" and itemRefId ~= nil then
+			local charge = math.floor(tes3mp.GetEquipmentItemCharge(pid, index))
 			local enchantmentCharge = math.floor(tes3mp.GetEquipmentItemEnchantmentCharge(pid, index))
-			if enchantmentCharge ~= nil then
+			if enchantmentCharge ~= nil and charge ~= nil then
 				local index = tableHelper.getIndexByNestedKeyValue(Players[pid].data.inventory, "refId", itemRefId)		
 				if index then
 					if Players[pid].data.inventory[index].enchantmentCharge ~= enchantmentCharge then
@@ -88,6 +91,14 @@ function OnSaveEchantementChargeEquipment(pid)
 							.." COPY CHARGE ENCHANT "..enchantmentCharge)
 						end
 					end
+					if Players[pid].data.inventory[index].charge ~= charge then
+						Players[pid].data.inventory[index].charge = charge
+						Change = true						
+						if config.showlog then						
+							tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE : "..itemRefId
+							.." COPY CHARGE DURABILITY "..charge)
+						end
+					end					
 				end
 			end
 		end
@@ -107,7 +118,9 @@ function StartDebugCharge()
 end
 
 DebugCharge.OnServerInit = function(eventStatus)
-	tes3mp.StartTimer(TimerStartDebugCharge)
+	if config.naturalRecovery then
+		tes3mp.StartTimer(TimerStartDebugCharge)
+	end
 	if config.showlog then		
 		tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE CONFIGURATION TIMER : "..config.timeCheck)
 		tes3mp.LogAppend(enumerations.log.ERROR, "DEBUG CHARGE CONFIGURATION RECHARGE : "..config.rechargeCharge)		
@@ -119,7 +132,6 @@ DebugCharge.OnPlayerEquipment = function(eventStatus, pid)
 		OnSaveEchantementChargeEquipment(pid)
 	end
 end
-
 customEventHooks.registerHandler("OnServerInit", DebugCharge.OnServerInit)
 customEventHooks.registerHandler("OnPlayerEquipment", DebugCharge.OnPlayerEquipment)
 
