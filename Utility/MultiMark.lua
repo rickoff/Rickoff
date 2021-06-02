@@ -1,7 +1,6 @@
 --[[
 MultiMark by Rickoff
 tes3mp 0.7.0
-ready for the next version
 script version 0.1
 ---------------------------
 DESCRIPTION :
@@ -51,14 +50,14 @@ local function SelectChoice(pid, index)
 end
 
 local function ListMark(pid)
-    local options = Player[pid].data.customVariables.markLocation
+    local options = Players[pid].data.customVariables.markLocation
     local list = trad.BackList 
     local listItemChanged = false
     local listItem = ""
 	
     for i = 1, #options do
  
-		for x, slot in pairs(Player[pid].data.customVariables.markLocation) do	
+		for x, slot in pairs(Players[pid].data.customVariables.markLocation) do	
 			if slot == options[i] then
 				listItem = slot.cell.." : "..math.floor(slot.posX).." ; "..math.floor(slot.posY).." ; "..math.floor(slot.posZ)
 				listItemChanged = true
@@ -87,7 +86,7 @@ end
 
 local function CountMark(pid)
 	local count = 0
-	for x, slot in pairs(Player[pid].data.customVariables.markLocation) do
+	for x, slot in pairs(Players[pid].data.customVariables.markLocation) do
 		count = count + 1
 	end
 	return count
@@ -101,10 +100,9 @@ local function AddMark(pid)
 		tablePos.posY = tes3mp.GetPosY(pid)
 		tablePos.posZ = tes3mp.GetPosZ(pid)
 		tablePos.rotX = tes3mp.GetRotX(pid)
-		tablePos.rotZ = tes3mp.GetRotZ(pid)  
-		Player[pid].data.customVariables.markLocation = {}				
-		table.insert(Player[pid].data.customVariables.markLocation, tablePos)
-		Player[pid]:QuicksaveToDrive()
+		tablePos.rotZ = tes3mp.GetRotZ(pid) 			
+		table.insert(Players[pid].data.customVariables.markLocation, tablePos)
+		Players[pid]:QuicksaveToDrive()
 	else
 		tes3mp.MessageBox(pid, -1, trad.LimiteMark..color.Green..config.MaxMark)
 	end
@@ -112,18 +110,18 @@ end
 
 local function RemoveMark(pid)
 	local index = playerIndex[GetName(pid)]
-	Player[pid].data.customVariables.markLocation[index] = nil	
-	Player[pid]:QuicksaveToDrive()
+	Players[pid].data.customVariables.markLocation[index] = nil	
+	Players[pid]:QuicksaveToDrive()
 end
 
 local function RecallPlayer(pid)
 	local index = playerIndex[GetName(pid)]
-	local cell = Player[pid].data.miscellaneous[index].posX			
-	local posX = Player[pid].data.miscellaneous[index].posX
-	local posY = Player[pid].data.miscellaneous[index].posY
-	local posZ = Player[pid].data.miscellaneous[index].posZ
-	local rotX = Player[pid].data.miscellaneous[index].rotX
-	local rotZ = Player[pid].data.miscellaneous[index].rotZ      
+	local cell = Players[pid].data.customVariables[index].posX			
+	local posX = Players[pid].data.customVariables[index].posX
+	local posY = Players[pid].data.customVariables[index].posY
+	local posZ = Players[pid].data.customVariables[index].posZ
+	local rotX = Players[pid].data.customVariables[index].rotX
+	local rotZ = Players[pid].data.customVariables[index].rotZ      
 	tes3mp.SetCell(pid, cell)
 	tes3mp.SendCell(pid)
 	tes3mp.SetPos(pid, posX, posY, posZ)
@@ -187,9 +185,19 @@ MultiMark.OnGUIAction = function(pid, idGui, data)
 	end
 end
 
+MultiMark.OnPlayerAuthentified = function(eventStatus, pid)
+	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		if not Players[pid].data.customVariables.markLocation then
+			Players[pid].data.customVariables.markLocation = {}
+			Players[pid]:QuicksaveToDrive()
+		end
+	end
+end
+
 --customEventHooks.registerValidator("OnPlayerSpellsActive", MultiMark.OnPlayerSpellsActive) --WAIT NEXT VERSION
-customCommandHooks.registerCommand("mark", MultiMark.CommandAddMark)
-customCommandHooks.registerCommand("recall", MultiMark.CommandRecallMark)
+customCommandHooks.registerCommand("marko", MultiMark.CommandAddMark)
+customCommandHooks.registerCommand("polo", MultiMark.CommandRecallMark)
+customEventHooks.registerHandler("OnPlayerAuthentified", MultiMark.OnPlayerAuthentified)
 customEventHooks.registerHandler("OnGUIAction", function(eventStatus, pid, idGui, data)
 	if MultiMark.OnGUIAction(pid, idGui, data) then return end	
 end)
