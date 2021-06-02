@@ -24,7 +24,7 @@ Change config GUI numbers for a unique numbers
 local trad = {}
 trad.BackList = "* Back *\n"
 trad.LimiteMark = color.Red.."The number of mark is limited to : "
-trad.SelectMark = color.Green.."Select a mark to edit or teleport"
+trad.SelectMark = color.Green.."Select a mark to recale or remove"
 trad.ChoiceMark = color.Yellow.."Select an option"
 trad.ChoiceMarkOpt = "Recall;Remove"
 trad.AddNewMark = "New mark at\n"
@@ -32,7 +32,7 @@ trad.AddNewMark = "New mark at\n"
 local config = {}
 config.MarkId = "mark"
 config.RecallId = "recall"
-config.MaxMark = 10
+config.MaxMark = 5
 config.MainGUI = 23101989
 config.ChoiceGUI = 23101990
 
