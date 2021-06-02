@@ -47,7 +47,7 @@ end
 
 local function SelectChoice(pid, index)
 	playerIndex[GetName(pid)] = index
-    tes3mp.CustomMessageBox(pid, config.ChoiceGUI, trad.ChoiceMark, trad.ChoiceMarkOpt)	
+	tes3mp.CustomMessageBox(pid, config.ChoiceGUI, trad.ChoiceMark, trad.ChoiceMarkOpt)	
 end
 
 local function ListMark(pid)
@@ -82,7 +82,7 @@ local function ListMark(pid)
     end
 	
 	listItemChanged = false
-    tes3mp.ListBox(pid, config.MainGUI, trad.SelectMark..color.Default, list)	
+	tes3mp.ListBox(pid, config.MainGUI, trad.SelectMark..color.Default, list)	
 end
 
 local function CountMark(pid)
