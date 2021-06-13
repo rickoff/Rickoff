@@ -1,7 +1,7 @@
 --[[
 ResetData by Rickoff
 tes3mp 0.7.0
-script version 0.3
+script version 0.2
 ---------------------------
 DESCRIPTION :
 ResetData cell visited
@@ -25,35 +25,41 @@ config.preserveNpc = true
 config.preserveCreature = true
 config.resetCell = true
 config.messageBox = false
-config.resetTimerCell = 3600
+config.resetTimerCell = 10
  
 local NpcData = {}
 local CreaData = {}
 local Statdata = {}
 local ActData = {}
+local DoorData = {}
 local NpcList = jsonInterface.load("custom/CellDataBase/CellDataBaseNpc.json")
 local CreaList = jsonInterface.load("custom/CellDataBase/CellDataBaseCrea.json")
 local StaticList = jsonInterface.load("custom/CellDataBase/CellDataBaseStat.json")
 local ActList = jsonInterface.load("custom/CellDataBase/CellDataBaseAct.json")
+local DoorList = jsonInterface.load("custom/CellDataBase/CellDataBaseDoor.json")
 local BlackCellList = {}
 local CellVisit = {}
 
 local TimerStartResetCell = tes3mp.CreateTimer("StartReset", time.seconds(config.resetTimerCell))
 
 for index, item in pairs(NpcList) do
-	table.insert(NpcData, string.lower(item))
+	NpcData[string.lower(item)] = ""
 end
 
 for index, item in pairs(CreaList) do
-	table.insert(CreaData, string.lower(item))
+	CreaData[string.lower(item)] = ""
 end
 
 for index, item in pairs(StaticList) do
-	table.insert(Statdata, string.lower(item))
+	Statdata[string.lower(item)] = ""
+end
+
+for index, item in pairs(DoorList) do
+	DoorData[string.lower(item)] = ""
 end
 
 for index, item in pairs(ActList) do
-	table.insert(ActData, string.lower(item))
+	ActData[string.lower(item)] = ""
 end
 
 function StartReset()
@@ -98,13 +104,13 @@ ResetData.Reset = function()
 			for key, x in pairs(celldes.data.packets) do
 				for x, uniqueIndex in pairs(celldes.data.packets[key]) do			
 					if config.preservePlace == true and tableHelper.containsValue(celldes.data.packets.place, uniqueIndex) 
-						and not tableHelper.containsValue(LoadedCells[cell].data.packets.spawn, uniqueIndex)
-						and not tableHelper.containsValue(LoadedCells[cell].data.packets.container, uniqueIndex) then
+						and not tableHelper.containsValue(celldes.data.packets.spawn, uniqueIndex)
+						and not tableHelper.containsValue(celldes.data.packets.container, uniqueIndex) then
 					else
 						if celldes.data.objectData[uniqueIndex] then
 							local refId = celldes.data.objectData[uniqueIndex].refId	
 							if refId then
-								if not tableHelper.containsValue(DoorData, string.lower(refId)) then
+								if not DoorData[string.lower(refId)] then
 									CleanData(celldes, cell, uniqueIndex)
 								end
 							end
@@ -116,18 +122,18 @@ ResetData.Reset = function()
 				if not cellData[1].objects[index]["doorDest"] then
 					local uniqueIndex = index .. "-" .. 0				
 					local refId = cellData[1].objects[index]["refId"]
-					if not tableHelper.containsValue(Statdata, string.lower(refId), true) and not tableHelper.containsValue(DoorData, string.lower(refId), true) and not tableHelper.containsValue(ActData, string.lower(refId), true) then			
+					if not Statdata[string.lower(refId)] and not ActList[string.lower(refId)] and not DoorData[string.lower(refId)] then			
 						local packetType
 						local checkCreate
 						CleanData(celldes, cell, uniqueIndex)						
-						if tableHelper.containsValue(NpcData, string.lower(refId), true) then
+						if NpcData[string.lower(refId)] then
 							packetType = "spawn"
 							if config.preserveNpc == true then
 								checkCreate = true
 							else
 								checkCreate = false
 							end
-						elseif tableHelper.containsValue(CreaData, string.lower(refId), true) then
+						elseif CreaData[string.lower(refId)] then
 							packetType = "spawn"
 							if config.preserveCreature == true then
 								checkCreate = true
@@ -271,24 +277,24 @@ ResetData.OnCellLoad = function(eventStatus, pid, cell)
 					local uniqueIndex = index .. "-" .. 0				
 					local refId = cellData[1].objects[index]["refId"]
 					if config.preserveNpc == false then
-						if tableHelper.containsValue(NpcData, string.lower(refId), true) then
+						if NpcData[string.lower(refId)] then
 							CleanData(cellLoaded, cell, uniqueIndex)
 						end					
 					end
 					if config.preserveCreature == false then
-						if tableHelper.containsValue(CreaData, string.lower(refId), true) then
+						if CreaData[string.lower(refId)] then
 							CleanData(cellLoaded, cell, uniqueIndex)				
 						end	
 					end
 					for x, uniqueIndex in pairs(cellLoaded.data.packets["actorList"]) do
 						if cellLoaded.data.objectData[uniqueIndex] then
 							if config.preserveNpc == false then
-								if tableHelper.containsValue(NpcData, string.lower(cellLoaded.data.objectData[uniqueIndex].refId), true) then
+								if NpcData[string.lower(cellLoaded.data.objectData[uniqueIndex].refId)] then
 									CleanData(cellLoaded, cell, uniqueIndex)
 								end
 							end
 							if config.preserveCreature == false then
-								if tableHelper.containsValue(CreaData, string.lower(cellLoaded.data.objectData[uniqueIndex].refId), true) then
+								if CreaData[string.lower(cellLoaded.data.objectData[uniqueIndex].refId)] then
 									CleanData(cellLoaded, cell, uniqueIndex)					
 								end	
 							end							
