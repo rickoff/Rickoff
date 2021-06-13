@@ -56,11 +56,12 @@ function StartReset()
 	ResetData.Reset()
 end
 
-function CleanData(cell, cellDescription, index)
-	cell.data.objectData[index] = nil
+function CleanData(cell, cellDescription, uniqueIndex)
+	tableHelper.removeValue(cell.data.packets, uniqueIndex)
+	cell.data.objectData[uniqueIndex] = nil
 	tableHelper.cleanNils(cell.data.objectData)	
 	if tableHelper.getCount(Players) > 0 then		
-		logicHandler.DeleteObjectForEveryone(cellDescription, index)
+		logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)
 	end							
 end
 
