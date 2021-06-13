@@ -8,7 +8,6 @@ Create a database for resetscript
 ---------------------------
 INSTALLATION:
 Save the file as DataBaseScript.lua inside your server/scripts/custom folder.
-
 Edits to customScripts.lua
 DataBaseScript = require("custom.DataBaseScript")
 ]]
@@ -21,6 +20,7 @@ local DataBaseNpc = {}
 local DataBaseCreature = {}
 local DataBaseStatic = {}
 local DataBaseScript = {}
+local DataBaseAct = {}
 
 DataBaseScript.CreateJsonDataBase = function(eventStatus)
 	for x, file in pairs(config.files) do
@@ -144,6 +144,7 @@ DataBaseScript.CreateJsonDataBase = function(eventStatus)
 			jsonInterface.save("custom/CellDataBase/"..jsonCellName..".json", DataBaseCellContent[jsonCellName])	
 		end
 	end
+	
 	for x, file in pairs(config.files) do
 		local records = (espParser.getRecordsByName(file, "NPC_"))
 		for _, record in pairs(records) do
@@ -157,6 +158,7 @@ DataBaseScript.CreateJsonDataBase = function(eventStatus)
 	if not jsonInterface.load("custom/CellDataBase/CellDataBaseNpc.json") then
 		jsonInterface.save("custom/CellDataBase/CellDataBaseNpc.json", DataBaseNpc)	
 	end	
+	
 	for x, file in pairs(config.files) do
 		local records = (espParser.getRecordsByName(file, "CREA"))
 		for _, record in pairs(records) do
@@ -170,6 +172,7 @@ DataBaseScript.CreateJsonDataBase = function(eventStatus)
 	if not jsonInterface.load("custom/CellDataBase/CellDataBaseCrea.json") then
 		jsonInterface.save("custom/CellDataBase/CellDataBaseCrea.json", DataBaseCreature)	
 	end	
+	
 	for x, file in pairs(config.files) do
 		local records = (espParser.getRecordsByName(file, "STAT"))
 		for _, record in pairs(records) do
@@ -182,7 +185,21 @@ DataBaseScript.CreateJsonDataBase = function(eventStatus)
 	end
 	if not jsonInterface.load("custom/CellDataBase/CellDataBaseStat.json") then
 		jsonInterface.save("custom/CellDataBase/CellDataBaseStat.json", DataBaseStatic)	
-	end		
+	end
+	
+	for x, file in pairs(config.files) do
+		local records = (espParser.getRecordsByName(file, "ACTI"))
+		for _, record in pairs(records) do
+			for _, subrecord in pairs(record.subRecords) do	
+				if subrecord.name == "NAME" then
+					table.insert(DataBaseAct, struct.unpack( "s", subrecord.data ))	
+				end
+			end
+		end
+	end
+	if not jsonInterface.load("custom/CellDataBase/CellDataBaseAct.json") then
+		jsonInterface.save("custom/CellDataBase/CellDataBaseAct.json", DataBaseAct)	
+	end	
 end
 
 customEventHooks.registerHandler("OnServerPostInit", DataBaseScript.CreateJsonDataBase)
