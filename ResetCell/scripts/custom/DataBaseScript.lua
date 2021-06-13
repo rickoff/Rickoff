@@ -21,6 +21,7 @@ local DataBaseCreature = {}
 local DataBaseStatic = {}
 local DataBaseScript = {}
 local DataBaseAct = {}
+local DataBaseDoor = {}
 
 DataBaseScript.CreateJsonDataBase = function(eventStatus)
 	for x, file in pairs(config.files) do
@@ -186,6 +187,20 @@ DataBaseScript.CreateJsonDataBase = function(eventStatus)
 	if not jsonInterface.load("custom/CellDataBase/CellDataBaseStat.json") then
 		jsonInterface.save("custom/CellDataBase/CellDataBaseStat.json", DataBaseStatic)	
 	end
+
+	for x, file in pairs(config.files) do
+		local records = (espParser.getRecordsByName(file, "DOOR"))
+		for _, record in pairs(records) do
+			for _, subrecord in pairs(record.subRecords) do	
+				if subrecord.name == "NAME" then
+					table.insert(DataBaseDoor, struct.unpack( "s", subrecord.data ))	
+				end
+			end
+		end
+	end
+	if not jsonInterface.load("custom/CellDataBase/CellDataBaseDoor.json") then
+		jsonInterface.save("custom/CellDataBase/CellDataBaseDoor.json", DataBaseDoor)	
+	end	
 	
 	for x, file in pairs(config.files) do
 		local records = (espParser.getRecordsByName(file, "ACTI"))
