@@ -1,7 +1,7 @@
 --[[
 ResetData by Rickoff
 tes3mp 0.7.0
-script version 0.2
+script version 0.3
 ---------------------------
 DESCRIPTION :
 ResetData cell visited
@@ -25,7 +25,7 @@ config.preserveNpc = true
 config.preserveCreature = true
 config.resetCell = true
 config.messageBox = false
-config.resetTimerCell = 60
+config.resetTimerCell = 10
  
 local NpcData = {}
 local CreaData = {}
@@ -34,7 +34,7 @@ local DoorData = {}
 local NpcList = jsonInterface.load("custom/CellDataBase/CellDataBaseNpc.json")
 local CreaList = jsonInterface.load("custom/CellDataBase/CellDataBaseCrea.json")
 local StaticList = jsonInterface.load("custom/CellDataBase/CellDataBaseStat.json")
-local DoorList = jsonInterface.load("custom/EcarlateDoor.json")
+local ActList = jsonInterface.load("custom/CellDataBase/CellDataBaseAct.json")
 local BlackCellList = {}
 local CellVisit = {}
 
@@ -52,12 +52,16 @@ for index, item in pairs(StaticList) do
 	table.insert(Statdata, string.lower(item))
 end
 
-for index, item in pairs(DoorList) do
-	table.insert(DoorData, string.lower(item.Refid))
-end
-
 function StartReset()
 	ResetData.Reset()
+end
+
+function CleanData(cell, cellDescription, index)
+	cell.data.objectData[index] = nil
+	tableHelper.cleanNils(cell.data.objectData)	
+	if tableHelper.getCount(Players) > 0 then		
+		logicHandler.DeleteObjectForEveryone(cellDescription, index)
+	end							
 end
 
 ResetData.TimerStart = function(eventStatus)
@@ -92,12 +96,11 @@ ResetData.Reset = function()
 						and not tableHelper.containsValue(LoadedCells[cell].data.packets.spawn, uniqueIndex)
 						and not tableHelper.containsValue(LoadedCells[cell].data.packets.container, uniqueIndex) then
 					else
-						local refId = celldes.data.objectData[uniqueIndex].refId	
-						if refId then
-							if not tableHelper.containsValue(DoorData, string.lower(refId)) then
-								tableHelper.removeValue(celldes.data.packets, uniqueIndex)
-								if tableHelper.getCount(Players) > 0 then						
-									logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
+						if celldes.data.objectData[uniqueIndex] then
+							local refId = celldes.data.objectData[uniqueIndex].refId	
+							if refId then
+								if not tableHelper.containsValue(DoorData, string.lower(refId)) then
+									CleanData(celldes, cell, uniqueIndex)
 								end
 							end
 						end
@@ -108,13 +111,10 @@ ResetData.Reset = function()
 				if not cellData[1].objects[index]["doorDest"] then
 					local uniqueIndex = index .. "-" .. 0				
 					local refId = cellData[1].objects[index]["refId"]
-					if not tableHelper.containsValue(Statdata, string.lower(refId), true) and not tableHelper.containsValue(DoorData, string.lower(refId), true) then			
+					if not tableHelper.containsValue(Statdata, string.lower(refId), true) and not tableHelper.containsValue(DoorData, string.lower(refId), true) and not tableHelper.containsValue(ActList, string.lower(refId), true) then			
 						local packetType
 						local checkCreate
-						tableHelper.removeValue(celldes.data.packets, uniqueIndex)						
-						if tableHelper.getCount(Players) > 0 then
-							logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
-						end							
+						CleanData(celldes, cell, uniqueIndex)						
 						if tableHelper.containsValue(NpcData, string.lower(refId), true) then
 							packetType = "spawn"
 							if config.preserveNpc == true then
@@ -168,20 +168,12 @@ ResetData.Reset = function()
 end
 
 ResetData.CreateObjectAtLocation = function(cellDescription, location, refId, packetType, scale)
-
     local mpNum = WorldInstance:GetCurrentMpNum() + 1
     local uniqueIndex =  0 .. "-" .. mpNum
-
-    -- Is this a generated record? If so, add a link to it in the cell it
-    -- has been placed in
     if logicHandler.IsGeneratedRecord(refId) then
         local recordStore = logicHandler.GetRecordStoreByRecordId(refId)
-
         if recordStore ~= nil then
             LoadedCells[cellDescription]:AddLinkToRecord(recordStore.storeType, refId, uniqueIndex)
-
-            -- Do any of the visitors to this cell lack the generated record?
-            -- If so, send it to them
             for _, visitorPid in pairs(LoadedCells[cellDescription].visitors) do
                 recordStore:LoadGeneratedRecords(visitorPid, recordStore.data.generatedRecords, { refId })
             end
@@ -221,7 +213,6 @@ ResetData.CreateObjectAtLocation = function(cellDescription, location, refId, pa
     end	
 
     if tableHelper.getCount(Players) > 0 then
-
         local pid = tableHelper.getAnyValue(Players).pid
         tes3mp.ClearObjectList()
         tes3mp.SetObjectListPid(pid)
@@ -235,7 +226,6 @@ ResetData.CreateObjectAtLocation = function(cellDescription, location, refId, pa
         tes3mp.SetObjectPosition(location.posX, location.posY, location.posZ)
         tes3mp.SetObjectRotation(location.rotX, location.rotY, location.rotZ)
         tes3mp.AddObject()
-
         if packetType == "place" then
             tes3mp.SendObjectPlace(true)
 			tes3mp.SendObjectScale(true)			
@@ -261,6 +251,13 @@ end
 
 ResetData.OnCellLoad = function(eventStatus, pid, cell)
 	if Players[pid] ~= nil and Players[pid]:IsLoggedIn() then
+		local cellLoaded = LoadedCells[cell]
+		local useTemporaryLoad = false	
+		if cellLoaded == nil then
+			logicHandler.LoadCell(cell)
+			useTemporaryLoad = true
+			cellLoaded = LoadedCells[cell]
+		end	
 		local cellName = cell
 		local cellData = jsonInterface.load("custom/CellDataBase/"..cellName..".json")		
 		if cellData then
@@ -270,50 +267,41 @@ ResetData.OnCellLoad = function(eventStatus, pid, cell)
 					local refId = cellData[1].objects[index]["refId"]
 					if config.preserveNpc == false then
 						if tableHelper.containsValue(NpcData, string.lower(refId), true) then
-							tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
-							if tableHelper.getCount(Players) > 0 then
-								logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
-							end	
+							CleanData(cellLoaded, cell, uniqueIndex)
 						end					
 					end
 					if config.preserveCreature == false then
 						if tableHelper.containsValue(CreaData, string.lower(refId), true) then
-							tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
-							if tableHelper.getCount(Players) > 0 then
-								logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
-							end						
+							CleanData(cellLoaded, cell, uniqueIndex)				
 						end	
 					end
-					for x, uniqueIndex in pairs(LoadedCells[cell].data.packets["actorList"]) do
-						if LoadedCells[cell].data.objectData[uniqueIndex] then
+					for x, uniqueIndex in pairs(cellLoaded.data.packets["actorList"]) do
+						if cellLoaded.data.objectData[uniqueIndex] then
 							if config.preserveNpc == false then
-								if tableHelper.containsValue(NpcData, string.lower(LoadedCells[cell].data.objectData[uniqueIndex].refId), true) then
-									tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
-									if tableHelper.getCount(Players) > 0 then						
-										logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
-									end
+								if tableHelper.containsValue(NpcData, string.lower(cellLoaded.data.objectData[uniqueIndex].refId), true) then
+									CleanData(cellLoaded, cell, uniqueIndex)
 								end
 							end
 							if config.preserveCreature == false then
-								if tableHelper.containsValue(CreaData, string.lower(LoadedCells[cell].data.objectData[uniqueIndex].refId), true) then
-									tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
-									if tableHelper.getCount(Players) > 0 then
-										logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
-									end						
+								if tableHelper.containsValue(CreaData, string.lower(cellLoaded.data.objectData[uniqueIndex].refId), true) then
+									CleanData(cellLoaded, cell, uniqueIndex)					
 								end	
 							end							
 						end
 					end						
 				end
 			end
-			LoadedCells[cell]:QuicksaveToDrive()
-		end		
+			cellLoaded:QuicksaveToDrive()
+		end	
+		if useTemporaryLoad == true then
+			logicHandler.UnloadCell(cell)
+		end			
 	end
 end
 
 customCommandHooks.registerCommand("resetall", ResetData.Reset)
 customEventHooks.registerHandler("OnPlayerCellChange", ResetData.OnPlayerCellChange)
-customEventHooks.registerHandler("OnCellLoad", ResetData.OnCellLoad)
+customEventHooks.registerValidator("OnCellLoad", ResetData.OnCellLoad)
 customEventHooks.registerHandler("OnServerInit", ResetData.TimerStart)
 
 return ResetData
