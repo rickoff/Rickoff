@@ -25,7 +25,7 @@ config.preserveNpc = true
 config.preserveCreature = true
 config.resetCell = true
 config.messageBox = false
-config.resetTimerCell = 10
+config.resetTimerCell = 3600
  
 local NpcData = {}
 local CreaData = {}
