@@ -1,7 +1,7 @@
 --[[
 ResetData by Rickoff
 tes3mp 0.7.0
-script version 0.2
+script version 0.3
 ---------------------------
 DESCRIPTION :
 ResetData cell visited
