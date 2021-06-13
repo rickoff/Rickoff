@@ -94,8 +94,7 @@ ResetData.Reset = function()
 					else
 						local refId = celldes.data.objectData[uniqueIndex].refId	
 						if refId then
-							if not tableHelper.containsValue(DoorData, string.lower(refId)) then				
-								tableHelper.removeValue(celldes.data.objectData, uniqueIndex)
+							if not tableHelper.containsValue(DoorData, string.lower(refId)) then
 								tableHelper.removeValue(celldes.data.packets, uniqueIndex)
 								if tableHelper.getCount(Players) > 0 then						
 									logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
@@ -112,7 +111,6 @@ ResetData.Reset = function()
 					if not tableHelper.containsValue(Statdata, string.lower(refId), true) and not tableHelper.containsValue(DoorData, string.lower(refId), true) then			
 						local packetType
 						local checkCreate
-						tableHelper.removeValue(celldes.data.objectData, uniqueIndex)
 						tableHelper.removeValue(celldes.data.packets, uniqueIndex)						
 						if tableHelper.getCount(Players) > 0 then
 							logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
@@ -272,7 +270,6 @@ ResetData.OnCellLoad = function(eventStatus, pid, cell)
 					local refId = cellData[1].objects[index]["refId"]
 					if config.preserveNpc == false then
 						if tableHelper.containsValue(NpcData, string.lower(refId), true) then
-							tableHelper.removeValue(LoadedCells[cell].data.objectData, uniqueIndex)
 							tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
 							if tableHelper.getCount(Players) > 0 then
 								logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
@@ -281,7 +278,6 @@ ResetData.OnCellLoad = function(eventStatus, pid, cell)
 					end
 					if config.preserveCreature == false then
 						if tableHelper.containsValue(CreaData, string.lower(refId), true) then
-							tableHelper.removeValue(LoadedCells[cell].data.objectData, uniqueIndex)
 							tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
 							if tableHelper.getCount(Players) > 0 then
 								logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
@@ -292,7 +288,6 @@ ResetData.OnCellLoad = function(eventStatus, pid, cell)
 						if LoadedCells[cell].data.objectData[uniqueIndex] then
 							if config.preserveNpc == false then
 								if tableHelper.containsValue(NpcData, string.lower(LoadedCells[cell].data.objectData[uniqueIndex].refId), true) then
-									tableHelper.removeValue(LoadedCells[cell].data.objectData, uniqueIndex)
 									tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
 									if tableHelper.getCount(Players) > 0 then						
 										logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
@@ -301,7 +296,6 @@ ResetData.OnCellLoad = function(eventStatus, pid, cell)
 							end
 							if config.preserveCreature == false then
 								if tableHelper.containsValue(CreaData, string.lower(LoadedCells[cell].data.objectData[uniqueIndex].refId), true) then
-									tableHelper.removeValue(LoadedCells[cell].data.objectData, uniqueIndex)
 									tableHelper.removeValue(LoadedCells[cell].data.packets, uniqueIndex)
 									if tableHelper.getCount(Players) > 0 then
 										logicHandler.DeleteObjectForEveryone(cell, uniqueIndex)
