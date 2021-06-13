@@ -19,9 +19,10 @@ local DataBaseCellContent = {}
 local DataBaseNpc = {}
 local DataBaseCreature = {}
 local DataBaseStatic = {}
-local DataBaseScript = {}
 local DataBaseAct = {}
 local DataBaseDoor = {}
+
+local DataBaseScript = {}
 
 DataBaseScript.CreateJsonDataBase = function(eventStatus)
 	for x, file in pairs(config.files) do
