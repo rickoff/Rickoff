@@ -30,7 +30,7 @@ config.resetTimerCell = 3600
 local NpcData = {}
 local CreaData = {}
 local Statdata = {}
-local DoorData = {}
+local ActData = {}
 local NpcList = jsonInterface.load("custom/CellDataBase/CellDataBaseNpc.json")
 local CreaList = jsonInterface.load("custom/CellDataBase/CellDataBaseCrea.json")
 local StaticList = jsonInterface.load("custom/CellDataBase/CellDataBaseStat.json")
@@ -50,6 +50,10 @@ end
 
 for index, item in pairs(StaticList) do
 	table.insert(Statdata, string.lower(item))
+end
+
+for index, item in pairs(ActList) do
+	table.insert(ActData, string.lower(item))
 end
 
 function StartReset()
@@ -112,7 +116,7 @@ ResetData.Reset = function()
 				if not cellData[1].objects[index]["doorDest"] then
 					local uniqueIndex = index .. "-" .. 0				
 					local refId = cellData[1].objects[index]["refId"]
-					if not tableHelper.containsValue(Statdata, string.lower(refId), true) and not tableHelper.containsValue(DoorData, string.lower(refId), true) and not tableHelper.containsValue(ActList, string.lower(refId), true) then			
+					if not tableHelper.containsValue(Statdata, string.lower(refId), true) and not tableHelper.containsValue(DoorData, string.lower(refId), true) and not tableHelper.containsValue(ActData, string.lower(refId), true) then			
 						local packetType
 						local checkCreate
 						CleanData(celldes, cell, uniqueIndex)						
