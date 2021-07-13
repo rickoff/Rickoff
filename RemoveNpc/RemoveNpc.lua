@@ -34,14 +34,16 @@ RemoveNpc.OnActorList = function(eventStatus, pid, cellDescription)
 			if tableHelper.containsValue(config.tabCell, cellDescription) then
 				if config.allReset == true then  			 
 					for _, uniqueIndex in pairs(cell.data.packets.actorList) do
-						tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+						cell.data.objectData[uniqueIndex] = nil
+						tableHelper.cleanNils(cell.data.objectData) 
 						tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
 						logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)                
 					end
 				else
 					for _, uniqueIndex in pairs(cell.data.packets.actorList) do			
 						if tableHelper.containsValue(config.tabNpc, cell.data.objectData[uniqueIndex].refId) then
-							tableHelper.removeValue(cell.data.objectData, uniqueIndex)
+							cell.data.objectData[uniqueIndex] = nil
+							tableHelper.cleanNils(cell.data.objectData) 
 							tableHelper.removeValue(cell.data.packets.actorList, uniqueIndex)
 							logicHandler.DeleteObjectForEveryone(cellDescription, uniqueIndex)   
 						end
